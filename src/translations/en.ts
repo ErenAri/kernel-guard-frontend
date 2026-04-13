@@ -55,7 +55,7 @@ export const en = {
     },
     community: {
       title: 'Building in Public',
-      desc: 'We are day one. We are actively building our core infrastructure and open-sourcing our progress. Follow our journey.'
+      desc: 'We are actively building our core infrastructure and open-sourcing our progress. Follow our journey.'
     }
   },
   projects: {

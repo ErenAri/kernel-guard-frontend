@@ -55,7 +55,7 @@ export const tr = {
     },
     community: {
       title: 'Açık Geliştirme (Build in Public)',
-      desc: 'Henüz 1. günümüz. Çekirdek altyapımızı aktif olarak inşa ediyor ve kodlarımızı açık kaynak olarak paylaşıyoruz. Yolculuğumuza katılın.'
+      desc: 'Çekirdek altyapımızı aktif olarak inşa ediyor ve kodlarımızı açık kaynak olarak paylaşıyoruz. Yolculuğumuza katılın.'
     }
   },
   projects: {
