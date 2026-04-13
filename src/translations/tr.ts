@@ -1,4 +1,21 @@
 export const tr = {
+  seo: {
+    home: {
+      title: 'Kernel-Guard | Güvenli ve Ölçeklenebilir Web Geliştirme',
+      description: 'Kernel-Guard, güvenlik odaklı bir yaklaşımla yüksek performanslı web uygulamaları oluşturma konusunda uzmanlaşmıştır. Modern web geliştirmeyi gelişmiş tehdit savunma mekanizmalarıyla birleştiriyoruz.',
+      keywords: 'güvenli web geliştirme, react güvenliği, sıfır güven mimarisi, web altyapısı, full-stack geliştirme, kernel-guard'
+    },
+    projects: {
+      title: 'Açık Kaynak Projeler | Kernel-Guard',
+      description: 'Güvenli web altyapısı için tasarlanmış açık kaynaklı araçlarımızı, güvenlik modüllerimizi ve sistem programlama girişimlerimizi keşfedin.',
+      keywords: 'açık kaynak güvenlik, web güvenlik araçları, güvenli kodlama, kernel-guard projeleri'
+    },
+    demos: {
+      title: 'Canlı Demolar | Kernel-Guard',
+      description: 'Güvenli web uygulamaları için canlı demo ortamlarımızı ve konsept kanıtlarımızı (PoC) inceleyin.',
+      keywords: 'güvenlik demoları, web uygulama demoları, güvenli mimari örnekleri, kernel-guard demoları'
+    }
+  },
   nav: {
     home: 'Ana Sayfa',
     openSource: 'Açık Kaynak',

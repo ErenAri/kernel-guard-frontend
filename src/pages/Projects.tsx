@@ -2,12 +2,18 @@ import { Github, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { projects } from '../data/projects';
 import { useLanguage } from '../context/LanguageContext';
+import SEO from '../components/SEO';
 
 export default function Projects() {
   const { language, t } = useLanguage();
 
   return (
     <div className="min-h-screen bg-background pt-32 pb-24">
+      <SEO 
+        title={t.seo.projects.title}
+        description={t.seo.projects.description}
+        keywords={t.seo.projects.keywords}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16 max-w-3xl">
           <h1 className="text-5xl md:text-6xl font-light mb-6 text-foreground">

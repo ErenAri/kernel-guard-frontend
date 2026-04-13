@@ -1,4 +1,21 @@
 export const en = {
+  seo: {
+    home: {
+      title: 'Kernel-Guard | Secure & Scalable Web Development',
+      description: 'Kernel-Guard specializes in building high-performance web applications with a security-first approach. We combine modern web development with advanced threat defense mechanisms.',
+      keywords: 'secure web development, react security, zero-trust architecture, web infrastructure, full-stack development, kernel-guard'
+    },
+    projects: {
+      title: 'Open Source Projects | Kernel-Guard',
+      description: 'Explore our open-source tools, security modules, and systems programming initiatives designed for secure web infrastructure.',
+      keywords: 'open source security, web security tools, secure coding, kernel-guard projects'
+    },
+    demos: {
+      title: 'Live Demos | Kernel-Guard',
+      description: 'Explore our live demonstration environments and proof-of-concepts for secure web applications.',
+      keywords: 'security demos, web app demos, secure architecture examples, kernel-guard demos'
+    }
+  },
   nav: {
     home: 'Home',
     openSource: 'Open Source',

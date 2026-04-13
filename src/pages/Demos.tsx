@@ -2,12 +2,18 @@ import { ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { demos } from '../data/demos';
+import SEO from '../components/SEO';
 
 export default function Demos() {
   const { language, t } = useLanguage();
 
   return (
     <div className="min-h-screen bg-background pt-32 pb-24">
+      <SEO 
+        title={t.seo.demos.title}
+        description={t.seo.demos.description}
+        keywords={t.seo.demos.keywords}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16 max-w-3xl">
           <div className="inline-block px-3 py-1 mb-6 border border-border text-xs font-mono tracking-widest text-foreground/70 uppercase">

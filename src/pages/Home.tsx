@@ -2,6 +2,7 @@ import { Layout, Server, Database, Zap, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import SecurityTerminal from '../components/SecurityTerminal';
+import SEO from '../components/SEO';
 
 export default function Home() {
   const { t } = useLanguage();
@@ -31,6 +32,11 @@ export default function Home() {
 
   return (
     <div className="flex flex-col bg-background">
+      <SEO 
+        title={t.seo.home.title}
+        description={t.seo.home.description}
+        keywords={t.seo.home.keywords}
+      />
       {/* Hero Section - IBM Style */}
       <section className="pt-32 pb-20 md:pt-48 md:pb-32 border-b border-border overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
