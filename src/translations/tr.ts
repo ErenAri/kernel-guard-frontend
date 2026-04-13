@@ -104,5 +104,51 @@ export const tr = {
       placeholder: 'E-posta adresiniz',
       button: 'Abone Ol',
     }
+  },
+  terms: {
+    title: 'Hizmet Şartları',
+    lastUpdated: 'Son Güncelleme: Nisan 2024',
+    section1: {
+      title: '1. Şartların Kabulü',
+      content: 'Kernel-Guard web sitesine ve hizmetlerine erişerek ve bunları kullanarak, bu Hizmet Şartlarına ve tüm ilgili yasa ve düzenlemelere bağlı kalmayı kabul etmiş olursunuz.'
+    },
+    section2: {
+      title: '2. Kullanım Lisansı',
+      content: 'Kernel-Guard web sitesindeki materyallerin bir kopyasının yalnızca kişisel, ticari olmayan geçici görüntüleme için geçici olarak indirilmesine izin verilir.'
+    },
+    section3: {
+      title: '3. Feragatname',
+      content: 'Kernel-Guard web sitesindeki materyaller \'olduğu gibi\' sunulmaktadır. Kernel-Guard, açık veya zımni hiçbir garanti vermez ve işbu belgeyle, zımni garantiler veya satılabilirlik koşulları dahil ancak bunlarla sınırlı olmamak üzere diğer tüm garantileri reddeder.'
+    }
+  },
+  privacy: {
+    title: 'Gizlilik Politikası',
+    lastUpdated: 'Son Güncelleme: Nisan 2024',
+    section1: {
+      title: '1. Topladığımız Bilgiler',
+      content: 'Bir hesap oluşturduğunuzda, bültenimize abone olduğunuzda veya destek için bizimle iletişime geçtiğinizde olduğu gibi, doğrudan bize verdiğiniz bilgileri topluyoruz.'
+    },
+    section2: {
+      title: '2. Bilgilerinizi Nasıl Kullanıyoruz',
+      content: 'Topladığımız bilgileri hizmetlerimizi sunmak, sürdürmek ve iyileştirmek, yenilerini geliştirmek ve Kernel-Guard\'ı ve kullanıcılarımızı korumak için kullanıyoruz.'
+    },
+    section3: {
+      title: '3. Veri Güvenliği',
+      content: 'Kişisel bilgilerinizi girdiğinizde, gönderdiğinizde veya bunlara eriştiğinizde kişisel bilgilerinizin güvenliğini sağlamak için çeşitli güvenlik önlemleri uyguluyoruz.'
+    }
+  },
+  cookies: {
+    title: 'Çerez Tercihleri',
+    lastUpdated: 'Son Güncelleme: Nisan 2024',
+    desc: 'Bu site, daha iyi bir kullanıcı deneyimi sunmak için çerezleri kullanır. Tercihlerinizi aşağıdan yönetebilirsiniz.',
+    essential: {
+      title: 'Zorunlu Çerezler',
+      desc: 'Bu çerezler web sitesinin çalışması için gereklidir ve kapatılamaz.'
+    },
+    analytics: {
+      title: 'Analiz Çerezleri',
+      desc: 'Bu çerezler, sitemizin performansını ölçebilmemiz ve iyileştirebilmemiz için ziyaretleri ve trafik kaynaklarını saymamıza olanak tanır.'
+    },
+    save: 'Tercihleri Kaydet'
   }
 };

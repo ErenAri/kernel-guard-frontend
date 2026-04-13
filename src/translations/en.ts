@@ -104,5 +104,51 @@ export const en = {
       placeholder: 'Enter your email',
       button: 'Subscribe',
     }
+  },
+  terms: {
+    title: 'Terms of Service',
+    lastUpdated: 'Last Updated: April 2024',
+    section1: {
+      title: '1. Acceptance of Terms',
+      content: 'By accessing and using the Kernel-Guard website and services, you agree to be bound by these Terms of Service and all applicable laws and regulations.'
+    },
+    section2: {
+      title: '2. Use License',
+      content: 'Permission is granted to temporarily download one copy of the materials on Kernel-Guard\'s website for personal, non-commercial transitory viewing only.'
+    },
+    section3: {
+      title: '3. Disclaimer',
+      content: 'The materials on Kernel-Guard\'s website are provided on an \'as is\' basis. Kernel-Guard makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability.'
+    }
+  },
+  privacy: {
+    title: 'Privacy Policy',
+    lastUpdated: 'Last Updated: April 2024',
+    section1: {
+      title: '1. Information We Collect',
+      content: 'We collect information you provide directly to us, such as when you create an account, subscribe to our newsletter, or contact us for support.'
+    },
+    section2: {
+      title: '2. How We Use Your Information',
+      content: 'We use the information we collect to provide, maintain, and improve our services, to develop new ones, and to protect Kernel-Guard and our users.'
+    },
+    section3: {
+      title: '3. Data Security',
+      content: 'We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information.'
+    }
+  },
+  cookies: {
+    title: 'Cookie Preferences',
+    lastUpdated: 'Last Updated: April 2024',
+    desc: 'This site uses cookies to provide a better user experience. You can manage your preferences below.',
+    essential: {
+      title: 'Essential Cookies',
+      desc: 'These cookies are necessary for the website to function and cannot be switched off.'
+    },
+    analytics: {
+      title: 'Analytics Cookies',
+      desc: 'These cookies allow us to count visits and traffic sources so we can measure and improve the performance of our site.'
+    },
+    save: 'Save Preferences'
   }
 };

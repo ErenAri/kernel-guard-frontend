@@ -83,9 +83,9 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} {t.footer.rights}
           </p>
           <div className="flex space-x-6 text-sm text-gray-500">
-            <span className="hover:text-gray-300 cursor-pointer transition-colors">{t.footer.terms}</span>
-            <span className="hover:text-gray-300 cursor-pointer transition-colors">{t.footer.privacy}</span>
-            <span className="hover:text-gray-300 cursor-pointer transition-colors">{t.footer.cookies}</span>
+            <Link to="/terms" className="hover:text-gray-300 transition-colors">{t.footer.terms}</Link>
+            <Link to="/privacy" className="hover:text-gray-300 transition-colors">{t.footer.privacy}</Link>
+            <Link to="/cookies" className="hover:text-gray-300 transition-colors">{t.footer.cookies}</Link>
           </div>
         </div>
       </div>
