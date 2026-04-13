@@ -12,7 +12,7 @@ export default function Navbar() {
   const navLinks = [
     { name: t.nav.home, path: '/' },
     { name: t.nav.openSource, path: '/projects' },
-    { name: t.nav.demos, path: '/demos' },
+    { name: t.nav.completedProjects, path: '/completed-projects' },
   ];
 
   const isActive = (path: string) => location.pathname === path;

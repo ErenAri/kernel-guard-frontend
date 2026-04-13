@@ -51,12 +51,19 @@ export default function Home() {
                 {t.home.heroDesc}
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-4">
                 <Link
                   to="/projects"
                   className="inline-flex items-center justify-between px-6 py-4 bg-primary text-white hover:bg-primary-dark transition-colors w-full sm:w-64"
                 >
                   <span className="font-medium">{t.home.viewArch}</span>
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+                <Link
+                  to="/completed-projects"
+                  className="inline-flex items-center justify-between px-6 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-white transition-colors w-full sm:w-64"
+                >
+                  <span className="font-medium">{t.home.viewCompletedProjects}</span>
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <a

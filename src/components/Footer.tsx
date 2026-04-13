@@ -33,8 +33,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/demos" className="text-gray-400 hover:text-white transition-colors text-sm">
-                  {t.nav.demos}
+                <Link to="/completed-projects" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  {t.nav.completedProjects}
                 </Link>
               </li>
             </ul>

@@ -10,16 +10,16 @@ export const en = {
       description: 'Explore our open-source tools, security modules, and systems programming initiatives designed for secure web infrastructure.',
       keywords: 'open source security, web security tools, secure coding, kernel-guard projects'
     },
-    demos: {
-      title: 'Live Demos | Kernel-Guard',
-      description: 'Explore our live demonstration environments and proof-of-concepts for secure web applications.',
-      keywords: 'security demos, web app demos, secure architecture examples, kernel-guard demos'
+    completedProjects: {
+      title: 'Completed Projects | Kernel-Guard',
+      description: 'Explore our completed web development projects and success stories.',
+      keywords: 'completed projects, portfolio, success stories, web development portfolio, kernel-guard projects'
     }
   },
   nav: {
     home: 'Home',
     openSource: 'Open Source',
-    demos: 'Demos',
+    completedProjects: 'Completed Projects',
     github: 'GitHub',
     linkedin: 'LinkedIn',
   },
@@ -29,6 +29,7 @@ export const en = {
     heroTitle2: 'Web Development',
     heroDesc: 'Kernel-Guard specializes in building high-performance web applications with a security-first approach. We combine modern web development with advanced threat defense mechanisms.',
     viewArch: 'View Open Source',
+    viewCompletedProjects: 'Completed Projects',
     githubRepo: 'GitHub Repository',
     status: 'STATUS:',
     operational: 'OPERATIONAL',
@@ -67,17 +68,17 @@ export const en = {
     colTech: 'Tech Stack',
     colLinks: 'Links',
   },
-  demos: {
-    badge: 'DIRECTORY // DEMOS',
-    title1: 'Live',
-    title2: 'Demos',
-    desc: 'Explore our live demonstration environments and proof-of-concepts.',
-    noAccount: 'No demo account required. Public access enabled.',
+  completedProjects: {
+    badge: 'DIRECTORY // COMPLETED_PROJECTS',
+    title1: 'Completed',
+    title2: 'Projects',
+    desc: 'Explore our portfolio of completed web development projects and success stories.',
+    noAccount: 'Public access enabled. No account required.',
     credentials: 'Authentication Data',
     email: 'User',
     password: 'Key',
-    visit: 'Launch Demo',
-    links: 'Demo Links',
+    visit: 'Visit Project',
+    links: 'Project Links',
     colName: 'Name',
     colDesc: 'Description',
     colTags: 'Tags',
@@ -87,7 +88,7 @@ export const en = {
     technicalOverview: 'Technical Overview',
     marketingOverview: 'Value Proposition',
     viewSource: 'View Source Code',
-    liveDemo: 'Live Demo',
+    liveDemo: 'Live Preview',
     backToProjects: 'Back to Directory',
   },
   footer: {

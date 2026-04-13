@@ -10,16 +10,16 @@ export const tr = {
       description: 'Güvenli web altyapısı için tasarlanmış açık kaynaklı araçlarımızı, güvenlik modüllerimizi ve sistem programlama girişimlerimizi keşfedin.',
       keywords: 'açık kaynak güvenlik, web güvenlik araçları, güvenli kodlama, kernel-guard projeleri'
     },
-    demos: {
-      title: 'Canlı Demolar | Kernel-Guard',
-      description: 'Güvenli web uygulamaları için canlı demo ortamlarımızı ve konsept kanıtlarımızı (PoC) inceleyin.',
-      keywords: 'güvenlik demoları, web uygulama demoları, güvenli mimari örnekleri, kernel-guard demoları'
+    completedProjects: {
+      title: 'Tamamlanan Projeler | Kernel-Guard',
+      description: 'Tamamlanmış web geliştirme projelerimizi ve başarı hikayelerimizi inceleyin.',
+      keywords: 'tamamlanan projeler, portfolyo, başarı hikayeleri, web geliştirme portfolyosu, kernel-guard projeleri'
     }
   },
   nav: {
     home: 'Ana Sayfa',
     openSource: 'Açık Kaynak',
-    demos: 'Demolar',
+    completedProjects: 'Tamamlanan Projeler',
     github: 'GitHub',
     linkedin: 'LinkedIn',
   },
@@ -29,6 +29,7 @@ export const tr = {
     heroTitle2: 'Web Geliştirme',
     heroDesc: 'Kernel-Guard, güvenlik odaklı bir yaklaşımla yüksek performanslı web uygulamaları oluşturma konusunda uzmanlaşmıştır. Modern web geliştirmeyi gelişmiş tehdit savunma mekanizmalarıyla birleştiriyoruz.',
     viewArch: 'Açık Kaynak Projeler',
+    viewCompletedProjects: 'Tamamlanan Projeler',
     githubRepo: 'GitHub Deposu',
     status: 'DURUM:',
     operational: 'AKTİF',
@@ -67,17 +68,17 @@ export const tr = {
     colTech: 'Teknoloji',
     colLinks: 'Bağlantılar',
   },
-  demos: {
-    badge: 'DİZİN // DEMOLAR',
-    title1: 'Canlı',
-    title2: 'Demolar',
-    desc: 'Canlı demo ortamlarımızı ve konsept kanıtlarımızı (PoC) inceleyin.',
-    noAccount: 'Demo hesabı gerekmez. Herkese açık erişim.',
+  completedProjects: {
+    badge: 'DİZİN // TAMAMLANAN_PROJELER',
+    title1: 'Tamamlanan',
+    title2: 'Projeler',
+    desc: 'Tamamlanmış web geliştirme projelerimizden oluşan portfolyomuzu inceleyin.',
+    noAccount: 'Herkese açık erişim. Hesap gerekmez.',
     credentials: 'Kimlik Doğrulama Verileri',
     email: 'Kullanıcı',
     password: 'Anahtar',
-    visit: 'Demoyu Başlat',
-    links: 'Demo Bağlantıları',
+    visit: 'Projeyi İncele',
+    links: 'Proje Bağlantıları',
     colName: 'İsim',
     colDesc: 'Açıklama',
     colTags: 'Etiketler',
@@ -87,7 +88,7 @@ export const tr = {
     technicalOverview: 'Teknik Genel Bakış',
     marketingOverview: 'Değer Önerisi',
     viewSource: 'Kaynak Kodunu Görüntüle',
-    liveDemo: 'Canlı Demo',
+    liveDemo: 'Canlı Önizleme',
     backToProjects: 'Dizine Dön',
   },
   footer: {

@@ -10,8 +10,8 @@ import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
 import ProjectDetails from './pages/ProjectDetails';
-import Demos from './pages/Demos';
-import DemoDetails from './pages/DemoDetails';
+import CompletedProjects from './pages/CompletedProjects';
+import CompletedProjectDetails from './pages/CompletedProjectDetails';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
 import Cookies from './pages/Cookies';
@@ -28,8 +28,8 @@ export default function App() {
               <Route index element={<Home />} />
               <Route path="projects" element={<Projects />} />
               <Route path="projects/:id" element={<ProjectDetails />} />
-              <Route path="demos" element={<Demos />} />
-              <Route path="demos/:id" element={<DemoDetails />} />
+              <Route path="completed-projects" element={<CompletedProjects />} />
+              <Route path="completed-projects/:id" element={<CompletedProjectDetails />} />
               <Route path="terms" element={<Terms />} />
               <Route path="privacy" element={<Privacy />} />
               <Route path="cookies" element={<Cookies />} />

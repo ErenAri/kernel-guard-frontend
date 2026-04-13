@@ -1,11 +1,12 @@
 import { Github, ExternalLink } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { projects } from '../data/projects';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/SEO';
 
 export default function Projects() {
   const { language, t } = useLanguage();
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-background pt-32 pb-24">
@@ -39,12 +40,14 @@ export default function Projects() {
             {projects.map((project) => (
               <div 
                 key={project.id} 
-                className="group grid grid-cols-1 md:grid-cols-12 gap-4 py-6 hover:bg-surface transition-colors items-start"
+                onClick={() => navigate(`/projects/${project.id}`)}
+                className="group grid grid-cols-1 md:grid-cols-12 gap-4 py-6 hover:bg-surface transition-colors items-start cursor-pointer"
               >
                 {/* Project Name & Mobile Description */}
                 <div className="md:col-span-3 pl-4">
                   <Link 
                     to={`/projects/${project.id}`} 
+                    onClick={(e) => e.stopPropagation()}
                     className="text-lg font-medium text-primary hover:underline flex items-center gap-2"
                   >
                     {project.title}
@@ -79,8 +82,9 @@ export default function Projects() {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
                       className="text-primary hover:text-primary-dark transition-colors flex items-center gap-1 text-sm font-medium"
-                      title="View Source"
+                      title={t.projectDetails.viewSource}
                     >
                       <Github className="w-5 h-5" />
                     </a>
@@ -90,8 +94,9 @@ export default function Projects() {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
                       className="text-primary hover:text-primary-dark transition-colors flex items-center gap-1 text-sm font-medium"
-                      title="Live Demo"
+                      title={t.projectDetails.liveDemo}
                     >
                       <ExternalLink className="w-5 h-5" />
                     </a>

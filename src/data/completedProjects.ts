@@ -1,4 +1,4 @@
-export const demos = [
+export const completedProjects = [
   {
     id: 'ref-atelier',
     title: 'Ref Atelier',
