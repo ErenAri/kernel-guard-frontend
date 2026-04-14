@@ -2,6 +2,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { ArrowLeft, Github, ExternalLink, Terminal, Target } from 'lucide-react';
 import { projects } from '../data/projects';
 import { useLanguage } from '../context/LanguageContext';
+import SEO from '../components/SEO';
 
 export default function ProjectDetails() {
   const { id } = useParams();
@@ -15,6 +16,12 @@ export default function ProjectDetails() {
 
   return (
     <div className="min-h-screen bg-background pt-32 pb-24">
+      <SEO 
+        title={`${project.title} - Kernel Guard`}
+        description={project.description[language]}
+        keywords={`${project.tags.join(', ')}, Kernel Guard, open source security`}
+        path={`/projects/${project.id}`}
+      />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link 
           to="/projects" 

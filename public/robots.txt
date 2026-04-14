@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kernel-guard.com/sitemap.xml

@@ -1,19 +1,19 @@
 export const tr = {
   seo: {
     home: {
-      title: 'Kernel-Guard | Güvenli ve Ölçeklenebilir Web Geliştirme',
-      description: 'Kernel-Guard, güvenlik odaklı bir yaklaşımla yüksek performanslı web uygulamaları oluşturma konusunda uzmanlaşmıştır. Modern web geliştirmeyi gelişmiş tehdit savunma mekanizmalarıyla birleştiriyoruz.',
-      keywords: 'güvenli web geliştirme, react güvenliği, sıfır güven mimarisi, web altyapısı, full-stack geliştirme, kernel-guard'
+      title: 'Kernel Guard | Güvenli Web Geliştirme ve Siber Güvenlik Çözümleri',
+      description: 'Kernel Guard, yüksek performanslı ve güvenli web uygulamaları, güçlendirilmiş arka uç (backend) mimarileri ve kuantum sonrası kriptografi çözümleri sunar. Sıfır güven (zero-trust) yaklaşımımızı keşfedin.',
+      keywords: 'Kernel Guard, güvenli web geliştirme, siber güvenlik çözümleri, güçlendirilmiş backend, kuantum sonrası kriptografi, React güvenliği, sıfır güven mimarisi, eBPF güvenliği, veri koruma'
     },
     projects: {
-      title: 'Açık Kaynak Projeler | Kernel-Guard',
-      description: 'Güvenli web altyapısı için tasarlanmış açık kaynaklı araçlarımızı, güvenlik modüllerimizi ve sistem programlama girişimlerimizi keşfedin.',
-      keywords: 'açık kaynak güvenlik, web güvenlik araçları, güvenli kodlama, kernel-guard projeleri'
+      title: 'Açık Kaynak Siber Güvenlik Projeleri | Kernel Guard',
+      description: 'Kernel Guard\'ın açık kaynaklı siber güvenlik araçlarını, eBPF güvenlik modüllerini, kuantum sonrası kriptografi uygulamalarını ve sistem programlama projelerini keşfedin.',
+      keywords: 'Kernel Guard açık kaynak, siber güvenlik araçları, eBPF güvenliği, kuantum sonrası kriptografi, güvenli kodlama, web güvenlik araçları'
     },
     completedProjects: {
-      title: 'Tamamlanan Projeler | Kernel-Guard',
-      description: 'Tamamlanmış web geliştirme projelerimizi ve başarı hikayelerimizi inceleyin.',
-      keywords: 'tamamlanan projeler, portfolyo, başarı hikayeleri, web geliştirme portfolyosu, kernel-guard projeleri'
+      title: 'Tamamlanan Güvenli Web Projeleri | Kernel Guard',
+      description: 'Kernel Guard\'ın tamamlanmış güvenli web geliştirme projeleri portföyünü inceleyin. Sıfır güven mimarilerini ve yüksek performanslı önyüzleri nasıl uyguladığımızı görün.',
+      keywords: 'Kernel Guard portfolyo, güvenli web projeleri, sıfır güven mimarisi örnekleri, yüksek performanslı web uygulamaları, siber güvenlik vaka çalışmaları'
     }
   },
   nav: {

@@ -14,6 +14,7 @@ export default function Projects() {
         title={t.seo.projects.title}
         description={t.seo.projects.description}
         keywords={t.seo.projects.keywords}
+        path="/projects"
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16 max-w-3xl">

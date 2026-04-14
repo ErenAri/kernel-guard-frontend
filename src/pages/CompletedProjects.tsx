@@ -14,6 +14,7 @@ export default function CompletedProjects() {
         title={t.seo.completedProjects.title}
         description={t.seo.completedProjects.description}
         keywords={t.seo.completedProjects.keywords}
+        path="/completed-projects"
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16 max-w-3xl">

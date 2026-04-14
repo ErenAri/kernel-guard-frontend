@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, ExternalLink, ShieldCheck, User, KeyRound } from 'lucide-react';
 import { completedProjects } from '../data/completedProjects';
 import { useLanguage } from '../context/LanguageContext';
+import SEO from '../components/SEO';
 
 export default function CompletedProjectDetails() {
   const { id } = useParams();
@@ -25,6 +26,12 @@ export default function CompletedProjectDetails() {
 
   return (
     <div className="min-h-screen bg-background pt-32 pb-24">
+      <SEO 
+        title={`${project.title} - Kernel Guard`}
+        description={project.description[language]}
+        keywords={`${project.tags.join(', ')}, Kernel Guard, secure web project, case study`}
+        path={`/completed-projects/${project.id}`}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link 
           to="/completed-projects" 

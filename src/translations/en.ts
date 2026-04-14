@@ -1,19 +1,19 @@
 export const en = {
   seo: {
     home: {
-      title: 'Kernel-Guard | Secure & Scalable Web Development',
-      description: 'Kernel-Guard specializes in building high-performance web applications with a security-first approach. We combine modern web development with advanced threat defense mechanisms.',
-      keywords: 'secure web development, react security, zero-trust architecture, web infrastructure, full-stack development, kernel-guard'
+      title: 'Kernel Guard | Secure Web Development & Cybersecurity Solutions',
+      description: 'Kernel Guard specializes in building high-performance, secure web applications, hardened backend architectures, and post-quantum cryptography solutions. Discover our zero-trust approach.',
+      keywords: 'Kernel Guard, secure web development, cybersecurity solutions, hardened backend, post-quantum cryptography, React security, zero-trust architecture, eBPF security, data protection'
     },
     projects: {
-      title: 'Open Source Projects | Kernel-Guard',
-      description: 'Explore our open-source tools, security modules, and systems programming initiatives designed for secure web infrastructure.',
-      keywords: 'open source security, web security tools, secure coding, kernel-guard projects'
+      title: 'Open Source Security Projects | Kernel Guard',
+      description: 'Explore Kernel Guard\'s open-source cybersecurity tools, eBPF security modules, post-quantum cryptography apps, and systems programming initiatives.',
+      keywords: 'Kernel Guard open source, cybersecurity tools, eBPF security, post-quantum cryptography, secure coding, web security tools'
     },
     completedProjects: {
-      title: 'Completed Projects | Kernel-Guard',
-      description: 'Explore our completed web development projects and success stories.',
-      keywords: 'completed projects, portfolio, success stories, web development portfolio, kernel-guard projects'
+      title: 'Completed Secure Web Projects | Kernel Guard',
+      description: 'Review Kernel Guard\'s portfolio of completed secure web development projects. See how we implement zero-trust architectures and high-performance frontends.',
+      keywords: 'Kernel Guard portfolio, secure web projects, zero-trust architecture examples, high-performance web apps, cybersecurity case studies'
     }
   },
   nav: {
