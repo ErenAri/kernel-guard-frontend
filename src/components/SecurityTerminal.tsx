@@ -21,25 +21,16 @@ export default function SecurityTerminal() {
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
-    
-    const nextLine = () => {
-      setVisibleLines((prev) => {
-        const next = prev + 1;
-        if (next > LOG_SEQUENCE.length) {
-          // Reset after a delay
-          timeout = setTimeout(() => setVisibleLines(0), 1000);
-          return prev;
-        }
-        
-        const currentLog = LOG_SEQUENCE[prev];
-        timeout = setTimeout(nextLine, currentLog.delay);
-        return next;
-      });
-    };
 
-    // Start sequence
     if (visibleLines === 0) {
-      timeout = setTimeout(nextLine, 1000);
+      timeout = setTimeout(() => setVisibleLines(1), 1000);
+    } else if (visibleLines > LOG_SEQUENCE.length) {
+      timeout = setTimeout(() => setVisibleLines(0), 2000);
+    } else {
+      const currentLog = LOG_SEQUENCE[visibleLines - 1];
+      timeout = setTimeout(() => {
+        setVisibleLines(v => v + 1);
+      }, currentLog.delay);
     }
 
     return () => clearTimeout(timeout);
