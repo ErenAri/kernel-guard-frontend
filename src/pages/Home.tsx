@@ -112,6 +112,40 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Tech Stack Marquee Section */}
+      <section className="py-24 border-t border-border bg-surface overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
+          <h2 className="text-3xl font-light mb-4">{t.home.techStackTitle}</h2>
+          <p className="text-lg text-foreground/70 font-light max-w-2xl mx-auto">{t.home.techStackDesc}</p>
+        </div>
+        
+        <div className="relative w-full flex overflow-hidden">
+          {/* Gradient Masks for smooth fade on edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-surface to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-surface to-transparent z-10 pointer-events-none"></div>
+          
+          {/* Marquee Track */}
+          <div className="flex animate-marquee whitespace-nowrap">
+            {/* First Set */}
+            <div className="flex gap-8 px-4 items-center">
+              {['React', 'TypeScript', 'Node.js', 'Rust', 'Go', 'Docker', 'Kubernetes', 'PostgreSQL', 'GraphQL', 'WebAssembly'].map((tech, i) => (
+                <div key={i} className="px-6 py-3 border border-border bg-background text-foreground font-mono text-lg font-medium shadow-[0_0_15px_rgba(15,98,254,0.1)]">
+                  {tech}
+                </div>
+              ))}
+            </div>
+            {/* Duplicate Set for infinite loop */}
+            <div className="flex gap-8 px-4 items-center">
+              {['React', 'TypeScript', 'Node.js', 'Rust', 'Go', 'Docker', 'Kubernetes', 'PostgreSQL', 'GraphQL', 'WebAssembly'].map((tech, i) => (
+                <div key={`dup-${i}`} className="px-6 py-3 border border-border bg-background text-foreground font-mono text-lg font-medium shadow-[0_0_15px_rgba(15,98,254,0.1)]">
+                  {tech}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section - Bento Grid */}
       <section className="py-24 border-t border-border bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

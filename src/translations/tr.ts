@@ -14,14 +14,38 @@ export const tr = {
       title: 'Tamamlanan Güvenli Web Projeleri | Kernel Guard',
       description: 'Kernel Guard\'ın tamamlanmış güvenli web geliştirme projeleri portföyünü inceleyin. Sıfır güven mimarilerini ve yüksek performanslı önyüzleri nasıl uyguladığımızı görün.',
       keywords: 'Kernel Guard portfolyo, güvenli web projeleri, sıfır güven mimarisi örnekleri, yüksek performanslı web uygulamaları, siber güvenlik vaka çalışmaları'
+    },
+    services: {
+      title: 'Hizmetlerimiz | Kernel Guard',
+      description: 'Kernel Guard tarafından sunulan kapsamlı web geliştirme ve siber güvenlik hizmetlerini keşfedin.',
+      keywords: 'Kernel Guard hizmetler, web tasarımı, siber güvenlik, kişisel yazılım geliştirme, SaaS geliştirme, bulut yönetimi'
     }
   },
   nav: {
     home: 'Ana Sayfa',
+    services: 'Hizmetlerimiz',
     openSource: 'Açık Kaynak',
     completedProjects: 'Tamamlanan Projeler',
     github: 'GitHub',
     linkedin: 'LinkedIn',
+  },
+  servicesPage: {
+    title: 'Hizmetlerimiz',
+    subtitle: 'İşletmenizi geleceğe taşıyacak güvenli ve ölçeklenebilir teknoloji çözümleri.',
+    services: [
+      { title: 'Web Tasarımı', desc: 'Modern, kullanıcı dostu ve dönüşüm odaklı arayüz tasarımları.', icon: 'layout' },
+      { title: 'Siber Güvenlik', desc: 'Sistemlerinizi ve verilerinizi en güncel tehditlere karşı koruma.', icon: 'shield' },
+      { title: 'Özel Yazılım Geliştirme', desc: 'İşletmenizin özel ihtiyaçlarına tam uyan, ölçeklenebilir yazılım çözümleri.', icon: 'code' },
+      { title: 'Web Geliştirme', desc: 'Yüksek performanslı, güvenli ve modern web uygulamaları.', icon: 'globe' },
+      { title: 'SaaS Geliştirme', desc: 'Bulut tabanlı, abonelik modeliyle çalışan yazılım ürünleri inşası.', icon: 'box' },
+      { title: 'Bilgi Güvenliği', desc: 'Kurumsal verilerinizin gizliliğini, bütünlüğünü ve erişilebilirliğini sağlama.', icon: 'lock' },
+      { title: 'Bulut Uygulama Geliştirme', desc: 'Bulut ortamında (AWS, Azure) native çalışan modern uygulamalar.', icon: 'cloud' },
+      { title: 'Bulut Yönetimi', desc: 'Bulut altyapınızın optimizasyonu, güvenliği ve 7/24 izlenmesi.', icon: 'server' },
+      { title: 'Veritabanı Geliştirme', desc: 'Güvenli, hızlı ve büyük veri yüklerini kaldırabilen veritabanı mimarileri.', icon: 'database' }
+    ],
+    ctaTitle: 'Projeniz için hazır mısınız?',
+    ctaDesc: 'Güvenli ve modern bir altyapı kurmak için bizimle iletişime geçin.',
+    ctaButton: 'Bize Ulaşın'
   },
   home: {
     systemSecure: 'SİSTEM_GÜVENLİ // V2.4.1',
@@ -39,6 +63,8 @@ export const tr = {
     missionTitle: 'Güvenlik Odaklı Web Mühendisliği',
     missionP1: 'Kernel-Guard olarak, gerçek güvenliğin bir web uygulamasına sonradan eklenemeyeceğine inanıyoruz. Kod tabanının tam temeline mühendislik edilmelidir. Bizler, sağlam dijital deneyimler oluşturmaya adanmış full-stack geliştiriciler ve güvenlik araştırmacılarıyız.',
     missionP2: 'Odak noktamız, güvenli frontend mimarilerinden güçlendirilmiş backend API\'lerine ve veritabanı yönetimine kadar uzanır. Biz sadece web sitesi yapmıyoruz; gelişen tehditlere karşı ayakta kalan dayanıklı web altyapıları inşa ediyoruz.',
+    techStackTitle: 'Teknoloji Cephaneliğimiz',
+    techStackDesc: 'Çözümlerimizi endüstri lideri, güvenli ve yüksek performanslı teknolojiler kullanarak inşa ediyoruz.',
     features: {
       frontend: { title: 'Güvenli Frontend', desc: 'React ile oluşturulmuş, XSS ve istemci tarafı güvenlik açıklarına karşı güçlendirilmiş modern, duyarlı kullanıcı arayüzleri.' },
       backend: { title: 'Güçlendirilmiş Backend', desc: 'Sıfır güven (zero-trust) prensipleri ve sağlam kimlik doğrulama ile tasarlanmış ölçeklenebilir sunucu mimarileri ve API\'ler.' },

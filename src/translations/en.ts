@@ -14,14 +14,38 @@ export const en = {
       title: 'Completed Secure Web Projects | Kernel Guard',
       description: 'Review Kernel Guard\'s portfolio of completed secure web development projects. See how we implement zero-trust architectures and high-performance frontends.',
       keywords: 'Kernel Guard portfolio, secure web projects, zero-trust architecture examples, high-performance web apps, cybersecurity case studies'
+    },
+    services: {
+      title: 'Our Services | Kernel Guard',
+      description: 'Explore the comprehensive web development and cybersecurity services offered by Kernel Guard.',
+      keywords: 'Kernel Guard services, web design, cybersecurity, custom software development, SaaS development, cloud management'
     }
   },
   nav: {
     home: 'Home',
+    services: 'Services',
     openSource: 'Open Source',
     completedProjects: 'Completed Projects',
     github: 'GitHub',
     linkedin: 'LinkedIn',
+  },
+  servicesPage: {
+    title: 'Our Services',
+    subtitle: 'Secure and scalable technology solutions to propel your business into the future.',
+    services: [
+      { title: 'Web Design', desc: 'Modern, user-friendly, and conversion-focused interface designs.', icon: 'layout' },
+      { title: 'Cybersecurity', desc: 'Protecting your systems and data against the latest threats.', icon: 'shield' },
+      { title: 'Custom Software Dev', desc: 'Scalable software solutions tailored to your specific business needs.', icon: 'code' },
+      { title: 'Web Development', desc: 'High-performance, secure, and modern web applications.', icon: 'globe' },
+      { title: 'SaaS Development', desc: 'Building cloud-based, subscription-model software products.', icon: 'box' },
+      { title: 'Information Security', desc: 'Ensuring the confidentiality, integrity, and availability of your corporate data.', icon: 'lock' },
+      { title: 'Cloud App Development', desc: 'Modern applications built to run natively in cloud environments.', icon: 'cloud' },
+      { title: 'Cloud Management', desc: 'Optimization, security, and 24/7 monitoring of your cloud infrastructure.', icon: 'server' },
+      { title: 'Database Development', desc: 'Secure, fast, and scalable database architectures for big data loads.', icon: 'database' }
+    ],
+    ctaTitle: 'Ready for your project?',
+    ctaDesc: 'Contact us to build a secure and modern infrastructure.',
+    ctaButton: 'Get in Touch'
   },
   home: {
     systemSecure: 'SYSTEMS_SECURE // V2.4.1',
@@ -39,6 +63,8 @@ export const en = {
     missionTitle: 'Security-First Web Engineering',
     missionP1: 'At Kernel-Guard, we believe that true security cannot be bolted onto a web application as an afterthought. It must be engineered into the very foundation of the codebase. We are a team of full-stack developers and security researchers dedicated to building robust digital experiences.',
     missionP2: 'Our focus spans from secure frontend architectures to hardened backend APIs and database management. We don\'t just build websites; we build resilient web infrastructure that stands against evolving threats.',
+    techStackTitle: 'Our Arsenal',
+    techStackDesc: 'We engineer our solutions using industry-leading, secure, and high-performance technologies.',
     features: {
       frontend: { title: 'Secure Frontend', desc: 'Modern, responsive user interfaces built with React and fortified against XSS and client-side vulnerabilities.' },
       backend: { title: 'Hardened Backend', desc: 'Scalable server architectures and APIs designed with zero-trust principles and robust authentication.' },
