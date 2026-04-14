@@ -66,7 +66,7 @@ export default function Home() {
                 </Link>
                 <Link
                   to="/completed-projects"
-                  className="inline-flex items-center justify-between px-6 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-white transition-colors w-full sm:w-64"
+                  className="inline-flex items-center justify-between px-6 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors w-full sm:w-64"
                 >
                   <span className="font-medium">{t.home.viewCompletedProjects}</span>
                   <ArrowRight className="w-5 h-5" />
@@ -75,7 +75,7 @@ export default function Home() {
                   href="https://github.com/Kernel-Guard"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-between px-6 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-white transition-colors w-full sm:w-64"
+                  className="inline-flex items-center justify-between px-6 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors w-full sm:w-64"
                 >
                   <span className="font-medium">{t.home.githubRepo}</span>
                   <ArrowRight className="w-5 h-5" />
