@@ -3,10 +3,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import { AnimatePresence } from 'motion/react';
 import Layout from './components/Layout';
 import ScrollToTop from './components/ScrollToTop';
+import BootScreen from './components/BootScreen';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
 import ProjectDetails from './pages/ProjectDetails';
@@ -23,10 +26,15 @@ import { LanguageProvider } from './context/LanguageContext';
 import { ThemeProvider } from './context/ThemeContext';
 
 export default function App() {
+  const [bootComplete, setBootComplete] = useState(false);
+
   return (
     <HelmetProvider>
       <ThemeProvider>
         <LanguageProvider>
+          <AnimatePresence>
+            {!bootComplete && <BootScreen onComplete={() => setBootComplete(true)} />}
+          </AnimatePresence>
           <BrowserRouter>
             <ScrollToTop />
             <Routes>
