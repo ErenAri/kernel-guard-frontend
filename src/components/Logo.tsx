@@ -9,8 +9,11 @@ export default function Logo({ className = '', dark = false }: LogoProps) {
   return (
     <div className={`flex flex-col items-center justify-center leading-none ${className}`}>
       <span 
-        className={`font-['Michroma'] font-bold text-[1.35rem] tracking-[0.35em] uppercase ml-3 ${dark ? 'text-white' : 'text-[#121a2f]'}`}
-        style={{ textShadow: dark ? 'none' : '0.5px 0.5px 0px #121a2f' }}
+        className="font-['Michroma'] font-bold text-[1.35rem] tracking-[0.35em] uppercase ml-3"
+        style={{ 
+          color: dark ? '#ffffff' : 'var(--logo-text)',
+          textShadow: dark ? 'none' : 'var(--logo-shadow)'
+        }}
       >
         Kernel
       </span>

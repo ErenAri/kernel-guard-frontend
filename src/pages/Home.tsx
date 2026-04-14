@@ -11,22 +11,26 @@ export default function Home() {
     {
       icon: <Layout className="w-6 h-6 text-primary" />,
       title: t.home.features.frontend.title,
-      description: t.home.features.frontend.desc
+      description: t.home.features.frontend.desc,
+      link: '/services/secure-frontend'
     },
     {
       icon: <Server className="w-6 h-6 text-primary" />,
       title: t.home.features.backend.title,
-      description: t.home.features.backend.desc
+      description: t.home.features.backend.desc,
+      link: '/services/hardened-backend'
     },
     {
       icon: <Database className="w-6 h-6 text-primary" />,
       title: t.home.features.data.title,
-      description: t.home.features.data.desc
+      description: t.home.features.data.desc,
+      link: '/services/data-protection'
     },
     {
       icon: <Zap className="w-6 h-6 text-primary" />,
       title: t.home.features.performance.title,
-      description: t.home.features.performance.desc
+      description: t.home.features.performance.desc,
+      link: '/services/high-performance'
     }
   ];
 
@@ -106,7 +110,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-border">
             {features.map((feature, index) => (
-              <div key={index} className="p-8 hover:bg-surface transition-colors group cursor-pointer">
+              <Link to={feature.link} key={index} className="p-8 hover:bg-surface transition-colors group cursor-pointer block">
                 <div className="mb-12">
                   {feature.icon}
                 </div>
@@ -117,7 +121,7 @@ export default function Home() {
                 <div className="mt-8 flex justify-end opacity-0 group-hover:opacity-100 transition-opacity">
                   <ArrowRight className="w-5 h-5 text-primary" />
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

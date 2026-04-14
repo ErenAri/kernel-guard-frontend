@@ -3,6 +3,7 @@ import { Menu, X, Globe } from 'lucide-react';
 import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import Logo from './Logo';
+import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -75,11 +76,16 @@ export default function Navbar() {
                 <Globe className="w-4 h-4" />
                 {language}
               </button>
+              
+              <div className="ml-2">
+                <ThemeToggle />
+              </div>
             </div>
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
             <button
               onClick={toggleLanguage}
               className="flex items-center justify-center p-2 text-foreground hover:bg-surface focus:outline-none font-mono uppercase text-sm"
