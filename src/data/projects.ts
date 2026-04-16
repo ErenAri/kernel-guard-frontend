@@ -17,6 +17,7 @@ export interface Project {
   link?: string;
   github?: string;
   image?: string;
+  diagram?: string;
 }
 
 export const projects: Project[] = [
@@ -37,7 +38,20 @@ export const projects: Project[] = [
     },
     tags: ["Python", "AI", "Graph Neural Networks"],
     github: "https://github.com/Kernel-Guard/CathodeX",
-    link: "https://cathode-screening.vercel.app/"
+    link: "https://cathode-screening.vercel.app/",
+    diagram: `graph LR
+    User[User / Chemist] -->|HTTPS| FE(Next.js on Vercel)
+    FE -->|JSON| API(FastAPI on Render)
+    subgraph "Inference Engine"
+        API -->|Parse| Pymatgen(Structure Parser)
+        Pymatgen -->|Graph| M1(MACE Member 1)
+        Pymatgen -->|Graph| M2(MACE Member 2)
+        Pymatgen -->|Graph| M3(MACE Member 3)
+        Pymatgen -->|Graph| M4(MACE Member 4)
+        Pymatgen -->|Graph| M5(MACE Member 5)
+    end
+    M1 & M2 & M3 & M4 & M5 -->|Aggregate| Stats[q10 / q50 / q90 + Conformal]
+    Stats -->|Policy| Result[KEEP / MAYBE / KILL]`
   },
   {
     id: "2",
@@ -55,7 +69,18 @@ export const projects: Project[] = [
       tr: "İletişiminizi geleceğe hazırlayın. Kuantum hesaplama geliştikçe geleneksel şifreleme geçersiz hale gelecektir. Kuantum sonrası mesajlaşma uygulamamız, hassas verilerinizin bugünden yarının tehditlerine karşı güvende kalmasını sağlar."
     },
     tags: ["Rust", "Cryptography", "Post-Quantum"],
-    github: "https://github.com/Kernel-Guard/post-quantum-messaging-app"
+    github: "https://github.com/Kernel-Guard/post-quantum-messaging-app",
+    diagram: `flowchart LR
+    C["CLI / Android / iOS / Web / Desktop"] -->|HTTP JSON + TLS| S["pqmsg-server"]
+    S -->|Sealed inbox sync / realtime relay| C
+    A["Android bridge"] --> CORE["pqmsg-core"]
+    I["iOS bridge"] --> CORE
+    W["Web WASM bridge"] --> CORE
+    D["Desktop wrapper"] --> W
+    S --> DB["PostgreSQL / SQLite"]
+    S --> RD["Redis rate limiter"]
+    PV["ProVerif model"] -.-> V["CI verification gate"]
+    TM["Tamarin model"] -.-> V`
   },
   {
     id: "3",
@@ -73,6 +98,26 @@ export const projects: Project[] = [
       tr: "Çekirdek düzeyinde kurumsal düzeyde güvenlik. Aegis, sıfır ek yük ile sistem davranışı üzerinde derin görünürlük ve kontrol sağlar. En son eBPF teknolojimizle altyapınızı gelişmiş kalıcı tehditlerden koruyun."
     },
     tags: ["C++", "eBPF", "Security", "Linux Kernel"],
-    github: "https://github.com/Kernel-Guard/Aegis-BPF-CO-RE-Enforcement-Prototype"
+    github: "https://github.com/Kernel-Guard/Aegis-BPF-CO-RE-Enforcement-Prototype",
+    diagram: `graph TD
+    subgraph "AegisBPF User Space"
+        A[File/Net Deny Rules] --> Z
+        B[Allow Allowlist] --> Z
+        C[Policy + Signing] --> Z
+        D[Metrics + Health] --> Z
+        E[Plugins + Rules] --> Z
+        Z[(Pinned BPF Maps & Ring Buffer)]
+    end
+    subgraph "Linux Kernel"
+        Z --- F
+        F[LSM Hooks Enforce/Audit]
+        F --> G[file_open / inode_permission]
+        F --> H[inode_copy_up overlayfs]
+        F --> I[bprm_check + IMA hash]
+        F --> J[socket connect/bind/listen/accept]
+        F --> K[socket sendmsg/recvmsg]
+        L[Tracepoint Fallback]
+        L --> M[openat/exec/fork/exit]
+    end`
   }
 ];

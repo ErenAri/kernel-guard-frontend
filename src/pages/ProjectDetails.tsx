@@ -1,8 +1,9 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
-import { ArrowLeft, Github, ExternalLink, Terminal, Target } from 'lucide-react';
+import { ArrowLeft, Github, ExternalLink, Terminal, Target, GitMerge } from 'lucide-react';
 import { projects } from '../data/projects';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/SEO';
+import Mermaid from '../components/Mermaid';
 
 export default function ProjectDetails() {
   const { id } = useParams();
@@ -50,6 +51,16 @@ export default function ProjectDetails() {
             ))}
           </div>
         </div>
+
+        {project.diagram && (
+          <div className="mb-16 bg-surface p-8 border border-border">
+            <div className="flex items-center gap-3 mb-6">
+              <GitMerge className="w-6 h-6 text-primary" />
+              <h2 className="text-2xl font-light">{language === 'tr' ? 'Sistem Mimarisi' : 'System Architecture'}</h2>
+            </div>
+            <Mermaid chart={project.diagram} />
+          </div>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
           {/* Technical Section */}
