@@ -6,25 +6,43 @@
 import { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import CanonicalPathRedirect from './components/CanonicalPathRedirect';
 import ScrollToTop from './components/ScrollToTop';
 import { LanguageProvider } from './context/LanguageContext';
 import { ThemeProvider } from './context/ThemeContext';
+import {
+  loadLayout,
+  loadHome,
+  loadProjects,
+  loadProjectDetails,
+  loadCompletedProjects,
+  loadCompletedProjectDetails,
+  loadSecureFrontend,
+  loadHardenedBackend,
+  loadDataProtection,
+  loadHighPerformance,
+  loadServices,
+  loadTerms,
+  loadPrivacy,
+  loadCookies,
+  loadNotFound,
+} from './routes/pageLoaders';
 
-const Layout = lazy(() => import('./components/Layout'));
-const Home = lazy(() => import('./pages/Home'));
-const Projects = lazy(() => import('./pages/Projects'));
-const ProjectDetails = lazy(() => import('./pages/ProjectDetails'));
-const CompletedProjects = lazy(() => import('./pages/CompletedProjects'));
-const CompletedProjectDetails = lazy(() => import('./pages/CompletedProjectDetails'));
-const SecureFrontend = lazy(() => import('./pages/SecureFrontend'));
-const HardenedBackend = lazy(() => import('./pages/HardenedBackend'));
-const DataProtection = lazy(() => import('./pages/DataProtection'));
-const HighPerformance = lazy(() => import('./pages/HighPerformance'));
-const Services = lazy(() => import('./pages/Services'));
-const Terms = lazy(() => import('./pages/Terms'));
-const Privacy = lazy(() => import('./pages/Privacy'));
-const Cookies = lazy(() => import('./pages/Cookies'));
-const NotFound = lazy(() => import('./pages/NotFound'));
+const Layout = lazy(loadLayout);
+const Home = lazy(loadHome);
+const Projects = lazy(loadProjects);
+const ProjectDetails = lazy(loadProjectDetails);
+const CompletedProjects = lazy(loadCompletedProjects);
+const CompletedProjectDetails = lazy(loadCompletedProjectDetails);
+const SecureFrontend = lazy(loadSecureFrontend);
+const HardenedBackend = lazy(loadHardenedBackend);
+const DataProtection = lazy(loadDataProtection);
+const HighPerformance = lazy(loadHighPerformance);
+const Services = lazy(loadServices);
+const Terms = lazy(loadTerms);
+const Privacy = lazy(loadPrivacy);
+const Cookies = lazy(loadCookies);
+const NotFound = lazy(loadNotFound);
 
 function RouteLoadingFallback() {
   return (
@@ -40,6 +58,7 @@ export default function App() {
       <ThemeProvider>
         <LanguageProvider>
           <BrowserRouter>
+            <CanonicalPathRedirect />
             <ScrollToTop />
             <Suspense fallback={<RouteLoadingFallback />}>
               <Routes>

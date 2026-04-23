@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Globe } from 'lucide-react';
 import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { prefetchRoutes, type PrefetchRoute } from '../routes/pageLoaders';
 import Logo from './Logo';
 import ThemeToggle from './ThemeToggle';
 
@@ -18,17 +19,29 @@ export default function Navbar() {
     return path.endsWith('/') ? path.slice(0, -1) : path;
   };
 
-  const navLinks = [
-    { name: t.nav.home, path: '/' },
-    { name: t.nav.services, path: '/services/' },
-    { name: t.nav.openSource, path: '/projects/' },
-    { name: t.nav.completedProjects, path: '/completed-projects/' },
+  const navLinks: Array<{ name: string; path: string; prefetch: readonly PrefetchRoute[] }> = [
+    { name: t.nav.home, path: '/', prefetch: ['home'] },
+    {
+      name: t.nav.services,
+      path: '/services/',
+      prefetch: ['services', 'secureFrontend', 'hardenedBackend', 'dataProtection', 'highPerformance'],
+    },
+    { name: t.nav.openSource, path: '/projects/', prefetch: ['projects', 'projectDetails'] },
+    {
+      name: t.nav.completedProjects,
+      path: '/completed-projects/',
+      prefetch: ['completedProjects', 'completedProjectDetails'],
+    },
   ];
 
   const isActive = (path: string) => normalizeNavPath(location.pathname) === normalizeNavPath(path);
 
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? 'tr' : 'en');
+  };
+
+  const handleLinkIntent = (routes: readonly PrefetchRoute[]) => {
+    prefetchRoutes(routes);
   };
 
   return (
@@ -48,6 +61,9 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   to={link.path}
+                  onMouseEnter={() => handleLinkIntent(link.prefetch)}
+                  onFocus={() => handleLinkIntent(link.prefetch)}
+                  onTouchStart={() => handleLinkIntent(link.prefetch)}
                   className={`px-4 h-14 flex items-center text-sm transition-colors border-b-2 ${
                     isActive(link.path)
                       ? 'border-primary text-primary font-medium'
@@ -120,6 +136,9 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 to={link.path}
+                onMouseEnter={() => handleLinkIntent(link.prefetch)}
+                onFocus={() => handleLinkIntent(link.prefetch)}
+                onTouchStart={() => handleLinkIntent(link.prefetch)}
                 onClick={() => setIsOpen(false)}
                 className={`block px-3 py-3 text-base ${
                   isActive(link.path)

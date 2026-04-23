@@ -1,6 +1,7 @@
 import { Github, Linkedin, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import { prefetchRoute, prefetchRoutes } from '../routes/pageLoaders';
 import Logo from './Logo';
 
 export default function Footer() {
@@ -28,12 +29,24 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/projects/" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <Link
+                  to="/projects/"
+                  onMouseEnter={() => prefetchRoutes(['projects', 'projectDetails'])}
+                  onFocus={() => prefetchRoutes(['projects', 'projectDetails'])}
+                  onTouchStart={() => prefetchRoutes(['projects', 'projectDetails'])}
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                >
                   {t.nav.openSource}
                 </Link>
               </li>
               <li>
-                <Link to="/completed-projects/" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <Link
+                  to="/completed-projects/"
+                  onMouseEnter={() => prefetchRoutes(['completedProjects', 'completedProjectDetails'])}
+                  onFocus={() => prefetchRoutes(['completedProjects', 'completedProjectDetails'])}
+                  onTouchStart={() => prefetchRoutes(['completedProjects', 'completedProjectDetails'])}
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                >
                   {t.nav.completedProjects}
                 </Link>
               </li>
@@ -83,9 +96,33 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} {t.footer.rights}
           </p>
           <div className="flex space-x-6 text-sm text-gray-500">
-            <Link to="/terms/" className="hover:text-gray-300 transition-colors">{t.footer.terms}</Link>
-            <Link to="/privacy/" className="hover:text-gray-300 transition-colors">{t.footer.privacy}</Link>
-            <Link to="/cookies/" className="hover:text-gray-300 transition-colors">{t.footer.cookies}</Link>
+            <Link
+              to="/terms/"
+              onMouseEnter={() => prefetchRoute('terms')}
+              onFocus={() => prefetchRoute('terms')}
+              onTouchStart={() => prefetchRoute('terms')}
+              className="hover:text-gray-300 transition-colors"
+            >
+              {t.footer.terms}
+            </Link>
+            <Link
+              to="/privacy/"
+              onMouseEnter={() => prefetchRoute('privacy')}
+              onFocus={() => prefetchRoute('privacy')}
+              onTouchStart={() => prefetchRoute('privacy')}
+              className="hover:text-gray-300 transition-colors"
+            >
+              {t.footer.privacy}
+            </Link>
+            <Link
+              to="/cookies/"
+              onMouseEnter={() => prefetchRoute('cookies')}
+              onFocus={() => prefetchRoute('cookies')}
+              onTouchStart={() => prefetchRoute('cookies')}
+              className="hover:text-gray-300 transition-colors"
+            >
+              {t.footer.cookies}
+            </Link>
           </div>
         </div>
       </div>

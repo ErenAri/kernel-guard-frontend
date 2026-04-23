@@ -1,37 +1,49 @@
 import { Layout, Server, Database, Zap, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
+import type { ReactNode } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import SecurityTerminal from '../components/SecurityTerminal';
 import SEO from '../components/SEO';
+import { prefetchRoute, prefetchRoutes, type PrefetchRoute } from '../routes/pageLoaders';
 
 export default function Home() {
   const { t } = useLanguage();
 
-  const features = [
+  const features: Array<{
+    icon: ReactNode;
+    title: string;
+    description: string;
+    link: string;
+    prefetch: PrefetchRoute;
+  }> = [
     {
       icon: <Layout className="w-6 h-6 text-primary" />,
       title: t.home.features.frontend.title,
       description: t.home.features.frontend.desc,
-      link: '/services/secure-frontend/'
+      link: '/services/secure-frontend/',
+      prefetch: 'secureFrontend',
     },
     {
       icon: <Server className="w-6 h-6 text-primary" />,
       title: t.home.features.backend.title,
       description: t.home.features.backend.desc,
-      link: '/services/hardened-backend/'
+      link: '/services/hardened-backend/',
+      prefetch: 'hardenedBackend',
     },
     {
       icon: <Database className="w-6 h-6 text-primary" />,
       title: t.home.features.data.title,
       description: t.home.features.data.desc,
-      link: '/services/data-protection/'
+      link: '/services/data-protection/',
+      prefetch: 'dataProtection',
     },
     {
       icon: <Zap className="w-6 h-6 text-primary" />,
       title: t.home.features.performance.title,
       description: t.home.features.performance.desc,
-      link: '/services/high-performance/'
+      link: '/services/high-performance/',
+      prefetch: 'highPerformance',
     }
   ];
 
@@ -59,6 +71,9 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row flex-wrap gap-4">
                 <Link
                   to="/projects/"
+                  onMouseEnter={() => prefetchRoutes(['projects', 'projectDetails'])}
+                  onFocus={() => prefetchRoutes(['projects', 'projectDetails'])}
+                  onTouchStart={() => prefetchRoutes(['projects', 'projectDetails'])}
                   className="inline-flex items-center justify-between px-6 py-4 bg-primary text-white hover:bg-primary-dark transition-colors w-full sm:w-64"
                 >
                   <span className="font-medium">{t.home.viewArch}</span>
@@ -66,6 +81,9 @@ export default function Home() {
                 </Link>
                 <Link
                   to="/completed-projects/"
+                  onMouseEnter={() => prefetchRoutes(['completedProjects', 'completedProjectDetails'])}
+                  onFocus={() => prefetchRoutes(['completedProjects', 'completedProjectDetails'])}
+                  onTouchStart={() => prefetchRoutes(['completedProjects', 'completedProjectDetails'])}
                   className="inline-flex items-center justify-between px-6 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors w-full sm:w-64"
                 >
                   <span className="font-medium">{t.home.viewCompletedProjects}</span>
@@ -176,6 +194,9 @@ export default function Home() {
                 >
                   <Link 
                     to={feature.link} 
+                    onMouseEnter={() => prefetchRoute(feature.prefetch)}
+                    onFocus={() => prefetchRoute(feature.prefetch)}
+                    onTouchStart={() => prefetchRoute(feature.prefetch)}
                     className="group relative block h-full p-8 bg-surface border border-border hover:border-primary/50 transition-colors overflow-hidden"
                   >
                     {/* Hover Glow Effect */}
