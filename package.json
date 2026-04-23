@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
+    "prebuild": "tsx scripts/generate-sitemap.ts",
     "build": "vite build",
+    "postbuild": "tsx scripts/generate-route-shells.ts",
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit"

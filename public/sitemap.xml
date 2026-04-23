@@ -1,53 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://kernel-guard.com/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <loc>https://www.kernelguard.net/</loc>
+    <lastmod>2026-04-23</lastmod>
   </url>
   <url>
-    <loc>https://kernel-guard.com/projects</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://www.kernelguard.net/completed-projects</loc>
+    <lastmod>2026-04-23</lastmod>
   </url>
   <url>
-    <loc>https://kernel-guard.com/completed-projects</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://www.kernelguard.net/completed-projects/ref-atelier</loc>
+    <lastmod>2026-04-23</lastmod>
   </url>
   <url>
-    <loc>https://kernel-guard.com/services/secure-frontend</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://www.kernelguard.net/cookies</loc>
+    <lastmod>2026-04-23</lastmod>
   </url>
   <url>
-    <loc>https://kernel-guard.com/services/hardened-backend</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://www.kernelguard.net/privacy</loc>
+    <lastmod>2026-04-23</lastmod>
   </url>
   <url>
-    <loc>https://kernel-guard.com/services/data-protection</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://www.kernelguard.net/projects</loc>
+    <lastmod>2026-04-23</lastmod>
   </url>
   <url>
-    <loc>https://kernel-guard.com/services/high-performance</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://www.kernelguard.net/projects/1</loc>
+    <lastmod>2026-04-23</lastmod>
   </url>
   <url>
-    <loc>https://kernel-guard.com/terms</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://www.kernelguard.net/projects/2</loc>
+    <lastmod>2026-04-23</lastmod>
   </url>
   <url>
-    <loc>https://kernel-guard.com/privacy</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://www.kernelguard.net/projects/3</loc>
+    <lastmod>2026-04-23</lastmod>
   </url>
   <url>
-    <loc>https://kernel-guard.com/cookies</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://www.kernelguard.net/services</loc>
+    <lastmod>2026-04-23</lastmod>
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/services/data-protection</loc>
+    <lastmod>2026-04-23</lastmod>
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/services/hardened-backend</loc>
+    <lastmod>2026-04-23</lastmod>
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/services/high-performance</loc>
+    <lastmod>2026-04-23</lastmod>
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/services/secure-frontend</loc>
+    <lastmod>2026-04-23</lastmod>
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/terms</loc>
+    <lastmod>2026-04-23</lastmod>
   </url>
 </urlset>

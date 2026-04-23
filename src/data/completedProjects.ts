@@ -28,7 +28,7 @@ export const completedProjects = [
     url: 'https://trfont.com/adana/',
     tags: ['Education', 'Management', 'SaaS'],
     accounts: [
-      { email: 'admin@dershane.com', password: 'mert2015', role: 'Admin' }
+      { email: 'admin@dershane.com', password: 'REDACTED', role: 'Admin' }
     ]
   },
   {
@@ -45,11 +45,11 @@ export const completedProjects = [
     url: 'https://trfont.com/%C4%B1k/',
     tags: ['HR', 'Enterprise', 'Portal'],
     accounts: [
-      { email: 'admin@technova.com.tr', password: 'mert2015', role: 'Admin' },
-      { email: 'ahmet.yilmaz@technova.com.tr', password: 'mert2015', role: 'Employee' },
-      { email: 'zeynep.sahin@technova.com.tr', password: 'mert2015', role: 'Employee' },
-      { email: 'ayse.bulut@technova.com.tr', password: 'mert2015', role: 'Employee' },
-      { email: 'mehmet.kaya@technova.com.tr', password: 'mert2015', role: 'Employee' }
+      { email: 'admin@technova.com.tr', password: 'REDACTED', role: 'Admin' },
+      { email: 'ahmet.yilmaz@technova.com.tr', password: 'REDACTED', role: 'Employee' },
+      { email: 'zeynep.sahin@technova.com.tr', password: 'REDACTED', role: 'Employee' },
+      { email: 'ayse.bulut@technova.com.tr', password: 'REDACTED', role: 'Employee' },
+      { email: 'mehmet.kaya@technova.com.tr', password: 'REDACTED', role: 'Employee' }
     ]
   },
   {
@@ -66,7 +66,7 @@ export const completedProjects = [
     url: 'https://trfont.com/ada/',
     tags: ['EdTech', 'Algorithms', 'Dashboard'],
     accounts: [
-      { email: 'admin@example.com', password: '$2y$12$3JGsw.U4pffVT/AzBnL/w.Ck2JELYJ9/vGK6lnrINYHDYSO8to05G', role: 'Admin' }
+      { email: 'admin@example.com', password: 'REDACTED', role: 'Admin' }
     ]
   }
 ];

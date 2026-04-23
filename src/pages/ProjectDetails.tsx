@@ -12,7 +12,7 @@ export default function ProjectDetails() {
   const project = projects.find(p => p.id === id);
 
   if (!project) {
-    return <Navigate to="/projects" replace />;
+    return <Navigate to="/not-found" replace />;
   }
 
   return (

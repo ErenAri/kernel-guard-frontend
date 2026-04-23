@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Navigate } from 'react-router-dom';
 import { ArrowLeft, ExternalLink, ShieldCheck, User, KeyRound } from 'lucide-react';
 import { completedProjects } from '../data/completedProjects';
 import { useLanguage } from '../context/LanguageContext';
@@ -11,17 +11,7 @@ export default function CompletedProjectDetails() {
   const project = completedProjects.find(p => p.id === id);
 
   if (!project) {
-    return (
-      <div className="min-h-screen bg-background pt-32 pb-20 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-mono text-foreground mb-4">404_PROJECT_NOT_FOUND</h1>
-          <Link to="/completed-projects" className="text-primary hover:underline flex items-center justify-center gap-2">
-            <ArrowLeft className="w-4 h-4" />
-            {t.nav.completedProjects}
-          </Link>
-        </div>
-      </div>
-    );
+    return <Navigate to="/not-found" replace />;
   }
 
   return (
@@ -31,6 +21,7 @@ export default function CompletedProjectDetails() {
         description={project.description[language]}
         keywords={`${project.tags.join(', ')}, Kernel Guard, secure web project, case study`}
         path={`/completed-projects/${project.id}`}
+        noIndex={project.accounts.length > 0}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link 
