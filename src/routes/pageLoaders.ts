@@ -1,5 +1,16 @@
 type ModuleLoader<TModule = unknown> = () => Promise<TModule>;
 
+type PrefetchConnection = {
+  saveData?: boolean;
+  effectiveType?: string;
+};
+
+type PrefetchNavigator = Navigator & {
+  connection?: PrefetchConnection;
+};
+
+const CONSTRAINED_CONNECTION_TYPES = new Set(['slow-2g', '2g']);
+
 function cacheLoader<TModule>(loader: ModuleLoader<TModule>): ModuleLoader<TModule> {
   let pending: Promise<TModule> | null = null;
 
@@ -10,6 +21,24 @@ function cacheLoader<TModule>(loader: ModuleLoader<TModule>): ModuleLoader<TModu
 
     return pending;
   };
+}
+
+function canPrefetchRoute(): boolean {
+  if (typeof navigator === 'undefined') {
+    return false;
+  }
+
+  const connection = (navigator as PrefetchNavigator).connection;
+
+  if (!connection) {
+    return true;
+  }
+
+  if (connection.saveData) {
+    return false;
+  }
+
+  return !CONSTRAINED_CONNECTION_TYPES.has(connection.effectiveType ?? '');
 }
 
 export const loadLayout = cacheLoader(() => import('../components/Layout'));
@@ -48,6 +77,10 @@ const prefetchers = {
 export type PrefetchRoute = keyof typeof prefetchers;
 
 export function prefetchRoute(route: PrefetchRoute): void {
+  if (!canPrefetchRoute()) {
+    return;
+  }
+
   void prefetchers[route]();
 }
 

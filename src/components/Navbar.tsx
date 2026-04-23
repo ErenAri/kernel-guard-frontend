@@ -61,9 +61,8 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   to={link.path}
-                  onMouseEnter={() => handleLinkIntent(link.prefetch)}
+                  onPointerEnter={() => handleLinkIntent(link.prefetch)}
                   onFocus={() => handleLinkIntent(link.prefetch)}
-                  onTouchStart={() => handleLinkIntent(link.prefetch)}
                   className={`px-4 h-14 flex items-center text-sm transition-colors border-b-2 ${
                     isActive(link.path)
                       ? 'border-primary text-primary font-medium'
@@ -136,9 +135,8 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 to={link.path}
-                onMouseEnter={() => handleLinkIntent(link.prefetch)}
+                onPointerEnter={() => handleLinkIntent(link.prefetch)}
                 onFocus={() => handleLinkIntent(link.prefetch)}
-                onTouchStart={() => handleLinkIntent(link.prefetch)}
                 onClick={() => setIsOpen(false)}
                 className={`block px-3 py-3 text-base ${
                   isActive(link.path)

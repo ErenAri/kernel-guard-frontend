@@ -71,9 +71,8 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row flex-wrap gap-4">
                 <Link
                   to="/projects/"
-                  onMouseEnter={() => prefetchRoutes(['projects', 'projectDetails'])}
+                  onPointerEnter={() => prefetchRoutes(['projects', 'projectDetails'])}
                   onFocus={() => prefetchRoutes(['projects', 'projectDetails'])}
-                  onTouchStart={() => prefetchRoutes(['projects', 'projectDetails'])}
                   className="inline-flex items-center justify-between px-6 py-4 bg-primary text-white hover:bg-primary-dark transition-colors w-full sm:w-64"
                 >
                   <span className="font-medium">{t.home.viewArch}</span>
@@ -81,9 +80,8 @@ export default function Home() {
                 </Link>
                 <Link
                   to="/completed-projects/"
-                  onMouseEnter={() => prefetchRoutes(['completedProjects', 'completedProjectDetails'])}
+                  onPointerEnter={() => prefetchRoutes(['completedProjects', 'completedProjectDetails'])}
                   onFocus={() => prefetchRoutes(['completedProjects', 'completedProjectDetails'])}
-                  onTouchStart={() => prefetchRoutes(['completedProjects', 'completedProjectDetails'])}
                   className="inline-flex items-center justify-between px-6 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors w-full sm:w-64"
                 >
                   <span className="font-medium">{t.home.viewCompletedProjects}</span>
@@ -194,9 +192,8 @@ export default function Home() {
                 >
                   <Link 
                     to={feature.link} 
-                    onMouseEnter={() => prefetchRoute(feature.prefetch)}
+                    onPointerEnter={() => prefetchRoute(feature.prefetch)}
                     onFocus={() => prefetchRoute(feature.prefetch)}
-                    onTouchStart={() => prefetchRoute(feature.prefetch)}
                     className="group relative block h-full p-8 bg-surface border border-border hover:border-primary/50 transition-colors overflow-hidden"
                   >
                     {/* Hover Glow Effect */}
@@ -229,7 +226,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-light mb-16 max-w-2xl">{t.home.principles.title}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 divide-y md:divide-y-0 md:divide-x divide-border">
-            {t.home.principles.items.map((item: any, index: number) => (
+            {t.home.principles.items.map((item, index) => (
               <div key={index} className={`pt-8 md:pt-0 ${index === 0 ? 'md:pr-8' : index === 1 ? 'md:px-8' : 'md:pl-8'}`}>
                 <div className="text-xl font-medium text-primary mb-4">{item.title}</div>
                 <div className="text-base font-light leading-relaxed text-foreground/80">{item.desc}</div>

@@ -3,6 +3,8 @@ import { useLanguage } from '../context/LanguageContext';
 import { useLocation } from 'react-router-dom';
 import { buildCanonicalUrl, DEFAULT_SITE_URL, normalizeCanonicalPath, normalizeSiteUrl } from '../config/site';
 
+type JsonLdNode = Record<string, unknown>;
+
 interface SEOProps {
   title?: string;
   description?: string;
@@ -14,7 +16,15 @@ interface SEOProps {
   path?: string;
   noIndex?: boolean;
   noFollow?: boolean;
-  schema?: Record<string, unknown> | Array<Record<string, unknown>>;
+  schema?: JsonLdNode | JsonLdNode[];
+}
+
+function normalizeSchemaItems(schema?: JsonLdNode | JsonLdNode[]): JsonLdNode[] {
+  if (!schema) {
+    return [];
+  }
+
+  return Array.isArray(schema) ? schema : [schema];
 }
 
 export default function SEO({ 
@@ -40,7 +50,7 @@ export default function SEO({
     : (noFollow ? 'index, nofollow' : 'index, follow');
   const locale = language === 'tr' ? 'tr_TR' : 'en_US';
   const alternateLocale = language === 'tr' ? 'en_US' : 'tr_TR';
-  const schemaItems = Array.isArray(schema) ? schema : schema ? [schema] : [];
+  const schemaItems = normalizeSchemaItems(schema);
   const organizationId = `${siteUrl}/#organization`;
   const websiteId = `${siteUrl}/#website`;
 
