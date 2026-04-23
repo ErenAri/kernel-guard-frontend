@@ -12,7 +12,7 @@ export default function HardenedBackend() {
         title={`${t.home.features.backend.title} - Kernel Guard`}
         description={t.home.features.backend.desc}
         keywords="hardened backend, zero-trust architecture, secure APIs, DDoS protection, Rust backend, C++ security, Kernel Guard"
-        path="/services/hardened-backend"
+        path="/services/hardened-backend/"
       />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link to="/" className="inline-flex items-center text-sm font-medium text-primary hover:underline mb-8">

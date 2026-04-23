@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '../context/LanguageContext';
 import { useLocation } from 'react-router-dom';
-import { DEFAULT_SITE_URL, normalizeSiteUrl } from '../config/site';
+import { buildCanonicalUrl, DEFAULT_SITE_URL, normalizeCanonicalPath, normalizeSiteUrl } from '../config/site';
 
 interface SEOProps {
   title?: string;
@@ -15,18 +15,6 @@ interface SEOProps {
   noIndex?: boolean;
   noFollow?: boolean;
   schema?: Record<string, unknown> | Array<Record<string, unknown>>;
-}
-
-function normalizePath(inputPath: string): string {
-  const withoutQuery = inputPath.split('?')[0]?.split('#')[0] ?? '/';
-  const prefixed = withoutQuery.startsWith('/') ? withoutQuery : `/${withoutQuery}`;
-  const deduped = prefixed.replace(/\/+/g, '/');
-
-  if (deduped.length > 1 && deduped.endsWith('/')) {
-    return deduped.slice(0, -1);
-  }
-
-  return deduped;
 }
 
 export default function SEO({ 
@@ -44,9 +32,9 @@ export default function SEO({
 }: SEOProps) {
   const { language } = useLanguage();
   const location = useLocation();
-  const currentPath = normalizePath(path || location.pathname);
+  const currentPath = normalizeCanonicalPath(path || location.pathname);
   const siteUrl = normalizeSiteUrl(DEFAULT_SITE_URL);
-  const canonicalUrl = `${siteUrl}${currentPath === '/' ? '' : currentPath}`;
+  const canonicalUrl = buildCanonicalUrl(siteUrl, currentPath);
   const robotsContent = noIndex
     ? (noFollow ? 'noindex, nofollow' : 'noindex, follow')
     : (noFollow ? 'index, nofollow' : 'index, follow');

@@ -12,7 +12,7 @@ export default function HighPerformance() {
         title={`${t.home.features.performance.title} - Kernel Guard`}
         description={t.home.features.performance.desc}
         keywords="high performance web apps, optimized algorithms, edge computing, fast load times, secure performance, Kernel Guard"
-        path="/services/high-performance"
+        path="/services/high-performance/"
       />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link to="/" className="inline-flex items-center text-sm font-medium text-primary hover:underline mb-8">

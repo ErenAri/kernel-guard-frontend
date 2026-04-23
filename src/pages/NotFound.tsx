@@ -27,7 +27,7 @@ export default function NotFound() {
       <SEO
         title={copy.title}
         description={copy.description}
-        path="/not-found"
+        path="/not-found/"
         noIndex
       />
 

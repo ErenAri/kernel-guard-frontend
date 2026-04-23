@@ -12,7 +12,7 @@ export default function SecureFrontend() {
         title={`${t.home.features.frontend.title} - Kernel Guard`}
         description={t.home.features.frontend.desc}
         keywords="secure frontend, React security, XSS prevention, CSP, frontend architecture, Kernel Guard"
-        path="/services/secure-frontend"
+        path="/services/secure-frontend/"
       />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link to="/" className="inline-flex items-center text-sm font-medium text-primary hover:underline mb-8">

@@ -14,7 +14,7 @@ export default function Projects() {
         title={t.seo.projects.title}
         description={t.seo.projects.description}
         keywords={t.seo.projects.keywords}
-        path="/projects"
+        path="/projects/"
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16 max-w-3xl">
@@ -41,13 +41,13 @@ export default function Projects() {
             {projects.map((project) => (
               <div 
                 key={project.id} 
-                onClick={() => navigate(`/projects/${project.id}`)}
+                onClick={() => navigate(`/projects/${project.id}/`)}
                 className="group grid grid-cols-1 md:grid-cols-12 gap-4 py-6 hover:bg-surface transition-colors items-start cursor-pointer"
               >
                 {/* Project Name & Mobile Description */}
                 <div className="md:col-span-3 pl-4">
                   <Link 
-                    to={`/projects/${project.id}`} 
+                    to={`/projects/${project.id}/`} 
                     onClick={(e) => e.stopPropagation()}
                     className="text-lg font-medium text-primary hover:underline flex items-center gap-2"
                   >

@@ -12,7 +12,7 @@ export default function DataProtection() {
         title={`${t.home.features.data.title} - Kernel Guard`}
         description={t.home.features.data.desc}
         keywords="data protection, encryption, post-quantum cryptography, database security, confidential data, Kernel Guard"
-        path="/services/data-protection"
+        path="/services/data-protection/"
       />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link to="/" className="inline-flex items-center text-sm font-medium text-primary hover:underline mb-8">

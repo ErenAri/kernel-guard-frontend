@@ -11,7 +11,7 @@ export default function CompletedProjectDetails() {
   const project = completedProjects.find(p => p.id === id);
 
   if (!project) {
-    return <Navigate to="/not-found" replace />;
+    return <Navigate to="/not-found/" replace />;
   }
 
   return (
@@ -20,12 +20,12 @@ export default function CompletedProjectDetails() {
         title={`${project.title} - Kernel Guard`}
         description={project.description[language]}
         keywords={`${project.tags.join(', ')}, Kernel Guard, secure web project, case study`}
-        path={`/completed-projects/${project.id}`}
+        path={`/completed-projects/${project.id}/`}
         noIndex={project.accounts.length > 0}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link 
-          to="/completed-projects" 
+          to="/completed-projects/" 
           className="inline-flex items-center gap-2 text-foreground/60 hover:text-primary transition-colors mb-12 font-mono text-sm uppercase tracking-wider"
         >
           <ArrowLeft className="w-4 h-4" />

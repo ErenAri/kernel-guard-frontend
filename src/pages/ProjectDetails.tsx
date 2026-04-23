@@ -1,9 +1,11 @@
+import { Suspense, lazy } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { ArrowLeft, Github, ExternalLink, Terminal, Target, GitMerge } from 'lucide-react';
 import { projects } from '../data/projects';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/SEO';
-import Mermaid from '../components/Mermaid';
+
+const Mermaid = lazy(() => import('../components/Mermaid'));
 
 export default function ProjectDetails() {
   const { id } = useParams();
@@ -12,7 +14,7 @@ export default function ProjectDetails() {
   const project = projects.find(p => p.id === id);
 
   if (!project) {
-    return <Navigate to="/not-found" replace />;
+    return <Navigate to="/not-found/" replace />;
   }
 
   return (
@@ -21,11 +23,11 @@ export default function ProjectDetails() {
         title={`${project.title} - Kernel Guard`}
         description={project.description[language]}
         keywords={`${project.tags.join(', ')}, Kernel Guard, open source security`}
-        path={`/projects/${project.id}`}
+        path={`/projects/${project.id}/`}
       />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link 
-          to="/projects" 
+          to="/projects/" 
           className="inline-flex items-center gap-2 text-foreground/60 hover:text-primary transition-colors mb-12 font-medium text-sm"
         >
           <ArrowLeft className="w-4 h-4" />
@@ -58,7 +60,15 @@ export default function ProjectDetails() {
               <GitMerge className="w-6 h-6 text-primary" />
               <h2 className="text-2xl font-light">{language === 'tr' ? 'Sistem Mimarisi' : 'System Architecture'}</h2>
             </div>
-            <Mermaid chart={project.diagram} />
+            <Suspense
+              fallback={
+                <div className="font-mono text-xs uppercase tracking-wider text-foreground/60">
+                  Loading diagram
+                </div>
+              }
+            >
+              <Mermaid chart={project.diagram} />
+            </Suspense>
           </div>
         )}
 

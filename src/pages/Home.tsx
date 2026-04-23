@@ -13,25 +13,25 @@ export default function Home() {
       icon: <Layout className="w-6 h-6 text-primary" />,
       title: t.home.features.frontend.title,
       description: t.home.features.frontend.desc,
-      link: '/services/secure-frontend'
+      link: '/services/secure-frontend/'
     },
     {
       icon: <Server className="w-6 h-6 text-primary" />,
       title: t.home.features.backend.title,
       description: t.home.features.backend.desc,
-      link: '/services/hardened-backend'
+      link: '/services/hardened-backend/'
     },
     {
       icon: <Database className="w-6 h-6 text-primary" />,
       title: t.home.features.data.title,
       description: t.home.features.data.desc,
-      link: '/services/data-protection'
+      link: '/services/data-protection/'
     },
     {
       icon: <Zap className="w-6 h-6 text-primary" />,
       title: t.home.features.performance.title,
       description: t.home.features.performance.desc,
-      link: '/services/high-performance'
+      link: '/services/high-performance/'
     }
   ];
 
@@ -58,14 +58,14 @@ export default function Home() {
               
               <div className="flex flex-col sm:flex-row flex-wrap gap-4">
                 <Link
-                  to="/projects"
+                  to="/projects/"
                   className="inline-flex items-center justify-between px-6 py-4 bg-primary text-white hover:bg-primary-dark transition-colors w-full sm:w-64"
                 >
                   <span className="font-medium">{t.home.viewArch}</span>
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
-                  to="/completed-projects"
+                  to="/completed-projects/"
                   className="inline-flex items-center justify-between px-6 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors w-full sm:w-64"
                 >
                   <span className="font-medium">{t.home.viewCompletedProjects}</span>

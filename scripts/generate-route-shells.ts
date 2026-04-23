@@ -1,7 +1,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { DEFAULT_SITE_URL, normalizeSiteUrl } from '../src/config/site';
+import { buildCanonicalUrl, DEFAULT_SITE_URL, normalizeCanonicalPath, normalizeSiteUrl } from '../src/config/site';
 import { completedProjects } from '../src/data/completedProjects';
 import { projects } from '../src/data/projects';
 import { prerenderRoutes } from '../src/data/seoRoutes';
@@ -104,7 +104,7 @@ function escapeHtml(value: string): string {
 }
 
 function canonicalForRoute(route: string): string {
-  return route === '/' ? `${siteUrl}/` : `${siteUrl}${route}`;
+  return buildCanonicalUrl(siteUrl, normalizeCanonicalPath(route));
 }
 
 function escapeRegExp(value: string): string {

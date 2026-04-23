@@ -1,7 +1,7 @@
 import { writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { DEFAULT_SITE_URL, normalizeSiteUrl } from '../src/config/site';
+import { buildCanonicalUrl, DEFAULT_SITE_URL, normalizeCanonicalPath, normalizeSiteUrl } from '../src/config/site';
 import { nonIndexableRoutes, sitemapRoutes } from '../src/data/seoRoutes';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -11,7 +11,7 @@ const siteUrl = normalizeSiteUrl(process.env.SITE_URL || DEFAULT_SITE_URL);
 const lastmod = new Date().toISOString().slice(0, 10);
 
 function toAbsoluteUrl(route: string): string {
-  return route === '/' ? `${siteUrl}/` : `${siteUrl}${route}`;
+  return buildCanonicalUrl(siteUrl, normalizeCanonicalPath(route));
 }
 
 function escapeXml(value: string): string {
