@@ -83,8 +83,8 @@ export const projects: Project[] = [
     TM["Tamarin model"] -.-> V`
   },
   {
-    id: "aegis-bpf-co-re-enforcement-prototype",
-    title: "Aegis-BPF-CO-RE-Enforcement-Prototype",
+    id: "aegis-bpf",
+    title: "Aegis-BPF",
     description: {
       en: "A prototype for enforcing security policies using eBPF (Extended Berkeley Packet Filter) with CO-RE (Compile Once - Run Everywhere) support.",
       tr: "CO-RE (Bir Kere Derle - Her Yerde Çalıştır) desteğiyle eBPF (Genişletilmiş Berkeley Paket Filtresi) kullanarak güvenlik politikalarını uygulamak için bir prototip."
@@ -98,7 +98,7 @@ export const projects: Project[] = [
       tr: "Çekirdek düzeyinde kurumsal düzeyde güvenlik. Aegis, sıfır ek yük ile sistem davranışı üzerinde derin görünürlük ve kontrol sağlar. En son eBPF teknolojimizle altyapınızı gelişmiş kalıcı tehditlerden koruyun."
     },
     tags: ["C++", "eBPF", "Security", "Linux Kernel"],
-    github: "https://github.com/Kernel-Guard/Aegis-BPF-CO-RE-Enforcement-Prototype",
+    github: "https://github.com/Kernel-Guard/Aegis-BPF",
     diagram: `graph TD
     subgraph "AegisBPF User Space"
         A[File/Net Deny Rules] --> Z

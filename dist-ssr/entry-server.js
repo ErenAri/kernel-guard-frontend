@@ -17638,8 +17638,8 @@ const projects = [
     TM["Tamarin model"] -.-> V`
   },
   {
-    id: "aegis-bpf-co-re-enforcement-prototype",
-    title: "Aegis-BPF-CO-RE-Enforcement-Prototype",
+    id: "aegis-bpf",
+    title: "Aegis-BPF",
     description: {
       en: "A prototype for enforcing security policies using eBPF (Extended Berkeley Packet Filter) with CO-RE (Compile Once - Run Everywhere) support.",
       tr: "CO-RE (Bir Kere Derle - Her Yerde Çalıştır) desteğiyle eBPF (Genişletilmiş Berkeley Paket Filtresi) kullanarak güvenlik politikalarını uygulamak için bir prototip."
@@ -17653,7 +17653,7 @@ const projects = [
       tr: "Çekirdek düzeyinde kurumsal düzeyde güvenlik. Aegis, sıfır ek yük ile sistem davranışı üzerinde derin görünürlük ve kontrol sağlar. En son eBPF teknolojimizle altyapınızı gelişmiş kalıcı tehditlerden koruyun."
     },
     tags: ["C++", "eBPF", "Security", "Linux Kernel"],
-    github: "https://github.com/Kernel-Guard/Aegis-BPF-CO-RE-Enforcement-Prototype",
+    github: "https://github.com/Kernel-Guard/Aegis-BPF",
     diagram: `graph TD
     subgraph "AegisBPF User Space"
         A[File/Net Deny Rules] --> Z
@@ -17790,6 +17790,22 @@ function ProjectDetails() {
     return /* @__PURE__ */ jsx(distExports.Navigate, { to: "/not-found/", replace: true });
   }
   const programmingLanguages = project.tags.filter((tag) => KNOWN_PROGRAMMING_LANGUAGES.has(tag));
+  const [diagramSvg, setDiagramSvg] = useState("");
+  useEffect(() => {
+    if (!project.diagram) {
+      setDiagramSvg("");
+      return;
+    }
+    let cancelled = false;
+    fetch(`/generated/project-diagrams/${project.id}.svg`).then((res) => res.ok ? res.text() : "").then((svg) => {
+      if (!cancelled) setDiagramSvg(svg);
+    }).catch(() => {
+      if (!cancelled) setDiagramSvg("");
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [project.id, project.diagram]);
   return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-24", children: [
     /* @__PURE__ */ jsx(
       SEO,
@@ -17837,13 +17853,12 @@ function ProjectDetails() {
           /* @__PURE__ */ jsx("h2", { className: "text-2xl font-light", children: language === "tr" ? "Sistem Mimarisi" : "System Architecture" })
         ] }),
         /* @__PURE__ */ jsx(
-          "img",
+          "div",
           {
-            src: `/generated/project-diagrams/${project.id}.svg`,
-            alt: `${project.title} diagram`,
-            className: "w-full h-auto",
-            loading: "lazy",
-            decoding: "async"
+            className: "w-full overflow-x-auto [&_svg]:max-w-full [&_svg]:h-auto",
+            role: "img",
+            "aria-label": `${project.title} architecture diagram`,
+            dangerouslySetInnerHTML: { __html: diagramSvg }
           }
         )
       ] }),

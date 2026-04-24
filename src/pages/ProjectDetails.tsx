@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { ArrowLeft, Github, ExternalLink, Terminal, Target, GitMerge } from 'lucide-react';
 import { projects } from '../data/projects';
@@ -20,6 +21,29 @@ export default function ProjectDetails() {
   }
 
   const programmingLanguages = project.tags.filter((tag) => KNOWN_PROGRAMMING_LANGUAGES.has(tag));
+
+  // Inline the diagram SVG so Mermaid's <foreignObject> labels render. When
+  // SVGs are loaded via <img src="*.svg"> browsers sandbox them and refuse to
+  // paint foreignObject content, leaving the diagram with empty nodes.
+  const [diagramSvg, setDiagramSvg] = useState<string>('');
+  useEffect(() => {
+    if (!project.diagram) {
+      setDiagramSvg('');
+      return;
+    }
+    let cancelled = false;
+    fetch(`/generated/project-diagrams/${project.id}.svg`)
+      .then((res) => (res.ok ? res.text() : ''))
+      .then((svg) => {
+        if (!cancelled) setDiagramSvg(svg);
+      })
+      .catch(() => {
+        if (!cancelled) setDiagramSvg('');
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [project.id, project.diagram]);
 
   return (
     <div className="min-h-screen bg-background pt-32 pb-24">
@@ -71,12 +95,11 @@ export default function ProjectDetails() {
               <GitMerge className="w-6 h-6 text-primary" />
               <h2 className="text-2xl font-light">{language === 'tr' ? 'Sistem Mimarisi' : 'System Architecture'}</h2>
             </div>
-            <img
-              src={`/generated/project-diagrams/${project.id}.svg`}
-              alt={`${project.title} diagram`}
-              className="w-full h-auto"
-              loading="lazy"
-              decoding="async"
+            <div
+              className="w-full overflow-x-auto [&_svg]:max-w-full [&_svg]:h-auto"
+              role="img"
+              aria-label={`${project.title} architecture diagram`}
+              dangerouslySetInnerHTML={{ __html: diagramSvg }}
             />
           </div>
         )}
