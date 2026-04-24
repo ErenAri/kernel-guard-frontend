@@ -17790,22 +17790,6 @@ function ProjectDetails() {
     return /* @__PURE__ */ jsx(distExports.Navigate, { to: "/not-found/", replace: true });
   }
   const programmingLanguages = project.tags.filter((tag) => KNOWN_PROGRAMMING_LANGUAGES.has(tag));
-  const [diagramSvg, setDiagramSvg] = useState("");
-  useEffect(() => {
-    if (!project.diagram) {
-      setDiagramSvg("");
-      return;
-    }
-    let cancelled = false;
-    fetch(`/generated/project-diagrams/${project.id}.svg`).then((res) => res.ok ? res.text() : "").then((svg) => {
-      if (!cancelled) setDiagramSvg(svg);
-    }).catch(() => {
-      if (!cancelled) setDiagramSvg("");
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [project.id, project.diagram]);
   return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-24", children: [
     /* @__PURE__ */ jsx(
       SEO,
@@ -17852,15 +17836,19 @@ function ProjectDetails() {
           /* @__PURE__ */ jsx(GitMerge, { className: "w-6 h-6 text-primary" }),
           /* @__PURE__ */ jsx("h2", { className: "text-2xl font-light", children: language === "tr" ? "Sistem Mimarisi" : "System Architecture" })
         ] }),
-        /* @__PURE__ */ jsx(
-          "div",
+        /* @__PURE__ */ jsx("div", { className: "relative w-full", style: { aspectRatio: "1 / 1" }, children: /* @__PURE__ */ jsxs(
+          "object",
           {
-            className: "w-full overflow-x-auto [&_svg]:max-w-full [&_svg]:h-auto",
-            role: "img",
+            data: `/generated/project-diagrams/${project.id}.svg`,
+            type: "image/svg+xml",
             "aria-label": `${project.title} architecture diagram`,
-            dangerouslySetInnerHTML: { __html: diagramSvg }
+            className: "absolute inset-0 w-full h-full",
+            children: [
+              project.title,
+              " architecture diagram"
+            ]
           }
-        )
+        ) })
       ] }),
       /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-1 md:grid-cols-2 gap-12 mb-16", children: [
         /* @__PURE__ */ jsxs("div", { className: "bg-surface p-8 border border-border", children: [
