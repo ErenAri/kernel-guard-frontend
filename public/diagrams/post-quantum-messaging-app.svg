@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" font-family="Inter, ui-sans-serif, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0e1a"/>
+      <stop offset="100%" stop-color="#161c2e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00aaff"/>
+      <stop offset="100%" stop-color="#0047b3"/>
+    </linearGradient>
+    <linearGradient id="core" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0047b3"/>
+      <stop offset="100%" stop-color="#001f4d"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#00aaff"/>
+    </marker>
+    <marker id="arrow-soft" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/>
+    </marker>
+    <marker id="arrow-verify" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#a78bfa"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="900" fill="url(#bg)"/>
+
+  <g opacity="0.05" stroke="#00aaff" stroke-width="1" fill="none">
+    <path d="M0 0 H1200 M0 100 H1200 M0 200 H1200 M0 300 H1200 M0 400 H1200 M0 500 H1200 M0 600 H1200 M0 700 H1200 M0 800 H1200 M0 900 H1200"/>
+    <path d="M0 0 V900 M100 0 V900 M200 0 V900 M300 0 V900 M400 0 V900 M500 0 V900 M600 0 V900 M700 0 V900 M800 0 V900 M900 0 V900 M1000 0 V900 M1100 0 V900"/>
+  </g>
+
+  <g font-family="ui-monospace, Menlo, Consolas, monospace">
+    <text x="60" y="55" fill="#00aaff" font-size="14" letter-spacing="3" opacity="0.8">SYSTEM_ARCHITECTURE // POST-QUANTUM MESSAGING</text>
+    <text x="60" y="78" fill="#94a3b8" font-size="12" letter-spacing="1">Rust core · CRYSTALS-Kyber + Dilithium · formally verified</text>
+  </g>
+
+  <g font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" letter-spacing="3" fill="#00aaff" opacity="0.7">
+    <text x="60" y="120">CLIENTS</text>
+  </g>
+
+  <g transform="translate(60, 140)">
+    <g>
+      <rect width="180" height="60" rx="6" fill="#161c2e" stroke="#2a3548"/>
+      <text x="90" y="28" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="500">CLI</text>
+      <text x="90" y="46" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="ui-monospace, monospace">terminal</text>
+    </g>
+    <g transform="translate(0, 80)">
+      <rect width="180" height="60" rx="6" fill="#161c2e" stroke="#2a3548"/>
+      <text x="90" y="28" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="500">Android</text>
+      <text x="90" y="46" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="ui-monospace, monospace">JNI bridge</text>
+    </g>
+    <g transform="translate(0, 160)">
+      <rect width="180" height="60" rx="6" fill="#161c2e" stroke="#2a3548"/>
+      <text x="90" y="28" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="500">iOS</text>
+      <text x="90" y="46" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="ui-monospace, monospace">Swift FFI</text>
+    </g>
+    <g transform="translate(0, 240)">
+      <rect width="180" height="60" rx="6" fill="#161c2e" stroke="#2a3548"/>
+      <text x="90" y="28" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="500">Web</text>
+      <text x="90" y="46" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="ui-monospace, monospace">WASM</text>
+    </g>
+    <g transform="translate(0, 320)">
+      <rect width="180" height="60" rx="6" fill="#161c2e" stroke="#2a3548"/>
+      <text x="90" y="28" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="500">Desktop</text>
+      <text x="90" y="46" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="ui-monospace, monospace">Tauri wrapper</text>
+    </g>
+  </g>
+
+  <g stroke="#94a3b8" stroke-width="1.4" fill="none" opacity="0.5">
+    <path d="M240 170 C 320 170, 350 280, 430 280" marker-end="url(#arrow-soft)"/>
+    <path d="M240 250 C 320 250, 350 280, 430 280" marker-end="url(#arrow-soft)"/>
+    <path d="M240 330 C 320 330, 350 280, 430 280" marker-end="url(#arrow-soft)"/>
+    <path d="M240 410 C 320 410, 350 280, 430 280" marker-end="url(#arrow-soft)"/>
+    <path d="M240 490 C 320 490, 350 280, 430 280" marker-end="url(#arrow-soft)"/>
+  </g>
+
+  <g transform="translate(430, 220)">
+    <rect width="320" height="140" rx="10" fill="url(#core)" stroke="#3b82f6" stroke-width="2"/>
+    <text x="20" y="32" font-family="ui-monospace, Menlo, Consolas, monospace" fill="#dbeafe" font-size="11" letter-spacing="3" opacity="0.85">PQMSG_CORE</text>
+    <text x="160" y="74" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="600">Rust Core Library</text>
+    <text x="160" y="100" text-anchor="middle" fill="#bfdbfe" font-size="13" font-family="ui-monospace, Menlo, Consolas, monospace">Kyber-1024 · Dilithium-5</text>
+    <text x="160" y="120" text-anchor="middle" fill="#bfdbfe" font-size="13" font-family="ui-monospace, Menlo, Consolas, monospace">memory-safe · zero-copy</text>
+  </g>
+
+  <g font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" letter-spacing="3" fill="#00aaff" opacity="0.7">
+    <text x="800" y="120">SERVER</text>
+  </g>
+
+  <g transform="translate(800, 140)">
+    <rect width="340" height="120" rx="8" fill="#161c2e" stroke="#2a3548" stroke-width="1.5"/>
+    <text x="170" y="40" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="500">pqmsg-server</text>
+    <text x="170" y="68" text-anchor="middle" fill="#94a3b8" font-size="13" font-family="ui-monospace, Menlo, Consolas, monospace">HTTP/JSON over TLS</text>
+    <text x="170" y="92" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="ui-monospace, Menlo, Consolas, monospace">sealed inbox · realtime relay</text>
+  </g>
+
+  <g stroke="#00aaff" stroke-width="2" fill="none">
+    <path d="M750 290 H 800 V 200" marker-end="url(#arrow)"/>
+    <path d="M800 220 H 750" marker-end="url(#arrow)"/>
+  </g>
+  <g font-family="ui-monospace, Menlo, Consolas, monospace" fill="#00aaff" font-size="11" letter-spacing="2">
+    <text x="775" y="186" text-anchor="middle">TLS</text>
+    <text x="775" y="240" text-anchor="middle">SYNC</text>
+  </g>
+
+  <g transform="translate(800, 320)">
+    <rect width="160" height="80" rx="6" fill="#161c2e" stroke="#2a3548"/>
+    <text x="80" y="34" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="500">PostgreSQL</text>
+    <text x="80" y="56" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="ui-monospace, monospace">message store</text>
+  </g>
+  <g transform="translate(980, 320)">
+    <rect width="160" height="80" rx="6" fill="#161c2e" stroke="#2a3548"/>
+    <text x="80" y="34" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="500">Redis</text>
+    <text x="80" y="56" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="ui-monospace, monospace">rate limiter</text>
+  </g>
+
+  <g stroke="#94a3b8" stroke-width="1.4" fill="none" opacity="0.5">
+    <line x1="900" y1="260" x2="880" y2="320" marker-end="url(#arrow-soft)"/>
+    <line x1="1040" y1="260" x2="1060" y2="320" marker-end="url(#arrow-soft)"/>
+  </g>
+
+  <g font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" letter-spacing="3" fill="#a78bfa" opacity="0.85">
+    <text x="60" y="630">FORMAL_VERIFICATION</text>
+  </g>
+
+  <g transform="translate(60, 650)">
+    <rect width="1080" height="200" rx="10" fill="#1a132a" stroke="#3b2a5b" stroke-width="1.5" stroke-dasharray="6 4"/>
+
+    <g transform="translate(40, 40)">
+      <rect width="280" height="120" rx="6" fill="#231838" stroke="#52337f"/>
+      <text x="140" y="40" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="500">ProVerif</text>
+      <text x="140" y="66" text-anchor="middle" fill="#c4b5fd" font-size="12" font-family="ui-monospace, monospace">symbolic protocol model</text>
+      <text x="140" y="86" text-anchor="middle" fill="#c4b5fd" font-size="12" font-family="ui-monospace, monospace">secrecy · authentication</text>
+    </g>
+
+    <g transform="translate(380, 40)">
+      <rect width="280" height="120" rx="6" fill="#231838" stroke="#52337f"/>
+      <text x="140" y="40" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="500">Tamarin</text>
+      <text x="140" y="66" text-anchor="middle" fill="#c4b5fd" font-size="12" font-family="ui-monospace, monospace">multi-set rewriting</text>
+      <text x="140" y="86" text-anchor="middle" fill="#c4b5fd" font-size="12" font-family="ui-monospace, monospace">temporal properties</text>
+    </g>
+
+    <g transform="translate(720, 40)">
+      <rect width="320" height="120" rx="6" fill="#1a2540" stroke="#3b82f6"/>
+      <text x="160" y="40" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="500">CI Verification Gate</text>
+      <text x="160" y="66" text-anchor="middle" fill="#bfdbfe" font-size="12" font-family="ui-monospace, monospace">blocks merge if proof</text>
+      <text x="160" y="86" text-anchor="middle" fill="#bfdbfe" font-size="12" font-family="ui-monospace, monospace">obligations regress</text>
+    </g>
+
+    <g stroke="#a78bfa" stroke-width="1.4" stroke-dasharray="4 3" fill="none" opacity="0.7">
+      <line x1="320" y1="100" x2="380" y2="100" marker-end="url(#arrow-verify)"/>
+      <line x1="660" y1="100" x2="720" y2="100" marker-end="url(#arrow-verify)"/>
+    </g>
+  </g>
+
+  <rect x="0" y="894" width="1200" height="6" fill="url(#accent)"/>
+</svg>

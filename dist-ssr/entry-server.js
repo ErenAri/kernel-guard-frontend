@@ -17836,10 +17836,10 @@ function ProjectDetails() {
           /* @__PURE__ */ jsx(GitMerge, { className: "w-6 h-6 text-primary" }),
           /* @__PURE__ */ jsx("h2", { className: "text-2xl font-light", children: language === "tr" ? "Sistem Mimarisi" : "System Architecture" })
         ] }),
-        /* @__PURE__ */ jsx("div", { className: "relative w-full", style: { aspectRatio: "1 / 1" }, children: /* @__PURE__ */ jsxs(
+        /* @__PURE__ */ jsx("div", { className: "relative w-full", style: { aspectRatio: "4 / 3" }, children: /* @__PURE__ */ jsxs(
           "object",
           {
-            data: `/generated/project-diagrams/${project.id}.svg`,
+            data: `/diagrams/${project.id}.svg`,
             type: "image/svg+xml",
             "aria-label": `${project.title} architecture diagram`,
             className: "absolute inset-0 w-full h-full",

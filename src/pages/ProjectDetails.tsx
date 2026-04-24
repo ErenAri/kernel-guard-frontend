@@ -78,9 +78,9 @@ export default function ProjectDetails() {
               The wrapper enforces a square aspect ratio matching the
               generator's 682x682 viewBox so the embed gets a real height.
             */}
-            <div className="relative w-full" style={{ aspectRatio: '1 / 1' }}>
+            <div className="relative w-full" style={{ aspectRatio: '4 / 3' }}>
               <object
-                data={`/generated/project-diagrams/${project.id}.svg`}
+                data={`/diagrams/${project.id}.svg`}
                 type="image/svg+xml"
                 aria-label={`${project.title} architecture diagram`}
                 className="absolute inset-0 w-full h-full"
