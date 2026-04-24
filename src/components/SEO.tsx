@@ -2,8 +2,8 @@ import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '../context/LanguageContext';
 import { useLocation } from 'react-router-dom';
 import { buildCanonicalUrl, DEFAULT_SITE_URL, normalizeCanonicalPath, normalizeSiteUrl } from '../config/site';
-
-type JsonLdNode = Record<string, unknown>;
+import { localizePath, stripLanguagePrefix } from '../i18n/route';
+import { buildBreadcrumbSchema, type JsonLdNode } from '../lib/schema';
 
 interface SEOProps {
   title?: string;
@@ -33,8 +33,8 @@ export default function SEO({
   keywords,
   type = 'website', 
   name = 'Kernel Guard',
-  image = 'https://storage.googleapis.com/m-infra-ais-prod-399110920482.europe-west2.run.app/ais-dev-3b2rqidgrlxxfxo5fs4lfr-399110920482.europe-west2.run.app/attachments/86903e05-950c-403d-b472-132984136a87.png',
-  imageAlt = 'Kernel Guard secure engineering platform',
+  image = '/og/default.svg',
+  imageAlt = 'Kernel Guard - Secure & Scalable Web Engineering',
   path,
   noIndex = false,
   noFollow = false,
@@ -50,9 +50,26 @@ export default function SEO({
     : (noFollow ? 'index, nofollow' : 'index, follow');
   const locale = language === 'tr' ? 'tr_TR' : 'en_US';
   const alternateLocale = language === 'tr' ? 'en_US' : 'tr_TR';
+
+  // hreflang requires absolute URLs that resolve to each language's variant
+  // of the same logical page. Strip any inbound /en prefix first so we always
+  // start from the canonical TR path before re-localizing per language.
+  const logicalPath = stripLanguagePrefix(currentPath);
+  const trUrl = buildCanonicalUrl(siteUrl, normalizeCanonicalPath(localizePath(logicalPath, 'tr')));
+  const enUrl = buildCanonicalUrl(siteUrl, normalizeCanonicalPath(localizePath(logicalPath, 'en')));
+
+  // Resolve a relative image path to an absolute URL so social platforms can fetch it.
+  const absoluteImage = image.startsWith('http') ? image : `${siteUrl}${image.startsWith('/') ? '' : '/'}${image}`;
   const schemaItems = normalizeSchemaItems(schema);
   const organizationId = `${siteUrl}/#organization`;
   const websiteId = `${siteUrl}/#website`;
+
+  const breadcrumb = buildBreadcrumbSchema(
+    currentPath,
+    language,
+    siteUrl,
+    (p) => normalizeCanonicalPath(localizePath(p, language)),
+  );
 
   // Keep JSON-LD aligned with visible metadata to avoid structured-data mismatch issues.
   const structuredData = {
@@ -63,7 +80,7 @@ export default function SEO({
         '@id': organizationId,
         name,
         url: `${siteUrl}/`,
-        logo: image,
+        logo: absoluteImage,
         sameAs: [
           'https://github.com/Kernel-Guard',
           'https://www.linkedin.com/company/kernel-guard/',
@@ -89,7 +106,9 @@ export default function SEO({
         isPartOf: {
           '@id': websiteId,
         },
+        ...(breadcrumb ? { breadcrumb: { '@id': `${canonicalUrl}#breadcrumb` } } : {}),
       },
+      ...(breadcrumb ? [{ ...breadcrumb, '@id': `${canonicalUrl}#breadcrumb` }] : []),
       ...schemaItems,
     ],
   };
@@ -99,18 +118,24 @@ export default function SEO({
       {/* Standard metadata tags */}
       <title>{title}</title>
       <meta name='description' content={description} />
-      {keywords ? <meta name='keywords' content={keywords} /> : null}
       <meta name='robots' content={robotsContent} />
       <meta name='googlebot' content={robotsContent} />
       <link rel="canonical" href={canonicalUrl} />
-      
+
+      {/* hreflang alternates for international SEO. */}
+      <link rel="alternate" hrefLang="tr" href={trUrl} />
+      <link rel="alternate" hrefLang="en" href={enUrl} />
+      <link rel="alternate" hrefLang="x-default" href={trUrl} />
+
       {/* OpenGraph tags */}
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content={type} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:site_name" content={name} />
-      <meta property="og:image" content={image} />
+      <meta property="og:image" content={absoluteImage} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content={imageAlt} />
       <meta property="og:locale" content={locale} />
       <meta property="og:locale:alternate" content={alternateLocale} />
@@ -121,7 +146,7 @@ export default function SEO({
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={image} />
+      <meta name="twitter:image" content={absoluteImage} />
       <meta name="twitter:image:alt" content={imageAlt} />
 
       {/* JSON-LD Structured Data */}

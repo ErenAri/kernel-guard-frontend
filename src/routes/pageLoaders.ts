@@ -89,3 +89,29 @@ export function prefetchRoutes(routes: readonly PrefetchRoute[]): void {
     prefetchRoute(route);
   }
 }
+
+// Loaders required to render a given URL. Used by main.tsx to preload the
+// page's lazy chunks before hydration so React's client tree matches the
+// server-rendered markup (no Suspense fallback flash, no hydration warnings).
+export function resolveLoadersForPath(pathname: string): PrefetchRoute[] {
+  const path = pathname.replace(/\/+$/, '') || '/';
+
+  if (path === '/') return ['home'];
+  if (path === '/services') return ['services'];
+  if (path === '/services/secure-frontend') return ['secureFrontend'];
+  if (path === '/services/hardened-backend') return ['hardenedBackend'];
+  if (path === '/services/data-protection') return ['dataProtection'];
+  if (path === '/services/high-performance') return ['highPerformance'];
+  if (path === '/projects') return ['projects'];
+  if (path.startsWith('/projects/')) return ['projectDetails'];
+  if (path === '/completed-projects') return ['completedProjects'];
+  if (path.startsWith('/completed-projects/')) return ['completedProjectDetails'];
+  if (path === '/terms') return ['terms'];
+  if (path === '/privacy') return ['privacy'];
+  if (path === '/cookies') return ['cookies'];
+  return ['notFound'];
+}
+
+export function preloadRoutes(routes: readonly PrefetchRoute[]): Promise<unknown[]> {
+  return Promise.all(routes.map((route) => prefetchers[route]()));
+}

@@ -1,13 +1,14 @@
 {
-  "name": "react-example",
+  "name": "kernel-guard-frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
-    "prebuild": "tsx scripts/generate-sitemap.ts",
-    "build": "vite build",
-    "postbuild": "tsx scripts/generate-route-shells.ts",
+    "predev": "tsx scripts/generate-project-diagrams.ts",
+    "prebuild": "tsx scripts/generate-project-diagrams.ts && tsx scripts/generate-sitemap.ts",
+    "build": "vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr",
+    "postbuild": "tsx scripts/prerender.ts",
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit"
@@ -31,6 +32,7 @@
     "@types/express": "^4.17.21",
     "@types/node": "^22.14.0",
     "autoprefixer": "^10.4.21",
+    "jsdom": "^29.0.2",
     "tailwindcss": "^4.1.14",
     "tsx": "^4.21.0",
     "typescript": "~5.8.2",

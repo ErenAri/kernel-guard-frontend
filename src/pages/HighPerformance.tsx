@@ -2,17 +2,24 @@ import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/SEO';
+import { buildServiceSchema } from '../lib/schema';
 
 export default function HighPerformance() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <div className="min-h-screen bg-background pt-32 pb-24">
-      <SEO 
+      <SEO
         title={`${t.home.features.performance.title} - Kernel Guard`}
         description={t.home.features.performance.desc}
-        keywords="high performance web apps, optimized algorithms, edge computing, fast load times, secure performance, Kernel Guard"
         path="/services/high-performance/"
+        schema={buildServiceSchema({
+          name: t.home.features.performance.title,
+          description: t.home.features.performance.desc,
+          path: '/services/high-performance/',
+          language,
+          serviceType: 'High Performance Web Applications',
+        })}
       />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link to="/" className="inline-flex items-center text-sm font-medium text-primary hover:underline mb-8">

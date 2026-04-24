@@ -22,7 +22,7 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: "1",
+    id: "cathodex",
     title: "CathodeX",
     description: {
       en: "AI-powered cathode material screening platform using graph neural networks for predicting battery material properties.",
@@ -54,7 +54,7 @@ export const projects: Project[] = [
     Stats -->|Policy| Result[KEEP / MAYBE / KILL]`
   },
   {
-    id: "2",
+    id: "post-quantum-messaging-app",
     title: "post-quantum-messaging-app",
     description: {
       en: "A secure messaging application implementing post-quantum cryptographic algorithms to ensure future-proof communication.",
@@ -83,7 +83,7 @@ export const projects: Project[] = [
     TM["Tamarin model"] -.-> V`
   },
   {
-    id: "3",
+    id: "aegis-bpf-co-re-enforcement-prototype",
     title: "Aegis-BPF-CO-RE-Enforcement-Prototype",
     description: {
       en: "A prototype for enforcing security policies using eBPF (Extended Berkeley Packet Filter) with CO-RE (Compile Once - Run Everywhere) support.",

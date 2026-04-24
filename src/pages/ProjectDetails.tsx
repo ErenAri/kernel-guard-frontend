@@ -1,29 +1,40 @@
-import { Suspense, lazy } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { ArrowLeft, Github, ExternalLink, Terminal, Target, GitMerge } from 'lucide-react';
 import { projects } from '../data/projects';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/SEO';
+import { buildSoftwareSourceCodeSchema } from '../lib/schema';
 
-const Mermaid = lazy(() => import('../components/Mermaid'));
+const KNOWN_PROGRAMMING_LANGUAGES = new Set([
+  'Python', 'Rust', 'C++', 'C', 'Go', 'TypeScript', 'JavaScript', 'Java', 'Kotlin', 'Swift',
+]);
 
 export default function ProjectDetails() {
   const { id } = useParams();
   const { language, t } = useLanguage();
-  
+
   const project = projects.find(p => p.id === id);
 
   if (!project) {
     return <Navigate to="/not-found/" replace />;
   }
 
+  const programmingLanguages = project.tags.filter((tag) => KNOWN_PROGRAMMING_LANGUAGES.has(tag));
+
   return (
     <div className="min-h-screen bg-background pt-32 pb-24">
-      <SEO 
+      <SEO
         title={`${project.title} - Kernel Guard`}
         description={project.description[language]}
-        keywords={`${project.tags.join(', ')}, Kernel Guard, open source security`}
         path={`/projects/${project.id}/`}
+        schema={buildSoftwareSourceCodeSchema({
+          name: project.title,
+          description: project.description[language],
+          path: `/projects/${project.id}/`,
+          language,
+          codeRepository: project.github,
+          programmingLanguage: programmingLanguages.length > 0 ? programmingLanguages : undefined,
+        })}
       />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link 
@@ -60,15 +71,13 @@ export default function ProjectDetails() {
               <GitMerge className="w-6 h-6 text-primary" />
               <h2 className="text-2xl font-light">{language === 'tr' ? 'Sistem Mimarisi' : 'System Architecture'}</h2>
             </div>
-            <Suspense
-              fallback={
-                <div className="font-mono text-xs uppercase tracking-wider text-foreground/60">
-                  Loading diagram
-                </div>
-              }
-            >
-              <Mermaid chart={project.diagram} />
-            </Suspense>
+            <img
+              src={`/generated/project-diagrams/${project.id}.svg`}
+              alt={`${project.title} diagram`}
+              className="w-full h-auto"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
         )}
 

@@ -2,17 +2,24 @@ import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/SEO';
+import { buildServiceSchema } from '../lib/schema';
 
 export default function SecureFrontend() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <div className="min-h-screen bg-background pt-32 pb-24">
-      <SEO 
+      <SEO
         title={`${t.home.features.frontend.title} - Kernel Guard`}
         description={t.home.features.frontend.desc}
-        keywords="secure frontend, React security, XSS prevention, CSP, frontend architecture, Kernel Guard"
         path="/services/secure-frontend/"
+        schema={buildServiceSchema({
+          name: t.home.features.frontend.title,
+          description: t.home.features.frontend.desc,
+          path: '/services/secure-frontend/',
+          language,
+          serviceType: 'Secure Frontend Engineering',
+        })}
       />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link to="/" className="inline-flex items-center text-sm font-medium text-primary hover:underline mb-8">

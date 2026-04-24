@@ -1,15 +1,17 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Globe } from 'lucide-react';
 import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { prefetchRoutes, type PrefetchRoute } from '../routes/pageLoaders';
+import { alternateLanguagePath } from '../i18n/route';
 import Logo from './Logo';
 import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-  const { language, setLanguage, t } = useLanguage();
+  const navigate = useNavigate();
+  const { language, t } = useLanguage();
 
   const normalizeNavPath = (path: string) => {
     if (path === '/') {
@@ -37,7 +39,8 @@ export default function Navbar() {
   const isActive = (path: string) => normalizeNavPath(location.pathname) === normalizeNavPath(path);
 
   const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'tr' : 'en');
+    const target = alternateLanguagePath(location.pathname, language);
+    navigate(target);
   };
 
   const handleLinkIntent = (routes: readonly PrefetchRoute[]) => {

@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import CanonicalPathRedirect from './components/CanonicalPathRedirect';
 import ScrollToTop from './components/ScrollToTop';
-import { LanguageProvider } from './context/LanguageContext';
+import { LanguageProvider, type Language } from './context/LanguageContext';
 import { ThemeProvider } from './context/ThemeContext';
 import {
   loadLayout,
@@ -52,37 +52,52 @@ function RouteLoadingFallback() {
   );
 }
 
+function LocalizedRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="projects" element={<Projects />} />
+        <Route path="projects/:id" element={<ProjectDetails />} />
+        <Route path="completed-projects" element={<CompletedProjects />} />
+        <Route path="completed-projects/:id" element={<CompletedProjectDetails />} />
+        <Route path="services" element={<Services />} />
+        <Route path="services/secure-frontend" element={<SecureFrontend />} />
+        <Route path="services/hardened-backend" element={<HardenedBackend />} />
+        <Route path="services/data-protection" element={<DataProtection />} />
+        <Route path="services/high-performance" element={<HighPerformance />} />
+        <Route path="terms" element={<Terms />} />
+        <Route path="privacy" element={<Privacy />} />
+        <Route path="cookies" element={<Cookies />} />
+        <Route path="not-found" element={<NotFound />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
+  );
+}
+
+function LangShell({ lang }: { lang: Language }) {
+  return (
+    <LanguageProvider initialLanguage={lang}>
+      <CanonicalPathRedirect />
+      <ScrollToTop />
+      <Suspense fallback={<RouteLoadingFallback />}>
+        <LocalizedRoutes />
+      </Suspense>
+    </LanguageProvider>
+  );
+}
+
 export default function App() {
   return (
     <HelmetProvider>
       <ThemeProvider>
-        <LanguageProvider>
-          <BrowserRouter>
-            <CanonicalPathRedirect />
-            <ScrollToTop />
-            <Suspense fallback={<RouteLoadingFallback />}>
-              <Routes>
-                <Route path="/" element={<Layout />}>
-                  <Route index element={<Home />} />
-                  <Route path="projects" element={<Projects />} />
-                  <Route path="projects/:id" element={<ProjectDetails />} />
-                  <Route path="completed-projects" element={<CompletedProjects />} />
-                  <Route path="completed-projects/:id" element={<CompletedProjectDetails />} />
-                  <Route path="services" element={<Services />} />
-                  <Route path="services/secure-frontend" element={<SecureFrontend />} />
-                  <Route path="services/hardened-backend" element={<HardenedBackend />} />
-                  <Route path="services/data-protection" element={<DataProtection />} />
-                  <Route path="services/high-performance" element={<HighPerformance />} />
-                  <Route path="terms" element={<Terms />} />
-                  <Route path="privacy" element={<Privacy />} />
-                  <Route path="cookies" element={<Cookies />} />
-                  <Route path="not-found" element={<NotFound />} />
-                  <Route path="*" element={<NotFound />} />
-                </Route>
-              </Routes>
-            </Suspense>
-          </BrowserRouter>
-        </LanguageProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/en/*" element={<LangShell lang="en" />} />
+            <Route path="/*" element={<LangShell lang="tr" />} />
+          </Routes>
+        </BrowserRouter>
       </ThemeProvider>
     </HelmetProvider>
   );
