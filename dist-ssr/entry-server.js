@@ -18621,7 +18621,7 @@ function renderRoute(url, language) {
             /* @__PURE__ */ jsx(CanonicalPathRedirect, {}),
             /* @__PURE__ */ jsx(ScrollToTop, {}),
             /* @__PURE__ */ jsx(LocalizedRoutes, {})
-          ] })
+          ] }, "en")
         }
       ),
       /* @__PURE__ */ jsx(
@@ -18632,7 +18632,7 @@ function renderRoute(url, language) {
             /* @__PURE__ */ jsx(CanonicalPathRedirect, {}),
             /* @__PURE__ */ jsx(ScrollToTop, {}),
             /* @__PURE__ */ jsx(LocalizedRoutes, {})
-          ] })
+          ] }, "tr")
         }
       )
     ] }) }) }) })

@@ -77,7 +77,7 @@ export function renderRoute(url: string, language: Language): RenderResult {
             <Route
               path="/en/*"
               element={
-                <LanguageProvider initialLanguage="en">
+                <LanguageProvider key="en" initialLanguage="en">
                   <CanonicalPathRedirect />
                   <ScrollToTop />
                   <LocalizedRoutes />
@@ -87,7 +87,7 @@ export function renderRoute(url: string, language: Language): RenderResult {
             <Route
               path="/*"
               element={
-                <LanguageProvider initialLanguage={language}>
+                <LanguageProvider key="tr" initialLanguage={language}>
                   <CanonicalPathRedirect />
                   <ScrollToTop />
                   <LocalizedRoutes />

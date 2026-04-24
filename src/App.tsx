@@ -77,8 +77,12 @@ function LocalizedRoutes() {
 }
 
 function LangShell({ lang }: { lang: Language }) {
+  // key={lang} forces a clean remount when the URL prefix flips between
+  // /en/* and /*. Without it, React Router keeps the same LangShell instance
+  // (same element type at same tree position) and useState(initialLanguage)
+  // never re-runs — leaving the language state stuck at the first mount value.
   return (
-    <LanguageProvider initialLanguage={lang}>
+    <LanguageProvider key={lang} initialLanguage={lang}>
       <CanonicalPathRedirect />
       <ScrollToTop />
       <Suspense fallback={<RouteLoadingFallback />}>
