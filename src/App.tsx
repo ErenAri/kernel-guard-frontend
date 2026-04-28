@@ -25,6 +25,7 @@ import {
   loadTerms,
   loadPrivacy,
   loadCookies,
+  loadContact,
   loadNotFound,
 } from './routes/pageLoaders';
 
@@ -42,6 +43,7 @@ const Services = lazy(loadServices);
 const Terms = lazy(loadTerms);
 const Privacy = lazy(loadPrivacy);
 const Cookies = lazy(loadCookies);
+const Contact = lazy(loadContact);
 const NotFound = lazy(loadNotFound);
 
 function RouteLoadingFallback() {
@@ -69,6 +71,7 @@ function LocalizedRoutes() {
         <Route path="terms" element={<Terms />} />
         <Route path="privacy" element={<Privacy />} />
         <Route path="cookies" element={<Cookies />} />
+        <Route path="contact" element={<Contact />} />
         <Route path="not-found" element={<NotFound />} />
         <Route path="*" element={<NotFound />} />
       </Route>

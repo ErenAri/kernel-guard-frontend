@@ -28,6 +28,7 @@ export const en = {
     completedProjects: 'Completed Projects',
     github: 'GitHub',
     linkedin: 'LinkedIn',
+    contact: 'Contact',
   },
   servicesPage: {
     title: 'Our Services',
@@ -177,5 +178,36 @@ export const en = {
       desc: 'These cookies allow us to count visits and traffic sources so we can measure and improve the performance of our site.'
     },
     save: 'Save Preferences'
+  },
+  contact: {
+    seo: {
+      title: 'Contact Us | Kernel Guard',
+      description: 'Get in touch with Kernel Guard for secure web development, cybersecurity consulting, and infrastructure management.',
+      keywords: 'contact kernel guard, cybersecurity consulting, web development agency'
+    },
+    title: 'Get in Touch',
+    subtitle: 'Have a project in mind or need security consultation? We\'d love to hear from you.',
+    info: {
+      title: 'Contact Information',
+      desc: 'Reach out to us directly through the following channels.',
+      email: 'Email Us',
+      location: 'Location',
+      locationValue: 'İzmir, Turkey',
+      social: 'Social Media',
+      github: 'GitHub Repository',
+      linkedin: 'LinkedIn Profile'
+    },
+    form: {
+      name: 'Full Name',
+      namePlaceholder: 'John Doe',
+      email: 'Email Address',
+      emailPlaceholder: 'john@example.com',
+      message: 'Your Message',
+      messagePlaceholder: 'How can we help you?',
+      submit: 'Send Message',
+      sending: 'Sending...',
+      success: 'Message sent successfully! We will get back to you soon.',
+      error: 'An error occurred while sending the message. Please try again later.'
+    }
   }
 };

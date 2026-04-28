@@ -34,6 +34,7 @@ export default function Navbar() {
       path: '/completed-projects/',
       prefetch: ['completedProjects', 'completedProjectDetails'],
     },
+    { name: t.nav.contact, path: '/contact/', prefetch: ['contact'] },
   ];
 
   const isActive = (path: string) => normalizeNavPath(location.pathname) === normalizeNavPath(path);

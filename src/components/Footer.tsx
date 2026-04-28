@@ -48,6 +48,16 @@ export default function Footer() {
                   {t.nav.completedProjects}
                 </Link>
               </li>
+              <li>
+                <Link
+                  to="/contact/"
+                  onPointerEnter={() => prefetchRoute('contact')}
+                  onFocus={() => prefetchRoute('contact')}
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                >
+                  {t.nav.contact}
+                </Link>
+              </li>
             </ul>
           </div>
           

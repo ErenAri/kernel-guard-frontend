@@ -28,6 +28,7 @@ export const tr = {
     completedProjects: 'Tamamlanan Projeler',
     github: 'GitHub',
     linkedin: 'LinkedIn',
+    contact: 'İletişim',
   },
   servicesPage: {
     title: 'Hizmetlerimiz',
@@ -177,5 +178,36 @@ export const tr = {
       desc: 'Bu çerezler, sitemizin performansını ölçebilmemiz ve iyileştirebilmemiz için ziyaretleri ve trafik kaynaklarını saymamıza olanak tanır.'
     },
     save: 'Tercihleri Kaydet'
+  },
+  contact: {
+    seo: {
+      title: 'İletişim | Kernel Guard',
+      description: 'Güvenli web geliştirme, siber güvenlik danışmanlığı ve altyapı yönetimi için Kernel Guard ile iletişime geçin.',
+      keywords: 'kernel guard iletişim, siber güvenlik danışmanlığı, web geliştirme ajansı'
+    },
+    title: 'Bize Ulaşın',
+    subtitle: 'Aklınızda bir proje mi var veya güvenlik danışmanlığına mı ihtiyacınız var? Sizinle tanışmak isteriz.',
+    info: {
+      title: 'İletişim Bilgileri',
+      desc: 'Aşağıdaki kanallar üzerinden bizimle doğrudan iletişime geçebilirsiniz.',
+      email: 'E-posta Gönderin',
+      location: 'Konum',
+      locationValue: 'İzmir, Türkiye',
+      social: 'Sosyal Medya',
+      github: 'GitHub Deposu',
+      linkedin: 'LinkedIn Profili'
+    },
+    form: {
+      name: 'Adınız Soyadınız',
+      namePlaceholder: 'Ahmet Yılmaz',
+      email: 'E-posta Adresiniz',
+      emailPlaceholder: 'ahmet@ornek.com',
+      message: 'Mesajınız',
+      messagePlaceholder: 'Size nasıl yardımcı olabiliriz?',
+      submit: 'Mesaj Gönder',
+      sending: 'Gönderiliyor...',
+      success: 'Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.',
+      error: 'Mesaj gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.'
+    }
   }
 };

@@ -55,6 +55,7 @@ export const loadServices = cacheLoader(() => import('../pages/Services'));
 export const loadTerms = cacheLoader(() => import('../pages/Terms'));
 export const loadPrivacy = cacheLoader(() => import('../pages/Privacy'));
 export const loadCookies = cacheLoader(() => import('../pages/Cookies'));
+export const loadContact = cacheLoader(() => import('../pages/Contact'));
 export const loadNotFound = cacheLoader(() => import('../pages/NotFound'));
 
 const prefetchers = {
@@ -71,6 +72,7 @@ const prefetchers = {
   terms: loadTerms,
   privacy: loadPrivacy,
   cookies: loadCookies,
+  contact: loadContact,
   notFound: loadNotFound,
 } as const;
 
@@ -109,6 +111,7 @@ export function resolveLoadersForPath(pathname: string): PrefetchRoute[] {
   if (path === '/terms') return ['terms'];
   if (path === '/privacy') return ['privacy'];
   if (path === '/cookies') return ['cookies'];
+  if (path === '/contact') return ['contact'];
   return ['notFound'];
 }
 
