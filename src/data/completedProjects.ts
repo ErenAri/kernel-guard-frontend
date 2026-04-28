@@ -1,5 +1,22 @@
 export const completedProjects = [
   {
+    id: 'errorlog-system',
+    title: 'Error Log System',
+    description: {
+      en: 'System error logging and tracking application.',
+      tr: 'Sistem hata günlüğü ve takip uygulaması.'
+    },
+    longDescription: {
+      en: 'A comprehensive error logging and monitoring system designed to track system failures, user logs, and application performance.',
+      tr: 'Sistem hatalarını, kullanıcı günlüklerini ve uygulama performansını izlemek için tasarlanmış kapsamlı bir hata günlüğü ve takip sistemi.'
+    },
+    url: 'https://trfont.com/errorlog/',
+    tags: ['Logging', 'Monitoring', 'Tool'],
+    accounts: [
+      { email: 'eren', password: '1234', role: 'Demo User' }
+    ]
+  },
+  {
     id: 'ref-atelier',
     title: 'Ref Atelier',
     description: {
