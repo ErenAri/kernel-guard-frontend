@@ -15851,7 +15851,6 @@ const en = {
     noAccount: "Public access enabled. No account required.",
     credentials: "Authentication Data",
     email: "User",
-    password: "Key",
     visit: "Visit Project",
     links: "Project Links",
     colName: "Name",
@@ -16062,7 +16061,6 @@ const tr = {
     noAccount: "Herkese açık erişim. Hesap gerekmez.",
     credentials: "Kimlik Doğrulama Verileri",
     email: "Kullanıcı",
-    password: "Anahtar",
     visit: "Projeyi İncele",
     links: "Proje Bağlantıları",
     colName: "İsim",
@@ -16367,22 +16365,11 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$o = [
+const __iconNode$n = [
   ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
   ["path", { d: "M19 12H5", key: "x3x0zl" }]
 ];
-const ArrowLeft = createLucideIcon("arrow-left", __iconNode$o);
-/**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$n = [
-  ["path", { d: "M5 12h14", key: "1ays0h" }],
-  ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
-];
-const ArrowRight = createLucideIcon("arrow-right", __iconNode$n);
+const ArrowLeft = createLucideIcon("arrow-left", __iconNode$n);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -16390,6 +16377,17 @@ const ArrowRight = createLucideIcon("arrow-right", __iconNode$n);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$m = [
+  ["path", { d: "M5 12h14", key: "1ays0h" }],
+  ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
+];
+const ArrowRight = createLucideIcon("arrow-right", __iconNode$m);
+/**
+ * @license lucide-react v0.546.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$l = [
   [
     "path",
     {
@@ -16400,17 +16398,7 @@ const __iconNode$m = [
   ["path", { d: "m3.3 7 8.7 5 8.7-5", key: "g66t2b" }],
   ["path", { d: "M12 22V12", key: "d0xqtd" }]
 ];
-const Box = createLucideIcon("box", __iconNode$m);
-/**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$l = [
-  ["path", { d: "M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z", key: "p7xjir" }]
-];
-const Cloud = createLucideIcon("cloud", __iconNode$l);
+const Box = createLucideIcon("box", __iconNode$l);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -16418,10 +16406,9 @@ const Cloud = createLucideIcon("cloud", __iconNode$l);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$k = [
-  ["path", { d: "m16 18 6-6-6-6", key: "eg8j8" }],
-  ["path", { d: "m8 6-6 6 6 6", key: "ppft3o" }]
+  ["path", { d: "M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z", key: "p7xjir" }]
 ];
-const Code = createLucideIcon("code", __iconNode$k);
+const Cloud = createLucideIcon("cloud", __iconNode$k);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -16429,11 +16416,10 @@ const Code = createLucideIcon("code", __iconNode$k);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$j = [
-  ["ellipse", { cx: "12", cy: "5", rx: "9", ry: "3", key: "msslwz" }],
-  ["path", { d: "M3 5V19A9 3 0 0 0 21 19V5", key: "1wlel7" }],
-  ["path", { d: "M3 12A9 3 0 0 0 21 12", key: "mv7ke4" }]
+  ["path", { d: "m16 18 6-6-6-6", key: "eg8j8" }],
+  ["path", { d: "m8 6-6 6 6 6", key: "ppft3o" }]
 ];
-const Database = createLucideIcon("database", __iconNode$j);
+const Code = createLucideIcon("code", __iconNode$j);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -16441,11 +16427,11 @@ const Database = createLucideIcon("database", __iconNode$j);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$i = [
-  ["path", { d: "M15 3h6v6", key: "1q9fwt" }],
-  ["path", { d: "M10 14 21 3", key: "gplh6r" }],
-  ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6", key: "a6xqqp" }]
+  ["ellipse", { cx: "12", cy: "5", rx: "9", ry: "3", key: "msslwz" }],
+  ["path", { d: "M3 5V19A9 3 0 0 0 21 19V5", key: "1wlel7" }],
+  ["path", { d: "M3 12A9 3 0 0 0 21 12", key: "mv7ke4" }]
 ];
-const ExternalLink = createLucideIcon("external-link", __iconNode$i);
+const Database = createLucideIcon("database", __iconNode$i);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -16453,11 +16439,11 @@ const ExternalLink = createLucideIcon("external-link", __iconNode$i);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$h = [
-  ["circle", { cx: "18", cy: "18", r: "3", key: "1xkwt0" }],
-  ["circle", { cx: "6", cy: "6", r: "3", key: "1lh9wr" }],
-  ["path", { d: "M6 21V9a9 9 0 0 0 9 9", key: "7kw0sc" }]
+  ["path", { d: "M15 3h6v6", key: "1q9fwt" }],
+  ["path", { d: "M10 14 21 3", key: "gplh6r" }],
+  ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6", key: "a6xqqp" }]
 ];
-const GitMerge = createLucideIcon("git-merge", __iconNode$h);
+const ExternalLink = createLucideIcon("external-link", __iconNode$h);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -16465,6 +16451,18 @@ const GitMerge = createLucideIcon("git-merge", __iconNode$h);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$g = [
+  ["circle", { cx: "18", cy: "18", r: "3", key: "1xkwt0" }],
+  ["circle", { cx: "6", cy: "6", r: "3", key: "1lh9wr" }],
+  ["path", { d: "M6 21V9a9 9 0 0 0 9 9", key: "7kw0sc" }]
+];
+const GitMerge = createLucideIcon("git-merge", __iconNode$g);
+/**
+ * @license lucide-react v0.546.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$f = [
   [
     "path",
     {
@@ -16474,19 +16472,7 @@ const __iconNode$g = [
   ],
   ["path", { d: "M9 18c-4.51 2-5-2-7-2", key: "9comsn" }]
 ];
-const Github = createLucideIcon("github", __iconNode$g);
-/**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$f = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20", key: "13o1zl" }],
-  ["path", { d: "M2 12h20", key: "9i4pu4" }]
-];
-const Globe = createLucideIcon("globe", __iconNode$f);
+const Github = createLucideIcon("github", __iconNode$f);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -16494,16 +16480,11 @@ const Globe = createLucideIcon("globe", __iconNode$f);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$e = [
-  [
-    "path",
-    {
-      d: "M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z",
-      key: "1s6t7t"
-    }
-  ],
-  ["circle", { cx: "16.5", cy: "7.5", r: ".5", fill: "currentColor", key: "w0ekpg" }]
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20", key: "13o1zl" }],
+  ["path", { d: "M2 12h20", key: "9i4pu4" }]
 ];
-const KeyRound = createLucideIcon("key-round", __iconNode$e);
+const Globe = createLucideIcon("globe", __iconNode$e);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -16727,7 +16708,7 @@ const loadServices = cacheLoader(() => Promise.resolve().then(() => Services$1))
 const loadTerms = cacheLoader(() => Promise.resolve().then(() => Terms$1));
 const loadPrivacy = cacheLoader(() => Promise.resolve().then(() => Privacy$1));
 const loadCookies = cacheLoader(() => Promise.resolve().then(() => Cookies$1));
-const loadContact = cacheLoader(() => import("./assets/Contact-E0iu_g7k.js"));
+const loadContact = cacheLoader(() => import("./assets/Contact-DA53xCPV.js"));
 const loadNotFound = cacheLoader(() => Promise.resolve().then(() => NotFound$1));
 const prefetchers = {
   home: loadHome,
@@ -17629,7 +17610,7 @@ const Home$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProper
   __proto__: null,
   default: Home
 }, Symbol.toStringTag, { value: "Module" }));
-const items$1 = [{ "id": "cathodex", "title": "CathodeX", "description": { "en": "AI-powered cathode material screening platform using graph neural networks for predicting battery material properties.", "tr": "Pil malzemesi özelliklerini tahmin etmek için çizge sinir ağlarını kullanan yapay zeka destekli katot malzemesi tarama platformu." }, "technicalDetails": { "en": "Built using PyTorch and Graph Neural Networks (GNNs) to model the atomic structure of cathode materials. It leverages high-throughput screening algorithms to predict key battery properties such as energy density and stability.", "tr": "Katot malzemelerinin atomik yapısını modellemek için PyTorch ve Çizge Sinir Ağları (GNN'ler) kullanılarak oluşturulmuştur. Enerji yoğunluğu ve kararlılık gibi temel pil özelliklerini tahmin etmek için yüksek verimli tarama algoritmalarından yararlanır." }, "marketingDetails": { "en": "Accelerating the future of energy storage. CathodeX reduces the time and cost of battery material discovery by orders of magnitude, empowering researchers to find the next generation of sustainable energy solutions.", "tr": "Enerji depolamanın geleceğini hızlandırıyoruz. CathodeX, pil malzemesi keşfinin zamanını ve maliyetini büyük ölçüde azaltarak araştırmacıların yeni nesil sürdürülebilir enerji çözümlerini bulmalarını sağlar." }, "tags": ["Python", "AI", "Graph Neural Networks"], "github": "https://github.com/Kernel-Guard/CathodeX", "link": "https://cathode-screening.vercel.app/", "diagram": 'graph LR\n    User[User / Chemist] -->|HTTPS| FE(Next.js on Vercel)\n    FE -->|JSON| API(FastAPI on Render)\n    subgraph "Inference Engine"\n        API -->|Parse| Pymatgen(Structure Parser)\n        Pymatgen -->|Graph| M1(MACE Member 1)\n        Pymatgen -->|Graph| M2(MACE Member 2)\n        Pymatgen -->|Graph| M3(MACE Member 3)\n        Pymatgen -->|Graph| M4(MACE Member 4)\n        Pymatgen -->|Graph| M5(MACE Member 5)\n    end\n    M1 & M2 & M3 & M4 & M5 -->|Aggregate| Stats[q10 / q50 / q90 + Conformal]\n    Stats -->|Policy| Result[KEEP / MAYBE / KILL]' }, { "id": "post-quantum-messaging-app", "title": "post-quantum-messaging-app", "description": { "en": "A secure messaging application implementing post-quantum cryptographic algorithms to ensure future-proof communication.", "tr": "Geleceğe dönük iletişimi sağlamak için kuantum sonrası kriptografik algoritmalar uygulayan güvenli bir mesajlaşma uygulaması." }, "technicalDetails": { "en": "Implemented in Rust for memory safety and performance. Utilizes NIST-approved post-quantum cryptographic algorithms (like CRYSTALS-Kyber and CRYSTALS-Dilithium) to secure message exchange against attacks from quantum computers.", "tr": "Bellek güvenliği ve performans için Rust ile uygulanmıştır. Mesaj alışverişini kuantum bilgisayarlardan gelebilecek saldırılara karşı güvence altına almak için NIST onaylı kuantum sonrası kriptografik algoritmaları (CRYSTALS-Kyber ve CRYSTALS-Dilithium gibi) kullanır." }, "marketingDetails": { "en": "Future-proof your communications. As quantum computing advances, traditional encryption will become obsolete. Our post-quantum messaging app ensures your sensitive data remains secure against tomorrow's threats, today.", "tr": "İletişiminizi geleceğe hazırlayın. Kuantum hesaplama geliştikçe geleneksel şifreleme geçersiz hale gelecektir. Kuantum sonrası mesajlaşma uygulamamız, hassas verilerinizin bugünden yarının tehditlerine karşı güvende kalmasını sağlar." }, "tags": ["Rust", "Cryptography", "Post-Quantum"], "github": "https://github.com/Kernel-Guard/post-quantum-messaging-app", "diagram": 'flowchart LR\n    C["CLI / Android / iOS / Web / Desktop"] -->|HTTP JSON + TLS| S["pqmsg-server"]\n    S -->|Sealed inbox sync / realtime relay| C\n    A["Android bridge"] --> CORE["pqmsg-core"]\n    I["iOS bridge"] --> CORE\n    W["Web WASM bridge"] --> CORE\n    D["Desktop wrapper"] --> W\n    S --> DB["PostgreSQL / SQLite"]\n    S --> RD["Redis rate limiter"]\n    PV["ProVerif model"] -.- V["CI verification gate"]\n    TM["Tamarin model"] -.- V' }, { "id": "aegis-bpf", "title": "Aegis-BPF", "description": { "en": "A prototype for enforcing security policies using eBPF (Extended Berkeley Packet Filter) with CO-RE (Compile Once - Run Everywhere) support.", "tr": "CO-RE (Bir Kere Derle - Her Yerde Çalıştır) desteğiyle eBPF (Genişletilmiş Berkeley Paket Filtresi) kullanarak güvenlik politikalarını uygulamak için bir prototip." }, "technicalDetails": { "en": "Developed using C++ and eBPF technology. It utilizes CO-RE (Compile Once - Run Everywhere) to ensure portability across different Linux kernel versions without recompilation, providing low-overhead, kernel-level security enforcement.", "tr": "C++ ve eBPF teknolojisi kullanılarak geliştirilmiştir. Yeniden derlemeye gerek kalmadan farklı Linux çekirdek sürümlerinde taşınabilirliği sağlamak için CO-RE (Bir Kere Derle - Her Yerde Çalıştır) kullanır ve düşük ek yüklü, çekirdek düzeyinde güvenlik uygulaması sağlar." }, "marketingDetails": { "en": "Enterprise-grade security at the kernel level. Aegis provides deep visibility and control over system behavior with zero overhead. Protect your infrastructure from advanced persistent threats with our cutting-edge eBPF technology.", "tr": "Çekirdek düzeyinde kurumsal düzeyde güvenlik. Aegis, sıfır ek yük ile sistem davranışı üzerinde derin görünürlük ve kontrol sağlar. En son eBPF teknolojimizle altyapınızı gelişmiş kalıcı tehditlerden koruyun." }, "tags": ["C++", "eBPF", "Security", "Linux Kernel"], "github": "https://github.com/Kernel-Guard/Aegis-BPF", "diagram": 'graph TD\n    subgraph "AegisBPF User Space"\n        A[File/Net Deny Rules] --> Z\n        B[Allow Allowlist] --> Z\n        C[Policy + Signing] --> Z\n        D[Metrics + Health] --> Z\n        E[Plugins + Rules] --> Z\n        Z[(Pinned BPF Maps & Ring Buffer)]\n    end\n    subgraph "Linux Kernel"\n        Z --- F\n        F[LSM Hooks Enforce/Audit]\n        F --> G[file_open / inode_permission]\n        F --> H[inode_copy_up overlayfs]\n        F --> I[bprm_check + IMA hash]\n        F --> J[socket connect/bind/listen/accept]\n        F --> K[socket sendmsg/recvmsg]\n        L[Tracepoint Fallback]\n        L --> M[openat/exec/fork/exit]\n    end' }];
+const items$1 = [{ "id": "cathodex", "title": "CathodeX", "description": { "en": "AI-powered cathode material screening platform using graph neural networks for predicting battery material properties.", "tr": "Pil malzemesi özelliklerini tahmin etmek için çizge sinir ağlarını kullanan yapay zeka destekli katot malzemesi tarama platformu." }, "technicalDetails": { "en": "Built using PyTorch and Graph Neural Networks (GNNs) to model the atomic structure of cathode materials. It leverages high-throughput screening algorithms to predict key battery properties such as energy density and stability.", "tr": "Katot malzemelerinin atomik yapısını modellemek için PyTorch ve Çizge Sinir Ağları (GNN'ler) kullanılarak oluşturulmuştur. Enerji yoğunluğu ve kararlılık gibi temel pil özelliklerini tahmin etmek için yüksek verimli tarama algoritmalarından yararlanır." }, "marketingDetails": { "en": "Accelerating the future of energy storage. CathodeX reduces the time and cost of battery material discovery by orders of magnitude, empowering researchers to find the next generation of sustainable energy solutions.", "tr": "Enerji depolamanın geleceğini hızlandırıyoruz. CathodeX, pil malzemesi keşfinin zamanını ve maliyetini büyük ölçüde azaltarak araştırmacıların yeni nesil sürdürülebilir enerji çözümlerini bulmalarını sağlar." }, "tags": ["Python", "AI", "Graph Neural Networks"], "github": "https://github.com/Kernel-Guard/CathodeX", "link": "https://cathode-screening.vercel.app/", "diagram": 'graph LR\n    User[User / Chemist] -->|HTTPS| FE(Next.js on Vercel)\n    FE -->|JSON| API(FastAPI on Render)\n    subgraph "Inference Engine"\n        API -->|Parse| Pymatgen(Structure Parser)\n        Pymatgen -->|Graph| M1(MACE Member 1)\n        Pymatgen -->|Graph| M2(MACE Member 2)\n        Pymatgen -->|Graph| M3(MACE Member 3)\n        Pymatgen -->|Graph| M4(MACE Member 4)\n        Pymatgen -->|Graph| M5(MACE Member 5)\n    end\n    M1 & M2 & M3 & M4 & M5 -->|Aggregate| Stats[q10 / q50 / q90 + Conformal]\n    Stats -->|Policy| Result[KEEP / MAYBE / KILL]' }, { "id": "post-quantum-messaging-app", "title": "post-quantum-messaging-app", "description": { "en": "A secure messaging application implementing post-quantum cryptographic algorithms to ensure future-proof communication.", "tr": "Geleceğe dönük iletişimi sağlamak için kuantum sonrası kriptografik algoritmalar uygulayan güvenli bir mesajlaşma uygulaması." }, "technicalDetails": { "en": "Implemented in Rust for memory safety and performance. Utilizes NIST-approved post-quantum cryptographic algorithms (like CRYSTALS-Kyber and CRYSTALS-Dilithium) to secure message exchange against attacks from quantum computers.", "tr": "Bellek güvenliği ve performans için Rust ile uygulanmıştır. Mesaj alışverişini kuantum bilgisayarlardan gelebilecek saldırılara karşı güvence altına almak için NIST onaylı kuantum sonrası kriptografik algoritmaları (CRYSTALS-Kyber ve CRYSTALS-Dilithium gibi) kullanır." }, "marketingDetails": { "en": "Future-proof your communications. As quantum computing advances, traditional encryption will become obsolete. Our post-quantum messaging app ensures your sensitive data remains secure against tomorrow's threats, today.", "tr": "İletişiminizi geleceğe hazırlayın. Kuantum hesaplama geliştikçe geleneksel şifreleme geçersiz hale gelecektir. Kuantum sonrası mesajlaşma uygulamamız, hassas verilerinizin bugünden yarının tehditlerine karşı güvende kalmasını sağlar." }, "tags": ["Rust", "Cryptography", "Post-Quantum"], "github": "https://github.com/Kernel-Guard/post-quantum-messaging-app", "diagram": 'flowchart LR\n    C["CLI / Android / iOS / Web / Desktop"] -->|HTTP JSON + TLS| S["pqmsg-server"]\n    S -->|Sealed inbox sync / realtime relay| C\n    A["Android bridge"] --> CORE["pqmsg-core"]\n    I["iOS bridge"] --> CORE\n    W["Web WASM bridge"] --> CORE\n    D["Desktop wrapper"] --> W\n    S --> DB["PostgreSQL / SQLite"]\n    S --> RD["Redis rate limiter"]\n    PV["ProVerif model"] -.- V["CI verification gate"]\n    TM["Tamarin model"] -.- V' }, { "id": "aegis-bpf", "title": "Aegis-BPF", "description": { "en": "A prototype for enforcing security policies using eBPF (Extended Berkeley Packet Filter) with CO-RE (Compile Once - Run Everywhere) support.", "tr": "CO-RE (Bir Kere Derle - Her Yerde Çalıştır) desteğiyle eBPF (Genişletilmiş Berkeley Paket Filtresi) kullanarak güvenlik politikalarını uygulamak için bir prototip." }, "technicalDetails": { "en": "Developed using C++ and eBPF technology. It utilizes CO-RE (Compile Once - Run Everywhere) to ensure portability across different Linux kernel versions without recompilation, providing low-overhead, kernel-level security enforcement.", "tr": "C++ ve eBPF teknolojisi kullanılarak geliştirilmiştir. Yeniden derlemeye gerek kalmadan farklı Linux çekirdek sürümlerinde taşınabilirliği sağlamak için CO-RE (Bir Kere Derle - Her Yerde Çalıştır) kullanır ve düşük ek yüklü, çekirdek düzeyinde güvenlik uygulaması sağlar." }, "marketingDetails": { "en": "Enterprise-grade security at the kernel level. Aegis provides deep visibility and control over system behavior with zero overhead. Protect your infrastructure from advanced persistent threats with our cutting-edge eBPF technology.", "tr": "Çekirdek düzeyinde kurumsal düzeyde güvenlik. Aegis, sıfır ek yük ile sistem davranışı üzerinde derin görünürlük ve kontrol sağlar. En son eBPF teknolojimizle altyapınızı gelişmiş kalıcı tehditlerden koruyun." }, "tags": ["C++", "eBPF", "Security", "Linux Kernel"], "github": "https://github.com/Kernel-Guard/Aegis-BPF", "diagram": 'graph TD\n    subgraph "AegisBPF User Space"\n        A[File/Net Deny Rules] --> Z\n        B[Allow Allowlist] --> Z\n        C[Policy + Signing] --> Z\n        D[Metrics + Health] --> Z\n        E[Plugins + Rules] --> Z\n        Z[(Pinned BPF Maps & Ring Buffer)]\n    end\n    subgraph "Linux Kernel"\n        Z --- F\n        F[LSM Hooks Enforce/Audit]\n        F --> G[file_open / inode_permission]\n        F --> H[inode_copy_up overlayfs]\n        F --> I[bprm_check + IMA hash]\n        F --> J[socket connect/bind/listen/accept]\n        F --> K[socket sendmsg/recvmsg]\n        L[Tracepoint Fallback]\n        L --> M[openat/exec/fork/exit]\n    end' }, { "id": "a", "title": "t", "description": { "en": "a", "tr": "" }, "tags": ["a"], "image": "/images/projects/373ee394-1ea7-40a9-9f14-df58b53251dc-44fdee138489b5120fb65eff79325b60.jpg", "technicalDetails": { "en": "a", "tr": "a" }, "marketingDetails": { "en": "a", "tr": "" }, "github": "a", "link": "a", "diagram": "a" }];
 const projectsData = {
   items: items$1
 };
@@ -17867,7 +17848,7 @@ const ProjectDetails$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.de
   __proto__: null,
   default: ProjectDetails
 }, Symbol.toStringTag, { value: "Module" }));
-const items = [{ "id": "ref-atelier", "title": "Ref Atelier", "description": { "en": "Modern corporate portfolio and digital reference showcase platform.", "tr": "Modern kurumsal portfolyo ve dijital referans sergileme platformu." }, "longDescription": { "en": "Ref Atelier is a premium corporate portfolio platform designed to showcase digital references and past projects with an elegant, modern interface. It features a fully responsive design, optimized media loading, and a seamless user experience tailored for creative agencies and corporate entities.", "tr": "Ref Atelier, dijital referansları ve geçmiş projeleri zarif ve modern bir arayüzle sergilemek için tasarlanmış premium bir kurumsal portfolyo platformudur. Tamamen duyarlı bir tasarıma, optimize edilmiş medya yüklemesine ve yaratıcı ajanslar ile kurumsal şirketler için özel olarak tasarlanmış kusursuz bir kullanıcı deneyimine sahiptir." }, "url": "https://refatelier.com/index.html", "tags": ["Corporate", "Portfolio", "UI/UX"], "accounts": [] }, { "id": "dershane-management", "title": "Dershane Management", "description": { "en": "Comprehensive educational institution management system including student tracking and administrative tools.", "tr": "Öğrenci takibi ve idari araçları içeren kapsamlı eğitim kurumu (dershane) yönetim sistemi." }, "longDescription": { "en": "A full-featured management system tailored for educational institutions. It provides tools for student enrollment, attendance tracking, grade management, and administrative reporting. The platform streamlines daily operations and improves communication between staff and students.", "tr": "Eğitim kurumları için özel olarak tasarlanmış tam özellikli bir yönetim sistemi. Öğrenci kaydı, yoklama takibi, not yönetimi ve idari raporlama için araçlar sunar. Platform, günlük operasyonları kolaylaştırır ve personel ile öğrenciler arasındaki iletişimi geliştirir." }, "url": "https://trfont.com/adana/", "tags": ["Education", "Management", "SaaS"], "accounts": [{ "email": "admin@dershane.com", "password": "REDACTED", "role": "Admin" }] }, { "id": "technova-hr", "title": "TechNova HR", "description": { "en": "Enterprise human resources management portal with multi-role employee access.", "tr": "Çoklu rol erişimine sahip kurumsal insan kaynakları (İK) yönetim portalı." }, "longDescription": { "en": "TechNova HR is an enterprise-grade Human Resources management portal. It supports multi-role access control, allowing administrators to manage employee records, leave requests, and performance reviews, while providing employees with a self-service portal to view their data and submit requests.", "tr": "TechNova İK, kurumsal düzeyde bir İnsan Kaynakları yönetim portalıdır. Çoklu rol erişim kontrolünü destekleyerek, yöneticilerin çalışan kayıtlarını, izin taleplerini ve performans değerlendirmelerini yönetmesine olanak tanırken, çalışanlara verilerini görüntülemeleri ve talepte bulunmaları için bir self-servis portalı sunar." }, "url": "https://trfont.com/%C4%B1k/", "tags": ["HR", "Enterprise", "Portal"], "accounts": [{ "email": "admin@technova.com.tr", "password": "REDACTED", "role": "Admin" }, { "email": "ahmet.yilmaz@technova.com.tr", "password": "REDACTED", "role": "Employee" }, { "email": "zeynep.sahin@technova.com.tr", "password": "REDACTED", "role": "Employee" }, { "email": "ayse.bulut@technova.com.tr", "password": "REDACTED", "role": "Employee" }, { "email": "mehmet.kaya@technova.com.tr", "password": "REDACTED", "role": "Employee" }] }, { "id": "algo-egitim", "title": "Algo Eğitim", "description": { "en": "Advanced algorithmic education platform and student learning dashboard.", "tr": "Gelişmiş algoritmik eğitim platformu ve öğrenci öğrenim paneli." }, "longDescription": { "en": "Algo Eğitim is an advanced educational platform focused on algorithmic learning and programming. It features a comprehensive student dashboard, progress tracking, and interactive learning modules designed to enhance coding skills and logical thinking.", "tr": "Algo Eğitim, algoritmik öğrenme ve programlamaya odaklanan gelişmiş bir eğitim platformudur. Kodlama becerilerini ve mantıksal düşünmeyi geliştirmek için tasarlanmış kapsamlı bir öğrenci paneli, ilerleme takibi ve etkileşimli öğrenme modülleri içerir." }, "url": "https://trfont.com/ada/", "tags": ["EdTech", "Algorithms", "Dashboard"], "accounts": [{ "email": "admin@example.com", "password": "REDACTED", "role": "Admin" }] }];
+const items = [{ "id": "ref-atelier", "title": "Ref Atelier", "description": { "en": "Modern corporate portfolio and digital reference showcase platform.", "tr": "Modern kurumsal portfolyo ve dijital referans sergileme platformu." }, "longDescription": { "en": "Ref Atelier is a premium corporate portfolio platform designed to showcase digital references and past projects with an elegant, modern interface. It features a fully responsive design, optimized media loading, and a seamless user experience tailored for creative agencies and corporate entities.", "tr": "Ref Atelier, dijital referansları ve geçmiş projeleri zarif ve modern bir arayüzle sergilemek için tasarlanmış premium bir kurumsal portfolyo platformudur. Tamamen duyarlı bir tasarıma, optimize edilmiş medya yüklemesine ve yaratıcı ajanslar ile kurumsal şirketler için özel olarak tasarlanmış kusursuz bir kullanıcı deneyimine sahiptir." }, "url": "https://refatelier.com/index.html", "tags": ["Corporate", "Portfolio", "UI/UX"], "accounts": [] }, { "id": "dershane-management", "title": "Dershane Management", "description": { "en": "Comprehensive educational institution management system including student tracking and administrative tools.", "tr": "Öğrenci takibi ve idari araçları içeren kapsamlı eğitim kurumu (dershane) yönetim sistemi." }, "longDescription": { "en": "A full-featured management system tailored for educational institutions. It provides tools for student enrollment, attendance tracking, grade management, and administrative reporting. The platform streamlines daily operations and improves communication between staff and students.", "tr": "Eğitim kurumları için özel olarak tasarlanmış tam özellikli bir yönetim sistemi. Öğrenci kaydı, yoklama takibi, not yönetimi ve idari raporlama için araçlar sunar. Platform, günlük operasyonları kolaylaştırır ve personel ile öğrenciler arasındaki iletişimi geliştirir." }, "url": "https://trfont.com/adana/", "tags": ["Education", "Management", "SaaS"], "accounts": [{ "email": "admin@dershane.com", "role": "Admin" }] }, { "id": "technova-hr", "title": "TechNova HR", "description": { "en": "Enterprise human resources management portal with multi-role employee access.", "tr": "Çoklu rol erişimine sahip kurumsal insan kaynakları (İK) yönetim portalı." }, "longDescription": { "en": "TechNova HR is an enterprise-grade Human Resources management portal. It supports multi-role access control, allowing administrators to manage employee records, leave requests, and performance reviews, while providing employees with a self-service portal to view their data and submit requests.", "tr": "TechNova İK, kurumsal düzeyde bir İnsan Kaynakları yönetim portalıdır. Çoklu rol erişim kontrolünü destekleyerek, yöneticilerin çalışan kayıtlarını, izin taleplerini ve performans değerlendirmelerini yönetmesine olanak tanırken, çalışanlara verilerini görüntülemeleri ve talepte bulunmaları için bir self-servis portalı sunar." }, "url": "https://trfont.com/%C4%B1k/", "tags": ["HR", "Enterprise", "Portal"], "accounts": [{ "email": "admin@technova.com.tr", "role": "Admin" }, { "email": "ahmet.yilmaz@technova.com.tr", "role": "Employee" }, { "email": "zeynep.sahin@technova.com.tr", "role": "Employee" }, { "email": "ayse.bulut@technova.com.tr", "role": "Employee" }, { "email": "mehmet.kaya@technova.com.tr", "role": "Employee" }] }, { "id": "algo-egitim", "title": "Algo Eğitim", "description": { "en": "Advanced algorithmic education platform and student learning dashboard.", "tr": "Gelişmiş algoritmik eğitim platformu ve öğrenci öğrenim paneli." }, "longDescription": { "en": "Algo Eğitim is an advanced educational platform focused on algorithmic learning and programming. It features a comprehensive student dashboard, progress tracking, and interactive learning modules designed to enhance coding skills and logical thinking.", "tr": "Algo Eğitim, algoritmik öğrenme ve programlamaya odaklanan gelişmiş bir eğitim platformudur. Kodlama becerilerini ve mantıksal düşünmeyi geliştirmek için tasarlanmış kapsamlı bir öğrenci paneli, ilerleme takibi ve etkileşimli öğrenme modülleri içerir." }, "url": "https://trfont.com/ada/", "tags": ["EdTech", "Algorithms", "Dashboard"], "accounts": [{ "email": "admin@example.com", "role": "Admin" }] }];
 const completedProjectsData = {
   items
 };
@@ -18051,10 +18032,6 @@ function CompletedProjectDetails() {
                   /* @__PURE__ */ jsxs("div", { className: "flex items-start gap-3", children: [
                     /* @__PURE__ */ jsx(User, { className: "w-4 h-4 text-foreground/40 shrink-0 mt-0.5" }),
                     /* @__PURE__ */ jsx("span", { className: "text-foreground font-mono break-all", children: acc.email })
-                  ] }),
-                  /* @__PURE__ */ jsxs("div", { className: "flex items-start gap-3", children: [
-                    /* @__PURE__ */ jsx(KeyRound, { className: "w-4 h-4 text-foreground/40 shrink-0 mt-0.5" }),
-                    /* @__PURE__ */ jsx("span", { className: "text-foreground/80 font-mono break-all", children: acc.password })
                   ] })
                 ]
               },

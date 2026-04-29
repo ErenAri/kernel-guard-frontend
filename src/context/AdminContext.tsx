@@ -9,33 +9,38 @@ interface AdminContextType {
 }
 
 const AdminContext = createContext<AdminContextType | undefined>(undefined);
+const ADMIN_CONFIG_STORAGE_KEY = 'kg_admin_config';
 
 export function AdminProvider({ children }: { children: ReactNode }) {
   const [config, setConfig] = useState<GithubConfig | null>(null);
   const [service, setService] = useState<GithubService | null>(null);
 
   useEffect(() => {
-    // Load from local storage on mount
-    const saved = localStorage.getItem('kg_admin_config');
+    const saved = sessionStorage.getItem(ADMIN_CONFIG_STORAGE_KEY) || localStorage.getItem(ADMIN_CONFIG_STORAGE_KEY);
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
         setConfig(parsed);
         setService(new GithubService(parsed));
+        sessionStorage.setItem(ADMIN_CONFIG_STORAGE_KEY, saved);
+        localStorage.removeItem(ADMIN_CONFIG_STORAGE_KEY);
       } catch (e) {
-        localStorage.removeItem('kg_admin_config');
+        sessionStorage.removeItem(ADMIN_CONFIG_STORAGE_KEY);
+        localStorage.removeItem(ADMIN_CONFIG_STORAGE_KEY);
       }
     }
   }, []);
 
   const login = (newConfig: GithubConfig) => {
-    localStorage.setItem('kg_admin_config', JSON.stringify(newConfig));
+    sessionStorage.setItem(ADMIN_CONFIG_STORAGE_KEY, JSON.stringify(newConfig));
+    localStorage.removeItem(ADMIN_CONFIG_STORAGE_KEY);
     setConfig(newConfig);
     setService(new GithubService(newConfig));
   };
 
   const logout = () => {
-    localStorage.removeItem('kg_admin_config');
+    sessionStorage.removeItem(ADMIN_CONFIG_STORAGE_KEY);
+    localStorage.removeItem(ADMIN_CONFIG_STORAGE_KEY);
     setConfig(null);
     setService(null);
   };

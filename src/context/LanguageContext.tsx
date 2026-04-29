@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, type Key, type ReactNode } from 'react';
 import { en } from '../translations/en';
 import { tr } from '../translations/tr';
 
@@ -14,6 +14,7 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 interface LanguageProviderProps {
+  key?: Key;
   children: ReactNode;
   initialLanguage?: Language;
 }

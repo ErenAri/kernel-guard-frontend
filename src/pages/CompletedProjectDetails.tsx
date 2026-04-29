@@ -1,5 +1,5 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
-import { ArrowLeft, ExternalLink, ShieldCheck, User, KeyRound } from 'lucide-react';
+import { ArrowLeft, ExternalLink, ShieldCheck, User } from 'lucide-react';
 import { completedProjects } from '../data/completedProjects';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/SEO';
@@ -119,10 +119,6 @@ export default function CompletedProjectDetails() {
                       <div className="flex items-start gap-3">
                         <User className="w-4 h-4 text-foreground/40 shrink-0 mt-0.5" />
                         <span className="text-foreground font-mono break-all">{acc.email}</span>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <KeyRound className="w-4 h-4 text-foreground/40 shrink-0 mt-0.5" />
-                        <span className="text-foreground/80 font-mono break-all">{acc.password}</span>
                       </div>
                     </div>
                   ))}

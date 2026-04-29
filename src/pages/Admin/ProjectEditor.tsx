@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, type ChangeEvent } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useAdmin } from '../../context/AdminContext';
 import { ArrowLeft, Save, Image as ImageIcon, Trash2, Plus, AlertCircle, Loader2 } from 'lucide-react';
@@ -21,6 +21,15 @@ export default function ProjectEditor() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const getFilePath = () => type === 'open_source' ? 'src/data/projects.json' : 'src/data/completedProjects.json';
+  const sanitizeAccounts = (accounts: any[] = []) =>
+    accounts.map(({ password, ...account }) => ({
+      email: account.email || '',
+      role: account.role || ''
+    }));
+  const sanitizeProject = (project: any) =>
+    type === 'completed'
+      ? { ...project, accounts: sanitizeAccounts(project.accounts || []) }
+      : project;
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -56,7 +65,7 @@ export default function ProjectEditor() {
         } else {
           const item = res.content.items?.find((i: any) => i.id === id);
           if (!item) throw new Error('Project not found');
-          setFormData(JSON.parse(JSON.stringify(item)));
+          setFormData(sanitizeProject(JSON.parse(JSON.stringify(item))));
         }
       } catch (err: any) {
         setError(err.message || 'Failed to fetch data');
@@ -67,7 +76,7 @@ export default function ProjectEditor() {
     fetchProject();
   }, [id, type, service, isNew]);
 
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file || !service) return;
 
@@ -106,11 +115,11 @@ export default function ProjectEditor() {
         if (updatedData.find(i => i.id === formData.id)) {
           throw new Error('ID must be unique.');
         }
-        updatedData.push(formData);
+        updatedData.push(sanitizeProject(formData));
       } else {
         const index = updatedData.findIndex(i => i.id === id);
         if (index > -1) {
-          updatedData[index] = formData;
+          updatedData[index] = sanitizeProject(formData);
         }
       }
 
@@ -268,7 +277,7 @@ export default function ProjectEditor() {
               <div className="flex items-center justify-between mb-6 border-b border-border pb-2">
                 <h2 className="text-lg font-light uppercase tracking-widest">Test Accounts</h2>
                 <button 
-                  onClick={() => setFormData({...formData, accounts: [...(formData.accounts||[]), {email:'', password:'', role:''}]})}
+                  onClick={() => setFormData({...formData, accounts: [...(formData.accounts||[]), {email:'', role:''}]})}
                   className="p-1 hover:bg-border transition-colors"
                 >
                   <Plus className="w-4 h-4" />
@@ -290,9 +299,6 @@ export default function ProjectEditor() {
                     </button>
                     <input type="text" placeholder="Email / Username" value={acc.email} onChange={e => {
                       const newAcc = [...formData.accounts]; newAcc[idx].email = e.target.value; setFormData({...formData, accounts: newAcc});
-                    }} className="w-full bg-transparent border-b border-border p-2 outline-none mb-2 text-sm" />
-                    <input type="text" placeholder="Password" value={acc.password} onChange={e => {
-                      const newAcc = [...formData.accounts]; newAcc[idx].password = e.target.value; setFormData({...formData, accounts: newAcc});
                     }} className="w-full bg-transparent border-b border-border p-2 outline-none mb-2 text-sm" />
                     <input type="text" placeholder="Role (e.g. Admin)" value={acc.role} onChange={e => {
                       const newAcc = [...formData.accounts]; newAcc[idx].role = e.target.value; setFormData({...formData, accounts: newAcc});

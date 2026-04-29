@@ -76,7 +76,7 @@ function Contact() {
     setSubmitStatus("idle");
     const form = e.currentTarget;
     const formData = new FormData(form);
-    const accessKey = "aa3ee17f-6b96-4b6c-9b81-9d8df3094e26";
+    const accessKey = "YOUR_ACCESS_KEY_HERE";
     formData.append("access_key", accessKey);
     try {
       const response = await fetch("https://api.web3forms.com/submit", {

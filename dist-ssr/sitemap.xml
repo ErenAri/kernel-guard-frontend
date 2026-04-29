@@ -72,6 +72,13 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/projects/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/en/projects/a/</loc>
+    <lastmod>2026-04-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/a/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/a/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/projects/a/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/en/projects/aegis-bpf/</loc>
     <lastmod>2026-04-29</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/aegis-bpf/" />
@@ -147,6 +154,13 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/projects/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/projects/a/</loc>
+    <lastmod>2026-04-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/a/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/a/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/projects/a/" />
   </url>
   <url>
     <loc>https://www.kernelguard.net/projects/aegis-bpf/</loc>

@@ -47,8 +47,8 @@ export class GithubService {
   /**
    * Updates a JSON file in the repository.
    */
-  async updateJsonFile(path: string, content: any, message: string, sha: string): Promise<void> {
-    await this.fetchApi('updateFile', { path, content, message, sha });
+  async updateJsonFile(path: string, content: any, message: string, sha: string): Promise<{ sha?: string }> {
+    return this.fetchApi('updateFile', { path, content, message, sha });
   }
 
   /**

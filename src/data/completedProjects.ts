@@ -2,7 +2,6 @@ import completedProjectsData from './completedProjects.json';
 
 export interface Account {
   email: string;
-  password?: string;
   role: string;
 }
 

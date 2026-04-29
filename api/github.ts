@@ -1,11 +1,22 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
+import { timingSafeEqual } from 'node:crypto';
 import { Octokit } from 'octokit';
 
-// Hardcoded for security, as this is a specific API for Kernel Guard
-const ADMIN_EMAIL = 'iletisim@kernelguard.net';
-const ADMIN_PASS = '5394770720d';
-const GITHUB_OWNER = 'ErenAri'; // Assuming from current context. If different, they can change it.
-const GITHUB_REPO = 'kernel-guard-frontend';
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+const GITHUB_OWNER = process.env.GITHUB_OWNER || 'ErenAri';
+const GITHUB_REPO = process.env.GITHUB_REPO || 'kernel-guard-frontend';
+
+function safeEquals(actual: unknown, expected: string | undefined) {
+  if (typeof actual !== 'string' || !expected) return false;
+
+  const actualBuffer = Buffer.from(actual);
+  const expectedBuffer = Buffer.from(expected);
+
+  if (actualBuffer.length !== expectedBuffer.length) return false;
+
+  return timingSafeEqual(actualBuffer, expectedBuffer);
+}
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // CORS headers for local development if needed
@@ -27,8 +38,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const { email, password, action, path, content, message, sha } = req.body;
 
+  if (!ADMIN_EMAIL || !ADMIN_PASSWORD) {
+    return res.status(500).json({ error: 'Server misconfiguration: ADMIN_EMAIL or ADMIN_PASSWORD is missing.' });
+  }
+
   // Authentication check
-  if (email !== ADMIN_EMAIL || password !== ADMIN_PASS) {
+  if (!safeEquals(email, ADMIN_EMAIL) || !safeEquals(password, ADMIN_PASSWORD)) {
     return res.status(401).json({ error: 'Invalid credentials. Unauthorized access attempt.' });
   }
 
@@ -66,7 +81,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     else if (action === 'updateFile') {
       const encodedContent = btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2))));
       
-      await octokit.rest.repos.createOrUpdateFileContents({
+      const response = await octokit.rest.repos.createOrUpdateFileContents({
         owner: GITHUB_OWNER,
         repo: GITHUB_REPO,
         path: path,
@@ -76,7 +91,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         branch: 'main',
       });
 
-      return res.status(200).json({ success: true });
+      return res.status(200).json({ success: true, sha: response.data.content?.sha });
     }
 
     else if (action === 'uploadImage') {

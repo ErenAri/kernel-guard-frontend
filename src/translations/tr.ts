@@ -102,7 +102,6 @@ export const tr = {
     noAccount: 'Herkese açık erişim. Hesap gerekmez.',
     credentials: 'Kimlik Doğrulama Verileri',
     email: 'Kullanıcı',
-    password: 'Anahtar',
     visit: 'Projeyi İncele',
     links: 'Proje Bağlantıları',
     colName: 'İsim',

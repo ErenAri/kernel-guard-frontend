@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 import { useAdmin } from '../../context/AdminContext';
 import { Lock, Github, ArrowRight, AlertCircle, Home } from 'lucide-react';
 import SEO from '../../components/SEO';
@@ -10,7 +10,7 @@ export default function AdminLogin() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setError('');
 

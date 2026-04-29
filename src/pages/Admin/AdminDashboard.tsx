@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useAdmin } from '../../context/AdminContext';
 import { Link, useNavigate } from 'react-router-dom';
-import { FolderGit2, FolderCheck, Plus, ExternalLink, RefreshCw, AlertCircle, LogOut } from 'lucide-react';
+import { FolderGit2, FolderCheck, Plus, ExternalLink, RefreshCw, AlertCircle, LogOut, Trash2, Loader2 } from 'lucide-react';
 
 export default function AdminDashboard() {
   const { service, logout } = useAdmin();
@@ -11,7 +11,19 @@ export default function AdminDashboard() {
   const [projects, setProjects] = useState<any[]>([]);
   const [completedProjects, setCompletedProjects] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [deletingId, setDeletingId] = useState('');
   const [error, setError] = useState('');
+
+  const getFilePath = (tab: 'open_source' | 'completed') =>
+    tab === 'open_source' ? 'src/data/projects.json' : 'src/data/completedProjects.json';
+
+  const setItemsForTab = (tab: 'open_source' | 'completed', items: any[]) => {
+    if (tab === 'open_source') {
+      setProjects(items);
+    } else {
+      setCompletedProjects(items);
+    }
+  };
 
   const loadData = async () => {
     setLoading(true);
@@ -39,6 +51,42 @@ export default function AdminDashboard() {
   const handleLogout = () => {
     logout();
     navigate('/');
+  };
+
+  const handleDelete = async (item: any) => {
+    if (!service || deletingId) return;
+
+    const confirmed = window.confirm(`Delete "${item.title || item.id}" from ${activeTab === 'open_source' ? 'Open Source' : 'Completed'} projects?`);
+    if (!confirmed) return;
+
+    const tab = activeTab;
+    setDeletingId(item.id);
+    setError('');
+
+    try {
+      const filePath = getFilePath(tab);
+      const latest = await service.getJsonFile<{items: any[]}>(filePath);
+      const latestItems = latest.content.items || [];
+
+      if (!latestItems.some((project: any) => project.id === item.id)) {
+        throw new Error('Project was not found in the latest remote data.');
+      }
+
+      const updatedItems = latestItems.filter((project: any) => project.id !== item.id);
+
+      await service.updateJsonFile(
+        filePath,
+        { items: updatedItems },
+        `Delete ${tab} project: ${item.id}`,
+        latest.sha
+      );
+
+      setItemsForTab(tab, updatedItems);
+    } catch (err: any) {
+      setError(err.message || 'Failed to delete project.');
+    } finally {
+      setDeletingId('');
+    }
   };
 
   const activeItems = activeTab === 'open_source' ? projects : completedProjects;
@@ -162,6 +210,16 @@ export default function AdminDashboard() {
                 >
                   Edit
                 </Link>
+                <button
+                  type="button"
+                  onClick={() => handleDelete(item)}
+                  disabled={deletingId === item.id}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 border border-red-500/50 text-red-500 hover:bg-red-500 hover:text-white transition-colors text-sm uppercase tracking-wider disabled:opacity-50 disabled:cursor-not-allowed"
+                  title="Delete project"
+                >
+                  {deletingId === item.id ? <Loader2 className="w-4 h-4 animate-spin" /> : <Trash2 className="w-4 h-4" />}
+                  Delete
+                </button>
               </div>
             </div>
           ))

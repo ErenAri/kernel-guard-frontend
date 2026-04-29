@@ -102,7 +102,6 @@ export const en = {
     noAccount: 'Public access enabled. No account required.',
     credentials: 'Authentication Data',
     email: 'User',
-    password: 'Key',
     visit: 'Visit Project',
     links: 'Project Links',
     colName: 'Name',
