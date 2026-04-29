@@ -70,29 +70,6 @@
       ],
       "github": "https://github.com/Kernel-Guard/Aegis-BPF",
       "diagram": "graph TD\n    subgraph \"AegisBPF User Space\"\n        A[File/Net Deny Rules] --> Z\n        B[Allow Allowlist] --> Z\n        C[Policy + Signing] --> Z\n        D[Metrics + Health] --> Z\n        E[Plugins + Rules] --> Z\n        Z[(Pinned BPF Maps & Ring Buffer)]\n    end\n    subgraph \"Linux Kernel\"\n        Z --- F\n        F[LSM Hooks Enforce/Audit]\n        F --> G[file_open / inode_permission]\n        F --> H[inode_copy_up overlayfs]\n        F --> I[bprm_check + IMA hash]\n        F --> J[socket connect/bind/listen/accept]\n        F --> K[socket sendmsg/recvmsg]\n        L[Tracepoint Fallback]\n        L --> M[openat/exec/fork/exit]\n    end"
-    },
-    {
-      "id": "a",
-      "title": "t",
-      "description": {
-        "en": "a",
-        "tr": ""
-      },
-      "tags": [
-        "a"
-      ],
-      "image": "/images/projects/373ee394-1ea7-40a9-9f14-df58b53251dc-44fdee138489b5120fb65eff79325b60.jpg",
-      "technicalDetails": {
-        "en": "a",
-        "tr": "a"
-      },
-      "marketingDetails": {
-        "en": "a",
-        "tr": ""
-      },
-      "github": "a",
-      "link": "a",
-      "diagram": "a"
     }
   ]
 }
