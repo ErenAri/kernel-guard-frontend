@@ -49,6 +49,16 @@ export default function CompletedProjectDetails() {
                 {project.longDescription[language as keyof typeof project.longDescription]}
               </p>
             </div>
+            
+            {project.image && (
+              <div className="w-full overflow-hidden border border-border">
+                <img 
+                  src={project.image} 
+                  alt={project.title} 
+                  className="w-full h-auto object-cover max-h-[600px]" 
+                />
+              </div>
+            )}
           </div>
 
           <div className="space-y-8">
@@ -57,15 +67,28 @@ export default function CompletedProjectDetails() {
                 {t.completedProjects.links}
               </h3>
               <div className="space-y-4">
-                <a 
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between p-4 bg-primary text-white hover:bg-primary-dark transition-colors group"
-                >
-                  <span className="font-medium">{t.completedProjects.visit}</span>
-                  <ExternalLink className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                </a>
+                {project.url && (
+                  <a 
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-4 bg-primary text-white hover:bg-primary-dark transition-colors group"
+                  >
+                    <span className="font-medium">{t.completedProjects.visit}</span>
+                    <ExternalLink className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                  </a>
+                )}
+                {project.github && (
+                  <a 
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-white transition-colors group"
+                  >
+                    <span className="font-medium">{t.projectDetails.viewSource}</span>
+                    <ExternalLink className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                  </a>
+                )}
               </div>
             </div>
 

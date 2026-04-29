@@ -27,6 +27,9 @@ import {
   loadCookies,
   loadContact,
   loadNotFound,
+  loadAdminLayout,
+  loadAdminDashboard,
+  loadProjectEditor,
 } from './routes/pageLoaders';
 
 const Layout = lazy(loadLayout);
@@ -45,6 +48,9 @@ const Privacy = lazy(loadPrivacy);
 const Cookies = lazy(loadCookies);
 const Contact = lazy(loadContact);
 const NotFound = lazy(loadNotFound);
+const AdminLayout = lazy(loadAdminLayout);
+const AdminDashboard = lazy(loadAdminDashboard);
+const ProjectEditor = lazy(loadProjectEditor);
 
 function RouteLoadingFallback() {
   return (
@@ -57,6 +63,13 @@ function RouteLoadingFallback() {
 function LocalizedRoutes() {
   return (
     <Routes>
+      {/* Admin Routes */}
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route index element={<AdminDashboard />} />
+        <Route path="edit/:type/:id" element={<ProjectEditor />} />
+      </Route>
+
+      {/* Public Routes */}
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="projects" element={<Projects />} />
@@ -72,6 +85,7 @@ function LocalizedRoutes() {
         <Route path="privacy" element={<Privacy />} />
         <Route path="cookies" element={<Cookies />} />
         <Route path="contact" element={<Contact />} />
+
         <Route path="not-found" element={<NotFound />} />
         <Route path="*" element={<NotFound />} />
       </Route>

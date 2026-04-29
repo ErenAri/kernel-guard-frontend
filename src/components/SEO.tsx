@@ -83,7 +83,6 @@ export default function SEO({
         logo: absoluteImage,
         sameAs: [
           'https://github.com/Kernel-Guard',
-          'https://www.linkedin.com/company/kernel-guard/',
         ],
       },
       {

@@ -27,7 +27,6 @@ export const en = {
     openSource: 'Open Source',
     completedProjects: 'Completed Projects',
     github: 'GitHub',
-    linkedin: 'LinkedIn',
     contact: 'Contact',
   },
   servicesPage: {
@@ -194,8 +193,7 @@ export const en = {
       location: 'Location',
       locationValue: 'İzmir, Turkey',
       social: 'Social Media',
-      github: 'GitHub Repository',
-      linkedin: 'LinkedIn Profile'
+      github: 'GitHub Repository'
     },
     form: {
       name: 'Full Name',

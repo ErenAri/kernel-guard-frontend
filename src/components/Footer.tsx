@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Mail, Lock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { prefetchRoute, prefetchRoutes } from '../routes/pageLoaders';
@@ -84,17 +84,7 @@ export default function Footer() {
                   {t.nav.github}
                 </a>
               </li>
-              <li>
-                <a
-                  href="https://www.linkedin.com/company/kernel-guard/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2"
-                >
-                  <Linkedin className="w-4 h-4" />
-                  {t.nav.linkedin}
-                </a>
-              </li>
+
             </ul>
           </div>
         </div>
@@ -127,6 +117,15 @@ export default function Footer() {
               className="hover:text-gray-300 transition-colors"
             >
               {t.footer.cookies}
+            </Link>
+            <div className="w-px h-4 bg-gray-800 self-center hidden sm:block"></div>
+            <Link
+              to="/admin"
+              className="hover:text-white transition-colors flex items-center gap-1.5"
+              title="Admin Login"
+            >
+              <Lock className="w-3.5 h-3.5" />
+              Admin
             </Link>
           </div>
         </div>

@@ -57,6 +57,9 @@ export const loadPrivacy = cacheLoader(() => import('../pages/Privacy'));
 export const loadCookies = cacheLoader(() => import('../pages/Cookies'));
 export const loadContact = cacheLoader(() => import('../pages/Contact'));
 export const loadNotFound = cacheLoader(() => import('../pages/NotFound'));
+export const loadAdminLayout = cacheLoader(() => import('../pages/Admin/AdminLayout'));
+export const loadAdminDashboard = cacheLoader(() => import('../pages/Admin/AdminDashboard'));
+export const loadProjectEditor = cacheLoader(() => import('../pages/Admin/ProjectEditor'));
 
 const prefetchers = {
   home: loadHome,

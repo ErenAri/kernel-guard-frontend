@@ -27,7 +27,6 @@ export const tr = {
     openSource: 'Açık Kaynak',
     completedProjects: 'Tamamlanan Projeler',
     github: 'GitHub',
-    linkedin: 'LinkedIn',
     contact: 'İletişim',
   },
   servicesPage: {
@@ -194,8 +193,7 @@ export const tr = {
       location: 'Konum',
       locationValue: 'İzmir, Türkiye',
       social: 'Sosyal Medya',
-      github: 'GitHub Deposu',
-      linkedin: 'LinkedIn Profili'
+      github: 'GitHub Deposu'
     },
     form: {
       name: 'Adınız Soyadınız',

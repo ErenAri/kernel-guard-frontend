@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X, Globe, Lock } from 'lucide-react';
 import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { prefetchRoutes, type PrefetchRoute } from '../routes/pageLoaders';
@@ -85,14 +85,7 @@ export default function Navbar() {
               >
                 {t.nav.github}
               </a>
-              <a
-                href="https://www.linkedin.com/company/kernel-guard/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground hover:text-primary transition-colors px-3 py-2 text-sm"
-              >
-                {t.nav.linkedin}
-              </a>
+
               
               <div className="h-6 w-px bg-border mx-2"></div>
               
@@ -105,8 +98,15 @@ export default function Navbar() {
                 {language}
               </button>
               
-              <div className="ml-2">
+              <div className="ml-2 flex items-center gap-2">
                 <ThemeToggle />
+                <Link
+                  to="/admin"
+                  className="inline-flex items-center justify-center w-10 h-10 border border-border bg-background text-foreground hover:bg-surface transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  title="Admin Login"
+                >
+                  <Lock className="w-5 h-5" />
+                </Link>
               </div>
             </div>
           </div>
@@ -114,6 +114,13 @@ export default function Navbar() {
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center gap-2">
             <ThemeToggle />
+            <Link
+              to="/admin"
+              className="inline-flex items-center justify-center w-10 h-10 border border-border bg-background text-foreground hover:bg-surface transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
+              title="Admin Login"
+            >
+              <Lock className="w-5 h-5" />
+            </Link>
             <button
               onClick={toggleLanguage}
               className="flex items-center justify-center p-2 text-foreground hover:bg-surface focus:outline-none font-mono uppercase text-sm"
@@ -159,14 +166,7 @@ export default function Navbar() {
             >
               {t.nav.github}
             </a>
-            <a
-              href="https://www.linkedin.com/company/kernel-guard/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block px-3 py-3 text-base text-foreground hover:bg-surface border-l-4 border-transparent"
-            >
-              {t.nav.linkedin}
-            </a>
+
           </div>
         </div>
       )}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Mail, MapPin, Github, Linkedin, Send, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { Mail, MapPin, Github, Send, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/SEO';
 
@@ -147,15 +147,6 @@ export default function Contact() {
                   aria-label={t.contact.info.github}
                 >
                   <Github className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                </a>
-                <a 
-                  href="https://www.linkedin.com/company/kernel-guard/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-foreground hover:bg-surface hover:text-primary hover:border-primary/50 transition-all group"
-                  aria-label={t.contact.info.linkedin}
-                >
-                  <Linkedin className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 </a>
               </div>
             </motion.div>

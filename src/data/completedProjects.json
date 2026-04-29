@@ -1,0 +1,74 @@
+{
+  "items": [
+    {
+      "id": "ref-atelier",
+      "title": "Ref Atelier",
+      "description": {
+        "en": "Modern corporate portfolio and digital reference showcase platform.",
+        "tr": "Modern kurumsal portfolyo ve dijital referans sergileme platformu."
+      },
+      "longDescription": {
+        "en": "Ref Atelier is a premium corporate portfolio platform designed to showcase digital references and past projects with an elegant, modern interface. It features a fully responsive design, optimized media loading, and a seamless user experience tailored for creative agencies and corporate entities.",
+        "tr": "Ref Atelier, dijital referansları ve geçmiş projeleri zarif ve modern bir arayüzle sergilemek için tasarlanmış premium bir kurumsal portfolyo platformudur. Tamamen duyarlı bir tasarıma, optimize edilmiş medya yüklemesine ve yaratıcı ajanslar ile kurumsal şirketler için özel olarak tasarlanmış kusursuz bir kullanıcı deneyimine sahiptir."
+      },
+      "url": "https://refatelier.com/index.html",
+      "tags": ["Corporate", "Portfolio", "UI/UX"],
+      "accounts": []
+    },
+    {
+      "id": "dershane-management",
+      "title": "Dershane Management",
+      "description": {
+        "en": "Comprehensive educational institution management system including student tracking and administrative tools.",
+        "tr": "Öğrenci takibi ve idari araçları içeren kapsamlı eğitim kurumu (dershane) yönetim sistemi."
+      },
+      "longDescription": {
+        "en": "A full-featured management system tailored for educational institutions. It provides tools for student enrollment, attendance tracking, grade management, and administrative reporting. The platform streamlines daily operations and improves communication between staff and students.",
+        "tr": "Eğitim kurumları için özel olarak tasarlanmış tam özellikli bir yönetim sistemi. Öğrenci kaydı, yoklama takibi, not yönetimi ve idari raporlama için araçlar sunar. Platform, günlük operasyonları kolaylaştırır ve personel ile öğrenciler arasındaki iletişimi geliştirir."
+      },
+      "url": "https://trfont.com/adana/",
+      "tags": ["Education", "Management", "SaaS"],
+      "accounts": [
+        { "email": "admin@dershane.com", "password": "REDACTED", "role": "Admin" }
+      ]
+    },
+    {
+      "id": "technova-hr",
+      "title": "TechNova HR",
+      "description": {
+        "en": "Enterprise human resources management portal with multi-role employee access.",
+        "tr": "Çoklu rol erişimine sahip kurumsal insan kaynakları (İK) yönetim portalı."
+      },
+      "longDescription": {
+        "en": "TechNova HR is an enterprise-grade Human Resources management portal. It supports multi-role access control, allowing administrators to manage employee records, leave requests, and performance reviews, while providing employees with a self-service portal to view their data and submit requests.",
+        "tr": "TechNova İK, kurumsal düzeyde bir İnsan Kaynakları yönetim portalıdır. Çoklu rol erişim kontrolünü destekleyerek, yöneticilerin çalışan kayıtlarını, izin taleplerini ve performans değerlendirmelerini yönetmesine olanak tanırken, çalışanlara verilerini görüntülemeleri ve talepte bulunmaları için bir self-servis portalı sunar."
+      },
+      "url": "https://trfont.com/%C4%B1k/",
+      "tags": ["HR", "Enterprise", "Portal"],
+      "accounts": [
+        { "email": "admin@technova.com.tr", "password": "REDACTED", "role": "Admin" },
+        { "email": "ahmet.yilmaz@technova.com.tr", "password": "REDACTED", "role": "Employee" },
+        { "email": "zeynep.sahin@technova.com.tr", "password": "REDACTED", "role": "Employee" },
+        { "email": "ayse.bulut@technova.com.tr", "password": "REDACTED", "role": "Employee" },
+        { "email": "mehmet.kaya@technova.com.tr", "password": "REDACTED", "role": "Employee" }
+      ]
+    },
+    {
+      "id": "algo-egitim",
+      "title": "Algo Eğitim",
+      "description": {
+        "en": "Advanced algorithmic education platform and student learning dashboard.",
+        "tr": "Gelişmiş algoritmik eğitim platformu ve öğrenci öğrenim paneli."
+      },
+      "longDescription": {
+        "en": "Algo Eğitim is an advanced educational platform focused on algorithmic learning and programming. It features a comprehensive student dashboard, progress tracking, and interactive learning modules designed to enhance coding skills and logical thinking.",
+        "tr": "Algo Eğitim, algoritmik öğrenme ve programlamaya odaklanan gelişmiş bir eğitim platformudur. Kodlama becerilerini ve mantıksal düşünmeyi geliştirmek için tasarlanmış kapsamlı bir öğrenci paneli, ilerleme takibi ve etkileşimli öğrenme modülleri içerir."
+      },
+      "url": "https://trfont.com/ada/",
+      "tags": ["EdTech", "Algorithms", "Dashboard"],
+      "accounts": [
+        { "email": "admin@example.com", "password": "REDACTED", "role": "Admin" }
+      ]
+    }
+  ]
+}

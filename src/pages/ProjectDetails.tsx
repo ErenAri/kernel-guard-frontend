@@ -65,6 +65,16 @@ export default function ProjectDetails() {
           </div>
         </div>
 
+        {project.image && (
+          <div className="mb-16 w-full overflow-hidden border border-border">
+            <img 
+              src={project.image} 
+              alt={project.title} 
+              className="w-full h-auto object-cover max-h-[600px]" 
+            />
+          </div>
+        )}
+
         {project.diagram && (
           <div className="mb-16 bg-surface p-8 border border-border">
             <div className="flex items-center gap-3 mb-6">

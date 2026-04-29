@@ -15776,7 +15776,7 @@ const en = {
     openSource: "Open Source",
     completedProjects: "Completed Projects",
     github: "GitHub",
-    linkedin: "LinkedIn"
+    contact: "Contact"
   },
   servicesPage: {
     title: "Our Services",
@@ -15926,6 +15926,36 @@ const en = {
       desc: "These cookies allow us to count visits and traffic sources so we can measure and improve the performance of our site."
     },
     save: "Save Preferences"
+  },
+  contact: {
+    seo: {
+      title: "Contact Us | Kernel Guard",
+      description: "Get in touch with Kernel Guard for secure web development, cybersecurity consulting, and infrastructure management.",
+      keywords: "contact kernel guard, cybersecurity consulting, web development agency"
+    },
+    title: "Get in Touch",
+    subtitle: "Have a project in mind or need security consultation? We'd love to hear from you.",
+    info: {
+      title: "Contact Information",
+      desc: "Reach out to us directly through the following channels.",
+      email: "Email Us",
+      location: "Location",
+      locationValue: "İzmir, Turkey",
+      social: "Social Media",
+      github: "GitHub Repository"
+    },
+    form: {
+      name: "Full Name",
+      namePlaceholder: "John Doe",
+      email: "Email Address",
+      emailPlaceholder: "john@example.com",
+      message: "Your Message",
+      messagePlaceholder: "How can we help you?",
+      submit: "Send Message",
+      sending: "Sending...",
+      success: "Message sent successfully! We will get back to you soon.",
+      error: "An error occurred while sending the message. Please try again later."
+    }
   }
 };
 const tr = {
@@ -15957,7 +15987,7 @@ const tr = {
     openSource: "Açık Kaynak",
     completedProjects: "Tamamlanan Projeler",
     github: "GitHub",
-    linkedin: "LinkedIn"
+    contact: "İletişim"
   },
   servicesPage: {
     title: "Hizmetlerimiz",
@@ -16107,6 +16137,36 @@ const tr = {
       desc: "Bu çerezler, sitemizin performansını ölçebilmemiz ve iyileştirebilmemiz için ziyaretleri ve trafik kaynaklarını saymamıza olanak tanır."
     },
     save: "Tercihleri Kaydet"
+  },
+  contact: {
+    seo: {
+      title: "İletişim | Kernel Guard",
+      description: "Güvenli web geliştirme, siber güvenlik danışmanlığı ve altyapı yönetimi için Kernel Guard ile iletişime geçin.",
+      keywords: "kernel guard iletişim, siber güvenlik danışmanlığı, web geliştirme ajansı"
+    },
+    title: "Bize Ulaşın",
+    subtitle: "Aklınızda bir proje mi var veya güvenlik danışmanlığına mı ihtiyacınız var? Sizinle tanışmak isteriz.",
+    info: {
+      title: "İletişim Bilgileri",
+      desc: "Aşağıdaki kanallar üzerinden bizimle doğrudan iletişime geçebilirsiniz.",
+      email: "E-posta Gönderin",
+      location: "Konum",
+      locationValue: "İzmir, Türkiye",
+      social: "Sosyal Medya",
+      github: "GitHub Deposu"
+    },
+    form: {
+      name: "Adınız Soyadınız",
+      namePlaceholder: "Ahmet Yılmaz",
+      email: "E-posta Adresiniz",
+      emailPlaceholder: "ahmet@ornek.com",
+      message: "Mesajınız",
+      messagePlaceholder: "Size nasıl yardımcı olabiliriz?",
+      submit: "Mesaj Gönder",
+      sending: "Gönderiliyor...",
+      success: "Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.",
+      error: "Mesaj gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin."
+    }
   }
 };
 const LanguageContext = createContext$1(void 0);
@@ -16307,22 +16367,11 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$p = [
+const __iconNode$o = [
   ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
   ["path", { d: "M19 12H5", key: "x3x0zl" }]
 ];
-const ArrowLeft = createLucideIcon("arrow-left", __iconNode$p);
-/**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$o = [
-  ["path", { d: "M5 12h14", key: "1ays0h" }],
-  ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
-];
-const ArrowRight = createLucideIcon("arrow-right", __iconNode$o);
+const ArrowLeft = createLucideIcon("arrow-left", __iconNode$o);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -16330,6 +16379,17 @@ const ArrowRight = createLucideIcon("arrow-right", __iconNode$o);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$n = [
+  ["path", { d: "M5 12h14", key: "1ays0h" }],
+  ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
+];
+const ArrowRight = createLucideIcon("arrow-right", __iconNode$n);
+/**
+ * @license lucide-react v0.546.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$m = [
   [
     "path",
     {
@@ -16340,17 +16400,7 @@ const __iconNode$n = [
   ["path", { d: "m3.3 7 8.7 5 8.7-5", key: "g66t2b" }],
   ["path", { d: "M12 22V12", key: "d0xqtd" }]
 ];
-const Box = createLucideIcon("box", __iconNode$n);
-/**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$m = [
-  ["path", { d: "M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z", key: "p7xjir" }]
-];
-const Cloud = createLucideIcon("cloud", __iconNode$m);
+const Box = createLucideIcon("box", __iconNode$m);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -16358,10 +16408,9 @@ const Cloud = createLucideIcon("cloud", __iconNode$m);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$l = [
-  ["path", { d: "m16 18 6-6-6-6", key: "eg8j8" }],
-  ["path", { d: "m8 6-6 6 6 6", key: "ppft3o" }]
+  ["path", { d: "M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z", key: "p7xjir" }]
 ];
-const Code = createLucideIcon("code", __iconNode$l);
+const Cloud = createLucideIcon("cloud", __iconNode$l);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -16369,11 +16418,10 @@ const Code = createLucideIcon("code", __iconNode$l);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$k = [
-  ["ellipse", { cx: "12", cy: "5", rx: "9", ry: "3", key: "msslwz" }],
-  ["path", { d: "M3 5V19A9 3 0 0 0 21 19V5", key: "1wlel7" }],
-  ["path", { d: "M3 12A9 3 0 0 0 21 12", key: "mv7ke4" }]
+  ["path", { d: "m16 18 6-6-6-6", key: "eg8j8" }],
+  ["path", { d: "m8 6-6 6 6 6", key: "ppft3o" }]
 ];
-const Database = createLucideIcon("database", __iconNode$k);
+const Code = createLucideIcon("code", __iconNode$k);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -16381,11 +16429,11 @@ const Database = createLucideIcon("database", __iconNode$k);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$j = [
-  ["path", { d: "M15 3h6v6", key: "1q9fwt" }],
-  ["path", { d: "M10 14 21 3", key: "gplh6r" }],
-  ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6", key: "a6xqqp" }]
+  ["ellipse", { cx: "12", cy: "5", rx: "9", ry: "3", key: "msslwz" }],
+  ["path", { d: "M3 5V19A9 3 0 0 0 21 19V5", key: "1wlel7" }],
+  ["path", { d: "M3 12A9 3 0 0 0 21 12", key: "mv7ke4" }]
 ];
-const ExternalLink = createLucideIcon("external-link", __iconNode$j);
+const Database = createLucideIcon("database", __iconNode$j);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -16393,11 +16441,11 @@ const ExternalLink = createLucideIcon("external-link", __iconNode$j);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$i = [
-  ["circle", { cx: "18", cy: "18", r: "3", key: "1xkwt0" }],
-  ["circle", { cx: "6", cy: "6", r: "3", key: "1lh9wr" }],
-  ["path", { d: "M6 21V9a9 9 0 0 0 9 9", key: "7kw0sc" }]
+  ["path", { d: "M15 3h6v6", key: "1q9fwt" }],
+  ["path", { d: "M10 14 21 3", key: "gplh6r" }],
+  ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6", key: "a6xqqp" }]
 ];
-const GitMerge = createLucideIcon("git-merge", __iconNode$i);
+const ExternalLink = createLucideIcon("external-link", __iconNode$i);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -16405,6 +16453,18 @@ const GitMerge = createLucideIcon("git-merge", __iconNode$i);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$h = [
+  ["circle", { cx: "18", cy: "18", r: "3", key: "1xkwt0" }],
+  ["circle", { cx: "6", cy: "6", r: "3", key: "1lh9wr" }],
+  ["path", { d: "M6 21V9a9 9 0 0 0 9 9", key: "7kw0sc" }]
+];
+const GitMerge = createLucideIcon("git-merge", __iconNode$h);
+/**
+ * @license lucide-react v0.546.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$g = [
   [
     "path",
     {
@@ -16414,19 +16474,7 @@ const __iconNode$h = [
   ],
   ["path", { d: "M9 18c-4.51 2-5-2-7-2", key: "9comsn" }]
 ];
-const Github = createLucideIcon("github", __iconNode$h);
-/**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$g = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20", key: "13o1zl" }],
-  ["path", { d: "M2 12h20", key: "9i4pu4" }]
-];
-const Globe = createLucideIcon("globe", __iconNode$g);
+const Github = createLucideIcon("github", __iconNode$g);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -16434,16 +16482,11 @@ const Globe = createLucideIcon("globe", __iconNode$g);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$f = [
-  [
-    "path",
-    {
-      d: "M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z",
-      key: "1s6t7t"
-    }
-  ],
-  ["circle", { cx: "16.5", cy: "7.5", r: ".5", fill: "currentColor", key: "w0ekpg" }]
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20", key: "13o1zl" }],
+  ["path", { d: "M2 12h20", key: "9i4pu4" }]
 ];
-const KeyRound = createLucideIcon("key-round", __iconNode$f);
+const Globe = createLucideIcon("globe", __iconNode$f);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -16454,14 +16497,13 @@ const __iconNode$e = [
   [
     "path",
     {
-      d: "M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z",
-      key: "c2jq9f"
+      d: "M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z",
+      key: "1s6t7t"
     }
   ],
-  ["rect", { width: "4", height: "12", x: "2", y: "9", key: "mk3on5" }],
-  ["circle", { cx: "4", cy: "4", r: "2", key: "bt5ra8" }]
+  ["circle", { cx: "16.5", cy: "7.5", r: ".5", fill: "currentColor", key: "w0ekpg" }]
 ];
-const Linkedin = createLucideIcon("linkedin", __iconNode$e);
+const KeyRound = createLucideIcon("key-round", __iconNode$e);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -16685,6 +16727,7 @@ const loadServices = cacheLoader(() => Promise.resolve().then(() => Services$1))
 const loadTerms = cacheLoader(() => Promise.resolve().then(() => Terms$1));
 const loadPrivacy = cacheLoader(() => Promise.resolve().then(() => Privacy$1));
 const loadCookies = cacheLoader(() => Promise.resolve().then(() => Cookies$1));
+const loadContact = cacheLoader(() => import("./assets/Contact-E0iu_g7k.js"));
 const loadNotFound = cacheLoader(() => Promise.resolve().then(() => NotFound$1));
 const prefetchers = {
   home: loadHome,
@@ -16700,6 +16743,7 @@ const prefetchers = {
   terms: loadTerms,
   privacy: loadPrivacy,
   cookies: loadCookies,
+  contact: loadContact,
   notFound: loadNotFound
 };
 function prefetchRoute(route) {
@@ -16809,7 +16853,8 @@ function Navbar() {
       name: t.nav.completedProjects,
       path: "/completed-projects/",
       prefetch: ["completedProjects", "completedProjectDetails"]
-    }
+    },
+    { name: t.nav.contact, path: "/contact/", prefetch: ["contact"] }
   ];
   const isActive = (path) => normalizeNavPath(location2.pathname) === normalizeNavPath(path);
   const toggleLanguage = () => {
@@ -16845,16 +16890,6 @@ function Navbar() {
             children: t.nav.github
           }
         ),
-        /* @__PURE__ */ jsx(
-          "a",
-          {
-            href: "https://www.linkedin.com/company/kernel-guard/",
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: "text-foreground hover:text-primary transition-colors px-3 py-2 text-sm",
-            children: t.nav.linkedin
-          }
-        ),
         /* @__PURE__ */ jsx("div", { className: "h-6 w-px bg-border mx-2" }),
         /* @__PURE__ */ jsxs(
           "button",
@@ -16868,10 +16903,30 @@ function Navbar() {
             ]
           }
         ),
-        /* @__PURE__ */ jsx("div", { className: "ml-2", children: /* @__PURE__ */ jsx(ThemeToggle, {}) })
+        /* @__PURE__ */ jsxs("div", { className: "ml-2 flex items-center gap-2", children: [
+          /* @__PURE__ */ jsx(ThemeToggle, {}),
+          /* @__PURE__ */ jsx(
+            distExports.Link,
+            {
+              to: "/admin",
+              className: "inline-flex items-center justify-center w-10 h-10 border border-border bg-background text-foreground hover:bg-surface transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50",
+              title: "Admin Login",
+              children: /* @__PURE__ */ jsx(Lock, { className: "w-5 h-5" })
+            }
+          )
+        ] })
       ] }) }),
       /* @__PURE__ */ jsxs("div", { className: "md:hidden flex items-center gap-2", children: [
         /* @__PURE__ */ jsx(ThemeToggle, {}),
+        /* @__PURE__ */ jsx(
+          distExports.Link,
+          {
+            to: "/admin",
+            className: "inline-flex items-center justify-center w-10 h-10 border border-border bg-background text-foreground hover:bg-surface transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50",
+            title: "Admin Login",
+            children: /* @__PURE__ */ jsx(Lock, { className: "w-5 h-5" })
+          }
+        ),
         /* @__PURE__ */ jsxs(
           "button",
           {
@@ -16915,16 +16970,6 @@ function Navbar() {
           className: "block px-3 py-3 text-base text-foreground hover:bg-surface border-l-4 border-transparent",
           children: t.nav.github
         }
-      ),
-      /* @__PURE__ */ jsx(
-        "a",
-        {
-          href: "https://www.linkedin.com/company/kernel-guard/",
-          target: "_blank",
-          rel: "noopener noreferrer",
-          className: "block px-3 py-3 text-base text-foreground hover:bg-surface border-l-4 border-transparent",
-          children: t.nav.linkedin
-        }
       )
     ] }) })
   ] });
@@ -16960,6 +17005,16 @@ function Footer() {
               className: "text-gray-400 hover:text-white transition-colors text-sm",
               children: t.nav.completedProjects
             }
+          ) }),
+          /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(
+            distExports.Link,
+            {
+              to: "/contact/",
+              onPointerEnter: () => prefetchRoute("contact"),
+              onFocus: () => prefetchRoute("contact"),
+              className: "text-gray-400 hover:text-white transition-colors text-sm",
+              children: t.nav.contact
+            }
           ) })
         ] })
       ] }),
@@ -16987,19 +17042,6 @@ function Footer() {
               children: [
                 /* @__PURE__ */ jsx(Github, { className: "w-4 h-4" }),
                 t.nav.github
-              ]
-            }
-          ) }),
-          /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsxs(
-            "a",
-            {
-              href: "https://www.linkedin.com/company/kernel-guard/",
-              target: "_blank",
-              rel: "noopener noreferrer",
-              className: "text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2",
-              children: [
-                /* @__PURE__ */ jsx(Linkedin, { className: "w-4 h-4" }),
-                t.nav.linkedin
               ]
             }
           ) })
@@ -17042,6 +17084,19 @@ function Footer() {
             onFocus: () => prefetchRoute("cookies"),
             className: "hover:text-gray-300 transition-colors",
             children: t.footer.cookies
+          }
+        ),
+        /* @__PURE__ */ jsx("div", { className: "w-px h-4 bg-gray-800 self-center hidden sm:block" }),
+        /* @__PURE__ */ jsxs(
+          distExports.Link,
+          {
+            to: "/admin",
+            className: "hover:text-white transition-colors flex items-center gap-1.5",
+            title: "Admin Login",
+            children: [
+              /* @__PURE__ */ jsx(Lock, { className: "w-3.5 h-3.5" }),
+              "Admin"
+            ]
           }
         )
       ] })
@@ -17207,11 +17262,11 @@ function buildBreadcrumbItems(pathname, language) {
   return null;
 }
 function buildBreadcrumbSchema(pathname, language, siteUrl, localizeForSchema) {
-  const items = buildBreadcrumbItems(pathname, language);
-  if (!items) return null;
+  const items2 = buildBreadcrumbItems(pathname, language);
+  if (!items2) return null;
   return {
     "@type": "BreadcrumbList",
-    itemListElement: items.map((item, index) => ({
+    itemListElement: items2.map((item, index) => ({
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
@@ -17312,8 +17367,7 @@ function SEO({
         url: `${siteUrl}/`,
         logo: absoluteImage,
         sameAs: [
-          "https://github.com/Kernel-Guard",
-          "https://www.linkedin.com/company/kernel-guard/"
+          "https://github.com/Kernel-Guard"
         ]
       },
       {
@@ -17575,107 +17629,11 @@ const Home$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProper
   __proto__: null,
   default: Home
 }, Symbol.toStringTag, { value: "Module" }));
-const projects = [
-  {
-    id: "cathodex",
-    title: "CathodeX",
-    description: {
-      en: "AI-powered cathode material screening platform using graph neural networks for predicting battery material properties.",
-      tr: "Pil malzemesi özelliklerini tahmin etmek için çizge sinir ağlarını kullanan yapay zeka destekli katot malzemesi tarama platformu."
-    },
-    technicalDetails: {
-      en: "Built using PyTorch and Graph Neural Networks (GNNs) to model the atomic structure of cathode materials. It leverages high-throughput screening algorithms to predict key battery properties such as energy density and stability.",
-      tr: "Katot malzemelerinin atomik yapısını modellemek için PyTorch ve Çizge Sinir Ağları (GNN'ler) kullanılarak oluşturulmuştur. Enerji yoğunluğu ve kararlılık gibi temel pil özelliklerini tahmin etmek için yüksek verimli tarama algoritmalarından yararlanır."
-    },
-    marketingDetails: {
-      en: "Accelerating the future of energy storage. CathodeX reduces the time and cost of battery material discovery by orders of magnitude, empowering researchers to find the next generation of sustainable energy solutions.",
-      tr: "Enerji depolamanın geleceğini hızlandırıyoruz. CathodeX, pil malzemesi keşfinin zamanını ve maliyetini büyük ölçüde azaltarak araştırmacıların yeni nesil sürdürülebilir enerji çözümlerini bulmalarını sağlar."
-    },
-    tags: ["Python", "AI", "Graph Neural Networks"],
-    github: "https://github.com/Kernel-Guard/CathodeX",
-    link: "https://cathode-screening.vercel.app/",
-    diagram: `graph LR
-    User[User / Chemist] -->|HTTPS| FE(Next.js on Vercel)
-    FE -->|JSON| API(FastAPI on Render)
-    subgraph "Inference Engine"
-        API -->|Parse| Pymatgen(Structure Parser)
-        Pymatgen -->|Graph| M1(MACE Member 1)
-        Pymatgen -->|Graph| M2(MACE Member 2)
-        Pymatgen -->|Graph| M3(MACE Member 3)
-        Pymatgen -->|Graph| M4(MACE Member 4)
-        Pymatgen -->|Graph| M5(MACE Member 5)
-    end
-    M1 & M2 & M3 & M4 & M5 -->|Aggregate| Stats[q10 / q50 / q90 + Conformal]
-    Stats -->|Policy| Result[KEEP / MAYBE / KILL]`
-  },
-  {
-    id: "post-quantum-messaging-app",
-    title: "post-quantum-messaging-app",
-    description: {
-      en: "A secure messaging application implementing post-quantum cryptographic algorithms to ensure future-proof communication.",
-      tr: "Geleceğe dönük iletişimi sağlamak için kuantum sonrası kriptografik algoritmalar uygulayan güvenli bir mesajlaşma uygulaması."
-    },
-    technicalDetails: {
-      en: "Implemented in Rust for memory safety and performance. Utilizes NIST-approved post-quantum cryptographic algorithms (like CRYSTALS-Kyber and CRYSTALS-Dilithium) to secure message exchange against attacks from quantum computers.",
-      tr: "Bellek güvenliği ve performans için Rust ile uygulanmıştır. Mesaj alışverişini kuantum bilgisayarlardan gelebilecek saldırılara karşı güvence altına almak için NIST onaylı kuantum sonrası kriptografik algoritmaları (CRYSTALS-Kyber ve CRYSTALS-Dilithium gibi) kullanır."
-    },
-    marketingDetails: {
-      en: "Future-proof your communications. As quantum computing advances, traditional encryption will become obsolete. Our post-quantum messaging app ensures your sensitive data remains secure against tomorrow's threats, today.",
-      tr: "İletişiminizi geleceğe hazırlayın. Kuantum hesaplama geliştikçe geleneksel şifreleme geçersiz hale gelecektir. Kuantum sonrası mesajlaşma uygulamamız, hassas verilerinizin bugünden yarının tehditlerine karşı güvende kalmasını sağlar."
-    },
-    tags: ["Rust", "Cryptography", "Post-Quantum"],
-    github: "https://github.com/Kernel-Guard/post-quantum-messaging-app",
-    diagram: `flowchart LR
-    C["CLI / Android / iOS / Web / Desktop"] -->|HTTP JSON + TLS| S["pqmsg-server"]
-    S -->|Sealed inbox sync / realtime relay| C
-    A["Android bridge"] --> CORE["pqmsg-core"]
-    I["iOS bridge"] --> CORE
-    W["Web WASM bridge"] --> CORE
-    D["Desktop wrapper"] --> W
-    S --> DB["PostgreSQL / SQLite"]
-    S --> RD["Redis rate limiter"]
-    PV["ProVerif model"] -.-> V["CI verification gate"]
-    TM["Tamarin model"] -.-> V`
-  },
-  {
-    id: "aegis-bpf",
-    title: "Aegis-BPF",
-    description: {
-      en: "A prototype for enforcing security policies using eBPF (Extended Berkeley Packet Filter) with CO-RE (Compile Once - Run Everywhere) support.",
-      tr: "CO-RE (Bir Kere Derle - Her Yerde Çalıştır) desteğiyle eBPF (Genişletilmiş Berkeley Paket Filtresi) kullanarak güvenlik politikalarını uygulamak için bir prototip."
-    },
-    technicalDetails: {
-      en: "Developed using C++ and eBPF technology. It utilizes CO-RE (Compile Once - Run Everywhere) to ensure portability across different Linux kernel versions without recompilation, providing low-overhead, kernel-level security enforcement.",
-      tr: "C++ ve eBPF teknolojisi kullanılarak geliştirilmiştir. Yeniden derlemeye gerek kalmadan farklı Linux çekirdek sürümlerinde taşınabilirliği sağlamak için CO-RE (Bir Kere Derle - Her Yerde Çalıştır) kullanır ve düşük ek yüklü, çekirdek düzeyinde güvenlik uygulaması sağlar."
-    },
-    marketingDetails: {
-      en: "Enterprise-grade security at the kernel level. Aegis provides deep visibility and control over system behavior with zero overhead. Protect your infrastructure from advanced persistent threats with our cutting-edge eBPF technology.",
-      tr: "Çekirdek düzeyinde kurumsal düzeyde güvenlik. Aegis, sıfır ek yük ile sistem davranışı üzerinde derin görünürlük ve kontrol sağlar. En son eBPF teknolojimizle altyapınızı gelişmiş kalıcı tehditlerden koruyun."
-    },
-    tags: ["C++", "eBPF", "Security", "Linux Kernel"],
-    github: "https://github.com/Kernel-Guard/Aegis-BPF",
-    diagram: `graph TD
-    subgraph "AegisBPF User Space"
-        A[File/Net Deny Rules] --> Z
-        B[Allow Allowlist] --> Z
-        C[Policy + Signing] --> Z
-        D[Metrics + Health] --> Z
-        E[Plugins + Rules] --> Z
-        Z[(Pinned BPF Maps & Ring Buffer)]
-    end
-    subgraph "Linux Kernel"
-        Z --- F
-        F[LSM Hooks Enforce/Audit]
-        F --> G[file_open / inode_permission]
-        F --> H[inode_copy_up overlayfs]
-        F --> I[bprm_check + IMA hash]
-        F --> J[socket connect/bind/listen/accept]
-        F --> K[socket sendmsg/recvmsg]
-        L[Tracepoint Fallback]
-        L --> M[openat/exec/fork/exit]
-    end`
-  }
-];
+const items$1 = [{ "id": "cathodex", "title": "CathodeX", "description": { "en": "AI-powered cathode material screening platform using graph neural networks for predicting battery material properties.", "tr": "Pil malzemesi özelliklerini tahmin etmek için çizge sinir ağlarını kullanan yapay zeka destekli katot malzemesi tarama platformu." }, "technicalDetails": { "en": "Built using PyTorch and Graph Neural Networks (GNNs) to model the atomic structure of cathode materials. It leverages high-throughput screening algorithms to predict key battery properties such as energy density and stability.", "tr": "Katot malzemelerinin atomik yapısını modellemek için PyTorch ve Çizge Sinir Ağları (GNN'ler) kullanılarak oluşturulmuştur. Enerji yoğunluğu ve kararlılık gibi temel pil özelliklerini tahmin etmek için yüksek verimli tarama algoritmalarından yararlanır." }, "marketingDetails": { "en": "Accelerating the future of energy storage. CathodeX reduces the time and cost of battery material discovery by orders of magnitude, empowering researchers to find the next generation of sustainable energy solutions.", "tr": "Enerji depolamanın geleceğini hızlandırıyoruz. CathodeX, pil malzemesi keşfinin zamanını ve maliyetini büyük ölçüde azaltarak araştırmacıların yeni nesil sürdürülebilir enerji çözümlerini bulmalarını sağlar." }, "tags": ["Python", "AI", "Graph Neural Networks"], "github": "https://github.com/Kernel-Guard/CathodeX", "link": "https://cathode-screening.vercel.app/", "diagram": 'graph LR\n    User[User / Chemist] -->|HTTPS| FE(Next.js on Vercel)\n    FE -->|JSON| API(FastAPI on Render)\n    subgraph "Inference Engine"\n        API -->|Parse| Pymatgen(Structure Parser)\n        Pymatgen -->|Graph| M1(MACE Member 1)\n        Pymatgen -->|Graph| M2(MACE Member 2)\n        Pymatgen -->|Graph| M3(MACE Member 3)\n        Pymatgen -->|Graph| M4(MACE Member 4)\n        Pymatgen -->|Graph| M5(MACE Member 5)\n    end\n    M1 & M2 & M3 & M4 & M5 -->|Aggregate| Stats[q10 / q50 / q90 + Conformal]\n    Stats -->|Policy| Result[KEEP / MAYBE / KILL]' }, { "id": "post-quantum-messaging-app", "title": "post-quantum-messaging-app", "description": { "en": "A secure messaging application implementing post-quantum cryptographic algorithms to ensure future-proof communication.", "tr": "Geleceğe dönük iletişimi sağlamak için kuantum sonrası kriptografik algoritmalar uygulayan güvenli bir mesajlaşma uygulaması." }, "technicalDetails": { "en": "Implemented in Rust for memory safety and performance. Utilizes NIST-approved post-quantum cryptographic algorithms (like CRYSTALS-Kyber and CRYSTALS-Dilithium) to secure message exchange against attacks from quantum computers.", "tr": "Bellek güvenliği ve performans için Rust ile uygulanmıştır. Mesaj alışverişini kuantum bilgisayarlardan gelebilecek saldırılara karşı güvence altına almak için NIST onaylı kuantum sonrası kriptografik algoritmaları (CRYSTALS-Kyber ve CRYSTALS-Dilithium gibi) kullanır." }, "marketingDetails": { "en": "Future-proof your communications. As quantum computing advances, traditional encryption will become obsolete. Our post-quantum messaging app ensures your sensitive data remains secure against tomorrow's threats, today.", "tr": "İletişiminizi geleceğe hazırlayın. Kuantum hesaplama geliştikçe geleneksel şifreleme geçersiz hale gelecektir. Kuantum sonrası mesajlaşma uygulamamız, hassas verilerinizin bugünden yarının tehditlerine karşı güvende kalmasını sağlar." }, "tags": ["Rust", "Cryptography", "Post-Quantum"], "github": "https://github.com/Kernel-Guard/post-quantum-messaging-app", "diagram": 'flowchart LR\n    C["CLI / Android / iOS / Web / Desktop"] -->|HTTP JSON + TLS| S["pqmsg-server"]\n    S -->|Sealed inbox sync / realtime relay| C\n    A["Android bridge"] --> CORE["pqmsg-core"]\n    I["iOS bridge"] --> CORE\n    W["Web WASM bridge"] --> CORE\n    D["Desktop wrapper"] --> W\n    S --> DB["PostgreSQL / SQLite"]\n    S --> RD["Redis rate limiter"]\n    PV["ProVerif model"] -.- V["CI verification gate"]\n    TM["Tamarin model"] -.- V' }, { "id": "aegis-bpf", "title": "Aegis-BPF", "description": { "en": "A prototype for enforcing security policies using eBPF (Extended Berkeley Packet Filter) with CO-RE (Compile Once - Run Everywhere) support.", "tr": "CO-RE (Bir Kere Derle - Her Yerde Çalıştır) desteğiyle eBPF (Genişletilmiş Berkeley Paket Filtresi) kullanarak güvenlik politikalarını uygulamak için bir prototip." }, "technicalDetails": { "en": "Developed using C++ and eBPF technology. It utilizes CO-RE (Compile Once - Run Everywhere) to ensure portability across different Linux kernel versions without recompilation, providing low-overhead, kernel-level security enforcement.", "tr": "C++ ve eBPF teknolojisi kullanılarak geliştirilmiştir. Yeniden derlemeye gerek kalmadan farklı Linux çekirdek sürümlerinde taşınabilirliği sağlamak için CO-RE (Bir Kere Derle - Her Yerde Çalıştır) kullanır ve düşük ek yüklü, çekirdek düzeyinde güvenlik uygulaması sağlar." }, "marketingDetails": { "en": "Enterprise-grade security at the kernel level. Aegis provides deep visibility and control over system behavior with zero overhead. Protect your infrastructure from advanced persistent threats with our cutting-edge eBPF technology.", "tr": "Çekirdek düzeyinde kurumsal düzeyde güvenlik. Aegis, sıfır ek yük ile sistem davranışı üzerinde derin görünürlük ve kontrol sağlar. En son eBPF teknolojimizle altyapınızı gelişmiş kalıcı tehditlerden koruyun." }, "tags": ["C++", "eBPF", "Security", "Linux Kernel"], "github": "https://github.com/Kernel-Guard/Aegis-BPF", "diagram": 'graph TD\n    subgraph "AegisBPF User Space"\n        A[File/Net Deny Rules] --> Z\n        B[Allow Allowlist] --> Z\n        C[Policy + Signing] --> Z\n        D[Metrics + Health] --> Z\n        E[Plugins + Rules] --> Z\n        Z[(Pinned BPF Maps & Ring Buffer)]\n    end\n    subgraph "Linux Kernel"\n        Z --- F\n        F[LSM Hooks Enforce/Audit]\n        F --> G[file_open / inode_permission]\n        F --> H[inode_copy_up overlayfs]\n        F --> I[bprm_check + IMA hash]\n        F --> J[socket connect/bind/listen/accept]\n        F --> K[socket sendmsg/recvmsg]\n        L[Tracepoint Fallback]\n        L --> M[openat/exec/fork/exit]\n    end' }];
+const projectsData = {
+  items: items$1
+};
+const projects = projectsData.items;
 function Projects() {
   const { language, t } = useLanguage();
   const navigate = distExports.useNavigate();
@@ -17831,6 +17789,14 @@ function ProjectDetails() {
           tag
         )) })
       ] }),
+      project.image && /* @__PURE__ */ jsx("div", { className: "mb-16 w-full overflow-hidden border border-border", children: /* @__PURE__ */ jsx(
+        "img",
+        {
+          src: project.image,
+          alt: project.title,
+          className: "w-full h-auto object-cover max-h-[600px]"
+        }
+      ) }),
       project.diagram && /* @__PURE__ */ jsxs("div", { className: "mb-16 bg-surface p-8 border border-border", children: [
         /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-3 mb-6", children: [
           /* @__PURE__ */ jsx(GitMerge, { className: "w-6 h-6 text-primary" }),
@@ -17901,78 +17867,11 @@ const ProjectDetails$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.de
   __proto__: null,
   default: ProjectDetails
 }, Symbol.toStringTag, { value: "Module" }));
-const completedProjects = [
-  {
-    id: "ref-atelier",
-    title: "Ref Atelier",
-    description: {
-      en: "Modern corporate portfolio and digital reference showcase platform.",
-      tr: "Modern kurumsal portfolyo ve dijital referans sergileme platformu."
-    },
-    longDescription: {
-      en: "Ref Atelier is a premium corporate portfolio platform designed to showcase digital references and past projects with an elegant, modern interface. It features a fully responsive design, optimized media loading, and a seamless user experience tailored for creative agencies and corporate entities.",
-      tr: "Ref Atelier, dijital referansları ve geçmiş projeleri zarif ve modern bir arayüzle sergilemek için tasarlanmış premium bir kurumsal portfolyo platformudur. Tamamen duyarlı bir tasarıma, optimize edilmiş medya yüklemesine ve yaratıcı ajanslar ile kurumsal şirketler için özel olarak tasarlanmış kusursuz bir kullanıcı deneyimine sahiptir."
-    },
-    url: "https://refatelier.com/index.html",
-    tags: ["Corporate", "Portfolio", "UI/UX"],
-    accounts: []
-  },
-  {
-    id: "dershane-management",
-    title: "Dershane Management",
-    description: {
-      en: "Comprehensive educational institution management system including student tracking and administrative tools.",
-      tr: "Öğrenci takibi ve idari araçları içeren kapsamlı eğitim kurumu (dershane) yönetim sistemi."
-    },
-    longDescription: {
-      en: "A full-featured management system tailored for educational institutions. It provides tools for student enrollment, attendance tracking, grade management, and administrative reporting. The platform streamlines daily operations and improves communication between staff and students.",
-      tr: "Eğitim kurumları için özel olarak tasarlanmış tam özellikli bir yönetim sistemi. Öğrenci kaydı, yoklama takibi, not yönetimi ve idari raporlama için araçlar sunar. Platform, günlük operasyonları kolaylaştırır ve personel ile öğrenciler arasındaki iletişimi geliştirir."
-    },
-    url: "https://trfont.com/adana/",
-    tags: ["Education", "Management", "SaaS"],
-    accounts: [
-      { email: "admin@dershane.com", password: "REDACTED", role: "Admin" }
-    ]
-  },
-  {
-    id: "technova-hr",
-    title: "TechNova HR",
-    description: {
-      en: "Enterprise human resources management portal with multi-role employee access.",
-      tr: "Çoklu rol erişimine sahip kurumsal insan kaynakları (İK) yönetim portalı."
-    },
-    longDescription: {
-      en: "TechNova HR is an enterprise-grade Human Resources management portal. It supports multi-role access control, allowing administrators to manage employee records, leave requests, and performance reviews, while providing employees with a self-service portal to view their data and submit requests.",
-      tr: "TechNova İK, kurumsal düzeyde bir İnsan Kaynakları yönetim portalıdır. Çoklu rol erişim kontrolünü destekleyerek, yöneticilerin çalışan kayıtlarını, izin taleplerini ve performans değerlendirmelerini yönetmesine olanak tanırken, çalışanlara verilerini görüntülemeleri ve talepte bulunmaları için bir self-servis portalı sunar."
-    },
-    url: "https://trfont.com/%C4%B1k/",
-    tags: ["HR", "Enterprise", "Portal"],
-    accounts: [
-      { email: "admin@technova.com.tr", password: "REDACTED", role: "Admin" },
-      { email: "ahmet.yilmaz@technova.com.tr", password: "REDACTED", role: "Employee" },
-      { email: "zeynep.sahin@technova.com.tr", password: "REDACTED", role: "Employee" },
-      { email: "ayse.bulut@technova.com.tr", password: "REDACTED", role: "Employee" },
-      { email: "mehmet.kaya@technova.com.tr", password: "REDACTED", role: "Employee" }
-    ]
-  },
-  {
-    id: "algo-egitim",
-    title: "Algo Eğitim",
-    description: {
-      en: "Advanced algorithmic education platform and student learning dashboard.",
-      tr: "Gelişmiş algoritmik eğitim platformu ve öğrenci öğrenim paneli."
-    },
-    longDescription: {
-      en: "Algo Eğitim is an advanced educational platform focused on algorithmic learning and programming. It features a comprehensive student dashboard, progress tracking, and interactive learning modules designed to enhance coding skills and logical thinking.",
-      tr: "Algo Eğitim, algoritmik öğrenme ve programlamaya odaklanan gelişmiş bir eğitim platformudur. Kodlama becerilerini ve mantıksal düşünmeyi geliştirmek için tasarlanmış kapsamlı bir öğrenci paneli, ilerleme takibi ve etkileşimli öğrenme modülleri içerir."
-    },
-    url: "https://trfont.com/ada/",
-    tags: ["EdTech", "Algorithms", "Dashboard"],
-    accounts: [
-      { email: "admin@example.com", password: "REDACTED", role: "Admin" }
-    ]
-  }
-];
+const items = [{ "id": "ref-atelier", "title": "Ref Atelier", "description": { "en": "Modern corporate portfolio and digital reference showcase platform.", "tr": "Modern kurumsal portfolyo ve dijital referans sergileme platformu." }, "longDescription": { "en": "Ref Atelier is a premium corporate portfolio platform designed to showcase digital references and past projects with an elegant, modern interface. It features a fully responsive design, optimized media loading, and a seamless user experience tailored for creative agencies and corporate entities.", "tr": "Ref Atelier, dijital referansları ve geçmiş projeleri zarif ve modern bir arayüzle sergilemek için tasarlanmış premium bir kurumsal portfolyo platformudur. Tamamen duyarlı bir tasarıma, optimize edilmiş medya yüklemesine ve yaratıcı ajanslar ile kurumsal şirketler için özel olarak tasarlanmış kusursuz bir kullanıcı deneyimine sahiptir." }, "url": "https://refatelier.com/index.html", "tags": ["Corporate", "Portfolio", "UI/UX"], "accounts": [] }, { "id": "dershane-management", "title": "Dershane Management", "description": { "en": "Comprehensive educational institution management system including student tracking and administrative tools.", "tr": "Öğrenci takibi ve idari araçları içeren kapsamlı eğitim kurumu (dershane) yönetim sistemi." }, "longDescription": { "en": "A full-featured management system tailored for educational institutions. It provides tools for student enrollment, attendance tracking, grade management, and administrative reporting. The platform streamlines daily operations and improves communication between staff and students.", "tr": "Eğitim kurumları için özel olarak tasarlanmış tam özellikli bir yönetim sistemi. Öğrenci kaydı, yoklama takibi, not yönetimi ve idari raporlama için araçlar sunar. Platform, günlük operasyonları kolaylaştırır ve personel ile öğrenciler arasındaki iletişimi geliştirir." }, "url": "https://trfont.com/adana/", "tags": ["Education", "Management", "SaaS"], "accounts": [{ "email": "admin@dershane.com", "password": "REDACTED", "role": "Admin" }] }, { "id": "technova-hr", "title": "TechNova HR", "description": { "en": "Enterprise human resources management portal with multi-role employee access.", "tr": "Çoklu rol erişimine sahip kurumsal insan kaynakları (İK) yönetim portalı." }, "longDescription": { "en": "TechNova HR is an enterprise-grade Human Resources management portal. It supports multi-role access control, allowing administrators to manage employee records, leave requests, and performance reviews, while providing employees with a self-service portal to view their data and submit requests.", "tr": "TechNova İK, kurumsal düzeyde bir İnsan Kaynakları yönetim portalıdır. Çoklu rol erişim kontrolünü destekleyerek, yöneticilerin çalışan kayıtlarını, izin taleplerini ve performans değerlendirmelerini yönetmesine olanak tanırken, çalışanlara verilerini görüntülemeleri ve talepte bulunmaları için bir self-servis portalı sunar." }, "url": "https://trfont.com/%C4%B1k/", "tags": ["HR", "Enterprise", "Portal"], "accounts": [{ "email": "admin@technova.com.tr", "password": "REDACTED", "role": "Admin" }, { "email": "ahmet.yilmaz@technova.com.tr", "password": "REDACTED", "role": "Employee" }, { "email": "zeynep.sahin@technova.com.tr", "password": "REDACTED", "role": "Employee" }, { "email": "ayse.bulut@technova.com.tr", "password": "REDACTED", "role": "Employee" }, { "email": "mehmet.kaya@technova.com.tr", "password": "REDACTED", "role": "Employee" }] }, { "id": "algo-egitim", "title": "Algo Eğitim", "description": { "en": "Advanced algorithmic education platform and student learning dashboard.", "tr": "Gelişmiş algoritmik eğitim platformu ve öğrenci öğrenim paneli." }, "longDescription": { "en": "Algo Eğitim is an advanced educational platform focused on algorithmic learning and programming. It features a comprehensive student dashboard, progress tracking, and interactive learning modules designed to enhance coding skills and logical thinking.", "tr": "Algo Eğitim, algoritmik öğrenme ve programlamaya odaklanan gelişmiş bir eğitim platformudur. Kodlama becerilerini ve mantıksal düşünmeyi geliştirmek için tasarlanmış kapsamlı bir öğrenci paneli, ilerleme takibi ve etkileşimli öğrenme modülleri içerir." }, "url": "https://trfont.com/ada/", "tags": ["EdTech", "Algorithms", "Dashboard"], "accounts": [{ "email": "admin@example.com", "password": "REDACTED", "role": "Admin" }] }];
+const completedProjectsData = {
+  items
+};
+const completedProjects = completedProjectsData.items;
 function CompletedProjects() {
   const { language, t } = useLanguage();
   const navigate = distExports.useNavigate();
@@ -18085,27 +17984,52 @@ function CompletedProjectDetails() {
         }
       ),
       /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-1 lg:grid-cols-3 gap-12", children: [
-        /* @__PURE__ */ jsx("div", { className: "lg:col-span-2 space-y-12", children: /* @__PURE__ */ jsxs("div", { children: [
-          /* @__PURE__ */ jsx("h1", { className: "text-4xl md:text-5xl font-light text-foreground mb-6", children: project.title }),
-          /* @__PURE__ */ jsx("div", { className: "flex flex-wrap gap-3 mb-8", children: project.tags.map((tag) => /* @__PURE__ */ jsx("span", { className: "px-3 py-1 text-xs font-mono bg-surface border border-border text-foreground", children: tag }, tag)) }),
-          /* @__PURE__ */ jsx("p", { className: "text-xl text-foreground/80 font-light leading-relaxed", children: project.longDescription[language] })
-        ] }) }),
+        /* @__PURE__ */ jsxs("div", { className: "lg:col-span-2 space-y-12", children: [
+          /* @__PURE__ */ jsxs("div", { children: [
+            /* @__PURE__ */ jsx("h1", { className: "text-4xl md:text-5xl font-light text-foreground mb-6", children: project.title }),
+            /* @__PURE__ */ jsx("div", { className: "flex flex-wrap gap-3 mb-8", children: project.tags.map((tag) => /* @__PURE__ */ jsx("span", { className: "px-3 py-1 text-xs font-mono bg-surface border border-border text-foreground", children: tag }, tag)) }),
+            /* @__PURE__ */ jsx("p", { className: "text-xl text-foreground/80 font-light leading-relaxed", children: project.longDescription[language] })
+          ] }),
+          project.image && /* @__PURE__ */ jsx("div", { className: "w-full overflow-hidden border border-border", children: /* @__PURE__ */ jsx(
+            "img",
+            {
+              src: project.image,
+              alt: project.title,
+              className: "w-full h-auto object-cover max-h-[600px]"
+            }
+          ) })
+        ] }),
         /* @__PURE__ */ jsxs("div", { className: "space-y-8", children: [
           /* @__PURE__ */ jsxs("div", { className: "bg-surface border border-border p-6", children: [
             /* @__PURE__ */ jsx("h3", { className: "text-sm font-mono text-foreground/50 uppercase tracking-wider mb-6", children: t.completedProjects.links }),
-            /* @__PURE__ */ jsx("div", { className: "space-y-4", children: /* @__PURE__ */ jsxs(
-              "a",
-              {
-                href: project.url,
-                target: "_blank",
-                rel: "noopener noreferrer",
-                className: "flex items-center justify-between p-4 bg-primary text-white hover:bg-primary-dark transition-colors group",
-                children: [
-                  /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.completedProjects.visit }),
-                  /* @__PURE__ */ jsx(ExternalLink, { className: "w-5 h-5 group-hover:scale-110 transition-transform" })
-                ]
-              }
-            ) })
+            /* @__PURE__ */ jsxs("div", { className: "space-y-4", children: [
+              project.url && /* @__PURE__ */ jsxs(
+                "a",
+                {
+                  href: project.url,
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                  className: "flex items-center justify-between p-4 bg-primary text-white hover:bg-primary-dark transition-colors group",
+                  children: [
+                    /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.completedProjects.visit }),
+                    /* @__PURE__ */ jsx(ExternalLink, { className: "w-5 h-5 group-hover:scale-110 transition-transform" })
+                  ]
+                }
+              ),
+              project.github && /* @__PURE__ */ jsxs(
+                "a",
+                {
+                  href: project.github,
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                  className: "flex items-center justify-between p-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-white transition-colors group",
+                  children: [
+                    /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.projectDetails.viewSource }),
+                    /* @__PURE__ */ jsx(ExternalLink, { className: "w-5 h-5 group-hover:scale-110 transition-transform" })
+                  ]
+                }
+              )
+            ] })
           ] }),
           /* @__PURE__ */ jsxs("div", { className: "bg-surface border border-border p-6 text-sm", children: [
             /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2 text-foreground/50 mb-6 uppercase tracking-wider text-xs font-mono", children: [
@@ -18646,5 +18570,10 @@ function renderRoute(url, language) {
   };
 }
 export {
-  renderRoute
+  Github as G,
+  Mail as M,
+  SEO as S,
+  createLucideIcon as c,
+  renderRoute,
+  useLanguage as u
 };
