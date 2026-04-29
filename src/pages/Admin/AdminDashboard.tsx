@@ -3,6 +3,8 @@ import { useAdmin } from '../../context/AdminContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { FolderGit2, FolderCheck, Plus, ExternalLink, RefreshCw, AlertCircle, LogOut, Trash2, Loader2 } from 'lucide-react';
 
+const LOGIN_ERROR_KEY = 'kg_admin_login_error';
+
 export default function AdminDashboard() {
   const { service, logout } = useAdmin();
   const navigate = useNavigate();
@@ -38,7 +40,14 @@ export default function AdminDashboard() {
         setCompletedProjects(compRes.content.items || []);
       }
     } catch (err: any) {
-      setError(err.message || 'Failed to fetch data from GitHub.');
+      const message = err.message || 'Failed to fetch data from GitHub.';
+      if (message.toLowerCase().includes('invalid credentials')) {
+        sessionStorage.setItem(LOGIN_ERROR_KEY, 'Email veya şifre yanlış.');
+        logout();
+        return;
+      }
+
+      setError(message);
     } finally {
       setLoading(false);
     }

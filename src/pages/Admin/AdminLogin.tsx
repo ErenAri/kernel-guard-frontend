@@ -1,28 +1,56 @@
 import { useState, type FormEvent } from 'react';
 import { useAdmin } from '../../context/AdminContext';
-import { Lock, Github, ArrowRight, AlertCircle, Home } from 'lucide-react';
+import { Lock, ArrowRight, AlertCircle, Home, Loader2 } from 'lucide-react';
 import SEO from '../../components/SEO';
 import { Link } from 'react-router-dom';
+import { GithubService, type GithubConfig } from '../../services/githubApi';
+
+const LOGIN_ERROR_KEY = 'kg_admin_login_error';
+
+function consumeLoginError() {
+  if (typeof sessionStorage === 'undefined') return '';
+
+  const savedError = sessionStorage.getItem(LOGIN_ERROR_KEY) || '';
+  sessionStorage.removeItem(LOGIN_ERROR_KEY);
+  return savedError;
+}
 
 export default function AdminLogin() {
   const { login } = useAdmin();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [authenticating, setAuthenticating] = useState(false);
+  const [error, setError] = useState(consumeLoginError);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError('');
 
-    if (!email.trim() || !password.trim()) {
+    const config: GithubConfig = {
+      email: email.trim(),
+      password: password.trim()
+    };
+
+    if (!config.email || !config.password) {
       setError('Credentials are required.');
       return;
     }
 
-    login({
-      email: email.trim(),
-      password: password.trim()
-    });
+    setAuthenticating(true);
+
+    try {
+      await new GithubService(config).getJsonFile('src/data/projects.json');
+      login(config);
+    } catch (err: any) {
+      const message = err?.message || '';
+      setError(
+        message.toLowerCase().includes('invalid credentials')
+          ? 'Email veya şifre yanlış.'
+          : `Authentication failed: ${message || 'Unable to verify credentials.'}`
+      );
+    } finally {
+      setAuthenticating(false);
+    }
   };
 
   return (
@@ -46,7 +74,7 @@ export default function AdminLogin() {
             System Override
           </h1>
           <p className="text-foreground/50 text-sm">
-            Provide GitHub PAT to establish secure connection.
+            Verify administrator credentials before opening the dashboard.
           </p>
         </div>
 
@@ -67,7 +95,11 @@ export default function AdminLogin() {
               <input
                 type="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setError('');
+                }}
+                disabled={authenticating}
                 className="w-full bg-background border border-border focus:border-primary text-foreground py-3 pl-10 pr-4 outline-none transition-colors"
                 placeholder="Enter administrator email"
               />
@@ -83,7 +115,11 @@ export default function AdminLogin() {
               <input
                 type="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setError('');
+                }}
+                disabled={authenticating}
                 className="w-full bg-background border border-border focus:border-primary text-foreground py-3 pl-10 pr-4 outline-none transition-colors"
                 placeholder="••••••••••••"
               />
@@ -95,10 +131,15 @@ export default function AdminLogin() {
 
           <button
             type="submit"
-            className="w-full flex items-center justify-between p-4 bg-primary text-white hover:bg-primary-dark transition-colors uppercase tracking-widest text-sm font-medium group"
+            disabled={authenticating}
+            className="w-full flex items-center justify-between p-4 bg-primary text-white hover:bg-primary-dark transition-colors uppercase tracking-widest text-sm font-medium group disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            <span>Authenticate</span>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <span>{authenticating ? 'Verifying...' : 'Authenticate'}</span>
+            {authenticating ? (
+              <Loader2 className="w-5 h-5 animate-spin" />
+            ) : (
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            )}
           </button>
         </form>
       </div>
