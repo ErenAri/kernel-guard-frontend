@@ -110,6 +110,7 @@ export const tr = {
     colLinks: 'Bağlantılar'
   },
   projectDetails: {
+    architectureDiagram: 'Sistem Mimarisi',
     technicalOverview: 'Teknik Genel Bakış',
     marketingOverview: 'Değer Önerisi',
     viewSource: 'Kaynak Kodunu Görüntüle',

@@ -5,15 +5,24 @@
       "title": "CathodeX",
       "description": {
         "en": "AI-powered cathode material screening platform using graph neural networks for predicting battery material properties.",
-        "tr": "Pil malzemesi özelliklerini tahmin etmek için çizge sinir ağlarını kullanan yapay zeka destekli katot malzemesi tarama platformu."
+        "tr": "Pil malzemesi özelliklerini tahmin etmek için çizge sinir ağlarını kullanan yapay zeka destekli katot malzemesi tarama platformu.",
+        "de": "KI-gestuetzte Plattform zur Pruefung von Kathodenmaterialien, die Graph Neural Networks zur Vorhersage von Batterieeigenschaften nutzt.",
+        "ja": "グラフニューラルネットワークを用いて電池材料の特性を予測する、AI搭載のカソード材料スクリーニングプラットフォームです。",
+        "zh-CN": "一个由 AI 驱动的正极材料筛选平台，使用图神经网络预测电池材料属性。"
       },
       "technicalDetails": {
         "en": "Built using PyTorch and Graph Neural Networks (GNNs) to model the atomic structure of cathode materials. It leverages high-throughput screening algorithms to predict key battery properties such as energy density and stability.",
-        "tr": "Katot malzemelerinin atomik yapısını modellemek için PyTorch ve Çizge Sinir Ağları (GNN'ler) kullanılarak oluşturulmuştur. Enerji yoğunluğu ve kararlılık gibi temel pil özelliklerini tahmin etmek için yüksek verimli tarama algoritmalarından yararlanır."
+        "tr": "Katot malzemelerinin atomik yapısını modellemek için PyTorch ve Çizge Sinir Ağları (GNN'ler) kullanılarak oluşturulmuştur. Enerji yoğunluğu ve kararlılık gibi temel pil özelliklerini tahmin etmek için yüksek verimli tarama algoritmalarından yararlanır.",
+        "de": "Entwickelt mit PyTorch und Graph Neural Networks (GNNs), um die atomare Struktur von Kathodenmaterialien zu modellieren. Hochdurchsatz-Screening-Algorithmen prognostizieren zentrale Batterieeigenschaften wie Energiedichte und Stabilitaet.",
+        "ja": "PyTorch とグラフニューラルネットワーク（GNN）を用いて、カソード材料の原子構造をモデル化しています。高スループットスクリーニングにより、エネルギー密度や安定性などの主要な電池特性を予測します。",
+        "zh-CN": "该平台基于 PyTorch 和图神经网络（GNN）构建，用于建模正极材料的原子结构。它利用高通量筛选算法预测能量密度、稳定性等关键电池属性。"
       },
       "marketingDetails": {
         "en": "Accelerating the future of energy storage. CathodeX reduces the time and cost of battery material discovery by orders of magnitude, empowering researchers to find the next generation of sustainable energy solutions.",
-        "tr": "Enerji depolamanın geleceğini hızlandırıyoruz. CathodeX, pil malzemesi keşfinin zamanını ve maliyetini büyük ölçüde azaltarak araştırmacıların yeni nesil sürdürülebilir enerji çözümlerini bulmalarını sağlar."
+        "tr": "Enerji depolamanın geleceğini hızlandırıyoruz. CathodeX, pil malzemesi keşfinin zamanını ve maliyetini büyük ölçüde azaltarak araştırmacıların yeni nesil sürdürülebilir enerji çözümlerini bulmalarını sağlar.",
+        "de": "Beschleunigt die Zukunft der Energiespeicherung. CathodeX senkt Zeit und Kosten der Batteriematerialforschung drastisch und hilft Forschenden, nachhaltige Energieloesungen der naechsten Generation zu finden.",
+        "ja": "エネルギー貯蔵の未来を加速します。CathodeX は電池材料探索にかかる時間とコストを大幅に削減し、研究者が次世代の持続可能なエネルギーソリューションを発見できるよう支援します。",
+        "zh-CN": "加速储能技术的未来。CathodeX 大幅降低电池材料发现的时间和成本，帮助研究人员寻找下一代可持续能源解决方案。"
       },
       "tags": [
         "Python",
@@ -29,15 +38,24 @@
       "title": "post-quantum-messaging-app",
       "description": {
         "en": "A secure messaging application implementing post-quantum cryptographic algorithms to ensure future-proof communication.",
-        "tr": "Geleceğe dönük iletişimi sağlamak için kuantum sonrası kriptografik algoritmalar uygulayan güvenli bir mesajlaşma uygulaması."
+        "tr": "Geleceğe dönük iletişimi sağlamak için kuantum sonrası kriptografik algoritmalar uygulayan güvenli bir mesajlaşma uygulaması.",
+        "de": "Eine sichere Messaging-Anwendung mit Post-Quantum-Kryptografie, die Kommunikation langfristig schuetzen soll.",
+        "ja": "将来にわたって安全な通信を実現するため、ポスト量子暗号アルゴリズムを実装したセキュアメッセージングアプリケーションです。",
+        "zh-CN": "一款实现后量子密码算法的安全消息应用，用于保障面向未来的通信安全。"
       },
       "technicalDetails": {
         "en": "Implemented in Rust for memory safety and performance. Utilizes NIST-approved post-quantum cryptographic algorithms (like CRYSTALS-Kyber and CRYSTALS-Dilithium) to secure message exchange against attacks from quantum computers.",
-        "tr": "Bellek güvenliği ve performans için Rust ile uygulanmıştır. Mesaj alışverişini kuantum bilgisayarlardan gelebilecek saldırılara karşı güvence altına almak için NIST onaylı kuantum sonrası kriptografik algoritmaları (CRYSTALS-Kyber ve CRYSTALS-Dilithium gibi) kullanır."
+        "tr": "Bellek güvenliği ve performans için Rust ile uygulanmıştır. Mesaj alışverişini kuantum bilgisayarlardan gelebilecek saldırılara karşı güvence altına almak için NIST onaylı kuantum sonrası kriptografik algoritmaları (CRYSTALS-Kyber ve CRYSTALS-Dilithium gibi) kullanır.",
+        "de": "In Rust umgesetzt, um Speichersicherheit und Performance zu verbinden. Die Anwendung nutzt NIST-standardisierte Post-Quantum-Algorithmen wie CRYSTALS-Kyber und CRYSTALS-Dilithium, um Nachrichtenaustausch gegen Angriffe durch Quantencomputer abzusichern.",
+        "ja": "メモリ安全性と性能を重視して Rust で実装されています。CRYSTALS-Kyber や CRYSTALS-Dilithium など、NIST 標準のポスト量子暗号アルゴリズムを用いて、量子コンピュータによる攻撃からメッセージ交換を保護します。",
+        "zh-CN": "该应用使用 Rust 实现，以兼顾内存安全与性能。它采用 NIST 标准化的后量子密码算法（如 CRYSTALS-Kyber 和 CRYSTALS-Dilithium），保护消息交换免受量子计算机攻击。"
       },
       "marketingDetails": {
         "en": "Future-proof your communications. As quantum computing advances, traditional encryption will become obsolete. Our post-quantum messaging app ensures your sensitive data remains secure against tomorrow's threats, today.",
-        "tr": "İletişiminizi geleceğe hazırlayın. Kuantum hesaplama geliştikçe geleneksel şifreleme geçersiz hale gelecektir. Kuantum sonrası mesajlaşma uygulamamız, hassas verilerinizin bugünden yarının tehditlerine karşı güvende kalmasını sağlar."
+        "tr": "İletişiminizi geleceğe hazırlayın. Kuantum hesaplama geliştikçe geleneksel şifreleme geçersiz hale gelecektir. Kuantum sonrası mesajlaşma uygulamamız, hassas verilerinizin bugünden yarının tehditlerine karşı güvende kalmasını sağlar.",
+        "de": "Machen Sie Ihre Kommunikation zukunftssicher. Mit dem Fortschritt des Quantencomputings wird klassische Verschluesselung unter Druck geraten. Diese Post-Quantum-Messaging-App schuetzt sensible Daten schon heute vor den Risiken von morgen.",
+        "ja": "通信を未来に備えます。量子コンピューティングが進化すると、従来の暗号化は通用しなくなる可能性があります。このポスト量子メッセージングアプリは、明日の脅威に対して今日から機密データを保護します。",
+        "zh-CN": "让通信面向未来。随着量子计算的发展，传统加密将面临失效风险。我们的后量子消息应用从今天开始保护敏感数据，应对未来威胁。"
       },
       "tags": [
         "Rust",
@@ -52,15 +70,24 @@
       "title": "Aegis-BPF",
       "description": {
         "en": "A prototype for enforcing security policies using eBPF (Extended Berkeley Packet Filter) with CO-RE (Compile Once - Run Everywhere) support.",
-        "tr": "CO-RE (Bir Kere Derle - Her Yerde Çalıştır) desteğiyle eBPF (Genişletilmiş Berkeley Paket Filtresi) kullanarak güvenlik politikalarını uygulamak için bir prototip."
+        "tr": "CO-RE (Bir Kere Derle - Her Yerde Çalıştır) desteğiyle eBPF (Genişletilmiş Berkeley Paket Filtresi) kullanarak güvenlik politikalarını uygulamak için bir prototip.",
+        "de": "Ein Prototyp zur Durchsetzung von Sicherheitsrichtlinien mit eBPF und CO-RE-Unterstuetzung (Compile Once - Run Everywhere).",
+        "ja": "CO-RE（Compile Once - Run Everywhere）対応の eBPF（Extended Berkeley Packet Filter）を用いて、セキュリティポリシーを適用するためのプロトタイプです。",
+        "zh-CN": "一个使用 eBPF（扩展伯克利包过滤器）并支持 CO-RE（一次编译，到处运行）的安全策略执行原型。"
       },
       "technicalDetails": {
         "en": "Developed using C++ and eBPF technology. It utilizes CO-RE (Compile Once - Run Everywhere) to ensure portability across different Linux kernel versions without recompilation, providing low-overhead, kernel-level security enforcement.",
-        "tr": "C++ ve eBPF teknolojisi kullanılarak geliştirilmiştir. Yeniden derlemeye gerek kalmadan farklı Linux çekirdek sürümlerinde taşınabilirliği sağlamak için CO-RE (Bir Kere Derle - Her Yerde Çalıştır) kullanır ve düşük ek yüklü, çekirdek düzeyinde güvenlik uygulaması sağlar."
+        "tr": "C++ ve eBPF teknolojisi kullanılarak geliştirilmiştir. Yeniden derlemeye gerek kalmadan farklı Linux çekirdek sürümlerinde taşınabilirliği sağlamak için CO-RE (Bir Kere Derle - Her Yerde Çalıştır) kullanır ve düşük ek yüklü, çekirdek düzeyinde güvenlik uygulaması sağlar.",
+        "de": "Entwickelt mit C++ und eBPF-Technologie. CO-RE sorgt fuer Portabilitaet ueber verschiedene Linux-Kernelversionen hinweg, ohne erneutes Kompilieren zu erfordern, und ermoeglicht Sicherheitsdurchsetzung auf Kernel-Ebene mit geringer Laufzeitbelastung.",
+        "ja": "C++ と eBPF 技術で開発されています。CO-RE（Compile Once - Run Everywhere）により、再コンパイルなしで異なる Linux カーネルバージョン間の移植性を確保し、低オーバーヘッドなカーネルレベルのセキュリティ制御を実現します。",
+        "zh-CN": "该项目使用 C++ 和 eBPF 技术开发。它通过 CO-RE 在不同 Linux 内核版本之间实现无需重新编译的可移植性，并提供低开销的内核级安全策略执行能力。"
       },
       "marketingDetails": {
         "en": "Enterprise-grade security at the kernel level. Aegis provides deep visibility and control over system behavior with zero overhead. Protect your infrastructure from advanced persistent threats with our cutting-edge eBPF technology.",
-        "tr": "Çekirdek düzeyinde kurumsal düzeyde güvenlik. Aegis, sıfır ek yük ile sistem davranışı üzerinde derin görünürlük ve kontrol sağlar. En son eBPF teknolojimizle altyapınızı gelişmiş kalıcı tehditlerden koruyun."
+        "tr": "Çekirdek düzeyinde kurumsal düzeyde güvenlik. Aegis, sıfır ek yük ile sistem davranışı üzerinde derin görünürlük ve kontrol sağlar. En son eBPF teknolojimizle altyapınızı gelişmiş kalıcı tehditlerden koruyun.",
+        "de": "Unternehmenssicherheit direkt auf Kernel-Ebene. Aegis bietet tiefe Einblicke und Kontrolle ueber Systemverhalten bei minimaler Belastung. Schuetzen Sie Ihre Infrastruktur mit moderner eBPF-Technologie vor fortgeschrittenen Bedrohungen.",
+        "ja": "カーネルレベルでのエンタープライズグレードのセキュリティ。Aegis はシステム挙動に対する深い可視性と制御を、最小限のオーバーヘッドで提供します。先進的な eBPF 技術により、高度な持続的脅威からインフラを保護します。",
+        "zh-CN": "内核级企业安全能力。Aegis 以极低开销提供对系统行为的深度可见性与控制，帮助您利用先进的 eBPF 技术保护基础设施免受高级持续性威胁。"
       },
       "tags": [
         "C++",

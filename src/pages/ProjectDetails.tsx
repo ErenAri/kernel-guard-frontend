@@ -84,7 +84,7 @@ export default function ProjectDetails() {
           <div className="mb-16 bg-surface p-8 border border-border">
             <div className="flex items-center gap-3 mb-6">
               <GitMerge className="w-6 h-6 text-primary" />
-              <h2 className="text-2xl font-light">{language === 'tr' ? 'Sistem Mimarisi' : 'System Architecture'}</h2>
+              <h2 className="text-2xl font-light">{t.projectDetails.architectureDiagram}</h2>
             </div>
             {/*
               <object> loads the SVG in its own embedded document so Mermaid's

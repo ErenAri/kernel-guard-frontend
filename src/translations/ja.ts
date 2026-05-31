@@ -97,6 +97,15 @@ export const ja = {
     colTags: 'タグ',
     colLinks: 'リンク',
   },
+  projectDetails: {
+    ...en.projectDetails,
+    architectureDiagram: 'システム構成',
+    technicalOverview: '技術概要',
+    marketingOverview: '価値提案',
+    viewSource: 'ソースコードを見る',
+    liveDemo: 'ライブプレビュー',
+    backToProjects: '一覧に戻る',
+  },
   footer: {
     ...en.footer,
     desc: '安全で高性能、信頼性の高いWebインフラを構築します。',

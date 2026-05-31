@@ -5,14 +5,24 @@
       "title": "Ref Atelier",
       "description": {
         "en": "Modern corporate portfolio and digital reference showcase platform.",
-        "tr": "Modern kurumsal portfolyo ve dijital referans sergileme platformu."
+        "tr": "Modern kurumsal portfolyo ve dijital referans sergileme platformu.",
+        "de": "Moderne Unternehmensportfolio- und digitale Referenzplattform.",
+        "ja": "モダンな企業ポートフォリオとデジタル実績紹介のためのプラットフォームです。",
+        "zh-CN": "现代企业作品集与数字案例展示平台。"
       },
       "longDescription": {
         "en": "Ref Atelier is a premium corporate portfolio platform designed to showcase digital references and past projects with an elegant, modern interface. It features a fully responsive design, optimized media loading, and a seamless user experience tailored for creative agencies and corporate entities.",
-        "tr": "Ref Atelier, dijital referansları ve geçmiş projeleri zarif ve modern bir arayüzle sergilemek için tasarlanmış premium bir kurumsal portfolyo platformudur. Tamamen duyarlı bir tasarıma, optimize edilmiş medya yüklemesine ve yaratıcı ajanslar ile kurumsal şirketler için özel olarak tasarlanmış kusursuz bir kullanıcı deneyimine sahiptir."
+        "tr": "Ref Atelier, dijital referansları ve geçmiş projeleri zarif ve modern bir arayüzle sergilemek için tasarlanmış premium bir kurumsal portfolyo platformudur. Tamamen duyarlı bir tasarıma, optimize edilmiş medya yüklemesine ve yaratıcı ajanslar ile kurumsal şirketler için özel olarak tasarlanmış kusursuz bir kullanıcı deneyimine sahiptir.",
+        "de": "Ref Atelier ist eine hochwertige Unternehmensportfolio-Plattform, die digitale Referenzen und abgeschlossene Projekte in einer eleganten, modernen Oberflaeche praesentiert. Sie bietet responsives Design, optimiertes Medienladen und eine fluessige Nutzererfahrung fuer Kreativagenturen und Unternehmen.",
+        "ja": "Ref Atelier は、デジタル実績や過去のプロジェクトを洗練されたモダンなインターフェースで紹介するための、プレミアムな企業ポートフォリオプラットフォームです。完全レスポンシブ設計、最適化されたメディア読み込み、クリエイティブエージェンシーや企業向けのスムーズなユーザー体験を備えています。",
+        "zh-CN": "Ref Atelier 是一个高端企业作品集平台，用优雅现代的界面展示数字案例与过往项目。它具备完整响应式设计、优化的媒体加载，以及面向创意机构和企业客户的流畅用户体验。"
       },
       "url": "https://refatelier.com/index.html",
-      "tags": ["Corporate", "Portfolio", "UI/UX"],
+      "tags": [
+        "Corporate",
+        "Portfolio",
+        "UI/UX"
+      ],
       "accounts": []
     },
     {
@@ -20,16 +30,29 @@
       "title": "Dershane Management",
       "description": {
         "en": "Comprehensive educational institution management system including student tracking and administrative tools.",
-        "tr": "Öğrenci takibi ve idari araçları içeren kapsamlı eğitim kurumu (dershane) yönetim sistemi."
+        "tr": "Öğrenci takibi ve idari araçları içeren kapsamlı eğitim kurumu (dershane) yönetim sistemi.",
+        "de": "Umfassendes Managementsystem fuer Bildungseinrichtungen mit Schuelerverfolgung und Verwaltungstools.",
+        "ja": "生徒管理と管理業務ツールを備えた、教育機関向けの包括的な管理システムです。",
+        "zh-CN": "面向教育机构的综合管理系统，包含学生跟踪和行政管理工具。"
       },
       "longDescription": {
         "en": "A full-featured management system tailored for educational institutions. It provides tools for student enrollment, attendance tracking, grade management, and administrative reporting. The platform streamlines daily operations and improves communication between staff and students.",
-        "tr": "Eğitim kurumları için özel olarak tasarlanmış tam özellikli bir yönetim sistemi. Öğrenci kaydı, yoklama takibi, not yönetimi ve idari raporlama için araçlar sunar. Platform, günlük operasyonları kolaylaştırır ve personel ile öğrenciler arasındaki iletişimi geliştirir."
+        "tr": "Eğitim kurumları için özel olarak tasarlanmış tam özellikli bir yönetim sistemi. Öğrenci kaydı, yoklama takibi, not yönetimi ve idari raporlama için araçlar sunar. Platform, günlük operasyonları kolaylaştırır ve personel ile öğrenciler arasındaki iletişimi geliştirir.",
+        "de": "Ein voll ausgestattetes Managementsystem fuer Bildungseinrichtungen. Es bietet Werkzeuge fuer Einschreibung, Anwesenheitskontrolle, Notenverwaltung und administrative Berichte. Die Plattform vereinfacht den Tagesbetrieb und verbessert die Kommunikation zwischen Mitarbeitenden und Lernenden.",
+        "ja": "教育機関向けに設計された多機能な管理システムです。生徒登録、出席管理、成績管理、管理レポート作成のためのツールを提供します。日々の業務を効率化し、スタッフと生徒間のコミュニケーションを改善します。",
+        "zh-CN": "一个为教育机构定制的完整管理系统。它提供学生注册、考勤跟踪、成绩管理和行政报告工具，帮助简化日常运营并提升教职员工与学生之间的沟通效率。"
       },
       "url": "https://trfont.com/adana/",
-      "tags": ["Education", "Management", "SaaS"],
+      "tags": [
+        "Education",
+        "Management",
+        "SaaS"
+      ],
       "accounts": [
-        { "email": "admin@dershane.com", "role": "Admin" }
+        {
+          "email": "admin@dershane.com",
+          "role": "Admin"
+        }
       ]
     },
     {
@@ -37,20 +60,45 @@
       "title": "TechNova HR",
       "description": {
         "en": "Enterprise human resources management portal with multi-role employee access.",
-        "tr": "Çoklu rol erişimine sahip kurumsal insan kaynakları (İK) yönetim portalı."
+        "tr": "Çoklu rol erişimine sahip kurumsal insan kaynakları (İK) yönetim portalı.",
+        "de": "Enterprise-HR-Portal mit rollenbasiertem Zugriff fuer Mitarbeitende.",
+        "ja": "複数ロールの従業員アクセスに対応した、エンタープライズ向け人事管理ポータルです。",
+        "zh-CN": "支持多角色员工访问的企业人力资源管理门户。"
       },
       "longDescription": {
         "en": "TechNova HR is an enterprise-grade Human Resources management portal. It supports multi-role access control, allowing administrators to manage employee records, leave requests, and performance reviews, while providing employees with a self-service portal to view their data and submit requests.",
-        "tr": "TechNova İK, kurumsal düzeyde bir İnsan Kaynakları yönetim portalıdır. Çoklu rol erişim kontrolünü destekleyerek, yöneticilerin çalışan kayıtlarını, izin taleplerini ve performans değerlendirmelerini yönetmesine olanak tanırken, çalışanlara verilerini görüntülemeleri ve talepte bulunmaları için bir self-servis portalı sunar."
+        "tr": "TechNova İK, kurumsal düzeyde bir İnsan Kaynakları yönetim portalıdır. Çoklu rol erişim kontrolünü destekleyerek, yöneticilerin çalışan kayıtlarını, izin taleplerini ve performans değerlendirmelerini yönetmesine olanak tanırken, çalışanlara verilerini görüntülemeleri ve talepte bulunmaları için bir self-servis portalı sunar.",
+        "de": "TechNova HR ist ein HR-Management-Portal auf Unternehmensniveau. Es unterstuetzt rollenbasierte Zugriffskontrolle, sodass Administratoren Mitarbeiterdaten, Urlaubsantraege und Leistungsbewertungen verwalten koennen, waehrend Mitarbeitende ihre Daten einsehen und Anfragen ueber ein Self-Service-Portal stellen.",
+        "ja": "TechNova HR は、エンタープライズグレードの人事管理ポータルです。複数ロールのアクセス制御に対応しており、管理者は従業員情報、休暇申請、評価を管理できます。従業員はセルフサービスポータルから自分のデータを確認し、申請を送信できます。",
+        "zh-CN": "TechNova HR 是一个企业级人力资源管理门户。它支持多角色访问控制，使管理员能够管理员工记录、请假申请和绩效评估，同时为员工提供自助门户，用于查看个人数据并提交申请。"
       },
       "url": "https://trfont.com/%C4%B1k/",
-      "tags": ["HR", "Enterprise", "Portal"],
+      "tags": [
+        "HR",
+        "Enterprise",
+        "Portal"
+      ],
       "accounts": [
-        { "email": "admin@technova.com.tr", "role": "Admin" },
-        { "email": "ahmet.yilmaz@technova.com.tr", "role": "Employee" },
-        { "email": "zeynep.sahin@technova.com.tr", "role": "Employee" },
-        { "email": "ayse.bulut@technova.com.tr", "role": "Employee" },
-        { "email": "mehmet.kaya@technova.com.tr", "role": "Employee" }
+        {
+          "email": "admin@technova.com.tr",
+          "role": "Admin"
+        },
+        {
+          "email": "ahmet.yilmaz@technova.com.tr",
+          "role": "Employee"
+        },
+        {
+          "email": "zeynep.sahin@technova.com.tr",
+          "role": "Employee"
+        },
+        {
+          "email": "ayse.bulut@technova.com.tr",
+          "role": "Employee"
+        },
+        {
+          "email": "mehmet.kaya@technova.com.tr",
+          "role": "Employee"
+        }
       ]
     },
     {
@@ -58,16 +106,29 @@
       "title": "Algo Eğitim",
       "description": {
         "en": "Advanced algorithmic education platform and student learning dashboard.",
-        "tr": "Gelişmiş algoritmik eğitim platformu ve öğrenci öğrenim paneli."
+        "tr": "Gelişmiş algoritmik eğitim platformu ve öğrenci öğrenim paneli.",
+        "de": "Fortgeschrittene algorithmische Lernplattform mit Schueler-Dashboard.",
+        "ja": "高度なアルゴリズム教育プラットフォームと学習者向けダッシュボードです。",
+        "zh-CN": "高级算法教育平台与学生学习仪表板。"
       },
       "longDescription": {
         "en": "Algo Eğitim is an advanced educational platform focused on algorithmic learning and programming. It features a comprehensive student dashboard, progress tracking, and interactive learning modules designed to enhance coding skills and logical thinking.",
-        "tr": "Algo Eğitim, algoritmik öğrenme ve programlamaya odaklanan gelişmiş bir eğitim platformudur. Kodlama becerilerini ve mantıksal düşünmeyi geliştirmek için tasarlanmış kapsamlı bir öğrenci paneli, ilerleme takibi ve etkileşimli öğrenme modülleri içerir."
+        "tr": "Algo Eğitim, algoritmik öğrenme ve programlamaya odaklanan gelişmiş bir eğitim platformudur. Kodlama becerilerini ve mantıksal düşünmeyi geliştirmek için tasarlanmış kapsamlı bir öğrenci paneli, ilerleme takibi ve etkileşimli öğrenme modülleri içerir.",
+        "de": "Algo Egitim ist eine fortgeschrittene Bildungsplattform fuer algorithmisches Lernen und Programmierung. Sie bietet ein umfassendes Schueler-Dashboard, Fortschrittsverfolgung und interaktive Lernmodule zur Foerderung von Programmierfaehigkeiten und logischem Denken.",
+        "ja": "Algo Egitim は、アルゴリズム学習とプログラミングに焦点を当てた高度な教育プラットフォームです。包括的な学習者ダッシュボード、進捗管理、コーディングスキルと論理的思考を高めるインタラクティブな学習モジュールを備えています。",
+        "zh-CN": "Algo Egitim 是一个专注于算法学习和编程的高级教育平台。它包含完整的学生仪表板、进度跟踪和互动学习模块，旨在提升编程能力与逻辑思维。"
       },
       "url": "https://trfont.com/ada/",
-      "tags": ["EdTech", "Algorithms", "Dashboard"],
+      "tags": [
+        "EdTech",
+        "Algorithms",
+        "Dashboard"
+      ],
       "accounts": [
-        { "email": "admin@example.com", "role": "Admin" }
+        {
+          "email": "admin@example.com",
+          "role": "Admin"
+        }
       ]
     }
   ]

@@ -97,6 +97,15 @@ export const zhCN = {
     colTags: '标签',
     colLinks: '链接',
   },
+  projectDetails: {
+    ...en.projectDetails,
+    architectureDiagram: '系统架构',
+    technicalOverview: '技术概览',
+    marketingOverview: '价值主张',
+    viewSource: '查看源代码',
+    liveDemo: '在线预览',
+    backToProjects: '返回目录',
+  },
   footer: {
     ...en.footer,
     desc: '为现代数字产品构建安全、高性能、可靠的 Web 基础设施。',

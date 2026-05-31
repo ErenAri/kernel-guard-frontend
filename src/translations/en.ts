@@ -110,6 +110,7 @@ export const en = {
     colLinks: 'Links'
   },
   projectDetails: {
+    architectureDiagram: 'System Architecture',
     technicalOverview: 'Technical Overview',
     marketingOverview: 'Value Proposition',
     viewSource: 'View Source Code',

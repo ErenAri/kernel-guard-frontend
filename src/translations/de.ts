@@ -97,6 +97,15 @@ export const de = {
     colTags: 'Tags',
     colLinks: 'Links',
   },
+  projectDetails: {
+    ...en.projectDetails,
+    architectureDiagram: 'Systemarchitektur',
+    technicalOverview: 'Technischer Überblick',
+    marketingOverview: 'Wertversprechen',
+    viewSource: 'Quellcode ansehen',
+    liveDemo: 'Live-Vorschau',
+    backToProjects: 'Zurück zum Verzeichnis',
+  },
   footer: {
     ...en.footer,
     desc: 'Wir entwickeln sichere, performante und belastbare Webinfrastruktur für moderne digitale Produkte.',
