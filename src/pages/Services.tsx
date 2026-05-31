@@ -1,7 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/SEO';
-import { motion } from 'motion/react';
 import { Layout, Shield, Code, Globe, Box, Lock, Cloud, Server, Database, ArrowRight } from 'lucide-react';
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -29,29 +28,20 @@ export default function Services() {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto mb-20"
-        >
+        <div className="text-center max-w-3xl mx-auto mb-20">
           <h1 className="text-4xl md:text-5xl font-light text-foreground mb-6">
             {t.servicesPage.title}
           </h1>
           <p className="text-lg md:text-xl text-foreground/70 font-light leading-relaxed">
             {t.servicesPage.subtitle}
           </p>
-        </motion.div>
+        </div>
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-32">
           {t.servicesPage.services.map((service, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group relative block h-full p-8 bg-surface border border-border hover:border-primary/50 transition-colors overflow-hidden rounded-sm"
             >
               {/* Hover Glow Effect */}
@@ -68,18 +58,12 @@ export default function Services() {
                   {service.desc}
                 </p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="relative overflow-hidden border border-border bg-surface p-12 md:p-20 text-center"
-        >
+        <div className="relative overflow-hidden border border-border bg-surface p-12 md:p-20 text-center">
           {/* Background Grid Pattern */}
           <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)', backgroundSize: '32px 32px' }}></div>
           
@@ -88,13 +72,13 @@ export default function Services() {
             <p className="text-lg text-foreground/70 font-light mb-10">{t.servicesPage.ctaDesc}</p>
             <a 
               href="mailto:iletisim@kernelguard.net"
-              className="inline-flex items-center justify-between px-8 py-4 bg-primary text-white hover:bg-primary-dark transition-colors w-full sm:w-auto min-w-[200px]"
+              className="inline-flex items-center justify-between px-8 py-4 kg-action-primary transition-colors w-full sm:w-auto min-w-[200px]"
             >
               <span className="font-medium">{t.servicesPage.ctaButton}</span>
               <ArrowRight className="w-5 h-5 ml-4" />
             </a>
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

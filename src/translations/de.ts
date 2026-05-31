@@ -69,6 +69,35 @@ export const de = {
       data: { title: 'Datenschutz', desc: 'Verschlüsselung und sichere Datenbankpraktiken zum Schutz sensibler Informationen.' },
       performance: { title: 'Hohe Performance', desc: 'Schnelle Webanwendungen ohne Kompromisse bei Sicherheitskontrollen.' },
     },
+    principles: {
+      title: 'Unsere Engineering-Prinzipien',
+      items: [
+        { title: 'Offen als Standard', desc: 'Transparente Sicherheit durch Open-Source-Code und öffentliche Code-Reviews.' },
+        { title: 'Zero Trust', desc: 'Jede Anfrage prüfen, keiner Entität blind vertrauen und Kompromittierung als Möglichkeit einplanen.' },
+        { title: 'Community-orientiert', desc: 'Gemeinsam mit und für Systemingenieure und Sicherheitsforschende entwickelt.' },
+      ],
+    },
+    community: {
+      title: 'Öffentlich entwickeln',
+      desc: 'Wir bauen unsere Kerninfrastruktur aktiv auf und veröffentlichen Fortschritte als Open Source.',
+    },
+    proof: {
+      badge: 'GEMESSEN // ÖFFENTLICHE_NACHWEISE',
+      title: 'Nachweise statt Behauptungen',
+      desc: 'Ein transparenter Qualitätsstand auf Basis von Lighthouse CLI, Prerender-Ausgabe und öffentlichen GitHub-Repository-Daten, gemessen am 31. Mai 2026.',
+      cards: {
+        lighthouse: { label: 'Desktop Lighthouse', detail: 'Performance / Barrierefreiheit auf der Produktionsdomain.' },
+        delivery: { label: 'Prerender-Routen', detail: 'Statische Routen, die beim Build über lokalisierte Seiten erzeugt werden.' },
+        openSource: { label: 'Öffentliche Repos', detail: 'Sichtbare Repositories der Kernel-Guard-Organisation auf GitHub.' },
+        languages: { label: 'Unterstützte Sprachen', detail: 'Türkisch, Englisch, Deutsch, Japanisch und Chinesisch.' },
+      },
+      summary: {
+        indexableUrls: 'indexierbare URLs',
+        desktopTbt: 'Desktop-TBT',
+        latestUpdate: 'letztes öffentliches Repo-Update',
+      },
+      footnote: 'Die Kennzahlen werden bewusst als gemessene Werte gezeigt, nicht als Marketingbehauptungen.',
+    },
   },
   projects: {
     ...en.projects,
@@ -105,6 +134,15 @@ export const de = {
     viewSource: 'Quellcode ansehen',
     liveDemo: 'Live-Vorschau',
     backToProjects: 'Zurück zum Verzeichnis',
+    repositoryEvidence: {
+      title: 'Repository-Nachweise',
+      measuredAt: 'Gemessen aus öffentlichen GitHub-Repository-Daten am 31. Mai 2026.',
+      primaryLanguage: 'Hauptsprache',
+      lastPublicUpdate: 'Letztes öffentliches Update',
+      trackedIssues: 'Verfolgte Issues',
+      repositorySize: 'Repository-Größe',
+      languageMix: 'Sprachmix',
+    },
   },
   footer: {
     ...en.footer,

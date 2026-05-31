@@ -9,10 +9,8 @@ import React3__default, { Component, createContext as createContext$1, useState,
 import fastCompare from "react-fast-compare";
 import invariant$2 from "invariant";
 import shallowEqual from "shallowequal";
-import { serialize, parse } from "cookie";
 import { splitCookiesString } from "set-cookie-parser";
 import * as ReactDOM from "react-dom";
-import { motion } from "framer-motion";
 var TAG_NAMES = /* @__PURE__ */ ((TAG_NAMES2) => {
   TAG_NAMES2["BASE"] = "base";
   TAG_NAMES2["BODY"] = "body";
@@ -1018,7 +1016,7 @@ function getAugmentedNamespace(n) {
   });
   return a;
 }
-var dist = { exports: {} };
+var dist$1 = { exports: {} };
 /**
  * react-router v7.14.0
  *
@@ -12151,6 +12149,256 @@ function encodeLocation(to) {
   };
 }
 var ABSOLUTE_URL_REGEX3 = /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i;
+var dist = {};
+var hasRequiredDist$1;
+function requireDist$1() {
+  if (hasRequiredDist$1) return dist;
+  hasRequiredDist$1 = 1;
+  Object.defineProperty(dist, "__esModule", { value: true });
+  dist.parseCookie = parseCookie;
+  dist.parse = parseCookie;
+  dist.stringifyCookie = stringifyCookie;
+  dist.stringifySetCookie = stringifySetCookie;
+  dist.serialize = stringifySetCookie;
+  dist.parseSetCookie = parseSetCookie;
+  dist.stringifySetCookie = stringifySetCookie;
+  dist.serialize = stringifySetCookie;
+  const cookieNameRegExp = /^[\u0021-\u003A\u003C\u003E-\u007E]+$/;
+  const cookieValueRegExp = /^[\u0021-\u003A\u003C-\u007E]*$/;
+  const domainValueRegExp = /^([.]?[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)([.][a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)*$/i;
+  const pathValueRegExp = /^[\u0020-\u003A\u003D-\u007E]*$/;
+  const maxAgeRegExp = /^-?\d+$/;
+  const __toString = Object.prototype.toString;
+  const NullObject = /* @__PURE__ */ (() => {
+    const C = function() {
+    };
+    C.prototype = /* @__PURE__ */ Object.create(null);
+    return C;
+  })();
+  function parseCookie(str, options) {
+    const obj = new NullObject();
+    const len = str.length;
+    if (len < 2)
+      return obj;
+    const dec = (options == null ? void 0 : options.decode) || decode2;
+    let index = 0;
+    do {
+      const eqIdx = eqIndex(str, index, len);
+      if (eqIdx === -1)
+        break;
+      const endIdx = endIndex(str, index, len);
+      if (eqIdx > endIdx) {
+        index = str.lastIndexOf(";", eqIdx - 1) + 1;
+        continue;
+      }
+      const key = valueSlice(str, index, eqIdx);
+      if (obj[key] === void 0) {
+        obj[key] = dec(valueSlice(str, eqIdx + 1, endIdx));
+      }
+      index = endIdx + 1;
+    } while (index < len);
+    return obj;
+  }
+  function stringifyCookie(cookie, options) {
+    const enc = (options == null ? void 0 : options.encode) || encodeURIComponent;
+    const cookieStrings = [];
+    for (const name of Object.keys(cookie)) {
+      const val = cookie[name];
+      if (val === void 0)
+        continue;
+      if (!cookieNameRegExp.test(name)) {
+        throw new TypeError(`cookie name is invalid: ${name}`);
+      }
+      const value = enc(val);
+      if (!cookieValueRegExp.test(value)) {
+        throw new TypeError(`cookie val is invalid: ${val}`);
+      }
+      cookieStrings.push(`${name}=${value}`);
+    }
+    return cookieStrings.join("; ");
+  }
+  function stringifySetCookie(_name, _val, _opts) {
+    const cookie = typeof _name === "object" ? _name : { ..._opts, name: _name, value: String(_val) };
+    const options = typeof _val === "object" ? _val : _opts;
+    const enc = (options == null ? void 0 : options.encode) || encodeURIComponent;
+    if (!cookieNameRegExp.test(cookie.name)) {
+      throw new TypeError(`argument name is invalid: ${cookie.name}`);
+    }
+    const value = cookie.value ? enc(cookie.value) : "";
+    if (!cookieValueRegExp.test(value)) {
+      throw new TypeError(`argument val is invalid: ${cookie.value}`);
+    }
+    let str = cookie.name + "=" + value;
+    if (cookie.maxAge !== void 0) {
+      if (!Number.isInteger(cookie.maxAge)) {
+        throw new TypeError(`option maxAge is invalid: ${cookie.maxAge}`);
+      }
+      str += "; Max-Age=" + cookie.maxAge;
+    }
+    if (cookie.domain) {
+      if (!domainValueRegExp.test(cookie.domain)) {
+        throw new TypeError(`option domain is invalid: ${cookie.domain}`);
+      }
+      str += "; Domain=" + cookie.domain;
+    }
+    if (cookie.path) {
+      if (!pathValueRegExp.test(cookie.path)) {
+        throw new TypeError(`option path is invalid: ${cookie.path}`);
+      }
+      str += "; Path=" + cookie.path;
+    }
+    if (cookie.expires) {
+      if (!isDate(cookie.expires) || !Number.isFinite(cookie.expires.valueOf())) {
+        throw new TypeError(`option expires is invalid: ${cookie.expires}`);
+      }
+      str += "; Expires=" + cookie.expires.toUTCString();
+    }
+    if (cookie.httpOnly) {
+      str += "; HttpOnly";
+    }
+    if (cookie.secure) {
+      str += "; Secure";
+    }
+    if (cookie.partitioned) {
+      str += "; Partitioned";
+    }
+    if (cookie.priority) {
+      const priority = typeof cookie.priority === "string" ? cookie.priority.toLowerCase() : void 0;
+      switch (priority) {
+        case "low":
+          str += "; Priority=Low";
+          break;
+        case "medium":
+          str += "; Priority=Medium";
+          break;
+        case "high":
+          str += "; Priority=High";
+          break;
+        default:
+          throw new TypeError(`option priority is invalid: ${cookie.priority}`);
+      }
+    }
+    if (cookie.sameSite) {
+      const sameSite = typeof cookie.sameSite === "string" ? cookie.sameSite.toLowerCase() : cookie.sameSite;
+      switch (sameSite) {
+        case true:
+        case "strict":
+          str += "; SameSite=Strict";
+          break;
+        case "lax":
+          str += "; SameSite=Lax";
+          break;
+        case "none":
+          str += "; SameSite=None";
+          break;
+        default:
+          throw new TypeError(`option sameSite is invalid: ${cookie.sameSite}`);
+      }
+    }
+    return str;
+  }
+  function parseSetCookie(str, options) {
+    const dec = (options == null ? void 0 : options.decode) || decode2;
+    const len = str.length;
+    const endIdx = endIndex(str, 0, len);
+    const eqIdx = eqIndex(str, 0, endIdx);
+    const setCookie = eqIdx === -1 ? { name: "", value: dec(valueSlice(str, 0, endIdx)) } : {
+      name: valueSlice(str, 0, eqIdx),
+      value: dec(valueSlice(str, eqIdx + 1, endIdx))
+    };
+    let index = endIdx + 1;
+    while (index < len) {
+      const endIdx2 = endIndex(str, index, len);
+      const eqIdx2 = eqIndex(str, index, endIdx2);
+      const attr = eqIdx2 === -1 ? valueSlice(str, index, endIdx2) : valueSlice(str, index, eqIdx2);
+      const val = eqIdx2 === -1 ? void 0 : valueSlice(str, eqIdx2 + 1, endIdx2);
+      switch (attr.toLowerCase()) {
+        case "httponly":
+          setCookie.httpOnly = true;
+          break;
+        case "secure":
+          setCookie.secure = true;
+          break;
+        case "partitioned":
+          setCookie.partitioned = true;
+          break;
+        case "domain":
+          setCookie.domain = val;
+          break;
+        case "path":
+          setCookie.path = val;
+          break;
+        case "max-age":
+          if (val && maxAgeRegExp.test(val))
+            setCookie.maxAge = Number(val);
+          break;
+        case "expires":
+          if (!val)
+            break;
+          const date = new Date(val);
+          if (Number.isFinite(date.valueOf()))
+            setCookie.expires = date;
+          break;
+        case "priority":
+          if (!val)
+            break;
+          const priority = val.toLowerCase();
+          if (priority === "low" || priority === "medium" || priority === "high") {
+            setCookie.priority = priority;
+          }
+          break;
+        case "samesite":
+          if (!val)
+            break;
+          const sameSite = val.toLowerCase();
+          if (sameSite === "lax" || sameSite === "strict" || sameSite === "none") {
+            setCookie.sameSite = sameSite;
+          }
+          break;
+      }
+      index = endIdx2 + 1;
+    }
+    return setCookie;
+  }
+  function endIndex(str, min, len) {
+    const index = str.indexOf(";", min);
+    return index === -1 ? len : index;
+  }
+  function eqIndex(str, min, max) {
+    const index = str.indexOf("=", min);
+    return index < max ? index : -1;
+  }
+  function valueSlice(str, min, max) {
+    let start = min;
+    let end = max;
+    do {
+      const code = str.charCodeAt(start);
+      if (code !== 32 && code !== 9)
+        break;
+    } while (++start < end);
+    while (end > start) {
+      const code = str.charCodeAt(end - 1);
+      if (code !== 32 && code !== 9)
+        break;
+      end--;
+    }
+    return str.slice(start, end);
+  }
+  function decode2(str) {
+    if (str.indexOf("%") === -1)
+      return str;
+    try {
+      return decodeURIComponent(str);
+    } catch (e) {
+      return str;
+    }
+  }
+  function isDate(val) {
+    return __toString.call(val) === "[object Date]";
+  }
+  return dist;
+}
+var distExports$1 = /* @__PURE__ */ requireDist$1();
 /**
  * react-router v7.14.0
  *
@@ -12398,7 +12646,7 @@ var createCookie = (name, cookieOptions = {}) => {
     },
     async parse(cookieHeader, parseOptions) {
       if (!cookieHeader) return null;
-      let cookies = parse(cookieHeader, { ...options, ...parseOptions });
+      let cookies = distExports$1.parse(cookieHeader, { ...options, ...parseOptions });
       if (name in cookies) {
         let value = cookies[name];
         if (typeof value === "string" && value !== "") {
@@ -12412,7 +12660,7 @@ var createCookie = (name, cookieOptions = {}) => {
       }
     },
     async serialize(value, serializeOptions) {
-      return serialize(
+      return distExports$1.serialize(
         name,
         value === "" ? "" : await encodeCookieValue(value, secrets),
         {
@@ -15714,7 +15962,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(development);
  */
 var hasRequiredDist;
 function requireDist() {
-  if (hasRequiredDist) return dist.exports;
+  if (hasRequiredDist) return dist$1.exports;
   hasRequiredDist = 1;
   (function(module) {
     var __defProp2 = Object.defineProperty;
@@ -15743,8 +15991,8 @@ function requireDist() {
     module.exports = __toCommonJS(index_exports);
     var import_dom = require$$0;
     __reExport(index_exports, require$$1, module.exports);
-  })(dist);
-  return dist.exports;
+  })(dist$1);
+  return dist$1.exports;
 }
 var distExports = /* @__PURE__ */ requireDist();
 const en = {
@@ -15831,6 +16079,35 @@ const en = {
     community: {
       title: "Building in Public",
       desc: "We are actively building our core infrastructure and open-sourcing our progress. Follow our journey."
+    },
+    proof: {
+      badge: "MEASURED // PUBLIC_EVIDENCE",
+      title: "Proof, not presentation",
+      desc: "A transparent quality snapshot based on Lighthouse CLI, prerender output, and public GitHub repository data measured on May 31, 2026.",
+      cards: {
+        lighthouse: {
+          label: "Desktop Lighthouse",
+          detail: "Performance / accessibility on the production domain."
+        },
+        delivery: {
+          label: "Prerendered routes",
+          detail: "Static routes generated at build time across localized pages."
+        },
+        openSource: {
+          label: "Public repositories",
+          detail: "Kernel-Guard organization repositories visible on GitHub."
+        },
+        languages: {
+          label: "Supported languages",
+          detail: "Turkish, English, German, Japanese, and Chinese."
+        }
+      },
+      summary: {
+        indexableUrls: "indexable URLs",
+        desktopTbt: "desktop TBT",
+        latestUpdate: "latest public repo update"
+      },
+      footnote: "Metrics are intentionally shown as measured values, not marketing claims."
     }
   },
   projects: {
@@ -15864,7 +16141,16 @@ const en = {
     marketingOverview: "Value Proposition",
     viewSource: "View Source Code",
     liveDemo: "Live Preview",
-    backToProjects: "Back to Directory"
+    backToProjects: "Back to Directory",
+    repositoryEvidence: {
+      title: "Repository Evidence",
+      measuredAt: "Measured from GitHub public repository data on May 31, 2026.",
+      primaryLanguage: "Primary language",
+      lastPublicUpdate: "Last public update",
+      trackedIssues: "Tracked issues",
+      repositorySize: "Repository size",
+      languageMix: "Language mix"
+    }
   },
   footer: {
     desc: "Securing the future through advanced systems programming, kernel-level defense, and open-source innovation. Engineered for enterprise resilience.",
@@ -16042,6 +16328,35 @@ const tr = {
     community: {
       title: "Açık Geliştirme (Build in Public)",
       desc: "Çekirdek altyapımızı aktif olarak inşa ediyor ve kodlarımızı açık kaynak olarak paylaşıyoruz. Yolculuğumuza katılın."
+    },
+    proof: {
+      badge: "ÖLÇÜLDÜ // AÇIK_KANIT",
+      title: "Sunum değil, kanıt",
+      desc: "31 Mayıs 2026 tarihinde Lighthouse CLI, prerender çıktısı ve herkese açık GitHub repo verileriyle ölçülmüş şeffaf kalite özeti.",
+      cards: {
+        lighthouse: {
+          label: "Masaüstü Lighthouse",
+          detail: "Canlı domain üzerinde performans / erişilebilirlik."
+        },
+        delivery: {
+          label: "Prerender rota",
+          detail: "Çok dilli sayfalar için build sırasında üretilen statik rotalar."
+        },
+        openSource: {
+          label: "Public repo",
+          detail: "GitHub üzerindeki Kernel-Guard organizasyon repoları."
+        },
+        languages: {
+          label: "Desteklenen dil",
+          detail: "Türkçe, İngilizce, Almanca, Japonca ve Çince."
+        }
+      },
+      summary: {
+        indexableUrls: "indexlenebilir URL",
+        desktopTbt: "masaüstü TBT",
+        latestUpdate: "son public repo güncellemesi"
+      },
+      footnote: "Metrikler pazarlama iddiası değil, ölçülmüş değer olarak gösterilir."
     }
   },
   projects: {
@@ -16075,7 +16390,16 @@ const tr = {
     marketingOverview: "Değer Önerisi",
     viewSource: "Kaynak Kodunu Görüntüle",
     liveDemo: "Canlı Önizleme",
-    backToProjects: "Dizine Dön"
+    backToProjects: "Dizine Dön",
+    repositoryEvidence: {
+      title: "Repo Kanıtları",
+      measuredAt: "31 Mayıs 2026 tarihinde herkese açık GitHub repo verilerinden ölçüldü.",
+      primaryLanguage: "Ana dil",
+      lastPublicUpdate: "Son public güncelleme",
+      trackedIssues: "Takip edilen issue",
+      repositorySize: "Repo boyutu",
+      languageMix: "Dil dağılımı"
+    }
   },
   footer: {
     desc: "Gelişmiş sistem programlama, çekirdek düzeyinde savunma ve açık kaynaklı inovasyon ile geleceği güvence altına alıyoruz. Kurumsal dayanıklılık için tasarlandı.",
@@ -16237,6 +16561,35 @@ const de = {
       backend: { title: "Gehärtetes Backend", desc: "Skalierbare APIs und Serverarchitekturen nach Zero-Trust-Prinzipien." },
       data: { title: "Datenschutz", desc: "Verschlüsselung und sichere Datenbankpraktiken zum Schutz sensibler Informationen." },
       performance: { title: "Hohe Performance", desc: "Schnelle Webanwendungen ohne Kompromisse bei Sicherheitskontrollen." }
+    },
+    principles: {
+      title: "Unsere Engineering-Prinzipien",
+      items: [
+        { title: "Offen als Standard", desc: "Transparente Sicherheit durch Open-Source-Code und öffentliche Code-Reviews." },
+        { title: "Zero Trust", desc: "Jede Anfrage prüfen, keiner Entität blind vertrauen und Kompromittierung als Möglichkeit einplanen." },
+        { title: "Community-orientiert", desc: "Gemeinsam mit und für Systemingenieure und Sicherheitsforschende entwickelt." }
+      ]
+    },
+    community: {
+      title: "Öffentlich entwickeln",
+      desc: "Wir bauen unsere Kerninfrastruktur aktiv auf und veröffentlichen Fortschritte als Open Source."
+    },
+    proof: {
+      badge: "GEMESSEN // ÖFFENTLICHE_NACHWEISE",
+      title: "Nachweise statt Behauptungen",
+      desc: "Ein transparenter Qualitätsstand auf Basis von Lighthouse CLI, Prerender-Ausgabe und öffentlichen GitHub-Repository-Daten, gemessen am 31. Mai 2026.",
+      cards: {
+        lighthouse: { label: "Desktop Lighthouse", detail: "Performance / Barrierefreiheit auf der Produktionsdomain." },
+        delivery: { label: "Prerender-Routen", detail: "Statische Routen, die beim Build über lokalisierte Seiten erzeugt werden." },
+        openSource: { label: "Öffentliche Repos", detail: "Sichtbare Repositories der Kernel-Guard-Organisation auf GitHub." },
+        languages: { label: "Unterstützte Sprachen", detail: "Türkisch, Englisch, Deutsch, Japanisch und Chinesisch." }
+      },
+      summary: {
+        indexableUrls: "indexierbare URLs",
+        desktopTbt: "Desktop-TBT",
+        latestUpdate: "letztes öffentliches Repo-Update"
+      },
+      footnote: "Die Kennzahlen werden bewusst als gemessene Werte gezeigt, nicht als Marketingbehauptungen."
     }
   },
   projects: {
@@ -16273,7 +16626,16 @@ const de = {
     marketingOverview: "Wertversprechen",
     viewSource: "Quellcode ansehen",
     liveDemo: "Live-Vorschau",
-    backToProjects: "Zurück zum Verzeichnis"
+    backToProjects: "Zurück zum Verzeichnis",
+    repositoryEvidence: {
+      title: "Repository-Nachweise",
+      measuredAt: "Gemessen aus öffentlichen GitHub-Repository-Daten am 31. Mai 2026.",
+      primaryLanguage: "Hauptsprache",
+      lastPublicUpdate: "Letztes öffentliches Update",
+      trackedIssues: "Verfolgte Issues",
+      repositorySize: "Repository-Größe",
+      languageMix: "Sprachmix"
+    }
   },
   footer: {
     ...en.footer,
@@ -16406,6 +16768,35 @@ const ja = {
       backend: { title: "堅牢なバックエンド", desc: "Zero Trust原則に基づくスケーラブルなAPIとサーバー設計。" },
       data: { title: "データ保護", desc: "暗号化と安全なデータベース運用により機密情報を守ります。" },
       performance: { title: "高性能", desc: "高速なロード時間とセキュリティチェックを両立します。" }
+    },
+    principles: {
+      title: "エンジニアリング原則",
+      items: [
+        { title: "オープンを標準に", desc: "オープンソースコードと公開レビューにより、透明性の高いセキュリティを実現します。" },
+        { title: "Zero Trust", desc: "すべてのリクエストを検証し、どの主体も無条件には信頼しません。" },
+        { title: "コミュニティ主導", desc: "システムエンジニアとセキュリティ研究者のために共同で構築します。" }
+      ]
+    },
+    community: {
+      title: "公開しながら構築",
+      desc: "中核インフラを継続的に構築し、その進捗をオープンソースとして公開しています。"
+    },
+    proof: {
+      badge: "MEASURED // PUBLIC_EVIDENCE",
+      title: "見せ方ではなく、実測値",
+      desc: "2026年5月31日に Lighthouse CLI、prerender 出力、公開 GitHub リポジトリデータから取得した透明な品質スナップショットです。",
+      cards: {
+        lighthouse: { label: "Desktop Lighthouse", detail: "本番ドメインでのパフォーマンス / アクセシビリティ。" },
+        delivery: { label: "Prerender ルート", detail: "多言語ページを含め、ビルド時に生成される静的ルート数。" },
+        openSource: { label: "公開リポジトリ", detail: "GitHub 上で確認できる Kernel-Guard organization のリポジトリ。" },
+        languages: { label: "対応言語", detail: "トルコ語、英語、ドイツ語、日本語、中国語。" }
+      },
+      summary: {
+        indexableUrls: "indexable URL",
+        desktopTbt: "desktop TBT",
+        latestUpdate: "最新の公開リポジトリ更新"
+      },
+      footnote: "数値はマーケティング文句ではなく、測定値として表示しています。"
     }
   },
   projects: {
@@ -16442,7 +16833,16 @@ const ja = {
     marketingOverview: "価値提案",
     viewSource: "ソースコードを見る",
     liveDemo: "ライブプレビュー",
-    backToProjects: "一覧に戻る"
+    backToProjects: "一覧に戻る",
+    repositoryEvidence: {
+      title: "リポジトリ情報",
+      measuredAt: "2026年5月31日に公開 GitHub リポジトリデータから測定。",
+      primaryLanguage: "主要言語",
+      lastPublicUpdate: "最終公開更新",
+      trackedIssues: "追跡中の issue",
+      repositorySize: "リポジトリサイズ",
+      languageMix: "言語構成"
+    }
   },
   footer: {
     ...en.footer,
@@ -16575,6 +16975,35 @@ const zhCN = {
       backend: { title: "加固后端", desc: "遵循 Zero Trust 原则的可扩展 API 和服务端架构。" },
       data: { title: "数据保护", desc: "通过加密和安全数据库实践保护敏感信息。" },
       performance: { title: "高性能", desc: "在不牺牲安全检查的前提下实现快速加载。" }
+    },
+    principles: {
+      title: "工程原则",
+      items: [
+        { title: "默认开放", desc: "通过开源代码和公开代码审查实现透明安全。" },
+        { title: "Zero Trust", desc: "验证每个请求，不默认信任任何实体，并默认假设存在风险。" },
+        { title: "社区驱动", desc: "由系统工程师和安全研究人员共同构建。" }
+      ]
+    },
+    community: {
+      title: "公开构建",
+      desc: "我们正在持续构建核心基础设施，并以开源方式公开进展。"
+    },
+    proof: {
+      badge: "已测量 // 公开证据",
+      title: "不是展示，而是证据",
+      desc: "基于 2026 年 5 月 31 日的 Lighthouse CLI、预渲染输出和公开 GitHub 仓库数据生成的透明质量快照。",
+      cards: {
+        lighthouse: { label: "桌面 Lighthouse", detail: "生产域名上的性能 / 可访问性。" },
+        delivery: { label: "预渲染路由", detail: "构建时为多语言页面生成的静态路由。" },
+        openSource: { label: "公开仓库", detail: "GitHub 上可见的 Kernel-Guard 组织仓库。" },
+        languages: { label: "支持语言", detail: "土耳其语、英语、德语、日语和中文。" }
+      },
+      summary: {
+        indexableUrls: "可索引 URL",
+        desktopTbt: "桌面 TBT",
+        latestUpdate: "最新公开仓库更新"
+      },
+      footnote: "这些指标按实测值展示，而不是营销声明。"
     }
   },
   projects: {
@@ -16611,7 +17040,16 @@ const zhCN = {
     marketingOverview: "价值主张",
     viewSource: "查看源代码",
     liveDemo: "在线预览",
-    backToProjects: "返回目录"
+    backToProjects: "返回目录",
+    repositoryEvidence: {
+      title: "仓库证据",
+      measuredAt: "基于 2026 年 5 月 31 日的公开 GitHub 仓库数据测量。",
+      primaryLanguage: "主要语言",
+      lastPublicUpdate: "最后公开更新",
+      trackedIssues: "跟踪中的 issue",
+      repositorySize: "仓库大小",
+      languageMix: "语言组成"
+    }
   },
   footer: {
     ...en.footer,
@@ -16881,29 +17319,29 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$r = [
+const __iconNode$u = [
   ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
   ["path", { d: "M19 12H5", key: "x3x0zl" }]
 ];
-const ArrowLeft = createLucideIcon("arrow-left", __iconNode$r);
+const ArrowLeft = createLucideIcon("arrow-left", __iconNode$u);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$q = [
+const __iconNode$t = [
   ["path", { d: "M5 12h14", key: "1ays0h" }],
   ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
 ];
-const ArrowRight = createLucideIcon("arrow-right", __iconNode$q);
+const ArrowRight = createLucideIcon("arrow-right", __iconNode$t);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$p = [
+const __iconNode$s = [
   [
     "path",
     {
@@ -16914,23 +17352,56 @@ const __iconNode$p = [
   ["path", { d: "m3.3 7 8.7 5 8.7-5", key: "g66t2b" }],
   ["path", { d: "M12 22V12", key: "d0xqtd" }]
 ];
-const Box = createLucideIcon("box", __iconNode$p);
+const Box = createLucideIcon("box", __iconNode$s);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$o = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
-const Check = createLucideIcon("check", __iconNode$o);
+const __iconNode$r = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
+const Check = createLucideIcon("check", __iconNode$r);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$n = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
-const ChevronDown = createLucideIcon("chevron-down", __iconNode$n);
+const __iconNode$q = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
+const ChevronDown = createLucideIcon("chevron-down", __iconNode$q);
+/**
+ * @license lucide-react v0.546.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$p = [
+  ["path", { d: "M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z", key: "p7xjir" }]
+];
+const Cloud = createLucideIcon("cloud", __iconNode$p);
+/**
+ * @license lucide-react v0.546.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$o = [
+  ["path", { d: "m16 18 6-6-6-6", key: "eg8j8" }],
+  ["path", { d: "m8 6-6 6 6 6", key: "ppft3o" }]
+];
+const Code = createLucideIcon("code", __iconNode$o);
+/**
+ * @license lucide-react v0.546.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$n = [
+  ["ellipse", { cx: "12", cy: "5", rx: "9", ry: "3", key: "msslwz" }],
+  ["path", { d: "M3 5V19A9 3 0 0 0 21 19V5", key: "1wlel7" }],
+  ["path", { d: "M3 12A9 3 0 0 0 21 12", key: "mv7ke4" }]
+];
+const Database = createLucideIcon("database", __iconNode$n);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -16938,9 +17409,18 @@ const ChevronDown = createLucideIcon("chevron-down", __iconNode$n);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$m = [
-  ["path", { d: "M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z", key: "p7xjir" }]
+  ["path", { d: "M21.54 15H17a2 2 0 0 0-2 2v4.54", key: "1djwo0" }],
+  [
+    "path",
+    {
+      d: "M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17",
+      key: "1tzkfa"
+    }
+  ],
+  ["path", { d: "M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05", key: "14pb5j" }],
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }]
 ];
-const Cloud = createLucideIcon("cloud", __iconNode$m);
+const Earth = createLucideIcon("earth", __iconNode$m);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -16948,10 +17428,11 @@ const Cloud = createLucideIcon("cloud", __iconNode$m);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$l = [
-  ["path", { d: "m16 18 6-6-6-6", key: "eg8j8" }],
-  ["path", { d: "m8 6-6 6 6 6", key: "ppft3o" }]
+  ["path", { d: "M15 3h6v6", key: "1q9fwt" }],
+  ["path", { d: "M10 14 21 3", key: "gplh6r" }],
+  ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6", key: "a6xqqp" }]
 ];
-const Code = createLucideIcon("code", __iconNode$l);
+const ExternalLink = createLucideIcon("external-link", __iconNode$l);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -16959,11 +17440,10 @@ const Code = createLucideIcon("code", __iconNode$l);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$k = [
-  ["ellipse", { cx: "12", cy: "5", rx: "9", ry: "3", key: "msslwz" }],
-  ["path", { d: "M3 5V19A9 3 0 0 0 21 19V5", key: "1wlel7" }],
-  ["path", { d: "M3 12A9 3 0 0 0 21 12", key: "mv7ke4" }]
+  ["path", { d: "m12 14 4-4", key: "9kzdfg" }],
+  ["path", { d: "M3.34 19a10 10 0 1 1 17.32 0", key: "19p75a" }]
 ];
-const Database = createLucideIcon("database", __iconNode$k);
+const Gauge = createLucideIcon("gauge", __iconNode$k);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -16971,11 +17451,12 @@ const Database = createLucideIcon("database", __iconNode$k);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$j = [
-  ["path", { d: "M15 3h6v6", key: "1q9fwt" }],
-  ["path", { d: "M10 14 21 3", key: "gplh6r" }],
-  ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6", key: "a6xqqp" }]
+  ["line", { x1: "6", x2: "6", y1: "3", y2: "15", key: "17qcm7" }],
+  ["circle", { cx: "18", cy: "6", r: "3", key: "1h7g24" }],
+  ["circle", { cx: "6", cy: "18", r: "3", key: "fqmcym" }],
+  ["path", { d: "M18 9a9 9 0 0 1-9 9", key: "n2h4wq" }]
 ];
-const ExternalLink = createLucideIcon("external-link", __iconNode$j);
+const GitBranch = createLucideIcon("git-branch", __iconNode$j);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -17483,7 +17964,7 @@ function LanguageSwitcher({ language, onChange, compact = false }) {
               role: "option",
               "aria-selected": isSelected,
               onClick: () => selectLanguage(lang),
-              className: `flex w-full items-center justify-between gap-3 px-3 py-2.5 text-left transition-colors ${isSelected ? "bg-primary text-white" : "bg-background text-foreground hover:bg-surface"}`,
+              className: `flex w-full items-center justify-between gap-3 px-3 py-2.5 text-left transition-colors ${isSelected ? "kg-action-primary" : "bg-background text-foreground hover:bg-surface"}`,
               children: [
                 /* @__PURE__ */ jsxs("span", { className: "flex min-w-0 items-center gap-3", children: [
                   /* @__PURE__ */ jsx("span", { className: "w-8 shrink-0 font-mono text-sm font-semibold uppercase", children: LANGUAGE_LABELS[lang] }),
@@ -17595,13 +18076,16 @@ function Navbar() {
           "button",
           {
             onClick: () => setIsOpen(!isOpen),
+            "aria-label": isOpen ? "Close navigation menu" : "Open navigation menu",
+            "aria-expanded": isOpen,
+            "aria-controls": "mobile-navigation",
             className: "inline-flex items-center justify-center p-2 text-foreground hover:bg-surface focus:outline-none",
             children: isOpen ? /* @__PURE__ */ jsx(X, { className: "h-6 w-6" }) : /* @__PURE__ */ jsx(Menu, { className: "h-6 w-6" })
           }
         )
       ] })
     ] }) }),
-    isOpen && /* @__PURE__ */ jsx("div", { className: "md:hidden bg-background border-b border-border", children: /* @__PURE__ */ jsxs("div", { className: "px-2 pt-2 pb-3 space-y-1 sm:px-3", children: [
+    isOpen && /* @__PURE__ */ jsx("div", { id: "mobile-navigation", className: "md:hidden bg-background border-b border-border", children: /* @__PURE__ */ jsxs("div", { className: "px-2 pt-2 pb-3 space-y-1 sm:px-3", children: [
       navLinks.map((link) => /* @__PURE__ */ jsx(
         distExports.Link,
         {
@@ -17702,13 +18186,13 @@ function Footer() {
       ] })
     ] }),
     /* @__PURE__ */ jsxs("div", { className: "mt-16 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4", children: [
-      /* @__PURE__ */ jsxs("p", { className: "text-gray-500 text-sm", children: [
+      /* @__PURE__ */ jsxs("p", { className: "text-gray-400 text-sm", children: [
         "© ",
         (/* @__PURE__ */ new Date()).getFullYear(),
         " ",
         t.footer.rights
       ] }),
-      /* @__PURE__ */ jsxs("div", { className: "flex space-x-6 text-sm text-gray-500", children: [
+      /* @__PURE__ */ jsxs("div", { className: "flex space-x-6 text-sm text-gray-400", children: [
         /* @__PURE__ */ jsx(
           distExports.Link,
           {
@@ -17768,9 +18252,9 @@ const LOG_SEQUENCE = [
   { text: "[INFO] Initializing zero-trust architecture...", type: "info", delay: 400 },
   { text: "[INFO] Compiling React application...", type: "info", delay: 600 },
   { text: "[WARN] Scanning for vulnerabilities...", type: "warn", delay: 1200 },
-  { text: "✓ XSS Protection: ACTIVE", type: "success", delay: 200 },
-  { text: "✓ CSRF Tokens: VERIFIED", type: "success", delay: 200 },
-  { text: "✓ API Endpoints: ENCRYPTED (AES-256)", type: "success", delay: 200 },
+  { text: "[OK] XSS Protection: ACTIVE", type: "success", delay: 200 },
+  { text: "[OK] CSRF Tokens: VERIFIED", type: "success", delay: 200 },
+  { text: "[OK] API Endpoints: ENCRYPTED (AES-256)", type: "success", delay: 200 },
   { text: "[SUCCESS] Build completed securely in 2.4s.", type: "success", delay: 1e3 },
   { text: "kernel-guard@sys:~$ monitor_traffic", type: "cmd", delay: 800 },
   { text: "[INFO] Intercepting incoming requests...", type: "info", delay: 500 },
@@ -17778,6 +18262,22 @@ const LOG_SEQUENCE = [
   { text: "[INFO] Validating JWT signatures... OK", type: "success", delay: 400 },
   { text: "[INFO] System secure. Awaiting input...", type: "info", delay: 3e3 }
 ];
+function getLogColor(type) {
+  switch (type) {
+    case "cmd":
+      return "text-gray-200";
+    case "info":
+      return "text-[#78a9ff]";
+    case "warn":
+      return "text-[#f1c21b]";
+    case "success":
+      return "text-[#42be65]";
+    case "error":
+      return "text-[#ff8389]";
+    default:
+      return "text-gray-200";
+  }
+}
 function SecurityTerminal() {
   const [visibleLines, setVisibleLines] = useState(0);
   useEffect(() => {
@@ -17789,7 +18289,7 @@ function SecurityTerminal() {
     } else {
       const currentLog = LOG_SEQUENCE[visibleLines - 1];
       timeout = setTimeout(() => {
-        setVisibleLines((v) => v + 1);
+        setVisibleLines((value) => value + 1);
       }, currentLog.delay);
     }
     return () => clearTimeout(timeout);
@@ -17799,21 +18299,15 @@ function SecurityTerminal() {
       /* @__PURE__ */ jsx("div", { className: "w-3 h-3 rounded-full bg-red-500/80" }),
       /* @__PURE__ */ jsx("div", { className: "w-3 h-3 rounded-full bg-yellow-500/80" }),
       /* @__PURE__ */ jsx("div", { className: "w-3 h-3 rounded-full bg-green-500/80" }),
-      /* @__PURE__ */ jsx("div", { className: "ml-4 text-xs font-mono text-gray-500", children: "kernel-guard@server:~" })
+      /* @__PURE__ */ jsx("div", { className: "ml-4 text-xs font-mono text-gray-400", children: "kernel-guard@server:~" })
     ] }),
     /* @__PURE__ */ jsxs("div", { className: "p-5 font-mono text-sm h-[320px] overflow-y-auto flex flex-col gap-2", children: [
-      LOG_SEQUENCE.slice(0, visibleLines).map((log, i) => /* @__PURE__ */ jsxs("div", { className: "flex items-start gap-2 animate-fade-in", children: [
-        log.type === "cmd" && /* @__PURE__ */ jsx("span", { className: "text-primary shrink-0 mt-0.5", children: "❯" }),
-        /* @__PURE__ */ jsx("span", { className: `
-              ${log.type === "cmd" ? "text-gray-300" : ""}
-              ${log.type === "info" ? "text-blue-400" : ""}
-              ${log.type === "warn" ? "text-yellow-400" : ""}
-              ${log.type === "success" ? "text-green-400" : ""}
-              ${log.type === "error" ? "text-red-400" : ""}
-            `, children: log.text })
-      ] }, i)),
+      LOG_SEQUENCE.slice(0, visibleLines).map((log, index) => /* @__PURE__ */ jsxs("div", { className: "flex items-start gap-2 animate-fade-in", children: [
+        log.type === "cmd" && /* @__PURE__ */ jsx("span", { className: "text-[#78a9ff] shrink-0 mt-0.5", children: ">" }),
+        /* @__PURE__ */ jsx("span", { className: getLogColor(log.type), children: log.text })
+      ] }, index)),
       /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2 mt-1", children: [
-        /* @__PURE__ */ jsx("span", { className: "text-primary shrink-0", children: "❯" }),
+        /* @__PURE__ */ jsx("span", { className: "text-[#78a9ff] shrink-0", children: ">" }),
         /* @__PURE__ */ jsx("span", { className: "w-2 h-4 bg-gray-300/70 animate-pulse" })
       ] })
     ] }),
@@ -18113,36 +18607,81 @@ function SEO({
     /* @__PURE__ */ jsx("script", { type: "application/ld+json", children: JSON.stringify(structuredData) })
   ] });
 }
+const engineeringEvidence = {
+  measuredAt: "2026-05-31",
+  delivery: {
+    prerenderedRoutes: 100,
+    indexableUrls: 80,
+    supportedLanguages: 5
+  },
+  lighthouse: {
+    desktop: {
+      performance: 97,
+      accessibility: 100,
+      totalBlockingTime: "0 ms"
+    }
+  },
+  github: {
+    publicRepositories: 7,
+    latestPublicUpdate: "2026-05-29"
+  }
+};
 function Home() {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
   const features = [
     {
       icon: /* @__PURE__ */ jsx(PanelsTopLeft, { className: "w-6 h-6 text-primary" }),
       title: t.home.features.frontend.title,
       description: t.home.features.frontend.desc,
-      link: "/services/secure-frontend/",
+      link: localizePath("/services/secure-frontend/", language),
       prefetch: "secureFrontend"
     },
     {
       icon: /* @__PURE__ */ jsx(Server, { className: "w-6 h-6 text-primary" }),
       title: t.home.features.backend.title,
       description: t.home.features.backend.desc,
-      link: "/services/hardened-backend/",
+      link: localizePath("/services/hardened-backend/", language),
       prefetch: "hardenedBackend"
     },
     {
       icon: /* @__PURE__ */ jsx(Database, { className: "w-6 h-6 text-primary" }),
       title: t.home.features.data.title,
       description: t.home.features.data.desc,
-      link: "/services/data-protection/",
+      link: localizePath("/services/data-protection/", language),
       prefetch: "dataProtection"
     },
     {
       icon: /* @__PURE__ */ jsx(Zap, { className: "w-6 h-6 text-primary" }),
       title: t.home.features.performance.title,
       description: t.home.features.performance.desc,
-      link: "/services/high-performance/",
+      link: localizePath("/services/high-performance/", language),
       prefetch: "highPerformance"
+    }
+  ];
+  const proofCards = [
+    {
+      icon: /* @__PURE__ */ jsx(Gauge, { className: "h-5 w-5" }),
+      value: `${engineeringEvidence.lighthouse.desktop.performance}/${engineeringEvidence.lighthouse.desktop.accessibility}`,
+      label: t.home.proof.cards.lighthouse.label,
+      detail: t.home.proof.cards.lighthouse.detail
+    },
+    {
+      icon: /* @__PURE__ */ jsx(ShieldCheck, { className: "h-5 w-5" }),
+      value: `${engineeringEvidence.delivery.prerenderedRoutes}`,
+      label: t.home.proof.cards.delivery.label,
+      detail: t.home.proof.cards.delivery.detail
+    },
+    {
+      icon: /* @__PURE__ */ jsx(GitBranch, { className: "h-5 w-5" }),
+      value: `${engineeringEvidence.github.publicRepositories}`,
+      label: t.home.proof.cards.openSource.label,
+      detail: t.home.proof.cards.openSource.detail
+    },
+    {
+      icon: /* @__PURE__ */ jsx(Earth, { className: "h-5 w-5" }),
+      value: `${engineeringEvidence.delivery.supportedLanguages}`,
+      label: t.home.proof.cards.languages.label,
+      detail: t.home.proof.cards.languages.detail
     }
   ];
   return /* @__PURE__ */ jsxs("div", { className: "flex flex-col bg-background", children: [
@@ -18167,10 +18706,10 @@ function Home() {
           /* @__PURE__ */ jsxs(
             distExports.Link,
             {
-              to: "/projects/",
+              to: localizePath("/projects/", language),
               onPointerEnter: () => prefetchRoutes(["projects", "projectDetails"]),
               onFocus: () => prefetchRoutes(["projects", "projectDetails"]),
-              className: "inline-flex items-center justify-between px-6 py-4 bg-primary text-white hover:bg-primary-dark transition-colors w-full sm:w-64",
+              className: "inline-flex items-center justify-between px-6 py-4 kg-action-primary transition-colors w-full sm:w-64",
               children: [
                 /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.home.viewArch }),
                 /* @__PURE__ */ jsx(ArrowRight, { className: "w-5 h-5" })
@@ -18180,7 +18719,7 @@ function Home() {
           /* @__PURE__ */ jsxs(
             distExports.Link,
             {
-              to: "/completed-projects/",
+              to: localizePath("/completed-projects/", language),
               onPointerEnter: () => prefetchRoutes(["completedProjects", "completedProjectDetails"]),
               onFocus: () => prefetchRoutes(["completedProjects", "completedProjectDetails"]),
               className: "inline-flex items-center justify-between px-6 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors w-full sm:w-64",
@@ -18207,23 +18746,49 @@ function Home() {
       ] }),
       /* @__PURE__ */ jsx("div", { className: "hidden lg:flex justify-center items-center relative", children: /* @__PURE__ */ jsx(SecurityTerminal, {}) })
     ] }) }) }),
-    /* @__PURE__ */ jsx("section", { className: "py-24 bg-surface overflow-hidden", children: /* @__PURE__ */ jsx("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: /* @__PURE__ */ jsxs(
-      motion.div,
-      {
-        initial: { opacity: 0, y: 30 },
-        whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true, margin: "-100px" },
-        transition: { duration: 0.8, ease: "easeOut" },
-        className: "grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8",
-        children: [
-          /* @__PURE__ */ jsx("div", { className: "lg:col-span-4", children: /* @__PURE__ */ jsx("h2", { className: "text-3xl font-light mb-6", children: t.home.missionTitle }) }),
-          /* @__PURE__ */ jsxs("div", { className: "lg:col-span-8 space-y-8 text-lg text-foreground leading-relaxed font-light", children: [
-            /* @__PURE__ */ jsx("p", { children: t.home.missionP1 }),
-            /* @__PURE__ */ jsx("p", { children: t.home.missionP2 })
+    /* @__PURE__ */ jsx("section", { className: "py-24 bg-surface overflow-hidden", children: /* @__PURE__ */ jsx("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8", children: [
+      /* @__PURE__ */ jsx("div", { className: "lg:col-span-4", children: /* @__PURE__ */ jsx("h2", { className: "text-3xl font-light mb-6", children: t.home.missionTitle }) }),
+      /* @__PURE__ */ jsxs("div", { className: "lg:col-span-8 space-y-8 text-lg text-foreground leading-relaxed font-light", children: [
+        /* @__PURE__ */ jsx("p", { children: t.home.missionP1 }),
+        /* @__PURE__ */ jsx("p", { children: t.home.missionP2 })
+      ] })
+    ] }) }) }),
+    /* @__PURE__ */ jsx("section", { className: "py-24 border-t border-border bg-background", children: /* @__PURE__ */ jsx("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-1 lg:grid-cols-12 gap-12", children: [
+      /* @__PURE__ */ jsxs("div", { className: "lg:col-span-4", children: [
+        /* @__PURE__ */ jsx("div", { className: "inline-block px-3 py-1 mb-6 border border-border text-xs font-mono tracking-widest text-foreground/70 uppercase", children: t.home.proof.badge }),
+        /* @__PURE__ */ jsx("h2", { className: "text-3xl md:text-4xl font-light mb-6", children: t.home.proof.title }),
+        /* @__PURE__ */ jsx("p", { className: "text-lg text-foreground/70 font-light leading-relaxed", children: t.home.proof.desc })
+      ] }),
+      /* @__PURE__ */ jsxs("div", { className: "lg:col-span-8", children: [
+        /* @__PURE__ */ jsx("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-4", children: proofCards.map((card) => /* @__PURE__ */ jsxs("div", { className: "border border-border bg-surface p-6", children: [
+          /* @__PURE__ */ jsxs("div", { className: "mb-8 flex items-center justify-between text-primary", children: [
+            card.icon,
+            /* @__PURE__ */ jsx("span", { className: "font-mono text-xs text-foreground/60", children: engineeringEvidence.measuredAt })
+          ] }),
+          /* @__PURE__ */ jsx("div", { className: "font-mono text-4xl text-foreground mb-3", children: card.value }),
+          /* @__PURE__ */ jsx("h3", { className: "text-base font-medium text-foreground mb-2", children: card.label }),
+          /* @__PURE__ */ jsx("p", { className: "text-sm leading-relaxed text-foreground/70", children: card.detail })
+        ] }, card.label)) }),
+        /* @__PURE__ */ jsxs("div", { className: "mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 border border-border bg-surface p-5 text-sm text-foreground/70", children: [
+          /* @__PURE__ */ jsxs("div", { children: [
+            /* @__PURE__ */ jsx("span", { className: "font-mono text-foreground", children: engineeringEvidence.delivery.indexableUrls }),
+            " ",
+            t.home.proof.summary.indexableUrls
+          ] }),
+          /* @__PURE__ */ jsxs("div", { children: [
+            /* @__PURE__ */ jsx("span", { className: "font-mono text-foreground", children: engineeringEvidence.lighthouse.desktop.totalBlockingTime }),
+            " ",
+            t.home.proof.summary.desktopTbt
+          ] }),
+          /* @__PURE__ */ jsxs("div", { children: [
+            /* @__PURE__ */ jsx("span", { className: "font-mono text-foreground", children: engineeringEvidence.github.latestPublicUpdate }),
+            " ",
+            t.home.proof.summary.latestUpdate
           ] })
-        ]
-      }
-    ) }) }),
+        ] }),
+        /* @__PURE__ */ jsx("p", { className: "mt-4 text-xs text-foreground/50 font-mono", children: t.home.proof.footnote })
+      ] })
+    ] }) }) }),
     /* @__PURE__ */ jsxs("section", { className: "py-24 border-t border-border bg-surface overflow-hidden", children: [
       /* @__PURE__ */ jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center", children: [
         /* @__PURE__ */ jsx("h2", { className: "text-3xl font-light mb-4", children: t.home.techStackTitle }),
@@ -18238,54 +18803,34 @@ function Home() {
         ] })
       ] })
     ] }),
-    /* @__PURE__ */ jsx("section", { className: "py-24 border-t border-border bg-background", children: /* @__PURE__ */ jsx("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: /* @__PURE__ */ jsx(
-      motion.div,
-      {
-        initial: "hidden",
-        whileInView: "visible",
-        viewport: { once: true, margin: "-50px" },
-        variants: {
-          hidden: { opacity: 0 },
-          visible: {
-            opacity: 1,
-            transition: { staggerChildren: 0.15 }
-          }
-        },
-        className: "grid grid-cols-1 md:grid-cols-3 gap-6",
-        children: features.map((feature, index) => {
-          const isLarge = index === 0 || index === 3;
-          return /* @__PURE__ */ jsx(
-            motion.div,
+    /* @__PURE__ */ jsx("section", { className: "py-24 border-t border-border bg-background", children: /* @__PURE__ */ jsx("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: /* @__PURE__ */ jsx("div", { className: "grid grid-cols-1 md:grid-cols-3 gap-6", children: features.map((feature, index) => {
+      const isLarge = index === 0 || index === 3;
+      return /* @__PURE__ */ jsx(
+        "div",
+        {
+          className: `${isLarge ? "md:col-span-2" : "md:col-span-1"}`,
+          children: /* @__PURE__ */ jsxs(
+            distExports.Link,
             {
-              variants: {
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 20 } }
-              },
-              className: `${isLarge ? "md:col-span-2" : "md:col-span-1"}`,
-              children: /* @__PURE__ */ jsxs(
-                distExports.Link,
-                {
-                  to: feature.link,
-                  onPointerEnter: () => prefetchRoute(feature.prefetch),
-                  onFocus: () => prefetchRoute(feature.prefetch),
-                  className: "group relative block h-full p-8 bg-surface border border-border hover:border-primary/50 transition-colors overflow-hidden",
-                  children: [
-                    /* @__PURE__ */ jsx("div", { className: "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none", children: /* @__PURE__ */ jsx("div", { className: "absolute -inset-[100%] bg-gradient-to-r from-transparent via-primary/5 to-transparent rotate-45 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" }) }),
-                    /* @__PURE__ */ jsxs("div", { className: "relative z-10 flex flex-col h-full", children: [
-                      /* @__PURE__ */ jsx("div", { className: "mb-12", children: feature.icon }),
-                      /* @__PURE__ */ jsx("h3", { className: "text-2xl font-medium mb-4", children: feature.title }),
-                      /* @__PURE__ */ jsx("p", { className: "text-foreground/80 text-base leading-relaxed font-light flex-grow", children: feature.description }),
-                      /* @__PURE__ */ jsx("div", { className: "mt-8 flex justify-end opacity-0 group-hover:opacity-100 transition-opacity translate-x-[-10px] group-hover:translate-x-0 duration-300", children: /* @__PURE__ */ jsx(ArrowRight, { className: "w-6 h-6 text-primary" }) })
-                    ] })
-                  ]
-                }
-              )
-            },
-            index
-          );
-        })
-      }
-    ) }) }),
+              to: feature.link,
+              onPointerEnter: () => prefetchRoute(feature.prefetch),
+              onFocus: () => prefetchRoute(feature.prefetch),
+              className: "group relative block h-full p-8 bg-surface border border-border hover:border-primary/50 transition-colors overflow-hidden",
+              children: [
+                /* @__PURE__ */ jsx("div", { className: "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none", children: /* @__PURE__ */ jsx("div", { className: "absolute -inset-[100%] bg-gradient-to-r from-transparent via-primary/5 to-transparent rotate-45 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" }) }),
+                /* @__PURE__ */ jsxs("div", { className: "relative z-10 flex flex-col h-full", children: [
+                  /* @__PURE__ */ jsx("div", { className: "mb-12", children: feature.icon }),
+                  /* @__PURE__ */ jsx("h3", { className: "text-2xl font-medium mb-4", children: feature.title }),
+                  /* @__PURE__ */ jsx("p", { className: "text-foreground/80 text-base leading-relaxed font-light flex-grow", children: feature.description }),
+                  /* @__PURE__ */ jsx("div", { className: "mt-8 flex justify-end opacity-0 group-hover:opacity-100 transition-opacity translate-x-[-10px] group-hover:translate-x-0 duration-300", children: /* @__PURE__ */ jsx(ArrowRight, { className: "w-6 h-6 text-primary" }) })
+                ] })
+              ]
+            }
+          )
+        },
+        index
+      );
+    }) }) }) }),
     /* @__PURE__ */ jsx("section", { className: "py-24 border-t border-border bg-surface", children: /* @__PURE__ */ jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: [
       /* @__PURE__ */ jsx("h2", { className: "text-3xl font-light mb-16 max-w-2xl", children: t.home.principles.title }),
       /* @__PURE__ */ jsx("div", { className: "grid grid-cols-1 md:grid-cols-3 gap-12 divide-y md:divide-y-0 md:divide-x divide-border", children: t.home.principles.items.map((item, index) => /* @__PURE__ */ jsxs("div", { className: `pt-8 md:pt-0 ${index === 0 ? "md:pr-8" : index === 1 ? "md:px-8" : "md:pl-8"}`, children: [
@@ -18391,6 +18936,7 @@ function Projects() {
                     onClick: (e) => e.stopPropagation(),
                     className: "text-primary hover:text-primary-dark transition-colors flex items-center gap-1 text-sm font-medium",
                     title: t.projectDetails.viewSource,
+                    "aria-label": `${project.title}: ${t.projectDetails.viewSource}`,
                     children: /* @__PURE__ */ jsx(Github, { className: "w-5 h-5" })
                   }
                 ),
@@ -18403,6 +18949,7 @@ function Projects() {
                     onClick: (e) => e.stopPropagation(),
                     className: "text-primary hover:text-primary-dark transition-colors flex items-center gap-1 text-sm font-medium",
                     title: t.projectDetails.liveDemo,
+                    "aria-label": `${project.title}: ${t.projectDetails.liveDemo}`,
                     children: /* @__PURE__ */ jsx(ExternalLink, { className: "w-5 h-5" })
                   }
                 )
@@ -18419,6 +18966,29 @@ const Projects$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.definePr
   __proto__: null,
   default: Projects
 }, Symbol.toStringTag, { value: "Module" }));
+const repositoryEvidence = {
+  cathodex: {
+    primaryLanguage: "Python",
+    lastPublicUpdate: "2026-04-13",
+    trackedIssues: 1,
+    repositorySizeKb: 24921,
+    languageMix: ["Python", "TypeScript", "HTML", "PowerShell", "Shell"]
+  },
+  "post-quantum-messaging-app": {
+    primaryLanguage: "Rust",
+    lastPublicUpdate: "2026-04-16",
+    trackedIssues: 0,
+    repositorySizeKb: 14381,
+    languageMix: ["Rust", "TypeScript", "Kotlin", "Python", "Swift"]
+  },
+  "aegis-bpf": {
+    primaryLanguage: "C++",
+    lastPublicUpdate: "2026-05-24",
+    trackedIssues: 11,
+    repositorySizeKb: 5575,
+    languageMix: ["C++", "Shell", "C", "Go", "Python"]
+  }
+};
 const KNOWN_PROGRAMMING_LANGUAGES = /* @__PURE__ */ new Set([
   "Python",
   "Rust",
@@ -18442,6 +19012,8 @@ function ProjectDetails() {
   const description = localizedText(project.description, language);
   const technicalDetails = localizedText(project.technicalDetails, language);
   const marketingDetails = localizedText(project.marketingDetails, language);
+  const repoEvidence = repositoryEvidence[project.id];
+  const repositorySize = repoEvidence ? `${(repoEvidence.repositorySizeKb / 1024).toFixed(1)} MB` : null;
   return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-24", children: [
     /* @__PURE__ */ jsx(
       SEO,
@@ -18510,6 +19082,49 @@ function ProjectDetails() {
           }
         ) })
       ] }),
+      repoEvidence && /* @__PURE__ */ jsxs("section", { className: "mb-16 border border-border bg-surface p-8", children: [
+        /* @__PURE__ */ jsxs("div", { className: "flex flex-col gap-3 mb-8 md:flex-row md:items-end md:justify-between", children: [
+          /* @__PURE__ */ jsxs("div", { children: [
+            /* @__PURE__ */ jsx("h2", { className: "text-2xl font-light", children: t.projectDetails.repositoryEvidence.title }),
+            /* @__PURE__ */ jsx("p", { className: "mt-2 text-sm text-foreground/60 font-mono", children: t.projectDetails.repositoryEvidence.measuredAt })
+          ] }),
+          project.github && /* @__PURE__ */ jsxs(
+            "a",
+            {
+              href: project.github,
+              target: "_blank",
+              rel: "noopener noreferrer",
+              className: "inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary-dark",
+              children: [
+                "GitHub",
+                /* @__PURE__ */ jsx(ExternalLink, { className: "h-4 w-4" })
+              ]
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-1 md:grid-cols-4 gap-4", children: [
+          /* @__PURE__ */ jsxs("div", { className: "border border-border bg-background p-4", children: [
+            /* @__PURE__ */ jsx("div", { className: "text-xs font-mono uppercase text-foreground/50 mb-2", children: t.projectDetails.repositoryEvidence.primaryLanguage }),
+            /* @__PURE__ */ jsx("div", { className: "text-lg font-medium text-foreground", children: repoEvidence.primaryLanguage })
+          ] }),
+          /* @__PURE__ */ jsxs("div", { className: "border border-border bg-background p-4", children: [
+            /* @__PURE__ */ jsx("div", { className: "text-xs font-mono uppercase text-foreground/50 mb-2", children: t.projectDetails.repositoryEvidence.lastPublicUpdate }),
+            /* @__PURE__ */ jsx("div", { className: "text-lg font-medium text-foreground", children: repoEvidence.lastPublicUpdate })
+          ] }),
+          /* @__PURE__ */ jsxs("div", { className: "border border-border bg-background p-4", children: [
+            /* @__PURE__ */ jsx("div", { className: "text-xs font-mono uppercase text-foreground/50 mb-2", children: t.projectDetails.repositoryEvidence.trackedIssues }),
+            /* @__PURE__ */ jsx("div", { className: "text-lg font-medium text-foreground", children: repoEvidence.trackedIssues })
+          ] }),
+          /* @__PURE__ */ jsxs("div", { className: "border border-border bg-background p-4", children: [
+            /* @__PURE__ */ jsx("div", { className: "text-xs font-mono uppercase text-foreground/50 mb-2", children: t.projectDetails.repositoryEvidence.repositorySize }),
+            /* @__PURE__ */ jsx("div", { className: "text-lg font-medium text-foreground", children: repositorySize })
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxs("div", { className: "mt-6", children: [
+          /* @__PURE__ */ jsx("div", { className: "text-xs font-mono uppercase text-foreground/50 mb-3", children: t.projectDetails.repositoryEvidence.languageMix }),
+          /* @__PURE__ */ jsx("div", { className: "flex flex-wrap gap-2", children: repoEvidence.languageMix.map((item) => /* @__PURE__ */ jsx("span", { className: "border border-border bg-background px-3 py-1 text-xs text-foreground", children: item }, item)) })
+        ] })
+      ] }),
       /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-1 md:grid-cols-2 gap-12 mb-16", children: [
         /* @__PURE__ */ jsxs("div", { className: "bg-surface p-8 border border-border", children: [
           /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-3 mb-6", children: [
@@ -18533,7 +19148,7 @@ function ProjectDetails() {
             href: project.github,
             target: "_blank",
             rel: "noopener noreferrer",
-            className: "inline-flex items-center justify-between px-6 py-4 bg-primary text-white hover:bg-primary-dark transition-colors w-full sm:w-64",
+            className: "inline-flex items-center justify-between px-6 py-4 kg-action-primary transition-colors w-full sm:w-64",
             children: [
               /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.projectDetails.viewSource }),
               /* @__PURE__ */ jsx(Github, { className: "w-5 h-5" })
@@ -18633,6 +19248,7 @@ function CompletedProjects() {
                   onClick: (e) => e.stopPropagation(),
                   className: "text-primary hover:text-primary-dark transition-colors flex items-center gap-1 text-sm font-medium",
                   title: t.completedProjects.visit,
+                  "aria-label": `${project.title}: ${t.completedProjects.visit}`,
                   children: /* @__PURE__ */ jsx(ExternalLink, { className: "w-5 h-5" })
                 }
               ) })
@@ -18706,7 +19322,7 @@ function CompletedProjectDetails() {
                   href: project.url,
                   target: "_blank",
                   rel: "noopener noreferrer",
-                  className: "flex items-center justify-between p-4 bg-primary text-white hover:bg-primary-dark transition-colors group",
+                  className: "flex items-center justify-between p-4 kg-action-primary transition-colors group",
                   children: [
                     /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.completedProjects.visit }),
                     /* @__PURE__ */ jsx(ExternalLink, { className: "w-5 h-5 group-hover:scale-110 transition-transform" })
@@ -18988,26 +19604,13 @@ function Services() {
       }
     ),
     /* @__PURE__ */ jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: [
-      /* @__PURE__ */ jsxs(
-        motion.div,
-        {
-          initial: { opacity: 0, y: 20 },
-          animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.5 },
-          className: "text-center max-w-3xl mx-auto mb-20",
-          children: [
-            /* @__PURE__ */ jsx("h1", { className: "text-4xl md:text-5xl font-light text-foreground mb-6", children: t.servicesPage.title }),
-            /* @__PURE__ */ jsx("p", { className: "text-lg md:text-xl text-foreground/70 font-light leading-relaxed", children: t.servicesPage.subtitle })
-          ]
-        }
-      ),
+      /* @__PURE__ */ jsxs("div", { className: "text-center max-w-3xl mx-auto mb-20", children: [
+        /* @__PURE__ */ jsx("h1", { className: "text-4xl md:text-5xl font-light text-foreground mb-6", children: t.servicesPage.title }),
+        /* @__PURE__ */ jsx("p", { className: "text-lg md:text-xl text-foreground/70 font-light leading-relaxed", children: t.servicesPage.subtitle })
+      ] }),
       /* @__PURE__ */ jsx("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-32", children: t.servicesPage.services.map((service, index) => /* @__PURE__ */ jsxs(
-        motion.div,
+        "div",
         {
-          initial: { opacity: 0, y: 20 },
-          whileInView: { opacity: 1, y: 0 },
-          viewport: { once: true, margin: "-50px" },
-          transition: { duration: 0.5, delay: index * 0.1 },
           className: "group relative block h-full p-8 bg-surface border border-border hover:border-primary/50 transition-colors overflow-hidden rounded-sm",
           children: [
             /* @__PURE__ */ jsx("div", { className: "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none", children: /* @__PURE__ */ jsx("div", { className: "absolute -inset-[100%] bg-gradient-to-r from-transparent via-primary/5 to-transparent rotate-45 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" }) }),
@@ -19020,34 +19623,24 @@ function Services() {
         },
         index
       )) }),
-      /* @__PURE__ */ jsxs(
-        motion.div,
-        {
-          initial: { opacity: 0, y: 20 },
-          whileInView: { opacity: 1, y: 0 },
-          viewport: { once: true },
-          transition: { duration: 0.5 },
-          className: "relative overflow-hidden border border-border bg-surface p-12 md:p-20 text-center",
-          children: [
-            /* @__PURE__ */ jsx("div", { className: "absolute inset-0 opacity-[0.03] pointer-events-none", style: { backgroundImage: "radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)", backgroundSize: "32px 32px" } }),
-            /* @__PURE__ */ jsxs("div", { className: "relative z-10 max-w-2xl mx-auto", children: [
-              /* @__PURE__ */ jsx("h2", { className: "text-3xl md:text-4xl font-light mb-6", children: t.servicesPage.ctaTitle }),
-              /* @__PURE__ */ jsx("p", { className: "text-lg text-foreground/70 font-light mb-10", children: t.servicesPage.ctaDesc }),
-              /* @__PURE__ */ jsxs(
-                "a",
-                {
-                  href: "mailto:iletisim@kernelguard.net",
-                  className: "inline-flex items-center justify-between px-8 py-4 bg-primary text-white hover:bg-primary-dark transition-colors w-full sm:w-auto min-w-[200px]",
-                  children: [
-                    /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.servicesPage.ctaButton }),
-                    /* @__PURE__ */ jsx(ArrowRight, { className: "w-5 h-5 ml-4" })
-                  ]
-                }
-              )
-            ] })
-          ]
-        }
-      )
+      /* @__PURE__ */ jsxs("div", { className: "relative overflow-hidden border border-border bg-surface p-12 md:p-20 text-center", children: [
+        /* @__PURE__ */ jsx("div", { className: "absolute inset-0 opacity-[0.03] pointer-events-none", style: { backgroundImage: "radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)", backgroundSize: "32px 32px" } }),
+        /* @__PURE__ */ jsxs("div", { className: "relative z-10 max-w-2xl mx-auto", children: [
+          /* @__PURE__ */ jsx("h2", { className: "text-3xl md:text-4xl font-light mb-6", children: t.servicesPage.ctaTitle }),
+          /* @__PURE__ */ jsx("p", { className: "text-lg text-foreground/70 font-light mb-10", children: t.servicesPage.ctaDesc }),
+          /* @__PURE__ */ jsxs(
+            "a",
+            {
+              href: "mailto:iletisim@kernelguard.net",
+              className: "inline-flex items-center justify-between px-8 py-4 kg-action-primary transition-colors w-full sm:w-auto min-w-[200px]",
+              children: [
+                /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.servicesPage.ctaButton }),
+                /* @__PURE__ */ jsx(ArrowRight, { className: "w-5 h-5 ml-4" })
+              ]
+            }
+          )
+        ] })
+      ] })
     ] })
   ] });
 }
@@ -19155,7 +19748,7 @@ function Cookies() {
           ] }),
           /* @__PURE__ */ jsx("div", { className: "flex items-center", children: /* @__PURE__ */ jsx("button", { className: "w-12 h-6 bg-border rounded-full relative transition-colors hover:bg-gray-400", children: /* @__PURE__ */ jsx("div", { className: "absolute left-1 top-1 w-4 h-4 bg-white rounded-full" }) }) })
         ] }) }),
-        /* @__PURE__ */ jsx("button", { className: "px-8 py-4 bg-primary text-white hover:bg-primary-dark transition-colors font-medium", children: t.cookies.save })
+        /* @__PURE__ */ jsx("button", { className: "px-8 py-4 kg-action-primary transition-colors font-medium", children: t.cookies.save })
       ] })
     ] })
   ] });
@@ -19176,78 +19769,57 @@ function Contact() {
       }
     ),
     /* @__PURE__ */ jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: [
-      /* @__PURE__ */ jsxs(
-        motion.div,
-        {
-          initial: { opacity: 0, y: 20 },
-          animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.5 },
-          className: "max-w-3xl mb-16",
-          children: [
-            /* @__PURE__ */ jsx("h1", { className: "text-4xl md:text-5xl font-light text-foreground mb-6", children: t.contact.title }),
-            /* @__PURE__ */ jsx("p", { className: "text-lg md:text-xl text-foreground/70 font-light leading-relaxed", children: t.contact.subtitle })
-          ]
-        }
-      ),
+      /* @__PURE__ */ jsxs("div", { className: "max-w-3xl mb-16", children: [
+        /* @__PURE__ */ jsx("h1", { className: "text-4xl md:text-5xl font-light text-foreground mb-6", children: t.contact.title }),
+        /* @__PURE__ */ jsx("p", { className: "text-lg md:text-xl text-foreground/70 font-light leading-relaxed", children: t.contact.subtitle })
+      ] }),
       /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-12", children: [
-        /* @__PURE__ */ jsxs(
-          motion.aside,
-          {
-            initial: { opacity: 0, y: 20 },
-            animate: { opacity: 1, y: 0 },
-            transition: { duration: 0.5, delay: 0.1 },
-            className: "border border-border bg-surface p-8 h-fit",
-            children: [
-              /* @__PURE__ */ jsx("h2", { className: "text-2xl font-medium text-foreground mb-4", children: t.contact.info.title }),
-              /* @__PURE__ */ jsx("p", { className: "text-foreground/70 font-light leading-relaxed mb-10", children: t.contact.info.desc }),
-              /* @__PURE__ */ jsxs("div", { className: "space-y-6", children: [
-                /* @__PURE__ */ jsxs(
-                  "a",
-                  {
-                    href: "mailto:iletisim@kernelguard.net",
-                    className: "flex items-center gap-4 text-foreground/80 hover:text-primary transition-colors",
-                    children: [
-                      /* @__PURE__ */ jsx("span", { className: "flex h-11 w-11 items-center justify-center border border-border text-primary", children: /* @__PURE__ */ jsx(Mail, { className: "h-5 w-5" }) }),
-                      /* @__PURE__ */ jsxs("span", { children: [
-                        /* @__PURE__ */ jsx("span", { className: "block text-sm text-foreground/50", children: t.contact.info.email }),
-                        /* @__PURE__ */ jsx("span", { className: "font-medium", children: "iletisim@kernelguard.net" })
-                      ] })
-                    ]
-                  }
-                ),
-                /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-4 text-foreground/80", children: [
-                  /* @__PURE__ */ jsx("span", { className: "flex h-11 w-11 items-center justify-center border border-border text-primary", children: /* @__PURE__ */ jsx(MapPin, { className: "h-5 w-5" }) }),
+        /* @__PURE__ */ jsxs("aside", { className: "border border-border bg-surface p-8 h-fit", children: [
+          /* @__PURE__ */ jsx("h2", { className: "text-2xl font-medium text-foreground mb-4", children: t.contact.info.title }),
+          /* @__PURE__ */ jsx("p", { className: "text-foreground/70 font-light leading-relaxed mb-10", children: t.contact.info.desc }),
+          /* @__PURE__ */ jsxs("div", { className: "space-y-6", children: [
+            /* @__PURE__ */ jsxs(
+              "a",
+              {
+                href: "mailto:iletisim@kernelguard.net",
+                className: "flex items-center gap-4 text-foreground/80 hover:text-primary transition-colors",
+                children: [
+                  /* @__PURE__ */ jsx("span", { className: "flex h-11 w-11 items-center justify-center border border-border text-primary", children: /* @__PURE__ */ jsx(Mail, { className: "h-5 w-5" }) }),
                   /* @__PURE__ */ jsxs("span", { children: [
-                    /* @__PURE__ */ jsx("span", { className: "block text-sm text-foreground/50", children: t.contact.info.location }),
-                    /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.contact.info.locationValue })
+                    /* @__PURE__ */ jsx("span", { className: "block text-sm text-foreground/50", children: t.contact.info.email }),
+                    /* @__PURE__ */ jsx("span", { className: "font-medium", children: "iletisim@kernelguard.net" })
                   ] })
-                ] }),
-                /* @__PURE__ */ jsxs(
-                  "a",
-                  {
-                    href: "https://github.com/ErenAri/kernel-guard-frontend",
-                    target: "_blank",
-                    rel: "noreferrer",
-                    className: "flex items-center gap-4 text-foreground/80 hover:text-primary transition-colors",
-                    children: [
-                      /* @__PURE__ */ jsx("span", { className: "flex h-11 w-11 items-center justify-center border border-border text-primary", children: /* @__PURE__ */ jsx(Github, { className: "h-5 w-5" }) }),
-                      /* @__PURE__ */ jsxs("span", { children: [
-                        /* @__PURE__ */ jsx("span", { className: "block text-sm text-foreground/50", children: t.contact.info.social }),
-                        /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.contact.info.github })
-                      ] })
-                    ]
-                  }
-                )
+                ]
+              }
+            ),
+            /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-4 text-foreground/80", children: [
+              /* @__PURE__ */ jsx("span", { className: "flex h-11 w-11 items-center justify-center border border-border text-primary", children: /* @__PURE__ */ jsx(MapPin, { className: "h-5 w-5" }) }),
+              /* @__PURE__ */ jsxs("span", { children: [
+                /* @__PURE__ */ jsx("span", { className: "block text-sm text-foreground/50", children: t.contact.info.location }),
+                /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.contact.info.locationValue })
               ] })
-            ]
-          }
-        ),
+            ] }),
+            /* @__PURE__ */ jsxs(
+              "a",
+              {
+                href: "https://github.com/Kernel-Guard",
+                target: "_blank",
+                rel: "noreferrer",
+                className: "flex items-center gap-4 text-foreground/80 hover:text-primary transition-colors",
+                children: [
+                  /* @__PURE__ */ jsx("span", { className: "flex h-11 w-11 items-center justify-center border border-border text-primary", children: /* @__PURE__ */ jsx(Github, { className: "h-5 w-5" }) }),
+                  /* @__PURE__ */ jsxs("span", { children: [
+                    /* @__PURE__ */ jsx("span", { className: "block text-sm text-foreground/50", children: t.contact.info.social }),
+                    /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.contact.info.github })
+                  ] })
+                ]
+              }
+            )
+          ] })
+        ] }),
         /* @__PURE__ */ jsxs(
-          motion.form,
+          "form",
           {
-            initial: { opacity: 0, y: 20 },
-            animate: { opacity: 1, y: 0 },
-            transition: { duration: 0.5, delay: 0.2 },
             action: "https://api.web3forms.com/submit",
             method: "POST",
             className: "border border-border bg-surface p-8 space-y-6",
@@ -19304,7 +19876,7 @@ function Contact() {
                 {
                   type: "submit",
                   disabled: true,
-                  className: "inline-flex w-full sm:w-auto items-center justify-center gap-3 bg-primary px-8 py-4 font-medium text-white transition-colors hover:bg-primary-dark disabled:cursor-not-allowed disabled:opacity-50",
+                  className: "inline-flex w-full sm:w-auto items-center justify-center gap-3 kg-action-primary px-8 py-4 font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50",
                   children: [
                     /* @__PURE__ */ jsx("span", { children: t.contact.form.submit }),
                     /* @__PURE__ */ jsx(Send, { className: "h-5 w-5" })

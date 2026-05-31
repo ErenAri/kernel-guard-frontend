@@ -5,9 +5,7 @@ export interface GithubConfig {
 
 export class GithubService {
   private config: GithubConfig;
-  // Use absolute path for Vercel functions, but allow localhost for dev if configured.
-  // In a standard Vite setup without a proxy, local dev might need to point to a local api server, 
-  // but for simplicity we assume the API route is available at /api/github
+  // Cloudflare Pages Functions expose the GitHub bridge at this same-origin route.
   private apiUrl = '/api/github';
 
   constructor(config: GithubConfig) {
@@ -28,7 +26,14 @@ export class GithubService {
       }),
     });
 
-    const data = await response.json();
+    const rawBody = await response.text();
+    let data: any = {};
+
+    try {
+      data = rawBody ? JSON.parse(rawBody) : {};
+    } catch {
+      data = { error: rawBody || 'Unexpected API response.' };
+    }
 
     if (!response.ok) {
       throw new Error(data.error || 'API Request Failed');

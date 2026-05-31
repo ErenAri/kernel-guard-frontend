@@ -76,7 +76,7 @@ export default function CompletedProjectDetails() {
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-4 bg-primary text-white hover:bg-primary-dark transition-colors group"
+                    className="flex items-center justify-between p-4 kg-action-primary transition-colors group"
                   >
                     <span className="font-medium">{t.completedProjects.visit}</span>
                     <ExternalLink className="w-5 h-5 group-hover:scale-110 transition-transform" />

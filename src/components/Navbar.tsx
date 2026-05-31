@@ -105,7 +105,7 @@ function LanguageSwitcher({ language, onChange, compact = false }: LanguageSwitc
                 onClick={() => selectLanguage(lang)}
                 className={`flex w-full items-center justify-between gap-3 px-3 py-2.5 text-left transition-colors ${
                   isSelected
-                    ? 'bg-primary text-white'
+                    ? 'kg-action-primary'
                     : 'bg-background text-foreground hover:bg-surface'
                 }`}
               >
@@ -240,6 +240,9 @@ export default function Navbar() {
             <LanguageSwitcher language={language} onChange={handleLanguageChange} compact />
             <button
               onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={isOpen}
+              aria-controls="mobile-navigation"
               className="inline-flex items-center justify-center p-2 text-foreground hover:bg-surface focus:outline-none"
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -250,7 +253,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-background border-b border-border">
+        <div id="mobile-navigation" className="md:hidden bg-background border-b border-border">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navLinks.map((link) => (
               <Link

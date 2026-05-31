@@ -50,7 +50,7 @@ export default function Cookies() {
             </div>
           </section>
 
-          <button className="px-8 py-4 bg-primary text-white hover:bg-primary-dark transition-colors font-medium">
+          <button className="px-8 py-4 kg-action-primary transition-colors font-medium">
             {t.cookies.save}
           </button>
         </div>

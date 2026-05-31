@@ -45,7 +45,7 @@ export default function AdminLogin() {
       const message = err?.message || '';
       setError(
         message.toLowerCase().includes('invalid credentials')
-          ? 'Email veya şifre yanlış.'
+          ? 'Email or password is incorrect.'
           : `Authentication failed: ${message || 'Unable to verify credentials.'}`
       );
     } finally {
@@ -121,7 +121,7 @@ export default function AdminLogin() {
                 }}
                 disabled={authenticating}
                 className="w-full bg-background border border-border focus:border-primary text-foreground py-3 pl-10 pr-4 outline-none transition-colors"
-                placeholder="••••••••••••"
+                placeholder="************"
               />
             </div>
             <p className="text-xs text-foreground/40 mt-2">
@@ -132,7 +132,7 @@ export default function AdminLogin() {
           <button
             type="submit"
             disabled={authenticating}
-            className="w-full flex items-center justify-between p-4 bg-primary text-white hover:bg-primary-dark transition-colors uppercase tracking-widest text-sm font-medium group disabled:opacity-60 disabled:cursor-not-allowed"
+            className="w-full flex items-center justify-between p-4 kg-action-primary transition-colors uppercase tracking-widest text-sm font-medium group disabled:opacity-60 disabled:cursor-not-allowed"
           >
             <span>{authenticating ? 'Verifying...' : 'Authenticate'}</span>
             {authenticating ? (

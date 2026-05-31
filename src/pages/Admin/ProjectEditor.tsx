@@ -178,7 +178,7 @@ export default function ProjectEditor() {
         <button 
           onClick={handleSave} 
           disabled={saving}
-          className="flex items-center gap-2 px-6 py-2 bg-primary text-white hover:bg-primary-dark transition-colors uppercase tracking-wider disabled:opacity-50"
+          className="flex items-center gap-2 px-6 py-2 kg-action-primary transition-colors uppercase tracking-wider disabled:opacity-50"
         >
           {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
           {saving ? 'Committing...' : 'Commit Changes'}

@@ -1,5 +1,4 @@
 import { Mail, MapPin, Github, Send } from 'lucide-react';
-import { motion } from 'motion/react';
 import SEO from '../components/SEO';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -16,27 +15,17 @@ export default function Contact() {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-3xl mb-16"
-        >
+        <div className="max-w-3xl mb-16">
           <h1 className="text-4xl md:text-5xl font-light text-foreground mb-6">
             {t.contact.title}
           </h1>
           <p className="text-lg md:text-xl text-foreground/70 font-light leading-relaxed">
             {t.contact.subtitle}
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-12">
-          <motion.aside
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="border border-border bg-surface p-8 h-fit"
-          >
+          <aside className="border border-border bg-surface p-8 h-fit">
             <h2 className="text-2xl font-medium text-foreground mb-4">{t.contact.info.title}</h2>
             <p className="text-foreground/70 font-light leading-relaxed mb-10">
               {t.contact.info.desc}
@@ -67,7 +56,7 @@ export default function Contact() {
               </div>
 
               <a
-                href="https://github.com/ErenAri/kernel-guard-frontend"
+                href="https://github.com/Kernel-Guard"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-4 text-foreground/80 hover:text-primary transition-colors"
@@ -81,12 +70,9 @@ export default function Contact() {
                 </span>
               </a>
             </div>
-          </motion.aside>
+          </aside>
 
-          <motion.form
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+          <form
             action="https://api.web3forms.com/submit"
             method="POST"
             className="border border-border bg-surface p-8 space-y-6"
@@ -142,12 +128,12 @@ export default function Contact() {
             <button
               type="submit"
               disabled={!accessKey}
-              className="inline-flex w-full sm:w-auto items-center justify-center gap-3 bg-primary px-8 py-4 font-medium text-white transition-colors hover:bg-primary-dark disabled:cursor-not-allowed disabled:opacity-50"
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-3 kg-action-primary px-8 py-4 font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50"
             >
               <span>{t.contact.form.submit}</span>
               <Send className="h-5 w-5" />
             </button>
-          </motion.form>
+          </form>
         </div>
       </div>
     </div>

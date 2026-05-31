@@ -82,6 +82,35 @@ export const tr = {
     community: {
       title: 'Açık Geliştirme (Build in Public)',
       desc: 'Çekirdek altyapımızı aktif olarak inşa ediyor ve kodlarımızı açık kaynak olarak paylaşıyoruz. Yolculuğumuza katılın.'
+    },
+    proof: {
+      badge: 'ÖLÇÜLDÜ // AÇIK_KANIT',
+      title: 'Sunum değil, kanıt',
+      desc: '31 Mayıs 2026 tarihinde Lighthouse CLI, prerender çıktısı ve herkese açık GitHub repo verileriyle ölçülmüş şeffaf kalite özeti.',
+      cards: {
+        lighthouse: {
+          label: 'Masaüstü Lighthouse',
+          detail: 'Canlı domain üzerinde performans / erişilebilirlik.',
+        },
+        delivery: {
+          label: 'Prerender rota',
+          detail: 'Çok dilli sayfalar için build sırasında üretilen statik rotalar.',
+        },
+        openSource: {
+          label: 'Public repo',
+          detail: 'GitHub üzerindeki Kernel-Guard organizasyon repoları.',
+        },
+        languages: {
+          label: 'Desteklenen dil',
+          detail: 'Türkçe, İngilizce, Almanca, Japonca ve Çince.',
+        },
+      },
+      summary: {
+        indexableUrls: 'indexlenebilir URL',
+        desktopTbt: 'masaüstü TBT',
+        latestUpdate: 'son public repo güncellemesi',
+      },
+      footnote: 'Metrikler pazarlama iddiası değil, ölçülmüş değer olarak gösterilir.',
     }
   },
   projects: {
@@ -116,6 +145,15 @@ export const tr = {
     viewSource: 'Kaynak Kodunu Görüntüle',
     liveDemo: 'Canlı Önizleme',
     backToProjects: 'Dizine Dön',
+    repositoryEvidence: {
+      title: 'Repo Kanıtları',
+      measuredAt: '31 Mayıs 2026 tarihinde herkese açık GitHub repo verilerinden ölçüldü.',
+      primaryLanguage: 'Ana dil',
+      lastPublicUpdate: 'Son public güncelleme',
+      trackedIssues: 'Takip edilen issue',
+      repositorySize: 'Repo boyutu',
+      languageMix: 'Dil dağılımı',
+    },
   },
   footer: {
     desc: 'Gelişmiş sistem programlama, çekirdek düzeyinde savunma ve açık kaynaklı inovasyon ile geleceği güvence altına alıyoruz. Kurumsal dayanıklılık için tasarlandı.',

@@ -69,6 +69,35 @@ export const ja = {
       data: { title: 'データ保護', desc: '暗号化と安全なデータベース運用により機密情報を守ります。' },
       performance: { title: '高性能', desc: '高速なロード時間とセキュリティチェックを両立します。' },
     },
+    principles: {
+      title: 'エンジニアリング原則',
+      items: [
+        { title: 'オープンを標準に', desc: 'オープンソースコードと公開レビューにより、透明性の高いセキュリティを実現します。' },
+        { title: 'Zero Trust', desc: 'すべてのリクエストを検証し、どの主体も無条件には信頼しません。' },
+        { title: 'コミュニティ主導', desc: 'システムエンジニアとセキュリティ研究者のために共同で構築します。' },
+      ],
+    },
+    community: {
+      title: '公開しながら構築',
+      desc: '中核インフラを継続的に構築し、その進捗をオープンソースとして公開しています。',
+    },
+    proof: {
+      badge: 'MEASURED // PUBLIC_EVIDENCE',
+      title: '見せ方ではなく、実測値',
+      desc: '2026年5月31日に Lighthouse CLI、prerender 出力、公開 GitHub リポジトリデータから取得した透明な品質スナップショットです。',
+      cards: {
+        lighthouse: { label: 'Desktop Lighthouse', detail: '本番ドメインでのパフォーマンス / アクセシビリティ。' },
+        delivery: { label: 'Prerender ルート', detail: '多言語ページを含め、ビルド時に生成される静的ルート数。' },
+        openSource: { label: '公開リポジトリ', detail: 'GitHub 上で確認できる Kernel-Guard organization のリポジトリ。' },
+        languages: { label: '対応言語', detail: 'トルコ語、英語、ドイツ語、日本語、中国語。' },
+      },
+      summary: {
+        indexableUrls: 'indexable URL',
+        desktopTbt: 'desktop TBT',
+        latestUpdate: '最新の公開リポジトリ更新',
+      },
+      footnote: '数値はマーケティング文句ではなく、測定値として表示しています。',
+    },
   },
   projects: {
     ...en.projects,
@@ -105,6 +134,15 @@ export const ja = {
     viewSource: 'ソースコードを見る',
     liveDemo: 'ライブプレビュー',
     backToProjects: '一覧に戻る',
+    repositoryEvidence: {
+      title: 'リポジトリ情報',
+      measuredAt: '2026年5月31日に公開 GitHub リポジトリデータから測定。',
+      primaryLanguage: '主要言語',
+      lastPublicUpdate: '最終公開更新',
+      trackedIssues: '追跡中の issue',
+      repositorySize: 'リポジトリサイズ',
+      languageMix: '言語構成',
+    },
   },
   footer: {
     ...en.footer,

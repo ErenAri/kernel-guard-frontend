@@ -7,6 +7,9 @@
     --foreground: #161616;
     --primary: #0f62fe;
     --primary-dark: #0043ce;
+    --primary-action: #0043ce;
+    --primary-action-hover: #002d9c;
+    --primary-action-foreground: #ffffff;
     --surface: #f4f4f4;
     --surface-hover: #e0e0e0;
     --border: #d1d1d1;
@@ -21,6 +24,9 @@
     --foreground: #f4f4f4;
     --primary: #4589ff;
     --primary-dark: #0f62fe;
+    --primary-action: #0f62fe;
+    --primary-action-hover: #0043ce;
+    --primary-action-foreground: #ffffff;
     --surface: #262626;
     --surface-hover: #393939;
     --border: #393939;
@@ -39,6 +45,9 @@
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-primary-dark: var(--primary-dark);
+  --color-primary-action: var(--primary-action);
+  --color-primary-action-hover: var(--primary-action-hover);
+  --color-primary-action-foreground: var(--primary-action-foreground);
   --color-surface: var(--surface);
   --color-surface-hover: var(--surface-hover);
   --color-border: var(--border);
@@ -57,6 +66,15 @@
 }
 
 @layer utilities {
+  .kg-action-primary {
+    background: var(--primary-action);
+    color: var(--primary-action-foreground);
+  }
+
+  .kg-action-primary:hover {
+    background: var(--primary-action-hover);
+  }
+
   .animate-marquee {
     animation: marquee 30s linear infinite;
   }

@@ -69,6 +69,35 @@ export const zhCN = {
       data: { title: '数据保护', desc: '通过加密和安全数据库实践保护敏感信息。' },
       performance: { title: '高性能', desc: '在不牺牲安全检查的前提下实现快速加载。' },
     },
+    principles: {
+      title: '工程原则',
+      items: [
+        { title: '默认开放', desc: '通过开源代码和公开代码审查实现透明安全。' },
+        { title: 'Zero Trust', desc: '验证每个请求，不默认信任任何实体，并默认假设存在风险。' },
+        { title: '社区驱动', desc: '由系统工程师和安全研究人员共同构建。' },
+      ],
+    },
+    community: {
+      title: '公开构建',
+      desc: '我们正在持续构建核心基础设施，并以开源方式公开进展。',
+    },
+    proof: {
+      badge: '已测量 // 公开证据',
+      title: '不是展示，而是证据',
+      desc: '基于 2026 年 5 月 31 日的 Lighthouse CLI、预渲染输出和公开 GitHub 仓库数据生成的透明质量快照。',
+      cards: {
+        lighthouse: { label: '桌面 Lighthouse', detail: '生产域名上的性能 / 可访问性。' },
+        delivery: { label: '预渲染路由', detail: '构建时为多语言页面生成的静态路由。' },
+        openSource: { label: '公开仓库', detail: 'GitHub 上可见的 Kernel-Guard 组织仓库。' },
+        languages: { label: '支持语言', detail: '土耳其语、英语、德语、日语和中文。' },
+      },
+      summary: {
+        indexableUrls: '可索引 URL',
+        desktopTbt: '桌面 TBT',
+        latestUpdate: '最新公开仓库更新',
+      },
+      footnote: '这些指标按实测值展示，而不是营销声明。',
+    },
   },
   projects: {
     ...en.projects,
@@ -105,6 +134,15 @@ export const zhCN = {
     viewSource: '查看源代码',
     liveDemo: '在线预览',
     backToProjects: '返回目录',
+    repositoryEvidence: {
+      title: '仓库证据',
+      measuredAt: '基于 2026 年 5 月 31 日的公开 GitHub 仓库数据测量。',
+      primaryLanguage: '主要语言',
+      lastPublicUpdate: '最后公开更新',
+      trackedIssues: '跟踪中的 issue',
+      repositorySize: '仓库大小',
+      languageMix: '语言组成',
+    },
   },
   footer: {
     ...en.footer,

@@ -88,6 +88,7 @@ export default function Projects() {
                       onClick={(e) => e.stopPropagation()}
                       className="text-primary hover:text-primary-dark transition-colors flex items-center gap-1 text-sm font-medium"
                       title={t.projectDetails.viewSource}
+                      aria-label={`${project.title}: ${t.projectDetails.viewSource}`}
                     >
                       <Github className="w-5 h-5" />
                     </a>
@@ -100,6 +101,7 @@ export default function Projects() {
                       onClick={(e) => e.stopPropagation()}
                       className="text-primary hover:text-primary-dark transition-colors flex items-center gap-1 text-sm font-medium"
                       title={t.projectDetails.liveDemo}
+                      aria-label={`${project.title}: ${t.projectDetails.liveDemo}`}
                     >
                       <ExternalLink className="w-5 h-5" />
                     </a>

@@ -82,6 +82,35 @@ export const en = {
     community: {
       title: 'Building in Public',
       desc: 'We are actively building our core infrastructure and open-sourcing our progress. Follow our journey.'
+    },
+    proof: {
+      badge: 'MEASURED // PUBLIC_EVIDENCE',
+      title: 'Proof, not presentation',
+      desc: 'A transparent quality snapshot based on Lighthouse CLI, prerender output, and public GitHub repository data measured on May 31, 2026.',
+      cards: {
+        lighthouse: {
+          label: 'Desktop Lighthouse',
+          detail: 'Performance / accessibility on the production domain.',
+        },
+        delivery: {
+          label: 'Prerendered routes',
+          detail: 'Static routes generated at build time across localized pages.',
+        },
+        openSource: {
+          label: 'Public repositories',
+          detail: 'Kernel-Guard organization repositories visible on GitHub.',
+        },
+        languages: {
+          label: 'Supported languages',
+          detail: 'Turkish, English, German, Japanese, and Chinese.',
+        },
+      },
+      summary: {
+        indexableUrls: 'indexable URLs',
+        desktopTbt: 'desktop TBT',
+        latestUpdate: 'latest public repo update',
+      },
+      footnote: 'Metrics are intentionally shown as measured values, not marketing claims.',
     }
   },
   projects: {
@@ -116,6 +145,15 @@ export const en = {
     viewSource: 'View Source Code',
     liveDemo: 'Live Preview',
     backToProjects: 'Back to Directory',
+    repositoryEvidence: {
+      title: 'Repository Evidence',
+      measuredAt: 'Measured from GitHub public repository data on May 31, 2026.',
+      primaryLanguage: 'Primary language',
+      lastPublicUpdate: 'Last public update',
+      trackedIssues: 'Tracked issues',
+      repositorySize: 'Repository size',
+      languageMix: 'Language mix',
+    },
   },
   footer: {
     desc: 'Securing the future through advanced systems programming, kernel-level defense, and open-source innovation. Engineered for enterprise resilience.',

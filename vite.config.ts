@@ -25,7 +25,7 @@ export default defineConfig(({ mode }) => {
     // dual CJS/ESM without `"type": "module"` so Node does not trip over
     // named-export detection at prerender time.
     ssr: {
-      noExternal: ['react-helmet-async', 'react-router', 'react-router-dom', 'motion', /^lucide-/],
+      noExternal: ['react-helmet-async', 'react-router', 'react-router-dom', /^lucide-/],
     },
   };
 });

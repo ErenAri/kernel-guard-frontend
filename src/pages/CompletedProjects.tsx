@@ -86,6 +86,7 @@ export default function CompletedProjects() {
                     onClick={(e) => e.stopPropagation()}
                     className="text-primary hover:text-primary-dark transition-colors flex items-center gap-1 text-sm font-medium"
                     title={t.completedProjects.visit}
+                    aria-label={`${project.title}: ${t.completedProjects.visit}`}
                   >
                     <ExternalLink className="w-5 h-5" />
                   </a>

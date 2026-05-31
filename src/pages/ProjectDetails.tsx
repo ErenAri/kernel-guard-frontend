@@ -6,6 +6,7 @@ import SEO from '../components/SEO';
 import { buildSoftwareSourceCodeSchema } from '../lib/schema';
 import { localizePath } from '../i18n/route';
 import { localizedText } from '../i18n/text';
+import { repositoryEvidence } from '../data/repositoryEvidence';
 
 const KNOWN_PROGRAMMING_LANGUAGES = new Set([
   'Python', 'Rust', 'C++', 'C', 'Go', 'TypeScript', 'JavaScript', 'Java', 'Kotlin', 'Swift',
@@ -25,6 +26,8 @@ export default function ProjectDetails() {
   const description = localizedText(project.description, language);
   const technicalDetails = localizedText(project.technicalDetails, language);
   const marketingDetails = localizedText(project.marketingDetails, language);
+  const repoEvidence = repositoryEvidence[project.id];
+  const repositorySize = repoEvidence ? `${(repoEvidence.repositorySizeKb / 1024).toFixed(1)} MB` : null;
 
   return (
     <div className="min-h-screen bg-background pt-32 pb-24">
@@ -106,6 +109,70 @@ export default function ProjectDetails() {
           </div>
         )}
 
+        {repoEvidence && (
+          <section className="mb-16 border border-border bg-surface p-8">
+            <div className="flex flex-col gap-3 mb-8 md:flex-row md:items-end md:justify-between">
+              <div>
+                <h2 className="text-2xl font-light">{t.projectDetails.repositoryEvidence.title}</h2>
+                <p className="mt-2 text-sm text-foreground/60 font-mono">
+                  {t.projectDetails.repositoryEvidence.measuredAt}
+                </p>
+              </div>
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary-dark"
+                >
+                  GitHub
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+              )}
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="border border-border bg-background p-4">
+                <div className="text-xs font-mono uppercase text-foreground/50 mb-2">
+                  {t.projectDetails.repositoryEvidence.primaryLanguage}
+                </div>
+                <div className="text-lg font-medium text-foreground">{repoEvidence.primaryLanguage}</div>
+              </div>
+              <div className="border border-border bg-background p-4">
+                <div className="text-xs font-mono uppercase text-foreground/50 mb-2">
+                  {t.projectDetails.repositoryEvidence.lastPublicUpdate}
+                </div>
+                <div className="text-lg font-medium text-foreground">{repoEvidence.lastPublicUpdate}</div>
+              </div>
+              <div className="border border-border bg-background p-4">
+                <div className="text-xs font-mono uppercase text-foreground/50 mb-2">
+                  {t.projectDetails.repositoryEvidence.trackedIssues}
+                </div>
+                <div className="text-lg font-medium text-foreground">{repoEvidence.trackedIssues}</div>
+              </div>
+              <div className="border border-border bg-background p-4">
+                <div className="text-xs font-mono uppercase text-foreground/50 mb-2">
+                  {t.projectDetails.repositoryEvidence.repositorySize}
+                </div>
+                <div className="text-lg font-medium text-foreground">{repositorySize}</div>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <div className="text-xs font-mono uppercase text-foreground/50 mb-3">
+                {t.projectDetails.repositoryEvidence.languageMix}
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {repoEvidence.languageMix.map((item) => (
+                  <span key={item} className="border border-border bg-background px-3 py-1 text-xs text-foreground">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
           {/* Technical Section */}
           <div className="bg-surface p-8 border border-border">
@@ -136,7 +203,7 @@ export default function ProjectDetails() {
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-between px-6 py-4 bg-primary text-white hover:bg-primary-dark transition-colors w-full sm:w-64"
+              className="inline-flex items-center justify-between px-6 py-4 kg-action-primary transition-colors w-full sm:w-64"
             >
               <span className="font-medium">{t.projectDetails.viewSource}</span>
               <Github className="w-5 h-5" />

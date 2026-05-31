@@ -91,10 +91,10 @@ export default function Footer() {
         </div>
         
         <div className="mt-16 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-500 text-sm">
+          <p className="text-gray-400 text-sm">
             &copy; {new Date().getFullYear()} {t.footer.rights}
           </p>
-          <div className="flex space-x-6 text-sm text-gray-500">
+          <div className="flex space-x-6 text-sm text-gray-400">
             <Link
               to={localizePath('/terms/', language)}
               onPointerEnter={() => prefetchRoute('terms')}

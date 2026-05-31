@@ -42,7 +42,7 @@ export default function AdminDashboard() {
     } catch (err: any) {
       const message = err.message || 'Failed to fetch data from GitHub.';
       if (message.toLowerCase().includes('invalid credentials')) {
-        sessionStorage.setItem(LOGIN_ERROR_KEY, 'Email veya şifre yanlış.');
+        sessionStorage.setItem(LOGIN_ERROR_KEY, 'Email or password is incorrect.');
         logout();
         return;
       }
@@ -125,7 +125,7 @@ export default function AdminDashboard() {
           </button>
           <Link
             to={`/admin/edit/${activeTab}/new`}
-            className="flex items-center gap-2 px-4 py-2 bg-primary text-white hover:bg-primary-dark transition-colors text-sm uppercase tracking-wider"
+            className="flex items-center gap-2 px-4 py-2 kg-action-primary transition-colors text-sm uppercase tracking-wider"
           >
             <Plus className="w-4 h-4" />
             New Entry
@@ -215,7 +215,7 @@ export default function AdminDashboard() {
                 )}
                 <Link
                   to={`/admin/edit/${activeTab}/${item.id}`}
-                  className="w-full sm:w-auto text-center px-6 py-2 border border-primary text-primary hover:bg-primary hover:text-white transition-colors text-sm uppercase tracking-wider"
+                  className="w-full sm:w-auto text-center px-6 py-2 border border-primary text-primary hover:bg-primary-dark hover:text-white transition-colors text-sm uppercase tracking-wider"
                 >
                   Edit
                 </Link>
