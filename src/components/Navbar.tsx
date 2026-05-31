@@ -3,7 +3,7 @@ import { Menu, X, Globe, Lock } from 'lucide-react';
 import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { prefetchRoutes, type PrefetchRoute } from '../routes/pageLoaders';
-import { alternateLanguagePath } from '../i18n/route';
+import { alternateLanguagePath, localizePath, setStoredLanguagePreference } from '../i18n/route';
 import Logo from './Logo';
 import ThemeToggle from './ThemeToggle';
 
@@ -21,7 +21,7 @@ export default function Navbar() {
     return path.endsWith('/') ? path.slice(0, -1) : path;
   };
 
-  const navLinks: Array<{ name: string; path: string; prefetch: readonly PrefetchRoute[] }> = [
+  const baseNavLinks: Array<{ name: string; path: string; prefetch: readonly PrefetchRoute[] }> = [
     { name: t.nav.home, path: '/', prefetch: ['home'] },
     {
       name: t.nav.services,
@@ -36,10 +36,15 @@ export default function Navbar() {
     },
     { name: t.nav.contact, path: '/contact/', prefetch: ['contact'] },
   ];
+  const navLinks = baseNavLinks.map((link) => ({
+    ...link,
+    path: localizePath(link.path, language),
+  }));
 
   const isActive = (path: string) => normalizeNavPath(location.pathname) === normalizeNavPath(path);
 
   const toggleLanguage = () => {
+    setStoredLanguagePreference(language === 'tr' ? 'en' : 'tr');
     const target = alternateLanguagePath(location.pathname, language);
     navigate(target);
   };
@@ -53,7 +58,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <Link to="/" className="flex items-center group hover:opacity-90 transition-opacity">
+            <Link to={localizePath('/', language)} className="flex items-center group hover:opacity-90 transition-opacity">
               <Logo className="scale-[0.55] origin-left" />
             </Link>
           </div>

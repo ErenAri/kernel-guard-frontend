@@ -19,6 +19,7 @@ import Services from './pages/Services';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
 import Cookies from './pages/Cookies';
+import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 
 interface HelmetDataAttributes {
@@ -59,6 +60,7 @@ function LocalizedRoutes() {
         <Route path="terms" element={<Terms />} />
         <Route path="privacy" element={<Privacy />} />
         <Route path="cookies" element={<Cookies />} />
+        <Route path="contact" element={<Contact />} />
         <Route path="not-found" element={<NotFound />} />
         <Route path="*" element={<NotFound />} />
       </Route>

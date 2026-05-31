@@ -6,6 +6,7 @@
 import { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import BrowserLanguageRedirect from './components/BrowserLanguageRedirect';
 import CanonicalPathRedirect from './components/CanonicalPathRedirect';
 import ScrollToTop from './components/ScrollToTop';
 import { LanguageProvider, type Language } from './context/LanguageContext';
@@ -100,6 +101,7 @@ function LangShell({ lang }: { lang: Language }) {
   // never re-runs — leaving the language state stuck at the first mount value.
   return (
     <LanguageProvider key={lang} initialLanguage={lang}>
+      <BrowserLanguageRedirect />
       <CanonicalPathRedirect />
       <ScrollToTop />
       <Suspense fallback={<RouteLoadingFallback />}>
