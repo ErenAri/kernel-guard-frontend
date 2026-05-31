@@ -8,14 +8,14 @@ export const engineeringEvidence = {
   lighthouse: {
     desktop: {
       performance: 100,
-      accessibility: 95,
+      accessibility: 100,
       bestPractices: 96,
       seo: 92,
       totalBlockingTime: '0 ms',
       cumulativeLayoutShift: '0.001',
     },
     mobile: {
-      performance: 98,
+      performance: 91,
       accessibility: 100,
       bestPractices: 96,
       seo: 92,
