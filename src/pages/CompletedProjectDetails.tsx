@@ -3,6 +3,8 @@ import { ArrowLeft, ExternalLink, ShieldCheck, User } from 'lucide-react';
 import { completedProjects } from '../data/completedProjects';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/SEO';
+import { localizePath } from '../i18n/route';
+import { localizedText } from '../i18n/text';
 
 export default function CompletedProjectDetails() {
   const { id } = useParams();
@@ -13,19 +15,21 @@ export default function CompletedProjectDetails() {
   if (!project) {
     return <Navigate to="/not-found/" replace />;
   }
+  const description = localizedText(project.description, language);
+  const longDescription = localizedText(project.longDescription, language);
 
   return (
     <div className="min-h-screen bg-background pt-32 pb-24">
       <SEO 
         title={`${project.title} - Kernel Guard`}
-        description={project.description[language]}
+        description={description}
         keywords={`${project.tags.join(', ')}, Kernel Guard, secure web project, case study`}
         path={`/completed-projects/${project.id}/`}
         noIndex={project.accounts.length > 0}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link 
-          to="/completed-projects/" 
+          to={localizePath('/completed-projects/', language)}
           className="inline-flex items-center gap-2 text-foreground/60 hover:text-primary transition-colors mb-12 font-mono text-sm uppercase tracking-wider"
         >
           <ArrowLeft className="w-4 h-4" />
@@ -46,7 +50,7 @@ export default function CompletedProjectDetails() {
                 ))}
               </div>
               <p className="text-xl text-foreground/80 font-light leading-relaxed">
-                {project.longDescription[language as keyof typeof project.longDescription]}
+                {longDescription}
               </p>
             </div>
             

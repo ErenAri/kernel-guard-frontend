@@ -87,6 +87,36 @@ export function renderRoute(url: string, language: Language): RenderResult {
               }
             />
             <Route
+              path="/de/*"
+              element={
+                <LanguageProvider key="de" initialLanguage="de">
+                  <CanonicalPathRedirect />
+                  <ScrollToTop />
+                  <LocalizedRoutes />
+                </LanguageProvider>
+              }
+            />
+            <Route
+              path="/ja/*"
+              element={
+                <LanguageProvider key="ja" initialLanguage="ja">
+                  <CanonicalPathRedirect />
+                  <ScrollToTop />
+                  <LocalizedRoutes />
+                </LanguageProvider>
+              }
+            />
+            <Route
+              path="/zh-cn/*"
+              element={
+                <LanguageProvider key="zh-CN" initialLanguage="zh-CN">
+                  <CanonicalPathRedirect />
+                  <ScrollToTop />
+                  <LocalizedRoutes />
+                </LanguageProvider>
+              }
+            />
+            <Route
               path="/*"
               element={
                 <LanguageProvider key="tr" initialLanguage={language}>

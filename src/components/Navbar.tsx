@@ -3,7 +3,13 @@ import { Menu, X, Globe, Lock } from 'lucide-react';
 import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { prefetchRoutes, type PrefetchRoute } from '../routes/pageLoaders';
-import { alternateLanguagePath, localizePath, setStoredLanguagePreference } from '../i18n/route';
+import {
+  LANGUAGE_LABELS,
+  SUPPORTED_LANGUAGES,
+  localizePath,
+  setStoredLanguagePreference,
+} from '../i18n/route';
+import type { Language } from '../context/LanguageContext';
 import Logo from './Logo';
 import ThemeToggle from './ThemeToggle';
 
@@ -43,9 +49,9 @@ export default function Navbar() {
 
   const isActive = (path: string) => normalizeNavPath(location.pathname) === normalizeNavPath(path);
 
-  const toggleLanguage = () => {
-    setStoredLanguagePreference(language === 'tr' ? 'en' : 'tr');
-    const target = alternateLanguagePath(location.pathname, language);
+  const handleLanguageChange = (nextLanguage: Language) => {
+    setStoredLanguagePreference(nextLanguage);
+    const target = localizePath(location.pathname, nextLanguage);
     navigate(target);
   };
 
@@ -94,14 +100,21 @@ export default function Navbar() {
               
               <div className="h-6 w-px bg-border mx-2"></div>
               
-              <button
-                onClick={toggleLanguage}
-                className="flex items-center gap-1 text-foreground hover:text-primary transition-colors px-3 py-2 text-sm font-mono uppercase"
-                title="Toggle Language"
-              >
+              <label className="flex items-center gap-1 text-foreground hover:text-primary transition-colors px-3 py-2 text-sm font-mono uppercase">
                 <Globe className="w-4 h-4" />
-                {language}
-              </button>
+                <select
+                  value={language}
+                  onChange={(event) => handleLanguageChange(event.target.value as Language)}
+                  className="bg-transparent text-foreground outline-none cursor-pointer uppercase"
+                  aria-label="Select language"
+                >
+                  {SUPPORTED_LANGUAGES.map((lang) => (
+                    <option key={lang} value={lang}>
+                      {LANGUAGE_LABELS[lang]}
+                    </option>
+                  ))}
+                </select>
+              </label>
               
               <div className="ml-2 flex items-center gap-2">
                 <ThemeToggle />
@@ -126,13 +139,21 @@ export default function Navbar() {
             >
               <Lock className="w-5 h-5" />
             </Link>
-            <button
-              onClick={toggleLanguage}
-              className="flex items-center justify-center p-2 text-foreground hover:bg-surface focus:outline-none font-mono uppercase text-sm"
-            >
+            <label className="flex items-center justify-center p-2 text-foreground hover:bg-surface focus:outline-none font-mono uppercase text-sm">
               <Globe className="w-4 h-4 mr-1" />
-              {language}
-            </button>
+              <select
+                value={language}
+                onChange={(event) => handleLanguageChange(event.target.value as Language)}
+                className="bg-transparent text-foreground outline-none cursor-pointer uppercase max-w-14"
+                aria-label="Select language"
+              >
+                {SUPPORTED_LANGUAGES.map((lang) => (
+                  <option key={lang} value={lang}>
+                    {LANGUAGE_LABELS[lang]}
+                  </option>
+                ))}
+              </select>
+            </label>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="inline-flex items-center justify-center p-2 text-foreground hover:bg-surface focus:outline-none"

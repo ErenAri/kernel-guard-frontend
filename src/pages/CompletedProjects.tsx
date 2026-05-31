@@ -3,10 +3,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { completedProjects } from '../data/completedProjects';
 import SEO from '../components/SEO';
+import { localizePath } from '../i18n/route';
+import { localizedText } from '../i18n/text';
 
 export default function CompletedProjects() {
   const { language, t } = useLanguage();
   const navigate = useNavigate();
+  const projectPath = (id: string) => localizePath(`/completed-projects/${id}/`, language);
 
   return (
     <div className="min-h-screen bg-background pt-32 pb-24">
@@ -44,24 +47,24 @@ export default function CompletedProjects() {
             {completedProjects.map((project) => (
               <div 
                 key={project.id} 
-                onClick={() => navigate(`/completed-projects/${project.id}/`)}
+                onClick={() => navigate(projectPath(project.id))}
                 className="group grid grid-cols-1 md:grid-cols-12 gap-4 py-6 hover:bg-surface transition-colors items-start cursor-pointer"
               >
                 <div className="md:col-span-3 pl-4">
                   <Link 
-                    to={`/completed-projects/${project.id}/`} 
+                    to={projectPath(project.id)}
                     onClick={(e) => e.stopPropagation()}
                     className="text-lg font-medium text-primary hover:underline flex items-center gap-2"
                   >
                     {project.title}
                   </Link>
                   <p className="md:hidden text-sm text-foreground/80 mt-2 font-light">
-                    {project.description[language as keyof typeof project.description]}
+                    {localizedText(project.description, language)}
                   </p>
                 </div>
 
                 <div className="hidden md:block md:col-span-5 text-base text-foreground/80 pr-4 font-light">
-                  {project.description[language as keyof typeof project.description]}
+                  {localizedText(project.description, language)}
                 </div>
 
                 <div className="md:col-span-3 flex flex-wrap gap-2 mt-4 md:mt-0">

@@ -15,18 +15,18 @@ export default function BrowserLanguageRedirect() {
   useEffect(() => {
     const pathLanguage = detectLanguageFromPath(location.pathname);
 
-    if (pathLanguage === 'en') {
-      setStoredLanguagePreference('en');
+    if (pathLanguage !== 'tr') {
+      setStoredLanguagePreference(pathLanguage);
       return;
     }
 
     const preferredLanguage = getStoredLanguagePreference() ?? detectBrowserLanguage();
 
-    if (preferredLanguage !== 'en') {
+    if (preferredLanguage === 'tr') {
       return;
     }
 
-    const targetPath = localizePath(location.pathname, 'en');
+    const targetPath = localizePath(location.pathname, preferredLanguage);
     const target = `${targetPath}${location.search}${location.hash}`;
 
     navigate(target, { replace: true });

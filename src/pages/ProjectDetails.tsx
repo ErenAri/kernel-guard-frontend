@@ -4,6 +4,8 @@ import { projects } from '../data/projects';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/SEO';
 import { buildSoftwareSourceCodeSchema } from '../lib/schema';
+import { localizePath } from '../i18n/route';
+import { localizedText } from '../i18n/text';
 
 const KNOWN_PROGRAMMING_LANGUAGES = new Set([
   'Python', 'Rust', 'C++', 'C', 'Go', 'TypeScript', 'JavaScript', 'Java', 'Kotlin', 'Swift',
@@ -20,16 +22,19 @@ export default function ProjectDetails() {
   }
 
   const programmingLanguages = project.tags.filter((tag) => KNOWN_PROGRAMMING_LANGUAGES.has(tag));
+  const description = localizedText(project.description, language);
+  const technicalDetails = localizedText(project.technicalDetails, language);
+  const marketingDetails = localizedText(project.marketingDetails, language);
 
   return (
     <div className="min-h-screen bg-background pt-32 pb-24">
       <SEO
         title={`${project.title} - Kernel Guard`}
-        description={project.description[language]}
+        description={description}
         path={`/projects/${project.id}/`}
         schema={buildSoftwareSourceCodeSchema({
           name: project.title,
-          description: project.description[language],
+          description,
           path: `/projects/${project.id}/`,
           language,
           codeRepository: project.github,
@@ -38,7 +43,7 @@ export default function ProjectDetails() {
       />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link 
-          to="/projects/" 
+          to={localizePath('/projects/', language)}
           className="inline-flex items-center gap-2 text-foreground/60 hover:text-primary transition-colors mb-12 font-medium text-sm"
         >
           <ArrowLeft className="w-4 h-4" />
@@ -50,7 +55,7 @@ export default function ProjectDetails() {
             {project.title}
           </h1>
           <p className="text-foreground/80 text-xl leading-relaxed font-light">
-            {project.description[language]}
+            {description}
           </p>
           
           <div className="flex flex-wrap gap-2 mt-8">
@@ -109,7 +114,7 @@ export default function ProjectDetails() {
               <h2 className="text-2xl font-light">{t.projectDetails.technicalOverview}</h2>
             </div>
             <p className="text-foreground/80 leading-relaxed font-light">
-              {project.technicalDetails[language]}
+              {technicalDetails}
             </p>
           </div>
 
@@ -120,7 +125,7 @@ export default function ProjectDetails() {
               <h2 className="text-2xl font-light">{t.projectDetails.marketingOverview}</h2>
             </div>
             <p className="text-foreground/80 leading-relaxed font-light">
-              {project.marketingDetails[language]}
+              {marketingDetails}
             </p>
           </div>
         </div>

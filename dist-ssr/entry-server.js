@@ -16167,10 +16167,497 @@ const tr = {
     }
   }
 };
+const de = {
+  ...en,
+  seo: {
+    home: {
+      title: "Kernel Guard | Sichere Webentwicklung und Cybersecurity",
+      description: "Kernel Guard entwickelt sichere, performante Webanwendungen, gehärtete Backend-Architekturen und moderne Sicherheitslösungen.",
+      keywords: "Kernel Guard, sichere Webentwicklung, Cybersecurity, gehärtetes Backend, Zero Trust, Datensicherheit"
+    },
+    projects: {
+      title: "Open-Source-Sicherheitsprojekte | Kernel Guard",
+      description: "Entdecken Sie die Open-Source-Sicherheitswerkzeuge, Systemprojekte und Web-Security-Initiativen von Kernel Guard.",
+      keywords: "Kernel Guard Open Source, Cybersecurity Tools, sichere Software, Web Security"
+    },
+    completedProjects: {
+      title: "Abgeschlossene sichere Webprojekte | Kernel Guard",
+      description: "Ein Überblick über abgeschlossene Webentwicklungsprojekte von Kernel Guard mit Fokus auf Sicherheit, Performance und zuverlässige Architektur.",
+      keywords: "Kernel Guard Portfolio, sichere Webprojekte, Zero Trust, Webentwicklung"
+    },
+    services: {
+      title: "Leistungen | Kernel Guard",
+      description: "Sichere Webentwicklung, Cybersecurity-Beratung und skalierbare Infrastrukturleistungen von Kernel Guard.",
+      keywords: "Kernel Guard Leistungen, Webentwicklung, Cybersecurity, SaaS Entwicklung, Cloud Management"
+    }
+  },
+  nav: {
+    home: "Startseite",
+    services: "Leistungen",
+    openSource: "Open Source",
+    completedProjects: "Referenzen",
+    github: "GitHub",
+    contact: "Kontakt"
+  },
+  servicesPage: {
+    title: "Unsere Leistungen",
+    subtitle: "Sichere und skalierbare Technologielösungen für belastbare digitale Produkte.",
+    services: [
+      { title: "Webdesign", desc: "Moderne, nutzerfreundliche und conversion-orientierte Oberflächen.", icon: "layout" },
+      { title: "Cybersecurity", desc: "Schutz von Systemen und Daten vor aktuellen Bedrohungen.", icon: "shield" },
+      { title: "Individuelle Software", desc: "Skalierbare Softwarelösungen für spezifische Geschäftsanforderungen.", icon: "code" },
+      { title: "Webentwicklung", desc: "Performante, sichere und moderne Webanwendungen.", icon: "globe" },
+      { title: "SaaS-Entwicklung", desc: "Cloudbasierte Softwareprodukte mit Abonnementmodellen.", icon: "box" },
+      { title: "Informationssicherheit", desc: "Schutz von Vertraulichkeit, Integrität und Verfügbarkeit Ihrer Daten.", icon: "lock" },
+      { title: "Cloud-App-Entwicklung", desc: "Moderne Anwendungen für cloud-native Umgebungen.", icon: "cloud" },
+      { title: "Cloud-Management", desc: "Optimierung, Absicherung und Überwachung Ihrer Cloud-Infrastruktur.", icon: "server" },
+      { title: "Datenbankentwicklung", desc: "Sichere, schnelle und skalierbare Datenbankarchitekturen.", icon: "database" }
+    ],
+    ctaTitle: "Bereit für Ihr Projekt?",
+    ctaDesc: "Kontaktieren Sie uns für eine sichere und moderne Infrastruktur.",
+    ctaButton: "Kontakt aufnehmen"
+  },
+  home: {
+    ...en.home,
+    systemSecure: "SYSTEME_SICHER // V2.4.1",
+    heroTitle1: "Sichere und skalierbare",
+    heroTitle2: "Webentwicklung",
+    heroDesc: "Kernel Guard entwickelt performante Webanwendungen mit Security-first-Ansatz und verbindet moderne Produktentwicklung mit robuster Abwehr gegen Bedrohungen.",
+    viewArch: "Open Source ansehen",
+    viewCompletedProjects: "Referenzen",
+    missionTitle: "Security-first Web Engineering",
+    missionP1: "Echte Sicherheit wird nicht nachträglich ergänzt. Sie muss in Architektur, Codebasis und Betrieb von Anfang an mitgedacht werden.",
+    missionP2: "Unser Fokus reicht von sicheren Frontend-Architekturen über gehärtete Backend-APIs bis zu Datenbank- und Cloud-Sicherheit.",
+    techStackTitle: "Unser Werkzeugkasten",
+    techStackDesc: "Wir nutzen moderne, sichere und performante Technologien für belastbare digitale Produkte.",
+    features: {
+      frontend: { title: "Sicheres Frontend", desc: "Moderne React-Oberflächen, gehärtet gegen XSS und clientseitige Schwachstellen." },
+      backend: { title: "Gehärtetes Backend", desc: "Skalierbare APIs und Serverarchitekturen nach Zero-Trust-Prinzipien." },
+      data: { title: "Datenschutz", desc: "Verschlüsselung und sichere Datenbankpraktiken zum Schutz sensibler Informationen." },
+      performance: { title: "Hohe Performance", desc: "Schnelle Webanwendungen ohne Kompromisse bei Sicherheitskontrollen." }
+    }
+  },
+  projects: {
+    ...en.projects,
+    badge: "VERZEICHNIS // OPEN_SOURCE",
+    title1: "Open Source",
+    title2: "Projekte",
+    desc: "Ein Überblick über unsere offenen Werkzeuge, Sicherheitsmodule und Systemprojekte.",
+    colName: "Projektname",
+    colDesc: "Beschreibung",
+    colTech: "Technologien",
+    colLinks: "Links"
+  },
+  completedProjects: {
+    ...en.completedProjects,
+    badge: "VERZEICHNIS // REFERENZEN",
+    title1: "Abgeschlossene",
+    title2: "Projekte",
+    desc: "Entdecken Sie abgeschlossene Webentwicklungsprojekte und Referenzen.",
+    noAccount: "Öffentlicher Zugriff. Kein Konto erforderlich.",
+    credentials: "Zugangsdaten",
+    email: "Benutzer",
+    visit: "Projekt öffnen",
+    links: "Projektlinks",
+    colName: "Name",
+    colDesc: "Beschreibung",
+    colTags: "Tags",
+    colLinks: "Links"
+  },
+  footer: {
+    ...en.footer,
+    desc: "Wir entwickeln sichere, performante und belastbare Webinfrastruktur für moderne digitale Produkte.",
+    discover: "Entdecken",
+    connect: "Kontakt",
+    rights: "Kernel-Guard. Alle Rechte vorbehalten.",
+    terms: "Nutzungsbedingungen",
+    privacy: "Datenschutz",
+    cookies: "Cookie-Einstellungen"
+  },
+  terms: {
+    title: "Nutzungsbedingungen",
+    lastUpdated: "Zuletzt aktualisiert: April 2024",
+    section1: { title: "1. Annahme der Bedingungen", content: "Durch die Nutzung der Website und Dienste von Kernel Guard stimmen Sie diesen Nutzungsbedingungen zu." },
+    section2: { title: "2. Nutzungslizenz", content: "Die Materialien auf dieser Website dürfen vorübergehend für persönliche, nicht-kommerzielle Ansicht genutzt werden." },
+    section3: { title: "3. Haftungsausschluss", content: "Die Materialien werden ohne ausdrückliche oder stillschweigende Gewährleistung bereitgestellt." }
+  },
+  privacy: {
+    title: "Datenschutzerklärung",
+    lastUpdated: "Zuletzt aktualisiert: April 2024",
+    section1: { title: "1. Erfasste Informationen", content: "Wir erfassen Informationen, die Sie uns direkt bereitstellen, zum Beispiel bei Kontaktanfragen." },
+    section2: { title: "2. Nutzung Ihrer Informationen", content: "Wir nutzen Informationen zur Bereitstellung, Wartung und Verbesserung unserer Dienste." },
+    section3: { title: "3. Datensicherheit", content: "Wir setzen Sicherheitsmaßnahmen ein, um personenbezogene Informationen zu schützen." }
+  },
+  cookies: {
+    title: "Cookie-Einstellungen",
+    lastUpdated: "Zuletzt aktualisiert: April 2024",
+    desc: "Diese Website verwendet Cookies, um die Nutzererfahrung zu verbessern.",
+    essential: { title: "Notwendige Cookies", desc: "Diese Cookies sind für den Betrieb der Website erforderlich." },
+    analytics: { title: "Analyse-Cookies", desc: "Diese Cookies helfen uns, die Leistung der Website zu messen und zu verbessern." },
+    save: "Einstellungen speichern"
+  },
+  contact: {
+    seo: {
+      title: "Kontakt | Kernel Guard",
+      description: "Kontaktieren Sie Kernel Guard für sichere Webentwicklung, Cybersecurity-Beratung und Infrastrukturmanagement.",
+      keywords: "Kernel Guard Kontakt, Cybersecurity Beratung, Webentwicklung"
+    },
+    title: "Kontakt aufnehmen",
+    subtitle: "Sie planen ein Projekt oder benötigen Sicherheitsberatung? Wir hören gern von Ihnen.",
+    info: {
+      title: "Kontaktinformationen",
+      desc: "Sie erreichen uns direkt über die folgenden Kanäle.",
+      email: "E-Mail",
+      location: "Standort",
+      locationValue: "Izmir, Türkei",
+      social: "Social Media",
+      github: "GitHub Repository"
+    },
+    form: {
+      name: "Vollständiger Name",
+      namePlaceholder: "Max Mustermann",
+      email: "E-Mail-Adresse",
+      emailPlaceholder: "max@example.com",
+      message: "Ihre Nachricht",
+      messagePlaceholder: "Wie können wir helfen?",
+      submit: "Nachricht senden",
+      sending: "Wird gesendet...",
+      success: "Nachricht erfolgreich gesendet. Wir melden uns zeitnah.",
+      error: "Beim Senden ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut."
+    }
+  }
+};
+const ja = {
+  ...en,
+  seo: {
+    home: {
+      title: "Kernel Guard | セキュアなWeb開発とサイバーセキュリティ",
+      description: "Kernel Guardは、高性能で安全なWebアプリケーション、堅牢なバックエンド、現代的なセキュリティ設計を提供します。",
+      keywords: "Kernel Guard, セキュアWeb開発, サイバーセキュリティ, Zero Trust, データ保護"
+    },
+    projects: {
+      title: "オープンソースセキュリティプロジェクト | Kernel Guard",
+      description: "Kernel Guardのオープンソースセキュリティツール、Webセキュリティプロジェクト、システム開発の取り組みをご覧ください。",
+      keywords: "Kernel Guard オープンソース, セキュリティツール, Webセキュリティ, セキュアコーディング"
+    },
+    completedProjects: {
+      title: "完了済みセキュアWebプロジェクト | Kernel Guard",
+      description: "Kernel Guardが手がけたセキュアで高性能なWeb開発プロジェクトをご覧ください。",
+      keywords: "Kernel Guard 実績, セキュアWebプロジェクト, Web開発, Zero Trust"
+    },
+    services: {
+      title: "サービス | Kernel Guard",
+      description: "Kernel Guardが提供するWeb開発、サイバーセキュリティ、クラウドインフラ支援サービス。",
+      keywords: "Kernel Guard サービス, Web開発, サイバーセキュリティ, SaaS開発, クラウド管理"
+    }
+  },
+  nav: {
+    home: "ホーム",
+    services: "サービス",
+    openSource: "オープンソース",
+    completedProjects: "実績",
+    github: "GitHub",
+    contact: "お問い合わせ"
+  },
+  servicesPage: {
+    title: "サービス",
+    subtitle: "安全でスケーラブルな技術基盤により、信頼できるデジタル製品を構築します。",
+    services: [
+      { title: "Webデザイン", desc: "使いやすく、成果につながるモダンなUI設計。", icon: "layout" },
+      { title: "サイバーセキュリティ", desc: "最新の脅威からシステムとデータを保護します。", icon: "shield" },
+      { title: "カスタムソフトウェア開発", desc: "事業要件に合わせたスケーラブルなソフトウェア。", icon: "code" },
+      { title: "Web開発", desc: "高性能で安全なモダンWebアプリケーション。", icon: "globe" },
+      { title: "SaaS開発", desc: "クラウドベースのサブスクリプション型プロダクト構築。", icon: "box" },
+      { title: "情報セキュリティ", desc: "企業データの機密性、完全性、可用性を守ります。", icon: "lock" },
+      { title: "クラウドアプリ開発", desc: "クラウドネイティブ環境向けのアプリケーション。", icon: "cloud" },
+      { title: "クラウド管理", desc: "クラウド基盤の最適化、保護、監視。", icon: "server" },
+      { title: "データベース開発", desc: "安全で高速、拡張性の高いデータベース設計。", icon: "database" }
+    ],
+    ctaTitle: "プロジェクトを始めますか？",
+    ctaDesc: "安全でモダンな基盤づくりについてご相談ください。",
+    ctaButton: "お問い合わせ"
+  },
+  home: {
+    ...en.home,
+    systemSecure: "SYSTEMS_SECURE // V2.4.1",
+    heroTitle1: "安全でスケーラブルな",
+    heroTitle2: "Web開発",
+    heroDesc: "Kernel Guardは、セキュリティファーストの設計で高性能なWebアプリケーションを構築します。",
+    viewArch: "オープンソースを見る",
+    viewCompletedProjects: "実績を見る",
+    missionTitle: "セキュリティファーストのWebエンジニアリング",
+    missionP1: "本当のセキュリティは後から追加するものではありません。アーキテクチャとコードベースの基礎に組み込む必要があります。",
+    missionP2: "安全なフロントエンド、堅牢なAPI、データベースとクラウドの保護まで、幅広く支援します。",
+    techStackTitle: "技術スタック",
+    techStackDesc: "安全性と性能を重視した技術で、信頼できるプロダクトを構築します。",
+    features: {
+      frontend: { title: "セキュアフロントエンド", desc: "ReactベースのUIをXSSなどのクライアント側リスクに備えて設計します。" },
+      backend: { title: "堅牢なバックエンド", desc: "Zero Trust原則に基づくスケーラブルなAPIとサーバー設計。" },
+      data: { title: "データ保護", desc: "暗号化と安全なデータベース運用により機密情報を守ります。" },
+      performance: { title: "高性能", desc: "高速なロード時間とセキュリティチェックを両立します。" }
+    }
+  },
+  projects: {
+    ...en.projects,
+    badge: "DIRECTORY // OPEN_SOURCE",
+    title1: "オープンソース",
+    title2: "プロジェクト",
+    desc: "公開しているツール、セキュリティモジュール、システム開発プロジェクトの一覧です。",
+    colName: "プロジェクト名",
+    colDesc: "説明",
+    colTech: "技術スタック",
+    colLinks: "リンク"
+  },
+  completedProjects: {
+    ...en.completedProjects,
+    badge: "DIRECTORY // COMPLETED_PROJECTS",
+    title1: "完了済み",
+    title2: "プロジェクト",
+    desc: "Web開発プロジェクトと実績をご覧ください。",
+    noAccount: "公開アクセス可能。アカウントは不要です。",
+    credentials: "認証情報",
+    email: "ユーザー",
+    visit: "プロジェクトを見る",
+    links: "プロジェクトリンク",
+    colName: "名前",
+    colDesc: "説明",
+    colTags: "タグ",
+    colLinks: "リンク"
+  },
+  footer: {
+    ...en.footer,
+    desc: "安全で高性能、信頼性の高いWebインフラを構築します。",
+    discover: "見る",
+    connect: "連絡先",
+    rights: "Kernel-Guard. All rights reserved.",
+    terms: "利用規約",
+    privacy: "プライバシーポリシー",
+    cookies: "Cookie設定"
+  },
+  terms: {
+    title: "利用規約",
+    lastUpdated: "最終更新: 2024年4月",
+    section1: { title: "1. 規約への同意", content: "Kernel GuardのWebサイトとサービスを利用することで、本規約に同意したものとみなされます。" },
+    section2: { title: "2. 利用許諾", content: "本サイトの資料は、個人的かつ非商用の閲覧目的に限り一時的に利用できます。" },
+    section3: { title: "3. 免責事項", content: "本サイトの資料は現状有姿で提供され、明示または黙示の保証はありません。" }
+  },
+  privacy: {
+    title: "プライバシーポリシー",
+    lastUpdated: "最終更新: 2024年4月",
+    section1: { title: "1. 収集する情報", content: "お問い合わせなどで直接提供された情報を収集する場合があります。" },
+    section2: { title: "2. 情報の利用", content: "収集した情報は、サービスの提供、維持、改善のために利用します。" },
+    section3: { title: "3. データセキュリティ", content: "個人情報を保護するため、適切なセキュリティ対策を実施します。" }
+  },
+  cookies: {
+    title: "Cookie設定",
+    lastUpdated: "最終更新: 2024年4月",
+    desc: "本サイトは利用体験を改善するためCookieを使用します。",
+    essential: { title: "必須Cookie", desc: "サイトの動作に必要なCookieです。" },
+    analytics: { title: "分析Cookie", desc: "サイトのパフォーマンス測定と改善に利用します。" },
+    save: "設定を保存"
+  },
+  contact: {
+    seo: {
+      title: "お問い合わせ | Kernel Guard",
+      description: "安全なWeb開発、サイバーセキュリティ、インフラ管理についてKernel Guardへお問い合わせください。",
+      keywords: "Kernel Guard お問い合わせ, サイバーセキュリティ, Web開発"
+    },
+    title: "お問い合わせ",
+    subtitle: "プロジェクトのご相談やセキュリティ支援が必要ですか？お気軽にご連絡ください。",
+    info: {
+      title: "連絡先情報",
+      desc: "以下の方法で直接ご連絡いただけます。",
+      email: "メール",
+      location: "所在地",
+      locationValue: "イズミル, トルコ",
+      social: "ソーシャル",
+      github: "GitHubリポジトリ"
+    },
+    form: {
+      name: "氏名",
+      namePlaceholder: "Taro Yamada",
+      email: "メールアドレス",
+      emailPlaceholder: "taro@example.com",
+      message: "メッセージ",
+      messagePlaceholder: "どのようにお手伝いできますか？",
+      submit: "送信",
+      sending: "送信中...",
+      success: "メッセージを送信しました。追ってご連絡します。",
+      error: "送信中にエラーが発生しました。後でもう一度お試しください。"
+    }
+  }
+};
+const zhCN = {
+  ...en,
+  seo: {
+    home: {
+      title: "Kernel Guard | 安全 Web 开发与网络安全解决方案",
+      description: "Kernel Guard 专注于高性能、安全的 Web 应用、加固后端架构和现代网络安全工程。",
+      keywords: "Kernel Guard, 安全 Web 开发, 网络安全, Zero Trust, 数据保护, 后端安全"
+    },
+    projects: {
+      title: "开源安全项目 | Kernel Guard",
+      description: "浏览 Kernel Guard 的开源安全工具、Web 安全项目和系统工程实践。",
+      keywords: "Kernel Guard 开源, 网络安全工具, Web 安全, 安全编码"
+    },
+    completedProjects: {
+      title: "已完成的安全 Web 项目 | Kernel Guard",
+      description: "查看 Kernel Guard 已完成的安全 Web 开发项目、性能优化和架构实践。",
+      keywords: "Kernel Guard 项目案例, 安全 Web 项目, Zero Trust, Web 开发"
+    },
+    services: {
+      title: "服务 | Kernel Guard",
+      description: "Kernel Guard 提供安全 Web 开发、网络安全咨询、SaaS 和云基础设施服务。",
+      keywords: "Kernel Guard 服务, Web 开发, 网络安全, SaaS 开发, 云管理"
+    }
+  },
+  nav: {
+    home: "首页",
+    services: "服务",
+    openSource: "开源项目",
+    completedProjects: "案例",
+    github: "GitHub",
+    contact: "联系"
+  },
+  servicesPage: {
+    title: "我们的服务",
+    subtitle: "构建安全、可扩展且面向未来的数字产品。",
+    services: [
+      { title: "Web 设计", desc: "现代、易用、以转化为目标的界面设计。", icon: "layout" },
+      { title: "网络安全", desc: "保护系统和数据免受最新威胁影响。", icon: "shield" },
+      { title: "定制软件开发", desc: "面向业务需求的可扩展软件解决方案。", icon: "code" },
+      { title: "Web 开发", desc: "高性能、安全、现代的 Web 应用。", icon: "globe" },
+      { title: "SaaS 开发", desc: "构建云端订阅型软件产品。", icon: "box" },
+      { title: "信息安全", desc: "保障企业数据的机密性、完整性和可用性。", icon: "lock" },
+      { title: "云应用开发", desc: "面向云原生环境构建现代应用。", icon: "cloud" },
+      { title: "云管理", desc: "云基础设施优化、安全加固与监控。", icon: "server" },
+      { title: "数据库开发", desc: "安全、快速、可扩展的数据库架构。", icon: "database" }
+    ],
+    ctaTitle: "准备开始项目了吗？",
+    ctaDesc: "联系我们，共同构建安全、现代的基础设施。",
+    ctaButton: "联系我们"
+  },
+  home: {
+    ...en.home,
+    systemSecure: "SYSTEMS_SECURE // V2.4.1",
+    heroTitle1: "安全且可扩展的",
+    heroTitle2: "Web 开发",
+    heroDesc: "Kernel Guard 以安全优先的方式构建高性能 Web 应用，将现代开发实践与强健的威胁防护结合起来。",
+    viewArch: "查看开源项目",
+    viewCompletedProjects: "查看案例",
+    missionTitle: "安全优先的 Web 工程",
+    missionP1: "真正的安全不能事后补丁式加入，而应从架构和代码基础中设计出来。",
+    missionP2: "我们覆盖安全前端、加固后端 API、数据库保护和云基础设施安全。",
+    techStackTitle: "技术栈",
+    techStackDesc: "我们使用安全、高性能的现代技术构建可靠产品。",
+    features: {
+      frontend: { title: "安全前端", desc: "基于 React 的现代界面，面向 XSS 和客户端风险进行加固。" },
+      backend: { title: "加固后端", desc: "遵循 Zero Trust 原则的可扩展 API 和服务端架构。" },
+      data: { title: "数据保护", desc: "通过加密和安全数据库实践保护敏感信息。" },
+      performance: { title: "高性能", desc: "在不牺牲安全检查的前提下实现快速加载。" }
+    }
+  },
+  projects: {
+    ...en.projects,
+    badge: "DIRECTORY // OPEN_SOURCE",
+    title1: "开源",
+    title2: "项目",
+    desc: "我们的开源工具、安全模块和系统工程项目索引。",
+    colName: "项目名称",
+    colDesc: "描述",
+    colTech: "技术栈",
+    colLinks: "链接"
+  },
+  completedProjects: {
+    ...en.completedProjects,
+    badge: "DIRECTORY // COMPLETED_PROJECTS",
+    title1: "已完成",
+    title2: "项目",
+    desc: "查看我们已完成的 Web 开发项目和成功案例。",
+    noAccount: "公开访问，无需账户。",
+    credentials: "认证信息",
+    email: "用户",
+    visit: "访问项目",
+    links: "项目链接",
+    colName: "名称",
+    colDesc: "描述",
+    colTags: "标签",
+    colLinks: "链接"
+  },
+  footer: {
+    ...en.footer,
+    desc: "为现代数字产品构建安全、高性能、可靠的 Web 基础设施。",
+    discover: "发现",
+    connect: "联系",
+    rights: "Kernel-Guard. 保留所有权利。",
+    terms: "服务条款",
+    privacy: "隐私政策",
+    cookies: "Cookie 设置"
+  },
+  terms: {
+    title: "服务条款",
+    lastUpdated: "最后更新：2024 年 4 月",
+    section1: { title: "1. 接受条款", content: "访问和使用 Kernel Guard 网站与服务，即表示您同意遵守本服务条款。" },
+    section2: { title: "2. 使用许可", content: "本网站资料仅可用于个人、非商业性的临时查看。" },
+    section3: { title: "3. 免责声明", content: "本网站资料按“现状”提供，不作任何明示或默示保证。" }
+  },
+  privacy: {
+    title: "隐私政策",
+    lastUpdated: "最后更新：2024 年 4 月",
+    section1: { title: "1. 我们收集的信息", content: "我们会收集您在联系我们时直接提供的信息。" },
+    section2: { title: "2. 信息使用方式", content: "我们使用信息来提供、维护和改进服务。" },
+    section3: { title: "3. 数据安全", content: "我们采用安全措施保护您的个人信息。" }
+  },
+  cookies: {
+    title: "Cookie 设置",
+    lastUpdated: "最后更新：2024 年 4 月",
+    desc: "本网站使用 Cookie 以改善用户体验。",
+    essential: { title: "必要 Cookie", desc: "这些 Cookie 是网站正常运行所必需的。" },
+    analytics: { title: "分析 Cookie", desc: "这些 Cookie 帮助我们衡量并改进网站性能。" },
+    save: "保存设置"
+  },
+  contact: {
+    seo: {
+      title: "联系 | Kernel Guard",
+      description: "联系 Kernel Guard，获取安全 Web 开发、网络安全咨询和基础设施管理支持。",
+      keywords: "Kernel Guard 联系, 网络安全咨询, Web 开发"
+    },
+    title: "联系我们",
+    subtitle: "有项目计划或需要安全咨询？欢迎与我们联系。",
+    info: {
+      title: "联系信息",
+      desc: "您可以通过以下渠道直接联系我们。",
+      email: "电子邮件",
+      location: "地点",
+      locationValue: "土耳其 伊兹密尔",
+      social: "社交媒体",
+      github: "GitHub 仓库"
+    },
+    form: {
+      name: "姓名",
+      namePlaceholder: "Zhang Wei",
+      email: "电子邮件地址",
+      emailPlaceholder: "zhang@example.com",
+      message: "留言",
+      messagePlaceholder: "我们可以如何帮助您？",
+      submit: "发送消息",
+      sending: "发送中...",
+      success: "消息已成功发送，我们会尽快回复。",
+      error: "发送消息时出现错误，请稍后再试。"
+    }
+  }
+};
 const LanguageContext = createContext$1(void 0);
+const translations = {
+  tr,
+  en,
+  de,
+  ja,
+  "zh-CN": zhCN
+};
 const LanguageProvider = ({ children, initialLanguage = "tr" }) => {
   const [language, setLanguage] = useState(initialLanguage);
-  const t = language === "en" ? en : tr;
+  const t = translations[language];
   return /* @__PURE__ */ jsx(LanguageContext.Provider, { value: { language, setLanguage, t }, children });
 };
 const useLanguage = () => {
@@ -16706,6 +17193,60 @@ const __iconNode = [
   ]
 ];
 const Zap = createLucideIcon("zap", __iconNode);
+const SUPPORTED_LANGUAGES = ["tr", "en", "de", "ja", "zh-CN"];
+const LANGUAGE_PREFERENCE_STORAGE_KEY = "kg_language_preference";
+const LANGUAGE_PREFIXES = {
+  tr: "",
+  en: "/en",
+  de: "/de",
+  ja: "/ja",
+  "zh-CN": "/zh-cn"
+};
+const LANGUAGE_HREFLANGS = {
+  tr: "tr",
+  en: "en",
+  de: "de",
+  ja: "ja",
+  "zh-CN": "zh-CN"
+};
+const LANGUAGE_LABELS = {
+  tr: "TR",
+  en: "EN",
+  de: "DE",
+  ja: "JA",
+  "zh-CN": "ZH"
+};
+const PREFIX_LANGUAGE_ENTRIES = Object.entries(LANGUAGE_PREFIXES).filter(([, prefix]) => prefix).sort((a, b) => b[1].length - a[1].length);
+function stripLanguagePrefix(pathname) {
+  for (const [, prefix] of PREFIX_LANGUAGE_ENTRIES) {
+    if (pathname === prefix) return "/";
+    if (pathname.startsWith(`${prefix}/`)) {
+      const rest = pathname.slice(prefix.length);
+      return rest === "" ? "/" : rest;
+    }
+  }
+  return pathname;
+}
+function localizePath(path, lang) {
+  const stripped = stripLanguagePrefix(path);
+  const prefix = LANGUAGE_PREFIXES[lang];
+  if (!prefix) {
+    return stripped;
+  }
+  if (stripped === "/") {
+    return `${prefix}/`;
+  }
+  return `${prefix}${stripped.startsWith("/") ? "" : "/"}${stripped}`;
+}
+function setStoredLanguagePreference(language) {
+  if (typeof window === "undefined") {
+    return;
+  }
+  try {
+    window.localStorage.setItem(LANGUAGE_PREFERENCE_STORAGE_KEY, language);
+  } catch {
+  }
+}
 const CONSTRAINED_CONNECTION_TYPES = /* @__PURE__ */ new Set(["slow-2g", "2g"]);
 function cacheLoader(loader) {
   let pending = null;
@@ -16770,39 +17311,6 @@ function prefetchRoute(route) {
 function prefetchRoutes(routes) {
   for (const route of routes) {
     prefetchRoute(route);
-  }
-}
-const LANGUAGE_PREFERENCE_STORAGE_KEY = "kg_language_preference";
-const EN_PREFIX = "/en";
-function stripLanguagePrefix(pathname) {
-  if (pathname === EN_PREFIX) return "/";
-  if (pathname.startsWith(`${EN_PREFIX}/`)) {
-    const rest = pathname.slice(EN_PREFIX.length);
-    return rest === "" ? "/" : rest;
-  }
-  return pathname;
-}
-function localizePath(path, lang) {
-  const stripped = stripLanguagePrefix(path);
-  if (lang === "tr") {
-    return stripped;
-  }
-  if (stripped === "/") {
-    return `${EN_PREFIX}/`;
-  }
-  return `${EN_PREFIX}${stripped.startsWith("/") ? "" : "/"}${stripped}`;
-}
-function alternateLanguagePath(currentPath, currentLang) {
-  const otherLang = currentLang === "tr" ? "en" : "tr";
-  return localizePath(currentPath, otherLang);
-}
-function setStoredLanguagePreference(language) {
-  if (typeof window === "undefined") {
-    return;
-  }
-  try {
-    window.localStorage.setItem(LANGUAGE_PREFERENCE_STORAGE_KEY, language);
-  } catch {
   }
 }
 function Logo({ className = "", dark = false }) {
@@ -16886,9 +17394,9 @@ function Navbar() {
     path: localizePath(link.path, language)
   }));
   const isActive = (path) => normalizeNavPath(location2.pathname) === normalizeNavPath(path);
-  const toggleLanguage = () => {
-    setStoredLanguagePreference(language === "tr" ? "en" : "tr");
-    const target = alternateLanguagePath(location2.pathname, language);
+  const handleLanguageChange = (nextLanguage) => {
+    setStoredLanguagePreference(nextLanguage);
+    const target = localizePath(location2.pathname, nextLanguage);
     navigate(target);
   };
   const handleLinkIntent = (routes) => {
@@ -16921,18 +17429,19 @@ function Navbar() {
           }
         ),
         /* @__PURE__ */ jsx("div", { className: "h-6 w-px bg-border mx-2" }),
-        /* @__PURE__ */ jsxs(
-          "button",
-          {
-            onClick: toggleLanguage,
-            className: "flex items-center gap-1 text-foreground hover:text-primary transition-colors px-3 py-2 text-sm font-mono uppercase",
-            title: "Toggle Language",
-            children: [
-              /* @__PURE__ */ jsx(Globe, { className: "w-4 h-4" }),
-              language
-            ]
-          }
-        ),
+        /* @__PURE__ */ jsxs("label", { className: "flex items-center gap-1 text-foreground hover:text-primary transition-colors px-3 py-2 text-sm font-mono uppercase", children: [
+          /* @__PURE__ */ jsx(Globe, { className: "w-4 h-4" }),
+          /* @__PURE__ */ jsx(
+            "select",
+            {
+              value: language,
+              onChange: (event) => handleLanguageChange(event.target.value),
+              className: "bg-transparent text-foreground outline-none cursor-pointer uppercase",
+              "aria-label": "Select language",
+              children: SUPPORTED_LANGUAGES.map((lang) => /* @__PURE__ */ jsx("option", { value: lang, children: LANGUAGE_LABELS[lang] }, lang))
+            }
+          )
+        ] }),
         /* @__PURE__ */ jsxs("div", { className: "ml-2 flex items-center gap-2", children: [
           /* @__PURE__ */ jsx(ThemeToggle, {}),
           /* @__PURE__ */ jsx(
@@ -16957,17 +17466,19 @@ function Navbar() {
             children: /* @__PURE__ */ jsx(Lock, { className: "w-5 h-5" })
           }
         ),
-        /* @__PURE__ */ jsxs(
-          "button",
-          {
-            onClick: toggleLanguage,
-            className: "flex items-center justify-center p-2 text-foreground hover:bg-surface focus:outline-none font-mono uppercase text-sm",
-            children: [
-              /* @__PURE__ */ jsx(Globe, { className: "w-4 h-4 mr-1" }),
-              language
-            ]
-          }
-        ),
+        /* @__PURE__ */ jsxs("label", { className: "flex items-center justify-center p-2 text-foreground hover:bg-surface focus:outline-none font-mono uppercase text-sm", children: [
+          /* @__PURE__ */ jsx(Globe, { className: "w-4 h-4 mr-1" }),
+          /* @__PURE__ */ jsx(
+            "select",
+            {
+              value: language,
+              onChange: (event) => handleLanguageChange(event.target.value),
+              className: "bg-transparent text-foreground outline-none cursor-pointer uppercase max-w-14",
+              "aria-label": "Select language",
+              children: SUPPORTED_LANGUAGES.map((lang) => /* @__PURE__ */ jsx("option", { value: lang, children: LANGUAGE_LABELS[lang] }, lang))
+            }
+          )
+        ] }),
         /* @__PURE__ */ jsx(
           "button",
           {
@@ -17005,21 +17516,21 @@ function Navbar() {
   ] });
 }
 function Footer() {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
   return /* @__PURE__ */ jsx("footer", { className: "bg-[var(--color-dark-bg)] text-[var(--color-dark-fg)] mt-auto", children: /* @__PURE__ */ jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16", children: [
     /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-1 md:grid-cols-4 gap-12", children: [
       /* @__PURE__ */ jsxs("div", { className: "md:col-span-2 space-y-6", children: [
-        /* @__PURE__ */ jsx(distExports.Link, { to: "/", className: "inline-block group hover:opacity-90 transition-opacity", children: /* @__PURE__ */ jsx(Logo, { dark: true, className: "scale-[0.65] origin-left" }) }),
+        /* @__PURE__ */ jsx(distExports.Link, { to: localizePath("/", language), className: "inline-block group hover:opacity-90 transition-opacity", children: /* @__PURE__ */ jsx(Logo, { dark: true, className: "scale-[0.65] origin-left" }) }),
         /* @__PURE__ */ jsx("p", { className: "text-gray-400 text-sm max-w-md leading-relaxed mt-4", children: t.footer.desc })
       ] }),
       /* @__PURE__ */ jsxs("div", { children: [
         /* @__PURE__ */ jsx("h3", { className: "font-semibold text-white mb-6 text-sm tracking-wide uppercase", children: t.footer.discover }),
         /* @__PURE__ */ jsxs("ul", { className: "space-y-4", children: [
-          /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(distExports.Link, { to: "/", className: "text-gray-400 hover:text-white transition-colors text-sm", children: t.nav.home }) }),
+          /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(distExports.Link, { to: localizePath("/", language), className: "text-gray-400 hover:text-white transition-colors text-sm", children: t.nav.home }) }),
           /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(
             distExports.Link,
             {
-              to: "/projects/",
+              to: localizePath("/projects/", language),
               onPointerEnter: () => prefetchRoutes(["projects", "projectDetails"]),
               onFocus: () => prefetchRoutes(["projects", "projectDetails"]),
               className: "text-gray-400 hover:text-white transition-colors text-sm",
@@ -17029,7 +17540,7 @@ function Footer() {
           /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(
             distExports.Link,
             {
-              to: "/completed-projects/",
+              to: localizePath("/completed-projects/", language),
               onPointerEnter: () => prefetchRoutes(["completedProjects", "completedProjectDetails"]),
               onFocus: () => prefetchRoutes(["completedProjects", "completedProjectDetails"]),
               className: "text-gray-400 hover:text-white transition-colors text-sm",
@@ -17039,7 +17550,7 @@ function Footer() {
           /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(
             distExports.Link,
             {
-              to: "/contact/",
+              to: localizePath("/contact/", language),
               onPointerEnter: () => prefetchRoute("contact"),
               onFocus: () => prefetchRoute("contact"),
               className: "text-gray-400 hover:text-white transition-colors text-sm",
@@ -17089,7 +17600,7 @@ function Footer() {
         /* @__PURE__ */ jsx(
           distExports.Link,
           {
-            to: "/terms/",
+            to: localizePath("/terms/", language),
             onPointerEnter: () => prefetchRoute("terms"),
             onFocus: () => prefetchRoute("terms"),
             className: "hover:text-gray-300 transition-colors",
@@ -17099,7 +17610,7 @@ function Footer() {
         /* @__PURE__ */ jsx(
           distExports.Link,
           {
-            to: "/privacy/",
+            to: localizePath("/privacy/", language),
             onPointerEnter: () => prefetchRoute("privacy"),
             onFocus: () => prefetchRoute("privacy"),
             className: "hover:text-gray-300 transition-colors",
@@ -17109,7 +17620,7 @@ function Footer() {
         /* @__PURE__ */ jsx(
           distExports.Link,
           {
-            to: "/cookies/",
+            to: localizePath("/cookies/", language),
             onPointerEnter: () => prefetchRoute("cookies"),
             onFocus: () => prefetchRoute("cookies"),
             className: "hover:text-gray-300 transition-colors",
@@ -17210,39 +17721,61 @@ const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 function absoluteUrl(path, language) {
   return `${SITE_URL}${normalizeCanonicalPath(localizePath(path, language))}`;
 }
+const englishLabels = {
+  home: "Home",
+  services: "Services",
+  projects: "Open Source Projects",
+  completedProjects: "Completed Projects",
+  terms: "Terms of Service",
+  privacy: "Privacy Policy",
+  cookies: "Cookie Preferences",
+  contact: "Contact",
+  notFound: "Not Found",
+  serviceDetails: {
+    "secure-frontend": "Secure Frontend",
+    "hardened-backend": "Hardened Backend",
+    "data-protection": "Data Protection",
+    "high-performance": "High Performance"
+  }
+};
 const LABELS = {
   tr: {
     home: "Ana Sayfa",
     services: "Hizmetler",
-    projects: "Açık Kaynak Projeler",
+    projects: "Acik Kaynak Projeler",
     completedProjects: "Tamamlanan Projeler",
-    terms: "Kullanım Koşulları",
-    privacy: "Gizlilik Politikası",
-    cookies: "Çerez Tercihleri",
-    notFound: "Sayfa Bulunamadı",
+    terms: "Kullanim Kosullari",
+    privacy: "Gizlilik Politikasi",
+    cookies: "Cerez Tercihleri",
+    contact: "Iletisim",
+    notFound: "Sayfa Bulunamadi",
     serviceDetails: {
-      "secure-frontend": "Güvenli Frontend",
-      "hardened-backend": "Güçlendirilmiş Backend",
+      "secure-frontend": "Guvenli Frontend",
+      "hardened-backend": "Guclendirilmis Backend",
       "data-protection": "Veri Koruma",
-      "high-performance": "Yüksek Performans"
+      "high-performance": "Yuksek Performans"
     }
   },
-  en: {
-    home: "Home",
-    services: "Services",
-    projects: "Open Source Projects",
-    completedProjects: "Completed Projects",
-    terms: "Terms of Service",
-    privacy: "Privacy Policy",
-    cookies: "Cookie Preferences",
-    notFound: "Not Found",
+  en: englishLabels,
+  de: {
+    home: "Startseite",
+    services: "Leistungen",
+    projects: "Open Source Projekte",
+    completedProjects: "Referenzen",
+    terms: "Nutzungsbedingungen",
+    privacy: "Datenschutz",
+    cookies: "Cookie-Einstellungen",
+    contact: "Kontakt",
+    notFound: "Nicht gefunden",
     serviceDetails: {
-      "secure-frontend": "Secure Frontend",
-      "hardened-backend": "Hardened Backend",
-      "data-protection": "Data Protection",
-      "high-performance": "High Performance"
+      "secure-frontend": "Sicheres Frontend",
+      "hardened-backend": "Gehaertetes Backend",
+      "data-protection": "Datenschutz",
+      "high-performance": "Hohe Performance"
     }
-  }
+  },
+  ja: englishLabels,
+  "zh-CN": englishLabels
 };
 function buildBreadcrumbItems(pathname, language) {
   const logical = stripLanguagePrefix(pathname).replace(/\/+$/, "") || "/";
@@ -17288,6 +17821,7 @@ function buildBreadcrumbItems(pathname, language) {
   if (logical === "/terms") return [home, { name: labels.terms, path: "/terms/" }];
   if (logical === "/privacy") return [home, { name: labels.privacy, path: "/privacy/" }];
   if (logical === "/cookies") return [home, { name: labels.cookies, path: "/cookies/" }];
+  if (logical === "/contact") return [home, { name: labels.contact, path: "/contact/" }];
   if (logical === "/not-found") return [home, { name: labels.notFound, path: "/not-found/" }];
   return null;
 }
@@ -17366,17 +17900,29 @@ function SEO({
   noFollow = false,
   schema
 }) {
+  var _a2;
   const { language } = useLanguage();
   const location2 = distExports.useLocation();
   const currentPath = normalizeCanonicalPath(path || location2.pathname);
   const siteUrl = normalizeSiteUrl(DEFAULT_SITE_URL);
   const canonicalUrl = buildCanonicalUrl(siteUrl, currentPath);
   const robotsContent = noIndex ? noFollow ? "noindex, nofollow" : "noindex, follow" : noFollow ? "index, nofollow" : "index, follow";
-  const locale = language === "tr" ? "tr_TR" : "en_US";
-  const alternateLocale = language === "tr" ? "en_US" : "tr_TR";
+  const ogLocales = {
+    tr: "tr_TR",
+    en: "en_US",
+    de: "de_DE",
+    ja: "ja_JP",
+    "zh-CN": "zh_CN"
+  };
+  const locale = ogLocales[language];
+  const alternateLocales = SUPPORTED_LANGUAGES.filter((lang) => lang !== language).map((lang) => ogLocales[lang]);
   const logicalPath = stripLanguagePrefix(currentPath);
-  const trUrl = buildCanonicalUrl(siteUrl, normalizeCanonicalPath(localizePath(logicalPath, "tr")));
-  const enUrl = buildCanonicalUrl(siteUrl, normalizeCanonicalPath(localizePath(logicalPath, "en")));
+  const alternateUrls = SUPPORTED_LANGUAGES.map((lang) => ({
+    language: lang,
+    hrefLang: LANGUAGE_HREFLANGS[lang],
+    url: buildCanonicalUrl(siteUrl, normalizeCanonicalPath(localizePath(logicalPath, lang)))
+  }));
+  const defaultUrl = ((_a2 = alternateUrls.find((alternate) => alternate.language === "tr")) == null ? void 0 : _a2.url) ?? canonicalUrl;
   const absoluteImage = image.startsWith("http") ? image : `${siteUrl}${image.startsWith("/") ? "" : "/"}${image}`;
   const schemaItems = normalizeSchemaItems(schema);
   const organizationId = `${siteUrl}/#organization`;
@@ -17432,9 +17978,8 @@ function SEO({
     /* @__PURE__ */ jsx("meta", { name: "robots", content: robotsContent }),
     /* @__PURE__ */ jsx("meta", { name: "googlebot", content: robotsContent }),
     /* @__PURE__ */ jsx("link", { rel: "canonical", href: canonicalUrl }),
-    /* @__PURE__ */ jsx("link", { rel: "alternate", hrefLang: "tr", href: trUrl }),
-    /* @__PURE__ */ jsx("link", { rel: "alternate", hrefLang: "en", href: enUrl }),
-    /* @__PURE__ */ jsx("link", { rel: "alternate", hrefLang: "x-default", href: trUrl }),
+    alternateUrls.map((alternate) => /* @__PURE__ */ jsx("link", { rel: "alternate", hrefLang: alternate.hrefLang, href: alternate.url }, alternate.hrefLang)),
+    /* @__PURE__ */ jsx("link", { rel: "alternate", hrefLang: "x-default", href: defaultUrl }),
     /* @__PURE__ */ jsx("meta", { property: "og:url", content: canonicalUrl }),
     /* @__PURE__ */ jsx("meta", { property: "og:type", content: type }),
     /* @__PURE__ */ jsx("meta", { property: "og:title", content: title }),
@@ -17445,7 +17990,7 @@ function SEO({
     /* @__PURE__ */ jsx("meta", { property: "og:image:height", content: "630" }),
     /* @__PURE__ */ jsx("meta", { property: "og:image:alt", content: imageAlt }),
     /* @__PURE__ */ jsx("meta", { property: "og:locale", content: locale }),
-    /* @__PURE__ */ jsx("meta", { property: "og:locale:alternate", content: alternateLocale }),
+    alternateLocales.map((alternateLocale) => /* @__PURE__ */ jsx("meta", { property: "og:locale:alternate", content: alternateLocale }, alternateLocale)),
     /* @__PURE__ */ jsx("meta", { name: "twitter:creator", content: "@kernelguard" }),
     /* @__PURE__ */ jsx("meta", { name: "twitter:site", content: "@kernelguard" }),
     /* @__PURE__ */ jsx("meta", { name: "twitter:card", content: "summary_large_image" }),
@@ -17664,9 +18209,13 @@ const projectsData = {
   items: items$1
 };
 const projects = projectsData.items;
+function localizedText(value, language) {
+  return value[language] ?? value.en ?? value.tr ?? "";
+}
 function Projects() {
   const { language, t } = useLanguage();
   const navigate = distExports.useNavigate();
+  const projectPath = (id) => `${language === "tr" ? "" : language === "zh-CN" ? "/zh-cn" : `/${language}`}/projects/${id}/`;
   return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-24", children: [
     /* @__PURE__ */ jsx(
       SEO,
@@ -17696,22 +18245,22 @@ function Projects() {
         /* @__PURE__ */ jsx("div", { className: "divide-y divide-border", children: projects.map((project) => /* @__PURE__ */ jsxs(
           "div",
           {
-            onClick: () => navigate(`/projects/${project.id}/`),
+            onClick: () => navigate(projectPath(project.id)),
             className: "group grid grid-cols-1 md:grid-cols-12 gap-4 py-6 hover:bg-surface transition-colors items-start cursor-pointer",
             children: [
               /* @__PURE__ */ jsxs("div", { className: "md:col-span-3 pl-4", children: [
                 /* @__PURE__ */ jsx(
                   distExports.Link,
                   {
-                    to: `/projects/${project.id}/`,
+                    to: projectPath(project.id),
                     onClick: (e) => e.stopPropagation(),
                     className: "text-lg font-medium text-primary hover:underline flex items-center gap-2",
                     children: project.title
                   }
                 ),
-                /* @__PURE__ */ jsx("p", { className: "md:hidden text-sm text-foreground/80 mt-2 font-light", children: project.description[language] })
+                /* @__PURE__ */ jsx("p", { className: "md:hidden text-sm text-foreground/80 mt-2 font-light", children: localizedText(project.description, language) })
               ] }),
-              /* @__PURE__ */ jsx("div", { className: "hidden md:block md:col-span-5 text-base text-foreground/80 pr-4 font-light", children: project.description[language] }),
+              /* @__PURE__ */ jsx("div", { className: "hidden md:block md:col-span-5 text-base text-foreground/80 pr-4 font-light", children: localizedText(project.description, language) }),
               /* @__PURE__ */ jsx("div", { className: "md:col-span-3 flex flex-wrap gap-2 mt-4 md:mt-0", children: project.tags.map((tag) => /* @__PURE__ */ jsx(
                 "span",
                 {
@@ -17778,16 +18327,19 @@ function ProjectDetails() {
     return /* @__PURE__ */ jsx(distExports.Navigate, { to: "/not-found/", replace: true });
   }
   const programmingLanguages = project.tags.filter((tag) => KNOWN_PROGRAMMING_LANGUAGES.has(tag));
+  const description = localizedText(project.description, language);
+  const technicalDetails = localizedText(project.technicalDetails, language);
+  const marketingDetails = localizedText(project.marketingDetails, language);
   return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-24", children: [
     /* @__PURE__ */ jsx(
       SEO,
       {
         title: `${project.title} - Kernel Guard`,
-        description: project.description[language],
+        description,
         path: `/projects/${project.id}/`,
         schema: buildSoftwareSourceCodeSchema({
           name: project.title,
-          description: project.description[language],
+          description,
           path: `/projects/${project.id}/`,
           language,
           codeRepository: project.github,
@@ -17799,7 +18351,7 @@ function ProjectDetails() {
       /* @__PURE__ */ jsxs(
         distExports.Link,
         {
-          to: "/projects/",
+          to: localizePath("/projects/", language),
           className: "inline-flex items-center gap-2 text-foreground/60 hover:text-primary transition-colors mb-12 font-medium text-sm",
           children: [
             /* @__PURE__ */ jsx(ArrowLeft, { className: "w-4 h-4" }),
@@ -17809,7 +18361,7 @@ function ProjectDetails() {
       ),
       /* @__PURE__ */ jsxs("div", { className: "mb-16", children: [
         /* @__PURE__ */ jsx("h1", { className: "text-4xl md:text-5xl font-light mb-6 text-foreground", children: project.title }),
-        /* @__PURE__ */ jsx("p", { className: "text-foreground/80 text-xl leading-relaxed font-light", children: project.description[language] }),
+        /* @__PURE__ */ jsx("p", { className: "text-foreground/80 text-xl leading-relaxed font-light", children: description }),
         /* @__PURE__ */ jsx("div", { className: "flex flex-wrap gap-2 mt-8", children: project.tags.map((tag) => /* @__PURE__ */ jsx(
           "span",
           {
@@ -17852,14 +18404,14 @@ function ProjectDetails() {
             /* @__PURE__ */ jsx(Terminal, { className: "w-6 h-6 text-primary" }),
             /* @__PURE__ */ jsx("h2", { className: "text-2xl font-light", children: t.projectDetails.technicalOverview })
           ] }),
-          /* @__PURE__ */ jsx("p", { className: "text-foreground/80 leading-relaxed font-light", children: project.technicalDetails[language] })
+          /* @__PURE__ */ jsx("p", { className: "text-foreground/80 leading-relaxed font-light", children: technicalDetails })
         ] }),
         /* @__PURE__ */ jsxs("div", { className: "bg-surface p-8 border border-border", children: [
           /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-3 mb-6", children: [
             /* @__PURE__ */ jsx(Target, { className: "w-6 h-6 text-primary" }),
             /* @__PURE__ */ jsx("h2", { className: "text-2xl font-light", children: t.projectDetails.marketingOverview })
           ] }),
-          /* @__PURE__ */ jsx("p", { className: "text-foreground/80 leading-relaxed font-light", children: project.marketingDetails[language] })
+          /* @__PURE__ */ jsx("p", { className: "text-foreground/80 leading-relaxed font-light", children: marketingDetails })
         ] })
       ] }),
       /* @__PURE__ */ jsxs("div", { className: "flex flex-col sm:flex-row gap-4 border-t border-border pt-12", children: [
@@ -17905,6 +18457,7 @@ const completedProjects = completedProjectsData.items;
 function CompletedProjects() {
   const { language, t } = useLanguage();
   const navigate = distExports.useNavigate();
+  const projectPath = (id) => localizePath(`/completed-projects/${id}/`, language);
   return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-24", children: [
     /* @__PURE__ */ jsx(
       SEO,
@@ -17935,22 +18488,22 @@ function CompletedProjects() {
         /* @__PURE__ */ jsx("div", { className: "divide-y divide-border", children: completedProjects.map((project) => /* @__PURE__ */ jsxs(
           "div",
           {
-            onClick: () => navigate(`/completed-projects/${project.id}/`),
+            onClick: () => navigate(projectPath(project.id)),
             className: "group grid grid-cols-1 md:grid-cols-12 gap-4 py-6 hover:bg-surface transition-colors items-start cursor-pointer",
             children: [
               /* @__PURE__ */ jsxs("div", { className: "md:col-span-3 pl-4", children: [
                 /* @__PURE__ */ jsx(
                   distExports.Link,
                   {
-                    to: `/completed-projects/${project.id}/`,
+                    to: projectPath(project.id),
                     onClick: (e) => e.stopPropagation(),
                     className: "text-lg font-medium text-primary hover:underline flex items-center gap-2",
                     children: project.title
                   }
                 ),
-                /* @__PURE__ */ jsx("p", { className: "md:hidden text-sm text-foreground/80 mt-2 font-light", children: project.description[language] })
+                /* @__PURE__ */ jsx("p", { className: "md:hidden text-sm text-foreground/80 mt-2 font-light", children: localizedText(project.description, language) })
               ] }),
-              /* @__PURE__ */ jsx("div", { className: "hidden md:block md:col-span-5 text-base text-foreground/80 pr-4 font-light", children: project.description[language] }),
+              /* @__PURE__ */ jsx("div", { className: "hidden md:block md:col-span-5 text-base text-foreground/80 pr-4 font-light", children: localizedText(project.description, language) }),
               /* @__PURE__ */ jsx("div", { className: "md:col-span-3 flex flex-wrap gap-2 mt-4 md:mt-0", children: project.tags.map((tag) => /* @__PURE__ */ jsx(
                 "span",
                 {
@@ -17990,12 +18543,14 @@ function CompletedProjectDetails() {
   if (!project) {
     return /* @__PURE__ */ jsx(distExports.Navigate, { to: "/not-found/", replace: true });
   }
+  const description = localizedText(project.description, language);
+  const longDescription = localizedText(project.longDescription, language);
   return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-24", children: [
     /* @__PURE__ */ jsx(
       SEO,
       {
         title: `${project.title} - Kernel Guard`,
-        description: project.description[language],
+        description,
         keywords: `${project.tags.join(", ")}, Kernel Guard, secure web project, case study`,
         path: `/completed-projects/${project.id}/`,
         noIndex: project.accounts.length > 0
@@ -18005,7 +18560,7 @@ function CompletedProjectDetails() {
       /* @__PURE__ */ jsxs(
         distExports.Link,
         {
-          to: "/completed-projects/",
+          to: localizePath("/completed-projects/", language),
           className: "inline-flex items-center gap-2 text-foreground/60 hover:text-primary transition-colors mb-12 font-mono text-sm uppercase tracking-wider",
           children: [
             /* @__PURE__ */ jsx(ArrowLeft, { className: "w-4 h-4" }),
@@ -18018,7 +18573,7 @@ function CompletedProjectDetails() {
           /* @__PURE__ */ jsxs("div", { children: [
             /* @__PURE__ */ jsx("h1", { className: "text-4xl md:text-5xl font-light text-foreground mb-6", children: project.title }),
             /* @__PURE__ */ jsx("div", { className: "flex flex-wrap gap-3 mb-8", children: project.tags.map((tag) => /* @__PURE__ */ jsx("span", { className: "px-3 py-1 text-xs font-mono bg-surface border border-border text-foreground", children: tag }, tag)) }),
-            /* @__PURE__ */ jsx("p", { className: "text-xl text-foreground/80 font-light leading-relaxed", children: project.longDescription[language] })
+            /* @__PURE__ */ jsx("p", { className: "text-xl text-foreground/80 font-light leading-relaxed", children: longDescription })
           ] }),
           project.image && /* @__PURE__ */ jsx("div", { className: "w-full overflow-hidden border border-border", children: /* @__PURE__ */ jsx(
             "img",
@@ -18735,6 +19290,39 @@ function renderRoute(url, language) {
             /* @__PURE__ */ jsx(ScrollToTop, {}),
             /* @__PURE__ */ jsx(LocalizedRoutes, {})
           ] }, "en")
+        }
+      ),
+      /* @__PURE__ */ jsx(
+        distExports.Route,
+        {
+          path: "/de/*",
+          element: /* @__PURE__ */ jsxs(LanguageProvider, { initialLanguage: "de", children: [
+            /* @__PURE__ */ jsx(CanonicalPathRedirect, {}),
+            /* @__PURE__ */ jsx(ScrollToTop, {}),
+            /* @__PURE__ */ jsx(LocalizedRoutes, {})
+          ] }, "de")
+        }
+      ),
+      /* @__PURE__ */ jsx(
+        distExports.Route,
+        {
+          path: "/ja/*",
+          element: /* @__PURE__ */ jsxs(LanguageProvider, { initialLanguage: "ja", children: [
+            /* @__PURE__ */ jsx(CanonicalPathRedirect, {}),
+            /* @__PURE__ */ jsx(ScrollToTop, {}),
+            /* @__PURE__ */ jsx(LocalizedRoutes, {})
+          ] }, "ja")
+        }
+      ),
+      /* @__PURE__ */ jsx(
+        distExports.Route,
+        {
+          path: "/zh-cn/*",
+          element: /* @__PURE__ */ jsxs(LanguageProvider, { initialLanguage: "zh-CN", children: [
+            /* @__PURE__ */ jsx(CanonicalPathRedirect, {}),
+            /* @__PURE__ */ jsx(ScrollToTop, {}),
+            /* @__PURE__ */ jsx(LocalizedRoutes, {})
+          ] }, "zh-CN")
         }
       ),
       /* @__PURE__ */ jsx(

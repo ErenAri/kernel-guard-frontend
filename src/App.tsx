@@ -118,6 +118,9 @@ export default function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/en/*" element={<LangShell lang="en" />} />
+            <Route path="/de/*" element={<LangShell lang="de" />} />
+            <Route path="/ja/*" element={<LangShell lang="ja" />} />
+            <Route path="/zh-cn/*" element={<LangShell lang="zh-CN" />} />
             <Route path="/*" element={<LangShell lang="tr" />} />
           </Routes>
         </BrowserRouter>

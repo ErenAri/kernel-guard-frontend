@@ -1,24 +1,50 @@
 import type { Language } from '../context/LanguageContext';
 
-export const SUPPORTED_LANGUAGES: readonly Language[] = ['tr', 'en'] as const;
+export const SUPPORTED_LANGUAGES: readonly Language[] = ['tr', 'en', 'de', 'ja', 'zh-CN'] as const;
 export const LANGUAGE_PREFERENCE_STORAGE_KEY = 'kg_language_preference';
+export const DEFAULT_LANGUAGE: Language = 'tr';
+export const LANGUAGE_PREFIXES: Record<Language, string> = {
+  tr: '',
+  en: '/en',
+  de: '/de',
+  ja: '/ja',
+  'zh-CN': '/zh-cn',
+};
+export const LANGUAGE_HREFLANGS: Record<Language, string> = {
+  tr: 'tr',
+  en: 'en',
+  de: 'de',
+  ja: 'ja',
+  'zh-CN': 'zh-CN',
+};
+export const LANGUAGE_LABELS: Record<Language, string> = {
+  tr: 'TR',
+  en: 'EN',
+  de: 'DE',
+  ja: 'JA',
+  'zh-CN': 'ZH',
+};
 
-// Turkish is served at the canonical root; English mirrors live under /en/*.
-// Keeping TR un-prefixed preserves all existing inbound links and SEO authority.
-const EN_PREFIX = '/en';
+const PREFIX_LANGUAGE_ENTRIES = Object.entries(LANGUAGE_PREFIXES)
+  .filter(([, prefix]) => prefix)
+  .sort((a, b) => b[1].length - a[1].length) as Array<[Language, string]>;
 
 export function detectLanguageFromPath(pathname: string): Language {
-  if (pathname === EN_PREFIX || pathname.startsWith(`${EN_PREFIX}/`)) {
-    return 'en';
+  for (const [language, prefix] of PREFIX_LANGUAGE_ENTRIES) {
+    if (pathname === prefix || pathname.startsWith(`${prefix}/`)) {
+      return language;
+    }
   }
-  return 'tr';
+  return DEFAULT_LANGUAGE;
 }
 
 export function stripLanguagePrefix(pathname: string): string {
-  if (pathname === EN_PREFIX) return '/';
-  if (pathname.startsWith(`${EN_PREFIX}/`)) {
-    const rest = pathname.slice(EN_PREFIX.length);
-    return rest === '' ? '/' : rest;
+  for (const [, prefix] of PREFIX_LANGUAGE_ENTRIES) {
+    if (pathname === prefix) return '/';
+    if (pathname.startsWith(`${prefix}/`)) {
+      const rest = pathname.slice(prefix.length);
+      return rest === '' ? '/' : rest;
+    }
   }
   return pathname;
 }
@@ -26,15 +52,17 @@ export function stripLanguagePrefix(pathname: string): string {
 export function localizePath(path: string, lang: Language): string {
   const stripped = stripLanguagePrefix(path);
 
-  if (lang === 'tr') {
+  const prefix = LANGUAGE_PREFIXES[lang];
+
+  if (!prefix) {
     return stripped;
   }
 
   if (stripped === '/') {
-    return `${EN_PREFIX}/`;
+    return `${prefix}/`;
   }
 
-  return `${EN_PREFIX}${stripped.startsWith('/') ? '' : '/'}${stripped}`;
+  return `${prefix}${stripped.startsWith('/') ? '' : '/'}${stripped}`;
 }
 
 export function alternateLanguagePath(currentPath: string, currentLang: Language): string {
@@ -49,7 +77,7 @@ export function getStoredLanguagePreference(): Language | null {
 
   try {
     const value = window.localStorage.getItem(LANGUAGE_PREFERENCE_STORAGE_KEY);
-    return value === 'en' || value === 'tr' ? value : null;
+    return SUPPORTED_LANGUAGES.includes(value as Language) ? value as Language : null;
   } catch {
     return null;
   }
@@ -79,9 +107,21 @@ export function detectBrowserLanguage(): Language {
 
   const normalized = candidates.map((lang) => lang.toLowerCase());
 
+  if (normalized.some((lang) => lang === 'zh' || lang.startsWith('zh-'))) {
+    return 'zh-CN';
+  }
+
+  if (normalized.some((lang) => lang === 'ja' || lang.startsWith('ja-'))) {
+    return 'ja';
+  }
+
+  if (normalized.some((lang) => lang === 'de' || lang.startsWith('de-'))) {
+    return 'de';
+  }
+
   if (normalized.some((lang) => lang === 'en' || lang.startsWith('en-'))) {
     return 'en';
   }
 
-  return 'tr';
+  return DEFAULT_LANGUAGE;
 }

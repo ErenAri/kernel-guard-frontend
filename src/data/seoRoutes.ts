@@ -1,5 +1,7 @@
 import { completedProjects } from './completedProjects';
 import { projects } from './projects';
+import { LANGUAGE_HREFLANGS, SUPPORTED_LANGUAGES, localizePath } from '../i18n/route';
+import type { Language } from '../context/LanguageContext';
 
 const baseStaticRoutes = [
   '/',
@@ -24,12 +26,10 @@ const baseDynamicRoutes = [
 
 const baseRoutes = [...baseStaticRoutes, ...baseDynamicRoutes];
 
-// Mirror every TR route under /en/* so each language has its own indexable URL.
-function withEnMirror(routes: string[]): string[] {
-  return routes.flatMap((route) => {
-    if (route === '/') return ['/', '/en'];
-    return [route, `/en${route}`];
-  });
+// Mirror every canonical TR route under each supported language prefix so each
+// language has its own indexable URL.
+function withLanguageMirrors(routes: string[]): string[] {
+  return routes.flatMap((route) => SUPPORTED_LANGUAGES.map((language) => localizePath(route, language)));
 }
 
 const baseNonIndexableRouteSet = new Set<string>([
@@ -41,19 +41,22 @@ const baseNonIndexableRouteSet = new Set<string>([
 
 const nonIndexableRouteSet = new Set<string>([
   ...baseNonIndexableRouteSet,
-  ...Array.from(baseNonIndexableRouteSet).map((route) => (route === '/' ? '/en' : `/en${route}`)),
+  ...Array.from(baseNonIndexableRouteSet).flatMap((route) =>
+    SUPPORTED_LANGUAGES
+      .filter((language) => language !== 'tr')
+      .map((language) => localizePath(route, language)),
+  ),
 ]);
 
-export const prerenderRoutes = Array.from(new Set(withEnMirror(baseRoutes))).sort((a, b) => a.localeCompare(b));
+export const prerenderRoutes = Array.from(new Set(withLanguageMirrors(baseRoutes))).sort((a, b) => a.localeCompare(b));
 
 export const nonIndexableRoutes = Array.from(nonIndexableRouteSet).sort((a, b) => a.localeCompare(b));
 
 export const sitemapRoutes = prerenderRoutes.filter((route) => !nonIndexableRouteSet.has(route));
 
-// Pairs of (tr, en) routes used to emit <xhtml:link rel="alternate" hreflang="..."> in the sitemap.
-export const sitemapAlternates: Array<{ tr: string; en: string }> = baseRoutes
+export const sitemapAlternates: Array<{ routes: Record<Language, string>; hreflangs: Record<Language, string> }> = baseRoutes
   .filter((route) => !baseNonIndexableRouteSet.has(route))
   .map((route) => ({
-    tr: route,
-    en: route === '/' ? '/en' : `/en${route}`,
+    routes: Object.fromEntries(SUPPORTED_LANGUAGES.map((language) => [language, localizePath(route, language)])) as Record<Language, string>,
+    hreflangs: LANGUAGE_HREFLANGS,
   }));

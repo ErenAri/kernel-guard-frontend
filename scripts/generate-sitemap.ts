@@ -30,17 +30,16 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?>
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${sitemapRoutes
   .map((route) => {
-    const pair = sitemapAlternates.find((entry) => entry.tr === route || entry.en === route);
+    const pair = sitemapAlternates.find((entry) => Object.values(entry.routes).includes(route));
     const alternates = pair
       ? [
-          indexableRouteSet.has(pair.tr)
-            ? `    <xhtml:link rel="alternate" hreflang="tr" href="${escapeXml(toAbsoluteUrl(pair.tr))}" />`
-            : '',
-          indexableRouteSet.has(pair.en)
-            ? `    <xhtml:link rel="alternate" hreflang="en" href="${escapeXml(toAbsoluteUrl(pair.en))}" />`
-            : '',
-          indexableRouteSet.has(pair.tr)
-            ? `    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(toAbsoluteUrl(pair.tr))}" />`
+          ...Object.entries(pair.routes).map(([language, path]) =>
+            indexableRouteSet.has(path)
+              ? `    <xhtml:link rel="alternate" hreflang="${escapeXml(pair.hreflangs[language as keyof typeof pair.hreflangs])}" href="${escapeXml(toAbsoluteUrl(path))}" />`
+              : '',
+          ),
+          indexableRouteSet.has(pair.routes.tr)
+            ? `    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(toAbsoluteUrl(pair.routes.tr))}" />`
             : '',
         ]
           .filter(Boolean)

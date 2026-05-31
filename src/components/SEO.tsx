@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '../context/LanguageContext';
 import { useLocation } from 'react-router-dom';
 import { buildCanonicalUrl, DEFAULT_SITE_URL, normalizeCanonicalPath, normalizeSiteUrl } from '../config/site';
-import { localizePath, stripLanguagePrefix } from '../i18n/route';
+import { LANGUAGE_HREFLANGS, SUPPORTED_LANGUAGES, localizePath, stripLanguagePrefix } from '../i18n/route';
 import { buildBreadcrumbSchema, type JsonLdNode } from '../lib/schema';
 
 interface SEOProps {
@@ -48,15 +48,28 @@ export default function SEO({
   const robotsContent = noIndex
     ? (noFollow ? 'noindex, nofollow' : 'noindex, follow')
     : (noFollow ? 'index, nofollow' : 'index, follow');
-  const locale = language === 'tr' ? 'tr_TR' : 'en_US';
-  const alternateLocale = language === 'tr' ? 'en_US' : 'tr_TR';
+  const ogLocales = {
+    tr: 'tr_TR',
+    en: 'en_US',
+    de: 'de_DE',
+    ja: 'ja_JP',
+    'zh-CN': 'zh_CN',
+  } as const;
+  const locale = ogLocales[language];
+  const alternateLocales = SUPPORTED_LANGUAGES
+    .filter((lang) => lang !== language)
+    .map((lang) => ogLocales[lang]);
 
   // hreflang requires absolute URLs that resolve to each language's variant
-  // of the same logical page. Strip any inbound /en prefix first so we always
+  // of the same logical page. Strip any language prefix first so we always
   // start from the canonical TR path before re-localizing per language.
   const logicalPath = stripLanguagePrefix(currentPath);
-  const trUrl = buildCanonicalUrl(siteUrl, normalizeCanonicalPath(localizePath(logicalPath, 'tr')));
-  const enUrl = buildCanonicalUrl(siteUrl, normalizeCanonicalPath(localizePath(logicalPath, 'en')));
+  const alternateUrls = SUPPORTED_LANGUAGES.map((lang) => ({
+    language: lang,
+    hrefLang: LANGUAGE_HREFLANGS[lang],
+    url: buildCanonicalUrl(siteUrl, normalizeCanonicalPath(localizePath(logicalPath, lang))),
+  }));
+  const defaultUrl = alternateUrls.find((alternate) => alternate.language === 'tr')?.url ?? canonicalUrl;
 
   // Resolve a relative image path to an absolute URL so social platforms can fetch it.
   const absoluteImage = image.startsWith('http') ? image : `${siteUrl}${image.startsWith('/') ? '' : '/'}${image}`;
@@ -122,9 +135,10 @@ export default function SEO({
       <link rel="canonical" href={canonicalUrl} />
 
       {/* hreflang alternates for international SEO. */}
-      <link rel="alternate" hrefLang="tr" href={trUrl} />
-      <link rel="alternate" hrefLang="en" href={enUrl} />
-      <link rel="alternate" hrefLang="x-default" href={trUrl} />
+      {alternateUrls.map((alternate) => (
+        <link key={alternate.hrefLang} rel="alternate" hrefLang={alternate.hrefLang} href={alternate.url} />
+      ))}
+      <link rel="alternate" hrefLang="x-default" href={defaultUrl} />
 
       {/* OpenGraph tags */}
       <meta property="og:url" content={canonicalUrl} />
@@ -137,7 +151,9 @@ export default function SEO({
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content={imageAlt} />
       <meta property="og:locale" content={locale} />
-      <meta property="og:locale:alternate" content={alternateLocale} />
+      {alternateLocales.map((alternateLocale) => (
+        <meta key={alternateLocale} property="og:locale:alternate" content={alternateLocale} />
+      ))}
       
       {/* Twitter tags */}
       <meta name="twitter:creator" content="@kernelguard" />

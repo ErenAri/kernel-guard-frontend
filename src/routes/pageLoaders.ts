@@ -1,3 +1,5 @@
+import { stripLanguagePrefix } from '../i18n/route';
+
 type ModuleLoader<TModule = unknown> = () => Promise<TModule>;
 
 type PrefetchConnection = {
@@ -99,7 +101,7 @@ export function prefetchRoutes(routes: readonly PrefetchRoute[]): void {
 // page's lazy chunks before hydration so React's client tree matches the
 // server-rendered markup (no Suspense fallback flash, no hydration warnings).
 export function resolveLoadersForPath(pathname: string): PrefetchRoute[] {
-  const path = pathname.replace(/\/+$/, '') || '/';
+  const path = stripLanguagePrefix(pathname).replace(/\/+$/, '') || '/';
 
   if (path === '/') return ['home'];
   if (path === '/services') return ['services'];

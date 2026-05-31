@@ -3,10 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { projects } from '../data/projects';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/SEO';
+import { localizedText } from '../i18n/text';
 
 export default function Projects() {
   const { language, t } = useLanguage();
   const navigate = useNavigate();
+  const projectPath = (id: string) => `${language === 'tr' ? '' : language === 'zh-CN' ? '/zh-cn' : `/${language}`}/projects/${id}/`;
 
   return (
     <div className="min-h-screen bg-background pt-32 pb-24">
@@ -41,13 +43,13 @@ export default function Projects() {
             {projects.map((project) => (
               <div 
                 key={project.id} 
-                onClick={() => navigate(`/projects/${project.id}/`)}
+                onClick={() => navigate(projectPath(project.id))}
                 className="group grid grid-cols-1 md:grid-cols-12 gap-4 py-6 hover:bg-surface transition-colors items-start cursor-pointer"
               >
                 {/* Project Name & Mobile Description */}
                 <div className="md:col-span-3 pl-4">
                   <Link 
-                    to={`/projects/${project.id}/`} 
+                    to={projectPath(project.id)}
                     onClick={(e) => e.stopPropagation()}
                     className="text-lg font-medium text-primary hover:underline flex items-center gap-2"
                   >
@@ -55,13 +57,13 @@ export default function Projects() {
                   </Link>
                   {/* Mobile-only description */}
                   <p className="md:hidden text-sm text-foreground/80 mt-2 font-light">
-                    {project.description[language]}
+                    {localizedText(project.description, language)}
                   </p>
                 </div>
 
                 {/* Desktop Description */}
                 <div className="hidden md:block md:col-span-5 text-base text-foreground/80 pr-4 font-light">
-                  {project.description[language]}
+                  {localizedText(project.description, language)}
                 </div>
 
                 {/* Tags */}
