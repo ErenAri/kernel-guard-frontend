@@ -7,7 +7,7 @@ export const engineeringEvidence = {
   },
   lighthouse: {
     desktop: {
-      performance: 97,
+      performance: 91,
       accessibility: 100,
       bestPractices: 96,
       seo: 92,
@@ -15,7 +15,7 @@ export const engineeringEvidence = {
       cumulativeLayoutShift: '0.001',
     },
     mobile: {
-      performance: 81,
+      performance: 72,
       accessibility: 100,
       bestPractices: 96,
       seo: 92,

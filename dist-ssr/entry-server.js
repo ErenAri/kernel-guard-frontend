@@ -18616,7 +18616,7 @@ const engineeringEvidence = {
   },
   lighthouse: {
     desktop: {
-      performance: 97,
+      performance: 91,
       accessibility: 100,
       totalBlockingTime: "0 ms"
     }
