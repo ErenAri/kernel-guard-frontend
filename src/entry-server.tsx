@@ -16,6 +16,10 @@ import HardenedBackend from './pages/HardenedBackend';
 import DataProtection from './pages/DataProtection';
 import HighPerformance from './pages/HighPerformance';
 import Services from './pages/Services';
+import Security from './pages/Security';
+import Engineering from './pages/Engineering';
+import Status from './pages/Status';
+import Changelog from './pages/Changelog';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
 import Cookies from './pages/Cookies';
@@ -57,6 +61,10 @@ function LocalizedRoutes() {
         <Route path="services/hardened-backend" element={<HardenedBackend />} />
         <Route path="services/data-protection" element={<DataProtection />} />
         <Route path="services/high-performance" element={<HighPerformance />} />
+        <Route path="security" element={<Security />} />
+        <Route path="engineering" element={<Engineering />} />
+        <Route path="status" element={<Status />} />
+        <Route path="changelog" element={<Changelog />} />
         <Route path="terms" element={<Terms />} />
         <Route path="privacy" element={<Privacy />} />
         <Route path="cookies" element={<Cookies />} />
@@ -110,6 +118,36 @@ export function renderRoute(url: string, language: Language): RenderResult {
               path="/zh-cn/*"
               element={
                 <LanguageProvider key="zh-CN" initialLanguage="zh-CN">
+                  <CanonicalPathRedirect />
+                  <ScrollToTop />
+                  <LocalizedRoutes />
+                </LanguageProvider>
+              }
+            />
+            <Route
+              path="/es/*"
+              element={
+                <LanguageProvider key="es" initialLanguage="es">
+                  <CanonicalPathRedirect />
+                  <ScrollToTop />
+                  <LocalizedRoutes />
+                </LanguageProvider>
+              }
+            />
+            <Route
+              path="/fr/*"
+              element={
+                <LanguageProvider key="fr" initialLanguage="fr">
+                  <CanonicalPathRedirect />
+                  <ScrollToTop />
+                  <LocalizedRoutes />
+                </LanguageProvider>
+              }
+            />
+            <Route
+              path="/ko/*"
+              element={
+                <LanguageProvider key="ko" initialLanguage="ko">
                   <CanonicalPathRedirect />
                   <ScrollToTop />
                   <LocalizedRoutes />

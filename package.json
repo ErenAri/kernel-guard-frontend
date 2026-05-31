@@ -10,7 +10,8 @@
     "postbuild": "tsx scripts/prerender.ts",
     "preview": "vite preview",
     "clean": "rm -rf dist",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "audit:prod": "npm audit --omit=dev --audit-level=moderate"
   },
   "dependencies": {
     "lucide-react": "^0.546.0",

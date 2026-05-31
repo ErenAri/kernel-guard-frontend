@@ -86,7 +86,7 @@ export const en = {
     proof: {
       badge: 'MEASURED // PUBLIC_EVIDENCE',
       title: 'Proof, not presentation',
-      desc: 'A transparent quality snapshot based on Lighthouse CLI, prerender output, and public GitHub repository data measured on May 31, 2026.',
+      desc: 'A transparent quality snapshot based on Lighthouse CLI, prerender output, and public GitHub repository data measured on June 1, 2026.',
       cards: {
         lighthouse: {
           label: 'Desktop Lighthouse',
@@ -102,7 +102,7 @@ export const en = {
         },
         languages: {
           label: 'Supported languages',
-          detail: 'Turkish, English, German, Japanese, and Chinese.',
+          detail: 'Turkish, English, German, Japanese, Chinese, Spanish, French, and Korean.',
         },
       },
       summary: {

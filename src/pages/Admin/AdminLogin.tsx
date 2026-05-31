@@ -1,9 +1,10 @@
-import { useState, type FormEvent } from 'react';
+import { useCallback, useState, type FormEvent } from 'react';
 import { useAdmin } from '../../context/AdminContext';
 import { Lock, ArrowRight, AlertCircle, Home, Loader2 } from 'lucide-react';
 import SEO from '../../components/SEO';
 import { Link } from 'react-router-dom';
 import { GithubService, type GithubConfig } from '../../services/githubApi';
+import TurnstileWidget from '../../components/TurnstileWidget';
 
 const LOGIN_ERROR_KEY = 'kg_admin_login_error';
 
@@ -21,6 +22,11 @@ export default function AdminLogin() {
   const [password, setPassword] = useState('');
   const [authenticating, setAuthenticating] = useState(false);
   const [error, setError] = useState(consumeLoginError);
+  const [turnstileToken, setTurnstileToken] = useState('');
+  const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY;
+  const handleTurnstileToken = useCallback((token: string) => {
+    setTurnstileToken(token);
+  }, []);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -36,11 +42,22 @@ export default function AdminLogin() {
       return;
     }
 
+    if (turnstileSiteKey && !turnstileToken) {
+      setError('Turnstile verification is required.');
+      return;
+    }
+
     setAuthenticating(true);
 
     try {
-      await new GithubService(config).getJsonFile('src/data/projects.json');
-      login(config);
+      const service = new GithubService(config);
+      const session = await service.createSession(turnstileToken || undefined);
+      const sessionConfig: GithubConfig = session.sessionToken
+        ? { email: config.email, password: '', sessionToken: session.sessionToken }
+        : config;
+
+      await new GithubService(sessionConfig).getJsonFile('src/data/projects.json');
+      login(sessionConfig);
     } catch (err: any) {
       const message = err?.message || '';
       setError(
@@ -129,9 +146,13 @@ export default function AdminLogin() {
             </p>
           </div>
 
+          {turnstileSiteKey && (
+            <TurnstileWidget siteKey={turnstileSiteKey} onToken={handleTurnstileToken} />
+          )}
+
           <button
             type="submit"
-            disabled={authenticating}
+            disabled={authenticating || Boolean(turnstileSiteKey && !turnstileToken)}
             className="w-full flex items-center justify-between p-4 kg-action-primary transition-colors uppercase tracking-widest text-sm font-medium group disabled:opacity-60 disabled:cursor-not-allowed"
           >
             <span>{authenticating ? 'Verifying...' : 'Authenticate'}</span>

@@ -1,0 +1,75 @@
+name: Quality
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run lint
+
+      - name: Audit dependencies
+        run: npm audit --audit-level=moderate
+
+      - name: Build
+        run: npm run build
+
+      - name: Build Cloudflare Functions
+        run: npx wrangler pages functions build functions --outdir .wrangler/functions-build --project-directory . --build-output-directory dist
+
+      - name: Start preview
+        run: |
+          npx vite preview --host 127.0.0.1 --port 4173 > /tmp/kernel-guard-preview.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4173/ > /dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/kernel-guard-preview.log
+          exit 1
+
+      - name: Lighthouse desktop gate
+        run: |
+          npx --yes lighthouse http://127.0.0.1:4173/ \
+            --quiet \
+            --preset=desktop \
+            --chrome-flags="--headless --no-sandbox" \
+            --output=json \
+            --output-path=./lighthouse-desktop.json
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const report = JSON.parse(fs.readFileSync('./lighthouse-desktop.json', 'utf8'));
+          const scores = {
+            performance: Math.round(report.categories.performance.score * 100),
+            accessibility: Math.round(report.categories.accessibility.score * 100),
+            bestPractices: Math.round(report.categories['best-practices'].score * 100),
+            seo: Math.round(report.categories.seo.score * 100),
+          };
+          console.log(scores);
+          if (scores.performance < 80 || scores.accessibility < 95 || scores.bestPractices < 90 || scores.seo < 90) {
+            process.exit(1);
+          }
+          NODE

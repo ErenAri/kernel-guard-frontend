@@ -20,6 +20,10 @@ interface BreadcrumbLabels {
   privacy: string;
   cookies: string;
   contact: string;
+  security: string;
+  engineering: string;
+  status: string;
+  changelog: string;
   notFound: string;
   serviceDetails: {
     'secure-frontend': string;
@@ -38,6 +42,10 @@ const englishLabels: BreadcrumbLabels = {
   privacy: 'Privacy Policy',
   cookies: 'Cookie Preferences',
   contact: 'Contact',
+  security: 'Security',
+  engineering: 'Engineering',
+  status: 'Status',
+  changelog: 'Changelog',
   notFound: 'Not Found',
   serviceDetails: {
     'secure-frontend': 'Secure Frontend',
@@ -57,6 +65,10 @@ const LABELS: Record<Language, BreadcrumbLabels> = {
     privacy: 'Gizlilik Politikasi',
     cookies: 'Cerez Tercihleri',
     contact: 'Iletisim',
+    security: 'Guvenlik',
+    engineering: 'Muhendislik',
+    status: 'Durum',
+    changelog: 'Degisiklikler',
     notFound: 'Sayfa Bulunamadi',
     serviceDetails: {
       'secure-frontend': 'Guvenli Frontend',
@@ -75,6 +87,10 @@ const LABELS: Record<Language, BreadcrumbLabels> = {
     privacy: 'Datenschutz',
     cookies: 'Cookie-Einstellungen',
     contact: 'Kontakt',
+    security: 'Sicherheit',
+    engineering: 'Engineering',
+    status: 'Status',
+    changelog: 'Changelog',
     notFound: 'Nicht gefunden',
     serviceDetails: {
       'secure-frontend': 'Sicheres Frontend',
@@ -85,6 +101,9 @@ const LABELS: Record<Language, BreadcrumbLabels> = {
   },
   ja: englishLabels,
   'zh-CN': englishLabels,
+  es: englishLabels,
+  fr: englishLabels,
+  ko: englishLabels,
 };
 
 interface BreadcrumbItem {
@@ -146,6 +165,10 @@ function buildBreadcrumbItems(pathname: string, language: Language): BreadcrumbI
   if (logical === '/privacy') return [home, { name: labels.privacy, path: '/privacy/' }];
   if (logical === '/cookies') return [home, { name: labels.cookies, path: '/cookies/' }];
   if (logical === '/contact') return [home, { name: labels.contact, path: '/contact/' }];
+  if (logical === '/security') return [home, { name: labels.security, path: '/security/' }];
+  if (logical === '/engineering') return [home, { name: labels.engineering, path: '/engineering/' }];
+  if (logical === '/status') return [home, { name: labels.status, path: '/status/' }];
+  if (logical === '/changelog') return [home, { name: labels.changelog, path: '/changelog/' }];
   if (logical === '/not-found') return [home, { name: labels.notFound, path: '/not-found/' }];
 
   return null;

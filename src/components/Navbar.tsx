@@ -19,6 +19,9 @@ const LANGUAGE_NAMES: Record<Language, string> = {
   de: 'German',
   ja: 'Japanese',
   'zh-CN': 'Chinese',
+  es: 'Spanish',
+  fr: 'French',
+  ko: 'Korean',
 };
 
 interface LanguageSwitcherProps {

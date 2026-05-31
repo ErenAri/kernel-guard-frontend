@@ -54,6 +54,9 @@ export default function SEO({
     de: 'de_DE',
     ja: 'ja_JP',
     'zh-CN': 'zh_CN',
+    es: 'es_ES',
+    fr: 'fr_FR',
+    ko: 'ko_KR',
   } as const;
   const locale = ogLocales[language];
   const alternateLocales = SUPPORTED_LANGUAGES

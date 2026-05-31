@@ -84,12 +84,12 @@ export const ja = {
     proof: {
       badge: 'MEASURED // PUBLIC_EVIDENCE',
       title: '見せ方ではなく、実測値',
-      desc: '2026年5月31日に Lighthouse CLI、prerender 出力、公開 GitHub リポジトリデータから取得した透明な品質スナップショットです。',
+      desc: '2026年6月1日に Lighthouse CLI、prerender 出力、公開 GitHub リポジトリデータから取得した透明な品質スナップショットです。',
       cards: {
         lighthouse: { label: 'Desktop Lighthouse', detail: '本番ドメインでのパフォーマンス / アクセシビリティ。' },
         delivery: { label: 'Prerender ルート', detail: '多言語ページを含め、ビルド時に生成される静的ルート数。' },
         openSource: { label: '公開リポジトリ', detail: 'GitHub 上で確認できる Kernel-Guard organization のリポジトリ。' },
-        languages: { label: '対応言語', detail: 'トルコ語、英語、ドイツ語、日本語、中国語。' },
+        languages: { label: '対応言語', detail: 'トルコ語、英語、ドイツ語、日本語、中国語、スペイン語、フランス語、韓国語。' },
       },
       summary: {
         indexableUrls: 'indexable URL',

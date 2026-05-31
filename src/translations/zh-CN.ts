@@ -84,12 +84,12 @@ export const zhCN = {
     proof: {
       badge: '已测量 // 公开证据',
       title: '不是展示，而是证据',
-      desc: '基于 2026 年 5 月 31 日的 Lighthouse CLI、预渲染输出和公开 GitHub 仓库数据生成的透明质量快照。',
+      desc: '基于 2026 年 6 月 1 日的 Lighthouse CLI、预渲染输出和公开 GitHub 仓库数据生成的透明质量快照。',
       cards: {
         lighthouse: { label: '桌面 Lighthouse', detail: '生产域名上的性能 / 可访问性。' },
         delivery: { label: '预渲染路由', detail: '构建时为多语言页面生成的静态路由。' },
         openSource: { label: '公开仓库', detail: 'GitHub 上可见的 Kernel-Guard 组织仓库。' },
-        languages: { label: '支持语言', detail: '土耳其语、英语、德语、日语和中文。' },
+        languages: { label: '支持语言', detail: '土耳其语、英语、德语、日语、中文、西班牙语、法语和韩语。' },
       },
       summary: {
         indexableUrls: '可索引 URL',

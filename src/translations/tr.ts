@@ -86,7 +86,7 @@ export const tr = {
     proof: {
       badge: 'ÖLÇÜLDÜ // AÇIK_KANIT',
       title: 'Sunum değil, kanıt',
-      desc: '31 Mayıs 2026 tarihinde Lighthouse CLI, prerender çıktısı ve herkese açık GitHub repo verileriyle ölçülmüş şeffaf kalite özeti.',
+      desc: '1 Haziran 2026 tarihinde Lighthouse CLI, prerender çıktısı ve herkese açık GitHub repo verileriyle ölçülmüş şeffaf kalite özeti.',
       cards: {
         lighthouse: {
           label: 'Masaüstü Lighthouse',
@@ -102,7 +102,7 @@ export const tr = {
         },
         languages: {
           label: 'Desteklenen dil',
-          detail: 'Türkçe, İngilizce, Almanca, Japonca ve Çince.',
+          detail: 'Türkçe, İngilizce, Almanca, Japonca, Çince, İspanyolca, Fransızca ve Korece.',
         },
       },
       summary: {

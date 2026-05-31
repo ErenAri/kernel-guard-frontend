@@ -16083,7 +16083,7 @@ const en = {
     proof: {
       badge: "MEASURED // PUBLIC_EVIDENCE",
       title: "Proof, not presentation",
-      desc: "A transparent quality snapshot based on Lighthouse CLI, prerender output, and public GitHub repository data measured on May 31, 2026.",
+      desc: "A transparent quality snapshot based on Lighthouse CLI, prerender output, and public GitHub repository data measured on June 1, 2026.",
       cards: {
         lighthouse: {
           label: "Desktop Lighthouse",
@@ -16099,7 +16099,7 @@ const en = {
         },
         languages: {
           label: "Supported languages",
-          detail: "Turkish, English, German, Japanese, and Chinese."
+          detail: "Turkish, English, German, Japanese, Chinese, Spanish, French, and Korean."
         }
       },
       summary: {
@@ -16332,7 +16332,7 @@ const tr = {
     proof: {
       badge: "ÖLÇÜLDÜ // AÇIK_KANIT",
       title: "Sunum değil, kanıt",
-      desc: "31 Mayıs 2026 tarihinde Lighthouse CLI, prerender çıktısı ve herkese açık GitHub repo verileriyle ölçülmüş şeffaf kalite özeti.",
+      desc: "1 Haziran 2026 tarihinde Lighthouse CLI, prerender çıktısı ve herkese açık GitHub repo verileriyle ölçülmüş şeffaf kalite özeti.",
       cards: {
         lighthouse: {
           label: "Masaüstü Lighthouse",
@@ -16348,7 +16348,7 @@ const tr = {
         },
         languages: {
           label: "Desteklenen dil",
-          detail: "Türkçe, İngilizce, Almanca, Japonca ve Çince."
+          detail: "Türkçe, İngilizce, Almanca, Japonca, Çince, İspanyolca, Fransızca ve Korece."
         }
       },
       summary: {
@@ -16577,12 +16577,12 @@ const de = {
     proof: {
       badge: "GEMESSEN // ÖFFENTLICHE_NACHWEISE",
       title: "Nachweise statt Behauptungen",
-      desc: "Ein transparenter Qualitätsstand auf Basis von Lighthouse CLI, Prerender-Ausgabe und öffentlichen GitHub-Repository-Daten, gemessen am 31. Mai 2026.",
+      desc: "Ein transparenter Qualitätsstand auf Basis von Lighthouse CLI, Prerender-Ausgabe und öffentlichen GitHub-Repository-Daten, gemessen am 1. Juni 2026.",
       cards: {
         lighthouse: { label: "Desktop Lighthouse", detail: "Performance / Barrierefreiheit auf der Produktionsdomain." },
         delivery: { label: "Prerender-Routen", detail: "Statische Routen, die beim Build über lokalisierte Seiten erzeugt werden." },
         openSource: { label: "Öffentliche Repos", detail: "Sichtbare Repositories der Kernel-Guard-Organisation auf GitHub." },
-        languages: { label: "Unterstützte Sprachen", detail: "Türkisch, Englisch, Deutsch, Japanisch und Chinesisch." }
+        languages: { label: "Unterstützte Sprachen", detail: "Türkisch, Englisch, Deutsch, Japanisch, Chinesisch, Spanisch, Französisch und Koreanisch." }
       },
       summary: {
         indexableUrls: "indexierbare URLs",
@@ -16784,12 +16784,12 @@ const ja = {
     proof: {
       badge: "MEASURED // PUBLIC_EVIDENCE",
       title: "見せ方ではなく、実測値",
-      desc: "2026年5月31日に Lighthouse CLI、prerender 出力、公開 GitHub リポジトリデータから取得した透明な品質スナップショットです。",
+      desc: "2026年6月1日に Lighthouse CLI、prerender 出力、公開 GitHub リポジトリデータから取得した透明な品質スナップショットです。",
       cards: {
         lighthouse: { label: "Desktop Lighthouse", detail: "本番ドメインでのパフォーマンス / アクセシビリティ。" },
         delivery: { label: "Prerender ルート", detail: "多言語ページを含め、ビルド時に生成される静的ルート数。" },
         openSource: { label: "公開リポジトリ", detail: "GitHub 上で確認できる Kernel-Guard organization のリポジトリ。" },
-        languages: { label: "対応言語", detail: "トルコ語、英語、ドイツ語、日本語、中国語。" }
+        languages: { label: "対応言語", detail: "トルコ語、英語、ドイツ語、日本語、中国語、スペイン語、フランス語、韓国語。" }
       },
       summary: {
         indexableUrls: "indexable URL",
@@ -16991,12 +16991,12 @@ const zhCN = {
     proof: {
       badge: "已测量 // 公开证据",
       title: "不是展示，而是证据",
-      desc: "基于 2026 年 5 月 31 日的 Lighthouse CLI、预渲染输出和公开 GitHub 仓库数据生成的透明质量快照。",
+      desc: "基于 2026 年 6 月 1 日的 Lighthouse CLI、预渲染输出和公开 GitHub 仓库数据生成的透明质量快照。",
       cards: {
         lighthouse: { label: "桌面 Lighthouse", detail: "生产域名上的性能 / 可访问性。" },
         delivery: { label: "预渲染路由", detail: "构建时为多语言页面生成的静态路由。" },
         openSource: { label: "公开仓库", detail: "GitHub 上可见的 Kernel-Guard 组织仓库。" },
-        languages: { label: "支持语言", detail: "土耳其语、英语、德语、日语和中文。" }
+        languages: { label: "支持语言", detail: "土耳其语、英语、德语、日语、中文、西班牙语、法语和韩语。" }
       },
       summary: {
         indexableUrls: "可索引 URL",
@@ -17114,13 +17114,320 @@ const zhCN = {
     }
   }
 };
+const es = {
+  ...en,
+  seo: {
+    ...en.seo,
+    home: {
+      title: "Kernel Guard | Desarrollo web seguro y soluciones de ciberseguridad",
+      description: "Kernel Guard construye aplicaciones web de alto rendimiento con arquitecturas backend reforzadas y enfoque security-first.",
+      keywords: en.seo.home.keywords
+    },
+    services: {
+      title: "Servicios | Kernel Guard",
+      description: "Servicios de ingeniería web segura, ciberseguridad e infraestructura cloud de Kernel Guard.",
+      keywords: en.seo.services.keywords
+    }
+  },
+  nav: {
+    home: "Inicio",
+    services: "Servicios",
+    openSource: "Open Source",
+    completedProjects: "Casos",
+    github: "GitHub",
+    contact: "Contacto"
+  },
+  servicesPage: {
+    title: "Servicios",
+    subtitle: "Soluciones tecnológicas seguras y escalables para productos digitales exigentes.",
+    services: [
+      { title: "Diseño web", desc: "Interfaces modernas, claras y orientadas a conversión.", icon: "layout" },
+      { title: "Ciberseguridad", desc: "Protección de sistemas, APIs y datos frente a amenazas actuales.", icon: "shield" },
+      { title: "Software a medida", desc: "Soluciones escalables adaptadas a necesidades de negocio concretas.", icon: "code" },
+      { title: "Desarrollo web", desc: "Aplicaciones web modernas, rápidas y seguras.", icon: "globe" },
+      { title: "Desarrollo SaaS", desc: "Productos cloud con modelo de suscripción y operación estable.", icon: "box" },
+      { title: "Seguridad de la información", desc: "Controles para confidencialidad, integridad y disponibilidad.", icon: "lock" },
+      { title: "Apps cloud", desc: "Aplicaciones diseñadas para ejecutarse de forma nativa en cloud.", icon: "cloud" },
+      { title: "Gestión cloud", desc: "Optimización, seguridad y monitorización de infraestructura cloud.", icon: "server" },
+      { title: "Bases de datos", desc: "Arquitecturas de datos seguras, rápidas y preparadas para crecer.", icon: "database" }
+    ],
+    ctaTitle: "¿Listo para tu proyecto?",
+    ctaDesc: "Hablemos para construir una infraestructura segura y moderna.",
+    ctaButton: "Contactar"
+  },
+  home: {
+    ...en.home,
+    heroTitle1: "Desarrollo web",
+    heroTitle2: "seguro y escalable",
+    heroDesc: "Kernel-Guard construye aplicaciones web de alto rendimiento con enfoque security-first y mecanismos avanzados de defensa.",
+    viewArch: "Ver open source",
+    viewCompletedProjects: "Casos",
+    missionTitle: "Ingeniería web security-first",
+    missionP1: "La seguridad real no se añade al final; se diseña desde la base del código, la arquitectura y el proceso de entrega.",
+    missionP2: "Nuestro trabajo cubre frontends seguros, APIs reforzadas, administración de datos y operaciones cloud resistentes.",
+    techStackTitle: "Nuestro arsenal",
+    techStackDesc: "Construimos con tecnologías modernas, medibles y preparadas para entornos exigentes.",
+    proof: {
+      ...en.home.proof,
+      badge: "MEDIDO // EVIDENCIA_PUBLICA",
+      title: "Evidencia, no presentación",
+      desc: "Resumen transparente basado en Lighthouse CLI, prerender y datos públicos de GitHub medidos el 1 de junio de 2026.",
+      cards: {
+        ...en.home.proof.cards,
+        languages: {
+          label: "Idiomas soportados",
+          detail: "Turco, inglés, alemán, japonés, chino, español, francés y coreano."
+        }
+      },
+      footnote: "Los valores se muestran como mediciones, no como claims de marketing."
+    }
+  },
+  projects: {
+    ...en.projects,
+    badge: "DIRECTORIO // OPEN_SOURCE",
+    title1: "Proyectos",
+    title2: "Open Source",
+    desc: "Índice de herramientas abiertas, módulos de seguridad e iniciativas de sistemas.",
+    colName: "Proyecto",
+    colDesc: "Descripción",
+    colTech: "Tecnología",
+    colLinks: "Enlaces"
+  },
+  completedProjects: {
+    ...en.completedProjects,
+    title1: "Casos",
+    title2: "completados",
+    desc: "Portafolio de proyectos web completados y accesibles públicamente.",
+    visit: "Ver proyecto"
+  },
+  projectDetails: {
+    ...en.projectDetails,
+    architectureDiagram: "Arquitectura del sistema",
+    technicalOverview: "Resumen técnico",
+    marketingOverview: "Propuesta de valor",
+    viewSource: "Ver código fuente",
+    liveDemo: "Demo en vivo",
+    backToProjects: "Volver al directorio"
+  },
+  footer: {
+    ...en.footer,
+    desc: "Infraestructura web segura, eficiente y resistente para productos digitales modernos.",
+    discover: "Explorar",
+    connect: "Conectar",
+    rights: "Kernel-Guard. Todos los derechos reservados."
+  },
+  contact: {
+    ...en.contact,
+    title: "Contacto",
+    subtitle: "¿Tienes un proyecto o necesitas una revisión de seguridad? Escríbenos."
+  }
+};
+const fr = {
+  ...en,
+  seo: {
+    ...en.seo,
+    home: {
+      title: "Kernel Guard | Développement web sécurisé et cybersécurité",
+      description: "Kernel Guard conçoit des applications web performantes, des backends renforcés et des architectures security-first.",
+      keywords: en.seo.home.keywords
+    },
+    services: {
+      title: "Services | Kernel Guard",
+      description: "Services de développement web sécurisé, cybersécurité et infrastructure cloud.",
+      keywords: en.seo.services.keywords
+    }
+  },
+  nav: {
+    home: "Accueil",
+    services: "Services",
+    openSource: "Open Source",
+    completedProjects: "Réalisations",
+    github: "GitHub",
+    contact: "Contact"
+  },
+  servicesPage: {
+    title: "Services",
+    subtitle: "Des solutions technologiques sûres et évolutives pour produits numériques exigeants.",
+    services: [
+      { title: "Design web", desc: "Interfaces modernes, lisibles et orientées conversion.", icon: "layout" },
+      { title: "Cybersécurité", desc: "Protection des systèmes, APIs et données contre les menaces actuelles.", icon: "shield" },
+      { title: "Logiciel sur mesure", desc: "Solutions évolutives adaptées à vos besoins métier.", icon: "code" },
+      { title: "Développement web", desc: "Applications web modernes, rapides et sécurisées.", icon: "globe" },
+      { title: "Développement SaaS", desc: "Produits cloud fiables avec modèle d’abonnement.", icon: "box" },
+      { title: "Sécurité de l’information", desc: "Contrôles de confidentialité, intégrité et disponibilité.", icon: "lock" },
+      { title: "Applications cloud", desc: "Applications conçues pour des environnements cloud natifs.", icon: "cloud" },
+      { title: "Gestion cloud", desc: "Optimisation, sécurité et supervision de l’infrastructure.", icon: "server" },
+      { title: "Bases de données", desc: "Architectures de données sécurisées, rapides et scalables.", icon: "database" }
+    ],
+    ctaTitle: "Prêt pour votre projet ?",
+    ctaDesc: "Contactez-nous pour construire une infrastructure moderne et sécurisée.",
+    ctaButton: "Nous contacter"
+  },
+  home: {
+    ...en.home,
+    heroTitle1: "Développement web",
+    heroTitle2: "sécurisé et scalable",
+    heroDesc: "Kernel-Guard construit des applications web performantes avec une approche security-first et des mécanismes de défense avancés.",
+    viewArch: "Voir l’open source",
+    viewCompletedProjects: "Réalisations",
+    missionTitle: "Ingénierie web security-first",
+    missionP1: "La sécurité réelle ne s’ajoute pas après coup ; elle se conçoit dès le socle du code, de l’architecture et de la livraison.",
+    missionP2: "Nous couvrons les frontends sécurisés, les APIs renforcées, la gestion des données et les opérations cloud résilientes.",
+    techStackTitle: "Notre arsenal",
+    techStackDesc: "Nous construisons avec des technologies modernes, mesurables et adaptées aux environnements critiques.",
+    proof: {
+      ...en.home.proof,
+      badge: "MESURE // PREUVE_PUBLIQUE",
+      title: "Des preuves, pas une vitrine",
+      desc: "Synthèse qualité basée sur Lighthouse CLI, le prerender et les données GitHub publiques mesurées le 1er juin 2026.",
+      cards: {
+        ...en.home.proof.cards,
+        languages: {
+          label: "Langues prises en charge",
+          detail: "Turc, anglais, allemand, japonais, chinois, espagnol, français et coréen."
+        }
+      },
+      footnote: "Les métriques sont affichées comme mesures, pas comme slogans marketing."
+    }
+  },
+  projects: {
+    ...en.projects,
+    title1: "Projets",
+    title2: "Open Source",
+    desc: "Index de nos outils ouverts, modules de sécurité et initiatives systèmes.",
+    colName: "Projet",
+    colDesc: "Description",
+    colTech: "Technologies",
+    colLinks: "Liens"
+  },
+  completedProjects: {
+    ...en.completedProjects,
+    title1: "Réalisations",
+    title2: "livrées",
+    desc: "Portefeuille de projets web terminés et vérifiables.",
+    visit: "Voir le projet"
+  },
+  footer: {
+    ...en.footer,
+    desc: "Infrastructure web sécurisée, performante et résiliente pour produits numériques modernes.",
+    discover: "Découvrir",
+    connect: "Contact",
+    rights: "Kernel-Guard. Tous droits réservés."
+  },
+  contact: {
+    ...en.contact,
+    title: "Contact",
+    subtitle: "Un projet ou un besoin de conseil sécurité ? Écrivez-nous."
+  }
+};
+const ko = {
+  ...en,
+  seo: {
+    ...en.seo,
+    home: {
+      title: "Kernel Guard | 보안 중심 웹 개발 및 사이버보안",
+      description: "Kernel Guard는 고성능 웹 애플리케이션, 강화된 백엔드, security-first 아키텍처를 구축합니다.",
+      keywords: en.seo.home.keywords
+    },
+    services: {
+      title: "서비스 | Kernel Guard",
+      description: "보안 웹 개발, 사이버보안 컨설팅, 클라우드 인프라 서비스를 제공합니다.",
+      keywords: en.seo.services.keywords
+    }
+  },
+  nav: {
+    home: "홈",
+    services: "서비스",
+    openSource: "오픈소스",
+    completedProjects: "사례",
+    github: "GitHub",
+    contact: "문의"
+  },
+  servicesPage: {
+    title: "서비스",
+    subtitle: "디지털 제품을 위한 안전하고 확장 가능한 기술 솔루션.",
+    services: [
+      { title: "웹 디자인", desc: "명확하고 현대적인 사용자 인터페이스 설계.", icon: "layout" },
+      { title: "사이버보안", desc: "시스템, API, 데이터를 최신 위협으로부터 보호합니다.", icon: "shield" },
+      { title: "맞춤 소프트웨어", desc: "비즈니스 요구에 맞춘 확장 가능한 소프트웨어.", icon: "code" },
+      { title: "웹 개발", desc: "빠르고 안전한 현대적 웹 애플리케이션.", icon: "globe" },
+      { title: "SaaS 개발", desc: "구독 기반 클라우드 제품 구축.", icon: "box" },
+      { title: "정보보안", desc: "기밀성, 무결성, 가용성을 위한 보안 제어.", icon: "lock" },
+      { title: "클라우드 앱", desc: "클라우드 네이티브 환경을 위한 애플리케이션.", icon: "cloud" },
+      { title: "클라우드 관리", desc: "인프라 최적화, 보안, 모니터링.", icon: "server" },
+      { title: "데이터베이스", desc: "안전하고 빠르며 확장 가능한 데이터 아키텍처.", icon: "database" }
+    ],
+    ctaTitle: "프로젝트를 시작할 준비가 되셨나요?",
+    ctaDesc: "안전하고 현대적인 인프라를 함께 구축해 보세요.",
+    ctaButton: "문의하기"
+  },
+  home: {
+    ...en.home,
+    heroTitle1: "안전하고 확장 가능한",
+    heroTitle2: "웹 개발",
+    heroDesc: "Kernel-Guard는 security-first 접근과 고급 방어 메커니즘으로 고성능 웹 애플리케이션을 구축합니다.",
+    viewArch: "오픈소스 보기",
+    viewCompletedProjects: "사례 보기",
+    missionTitle: "Security-first 웹 엔지니어링",
+    missionP1: "진짜 보안은 나중에 덧붙이는 것이 아니라 코드, 아키텍처, 배포 프로세스의 기초부터 설계되어야 합니다.",
+    missionP2: "보안 프론트엔드, 강화된 API, 데이터 관리, 탄력적인 클라우드 운영까지 다룹니다.",
+    techStackTitle: "기술 스택",
+    techStackDesc: "현대적이고 측정 가능한 기술로 안정적인 솔루션을 만듭니다.",
+    proof: {
+      ...en.home.proof,
+      badge: "측정됨 // 공개_증거",
+      title: "프레젠테이션이 아닌 증거",
+      desc: "2026년 6월 1일 Lighthouse CLI, prerender 결과, 공개 GitHub 데이터를 기반으로 한 품질 요약.",
+      cards: {
+        ...en.home.proof.cards,
+        languages: {
+          label: "지원 언어",
+          detail: "터키어, 영어, 독일어, 일본어, 중국어, 스페인어, 프랑스어, 한국어."
+        }
+      },
+      footnote: "마케팅 문구가 아니라 실제 측정값을 표시합니다."
+    }
+  },
+  projects: {
+    ...en.projects,
+    title1: "오픈소스",
+    title2: "프로젝트",
+    desc: "보안 도구, 시스템 프로그래밍 프로젝트, 공개 소스 이니셔티브 목록.",
+    colName: "프로젝트",
+    colDesc: "설명",
+    colTech: "기술",
+    colLinks: "링크"
+  },
+  completedProjects: {
+    ...en.completedProjects,
+    title1: "완료된",
+    title2: "프로젝트",
+    desc: "완료된 웹 개발 사례와 공개 포트폴리오.",
+    visit: "프로젝트 보기"
+  },
+  footer: {
+    ...en.footer,
+    desc: "현대 디지털 제품을 위한 안전하고 빠르며 탄력적인 웹 인프라.",
+    discover: "탐색",
+    connect: "연결",
+    rights: "Kernel-Guard. 모든 권리 보유."
+  },
+  contact: {
+    ...en.contact,
+    title: "문의",
+    subtitle: "프로젝트 또는 보안 상담이 필요하시면 연락해 주세요."
+  }
+};
 const LanguageContext = createContext$1(void 0);
 const translations = {
   tr,
   en,
   de,
   ja,
-  "zh-CN": zhCN
+  "zh-CN": zhCN,
+  es,
+  fr,
+  ko
 };
 const LanguageProvider = ({ children, initialLanguage = "tr" }) => {
   const [language, setLanguage] = useState(initialLanguage);
@@ -17319,11 +17626,22 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$u = [
+const __iconNode$v = [
   ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
   ["path", { d: "M19 12H5", key: "x3x0zl" }]
 ];
-const ArrowLeft = createLucideIcon("arrow-left", __iconNode$u);
+const ArrowLeft = createLucideIcon("arrow-left", __iconNode$v);
+/**
+ * @license lucide-react v0.546.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$u = [
+  ["path", { d: "M5 12h14", key: "1ays0h" }],
+  ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
+];
+const ArrowRight = createLucideIcon("arrow-right", __iconNode$u);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -17331,17 +17649,6 @@ const ArrowLeft = createLucideIcon("arrow-left", __iconNode$u);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$t = [
-  ["path", { d: "M5 12h14", key: "1ays0h" }],
-  ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
-];
-const ArrowRight = createLucideIcon("arrow-right", __iconNode$t);
-/**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$s = [
   [
     "path",
     {
@@ -17352,23 +17659,34 @@ const __iconNode$s = [
   ["path", { d: "m3.3 7 8.7 5 8.7-5", key: "g66t2b" }],
   ["path", { d: "M12 22V12", key: "d0xqtd" }]
 ];
-const Box = createLucideIcon("box", __iconNode$s);
+const Box = createLucideIcon("box", __iconNode$t);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$r = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
-const Check = createLucideIcon("check", __iconNode$r);
+const __iconNode$s = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
+const Check = createLucideIcon("check", __iconNode$s);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$q = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
-const ChevronDown = createLucideIcon("chevron-down", __iconNode$q);
+const __iconNode$r = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
+const ChevronDown = createLucideIcon("chevron-down", __iconNode$r);
+/**
+ * @license lucide-react v0.546.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$q = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
+];
+const CircleCheck = createLucideIcon("circle-check", __iconNode$q);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -17719,28 +18037,37 @@ const __iconNode = [
   ]
 ];
 const Zap = createLucideIcon("zap", __iconNode);
-const SUPPORTED_LANGUAGES = ["tr", "en", "de", "ja", "zh-CN"];
+const SUPPORTED_LANGUAGES = ["tr", "en", "de", "ja", "zh-CN", "es", "fr", "ko"];
 const LANGUAGE_PREFERENCE_STORAGE_KEY = "kg_language_preference";
 const LANGUAGE_PREFIXES = {
   tr: "",
   en: "/en",
   de: "/de",
   ja: "/ja",
-  "zh-CN": "/zh-cn"
+  "zh-CN": "/zh-cn",
+  es: "/es",
+  fr: "/fr",
+  ko: "/ko"
 };
 const LANGUAGE_HREFLANGS = {
   tr: "tr",
   en: "en",
   de: "de",
   ja: "ja",
-  "zh-CN": "zh-CN"
+  "zh-CN": "zh-CN",
+  es: "es",
+  fr: "fr",
+  ko: "ko"
 };
 const LANGUAGE_LABELS = {
   tr: "TR",
   en: "EN",
   de: "DE",
   ja: "JA",
-  "zh-CN": "ZH"
+  "zh-CN": "ZH",
+  es: "ES",
+  fr: "FR",
+  ko: "KO"
 };
 const PREFIX_LANGUAGE_ENTRIES = Object.entries(LANGUAGE_PREFIXES).filter(([, prefix]) => prefix).sort((a, b) => b[1].length - a[1].length);
 function stripLanguagePrefix(pathname) {
@@ -17806,6 +18133,10 @@ const loadHardenedBackend = cacheLoader(() => Promise.resolve().then(() => Harde
 const loadDataProtection = cacheLoader(() => Promise.resolve().then(() => DataProtection$1));
 const loadHighPerformance = cacheLoader(() => Promise.resolve().then(() => HighPerformance$1));
 const loadServices = cacheLoader(() => Promise.resolve().then(() => Services$1));
+const loadSecurity = cacheLoader(() => Promise.resolve().then(() => Security$1));
+const loadEngineering = cacheLoader(() => Promise.resolve().then(() => Engineering$1));
+const loadStatus = cacheLoader(() => Promise.resolve().then(() => Status$1));
+const loadChangelog = cacheLoader(() => Promise.resolve().then(() => Changelog$1));
 const loadTerms = cacheLoader(() => Promise.resolve().then(() => Terms$1));
 const loadPrivacy = cacheLoader(() => Promise.resolve().then(() => Privacy$1));
 const loadCookies = cacheLoader(() => Promise.resolve().then(() => Cookies$1));
@@ -17818,6 +18149,10 @@ const prefetchers = {
   completedProjects: loadCompletedProjects,
   completedProjectDetails: loadCompletedProjectDetails,
   services: loadServices,
+  security: loadSecurity,
+  engineering: loadEngineering,
+  status: loadStatus,
+  changelog: loadChangelog,
   secureFrontend: loadSecureFrontend,
   hardenedBackend: loadHardenedBackend,
   dataProtection: loadDataProtection,
@@ -17894,7 +18229,10 @@ const LANGUAGE_NAMES = {
   en: "English",
   de: "German",
   ja: "Japanese",
-  "zh-CN": "Chinese"
+  "zh-CN": "Chinese",
+  es: "Spanish",
+  fr: "French",
+  ko: "Korean"
 };
 function LanguageSwitcher({ language, onChange, compact = false }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -18111,8 +18449,199 @@ function Navbar() {
     ] }) })
   ] });
 }
+const english = {
+  links: {
+    security: "Security",
+    engineering: "Engineering",
+    status: "Status",
+    changelog: "Changelog"
+  },
+  pages: {
+    security: {
+      seoTitle: "Security Program | Kernel Guard",
+      seoDescription: "Kernel Guard security posture, platform controls, admin protection, dependency scanning, and disclosure channels.",
+      badge: "SECURITY // CONTROLS",
+      title: "Security Program",
+      description: "A public summary of the controls we use to keep the website, admin workflow, and open-source delivery pipeline defensible.",
+      facts: [
+        { label: "Dependency audit", value: "0", detail: "Known npm vulnerabilities after production audit." },
+        { label: "Admin backend", value: "Cloudflare", detail: "Pages Function with origin-aware CORS and optional Turnstile." },
+        { label: "Headers", value: "CSP/HSTS", detail: "Security headers managed through Cloudflare Pages." }
+      ],
+      sections: [
+        {
+          title: "Application controls",
+          body: "The public site is statically prerendered and served through Cloudflare Pages. The admin API is isolated as a server-side Pages Function.",
+          items: ["Content Security Policy and frame protection", "Same-origin admin API route", "No client-side GitHub token exposure"]
+        },
+        {
+          title: "Admin hardening",
+          body: "Administrative writes are authenticated server-side before GitHub content updates are allowed.",
+          items: ["Constant-time credential comparison", "Optional Turnstile verification", "Short-lived session token support"]
+        },
+        {
+          title: "Disclosure",
+          body: "Security reports should be sent directly to the maintainers with reproduction steps and affected URLs.",
+          items: ["Email: iletisim@kernelguard.net", "No public exploit disclosure before triage", "GitHub issues for non-sensitive bugs"]
+        }
+      ]
+    },
+    engineering: {
+      seoTitle: "Engineering Standards | Kernel Guard",
+      seoDescription: "Kernel Guard engineering standards for accessibility, performance, localization, CI, and measured evidence.",
+      badge: "ENGINEERING // STANDARDS",
+      title: "Engineering Standards",
+      description: "The operating model behind the public website: measurable quality, accessible interfaces, localized content, and repeatable delivery.",
+      facts: [
+        { label: "Languages", value: "8", detail: "Localized UI paths with hreflang alternates." },
+        { label: "Prerender", value: "Static", detail: "SEO-critical routes generated at build time." },
+        { label: "Quality gates", value: "CI", detail: "Typecheck, audit, build, and Lighthouse checks." }
+      ],
+      sections: [
+        {
+          title: "Design discipline",
+          body: "The interface favors restrained enterprise patterns: clear hierarchy, low decoration, measurable proof, and predictable navigation.",
+          items: ["WCAG-oriented color and control states", "Stable route structure", "Evidence cards tied to actual repository and build data"]
+        },
+        {
+          title: "Delivery discipline",
+          body: "Each release should be reproducible through the same commands used in CI.",
+          items: ["npm audit gate", "TypeScript no-emit check", "Cloudflare Pages Functions build validation"]
+        },
+        {
+          title: "Internationalization",
+          body: "Localized URLs are first-class pages, not query parameters.",
+          items: ["Self-canonical localized pages", "hreflang alternates", "Localized project descriptions"]
+        }
+      ]
+    },
+    status: {
+      seoTitle: "Service Status | Kernel Guard",
+      seoDescription: "Current service posture for Kernel Guard website, contact form, admin API, and static delivery.",
+      badge: "STATUS // LIVE",
+      title: "Service Status",
+      description: "A compact operational view of the public web surface and supporting endpoints.",
+      facts: [
+        { label: "Website", value: "Online", detail: "Cloudflare Pages static delivery." },
+        { label: "Admin API", value: "Protected", detail: "Server-side GitHub bridge." },
+        { label: "Contact", value: "Active", detail: "Web3Forms-backed contact flow." }
+      ],
+      sections: [
+        {
+          title: "Public website",
+          body: "Static pages are prerendered and served through Cloudflare for predictable availability and low operational surface.",
+          items: ["Home and language routes", "Project and service pages", "Sitemap and robots.txt"]
+        },
+        {
+          title: "Administrative surface",
+          body: "The admin panel is intentionally separate from public content delivery and uses a server-side write bridge.",
+          items: ["No public write token", "Credential-gated content updates", "Optional Turnstile challenge"]
+        },
+        {
+          title: "Monitoring practice",
+          body: "Status is validated through direct HTTP checks, Lighthouse runs, and build-time prerender reports.",
+          items: ["200 checks on live domain", "Lighthouse accessibility and performance checks", "npm audit verification"]
+        }
+      ]
+    },
+    changelog: {
+      seoTitle: "Changelog | Kernel Guard",
+      seoDescription: "Public changelog for Kernel Guard website security, localization, performance, and delivery changes.",
+      badge: "CHANGELOG // RELEASES",
+      title: "Changelog",
+      description: "A transparent record of meaningful website changes that affect trust, performance, localization, or operations.",
+      facts: [
+        { label: "Latest", value: "2026-06-01", detail: "Enterprise hardening and language expansion." },
+        { label: "Deploy", value: "Cloudflare", detail: "CLI-backed Pages deployments." },
+        { label: "Audit", value: "0", detail: "Known npm vulnerabilities at release time." }
+      ],
+      sections: [
+        {
+          title: "2026-06-01",
+          body: "Enterprise readiness package for the public website.",
+          items: ["Security headers and admin hardening", "French, Spanish, and Korean language support", "Security, engineering, status, and changelog pages"]
+        },
+        {
+          title: "2026-05-31",
+          body: "Measured proof and Cloudflare migration package.",
+          items: ["Cloudflare Pages Function for admin API", "Public GitHub evidence cards", "Accessibility and contrast fixes"]
+        },
+        {
+          title: "Quality policy",
+          body: "Only meaningful technical and trust-impacting changes are listed here.",
+          items: ["Security posture", "Performance metrics", "Localization coverage"]
+        }
+      ]
+    }
+  }
+};
+const enterprisePages = {
+  en: english,
+  tr: {
+    links: { security: "Güvenlik", engineering: "Mühendislik", status: "Durum", changelog: "Değişiklikler" },
+    pages: {
+      security: {
+        ...english.pages.security,
+        seoTitle: "Güvenlik Programı | Kernel Guard",
+        seoDescription: "Kernel Guard güvenlik kontrolleri, admin koruması, bağımlılık taraması ve bildirim kanalları.",
+        badge: "GÜVENLİK // KONTROLLER",
+        title: "Güvenlik Programı",
+        description: "Web sitesi, admin akışı ve açık kaynak teslimat hattını savunulabilir tutmak için kullandığımız kontrollerin özeti."
+      },
+      engineering: {
+        ...english.pages.engineering,
+        seoTitle: "Mühendislik Standartları | Kernel Guard",
+        seoDescription: "Erişilebilirlik, performans, lokalizasyon, CI ve ölçülebilir kanıt standartları.",
+        badge: "MÜHENDİSLİK // STANDARTLAR",
+        title: "Mühendislik Standartları",
+        description: "Ölçülebilir kalite, erişilebilir arayüzler, lokalize içerik ve tekrar edilebilir teslimat modeli."
+      },
+      status: {
+        ...english.pages.status,
+        seoTitle: "Servis Durumu | Kernel Guard",
+        seoDescription: "Kernel Guard web sitesi, iletişim formu, admin API ve statik teslimat durumu.",
+        badge: "DURUM // CANLI",
+        title: "Servis Durumu",
+        description: "Public web yüzeyi ve destekleyen endpointler için kısa operasyonel görünüm."
+      },
+      changelog: {
+        ...english.pages.changelog,
+        seoTitle: "Değişiklik Günlüğü | Kernel Guard",
+        seoDescription: "Kernel Guard web sitesi güvenlik, lokalizasyon, performans ve teslimat değişiklikleri.",
+        badge: "CHANGELOG // SÜRÜMLER",
+        title: "Değişiklik Günlüğü",
+        description: "Güven, performans, lokalizasyon veya operasyonu etkileyen anlamlı değişikliklerin kaydı."
+      }
+    }
+  },
+  de: {
+    links: { security: "Sicherheit", engineering: "Engineering", status: "Status", changelog: "Changelog" },
+    pages: english.pages
+  },
+  ja: {
+    links: { security: "セキュリティ", engineering: "エンジニアリング", status: "ステータス", changelog: "変更履歴" },
+    pages: english.pages
+  },
+  "zh-CN": {
+    links: { security: "安全", engineering: "工程", status: "状态", changelog: "更新日志" },
+    pages: english.pages
+  },
+  es: {
+    links: { security: "Seguridad", engineering: "Ingeniería", status: "Estado", changelog: "Cambios" },
+    pages: english.pages
+  },
+  fr: {
+    links: { security: "Sécurité", engineering: "Ingénierie", status: "Statut", changelog: "Changelog" },
+    pages: english.pages
+  },
+  ko: {
+    links: { security: "보안", engineering: "엔지니어링", status: "상태", changelog: "변경 내역" },
+    pages: english.pages
+  }
+};
 function Footer() {
   const { language, t } = useLanguage();
+  const enterpriseLinks = ["security", "engineering", "status", "changelog"];
   return /* @__PURE__ */ jsx("footer", { className: "bg-[var(--color-dark-bg)] text-[var(--color-dark-fg)] mt-auto", children: /* @__PURE__ */ jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16", children: [
     /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-1 md:grid-cols-4 gap-12", children: [
       /* @__PURE__ */ jsxs("div", { className: "md:col-span-2 space-y-6", children: [
@@ -18183,7 +18712,17 @@ function Footer() {
             }
           ) })
         ] })
-      ] })
+      ] }),
+      /* @__PURE__ */ jsx("div", { className: "md:col-span-4 border-t border-gray-800 pt-8", children: /* @__PURE__ */ jsx("ul", { className: "flex flex-wrap gap-x-6 gap-y-3 text-sm text-gray-400", children: enterpriseLinks.map((key) => /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(
+        distExports.Link,
+        {
+          to: localizePath(`/${key}/`, language),
+          onPointerEnter: () => prefetchRoute(key),
+          onFocus: () => prefetchRoute(key),
+          className: "hover:text-white transition-colors",
+          children: enterprisePages[language].links[key]
+        }
+      ) }, key)) }) })
     ] }),
     /* @__PURE__ */ jsxs("div", { className: "mt-16 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4", children: [
       /* @__PURE__ */ jsxs("p", { className: "text-gray-400 text-sm", children: [
@@ -18336,6 +18875,10 @@ const englishLabels = {
   privacy: "Privacy Policy",
   cookies: "Cookie Preferences",
   contact: "Contact",
+  security: "Security",
+  engineering: "Engineering",
+  status: "Status",
+  changelog: "Changelog",
   notFound: "Not Found",
   serviceDetails: {
     "secure-frontend": "Secure Frontend",
@@ -18354,6 +18897,10 @@ const LABELS = {
     privacy: "Gizlilik Politikasi",
     cookies: "Cerez Tercihleri",
     contact: "Iletisim",
+    security: "Guvenlik",
+    engineering: "Muhendislik",
+    status: "Durum",
+    changelog: "Degisiklikler",
     notFound: "Sayfa Bulunamadi",
     serviceDetails: {
       "secure-frontend": "Guvenli Frontend",
@@ -18372,6 +18919,10 @@ const LABELS = {
     privacy: "Datenschutz",
     cookies: "Cookie-Einstellungen",
     contact: "Kontakt",
+    security: "Sicherheit",
+    engineering: "Engineering",
+    status: "Status",
+    changelog: "Changelog",
     notFound: "Nicht gefunden",
     serviceDetails: {
       "secure-frontend": "Sicheres Frontend",
@@ -18381,7 +18932,10 @@ const LABELS = {
     }
   },
   ja: englishLabels,
-  "zh-CN": englishLabels
+  "zh-CN": englishLabels,
+  es: englishLabels,
+  fr: englishLabels,
+  ko: englishLabels
 };
 function buildBreadcrumbItems(pathname, language) {
   const logical = stripLanguagePrefix(pathname).replace(/\/+$/, "") || "/";
@@ -18428,6 +18982,10 @@ function buildBreadcrumbItems(pathname, language) {
   if (logical === "/privacy") return [home, { name: labels.privacy, path: "/privacy/" }];
   if (logical === "/cookies") return [home, { name: labels.cookies, path: "/cookies/" }];
   if (logical === "/contact") return [home, { name: labels.contact, path: "/contact/" }];
+  if (logical === "/security") return [home, { name: labels.security, path: "/security/" }];
+  if (logical === "/engineering") return [home, { name: labels.engineering, path: "/engineering/" }];
+  if (logical === "/status") return [home, { name: labels.status, path: "/status/" }];
+  if (logical === "/changelog") return [home, { name: labels.changelog, path: "/changelog/" }];
   if (logical === "/not-found") return [home, { name: labels.notFound, path: "/not-found/" }];
   return null;
 }
@@ -18518,7 +19076,10 @@ function SEO({
     en: "en_US",
     de: "de_DE",
     ja: "ja_JP",
-    "zh-CN": "zh_CN"
+    "zh-CN": "zh_CN",
+    es: "es_ES",
+    fr: "fr_FR",
+    ko: "ko_KR"
   };
   const locale = ogLocales[language];
   const alternateLocales = SUPPORTED_LANGUAGES.filter((lang) => lang !== language).map((lang) => ogLocales[lang]);
@@ -18608,16 +19169,16 @@ function SEO({
   ] });
 }
 const engineeringEvidence = {
-  measuredAt: "2026-05-31",
+  measuredAt: "2026-06-01",
   delivery: {
-    prerenderedRoutes: 100,
-    indexableUrls: 80,
-    supportedLanguages: 5
+    prerenderedRoutes: 192,
+    indexableUrls: 160,
+    supportedLanguages: 8
   },
   lighthouse: {
     desktop: {
-      performance: 91,
-      accessibility: 100,
+      performance: 100,
+      accessibility: 95,
       totalBlockingTime: "0 ms"
     }
   },
@@ -18861,7 +19422,7 @@ const Home$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProper
   __proto__: null,
   default: Home
 }, Symbol.toStringTag, { value: "Module" }));
-const items$1 = [{ "id": "cathodex", "title": "CathodeX", "description": { "en": "AI-powered cathode material screening platform using graph neural networks for predicting battery material properties.", "tr": "Pil malzemesi özelliklerini tahmin etmek için çizge sinir ağlarını kullanan yapay zeka destekli katot malzemesi tarama platformu.", "de": "KI-gestuetzte Plattform zur Pruefung von Kathodenmaterialien, die Graph Neural Networks zur Vorhersage von Batterieeigenschaften nutzt.", "ja": "グラフニューラルネットワークを用いて電池材料の特性を予測する、AI搭載のカソード材料スクリーニングプラットフォームです。", "zh-CN": "一个由 AI 驱动的正极材料筛选平台，使用图神经网络预测电池材料属性。" }, "technicalDetails": { "en": "Built using PyTorch and Graph Neural Networks (GNNs) to model the atomic structure of cathode materials. It leverages high-throughput screening algorithms to predict key battery properties such as energy density and stability.", "tr": "Katot malzemelerinin atomik yapısını modellemek için PyTorch ve Çizge Sinir Ağları (GNN'ler) kullanılarak oluşturulmuştur. Enerji yoğunluğu ve kararlılık gibi temel pil özelliklerini tahmin etmek için yüksek verimli tarama algoritmalarından yararlanır.", "de": "Entwickelt mit PyTorch und Graph Neural Networks (GNNs), um die atomare Struktur von Kathodenmaterialien zu modellieren. Hochdurchsatz-Screening-Algorithmen prognostizieren zentrale Batterieeigenschaften wie Energiedichte und Stabilitaet.", "ja": "PyTorch とグラフニューラルネットワーク（GNN）を用いて、カソード材料の原子構造をモデル化しています。高スループットスクリーニングにより、エネルギー密度や安定性などの主要な電池特性を予測します。", "zh-CN": "该平台基于 PyTorch 和图神经网络（GNN）构建，用于建模正极材料的原子结构。它利用高通量筛选算法预测能量密度、稳定性等关键电池属性。" }, "marketingDetails": { "en": "Accelerating the future of energy storage. CathodeX reduces the time and cost of battery material discovery by orders of magnitude, empowering researchers to find the next generation of sustainable energy solutions.", "tr": "Enerji depolamanın geleceğini hızlandırıyoruz. CathodeX, pil malzemesi keşfinin zamanını ve maliyetini büyük ölçüde azaltarak araştırmacıların yeni nesil sürdürülebilir enerji çözümlerini bulmalarını sağlar.", "de": "Beschleunigt die Zukunft der Energiespeicherung. CathodeX senkt Zeit und Kosten der Batteriematerialforschung drastisch und hilft Forschenden, nachhaltige Energieloesungen der naechsten Generation zu finden.", "ja": "エネルギー貯蔵の未来を加速します。CathodeX は電池材料探索にかかる時間とコストを大幅に削減し、研究者が次世代の持続可能なエネルギーソリューションを発見できるよう支援します。", "zh-CN": "加速储能技术的未来。CathodeX 大幅降低电池材料发现的时间和成本，帮助研究人员寻找下一代可持续能源解决方案。" }, "tags": ["Python", "AI", "Graph Neural Networks"], "github": "https://github.com/Kernel-Guard/CathodeX", "link": "https://cathode-screening.vercel.app/", "diagram": 'graph LR\n    User[User / Chemist] -->|HTTPS| FE(Next.js on Vercel)\n    FE -->|JSON| API(FastAPI on Render)\n    subgraph "Inference Engine"\n        API -->|Parse| Pymatgen(Structure Parser)\n        Pymatgen -->|Graph| M1(MACE Member 1)\n        Pymatgen -->|Graph| M2(MACE Member 2)\n        Pymatgen -->|Graph| M3(MACE Member 3)\n        Pymatgen -->|Graph| M4(MACE Member 4)\n        Pymatgen -->|Graph| M5(MACE Member 5)\n    end\n    M1 & M2 & M3 & M4 & M5 -->|Aggregate| Stats[q10 / q50 / q90 + Conformal]\n    Stats -->|Policy| Result[KEEP / MAYBE / KILL]' }, { "id": "post-quantum-messaging-app", "title": "post-quantum-messaging-app", "description": { "en": "A secure messaging application implementing post-quantum cryptographic algorithms to ensure future-proof communication.", "tr": "Geleceğe dönük iletişimi sağlamak için kuantum sonrası kriptografik algoritmalar uygulayan güvenli bir mesajlaşma uygulaması.", "de": "Eine sichere Messaging-Anwendung mit Post-Quantum-Kryptografie, die Kommunikation langfristig schuetzen soll.", "ja": "将来にわたって安全な通信を実現するため、ポスト量子暗号アルゴリズムを実装したセキュアメッセージングアプリケーションです。", "zh-CN": "一款实现后量子密码算法的安全消息应用，用于保障面向未来的通信安全。" }, "technicalDetails": { "en": "Implemented in Rust for memory safety and performance. Utilizes NIST-approved post-quantum cryptographic algorithms (like CRYSTALS-Kyber and CRYSTALS-Dilithium) to secure message exchange against attacks from quantum computers.", "tr": "Bellek güvenliği ve performans için Rust ile uygulanmıştır. Mesaj alışverişini kuantum bilgisayarlardan gelebilecek saldırılara karşı güvence altına almak için NIST onaylı kuantum sonrası kriptografik algoritmaları (CRYSTALS-Kyber ve CRYSTALS-Dilithium gibi) kullanır.", "de": "In Rust umgesetzt, um Speichersicherheit und Performance zu verbinden. Die Anwendung nutzt NIST-standardisierte Post-Quantum-Algorithmen wie CRYSTALS-Kyber und CRYSTALS-Dilithium, um Nachrichtenaustausch gegen Angriffe durch Quantencomputer abzusichern.", "ja": "メモリ安全性と性能を重視して Rust で実装されています。CRYSTALS-Kyber や CRYSTALS-Dilithium など、NIST 標準のポスト量子暗号アルゴリズムを用いて、量子コンピュータによる攻撃からメッセージ交換を保護します。", "zh-CN": "该应用使用 Rust 实现，以兼顾内存安全与性能。它采用 NIST 标准化的后量子密码算法（如 CRYSTALS-Kyber 和 CRYSTALS-Dilithium），保护消息交换免受量子计算机攻击。" }, "marketingDetails": { "en": "Future-proof your communications. As quantum computing advances, traditional encryption will become obsolete. Our post-quantum messaging app ensures your sensitive data remains secure against tomorrow's threats, today.", "tr": "İletişiminizi geleceğe hazırlayın. Kuantum hesaplama geliştikçe geleneksel şifreleme geçersiz hale gelecektir. Kuantum sonrası mesajlaşma uygulamamız, hassas verilerinizin bugünden yarının tehditlerine karşı güvende kalmasını sağlar.", "de": "Machen Sie Ihre Kommunikation zukunftssicher. Mit dem Fortschritt des Quantencomputings wird klassische Verschluesselung unter Druck geraten. Diese Post-Quantum-Messaging-App schuetzt sensible Daten schon heute vor den Risiken von morgen.", "ja": "通信を未来に備えます。量子コンピューティングが進化すると、従来の暗号化は通用しなくなる可能性があります。このポスト量子メッセージングアプリは、明日の脅威に対して今日から機密データを保護します。", "zh-CN": "让通信面向未来。随着量子计算的发展，传统加密将面临失效风险。我们的后量子消息应用从今天开始保护敏感数据，应对未来威胁。" }, "tags": ["Rust", "Cryptography", "Post-Quantum"], "github": "https://github.com/Kernel-Guard/post-quantum-messaging-app", "diagram": 'flowchart LR\n    C["CLI / Android / iOS / Web / Desktop"] -->|HTTP JSON + TLS| S["pqmsg-server"]\n    S -->|Sealed inbox sync / realtime relay| C\n    A["Android bridge"] --> CORE["pqmsg-core"]\n    I["iOS bridge"] --> CORE\n    W["Web WASM bridge"] --> CORE\n    D["Desktop wrapper"] --> W\n    S --> DB["PostgreSQL / SQLite"]\n    S --> RD["Redis rate limiter"]\n    PV["ProVerif model"] -.- V["CI verification gate"]\n    TM["Tamarin model"] -.- V' }, { "id": "aegis-bpf", "title": "Aegis-BPF", "description": { "en": "A prototype for enforcing security policies using eBPF (Extended Berkeley Packet Filter) with CO-RE (Compile Once - Run Everywhere) support.", "tr": "CO-RE (Bir Kere Derle - Her Yerde Çalıştır) desteğiyle eBPF (Genişletilmiş Berkeley Paket Filtresi) kullanarak güvenlik politikalarını uygulamak için bir prototip.", "de": "Ein Prototyp zur Durchsetzung von Sicherheitsrichtlinien mit eBPF und CO-RE-Unterstuetzung (Compile Once - Run Everywhere).", "ja": "CO-RE（Compile Once - Run Everywhere）対応の eBPF（Extended Berkeley Packet Filter）を用いて、セキュリティポリシーを適用するためのプロトタイプです。", "zh-CN": "一个使用 eBPF（扩展伯克利包过滤器）并支持 CO-RE（一次编译，到处运行）的安全策略执行原型。" }, "technicalDetails": { "en": "Developed using C++ and eBPF technology. It utilizes CO-RE (Compile Once - Run Everywhere) to ensure portability across different Linux kernel versions without recompilation, providing low-overhead, kernel-level security enforcement.", "tr": "C++ ve eBPF teknolojisi kullanılarak geliştirilmiştir. Yeniden derlemeye gerek kalmadan farklı Linux çekirdek sürümlerinde taşınabilirliği sağlamak için CO-RE (Bir Kere Derle - Her Yerde Çalıştır) kullanır ve düşük ek yüklü, çekirdek düzeyinde güvenlik uygulaması sağlar.", "de": "Entwickelt mit C++ und eBPF-Technologie. CO-RE sorgt fuer Portabilitaet ueber verschiedene Linux-Kernelversionen hinweg, ohne erneutes Kompilieren zu erfordern, und ermoeglicht Sicherheitsdurchsetzung auf Kernel-Ebene mit geringer Laufzeitbelastung.", "ja": "C++ と eBPF 技術で開発されています。CO-RE（Compile Once - Run Everywhere）により、再コンパイルなしで異なる Linux カーネルバージョン間の移植性を確保し、低オーバーヘッドなカーネルレベルのセキュリティ制御を実現します。", "zh-CN": "该项目使用 C++ 和 eBPF 技术开发。它通过 CO-RE 在不同 Linux 内核版本之间实现无需重新编译的可移植性，并提供低开销的内核级安全策略执行能力。" }, "marketingDetails": { "en": "Enterprise-grade security at the kernel level. Aegis provides deep visibility and control over system behavior with zero overhead. Protect your infrastructure from advanced persistent threats with our cutting-edge eBPF technology.", "tr": "Çekirdek düzeyinde kurumsal düzeyde güvenlik. Aegis, sıfır ek yük ile sistem davranışı üzerinde derin görünürlük ve kontrol sağlar. En son eBPF teknolojimizle altyapınızı gelişmiş kalıcı tehditlerden koruyun.", "de": "Unternehmenssicherheit direkt auf Kernel-Ebene. Aegis bietet tiefe Einblicke und Kontrolle ueber Systemverhalten bei minimaler Belastung. Schuetzen Sie Ihre Infrastruktur mit moderner eBPF-Technologie vor fortgeschrittenen Bedrohungen.", "ja": "カーネルレベルでのエンタープライズグレードのセキュリティ。Aegis はシステム挙動に対する深い可視性と制御を、最小限のオーバーヘッドで提供します。先進的な eBPF 技術により、高度な持続的脅威からインフラを保護します。", "zh-CN": "内核级企业安全能力。Aegis 以极低开销提供对系统行为的深度可见性与控制，帮助您利用先进的 eBPF 技术保护基础设施免受高级持续性威胁。" }, "tags": ["C++", "eBPF", "Security", "Linux Kernel"], "github": "https://github.com/Kernel-Guard/Aegis-BPF", "diagram": 'graph TD\n    subgraph "AegisBPF User Space"\n        A[File/Net Deny Rules] --> Z\n        B[Allow Allowlist] --> Z\n        C[Policy + Signing] --> Z\n        D[Metrics + Health] --> Z\n        E[Plugins + Rules] --> Z\n        Z[(Pinned BPF Maps & Ring Buffer)]\n    end\n    subgraph "Linux Kernel"\n        Z --- F\n        F[LSM Hooks Enforce/Audit]\n        F --> G[file_open / inode_permission]\n        F --> H[inode_copy_up overlayfs]\n        F --> I[bprm_check + IMA hash]\n        F --> J[socket connect/bind/listen/accept]\n        F --> K[socket sendmsg/recvmsg]\n        L[Tracepoint Fallback]\n        L --> M[openat/exec/fork/exit]\n    end' }];
+const items$1 = /* @__PURE__ */ JSON.parse(`[{"id":"cathodex","title":"CathodeX","description":{"en":"AI-powered cathode material screening platform using graph neural networks for predicting battery material properties.","tr":"Pil malzemesi özelliklerini tahmin etmek için çizge sinir ağlarını kullanan yapay zeka destekli katot malzemesi tarama platformu.","de":"KI-gestuetzte Plattform zur Pruefung von Kathodenmaterialien, die Graph Neural Networks zur Vorhersage von Batterieeigenschaften nutzt.","ja":"グラフニューラルネットワークを用いて電池材料の特性を予測する、AI搭載のカソード材料スクリーニングプラットフォームです。","zh-CN":"一个由 AI 驱动的正极材料筛选平台，使用图神经网络预测电池材料属性。","es":"Plataforma de cribado de materiales de cátodo impulsada por IA que usa redes neuronales de grafos para predecir propiedades de materiales de baterías.","fr":"Plateforme de criblage de matériaux de cathode assistée par IA, utilisant des réseaux neuronaux de graphes pour prédire les propriétés des matériaux de batteries.","ko":"배터리 소재 특성을 예측하기 위해 그래프 신경망을 사용하는 AI 기반 양극재 스크리닝 플랫폼입니다."},"technicalDetails":{"en":"Built using PyTorch and Graph Neural Networks (GNNs) to model the atomic structure of cathode materials. It leverages high-throughput screening algorithms to predict key battery properties such as energy density and stability.","tr":"Katot malzemelerinin atomik yapısını modellemek için PyTorch ve Çizge Sinir Ağları (GNN'ler) kullanılarak oluşturulmuştur. Enerji yoğunluğu ve kararlılık gibi temel pil özelliklerini tahmin etmek için yüksek verimli tarama algoritmalarından yararlanır.","de":"Entwickelt mit PyTorch und Graph Neural Networks (GNNs), um die atomare Struktur von Kathodenmaterialien zu modellieren. Hochdurchsatz-Screening-Algorithmen prognostizieren zentrale Batterieeigenschaften wie Energiedichte und Stabilitaet.","ja":"PyTorch とグラフニューラルネットワーク（GNN）を用いて、カソード材料の原子構造をモデル化しています。高スループットスクリーニングにより、エネルギー密度や安定性などの主要な電池特性を予測します。","zh-CN":"该平台基于 PyTorch 和图神经网络（GNN）构建，用于建模正极材料的原子结构。它利用高通量筛选算法预测能量密度、稳定性等关键电池属性。","es":"Construida con PyTorch y redes neuronales de grafos (GNN) para modelar la estructura atómica de materiales de cátodo. Usa algoritmos de cribado de alto rendimiento para predecir propiedades clave de baterías como densidad energética y estabilidad.","fr":"Construite avec PyTorch et des réseaux neuronaux de graphes (GNN) pour modéliser la structure atomique des matériaux de cathode. Elle s’appuie sur des algorithmes de criblage à haut débit pour prédire des propriétés clés comme la densité énergétique et la stabilité.","ko":"PyTorch와 그래프 신경망(GNN)을 사용해 양극재의 원자 구조를 모델링합니다. 고처리량 스크리닝 알고리즘으로 에너지 밀도와 안정성 같은 핵심 배터리 특성을 예측합니다."},"marketingDetails":{"en":"Accelerating the future of energy storage. CathodeX reduces the time and cost of battery material discovery by orders of magnitude, empowering researchers to find the next generation of sustainable energy solutions.","tr":"Enerji depolamanın geleceğini hızlandırıyoruz. CathodeX, pil malzemesi keşfinin zamanını ve maliyetini büyük ölçüde azaltarak araştırmacıların yeni nesil sürdürülebilir enerji çözümlerini bulmalarını sağlar.","de":"Beschleunigt die Zukunft der Energiespeicherung. CathodeX senkt Zeit und Kosten der Batteriematerialforschung drastisch und hilft Forschenden, nachhaltige Energieloesungen der naechsten Generation zu finden.","ja":"エネルギー貯蔵の未来を加速します。CathodeX は電池材料探索にかかる時間とコストを大幅に削減し、研究者が次世代の持続可能なエネルギーソリューションを発見できるよう支援します。","zh-CN":"加速储能技术的未来。CathodeX 大幅降低电池材料发现的时间和成本，帮助研究人员寻找下一代可持续能源解决方案。","es":"Acelera el futuro del almacenamiento energético. CathodeX reduce drásticamente el tiempo y el coste del descubrimiento de materiales de batería, ayudando a los investigadores a encontrar soluciones energéticas sostenibles de nueva generación.","fr":"Accélérer l’avenir du stockage d’énergie. CathodeX réduit fortement le temps et le coût de découverte des matériaux de batteries, afin d’aider les chercheurs à identifier les prochaines solutions énergétiques durables.","ko":"에너지 저장의 미래를 앞당깁니다. CathodeX는 배터리 소재 탐색에 드는 시간과 비용을 크게 줄여 연구자가 차세대 지속 가능한 에너지 솔루션을 찾도록 돕습니다."},"tags":["Python","AI","Graph Neural Networks"],"github":"https://github.com/Kernel-Guard/CathodeX","link":"https://cathode-screening.vercel.app/","diagram":"graph LR\\n    User[User / Chemist] -->|HTTPS| FE(Next.js on Vercel)\\n    FE -->|JSON| API(FastAPI on Render)\\n    subgraph \\"Inference Engine\\"\\n        API -->|Parse| Pymatgen(Structure Parser)\\n        Pymatgen -->|Graph| M1(MACE Member 1)\\n        Pymatgen -->|Graph| M2(MACE Member 2)\\n        Pymatgen -->|Graph| M3(MACE Member 3)\\n        Pymatgen -->|Graph| M4(MACE Member 4)\\n        Pymatgen -->|Graph| M5(MACE Member 5)\\n    end\\n    M1 & M2 & M3 & M4 & M5 -->|Aggregate| Stats[q10 / q50 / q90 + Conformal]\\n    Stats -->|Policy| Result[KEEP / MAYBE / KILL]"},{"id":"post-quantum-messaging-app","title":"post-quantum-messaging-app","description":{"en":"A secure messaging application implementing post-quantum cryptographic algorithms to ensure future-proof communication.","tr":"Geleceğe dönük iletişimi sağlamak için kuantum sonrası kriptografik algoritmalar uygulayan güvenli bir mesajlaşma uygulaması.","de":"Eine sichere Messaging-Anwendung mit Post-Quantum-Kryptografie, die Kommunikation langfristig schuetzen soll.","ja":"将来にわたって安全な通信を実現するため、ポスト量子暗号アルゴリズムを実装したセキュアメッセージングアプリケーションです。","zh-CN":"一款实现后量子密码算法的安全消息应用，用于保障面向未来的通信安全。","es":"Aplicación de mensajería segura que implementa algoritmos criptográficos poscuánticos para proteger la comunicación a futuro.","fr":"Application de messagerie sécurisée qui implémente des algorithmes cryptographiques post-quantiques pour protéger les communications à long terme.","ko":"미래의 통신 보안을 보장하기 위해 포스트 양자 암호 알고리즘을 구현한 보안 메시징 애플리케이션입니다."},"technicalDetails":{"en":"Implemented in Rust for memory safety and performance. Utilizes NIST-approved post-quantum cryptographic algorithms (like CRYSTALS-Kyber and CRYSTALS-Dilithium) to secure message exchange against attacks from quantum computers.","tr":"Bellek güvenliği ve performans için Rust ile uygulanmıştır. Mesaj alışverişini kuantum bilgisayarlardan gelebilecek saldırılara karşı güvence altına almak için NIST onaylı kuantum sonrası kriptografik algoritmaları (CRYSTALS-Kyber ve CRYSTALS-Dilithium gibi) kullanır.","de":"In Rust umgesetzt, um Speichersicherheit und Performance zu verbinden. Die Anwendung nutzt NIST-standardisierte Post-Quantum-Algorithmen wie CRYSTALS-Kyber und CRYSTALS-Dilithium, um Nachrichtenaustausch gegen Angriffe durch Quantencomputer abzusichern.","ja":"メモリ安全性と性能を重視して Rust で実装されています。CRYSTALS-Kyber や CRYSTALS-Dilithium など、NIST 標準のポスト量子暗号アルゴリズムを用いて、量子コンピュータによる攻撃からメッセージ交換を保護します。","zh-CN":"该应用使用 Rust 实现，以兼顾内存安全与性能。它采用 NIST 标准化的后量子密码算法（如 CRYSTALS-Kyber 和 CRYSTALS-Dilithium），保护消息交换免受量子计算机攻击。","es":"Implementada en Rust para seguridad de memoria y rendimiento. Utiliza algoritmos poscuánticos aprobados por NIST, como CRYSTALS-Kyber y CRYSTALS-Dilithium, para proteger el intercambio de mensajes frente a ataques de computadores cuánticos.","fr":"Implémentée en Rust pour la sûreté mémoire et la performance. Elle utilise des algorithmes post-quantiques approuvés par le NIST, comme CRYSTALS-Kyber et CRYSTALS-Dilithium, afin de protéger l’échange de messages contre les attaques d’ordinateurs quantiques.","ko":"메모리 안전성과 성능을 위해 Rust로 구현되었습니다. CRYSTALS-Kyber와 CRYSTALS-Dilithium 같은 NIST 승인 포스트 양자 암호 알고리즘을 사용해 양자 컴퓨터 공격으로부터 메시지 교환을 보호합니다."},"marketingDetails":{"en":"Future-proof your communications. As quantum computing advances, traditional encryption will become obsolete. Our post-quantum messaging app ensures your sensitive data remains secure against tomorrow's threats, today.","tr":"İletişiminizi geleceğe hazırlayın. Kuantum hesaplama geliştikçe geleneksel şifreleme geçersiz hale gelecektir. Kuantum sonrası mesajlaşma uygulamamız, hassas verilerinizin bugünden yarının tehditlerine karşı güvende kalmasını sağlar.","de":"Machen Sie Ihre Kommunikation zukunftssicher. Mit dem Fortschritt des Quantencomputings wird klassische Verschluesselung unter Druck geraten. Diese Post-Quantum-Messaging-App schuetzt sensible Daten schon heute vor den Risiken von morgen.","ja":"通信を未来に備えます。量子コンピューティングが進化すると、従来の暗号化は通用しなくなる可能性があります。このポスト量子メッセージングアプリは、明日の脅威に対して今日から機密データを保護します。","zh-CN":"让通信面向未来。随着量子计算的发展，传统加密将面临失效风险。我们的后量子消息应用从今天开始保护敏感数据，应对未来威胁。","es":"Prepara tus comunicaciones para el futuro. A medida que avanza la computación cuántica, el cifrado tradicional perderá eficacia. Esta aplicación mantiene los datos sensibles protegidos frente a las amenazas de mañana desde hoy.","fr":"Préparez vos communications pour l’avenir. À mesure que l’informatique quantique progresse, le chiffrement traditionnel sera mis sous pression. Cette application protège dès aujourd’hui les données sensibles contre les menaces de demain.","ko":"커뮤니케이션을 미래에 대비하세요. 양자 컴퓨팅이 발전하면 기존 암호화는 한계에 직면할 수 있습니다. 이 앱은 오늘부터 민감한 데이터를 내일의 위협에 대비해 보호합니다."},"tags":["Rust","Cryptography","Post-Quantum"],"github":"https://github.com/Kernel-Guard/post-quantum-messaging-app","diagram":"flowchart LR\\n    C[\\"CLI / Android / iOS / Web / Desktop\\"] -->|HTTP JSON + TLS| S[\\"pqmsg-server\\"]\\n    S -->|Sealed inbox sync / realtime relay| C\\n    A[\\"Android bridge\\"] --> CORE[\\"pqmsg-core\\"]\\n    I[\\"iOS bridge\\"] --> CORE\\n    W[\\"Web WASM bridge\\"] --> CORE\\n    D[\\"Desktop wrapper\\"] --> W\\n    S --> DB[\\"PostgreSQL / SQLite\\"]\\n    S --> RD[\\"Redis rate limiter\\"]\\n    PV[\\"ProVerif model\\"] -.- V[\\"CI verification gate\\"]\\n    TM[\\"Tamarin model\\"] -.- V"},{"id":"aegis-bpf","title":"Aegis-BPF","description":{"en":"A prototype for enforcing security policies using eBPF (Extended Berkeley Packet Filter) with CO-RE (Compile Once - Run Everywhere) support.","tr":"CO-RE (Bir Kere Derle - Her Yerde Çalıştır) desteğiyle eBPF (Genişletilmiş Berkeley Paket Filtresi) kullanarak güvenlik politikalarını uygulamak için bir prototip.","de":"Ein Prototyp zur Durchsetzung von Sicherheitsrichtlinien mit eBPF und CO-RE-Unterstuetzung (Compile Once - Run Everywhere).","ja":"CO-RE（Compile Once - Run Everywhere）対応の eBPF（Extended Berkeley Packet Filter）を用いて、セキュリティポリシーを適用するためのプロトタイプです。","zh-CN":"一个使用 eBPF（扩展伯克利包过滤器）并支持 CO-RE（一次编译，到处运行）的安全策略执行原型。","es":"Prototipo para aplicar políticas de seguridad con eBPF (Extended Berkeley Packet Filter) y soporte CO-RE (Compile Once - Run Everywhere).","fr":"Prototype d’application de politiques de sécurité avec eBPF (Extended Berkeley Packet Filter) et prise en charge CO-RE (Compile Once - Run Everywhere).","ko":"CO-RE(Compile Once - Run Everywhere)를 지원하는 eBPF(Extended Berkeley Packet Filter) 기반 보안 정책 적용 프로토타입입니다."},"technicalDetails":{"en":"Developed using C++ and eBPF technology. It utilizes CO-RE (Compile Once - Run Everywhere) to ensure portability across different Linux kernel versions without recompilation, providing low-overhead, kernel-level security enforcement.","tr":"C++ ve eBPF teknolojisi kullanılarak geliştirilmiştir. Yeniden derlemeye gerek kalmadan farklı Linux çekirdek sürümlerinde taşınabilirliği sağlamak için CO-RE (Bir Kere Derle - Her Yerde Çalıştır) kullanır ve düşük ek yüklü, çekirdek düzeyinde güvenlik uygulaması sağlar.","de":"Entwickelt mit C++ und eBPF-Technologie. CO-RE sorgt fuer Portabilitaet ueber verschiedene Linux-Kernelversionen hinweg, ohne erneutes Kompilieren zu erfordern, und ermoeglicht Sicherheitsdurchsetzung auf Kernel-Ebene mit geringer Laufzeitbelastung.","ja":"C++ と eBPF 技術で開発されています。CO-RE（Compile Once - Run Everywhere）により、再コンパイルなしで異なる Linux カーネルバージョン間の移植性を確保し、低オーバーヘッドなカーネルレベルのセキュリティ制御を実現します。","zh-CN":"该项目使用 C++ 和 eBPF 技术开发。它通过 CO-RE 在不同 Linux 内核版本之间实现无需重新编译的可移植性，并提供低开销的内核级安全策略执行能力。","es":"Desarrollado con C++ y tecnología eBPF. Utiliza CO-RE para mantener portabilidad entre distintas versiones del kernel Linux sin recompilar, ofreciendo aplicación de políticas de seguridad a nivel de kernel con bajo overhead.","fr":"Développé avec C++ et la technologie eBPF. CO-RE assure la portabilité entre différentes versions du noyau Linux sans recompilation, avec une application des politiques de sécurité au niveau noyau et une faible surcharge.","ko":"C++와 eBPF 기술로 개발되었습니다. CO-RE를 사용해 재컴파일 없이 다양한 Linux 커널 버전에서 이식성을 확보하고, 낮은 오버헤드로 커널 수준 보안 정책을 적용합니다."},"marketingDetails":{"en":"Enterprise-grade security at the kernel level. Aegis provides deep visibility and control over system behavior with zero overhead. Protect your infrastructure from advanced persistent threats with our cutting-edge eBPF technology.","tr":"Çekirdek düzeyinde kurumsal düzeyde güvenlik. Aegis, sıfır ek yük ile sistem davranışı üzerinde derin görünürlük ve kontrol sağlar. En son eBPF teknolojimizle altyapınızı gelişmiş kalıcı tehditlerden koruyun.","de":"Unternehmenssicherheit direkt auf Kernel-Ebene. Aegis bietet tiefe Einblicke und Kontrolle ueber Systemverhalten bei minimaler Belastung. Schuetzen Sie Ihre Infrastruktur mit moderner eBPF-Technologie vor fortgeschrittenen Bedrohungen.","ja":"カーネルレベルでのエンタープライズグレードのセキュリティ。Aegis はシステム挙動に対する深い可視性と制御を、最小限のオーバーヘッドで提供します。先進的な eBPF 技術により、高度な持続的脅威からインフラを保護します。","zh-CN":"内核级企业安全能力。Aegis 以极低开销提供对系统行为的深度可见性与控制，帮助您利用先进的 eBPF 技术保护基础设施免受高级持续性威胁。","es":"Seguridad empresarial en el nivel del kernel. Aegis ofrece visibilidad profunda y control sobre el comportamiento del sistema con una carga mínima. Protege la infraestructura frente a amenazas persistentes avanzadas con tecnología eBPF moderna.","fr":"Sécurité d’entreprise au niveau du noyau. Aegis fournit une visibilité profonde et un contrôle du comportement système avec une surcharge minimale. Protégez l’infrastructure contre les menaces persistantes avancées grâce à eBPF.","ko":"커널 수준의 엔터프라이즈 보안입니다. Aegis는 최소한의 오버헤드로 시스템 동작에 대한 깊은 가시성과 제어를 제공합니다. 최신 eBPF 기술로 고도화된 지속 위협으로부터 인프라를 보호합니다."},"tags":["C++","eBPF","Security","Linux Kernel"],"github":"https://github.com/Kernel-Guard/Aegis-BPF","diagram":"graph TD\\n    subgraph \\"AegisBPF User Space\\"\\n        A[File/Net Deny Rules] --> Z\\n        B[Allow Allowlist] --> Z\\n        C[Policy + Signing] --> Z\\n        D[Metrics + Health] --> Z\\n        E[Plugins + Rules] --> Z\\n        Z[(Pinned BPF Maps & Ring Buffer)]\\n    end\\n    subgraph \\"Linux Kernel\\"\\n        Z --- F\\n        F[LSM Hooks Enforce/Audit]\\n        F --> G[file_open / inode_permission]\\n        F --> H[inode_copy_up overlayfs]\\n        F --> I[bprm_check + IMA hash]\\n        F --> J[socket connect/bind/listen/accept]\\n        F --> K[socket sendmsg/recvmsg]\\n        L[Tracepoint Fallback]\\n        L --> M[openat/exec/fork/exit]\\n    end"}]`);
 const projectsData = {
   items: items$1
 };
@@ -19068,17 +19629,14 @@ function ProjectDetails() {
           /* @__PURE__ */ jsx(GitMerge, { className: "w-6 h-6 text-primary" }),
           /* @__PURE__ */ jsx("h2", { className: "text-2xl font-light", children: t.projectDetails.architectureDiagram })
         ] }),
-        /* @__PURE__ */ jsx("div", { className: "relative w-full", style: { aspectRatio: "4 / 3" }, children: /* @__PURE__ */ jsxs(
-          "object",
+        /* @__PURE__ */ jsx("div", { className: "relative w-full", style: { aspectRatio: "4 / 3" }, children: /* @__PURE__ */ jsx(
+          "img",
           {
-            data: `/diagrams/${project.id}.svg`,
-            type: "image/svg+xml",
-            "aria-label": `${project.title} architecture diagram`,
-            className: "absolute inset-0 w-full h-full",
-            children: [
-              project.title,
-              " architecture diagram"
-            ]
+            src: `/diagrams/${project.id}.svg`,
+            alt: `${project.title} architecture diagram`,
+            className: "absolute inset-0 h-full w-full object-contain",
+            loading: "lazy",
+            decoding: "async"
           }
         ) })
       ] }),
@@ -19176,7 +19734,7 @@ const ProjectDetails$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.de
   __proto__: null,
   default: ProjectDetails
 }, Symbol.toStringTag, { value: "Module" }));
-const items = [{ "id": "ref-atelier", "title": "Ref Atelier", "description": { "en": "Modern corporate portfolio and digital reference showcase platform.", "tr": "Modern kurumsal portfolyo ve dijital referans sergileme platformu.", "de": "Moderne Unternehmensportfolio- und digitale Referenzplattform.", "ja": "モダンな企業ポートフォリオとデジタル実績紹介のためのプラットフォームです。", "zh-CN": "现代企业作品集与数字案例展示平台。" }, "longDescription": { "en": "Ref Atelier is a premium corporate portfolio platform designed to showcase digital references and past projects with an elegant, modern interface. It features a fully responsive design, optimized media loading, and a seamless user experience tailored for creative agencies and corporate entities.", "tr": "Ref Atelier, dijital referansları ve geçmiş projeleri zarif ve modern bir arayüzle sergilemek için tasarlanmış premium bir kurumsal portfolyo platformudur. Tamamen duyarlı bir tasarıma, optimize edilmiş medya yüklemesine ve yaratıcı ajanslar ile kurumsal şirketler için özel olarak tasarlanmış kusursuz bir kullanıcı deneyimine sahiptir.", "de": "Ref Atelier ist eine hochwertige Unternehmensportfolio-Plattform, die digitale Referenzen und abgeschlossene Projekte in einer eleganten, modernen Oberflaeche praesentiert. Sie bietet responsives Design, optimiertes Medienladen und eine fluessige Nutzererfahrung fuer Kreativagenturen und Unternehmen.", "ja": "Ref Atelier は、デジタル実績や過去のプロジェクトを洗練されたモダンなインターフェースで紹介するための、プレミアムな企業ポートフォリオプラットフォームです。完全レスポンシブ設計、最適化されたメディア読み込み、クリエイティブエージェンシーや企業向けのスムーズなユーザー体験を備えています。", "zh-CN": "Ref Atelier 是一个高端企业作品集平台，用优雅现代的界面展示数字案例与过往项目。它具备完整响应式设计、优化的媒体加载，以及面向创意机构和企业客户的流畅用户体验。" }, "url": "https://refatelier.com/index.html", "tags": ["Corporate", "Portfolio", "UI/UX"], "accounts": [] }, { "id": "dershane-management", "title": "Dershane Management", "description": { "en": "Comprehensive educational institution management system including student tracking and administrative tools.", "tr": "Öğrenci takibi ve idari araçları içeren kapsamlı eğitim kurumu (dershane) yönetim sistemi.", "de": "Umfassendes Managementsystem fuer Bildungseinrichtungen mit Schuelerverfolgung und Verwaltungstools.", "ja": "生徒管理と管理業務ツールを備えた、教育機関向けの包括的な管理システムです。", "zh-CN": "面向教育机构的综合管理系统，包含学生跟踪和行政管理工具。" }, "longDescription": { "en": "A full-featured management system tailored for educational institutions. It provides tools for student enrollment, attendance tracking, grade management, and administrative reporting. The platform streamlines daily operations and improves communication between staff and students.", "tr": "Eğitim kurumları için özel olarak tasarlanmış tam özellikli bir yönetim sistemi. Öğrenci kaydı, yoklama takibi, not yönetimi ve idari raporlama için araçlar sunar. Platform, günlük operasyonları kolaylaştırır ve personel ile öğrenciler arasındaki iletişimi geliştirir.", "de": "Ein voll ausgestattetes Managementsystem fuer Bildungseinrichtungen. Es bietet Werkzeuge fuer Einschreibung, Anwesenheitskontrolle, Notenverwaltung und administrative Berichte. Die Plattform vereinfacht den Tagesbetrieb und verbessert die Kommunikation zwischen Mitarbeitenden und Lernenden.", "ja": "教育機関向けに設計された多機能な管理システムです。生徒登録、出席管理、成績管理、管理レポート作成のためのツールを提供します。日々の業務を効率化し、スタッフと生徒間のコミュニケーションを改善します。", "zh-CN": "一个为教育机构定制的完整管理系统。它提供学生注册、考勤跟踪、成绩管理和行政报告工具，帮助简化日常运营并提升教职员工与学生之间的沟通效率。" }, "url": "https://trfont.com/adana/", "tags": ["Education", "Management", "SaaS"], "accounts": [{ "email": "admin@dershane.com", "role": "Admin" }] }, { "id": "technova-hr", "title": "TechNova HR", "description": { "en": "Enterprise human resources management portal with multi-role employee access.", "tr": "Çoklu rol erişimine sahip kurumsal insan kaynakları (İK) yönetim portalı.", "de": "Enterprise-HR-Portal mit rollenbasiertem Zugriff fuer Mitarbeitende.", "ja": "複数ロールの従業員アクセスに対応した、エンタープライズ向け人事管理ポータルです。", "zh-CN": "支持多角色员工访问的企业人力资源管理门户。" }, "longDescription": { "en": "TechNova HR is an enterprise-grade Human Resources management portal. It supports multi-role access control, allowing administrators to manage employee records, leave requests, and performance reviews, while providing employees with a self-service portal to view their data and submit requests.", "tr": "TechNova İK, kurumsal düzeyde bir İnsan Kaynakları yönetim portalıdır. Çoklu rol erişim kontrolünü destekleyerek, yöneticilerin çalışan kayıtlarını, izin taleplerini ve performans değerlendirmelerini yönetmesine olanak tanırken, çalışanlara verilerini görüntülemeleri ve talepte bulunmaları için bir self-servis portalı sunar.", "de": "TechNova HR ist ein HR-Management-Portal auf Unternehmensniveau. Es unterstuetzt rollenbasierte Zugriffskontrolle, sodass Administratoren Mitarbeiterdaten, Urlaubsantraege und Leistungsbewertungen verwalten koennen, waehrend Mitarbeitende ihre Daten einsehen und Anfragen ueber ein Self-Service-Portal stellen.", "ja": "TechNova HR は、エンタープライズグレードの人事管理ポータルです。複数ロールのアクセス制御に対応しており、管理者は従業員情報、休暇申請、評価を管理できます。従業員はセルフサービスポータルから自分のデータを確認し、申請を送信できます。", "zh-CN": "TechNova HR 是一个企业级人力资源管理门户。它支持多角色访问控制，使管理员能够管理员工记录、请假申请和绩效评估，同时为员工提供自助门户，用于查看个人数据并提交申请。" }, "url": "https://trfont.com/%C4%B1k/", "tags": ["HR", "Enterprise", "Portal"], "accounts": [{ "email": "admin@technova.com.tr", "role": "Admin" }, { "email": "ahmet.yilmaz@technova.com.tr", "role": "Employee" }, { "email": "zeynep.sahin@technova.com.tr", "role": "Employee" }, { "email": "ayse.bulut@technova.com.tr", "role": "Employee" }, { "email": "mehmet.kaya@technova.com.tr", "role": "Employee" }] }, { "id": "algo-egitim", "title": "Algo Eğitim", "description": { "en": "Advanced algorithmic education platform and student learning dashboard.", "tr": "Gelişmiş algoritmik eğitim platformu ve öğrenci öğrenim paneli.", "de": "Fortgeschrittene algorithmische Lernplattform mit Schueler-Dashboard.", "ja": "高度なアルゴリズム教育プラットフォームと学習者向けダッシュボードです。", "zh-CN": "高级算法教育平台与学生学习仪表板。" }, "longDescription": { "en": "Algo Eğitim is an advanced educational platform focused on algorithmic learning and programming. It features a comprehensive student dashboard, progress tracking, and interactive learning modules designed to enhance coding skills and logical thinking.", "tr": "Algo Eğitim, algoritmik öğrenme ve programlamaya odaklanan gelişmiş bir eğitim platformudur. Kodlama becerilerini ve mantıksal düşünmeyi geliştirmek için tasarlanmış kapsamlı bir öğrenci paneli, ilerleme takibi ve etkileşimli öğrenme modülleri içerir.", "de": "Algo Egitim ist eine fortgeschrittene Bildungsplattform fuer algorithmisches Lernen und Programmierung. Sie bietet ein umfassendes Schueler-Dashboard, Fortschrittsverfolgung und interaktive Lernmodule zur Foerderung von Programmierfaehigkeiten und logischem Denken.", "ja": "Algo Egitim は、アルゴリズム学習とプログラミングに焦点を当てた高度な教育プラットフォームです。包括的な学習者ダッシュボード、進捗管理、コーディングスキルと論理的思考を高めるインタラクティブな学習モジュールを備えています。", "zh-CN": "Algo Egitim 是一个专注于算法学习和编程的高级教育平台。它包含完整的学生仪表板、进度跟踪和互动学习模块，旨在提升编程能力与逻辑思维。" }, "url": "https://trfont.com/ada/", "tags": ["EdTech", "Algorithms", "Dashboard"], "accounts": [{ "email": "admin@example.com", "role": "Admin" }] }];
+const items = /* @__PURE__ */ JSON.parse('[{"id":"ref-atelier","title":"Ref Atelier","description":{"en":"Modern corporate portfolio and digital reference showcase platform.","tr":"Modern kurumsal portfolyo ve dijital referans sergileme platformu.","de":"Moderne Unternehmensportfolio- und digitale Referenzplattform.","ja":"モダンな企業ポートフォリオとデジタル実績紹介のためのプラットフォームです。","zh-CN":"现代企业作品集与数字案例展示平台。","es":"Plataforma moderna de portafolio corporativo y muestra de referencias digitales.","fr":"Plateforme moderne de portfolio d’entreprise et de présentation de références numériques.","ko":"현대적인 기업 포트폴리오 및 디지털 레퍼런스 쇼케이스 플랫폼입니다."},"longDescription":{"en":"Ref Atelier is a premium corporate portfolio platform designed to showcase digital references and past projects with an elegant, modern interface. It features a fully responsive design, optimized media loading, and a seamless user experience tailored for creative agencies and corporate entities.","tr":"Ref Atelier, dijital referansları ve geçmiş projeleri zarif ve modern bir arayüzle sergilemek için tasarlanmış premium bir kurumsal portfolyo platformudur. Tamamen duyarlı bir tasarıma, optimize edilmiş medya yüklemesine ve yaratıcı ajanslar ile kurumsal şirketler için özel olarak tasarlanmış kusursuz bir kullanıcı deneyimine sahiptir.","de":"Ref Atelier ist eine hochwertige Unternehmensportfolio-Plattform, die digitale Referenzen und abgeschlossene Projekte in einer eleganten, modernen Oberflaeche praesentiert. Sie bietet responsives Design, optimiertes Medienladen und eine fluessige Nutzererfahrung fuer Kreativagenturen und Unternehmen.","ja":"Ref Atelier は、デジタル実績や過去のプロジェクトを洗練されたモダンなインターフェースで紹介するための、プレミアムな企業ポートフォリオプラットフォームです。完全レスポンシブ設計、最適化されたメディア読み込み、クリエイティブエージェンシーや企業向けのスムーズなユーザー体験を備えています。","zh-CN":"Ref Atelier 是一个高端企业作品集平台，用优雅现代的界面展示数字案例与过往项目。它具备完整响应式设计、优化的媒体加载，以及面向创意机构和企业客户的流畅用户体验。","es":"Ref Atelier es una plataforma premium de portafolio corporativo diseñada para mostrar referencias digitales y proyectos anteriores con una interfaz elegante y moderna. Incluye diseño totalmente responsive, carga multimedia optimizada y una experiencia de usuario fluida para agencias creativas y empresas.","fr":"Ref Atelier est une plateforme premium de portfolio d’entreprise conçue pour présenter des références numériques et des projets passés dans une interface élégante et moderne. Elle offre un design entièrement responsive, un chargement média optimisé et une expérience fluide pour les agences créatives et les entreprises.","ko":"Ref Atelier는 디지털 레퍼런스와 과거 프로젝트를 세련되고 현대적인 인터페이스로 보여주기 위해 설계된 프리미엄 기업 포트폴리오 플랫폼입니다. 완전 반응형 디자인, 최적화된 미디어 로딩, 크리에이티브 에이전시와 기업을 위한 매끄러운 사용자 경험을 제공합니다."},"url":"https://refatelier.com/index.html","tags":["Corporate","Portfolio","UI/UX"],"accounts":[]},{"id":"dershane-management","title":"Dershane Management","description":{"en":"Comprehensive educational institution management system including student tracking and administrative tools.","tr":"Öğrenci takibi ve idari araçları içeren kapsamlı eğitim kurumu (dershane) yönetim sistemi.","de":"Umfassendes Managementsystem fuer Bildungseinrichtungen mit Schuelerverfolgung und Verwaltungstools.","ja":"生徒管理と管理業務ツールを備えた、教育機関向けの包括的な管理システムです。","zh-CN":"面向教育机构的综合管理系统，包含学生跟踪和行政管理工具。","es":"Sistema integral de gestión para instituciones educativas con seguimiento de estudiantes y herramientas administrativas.","fr":"Système complet de gestion d’établissement éducatif avec suivi des élèves et outils administratifs.","ko":"학생 추적과 관리 도구를 포함한 종합 교육기관 관리 시스템입니다."},"longDescription":{"en":"A full-featured management system tailored for educational institutions. It provides tools for student enrollment, attendance tracking, grade management, and administrative reporting. The platform streamlines daily operations and improves communication between staff and students.","tr":"Eğitim kurumları için özel olarak tasarlanmış tam özellikli bir yönetim sistemi. Öğrenci kaydı, yoklama takibi, not yönetimi ve idari raporlama için araçlar sunar. Platform, günlük operasyonları kolaylaştırır ve personel ile öğrenciler arasındaki iletişimi geliştirir.","de":"Ein voll ausgestattetes Managementsystem fuer Bildungseinrichtungen. Es bietet Werkzeuge fuer Einschreibung, Anwesenheitskontrolle, Notenverwaltung und administrative Berichte. Die Plattform vereinfacht den Tagesbetrieb und verbessert die Kommunikation zwischen Mitarbeitenden und Lernenden.","ja":"教育機関向けに設計された多機能な管理システムです。生徒登録、出席管理、成績管理、管理レポート作成のためのツールを提供します。日々の業務を効率化し、スタッフと生徒間のコミュニケーションを改善します。","zh-CN":"一个为教育机构定制的完整管理系统。它提供学生注册、考勤跟踪、成绩管理和行政报告工具，帮助简化日常运营并提升教职员工与学生之间的沟通效率。","es":"Sistema de gestión completo diseñado para instituciones educativas. Ofrece herramientas para inscripción de estudiantes, control de asistencia, gestión de calificaciones e informes administrativos. La plataforma simplifica las operaciones diarias y mejora la comunicación entre personal y estudiantes.","fr":"Système de gestion complet conçu pour les établissements éducatifs. Il fournit des outils pour les inscriptions, le suivi des présences, la gestion des notes et les rapports administratifs. La plateforme simplifie les opérations quotidiennes et améliore la communication entre le personnel et les élèves.","ko":"교육기관을 위해 설계된 완전한 관리 시스템입니다. 학생 등록, 출석 추적, 성적 관리, 행정 보고 도구를 제공하며 일상 운영을 단순화하고 직원과 학생 간 커뮤니케이션을 개선합니다."},"url":"https://trfont.com/adana/","tags":["Education","Management","SaaS"],"accounts":[{"email":"admin@dershane.com","role":"Admin"}]},{"id":"technova-hr","title":"TechNova HR","description":{"en":"Enterprise human resources management portal with multi-role employee access.","tr":"Çoklu rol erişimine sahip kurumsal insan kaynakları (İK) yönetim portalı.","de":"Enterprise-HR-Portal mit rollenbasiertem Zugriff fuer Mitarbeitende.","ja":"複数ロールの従業員アクセスに対応した、エンタープライズ向け人事管理ポータルです。","zh-CN":"支持多角色员工访问的企业人力资源管理门户。","es":"Portal empresarial de gestión de recursos humanos con acceso multirol para empleados.","fr":"Portail RH d’entreprise avec accès multi-rôles pour les employés.","ko":"다중 역할 직원 접근을 지원하는 엔터프라이즈 인사 관리 포털입니다."},"longDescription":{"en":"TechNova HR is an enterprise-grade Human Resources management portal. It supports multi-role access control, allowing administrators to manage employee records, leave requests, and performance reviews, while providing employees with a self-service portal to view their data and submit requests.","tr":"TechNova İK, kurumsal düzeyde bir İnsan Kaynakları yönetim portalıdır. Çoklu rol erişim kontrolünü destekleyerek, yöneticilerin çalışan kayıtlarını, izin taleplerini ve performans değerlendirmelerini yönetmesine olanak tanırken, çalışanlara verilerini görüntülemeleri ve talepte bulunmaları için bir self-servis portalı sunar.","de":"TechNova HR ist ein HR-Management-Portal auf Unternehmensniveau. Es unterstuetzt rollenbasierte Zugriffskontrolle, sodass Administratoren Mitarbeiterdaten, Urlaubsantraege und Leistungsbewertungen verwalten koennen, waehrend Mitarbeitende ihre Daten einsehen und Anfragen ueber ein Self-Service-Portal stellen.","ja":"TechNova HR は、エンタープライズグレードの人事管理ポータルです。複数ロールのアクセス制御に対応しており、管理者は従業員情報、休暇申請、評価を管理できます。従業員はセルフサービスポータルから自分のデータを確認し、申請を送信できます。","zh-CN":"TechNova HR 是一个企业级人力资源管理门户。它支持多角色访问控制，使管理员能够管理员工记录、请假申请和绩效评估，同时为员工提供自助门户，用于查看个人数据并提交申请。","es":"TechNova HR es un portal de gestión de Recursos Humanos de nivel empresarial. Admite control de acceso multirol para que los administradores gestionen registros de empleados, solicitudes de permisos y evaluaciones de desempeño, mientras los empleados consultan sus datos y envían solicitudes desde un portal de autoservicio.","fr":"TechNova HR est un portail de gestion des ressources humaines de niveau entreprise. Il prend en charge le contrôle d’accès multi-rôles, permettant aux administrateurs de gérer les dossiers employés, les demandes de congé et les évaluations de performance, tout en offrant aux employés un portail en libre-service.","ko":"TechNova HR은 엔터프라이즈급 인사 관리 포털입니다. 다중 역할 접근 제어를 지원해 관리자가 직원 기록, 휴가 요청, 성과 평가를 관리할 수 있고, 직원은 셀프서비스 포털에서 자신의 데이터를 확인하고 요청을 제출할 수 있습니다."},"url":"https://trfont.com/%C4%B1k/","tags":["HR","Enterprise","Portal"],"accounts":[{"email":"admin@technova.com.tr","role":"Admin"},{"email":"ahmet.yilmaz@technova.com.tr","role":"Employee"},{"email":"zeynep.sahin@technova.com.tr","role":"Employee"},{"email":"ayse.bulut@technova.com.tr","role":"Employee"},{"email":"mehmet.kaya@technova.com.tr","role":"Employee"}]},{"id":"algo-egitim","title":"Algo Eğitim","description":{"en":"Advanced algorithmic education platform and student learning dashboard.","tr":"Gelişmiş algoritmik eğitim platformu ve öğrenci öğrenim paneli.","de":"Fortgeschrittene algorithmische Lernplattform mit Schueler-Dashboard.","ja":"高度なアルゴリズム教育プラットフォームと学習者向けダッシュボードです。","zh-CN":"高级算法教育平台与学生学习仪表板。","es":"Plataforma avanzada de educación algorítmica y panel de aprendizaje para estudiantes.","fr":"Plateforme avancée d’apprentissage algorithmique avec tableau de bord étudiant.","ko":"고급 알고리즘 교육 플랫폼 및 학생 학습 대시보드입니다."},"longDescription":{"en":"Algo Eğitim is an advanced educational platform focused on algorithmic learning and programming. It features a comprehensive student dashboard, progress tracking, and interactive learning modules designed to enhance coding skills and logical thinking.","tr":"Algo Eğitim, algoritmik öğrenme ve programlamaya odaklanan gelişmiş bir eğitim platformudur. Kodlama becerilerini ve mantıksal düşünmeyi geliştirmek için tasarlanmış kapsamlı bir öğrenci paneli, ilerleme takibi ve etkileşimli öğrenme modülleri içerir.","de":"Algo Egitim ist eine fortgeschrittene Bildungsplattform fuer algorithmisches Lernen und Programmierung. Sie bietet ein umfassendes Schueler-Dashboard, Fortschrittsverfolgung und interaktive Lernmodule zur Foerderung von Programmierfaehigkeiten und logischem Denken.","ja":"Algo Egitim は、アルゴリズム学習とプログラミングに焦点を当てた高度な教育プラットフォームです。包括的な学習者ダッシュボード、進捗管理、コーディングスキルと論理的思考を高めるインタラクティブな学習モジュールを備えています。","zh-CN":"Algo Egitim 是一个专注于算法学习和编程的高级教育平台。它包含完整的学生仪表板、进度跟踪和互动学习模块，旨在提升编程能力与逻辑思维。","es":"Algo Eğitim es una plataforma educativa avanzada centrada en el aprendizaje algorítmico y la programación. Incluye un panel integral para estudiantes, seguimiento de progreso y módulos interactivos diseñados para mejorar habilidades de programación y pensamiento lógico.","fr":"Algo Eğitim est une plateforme éducative avancée axée sur l’apprentissage algorithmique et la programmation. Elle comprend un tableau de bord étudiant complet, un suivi de progression et des modules interactifs conçus pour renforcer les compétences de codage et la pensée logique.","ko":"Algo Eğitim은 알고리즘 학습과 프로그래밍에 초점을 맞춘 고급 교육 플랫폼입니다. 종합 학생 대시보드, 진행 상황 추적, 코딩 능력과 논리적 사고를 높이기 위한 인터랙티브 학습 모듈을 제공합니다."},"url":"https://trfont.com/ada/","tags":["EdTech","Algorithms","Dashboard"],"accounts":[{"email":"admin@example.com","role":"Admin"}]}]');
 const completedProjectsData = {
   items
 };
@@ -19648,6 +20206,61 @@ const Services$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.definePr
   __proto__: null,
   default: Services
 }, Symbol.toStringTag, { value: "Module" }));
+function EnterprisePage({ pageKey }) {
+  const { language } = useLanguage();
+  const page = enterprisePages[language].pages[pageKey];
+  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-24", children: [
+    /* @__PURE__ */ jsx(SEO, { title: page.seoTitle, description: page.seoDescription }),
+    /* @__PURE__ */ jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: [
+      /* @__PURE__ */ jsxs("header", { className: "max-w-3xl mb-16", children: [
+        /* @__PURE__ */ jsx("div", { className: "inline-block px-3 py-1 mb-6 border border-border text-xs font-mono tracking-widest text-foreground/70 uppercase", children: page.badge }),
+        /* @__PURE__ */ jsx("h1", { className: "text-4xl md:text-5xl font-light text-foreground mb-6", children: page.title }),
+        /* @__PURE__ */ jsx("p", { className: "text-lg md:text-xl text-foreground/70 font-light leading-relaxed", children: page.description })
+      ] }),
+      /* @__PURE__ */ jsx("section", { className: "grid grid-cols-1 md:grid-cols-3 gap-4 mb-16", children: page.facts.map((fact) => /* @__PURE__ */ jsxs("div", { className: "border border-border bg-surface p-6", children: [
+        /* @__PURE__ */ jsx("div", { className: "font-mono text-xs uppercase text-foreground/50 mb-6", children: fact.label }),
+        /* @__PURE__ */ jsx("div", { className: "text-3xl font-mono text-foreground mb-3", children: fact.value }),
+        /* @__PURE__ */ jsx("p", { className: "text-sm text-foreground/70 leading-relaxed", children: fact.detail })
+      ] }, fact.label)) }),
+      /* @__PURE__ */ jsx("section", { className: "grid grid-cols-1 lg:grid-cols-3 gap-6", children: page.sections.map((section) => /* @__PURE__ */ jsxs("article", { className: "border border-border bg-surface p-8", children: [
+        /* @__PURE__ */ jsx("h2", { className: "text-2xl font-light text-foreground mb-4", children: section.title }),
+        /* @__PURE__ */ jsx("p", { className: "text-foreground/70 leading-relaxed font-light mb-8", children: section.body }),
+        /* @__PURE__ */ jsx("ul", { className: "space-y-4", children: section.items.map((item) => /* @__PURE__ */ jsxs("li", { className: "flex items-start gap-3 text-sm text-foreground/80", children: [
+          /* @__PURE__ */ jsx(CircleCheck, { className: "mt-0.5 h-4 w-4 shrink-0 text-primary" }),
+          /* @__PURE__ */ jsx("span", { children: item })
+        ] }, item)) })
+      ] }, section.title)) })
+    ] })
+  ] });
+}
+function Security() {
+  return /* @__PURE__ */ jsx(EnterprisePage, { pageKey: "security" });
+}
+const Security$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  default: Security
+}, Symbol.toStringTag, { value: "Module" }));
+function Engineering() {
+  return /* @__PURE__ */ jsx(EnterprisePage, { pageKey: "engineering" });
+}
+const Engineering$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  default: Engineering
+}, Symbol.toStringTag, { value: "Module" }));
+function Status() {
+  return /* @__PURE__ */ jsx(EnterprisePage, { pageKey: "status" });
+}
+const Status$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  default: Status
+}, Symbol.toStringTag, { value: "Module" }));
+function Changelog() {
+  return /* @__PURE__ */ jsx(EnterprisePage, { pageKey: "changelog" });
+}
+const Changelog$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  default: Changelog
+}, Symbol.toStringTag, { value: "Module" }));
 function Terms() {
   const { t } = useLanguage();
   return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-24", children: [
@@ -19952,6 +20565,10 @@ function LocalizedRoutes() {
     /* @__PURE__ */ jsx(distExports.Route, { path: "services/hardened-backend", element: /* @__PURE__ */ jsx(HardenedBackend, {}) }),
     /* @__PURE__ */ jsx(distExports.Route, { path: "services/data-protection", element: /* @__PURE__ */ jsx(DataProtection, {}) }),
     /* @__PURE__ */ jsx(distExports.Route, { path: "services/high-performance", element: /* @__PURE__ */ jsx(HighPerformance, {}) }),
+    /* @__PURE__ */ jsx(distExports.Route, { path: "security", element: /* @__PURE__ */ jsx(Security, {}) }),
+    /* @__PURE__ */ jsx(distExports.Route, { path: "engineering", element: /* @__PURE__ */ jsx(Engineering, {}) }),
+    /* @__PURE__ */ jsx(distExports.Route, { path: "status", element: /* @__PURE__ */ jsx(Status, {}) }),
+    /* @__PURE__ */ jsx(distExports.Route, { path: "changelog", element: /* @__PURE__ */ jsx(Changelog, {}) }),
     /* @__PURE__ */ jsx(distExports.Route, { path: "terms", element: /* @__PURE__ */ jsx(Terms, {}) }),
     /* @__PURE__ */ jsx(distExports.Route, { path: "privacy", element: /* @__PURE__ */ jsx(Privacy, {}) }),
     /* @__PURE__ */ jsx(distExports.Route, { path: "cookies", element: /* @__PURE__ */ jsx(Cookies, {}) }),
@@ -20006,6 +20623,39 @@ function renderRoute(url, language) {
             /* @__PURE__ */ jsx(ScrollToTop, {}),
             /* @__PURE__ */ jsx(LocalizedRoutes, {})
           ] }, "zh-CN")
+        }
+      ),
+      /* @__PURE__ */ jsx(
+        distExports.Route,
+        {
+          path: "/es/*",
+          element: /* @__PURE__ */ jsxs(LanguageProvider, { initialLanguage: "es", children: [
+            /* @__PURE__ */ jsx(CanonicalPathRedirect, {}),
+            /* @__PURE__ */ jsx(ScrollToTop, {}),
+            /* @__PURE__ */ jsx(LocalizedRoutes, {})
+          ] }, "es")
+        }
+      ),
+      /* @__PURE__ */ jsx(
+        distExports.Route,
+        {
+          path: "/fr/*",
+          element: /* @__PURE__ */ jsxs(LanguageProvider, { initialLanguage: "fr", children: [
+            /* @__PURE__ */ jsx(CanonicalPathRedirect, {}),
+            /* @__PURE__ */ jsx(ScrollToTop, {}),
+            /* @__PURE__ */ jsx(LocalizedRoutes, {})
+          ] }, "fr")
+        }
+      ),
+      /* @__PURE__ */ jsx(
+        distExports.Route,
+        {
+          path: "/ko/*",
+          element: /* @__PURE__ */ jsxs(LanguageProvider, { initialLanguage: "ko", children: [
+            /* @__PURE__ */ jsx(CanonicalPathRedirect, {}),
+            /* @__PURE__ */ jsx(ScrollToTop, {}),
+            /* @__PURE__ */ jsx(LocalizedRoutes, {})
+          ] }, "ko")
         }
       ),
       /* @__PURE__ */ jsx(

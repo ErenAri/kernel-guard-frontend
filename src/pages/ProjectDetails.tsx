@@ -89,22 +89,14 @@ export default function ProjectDetails() {
               <GitMerge className="w-6 h-6 text-primary" />
               <h2 className="text-2xl font-light">{t.projectDetails.architectureDiagram}</h2>
             </div>
-            {/*
-              <object> loads the SVG in its own embedded document so Mermaid's
-              <foreignObject> labels render. <img src="*.svg"> sandboxes the
-              SVG and refuses to paint foreignObject, leaving empty nodes.
-              The wrapper enforces a square aspect ratio matching the
-              generator's 682x682 viewBox so the embed gets a real height.
-            */}
             <div className="relative w-full" style={{ aspectRatio: '4 / 3' }}>
-              <object
-                data={`/diagrams/${project.id}.svg`}
-                type="image/svg+xml"
-                aria-label={`${project.title} architecture diagram`}
-                className="absolute inset-0 w-full h-full"
-              >
-                {project.title} architecture diagram
-              </object>
+              <img
+                src={`/diagrams/${project.id}.svg`}
+                alt={`${project.title} architecture diagram`}
+                className="absolute inset-0 h-full w-full object-contain"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </div>
         )}

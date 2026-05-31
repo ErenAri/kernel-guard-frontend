@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { localizePath } from '../i18n/route';
 import { prefetchRoute, prefetchRoutes } from '../routes/pageLoaders';
+import { enterprisePages, type EnterprisePageKey } from '../data/enterprisePages';
 import Logo from './Logo';
 
 export default function Footer() {
   const { language, t } = useLanguage();
+  const enterpriseLinks: EnterprisePageKey[] = ['security', 'engineering', 'status', 'changelog'];
 
   return (
     <footer className="bg-[var(--color-dark-bg)] text-[var(--color-dark-fg)] mt-auto">
@@ -86,6 +88,22 @@ export default function Footer() {
                 </a>
               </li>
 
+            </ul>
+          </div>
+          <div className="md:col-span-4 border-t border-gray-800 pt-8">
+            <ul className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-gray-400">
+              {enterpriseLinks.map((key) => (
+                <li key={key}>
+                  <Link
+                    to={localizePath(`/${key}/`, language)}
+                    onPointerEnter={() => prefetchRoute(key)}
+                    onFocus={() => prefetchRoute(key)}
+                    className="hover:text-white transition-colors"
+                  >
+                    {enterprisePages[language].links[key]}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

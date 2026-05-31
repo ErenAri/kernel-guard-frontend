@@ -4,8 +4,11 @@ import { tr } from '../translations/tr';
 import { de } from '../translations/de';
 import { ja } from '../translations/ja';
 import { zhCN } from '../translations/zh-CN';
+import { es } from '../translations/es';
+import { fr } from '../translations/fr';
+import { ko } from '../translations/ko';
 
-export type Language = 'en' | 'tr' | 'de' | 'ja' | 'zh-CN';
+export type Language = 'en' | 'tr' | 'de' | 'ja' | 'zh-CN' | 'es' | 'fr' | 'ko';
 type Translations = typeof en;
 
 interface LanguageContextType {
@@ -21,6 +24,9 @@ const translations: Record<Language, Translations> = {
   de,
   ja,
   'zh-CN': zhCN,
+  es,
+  fr,
+  ko,
 };
 
 interface LanguageProviderProps {

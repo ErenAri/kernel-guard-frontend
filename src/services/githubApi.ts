@@ -1,6 +1,7 @@
 export interface GithubConfig {
   email: string;
   password: string;
+  sessionToken?: string;
 }
 
 export class GithubService {
@@ -21,6 +22,7 @@ export class GithubService {
       body: JSON.stringify({
         email: this.config.email,
         password: this.config.password,
+        sessionToken: this.config.sessionToken,
         action,
         ...payload,
       }),
@@ -40,6 +42,10 @@ export class GithubService {
     }
 
     return data;
+  }
+
+  async createSession(turnstileToken?: string): Promise<{ sessionToken?: string; expiresAt?: number }> {
+    return this.fetchApi('createSession', { turnstileToken });
   }
 
   /**

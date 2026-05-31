@@ -3,6 +3,22 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useAdmin } from '../../context/AdminContext';
 import { ArrowLeft, Save, Image as ImageIcon, Trash2, Plus, AlertCircle, Loader2 } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
+import { LANGUAGE_LABELS, SUPPORTED_LANGUAGES } from '../../i18n/route';
+import type { Language } from '../../context/LanguageContext';
+
+const LANGUAGE_EDITOR_LABELS: Record<Language, string> = {
+  tr: 'Turkish',
+  en: 'English',
+  de: 'German',
+  ja: 'Japanese',
+  'zh-CN': 'Chinese',
+  es: 'Spanish',
+  fr: 'French',
+  ko: 'Korean',
+};
+
+const emptyLocalizedText = () =>
+  Object.fromEntries(SUPPORTED_LANGUAGES.map((language) => [language, '']));
 
 export default function ProjectEditor() {
   const { type, id } = useParams<{ type: string; id: string }>();
@@ -44,20 +60,20 @@ export default function ProjectEditor() {
           // Initialize empty structure
           const base = {
             id: '', title: '', 
-            description: { en: '', tr: '' },
+            description: emptyLocalizedText(),
             tags: [], image: ''
           };
           if (type === 'open_source') {
             setFormData({
               ...base,
-              technicalDetails: { en: '', tr: '' },
-              marketingDetails: { en: '', tr: '' },
+              technicalDetails: emptyLocalizedText(),
+              marketingDetails: emptyLocalizedText(),
               github: '', link: '', diagram: ''
             });
           } else {
             setFormData({
               ...base,
-              longDescription: { en: '', tr: '' },
+              longDescription: emptyLocalizedText(),
               url: '', github: '',
               accounts: []
             });
@@ -155,10 +171,17 @@ export default function ProjectEditor() {
 
   if (!formData) return null;
 
-  const Input = ({ label, value, onChange, placeholder = '' }: any) => (
+  const Input = ({ label, value, onChange, placeholder = '', disabled = false }: any) => (
     <div className="mb-6">
       <label className="block text-xs uppercase tracking-widest text-foreground/70 mb-2">{label}</label>
-      <input type="text" value={value || ''} onChange={onChange} placeholder={placeholder} className="w-full bg-background border border-border focus:border-primary text-foreground p-3 outline-none" />
+      <input
+        type="text"
+        value={value || ''}
+        onChange={onChange}
+        placeholder={placeholder}
+        disabled={disabled}
+        className="w-full bg-background border border-border focus:border-primary text-foreground p-3 outline-none disabled:cursor-not-allowed disabled:opacity-60"
+      />
     </div>
   );
 
@@ -166,6 +189,29 @@ export default function ProjectEditor() {
     <div className="mb-6">
       <label className="block text-xs uppercase tracking-widest text-foreground/70 mb-2">{label}</label>
       <textarea value={value || ''} onChange={onChange} className="w-full bg-background border border-border focus:border-primary text-foreground p-3 outline-none min-h-[100px] font-mono text-sm" />
+    </div>
+  );
+
+  const setLocalizedField = (field: string, language: Language, value: string) => {
+    setFormData({
+      ...formData,
+      [field]: {
+        ...(formData[field] || {}),
+        [language]: value,
+      },
+    });
+  };
+
+  const LocalizedTextAreas = ({ field, markdown = false }: { field: string; markdown?: boolean }) => (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {SUPPORTED_LANGUAGES.map((language) => (
+        <TextArea
+          key={`${field}-${language}`}
+          label={`${LANGUAGE_EDITOR_LABELS[language]} (${LANGUAGE_LABELS[language]})${markdown ? ' Markdown' : ''}`}
+          value={formData[field]?.[language]}
+          onChange={(e: any) => setLocalizedField(field, language, e.target.value)}
+        />
+      ))}
     </div>
   );
 
@@ -203,10 +249,7 @@ export default function ProjectEditor() {
             </div>
             
             <h3 className="text-xs uppercase tracking-widest text-foreground/70 mb-2 mt-4">Short Description</h3>
-            <div className="grid grid-cols-2 gap-4">
-              <TextArea label="English" value={formData.description?.en} onChange={(e: any) => setFormData({...formData, description: {...formData.description, en: e.target.value}})} />
-              <TextArea label="Turkish" value={formData.description?.tr} onChange={(e: any) => setFormData({...formData, description: {...formData.description, tr: e.target.value}})} />
-            </div>
+            <LocalizedTextAreas field="description" />
           </div>
 
           {/* Details based on type */}
@@ -214,23 +257,14 @@ export default function ProjectEditor() {
             <div className="bg-surface border border-border p-6">
               <h2 className="text-lg font-light mb-6 uppercase tracking-widest border-b border-border pb-2">Technical & Marketing</h2>
               <h3 className="text-xs uppercase tracking-widest text-foreground/70 mb-2 mt-4">Technical Details (Markdown)</h3>
-              <div className="grid grid-cols-2 gap-4">
-                <TextArea label="English" value={formData.technicalDetails?.en} onChange={(e: any) => setFormData({...formData, technicalDetails: {...formData.technicalDetails, en: e.target.value}})} />
-                <TextArea label="Turkish" value={formData.technicalDetails?.tr} onChange={(e: any) => setFormData({...formData, technicalDetails: {...formData.technicalDetails, tr: e.target.value}})} />
-              </div>
+              <LocalizedTextAreas field="technicalDetails" markdown />
               <h3 className="text-xs uppercase tracking-widest text-foreground/70 mb-2 mt-4">Marketing Details (Markdown)</h3>
-              <div className="grid grid-cols-2 gap-4">
-                <TextArea label="English" value={formData.marketingDetails?.en} onChange={(e: any) => setFormData({...formData, marketingDetails: {...formData.marketingDetails, en: e.target.value}})} />
-                <TextArea label="Turkish" value={formData.marketingDetails?.tr} onChange={(e: any) => setFormData({...formData, marketingDetails: {...formData.marketingDetails, tr: e.target.value}})} />
-              </div>
+              <LocalizedTextAreas field="marketingDetails" markdown />
             </div>
           ) : (
             <div className="bg-surface border border-border p-6">
               <h2 className="text-lg font-light mb-6 uppercase tracking-widest border-b border-border pb-2">Long Description</h2>
-              <div className="grid grid-cols-2 gap-4">
-                <TextArea label="English (Markdown)" value={formData.longDescription?.en} onChange={(e: any) => setFormData({...formData, longDescription: {...formData.longDescription, en: e.target.value}})} />
-                <TextArea label="Turkish (Markdown)" value={formData.longDescription?.tr} onChange={(e: any) => setFormData({...formData, longDescription: {...formData.longDescription, tr: e.target.value}})} />
-              </div>
+              <LocalizedTextAreas field="longDescription" markdown />
             </div>
           )}
         </div>

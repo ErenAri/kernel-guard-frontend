@@ -1,20 +1,17 @@
 import projectsData from './projects.json';
+import type { Language } from '../context/LanguageContext';
+
+export type LocalizedTextMap = Partial<Record<Language, string>> & {
+  en: string;
+  tr: string;
+};
 
 export interface Project {
   id: string;
   title: string;
-  description: {
-    en: string;
-    tr: string;
-  };
-  technicalDetails: {
-    en: string;
-    tr: string;
-  };
-  marketingDetails: {
-    en: string;
-    tr: string;
-  };
+  description: LocalizedTextMap;
+  technicalDetails: LocalizedTextMap;
+  marketingDetails: LocalizedTextMap;
   tags: string[];
   link?: string;
   github?: string;

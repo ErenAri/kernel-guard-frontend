@@ -54,6 +54,10 @@ export const loadHardenedBackend = cacheLoader(() => import('../pages/HardenedBa
 export const loadDataProtection = cacheLoader(() => import('../pages/DataProtection'));
 export const loadHighPerformance = cacheLoader(() => import('../pages/HighPerformance'));
 export const loadServices = cacheLoader(() => import('../pages/Services'));
+export const loadSecurity = cacheLoader(() => import('../pages/Security'));
+export const loadEngineering = cacheLoader(() => import('../pages/Engineering'));
+export const loadStatus = cacheLoader(() => import('../pages/Status'));
+export const loadChangelog = cacheLoader(() => import('../pages/Changelog'));
 export const loadTerms = cacheLoader(() => import('../pages/Terms'));
 export const loadPrivacy = cacheLoader(() => import('../pages/Privacy'));
 export const loadCookies = cacheLoader(() => import('../pages/Cookies'));
@@ -70,6 +74,10 @@ const prefetchers = {
   completedProjects: loadCompletedProjects,
   completedProjectDetails: loadCompletedProjectDetails,
   services: loadServices,
+  security: loadSecurity,
+  engineering: loadEngineering,
+  status: loadStatus,
+  changelog: loadChangelog,
   secureFrontend: loadSecureFrontend,
   hardenedBackend: loadHardenedBackend,
   dataProtection: loadDataProtection,
@@ -109,6 +117,10 @@ export function resolveLoadersForPath(pathname: string): PrefetchRoute[] {
   if (path === '/services/hardened-backend') return ['hardenedBackend'];
   if (path === '/services/data-protection') return ['dataProtection'];
   if (path === '/services/high-performance') return ['highPerformance'];
+  if (path === '/security') return ['security'];
+  if (path === '/engineering') return ['engineering'];
+  if (path === '/status') return ['status'];
+  if (path === '/changelog') return ['changelog'];
   if (path === '/projects') return ['projects'];
   if (path.startsWith('/projects/')) return ['projectDetails'];
   if (path === '/completed-projects') return ['completedProjects'];

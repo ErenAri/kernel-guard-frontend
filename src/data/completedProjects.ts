@@ -1,4 +1,10 @@
 import completedProjectsData from './completedProjects.json';
+import type { Language } from '../context/LanguageContext';
+
+export type LocalizedTextMap = Partial<Record<Language, string>> & {
+  en: string;
+  tr: string;
+};
 
 export interface Account {
   email: string;
@@ -8,14 +14,8 @@ export interface Account {
 export interface CompletedProject {
   id: string;
   title: string;
-  description: {
-    en: string;
-    tr: string;
-  };
-  longDescription: {
-    en: string;
-    tr: string;
-  };
+  description: LocalizedTextMap;
+  longDescription: LocalizedTextMap;
   url?: string;
   github?: string;
   image?: string;

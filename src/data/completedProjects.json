@@ -8,14 +8,20 @@
         "tr": "Modern kurumsal portfolyo ve dijital referans sergileme platformu.",
         "de": "Moderne Unternehmensportfolio- und digitale Referenzplattform.",
         "ja": "モダンな企業ポートフォリオとデジタル実績紹介のためのプラットフォームです。",
-        "zh-CN": "现代企业作品集与数字案例展示平台。"
+        "zh-CN": "现代企业作品集与数字案例展示平台。",
+        "es": "Plataforma moderna de portafolio corporativo y muestra de referencias digitales.",
+        "fr": "Plateforme moderne de portfolio d’entreprise et de présentation de références numériques.",
+        "ko": "현대적인 기업 포트폴리오 및 디지털 레퍼런스 쇼케이스 플랫폼입니다."
       },
       "longDescription": {
         "en": "Ref Atelier is a premium corporate portfolio platform designed to showcase digital references and past projects with an elegant, modern interface. It features a fully responsive design, optimized media loading, and a seamless user experience tailored for creative agencies and corporate entities.",
         "tr": "Ref Atelier, dijital referansları ve geçmiş projeleri zarif ve modern bir arayüzle sergilemek için tasarlanmış premium bir kurumsal portfolyo platformudur. Tamamen duyarlı bir tasarıma, optimize edilmiş medya yüklemesine ve yaratıcı ajanslar ile kurumsal şirketler için özel olarak tasarlanmış kusursuz bir kullanıcı deneyimine sahiptir.",
         "de": "Ref Atelier ist eine hochwertige Unternehmensportfolio-Plattform, die digitale Referenzen und abgeschlossene Projekte in einer eleganten, modernen Oberflaeche praesentiert. Sie bietet responsives Design, optimiertes Medienladen und eine fluessige Nutzererfahrung fuer Kreativagenturen und Unternehmen.",
         "ja": "Ref Atelier は、デジタル実績や過去のプロジェクトを洗練されたモダンなインターフェースで紹介するための、プレミアムな企業ポートフォリオプラットフォームです。完全レスポンシブ設計、最適化されたメディア読み込み、クリエイティブエージェンシーや企業向けのスムーズなユーザー体験を備えています。",
-        "zh-CN": "Ref Atelier 是一个高端企业作品集平台，用优雅现代的界面展示数字案例与过往项目。它具备完整响应式设计、优化的媒体加载，以及面向创意机构和企业客户的流畅用户体验。"
+        "zh-CN": "Ref Atelier 是一个高端企业作品集平台，用优雅现代的界面展示数字案例与过往项目。它具备完整响应式设计、优化的媒体加载，以及面向创意机构和企业客户的流畅用户体验。",
+        "es": "Ref Atelier es una plataforma premium de portafolio corporativo diseñada para mostrar referencias digitales y proyectos anteriores con una interfaz elegante y moderna. Incluye diseño totalmente responsive, carga multimedia optimizada y una experiencia de usuario fluida para agencias creativas y empresas.",
+        "fr": "Ref Atelier est une plateforme premium de portfolio d’entreprise conçue pour présenter des références numériques et des projets passés dans une interface élégante et moderne. Elle offre un design entièrement responsive, un chargement média optimisé et une expérience fluide pour les agences créatives et les entreprises.",
+        "ko": "Ref Atelier는 디지털 레퍼런스와 과거 프로젝트를 세련되고 현대적인 인터페이스로 보여주기 위해 설계된 프리미엄 기업 포트폴리오 플랫폼입니다. 완전 반응형 디자인, 최적화된 미디어 로딩, 크리에이티브 에이전시와 기업을 위한 매끄러운 사용자 경험을 제공합니다."
       },
       "url": "https://refatelier.com/index.html",
       "tags": [
@@ -33,14 +39,20 @@
         "tr": "Öğrenci takibi ve idari araçları içeren kapsamlı eğitim kurumu (dershane) yönetim sistemi.",
         "de": "Umfassendes Managementsystem fuer Bildungseinrichtungen mit Schuelerverfolgung und Verwaltungstools.",
         "ja": "生徒管理と管理業務ツールを備えた、教育機関向けの包括的な管理システムです。",
-        "zh-CN": "面向教育机构的综合管理系统，包含学生跟踪和行政管理工具。"
+        "zh-CN": "面向教育机构的综合管理系统，包含学生跟踪和行政管理工具。",
+        "es": "Sistema integral de gestión para instituciones educativas con seguimiento de estudiantes y herramientas administrativas.",
+        "fr": "Système complet de gestion d’établissement éducatif avec suivi des élèves et outils administratifs.",
+        "ko": "학생 추적과 관리 도구를 포함한 종합 교육기관 관리 시스템입니다."
       },
       "longDescription": {
         "en": "A full-featured management system tailored for educational institutions. It provides tools for student enrollment, attendance tracking, grade management, and administrative reporting. The platform streamlines daily operations and improves communication between staff and students.",
         "tr": "Eğitim kurumları için özel olarak tasarlanmış tam özellikli bir yönetim sistemi. Öğrenci kaydı, yoklama takibi, not yönetimi ve idari raporlama için araçlar sunar. Platform, günlük operasyonları kolaylaştırır ve personel ile öğrenciler arasındaki iletişimi geliştirir.",
         "de": "Ein voll ausgestattetes Managementsystem fuer Bildungseinrichtungen. Es bietet Werkzeuge fuer Einschreibung, Anwesenheitskontrolle, Notenverwaltung und administrative Berichte. Die Plattform vereinfacht den Tagesbetrieb und verbessert die Kommunikation zwischen Mitarbeitenden und Lernenden.",
         "ja": "教育機関向けに設計された多機能な管理システムです。生徒登録、出席管理、成績管理、管理レポート作成のためのツールを提供します。日々の業務を効率化し、スタッフと生徒間のコミュニケーションを改善します。",
-        "zh-CN": "一个为教育机构定制的完整管理系统。它提供学生注册、考勤跟踪、成绩管理和行政报告工具，帮助简化日常运营并提升教职员工与学生之间的沟通效率。"
+        "zh-CN": "一个为教育机构定制的完整管理系统。它提供学生注册、考勤跟踪、成绩管理和行政报告工具，帮助简化日常运营并提升教职员工与学生之间的沟通效率。",
+        "es": "Sistema de gestión completo diseñado para instituciones educativas. Ofrece herramientas para inscripción de estudiantes, control de asistencia, gestión de calificaciones e informes administrativos. La plataforma simplifica las operaciones diarias y mejora la comunicación entre personal y estudiantes.",
+        "fr": "Système de gestion complet conçu pour les établissements éducatifs. Il fournit des outils pour les inscriptions, le suivi des présences, la gestion des notes et les rapports administratifs. La plateforme simplifie les opérations quotidiennes et améliore la communication entre le personnel et les élèves.",
+        "ko": "교육기관을 위해 설계된 완전한 관리 시스템입니다. 학생 등록, 출석 추적, 성적 관리, 행정 보고 도구를 제공하며 일상 운영을 단순화하고 직원과 학생 간 커뮤니케이션을 개선합니다."
       },
       "url": "https://trfont.com/adana/",
       "tags": [
@@ -63,14 +75,20 @@
         "tr": "Çoklu rol erişimine sahip kurumsal insan kaynakları (İK) yönetim portalı.",
         "de": "Enterprise-HR-Portal mit rollenbasiertem Zugriff fuer Mitarbeitende.",
         "ja": "複数ロールの従業員アクセスに対応した、エンタープライズ向け人事管理ポータルです。",
-        "zh-CN": "支持多角色员工访问的企业人力资源管理门户。"
+        "zh-CN": "支持多角色员工访问的企业人力资源管理门户。",
+        "es": "Portal empresarial de gestión de recursos humanos con acceso multirol para empleados.",
+        "fr": "Portail RH d’entreprise avec accès multi-rôles pour les employés.",
+        "ko": "다중 역할 직원 접근을 지원하는 엔터프라이즈 인사 관리 포털입니다."
       },
       "longDescription": {
         "en": "TechNova HR is an enterprise-grade Human Resources management portal. It supports multi-role access control, allowing administrators to manage employee records, leave requests, and performance reviews, while providing employees with a self-service portal to view their data and submit requests.",
         "tr": "TechNova İK, kurumsal düzeyde bir İnsan Kaynakları yönetim portalıdır. Çoklu rol erişim kontrolünü destekleyerek, yöneticilerin çalışan kayıtlarını, izin taleplerini ve performans değerlendirmelerini yönetmesine olanak tanırken, çalışanlara verilerini görüntülemeleri ve talepte bulunmaları için bir self-servis portalı sunar.",
         "de": "TechNova HR ist ein HR-Management-Portal auf Unternehmensniveau. Es unterstuetzt rollenbasierte Zugriffskontrolle, sodass Administratoren Mitarbeiterdaten, Urlaubsantraege und Leistungsbewertungen verwalten koennen, waehrend Mitarbeitende ihre Daten einsehen und Anfragen ueber ein Self-Service-Portal stellen.",
         "ja": "TechNova HR は、エンタープライズグレードの人事管理ポータルです。複数ロールのアクセス制御に対応しており、管理者は従業員情報、休暇申請、評価を管理できます。従業員はセルフサービスポータルから自分のデータを確認し、申請を送信できます。",
-        "zh-CN": "TechNova HR 是一个企业级人力资源管理门户。它支持多角色访问控制，使管理员能够管理员工记录、请假申请和绩效评估，同时为员工提供自助门户，用于查看个人数据并提交申请。"
+        "zh-CN": "TechNova HR 是一个企业级人力资源管理门户。它支持多角色访问控制，使管理员能够管理员工记录、请假申请和绩效评估，同时为员工提供自助门户，用于查看个人数据并提交申请。",
+        "es": "TechNova HR es un portal de gestión de Recursos Humanos de nivel empresarial. Admite control de acceso multirol para que los administradores gestionen registros de empleados, solicitudes de permisos y evaluaciones de desempeño, mientras los empleados consultan sus datos y envían solicitudes desde un portal de autoservicio.",
+        "fr": "TechNova HR est un portail de gestion des ressources humaines de niveau entreprise. Il prend en charge le contrôle d’accès multi-rôles, permettant aux administrateurs de gérer les dossiers employés, les demandes de congé et les évaluations de performance, tout en offrant aux employés un portail en libre-service.",
+        "ko": "TechNova HR은 엔터프라이즈급 인사 관리 포털입니다. 다중 역할 접근 제어를 지원해 관리자가 직원 기록, 휴가 요청, 성과 평가를 관리할 수 있고, 직원은 셀프서비스 포털에서 자신의 데이터를 확인하고 요청을 제출할 수 있습니다."
       },
       "url": "https://trfont.com/%C4%B1k/",
       "tags": [
@@ -109,14 +127,20 @@
         "tr": "Gelişmiş algoritmik eğitim platformu ve öğrenci öğrenim paneli.",
         "de": "Fortgeschrittene algorithmische Lernplattform mit Schueler-Dashboard.",
         "ja": "高度なアルゴリズム教育プラットフォームと学習者向けダッシュボードです。",
-        "zh-CN": "高级算法教育平台与学生学习仪表板。"
+        "zh-CN": "高级算法教育平台与学生学习仪表板。",
+        "es": "Plataforma avanzada de educación algorítmica y panel de aprendizaje para estudiantes.",
+        "fr": "Plateforme avancée d’apprentissage algorithmique avec tableau de bord étudiant.",
+        "ko": "고급 알고리즘 교육 플랫폼 및 학생 학습 대시보드입니다."
       },
       "longDescription": {
         "en": "Algo Eğitim is an advanced educational platform focused on algorithmic learning and programming. It features a comprehensive student dashboard, progress tracking, and interactive learning modules designed to enhance coding skills and logical thinking.",
         "tr": "Algo Eğitim, algoritmik öğrenme ve programlamaya odaklanan gelişmiş bir eğitim platformudur. Kodlama becerilerini ve mantıksal düşünmeyi geliştirmek için tasarlanmış kapsamlı bir öğrenci paneli, ilerleme takibi ve etkileşimli öğrenme modülleri içerir.",
         "de": "Algo Egitim ist eine fortgeschrittene Bildungsplattform fuer algorithmisches Lernen und Programmierung. Sie bietet ein umfassendes Schueler-Dashboard, Fortschrittsverfolgung und interaktive Lernmodule zur Foerderung von Programmierfaehigkeiten und logischem Denken.",
         "ja": "Algo Egitim は、アルゴリズム学習とプログラミングに焦点を当てた高度な教育プラットフォームです。包括的な学習者ダッシュボード、進捗管理、コーディングスキルと論理的思考を高めるインタラクティブな学習モジュールを備えています。",
-        "zh-CN": "Algo Egitim 是一个专注于算法学习和编程的高级教育平台。它包含完整的学生仪表板、进度跟踪和互动学习模块，旨在提升编程能力与逻辑思维。"
+        "zh-CN": "Algo Egitim 是一个专注于算法学习和编程的高级教育平台。它包含完整的学生仪表板、进度跟踪和互动学习模块，旨在提升编程能力与逻辑思维。",
+        "es": "Algo Eğitim es una plataforma educativa avanzada centrada en el aprendizaje algorítmico y la programación. Incluye un panel integral para estudiantes, seguimiento de progreso y módulos interactivos diseñados para mejorar habilidades de programación y pensamiento lógico.",
+        "fr": "Algo Eğitim est une plateforme éducative avancée axée sur l’apprentissage algorithmique et la programmation. Elle comprend un tableau de bord étudiant complet, un suivi de progression et des modules interactifs conçus pour renforcer les compétences de codage et la pensée logique.",
+        "ko": "Algo Eğitim은 알고리즘 학습과 프로그래밍에 초점을 맞춘 고급 교육 플랫폼입니다. 종합 학생 대시보드, 진행 상황 추적, 코딩 능력과 논리적 사고를 높이기 위한 인터랙티브 학습 모듈을 제공합니다."
       },
       "url": "https://trfont.com/ada/",
       "tags": [

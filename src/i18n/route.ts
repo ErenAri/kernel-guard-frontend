@@ -1,6 +1,6 @@
 import type { Language } from '../context/LanguageContext';
 
-export const SUPPORTED_LANGUAGES: readonly Language[] = ['tr', 'en', 'de', 'ja', 'zh-CN'] as const;
+export const SUPPORTED_LANGUAGES: readonly Language[] = ['tr', 'en', 'de', 'ja', 'zh-CN', 'es', 'fr', 'ko'] as const;
 export const LANGUAGE_PREFERENCE_STORAGE_KEY = 'kg_language_preference';
 export const DEFAULT_LANGUAGE: Language = 'tr';
 export const LANGUAGE_PREFIXES: Record<Language, string> = {
@@ -9,6 +9,9 @@ export const LANGUAGE_PREFIXES: Record<Language, string> = {
   de: '/de',
   ja: '/ja',
   'zh-CN': '/zh-cn',
+  es: '/es',
+  fr: '/fr',
+  ko: '/ko',
 };
 export const LANGUAGE_HREFLANGS: Record<Language, string> = {
   tr: 'tr',
@@ -16,6 +19,9 @@ export const LANGUAGE_HREFLANGS: Record<Language, string> = {
   de: 'de',
   ja: 'ja',
   'zh-CN': 'zh-CN',
+  es: 'es',
+  fr: 'fr',
+  ko: 'ko',
 };
 export const LANGUAGE_LABELS: Record<Language, string> = {
   tr: 'TR',
@@ -23,6 +29,9 @@ export const LANGUAGE_LABELS: Record<Language, string> = {
   de: 'DE',
   ja: 'JA',
   'zh-CN': 'ZH',
+  es: 'ES',
+  fr: 'FR',
+  ko: 'KO',
 };
 
 const PREFIX_LANGUAGE_ENTRIES = Object.entries(LANGUAGE_PREFIXES)
@@ -117,6 +126,18 @@ export function detectBrowserLanguage(): Language {
 
   if (normalized.some((lang) => lang === 'de' || lang.startsWith('de-'))) {
     return 'de';
+  }
+
+  if (normalized.some((lang) => lang === 'es' || lang.startsWith('es-'))) {
+    return 'es';
+  }
+
+  if (normalized.some((lang) => lang === 'fr' || lang.startsWith('fr-'))) {
+    return 'fr';
+  }
+
+  if (normalized.some((lang) => lang === 'ko' || lang.startsWith('ko-'))) {
+    return 'ko';
   }
 
   if (normalized.some((lang) => lang === 'en' || lang.startsWith('en-'))) {

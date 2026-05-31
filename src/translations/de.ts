@@ -84,12 +84,12 @@ export const de = {
     proof: {
       badge: 'GEMESSEN // ÖFFENTLICHE_NACHWEISE',
       title: 'Nachweise statt Behauptungen',
-      desc: 'Ein transparenter Qualitätsstand auf Basis von Lighthouse CLI, Prerender-Ausgabe und öffentlichen GitHub-Repository-Daten, gemessen am 31. Mai 2026.',
+      desc: 'Ein transparenter Qualitätsstand auf Basis von Lighthouse CLI, Prerender-Ausgabe und öffentlichen GitHub-Repository-Daten, gemessen am 1. Juni 2026.',
       cards: {
         lighthouse: { label: 'Desktop Lighthouse', detail: 'Performance / Barrierefreiheit auf der Produktionsdomain.' },
         delivery: { label: 'Prerender-Routen', detail: 'Statische Routen, die beim Build über lokalisierte Seiten erzeugt werden.' },
         openSource: { label: 'Öffentliche Repos', detail: 'Sichtbare Repositories der Kernel-Guard-Organisation auf GitHub.' },
-        languages: { label: 'Unterstützte Sprachen', detail: 'Türkisch, Englisch, Deutsch, Japanisch und Chinesisch.' },
+        languages: { label: 'Unterstützte Sprachen', detail: 'Türkisch, Englisch, Deutsch, Japanisch, Chinesisch, Spanisch, Französisch und Koreanisch.' },
       },
       summary: {
         indexableUrls: 'indexierbare URLs',

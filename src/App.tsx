@@ -23,6 +23,10 @@ import {
   loadDataProtection,
   loadHighPerformance,
   loadServices,
+  loadSecurity,
+  loadEngineering,
+  loadStatus,
+  loadChangelog,
   loadTerms,
   loadPrivacy,
   loadCookies,
@@ -44,6 +48,10 @@ const HardenedBackend = lazy(loadHardenedBackend);
 const DataProtection = lazy(loadDataProtection);
 const HighPerformance = lazy(loadHighPerformance);
 const Services = lazy(loadServices);
+const Security = lazy(loadSecurity);
+const Engineering = lazy(loadEngineering);
+const Status = lazy(loadStatus);
+const Changelog = lazy(loadChangelog);
 const Terms = lazy(loadTerms);
 const Privacy = lazy(loadPrivacy);
 const Cookies = lazy(loadCookies);
@@ -82,6 +90,10 @@ function LocalizedRoutes() {
         <Route path="services/hardened-backend" element={<HardenedBackend />} />
         <Route path="services/data-protection" element={<DataProtection />} />
         <Route path="services/high-performance" element={<HighPerformance />} />
+        <Route path="security" element={<Security />} />
+        <Route path="engineering" element={<Engineering />} />
+        <Route path="status" element={<Status />} />
+        <Route path="changelog" element={<Changelog />} />
         <Route path="terms" element={<Terms />} />
         <Route path="privacy" element={<Privacy />} />
         <Route path="cookies" element={<Cookies />} />
@@ -121,6 +133,9 @@ export default function App() {
             <Route path="/de/*" element={<LangShell lang="de" />} />
             <Route path="/ja/*" element={<LangShell lang="ja" />} />
             <Route path="/zh-cn/*" element={<LangShell lang="zh-CN" />} />
+            <Route path="/es/*" element={<LangShell lang="es" />} />
+            <Route path="/fr/*" element={<LangShell lang="fr" />} />
+            <Route path="/ko/*" element={<LangShell lang="ko" />} />
             <Route path="/*" element={<LangShell lang="tr" />} />
           </Routes>
         </BrowserRouter>
