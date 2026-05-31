@@ -13,6 +13,7 @@ const baseStaticRoutes = [
   '/terms',
   '/privacy',
   '/cookies',
+  '/contact',
   '/not-found',
 ];
 

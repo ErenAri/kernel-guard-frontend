@@ -18499,6 +18499,7 @@ const Cookies$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.definePro
 }, Symbol.toStringTag, { value: "Module" }));
 function Contact() {
   const { t } = useLanguage();
+  const accessKey = "aa3ee17f-6b96-4b6c-9b81-9d8df3094e26";
   return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-20", children: [
     /* @__PURE__ */ jsx(
       SEO,
@@ -18585,7 +18586,7 @@ function Contact() {
             method: "POST",
             className: "border border-border bg-surface p-8 space-y-6",
             children: [
-              /* @__PURE__ */ jsx("input", { type: "hidden", name: "access_key", value: "" }),
+              /* @__PURE__ */ jsx("input", { type: "hidden", name: "access_key", value: accessKey }),
               /* @__PURE__ */ jsx("input", { type: "hidden", name: "subject", value: "Kernel Guard contact form" }),
               /* @__PURE__ */ jsx("input", { type: "checkbox", name: "botcheck", className: "hidden", tabIndex: -1 }),
               /* @__PURE__ */ jsxs("div", { children: [
@@ -18636,7 +18637,7 @@ function Contact() {
                 "button",
                 {
                   type: "submit",
-                  disabled: true,
+                  disabled: !accessKey,
                   className: "inline-flex w-full sm:w-auto items-center justify-center gap-3 bg-primary px-8 py-4 font-medium text-white transition-colors hover:bg-primary-dark disabled:cursor-not-allowed disabled:opacity-50",
                   children: [
                     /* @__PURE__ */ jsx("span", { children: t.contact.form.submit }),
