@@ -5,7 +5,7 @@ var _a, _b;
 import { jsx, jsxs } from "react/jsx-runtime";
 import { renderToString } from "react-dom/server";
 import * as React3 from "react";
-import React3__default, { Component, createContext as createContext$1, useState, useContext, useEffect, forwardRef, createElement } from "react";
+import React3__default, { Component, createContext as createContext$1, useState, useContext, useEffect, forwardRef, createElement, useRef } from "react";
 import fastCompare from "react-fast-compare";
 import invariant$2 from "invariant";
 import shallowEqual from "shallowequal";
@@ -16852,29 +16852,29 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$p = [
+const __iconNode$r = [
   ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
   ["path", { d: "M19 12H5", key: "x3x0zl" }]
 ];
-const ArrowLeft = createLucideIcon("arrow-left", __iconNode$p);
+const ArrowLeft = createLucideIcon("arrow-left", __iconNode$r);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$o = [
+const __iconNode$q = [
   ["path", { d: "M5 12h14", key: "1ays0h" }],
   ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
 ];
-const ArrowRight = createLucideIcon("arrow-right", __iconNode$o);
+const ArrowRight = createLucideIcon("arrow-right", __iconNode$q);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$n = [
+const __iconNode$p = [
   [
     "path",
     {
@@ -16885,7 +16885,23 @@ const __iconNode$n = [
   ["path", { d: "m3.3 7 8.7 5 8.7-5", key: "g66t2b" }],
   ["path", { d: "M12 22V12", key: "d0xqtd" }]
 ];
-const Box = createLucideIcon("box", __iconNode$n);
+const Box = createLucideIcon("box", __iconNode$p);
+/**
+ * @license lucide-react v0.546.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$o = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
+const Check = createLucideIcon("check", __iconNode$o);
+/**
+ * @license lucide-react v0.546.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$n = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
+const ChevronDown = createLucideIcon("chevron-down", __iconNode$n);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -17363,6 +17379,97 @@ function ThemeToggle() {
     }
   );
 }
+const LANGUAGE_NAMES = {
+  tr: "Turkce",
+  en: "English",
+  de: "Deutsch",
+  ja: "Japanese",
+  "zh-CN": "Chinese"
+};
+function LanguageSwitcher({ language, onChange, compact = false }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const containerRef = useRef(null);
+  useEffect(() => {
+    if (!isExpanded) {
+      return;
+    }
+    const handlePointerDown = (event) => {
+      var _a2;
+      if (!((_a2 = containerRef.current) == null ? void 0 : _a2.contains(event.target))) {
+        setIsExpanded(false);
+      }
+    };
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setIsExpanded(false);
+      }
+    };
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isExpanded]);
+  const selectLanguage = (nextLanguage) => {
+    setIsExpanded(false);
+    if (nextLanguage !== language) {
+      onChange(nextLanguage);
+    }
+  };
+  return /* @__PURE__ */ jsxs("div", { ref: containerRef, className: "relative", children: [
+    /* @__PURE__ */ jsxs(
+      "button",
+      {
+        type: "button",
+        onClick: () => setIsExpanded((value) => !value),
+        "aria-haspopup": "listbox",
+        "aria-expanded": isExpanded,
+        "aria-label": "Select language",
+        className: `inline-flex h-10 items-center justify-center gap-2 border border-border bg-background text-foreground transition-colors hover:bg-surface focus:outline-none focus:ring-2 focus:ring-primary/50 ${compact ? "w-20 px-2" : "min-w-[104px] px-3"}`,
+        children: [
+          /* @__PURE__ */ jsx(Globe, { className: "h-4 w-4 shrink-0" }),
+          /* @__PURE__ */ jsx("span", { className: "font-mono text-sm font-medium uppercase leading-none", children: LANGUAGE_LABELS[language] }),
+          /* @__PURE__ */ jsx(
+            ChevronDown,
+            {
+              className: `h-4 w-4 shrink-0 transition-transform ${isExpanded ? "rotate-180" : ""}`
+            }
+          )
+        ]
+      }
+    ),
+    isExpanded && /* @__PURE__ */ jsx(
+      "div",
+      {
+        role: "listbox",
+        "aria-label": "Languages",
+        className: `absolute right-0 top-12 z-50 w-44 overflow-hidden border border-border bg-background shadow-xl shadow-black/10 ring-1 ring-black/5 dark:shadow-black/30 ${compact ? "right-0" : ""}`,
+        children: SUPPORTED_LANGUAGES.map((lang) => {
+          const isSelected = lang === language;
+          return /* @__PURE__ */ jsxs(
+            "button",
+            {
+              type: "button",
+              role: "option",
+              "aria-selected": isSelected,
+              onClick: () => selectLanguage(lang),
+              className: `flex w-full items-center justify-between gap-3 px-3 py-2.5 text-left transition-colors ${isSelected ? "bg-primary text-white" : "bg-background text-foreground hover:bg-surface"}`,
+              children: [
+                /* @__PURE__ */ jsxs("span", { className: "flex min-w-0 items-center gap-3", children: [
+                  /* @__PURE__ */ jsx("span", { className: "w-8 shrink-0 font-mono text-sm font-semibold uppercase", children: LANGUAGE_LABELS[lang] }),
+                  /* @__PURE__ */ jsx("span", { className: "truncate text-sm", children: LANGUAGE_NAMES[lang] })
+                ] }),
+                isSelected && /* @__PURE__ */ jsx(Check, { className: "h-4 w-4 shrink-0" })
+              ]
+            },
+            lang
+          );
+        })
+      }
+    )
+  ] });
+}
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location2 = distExports.useLocation();
@@ -17429,19 +17536,7 @@ function Navbar() {
           }
         ),
         /* @__PURE__ */ jsx("div", { className: "h-6 w-px bg-border mx-2" }),
-        /* @__PURE__ */ jsxs("label", { className: "flex items-center gap-1 text-foreground hover:text-primary transition-colors px-3 py-2 text-sm font-mono uppercase", children: [
-          /* @__PURE__ */ jsx(Globe, { className: "w-4 h-4" }),
-          /* @__PURE__ */ jsx(
-            "select",
-            {
-              value: language,
-              onChange: (event) => handleLanguageChange(event.target.value),
-              className: "bg-transparent text-foreground outline-none cursor-pointer uppercase",
-              "aria-label": "Select language",
-              children: SUPPORTED_LANGUAGES.map((lang) => /* @__PURE__ */ jsx("option", { value: lang, children: LANGUAGE_LABELS[lang] }, lang))
-            }
-          )
-        ] }),
+        /* @__PURE__ */ jsx(LanguageSwitcher, { language, onChange: handleLanguageChange }),
         /* @__PURE__ */ jsxs("div", { className: "ml-2 flex items-center gap-2", children: [
           /* @__PURE__ */ jsx(ThemeToggle, {}),
           /* @__PURE__ */ jsx(
@@ -17466,19 +17561,7 @@ function Navbar() {
             children: /* @__PURE__ */ jsx(Lock, { className: "w-5 h-5" })
           }
         ),
-        /* @__PURE__ */ jsxs("label", { className: "flex items-center justify-center p-2 text-foreground hover:bg-surface focus:outline-none font-mono uppercase text-sm", children: [
-          /* @__PURE__ */ jsx(Globe, { className: "w-4 h-4 mr-1" }),
-          /* @__PURE__ */ jsx(
-            "select",
-            {
-              value: language,
-              onChange: (event) => handleLanguageChange(event.target.value),
-              className: "bg-transparent text-foreground outline-none cursor-pointer uppercase max-w-14",
-              "aria-label": "Select language",
-              children: SUPPORTED_LANGUAGES.map((lang) => /* @__PURE__ */ jsx("option", { value: lang, children: LANGUAGE_LABELS[lang] }, lang))
-            }
-          )
-        ] }),
+        /* @__PURE__ */ jsx(LanguageSwitcher, { language, onChange: handleLanguageChange, compact: true }),
         /* @__PURE__ */ jsx(
           "button",
           {
@@ -19054,7 +19137,6 @@ const Cookies$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.definePro
 }, Symbol.toStringTag, { value: "Module" }));
 function Contact() {
   const { t } = useLanguage();
-  const accessKey = "aa3ee17f-6b96-4b6c-9b81-9d8df3094e26";
   return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-20", children: [
     /* @__PURE__ */ jsx(
       SEO,
@@ -19141,7 +19223,7 @@ function Contact() {
             method: "POST",
             className: "border border-border bg-surface p-8 space-y-6",
             children: [
-              /* @__PURE__ */ jsx("input", { type: "hidden", name: "access_key", value: accessKey }),
+              /* @__PURE__ */ jsx("input", { type: "hidden", name: "access_key", value: "" }),
               /* @__PURE__ */ jsx("input", { type: "hidden", name: "subject", value: "Kernel Guard contact form" }),
               /* @__PURE__ */ jsx("input", { type: "checkbox", name: "botcheck", className: "hidden", tabIndex: -1 }),
               /* @__PURE__ */ jsxs("div", { children: [
@@ -19192,7 +19274,7 @@ function Contact() {
                 "button",
                 {
                   type: "submit",
-                  disabled: !accessKey,
+                  disabled: true,
                   className: "inline-flex w-full sm:w-auto items-center justify-center gap-3 bg-primary px-8 py-4 font-medium text-white transition-colors hover:bg-primary-dark disabled:cursor-not-allowed disabled:opacity-50",
                   children: [
                     /* @__PURE__ */ jsx("span", { children: t.contact.form.submit }),

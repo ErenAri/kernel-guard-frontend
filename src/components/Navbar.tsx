@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Globe, Lock } from 'lucide-react';
-import { useState } from 'react';
+import { Menu, X, Globe, Lock, ChevronDown, Check } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { prefetchRoutes, type PrefetchRoute } from '../routes/pageLoaders';
 import {
@@ -12,6 +12,118 @@ import {
 import type { Language } from '../context/LanguageContext';
 import Logo from './Logo';
 import ThemeToggle from './ThemeToggle';
+
+const LANGUAGE_NAMES: Record<Language, string> = {
+  tr: 'Turkish',
+  en: 'English',
+  de: 'German',
+  ja: 'Japanese',
+  'zh-CN': 'Chinese',
+};
+
+interface LanguageSwitcherProps {
+  language: Language;
+  onChange: (language: Language) => void;
+  compact?: boolean;
+}
+
+function LanguageSwitcher({ language, onChange, compact = false }: LanguageSwitcherProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isExpanded) {
+      return;
+    }
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!containerRef.current?.contains(event.target as Node)) {
+        setIsExpanded(false);
+      }
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsExpanded(false);
+      }
+    };
+
+    document.addEventListener('pointerdown', handlePointerDown);
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('pointerdown', handlePointerDown);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isExpanded]);
+
+  const selectLanguage = (nextLanguage: Language) => {
+    setIsExpanded(false);
+    if (nextLanguage !== language) {
+      onChange(nextLanguage);
+    }
+  };
+
+  return (
+    <div ref={containerRef} className="relative">
+      <button
+        type="button"
+        onClick={() => setIsExpanded((value) => !value)}
+        aria-haspopup="listbox"
+        aria-expanded={isExpanded}
+        aria-label="Select language"
+        className={`inline-flex h-10 items-center justify-center gap-2 border border-border bg-background text-foreground transition-colors hover:bg-surface focus:outline-none focus:ring-2 focus:ring-primary/50 ${
+          compact ? 'w-20 px-2' : 'min-w-[104px] px-3'
+        }`}
+      >
+        <Globe className="h-4 w-4 shrink-0" />
+        <span className="font-mono text-sm font-medium uppercase leading-none">
+          {LANGUAGE_LABELS[language]}
+        </span>
+        <ChevronDown
+          className={`h-4 w-4 shrink-0 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+        />
+      </button>
+
+      {isExpanded && (
+        <div
+          role="listbox"
+          aria-label="Languages"
+          className={`absolute right-0 top-12 z-50 w-44 overflow-hidden border border-border bg-background shadow-xl shadow-black/10 ring-1 ring-black/5 dark:shadow-black/30 ${
+            compact ? 'right-0' : ''
+          }`}
+        >
+          {SUPPORTED_LANGUAGES.map((lang) => {
+            const isSelected = lang === language;
+
+            return (
+              <button
+                key={lang}
+                type="button"
+                role="option"
+                aria-selected={isSelected}
+                onClick={() => selectLanguage(lang)}
+                className={`flex w-full items-center justify-between gap-3 px-3 py-2.5 text-left transition-colors ${
+                  isSelected
+                    ? 'bg-primary text-white'
+                    : 'bg-background text-foreground hover:bg-surface'
+                }`}
+              >
+                <span className="flex min-w-0 items-center gap-3">
+                  <span className="w-8 shrink-0 font-mono text-sm font-semibold uppercase">
+                    {LANGUAGE_LABELS[lang]}
+                  </span>
+                  <span className="truncate text-sm">{LANGUAGE_NAMES[lang]}</span>
+                </span>
+                {isSelected && <Check className="h-4 w-4 shrink-0" />}
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -100,21 +212,7 @@ export default function Navbar() {
               
               <div className="h-6 w-px bg-border mx-2"></div>
               
-              <label className="flex items-center gap-1 text-foreground hover:text-primary transition-colors px-3 py-2 text-sm font-mono uppercase">
-                <Globe className="w-4 h-4" />
-                <select
-                  value={language}
-                  onChange={(event) => handleLanguageChange(event.target.value as Language)}
-                  className="bg-transparent text-foreground outline-none cursor-pointer uppercase"
-                  aria-label="Select language"
-                >
-                  {SUPPORTED_LANGUAGES.map((lang) => (
-                    <option key={lang} value={lang}>
-                      {LANGUAGE_LABELS[lang]}
-                    </option>
-                  ))}
-                </select>
-              </label>
+              <LanguageSwitcher language={language} onChange={handleLanguageChange} />
               
               <div className="ml-2 flex items-center gap-2">
                 <ThemeToggle />
@@ -139,21 +237,7 @@ export default function Navbar() {
             >
               <Lock className="w-5 h-5" />
             </Link>
-            <label className="flex items-center justify-center p-2 text-foreground hover:bg-surface focus:outline-none font-mono uppercase text-sm">
-              <Globe className="w-4 h-4 mr-1" />
-              <select
-                value={language}
-                onChange={(event) => handleLanguageChange(event.target.value as Language)}
-                className="bg-transparent text-foreground outline-none cursor-pointer uppercase max-w-14"
-                aria-label="Select language"
-              >
-                {SUPPORTED_LANGUAGES.map((lang) => (
-                  <option key={lang} value={lang}>
-                    {LANGUAGE_LABELS[lang]}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <LanguageSwitcher language={language} onChange={handleLanguageChange} compact />
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="inline-flex items-center justify-center p-2 text-foreground hover:bg-surface focus:outline-none"
