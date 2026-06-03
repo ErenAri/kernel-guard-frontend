@@ -118,6 +118,7 @@
       },
       "tags": [
         "C++",
+        "C",
         "eBPF",
         "Security",
         "Linux Kernel"
