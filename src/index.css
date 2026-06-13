@@ -9,6 +9,7 @@
     --primary-action: #0043ce;
     --primary-action-hover: #002d9c;
     --primary-action-foreground: #ffffff;
+    --signature: #0ca678;
     --surface: #f4f4f4;
     --surface-hover: #e0e0e0;
     --border: #d1d1d1;
@@ -26,6 +27,7 @@
     --primary-action: #0f62fe;
     --primary-action-hover: #0043ce;
     --primary-action-foreground: #ffffff;
+    --signature: #3ddc97;
     --surface: #262626;
     --surface-hover: #393939;
     --border: #393939;
@@ -47,6 +49,7 @@
   --color-primary-action: var(--primary-action);
   --color-primary-action-hover: var(--primary-action-hover);
   --color-primary-action-foreground: var(--primary-action-foreground);
+  --color-signature: var(--signature);
   --color-surface: var(--surface);
   --color-surface-hover: var(--surface-hover);
   --color-border: var(--border);
@@ -61,6 +64,23 @@
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-sans font-light tracking-tight;
+  }
+
+  /* Branded, consistent keyboard focus — square to match the Carbon system. */
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 0;
+  }
+
+  /* Accessibility + performance safety net: honor reduced-motion globally. */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
@@ -80,5 +100,29 @@
   @keyframes marquee {
     0% { transform: translateX(0%); }
     100% { transform: translateX(-50%); }
+  }
+
+  /* Brand signature — kernel/terminal motif (kernel-native direction). */
+
+  /* Faint dot-grid texture for hero / panel backgrounds. Theme-agnostic. */
+  .kg-dot-grid {
+    background-image: radial-gradient(rgba(125, 125, 125, 0.16) 1px, transparent 1px);
+    background-size: 18px 18px;
+    background-position: -1px -1px;
+  }
+
+  /* Signature blinking block caret — evokes a terminal prompt. */
+  .kg-caret {
+    display: inline-block;
+    width: 0.55em;
+    height: 1em;
+    margin-left: 0.18em;
+    background: var(--signature);
+    vertical-align: -0.08em;
+    animation: kg-blink 1.1s steps(1) infinite;
+  }
+  @keyframes kg-blink {
+    0%, 50% { opacity: 1; }
+    50.01%, 100% { opacity: 0; }
   }
 }

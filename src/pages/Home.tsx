@@ -88,13 +88,14 @@ export default function Home() {
         keywords={t.seo.home.keywords}
       />
       {/* Hero Section - IBM Style */}
-      <section className="pt-32 pb-20 md:pt-48 md:pb-32 border-b border-border overflow-hidden">
+      <section className="kg-dot-grid pt-32 pb-20 md:pt-48 md:pb-32 border-b border-border overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="max-w-4xl relative z-10">
               <h1 className="text-5xl md:text-7xl font-light text-foreground leading-[1.1] mb-8">
                 {t.home.heroTitle1} <br />
                 <span className="font-semibold">{t.home.heroTitle2}</span>
+                <span aria-hidden="true" className="kg-caret" />
               </h1>
               
               <p className="text-xl md:text-2xl text-foreground mb-12 max-w-2xl leading-relaxed font-light">
@@ -311,7 +312,7 @@ export default function Home() {
               href="https://github.com/Kernel-Guard"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-white transition-colors"
+              className="inline-flex items-center justify-center px-8 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors"
             >
               <span className="font-medium">{t.nav.github}</span>
               <ArrowRight className="w-5 h-5 ml-3" />
