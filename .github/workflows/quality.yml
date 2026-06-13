@@ -30,6 +30,9 @@ jobs:
       - name: Typecheck
         run: npm run lint
 
+      - name: Tests
+        run: npm test
+
       - name: Audit dependencies
         run: npm audit --audit-level=moderate
 
