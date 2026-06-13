@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
@@ -16,6 +17,11 @@ export default defineConfig(({ mode }) => {
         '@': path.resolve(__dirname, '.'),
       },
     },
+    build: {
+      // No inline module-preload polyfill script — keeps the CSP free of
+      // 'unsafe-inline' in script-src (modern browsers support modulepreload).
+      modulepreload: { polyfill: false },
+    },
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
       // File watching is disabled to prevent flickering during agent edits.
@@ -26,6 +32,11 @@ export default defineConfig(({ mode }) => {
     // named-export detection at prerender time.
     ssr: {
       noExternal: ['react-helmet-async', 'react-router', 'react-router-dom', /^lucide-/],
+    },
+    test: {
+      environment: 'jsdom',
+      include: ['src/**/*.test.{ts,tsx}'],
+      setupFiles: ['./src/__tests__/setup.ts'],
     },
   };
 });
