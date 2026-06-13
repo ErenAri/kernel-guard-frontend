@@ -1,0 +1,81 @@
+{
+  "tool": "bpfcompat",
+  "version": "v0.1.5",
+  "generatedAt": "2026-06-02",
+  "gate": "load-attach",
+  "source": "examples/example-collection",
+  "note": "Representative run over bpfcompat's published example collection. Artifact and kernel-profile identifiers are taken from the project's suites/ and profile catalog; swap in a live report.json to publish a measured run.",
+  "kernels": [
+    { "id": "ubuntu-20.04-5.4", "distro": "ubuntu-20.04", "version": "5.4", "arch": "x86_64" },
+    { "id": "ubuntu-20.10-5.8", "distro": "ubuntu-20.10", "version": "5.8", "arch": "x86_64" },
+    { "id": "ubuntu-22.04-5.15", "distro": "ubuntu-22.04", "version": "5.15", "arch": "x86_64" },
+    { "id": "ubuntu-24.04-6.8", "distro": "ubuntu-24.04", "version": "6.8", "arch": "x86_64" },
+    { "id": "ubuntu-24.10-6.11", "distro": "ubuntu-24.10", "version": "6.11", "arch": "x86_64" },
+    { "id": "ubuntu-22.04-arm64-5.15", "distro": "ubuntu-22.04", "version": "5.15", "arch": "arm64" }
+  ],
+  "artifacts": [
+    { "name": "ringbuf_modern.bpf.o", "kind": "RINGBUF" },
+    { "name": "perfbuf_fallback.bpf.o", "kind": "PERF" },
+    { "name": "execsnoop.bpf.o", "kind": "KPROBE" },
+    { "name": "tracepoint.bpf.o", "kind": "TRACEPOINT" },
+    { "name": "functional_execve.bpf.o", "kind": "BEHAVIOR" }
+  ],
+  "results": [
+    {
+      "artifact": "ringbuf_modern.bpf.o", "kernel": "ubuntu-20.04-5.4", "state": "fail",
+      "stage": "load", "btf": "present", "coreRelocations": "n/a", "caps": "CAP_BPF",
+      "detail": "map create failed: invalid argument — BPF ring buffer (BPF_MAP_TYPE_RINGBUF) requires kernel >= 5.8",
+      "human": "Kernel 5.4 predates the ring buffer map type, so the object never loads. The perfbuf_fallback variant exists for exactly this case."
+    },
+    {
+      "artifact": "ringbuf_modern.bpf.o", "kernel": "ubuntu-20.10-5.8", "state": "pass",
+      "stage": "attach", "btf": "present", "coreRelocations": "6/6 applied", "caps": "CAP_BPF",
+      "detail": "BPF ring buffer available (kernel >= 5.8); program loaded and attached",
+      "human": "5.8 is the first kernel with ring buffer support, so the modern variant loads from here on."
+    },
+    { "artifact": "ringbuf_modern.bpf.o", "kernel": "ubuntu-22.04-5.15", "state": "pass" },
+    { "artifact": "ringbuf_modern.bpf.o", "kernel": "ubuntu-24.04-6.8", "state": "pass" },
+    { "artifact": "ringbuf_modern.bpf.o", "kernel": "ubuntu-24.10-6.11", "state": "pass" },
+    { "artifact": "ringbuf_modern.bpf.o", "kernel": "ubuntu-22.04-arm64-5.15", "state": "pass" },
+
+    { "artifact": "perfbuf_fallback.bpf.o", "kernel": "ubuntu-20.04-5.4", "state": "pass",
+      "stage": "attach", "btf": "present", "coreRelocations": "6/6 applied", "caps": "CAP_BPF",
+      "detail": "perf event array used instead of ring buffer; loads on every supported kernel",
+      "human": "The fallback variant uses the older perf buffer, so it works even on 5.4." },
+    { "artifact": "perfbuf_fallback.bpf.o", "kernel": "ubuntu-20.10-5.8", "state": "pass" },
+    { "artifact": "perfbuf_fallback.bpf.o", "kernel": "ubuntu-22.04-5.15", "state": "pass" },
+    { "artifact": "perfbuf_fallback.bpf.o", "kernel": "ubuntu-24.04-6.8", "state": "pass" },
+    { "artifact": "perfbuf_fallback.bpf.o", "kernel": "ubuntu-24.10-6.11", "state": "pass" },
+    { "artifact": "perfbuf_fallback.bpf.o", "kernel": "ubuntu-22.04-arm64-5.15", "state": "pass" },
+
+    { "artifact": "execsnoop.bpf.o", "kernel": "ubuntu-20.04-5.4", "state": "pass" },
+    { "artifact": "execsnoop.bpf.o", "kernel": "ubuntu-20.10-5.8", "state": "pass" },
+    { "artifact": "execsnoop.bpf.o", "kernel": "ubuntu-22.04-5.15", "state": "pass" },
+    { "artifact": "execsnoop.bpf.o", "kernel": "ubuntu-24.04-6.8", "state": "pass",
+      "stage": "attach", "btf": "present", "coreRelocations": "14/14 applied", "caps": "CAP_BPF, CAP_PERFMON",
+      "detail": "CO-RE resolved task_struct.__state (renamed from .state in kernel 5.14)",
+      "human": "CO-RE automatically followed the 5.14 field rename — the relocation that breaks naive programs is handled here." },
+    { "artifact": "execsnoop.bpf.o", "kernel": "ubuntu-24.10-6.11", "state": "pass" },
+    { "artifact": "execsnoop.bpf.o", "kernel": "ubuntu-22.04-arm64-5.15", "state": "pass" },
+
+    { "artifact": "tracepoint.bpf.o", "kernel": "ubuntu-20.04-5.4", "state": "pass" },
+    { "artifact": "tracepoint.bpf.o", "kernel": "ubuntu-20.10-5.8", "state": "pass" },
+    { "artifact": "tracepoint.bpf.o", "kernel": "ubuntu-22.04-5.15", "state": "pass" },
+    { "artifact": "tracepoint.bpf.o", "kernel": "ubuntu-24.04-6.8", "state": "pass" },
+    { "artifact": "tracepoint.bpf.o", "kernel": "ubuntu-24.10-6.11", "state": "pass" },
+    { "artifact": "tracepoint.bpf.o", "kernel": "ubuntu-22.04-arm64-5.15", "state": "pass" },
+
+    { "artifact": "functional_execve.bpf.o", "kernel": "ubuntu-20.04-5.4", "state": "partial",
+      "stage": "behavior", "btf": "missing", "coreRelocations": "5/5 applied", "caps": "CAP_BPF, CAP_PERFMON",
+      "detail": "loaded and attached; behavior verification skipped — kernel BTF required for the behavior probe is unavailable on this image",
+      "human": "The program runs, but bpfcompat could not confirm runtime behavior on this kernel because its BTF is missing." },
+    { "artifact": "functional_execve.bpf.o", "kernel": "ubuntu-20.10-5.8", "state": "pass" },
+    { "artifact": "functional_execve.bpf.o", "kernel": "ubuntu-22.04-5.15", "state": "pass" },
+    { "artifact": "functional_execve.bpf.o", "kernel": "ubuntu-24.04-6.8", "state": "pass" },
+    { "artifact": "functional_execve.bpf.o", "kernel": "ubuntu-24.10-6.11", "state": "pass" },
+    { "artifact": "functional_execve.bpf.o", "kernel": "ubuntu-22.04-arm64-5.15", "state": "partial",
+      "stage": "behavior", "btf": "present", "coreRelocations": "5/5 applied", "caps": "CAP_BPF, CAP_PERFMON",
+      "detail": "loaded and attached; behavior command not executed on the arm64 runner",
+      "human": "Load and attach are verified on ARM64; the optional behavior step is not wired for this runner yet." }
+  ]
+}

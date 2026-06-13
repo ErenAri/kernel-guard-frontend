@@ -41,6 +41,7 @@ const Layout = lazy(loadLayout);
 const Home = lazy(loadHome);
 const Projects = lazy(loadProjects);
 const ProjectDetails = lazy(loadProjectDetails);
+const BpfcompatPage = lazy(() => import('./pages/bpfcompat/BpfcompatPage'));
 const CompletedProjects = lazy(loadCompletedProjects);
 const CompletedProjectDetails = lazy(loadCompletedProjectDetails);
 const SecureFrontend = lazy(loadSecureFrontend);
@@ -60,6 +61,13 @@ const NotFound = lazy(loadNotFound);
 const AdminLayout = lazy(loadAdminLayout);
 const AdminDashboard = lazy(loadAdminDashboard);
 const ProjectEditor = lazy(loadProjectEditor);
+
+// Design previews (not linked from production nav)
+const BpfcompatPreviewIndex = lazy(() => import('./pages/preview/BpfcompatPreviewIndex'));
+const BpfcompatVerdict = lazy(() => import('./pages/preview/BpfcompatVerdict'));
+const BpfcompatProofLoop = lazy(() => import('./pages/preview/BpfcompatProofLoop'));
+const BpfcompatNarrative = lazy(() => import('./pages/preview/BpfcompatNarrative'));
+const BpfcompatLaunch = lazy(() => import('./pages/preview/BpfcompatLaunch'));
 
 function RouteLoadingFallback() {
   return (
@@ -82,6 +90,7 @@ function LocalizedRoutes() {
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="projects" element={<Projects />} />
+        <Route path="projects/bpfcompat" element={<BpfcompatPage />} />
         <Route path="projects/:id" element={<ProjectDetails />} />
         <Route path="completed-projects" element={<CompletedProjects />} />
         <Route path="completed-projects/:id" element={<CompletedProjectDetails />} />
@@ -98,6 +107,13 @@ function LocalizedRoutes() {
         <Route path="privacy" element={<Privacy />} />
         <Route path="cookies" element={<Cookies />} />
         <Route path="contact" element={<Contact />} />
+
+        {/* Design previews */}
+        <Route path="preview/bpfcompat" element={<BpfcompatPreviewIndex />} />
+        <Route path="preview/bpfcompat/launch" element={<BpfcompatLaunch />} />
+        <Route path="preview/bpfcompat/verdict" element={<BpfcompatVerdict />} />
+        <Route path="preview/bpfcompat/proof-loop" element={<BpfcompatProofLoop />} />
+        <Route path="preview/bpfcompat/narrative" element={<BpfcompatNarrative />} />
 
         <Route path="not-found" element={<NotFound />} />
         <Route path="*" element={<NotFound />} />

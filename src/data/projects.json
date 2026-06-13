@@ -1,6 +1,30 @@
 {
   "items": [
     {
+      "id": "bpfcompat",
+      "title": "bpfcompat",
+      "description": {
+        "en": "An open-source eBPF compatibility validator: it boots real Linux kernels in disposable VMs, loads your compiled BPF programs inside each one, and gates your CI on an artifact-by-kernel pass/fail matrix.",
+        "tr": "Açık kaynaklı bir eBPF uyumluluk doğrulayıcısı: gerçek Linux çekirdeklerini tek kullanımlık sanal makinelerde başlatır, derlenmiş BPF programlarınızı her birinin içinde yükler ve CI'nızı yapıt-çekirdek geçti/kaldı matrisi üzerinden denetler."
+      },
+      "technicalDetails": {
+        "en": "Written in Go with a C/libbpf validator that runs inside each guest. For every kernel profile, bpfcompat boots a disposable QEMU/KVM overlay VM from a cloud image (Ubuntu and Fedora, 5.x–6.x, x86_64 and ARM64), then actually loads and attaches each program — recording BTF status, CO-RE relocations, and capability checks. Results aggregate into a pass/fail matrix, and exit code 2 marks a compatibility regression for CI gating.",
+        "tr": "Her konuğun içinde çalışan bir C/libbpf doğrulayıcısıyla birlikte Go ile yazılmıştır. bpfcompat her çekirdek profili için bir bulut imajından tek kullanımlık bir QEMU/KVM örtüşme VM'i başlatır (Ubuntu ve Fedora, 5.x–6.x, x86_64 ve ARM64), ardından her programı gerçekten yükleyip bağlar — BTF durumunu, CO-RE yer değiştirmelerini ve yetenek kontrollerini kaydeder. Sonuçlar bir geçti/kaldı matrisine toplanır ve çıkış kodu 2, CI denetimi için bir uyumluluk gerilemesini işaretler."
+      },
+      "marketingDetails": {
+        "en": "Stop discovering kernel incompatibilities in production. bpfcompat proves your eBPF programs load on every kernel you ship to — in CI, before your users do — with verifiable evidence instead of guesswork.",
+        "tr": "Çekirdek uyumsuzluklarını üretimde keşfetmeyi bırakın. bpfcompat, eBPF programlarınızın gönderim yaptığınız her çekirdekte yüklendiğini — kullanıcılarınızdan önce, CI içinde — tahmin yerine doğrulanabilir kanıtlarla kanıtlar."
+      },
+      "tags": [
+        "Go",
+        "eBPF",
+        "CI/CD",
+        "Apache-2.0"
+      ],
+      "github": "https://github.com/Kernel-Guard/bpfcompat",
+      "link": "https://bpfcompat-se24-8008b8.swedencentral.cloudapp.azure.com/"
+    },
+    {
       "id": "cathodex",
       "title": "CathodeX",
       "description": {
