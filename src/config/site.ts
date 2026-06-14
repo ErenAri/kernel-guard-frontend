@@ -1,5 +1,18 @@
 export const DEFAULT_SITE_URL = 'https://www.kernelguard.net';
 
+export const SITE_EMAILS = {
+  contact: 'contact@kernelguard.net',
+  support: 'support@kernelguard.net',
+  security: 'security@kernelguard.net',
+  legal: 'legal@kernelguard.net',
+  privacy: 'privacy@kernelguard.net',
+  sales: 'sales@kernelguard.net',
+} as const;
+
+export function mailto(email: string): string {
+  return `mailto:${email}`;
+}
+
 export function normalizeSiteUrl(value: string): string {
   return value.trim().replace(/\/$/, '');
 }

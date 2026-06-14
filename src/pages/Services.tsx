@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/SEO';
+import { SITE_EMAILS, mailto } from '../config/site';
 import { Layout, Shield, Code, Globe, Box, Lock, Cloud, Server, Database, ArrowRight } from 'lucide-react';
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -71,7 +72,7 @@ export default function Services() {
             <h2 className="text-3xl md:text-4xl font-light mb-6">{t.servicesPage.ctaTitle}</h2>
             <p className="text-lg text-foreground/70 font-light mb-10">{t.servicesPage.ctaDesc}</p>
             <a 
-              href="mailto:iletisim@kernelguard.net"
+              href={mailto(SITE_EMAILS.sales)}
               className="inline-flex items-center justify-between px-8 py-4 kg-action-primary transition-colors w-full sm:w-auto min-w-[200px]"
             >
               <span className="font-medium">{t.servicesPage.ctaButton}</span>

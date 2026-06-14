@@ -1,5 +1,6 @@
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/SEO';
+import { SITE_EMAILS, mailto } from '../config/site';
 
 export default function Privacy() {
   const { t } = useLanguage();
@@ -32,6 +33,17 @@ export default function Privacy() {
           <section>
             <h2 className="text-2xl font-medium text-foreground mb-4">{t.privacy.section3.title}</h2>
             <p>{t.privacy.section3.content}</p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-medium text-foreground mb-4">Privacy contact</h2>
+            <p>
+              For privacy requests or data protection questions, email{' '}
+              <a className="text-primary hover:underline" href={mailto(SITE_EMAILS.privacy)}>
+                {SITE_EMAILS.privacy}
+              </a>
+              .
+            </p>
           </section>
         </div>
       </div>

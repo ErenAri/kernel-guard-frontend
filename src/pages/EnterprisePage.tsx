@@ -1,7 +1,25 @@
 import { CheckCircle2 } from 'lucide-react';
 import SEO from '../components/SEO';
+import { mailto } from '../config/site';
 import { useLanguage } from '../context/LanguageContext';
 import { enterprisePages, type EnterprisePageKey } from '../data/enterprisePages';
+
+function renderSectionItem(item: string) {
+  if (item.startsWith('Email: ')) {
+    const email = item.replace('Email: ', '');
+
+    return (
+      <>
+        Email:{' '}
+        <a className="text-primary hover:underline" href={mailto(email)}>
+          {email}
+        </a>
+      </>
+    );
+  }
+
+  return item;
+}
 
 export default function EnterprisePage({ pageKey }: { pageKey: EnterprisePageKey }) {
   const { language } = useLanguage();
@@ -40,7 +58,7 @@ export default function EnterprisePage({ pageKey }: { pageKey: EnterprisePageKey
                 {section.items.map((item) => (
                   <li key={item} className="flex items-start gap-3 text-sm text-foreground/80">
                     <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                    <span>{item}</span>
+                    <span>{renderSectionItem(item)}</span>
                   </li>
                 ))}
               </ul>

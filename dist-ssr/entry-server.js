@@ -1,18856 +1,1701 @@
-var __defProp = Object.defineProperty;
-var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
-var _a, _b;
-import { jsx, jsxs } from "react/jsx-runtime";
+import { n as __exportAll, t as require_dist } from "./assets/dist-BkMweq9c.js";
+import { i as HelmetProvider, n as buildServiceSchema, r as buildSoftwareSourceCodeSchema, t as SEO } from "./assets/SEO-BVnmXOtG.js";
+import { a as normalizeCanonicalPath, c as useLanguage, i as mailto, n as SITE_EMAILS, s as LanguageProvider } from "./assets/site-BXg7CYE6.js";
+import { t as createLucideIcon } from "./assets/createLucideIcon-d-ZGlwaX.js";
+import { a as setStoredLanguagePreference, i as localizePath, n as LANGUAGE_LABELS, r as SUPPORTED_LANGUAGES } from "./assets/route-DZfXJ_2f.js";
 import { renderToString } from "react-dom/server";
-import * as React3 from "react";
-import React3__default, { Component, createContext as createContext$1, useState, useContext, useEffect, forwardRef, createElement, useRef } from "react";
-import fastCompare from "react-fast-compare";
-import invariant$2 from "invariant";
-import shallowEqual from "shallowequal";
-import { splitCookiesString } from "set-cookie-parser";
-import * as ReactDOM from "react-dom";
-var TAG_NAMES = /* @__PURE__ */ ((TAG_NAMES2) => {
-  TAG_NAMES2["BASE"] = "base";
-  TAG_NAMES2["BODY"] = "body";
-  TAG_NAMES2["HEAD"] = "head";
-  TAG_NAMES2["HTML"] = "html";
-  TAG_NAMES2["LINK"] = "link";
-  TAG_NAMES2["META"] = "meta";
-  TAG_NAMES2["NOSCRIPT"] = "noscript";
-  TAG_NAMES2["SCRIPT"] = "script";
-  TAG_NAMES2["STYLE"] = "style";
-  TAG_NAMES2["TITLE"] = "title";
-  TAG_NAMES2["FRAGMENT"] = "Symbol(react.fragment)";
-  return TAG_NAMES2;
-})(TAG_NAMES || {});
-var SEO_PRIORITY_TAGS = {
-  link: { rel: ["amphtml", "canonical", "alternate"] },
-  script: { type: ["application/ld+json"] },
-  meta: {
-    charset: "",
-    name: ["generator", "robots", "description"],
-    property: [
-      "og:type",
-      "og:title",
-      "og:url",
-      "og:image",
-      "og:image:alt",
-      "og:description",
-      "twitter:url",
-      "twitter:title",
-      "twitter:description",
-      "twitter:image",
-      "twitter:image:alt",
-      "twitter:card",
-      "twitter:site"
-    ]
-  }
-};
-var VALID_TAG_NAMES = Object.values(TAG_NAMES);
-var REACT_TAG_MAP = {
-  accesskey: "accessKey",
-  charset: "charSet",
-  class: "className",
-  contenteditable: "contentEditable",
-  contextmenu: "contextMenu",
-  "http-equiv": "httpEquiv",
-  itemprop: "itemProp",
-  tabindex: "tabIndex"
-};
-var HTML_TAG_MAP = Object.entries(REACT_TAG_MAP).reduce(
-  (carry, [key, value]) => {
-    carry[value] = key;
-    return carry;
-  },
-  {}
-);
-var HELMET_ATTRIBUTE = "data-rh";
-var HELMET_PROPS = {
-  DEFAULT_TITLE: "defaultTitle",
-  DEFER: "defer",
-  ENCODE_SPECIAL_CHARACTERS: "encodeSpecialCharacters",
-  ON_CHANGE_CLIENT_STATE: "onChangeClientState",
-  TITLE_TEMPLATE: "titleTemplate",
-  PRIORITIZE_SEO_TAGS: "prioritizeSeoTags"
-};
-var getInnermostProperty = (propsList, property) => {
-  for (let i = propsList.length - 1; i >= 0; i -= 1) {
-    const props = propsList[i];
-    if (Object.prototype.hasOwnProperty.call(props, property)) {
-      return props[property];
-    }
-  }
-  return null;
-};
-var getTitleFromPropsList = (propsList) => {
-  let innermostTitle = getInnermostProperty(
-    propsList,
-    "title"
-    /* TITLE */
-  );
-  const innermostTemplate = getInnermostProperty(propsList, HELMET_PROPS.TITLE_TEMPLATE);
-  if (Array.isArray(innermostTitle)) {
-    innermostTitle = innermostTitle.join("");
-  }
-  if (innermostTemplate && innermostTitle) {
-    return innermostTemplate.replace(/%s/g, () => innermostTitle);
-  }
-  const innermostDefaultTitle = getInnermostProperty(propsList, HELMET_PROPS.DEFAULT_TITLE);
-  return innermostTitle || innermostDefaultTitle || void 0;
-};
-var getOnChangeClientState = (propsList) => getInnermostProperty(propsList, HELMET_PROPS.ON_CHANGE_CLIENT_STATE) || (() => {
-});
-var getAttributesFromPropsList = (tagType, propsList) => propsList.filter((props) => typeof props[tagType] !== "undefined").map((props) => props[tagType]).reduce((tagAttrs, current) => ({ ...tagAttrs, ...current }), {});
-var getBaseTagFromPropsList = (primaryAttributes, propsList) => propsList.filter((props) => typeof props[
-  "base"
-  /* BASE */
-] !== "undefined").map((props) => props[
-  "base"
-  /* BASE */
-]).reverse().reduce((innermostBaseTag, tag) => {
-  if (!innermostBaseTag.length) {
-    const keys = Object.keys(tag);
-    for (let i = 0; i < keys.length; i += 1) {
-      const attributeKey = keys[i];
-      const lowerCaseAttributeKey = attributeKey.toLowerCase();
-      if (primaryAttributes.indexOf(lowerCaseAttributeKey) !== -1 && tag[lowerCaseAttributeKey]) {
-        return innermostBaseTag.concat(tag);
-      }
-    }
-  }
-  return innermostBaseTag;
-}, []);
-var warn = (msg) => console && typeof console.warn === "function" && console.warn(msg);
-var getTagsFromPropsList = (tagName, primaryAttributes, propsList) => {
-  const approvedSeenTags = {};
-  return propsList.filter((props) => {
-    if (Array.isArray(props[tagName])) {
-      return true;
-    }
-    if (typeof props[tagName] !== "undefined") {
-      warn(
-        `Helmet: ${tagName} should be of type "Array". Instead found type "${typeof props[tagName]}"`
-      );
-    }
-    return false;
-  }).map((props) => props[tagName]).reverse().reduce((approvedTags, instanceTags) => {
-    const instanceSeenTags = {};
-    instanceTags.filter((tag) => {
-      let primaryAttributeKey;
-      const keys2 = Object.keys(tag);
-      for (let i = 0; i < keys2.length; i += 1) {
-        const attributeKey = keys2[i];
-        const lowerCaseAttributeKey = attributeKey.toLowerCase();
-        if (primaryAttributes.indexOf(lowerCaseAttributeKey) !== -1 && !(primaryAttributeKey === "rel" && tag[primaryAttributeKey].toLowerCase() === "canonical") && !(lowerCaseAttributeKey === "rel" && tag[lowerCaseAttributeKey].toLowerCase() === "stylesheet")) {
-          primaryAttributeKey = lowerCaseAttributeKey;
-        }
-        if (primaryAttributes.indexOf(attributeKey) !== -1 && (attributeKey === "innerHTML" || attributeKey === "cssText" || attributeKey === "itemprop")) {
-          primaryAttributeKey = attributeKey;
-        }
-      }
-      if (!primaryAttributeKey || !tag[primaryAttributeKey]) {
-        return false;
-      }
-      const value = tag[primaryAttributeKey].toLowerCase();
-      if (!approvedSeenTags[primaryAttributeKey]) {
-        approvedSeenTags[primaryAttributeKey] = {};
-      }
-      if (!instanceSeenTags[primaryAttributeKey]) {
-        instanceSeenTags[primaryAttributeKey] = {};
-      }
-      if (!approvedSeenTags[primaryAttributeKey][value]) {
-        instanceSeenTags[primaryAttributeKey][value] = true;
-        return true;
-      }
-      return false;
-    }).reverse().forEach((tag) => approvedTags.push(tag));
-    const keys = Object.keys(instanceSeenTags);
-    for (let i = 0; i < keys.length; i += 1) {
-      const attributeKey = keys[i];
-      const tagUnion = {
-        ...approvedSeenTags[attributeKey],
-        ...instanceSeenTags[attributeKey]
-      };
-      approvedSeenTags[attributeKey] = tagUnion;
-    }
-    return approvedTags;
-  }, []).reverse();
-};
-var getAnyTrueFromPropsList = (propsList, checkedTag) => {
-  if (Array.isArray(propsList) && propsList.length) {
-    for (let index = 0; index < propsList.length; index += 1) {
-      const prop = propsList[index];
-      if (prop[checkedTag]) {
-        return true;
-      }
-    }
-  }
-  return false;
-};
-var reducePropsToState = (propsList) => ({
-  baseTag: getBaseTagFromPropsList([
-    "href"
-    /* HREF */
-  ], propsList),
-  bodyAttributes: getAttributesFromPropsList("bodyAttributes", propsList),
-  defer: getInnermostProperty(propsList, HELMET_PROPS.DEFER),
-  encode: getInnermostProperty(propsList, HELMET_PROPS.ENCODE_SPECIAL_CHARACTERS),
-  htmlAttributes: getAttributesFromPropsList("htmlAttributes", propsList),
-  linkTags: getTagsFromPropsList(
-    "link",
-    [
-      "rel",
-      "href"
-      /* HREF */
-    ],
-    propsList
-  ),
-  metaTags: getTagsFromPropsList(
-    "meta",
-    [
-      "name",
-      "charset",
-      "http-equiv",
-      "property",
-      "itemprop"
-      /* ITEM_PROP */
-    ],
-    propsList
-  ),
-  noscriptTags: getTagsFromPropsList("noscript", [
-    "innerHTML"
-    /* INNER_HTML */
-  ], propsList),
-  onChangeClientState: getOnChangeClientState(propsList),
-  scriptTags: getTagsFromPropsList(
-    "script",
-    [
-      "src",
-      "innerHTML"
-      /* INNER_HTML */
-    ],
-    propsList
-  ),
-  styleTags: getTagsFromPropsList("style", [
-    "cssText"
-    /* CSS_TEXT */
-  ], propsList),
-  title: getTitleFromPropsList(propsList),
-  titleAttributes: getAttributesFromPropsList("titleAttributes", propsList),
-  prioritizeSeoTags: getAnyTrueFromPropsList(propsList, HELMET_PROPS.PRIORITIZE_SEO_TAGS)
-});
-var flattenArray = (possibleArray) => Array.isArray(possibleArray) ? possibleArray.join("") : possibleArray;
-var checkIfPropsMatch = (props, toMatch) => {
-  const keys = Object.keys(props);
-  for (let i = 0; i < keys.length; i += 1) {
-    if (toMatch[keys[i]] && toMatch[keys[i]].includes(props[keys[i]])) {
-      return true;
-    }
-  }
-  return false;
-};
-var prioritizer = (elementsList, propsToMatch) => {
-  if (Array.isArray(elementsList)) {
-    return elementsList.reduce(
-      (acc, elementAttrs) => {
-        if (checkIfPropsMatch(elementAttrs, propsToMatch)) {
-          acc.priority.push(elementAttrs);
-        } else {
-          acc.default.push(elementAttrs);
-        }
-        return acc;
-      },
-      { priority: [], default: [] }
-    );
-  }
-  return { default: elementsList, priority: [] };
-};
-var without = (obj, key) => {
-  return {
-    ...obj,
-    [key]: void 0
-  };
-};
-var SELF_CLOSING_TAGS = [
-  "noscript",
-  "script",
-  "style"
-  /* STYLE */
-];
-var encodeSpecialCharacters = (str, encode2 = true) => {
-  if (encode2 === false) {
-    return String(str);
-  }
-  return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#x27;");
-};
-var generateElementAttributesAsString = (attributes) => Object.keys(attributes).reduce((str, key) => {
-  const attr = typeof attributes[key] !== "undefined" ? `${key}="${attributes[key]}"` : `${key}`;
-  return str ? `${str} ${attr}` : attr;
-}, "");
-var generateTitleAsString = (type, title, attributes, encode2) => {
-  const attributeString = generateElementAttributesAsString(attributes);
-  const flattenedTitle = flattenArray(title);
-  return attributeString ? `<${type} ${HELMET_ATTRIBUTE}="true" ${attributeString}>${encodeSpecialCharacters(
-    flattenedTitle,
-    encode2
-  )}</${type}>` : `<${type} ${HELMET_ATTRIBUTE}="true">${encodeSpecialCharacters(
-    flattenedTitle,
-    encode2
-  )}</${type}>`;
-};
-var generateTagsAsString = (type, tags, encode2 = true) => tags.reduce((str, t) => {
-  const tag = t;
-  const attributeHtml = Object.keys(tag).filter(
-    (attribute) => !(attribute === "innerHTML" || attribute === "cssText")
-  ).reduce((string, attribute) => {
-    const attr = typeof tag[attribute] === "undefined" ? attribute : `${attribute}="${encodeSpecialCharacters(tag[attribute], encode2)}"`;
-    return string ? `${string} ${attr}` : attr;
-  }, "");
-  const tagContent = tag.innerHTML || tag.cssText || "";
-  const isSelfClosing = SELF_CLOSING_TAGS.indexOf(type) === -1;
-  return `${str}<${type} ${HELMET_ATTRIBUTE}="true" ${attributeHtml}${isSelfClosing ? `/>` : `>${tagContent}</${type}>`}`;
-}, "");
-var convertElementAttributesToReactProps = (attributes, initProps = {}) => Object.keys(attributes).reduce((obj, key) => {
-  const mapped = REACT_TAG_MAP[key];
-  obj[mapped || key] = attributes[key];
-  return obj;
-}, initProps);
-var generateTitleAsReactComponent = (_type, title, attributes) => {
-  const initProps = {
-    key: title,
-    [HELMET_ATTRIBUTE]: true
-  };
-  const props = convertElementAttributesToReactProps(attributes, initProps);
-  return [React3__default.createElement("title", props, title)];
-};
-var generateTagsAsReactComponent = (type, tags) => tags.map((tag, i) => {
-  const mappedTag = {
-    key: i,
-    [HELMET_ATTRIBUTE]: true
-  };
-  Object.keys(tag).forEach((attribute) => {
-    const mapped = REACT_TAG_MAP[attribute];
-    const mappedAttribute = mapped || attribute;
-    if (mappedAttribute === "innerHTML" || mappedAttribute === "cssText") {
-      const content = tag.innerHTML || tag.cssText;
-      mappedTag.dangerouslySetInnerHTML = { __html: content };
-    } else {
-      mappedTag[mappedAttribute] = tag[attribute];
-    }
-  });
-  return React3__default.createElement(type, mappedTag);
-});
-var getMethodsForTag = (type, tags, encode2 = true) => {
-  switch (type) {
-    case "title":
-      return {
-        toComponent: () => generateTitleAsReactComponent(type, tags.title, tags.titleAttributes),
-        toString: () => generateTitleAsString(type, tags.title, tags.titleAttributes, encode2)
-      };
-    case "bodyAttributes":
-    case "htmlAttributes":
-      return {
-        toComponent: () => convertElementAttributesToReactProps(tags),
-        toString: () => generateElementAttributesAsString(tags)
-      };
-    default:
-      return {
-        toComponent: () => generateTagsAsReactComponent(type, tags),
-        toString: () => generateTagsAsString(type, tags, encode2)
-      };
-  }
-};
-var getPriorityMethods = ({ metaTags, linkTags, scriptTags, encode: encode2 }) => {
-  const meta = prioritizer(metaTags, SEO_PRIORITY_TAGS.meta);
-  const link = prioritizer(linkTags, SEO_PRIORITY_TAGS.link);
-  const script = prioritizer(scriptTags, SEO_PRIORITY_TAGS.script);
-  const priorityMethods = {
-    toComponent: () => [
-      ...generateTagsAsReactComponent("meta", meta.priority),
-      ...generateTagsAsReactComponent("link", link.priority),
-      ...generateTagsAsReactComponent("script", script.priority)
-    ],
-    toString: () => (
-      // generate all the tags as strings and concatenate them
-      `${getMethodsForTag("meta", meta.priority, encode2)} ${getMethodsForTag(
-        "link",
-        link.priority,
-        encode2
-      )} ${getMethodsForTag("script", script.priority, encode2)}`
-    )
-  };
-  return {
-    priorityMethods,
-    metaTags: meta.default,
-    linkTags: link.default,
-    scriptTags: script.default
-  };
-};
-var mapStateOnServer = (props) => {
-  const {
-    baseTag,
-    bodyAttributes,
-    encode: encode2 = true,
-    htmlAttributes,
-    noscriptTags,
-    styleTags,
-    title = "",
-    titleAttributes,
-    prioritizeSeoTags
-  } = props;
-  let { linkTags, metaTags, scriptTags } = props;
-  let priorityMethods = {
-    toComponent: () => [],
-    toString: () => ""
-  };
-  if (prioritizeSeoTags) {
-    ({ priorityMethods, linkTags, metaTags, scriptTags } = getPriorityMethods(props));
-  }
-  return {
-    priority: priorityMethods,
-    base: getMethodsForTag("base", baseTag, encode2),
-    bodyAttributes: getMethodsForTag("bodyAttributes", bodyAttributes, encode2),
-    htmlAttributes: getMethodsForTag("htmlAttributes", htmlAttributes, encode2),
-    link: getMethodsForTag("link", linkTags, encode2),
-    meta: getMethodsForTag("meta", metaTags, encode2),
-    noscript: getMethodsForTag("noscript", noscriptTags, encode2),
-    script: getMethodsForTag("script", scriptTags, encode2),
-    style: getMethodsForTag("style", styleTags, encode2),
-    title: getMethodsForTag("title", { title, titleAttributes }, encode2)
-  };
-};
-var server_default = mapStateOnServer;
-var instances = [];
-var isDocument = !!(typeof window !== "undefined" && window.document && window.document.createElement);
-var HelmetData = class {
-  constructor(context, canUseDOM) {
-    __publicField(this, "instances", []);
-    __publicField(this, "canUseDOM", isDocument);
-    __publicField(this, "context");
-    __publicField(this, "value", {
-      setHelmet: (serverState) => {
-        this.context.helmet = serverState;
-      },
-      helmetInstances: {
-        get: () => this.canUseDOM ? instances : this.instances,
-        add: (instance) => {
-          (this.canUseDOM ? instances : this.instances).push(instance);
-        },
-        remove: (instance) => {
-          const index = (this.canUseDOM ? instances : this.instances).indexOf(instance);
-          (this.canUseDOM ? instances : this.instances).splice(index, 1);
-        }
-      }
-    });
-    this.context = context;
-    this.canUseDOM = canUseDOM || false;
-    if (!canUseDOM) {
-      context.helmet = server_default({
-        baseTag: [],
-        bodyAttributes: {},
-        htmlAttributes: {},
-        linkTags: [],
-        metaTags: [],
-        noscriptTags: [],
-        scriptTags: [],
-        styleTags: [],
-        title: "",
-        titleAttributes: {}
-      });
-    }
-  }
-};
-var major = parseInt(React3__default.version.split(".")[0], 10);
-var isReact19 = major >= 19;
-var defaultValue = {};
-var Context = React3__default.createContext(defaultValue);
-var HelmetProvider = (_a = class extends Component {
-  constructor(props) {
-    super(props);
-    __publicField(this, "helmetData");
-    if (isReact19) {
-      this.helmetData = null;
-    } else {
-      this.helmetData = new HelmetData(this.props.context || {}, _a.canUseDOM);
-    }
-  }
-  render() {
-    if (isReact19) {
-      return /* @__PURE__ */ React3__default.createElement(React3__default.Fragment, null, this.props.children);
-    }
-    return /* @__PURE__ */ React3__default.createElement(Context.Provider, { value: this.helmetData.value }, this.props.children);
-  }
-}, __publicField(_a, "canUseDOM", isDocument), _a);
-var updateTags = (type, tags) => {
-  const headElement = document.head || document.querySelector(
-    "head"
-    /* HEAD */
-  );
-  const tagNodes = headElement.querySelectorAll(`${type}[${HELMET_ATTRIBUTE}]`);
-  const oldTags = [].slice.call(tagNodes);
-  const newTags = [];
-  let indexToDelete;
-  if (tags && tags.length) {
-    tags.forEach((tag) => {
-      const newElement = document.createElement(type);
-      for (const attribute in tag) {
-        if (Object.prototype.hasOwnProperty.call(tag, attribute)) {
-          if (attribute === "innerHTML") {
-            newElement.innerHTML = tag.innerHTML;
-          } else if (attribute === "cssText") {
-            const cssText = tag.cssText;
-            newElement.appendChild(document.createTextNode(cssText));
-          } else {
-            const attr = attribute;
-            const value = typeof tag[attr] === "undefined" ? "" : tag[attr];
-            newElement.setAttribute(attribute, value);
-          }
-        }
-      }
-      newElement.setAttribute(HELMET_ATTRIBUTE, "true");
-      if (oldTags.some((existingTag, index) => {
-        indexToDelete = index;
-        return newElement.isEqualNode(existingTag);
-      })) {
-        oldTags.splice(indexToDelete, 1);
-      } else {
-        newTags.push(newElement);
-      }
-    });
-  }
-  oldTags.forEach((tag) => {
-    var _a2;
-    return (_a2 = tag.parentNode) == null ? void 0 : _a2.removeChild(tag);
-  });
-  newTags.forEach((tag) => headElement.appendChild(tag));
-  return {
-    oldTags,
-    newTags
-  };
-};
-var updateAttributes = (tagName, attributes) => {
-  const elementTag = document.getElementsByTagName(tagName)[0];
-  if (!elementTag) {
-    return;
-  }
-  const helmetAttributeString = elementTag.getAttribute(HELMET_ATTRIBUTE);
-  const helmetAttributes = helmetAttributeString ? helmetAttributeString.split(",") : [];
-  const attributesToRemove = [...helmetAttributes];
-  const attributeKeys = Object.keys(attributes);
-  for (const attribute of attributeKeys) {
-    const value = attributes[attribute] || "";
-    if (elementTag.getAttribute(attribute) !== value) {
-      elementTag.setAttribute(attribute, value);
-    }
-    if (helmetAttributes.indexOf(attribute) === -1) {
-      helmetAttributes.push(attribute);
-    }
-    const indexToSave = attributesToRemove.indexOf(attribute);
-    if (indexToSave !== -1) {
-      attributesToRemove.splice(indexToSave, 1);
-    }
-  }
-  for (let i = attributesToRemove.length - 1; i >= 0; i -= 1) {
-    elementTag.removeAttribute(attributesToRemove[i]);
-  }
-  if (helmetAttributes.length === attributesToRemove.length) {
-    elementTag.removeAttribute(HELMET_ATTRIBUTE);
-  } else if (elementTag.getAttribute(HELMET_ATTRIBUTE) !== attributeKeys.join(",")) {
-    elementTag.setAttribute(HELMET_ATTRIBUTE, attributeKeys.join(","));
-  }
-};
-var updateTitle = (title, attributes) => {
-  if (typeof title !== "undefined" && document.title !== title) {
-    document.title = flattenArray(title);
-  }
-  updateAttributes("title", attributes);
-};
-var commitTagChanges = (newState, cb) => {
-  const {
-    baseTag,
-    bodyAttributes,
-    htmlAttributes,
-    linkTags,
-    metaTags,
-    noscriptTags,
-    onChangeClientState,
-    scriptTags,
-    styleTags,
-    title,
-    titleAttributes
-  } = newState;
-  updateAttributes("body", bodyAttributes);
-  updateAttributes("html", htmlAttributes);
-  updateTitle(title, titleAttributes);
-  const tagUpdates = {
-    baseTag: updateTags("base", baseTag),
-    linkTags: updateTags("link", linkTags),
-    metaTags: updateTags("meta", metaTags),
-    noscriptTags: updateTags("noscript", noscriptTags),
-    scriptTags: updateTags("script", scriptTags),
-    styleTags: updateTags("style", styleTags)
-  };
-  const addedTags = {};
-  const removedTags = {};
-  Object.keys(tagUpdates).forEach((tagType) => {
-    const { newTags, oldTags } = tagUpdates[tagType];
-    if (newTags.length) {
-      addedTags[tagType] = newTags;
-    }
-    if (oldTags.length) {
-      removedTags[tagType] = tagUpdates[tagType].oldTags;
-    }
-  });
-  if (cb) {
-    cb();
-  }
-  onChangeClientState(newState, addedTags, removedTags);
-};
-var _helmetCallback = null;
-var handleStateChangeOnClient = (newState) => {
-  if (_helmetCallback) {
-    cancelAnimationFrame(_helmetCallback);
-  }
-  if (newState.defer) {
-    _helmetCallback = requestAnimationFrame(() => {
-      commitTagChanges(newState, () => {
-        _helmetCallback = null;
-      });
-    });
-  } else {
-    commitTagChanges(newState);
-    _helmetCallback = null;
-  }
-};
-var client_default = handleStateChangeOnClient;
-var HelmetDispatcher = class extends Component {
-  constructor() {
-    super(...arguments);
-    __publicField(this, "rendered", false);
-  }
-  shouldComponentUpdate(nextProps) {
-    return !shallowEqual(nextProps, this.props);
-  }
-  componentDidUpdate() {
-    this.emitChange();
-  }
-  componentWillUnmount() {
-    const { helmetInstances } = this.props.context;
-    helmetInstances.remove(this);
-    this.emitChange();
-  }
-  emitChange() {
-    const { helmetInstances, setHelmet } = this.props.context;
-    let serverState = null;
-    const state = reducePropsToState(
-      helmetInstances.get().map((instance) => {
-        const { context: _context, ...props } = instance.props;
-        return props;
-      })
-    );
-    if (HelmetProvider.canUseDOM) {
-      client_default(state);
-    } else if (server_default) {
-      serverState = server_default(state);
-    }
-    setHelmet(serverState);
-  }
-  // componentWillMount will be deprecated
-  // for SSR, initialize on first render
-  // constructor is also unsafe in StrictMode
-  init() {
-    if (this.rendered) {
-      return;
-    }
-    this.rendered = true;
-    const { helmetInstances } = this.props.context;
-    helmetInstances.add(this);
-    this.emitChange();
-  }
-  render() {
-    this.init();
-    return null;
-  }
-};
-var react19Instances = [];
-var toHtmlAttributes = (props) => {
-  const result = {};
-  for (const key of Object.keys(props)) {
-    result[HTML_TAG_MAP[key] || key] = props[key];
-  }
-  return result;
-};
-var toReactProps = (attrs) => {
-  const result = {};
-  for (const key of Object.keys(attrs)) {
-    const mapped = REACT_TAG_MAP[key];
-    result[mapped || key] = attrs[key];
-  }
-  return result;
-};
-var applyAttributes = (tagName, attributes) => {
-  if (!isDocument)
-    return;
-  const el = document.getElementsByTagName(tagName)[0];
-  if (!el)
-    return;
-  const managedAttr = "data-rh-managed";
-  const prev = el.getAttribute(managedAttr);
-  const prevKeys = prev ? prev.split(",") : [];
-  const nextKeys = Object.keys(attributes);
-  for (const key of prevKeys) {
-    if (!nextKeys.includes(key)) {
-      el.removeAttribute(key);
-    }
-  }
-  for (const key of nextKeys) {
-    const value = attributes[key];
-    if (value === void 0 || value === null || value === false) {
-      el.removeAttribute(key);
-    } else if (value === true) {
-      el.setAttribute(key, "");
-    } else {
-      el.setAttribute(key, String(value));
-    }
-  }
-  if (nextKeys.length > 0) {
-    el.setAttribute(managedAttr, nextKeys.join(","));
-  } else {
-    el.removeAttribute(managedAttr);
-  }
-};
-var syncAllAttributes = () => {
-  const htmlAttrs = {};
-  const bodyAttrs = {};
-  for (const instance of react19Instances) {
-    const { htmlAttributes, bodyAttributes } = instance.props;
-    if (htmlAttributes) {
-      Object.assign(htmlAttrs, toHtmlAttributes(htmlAttributes));
-    }
-    if (bodyAttributes) {
-      Object.assign(bodyAttrs, toHtmlAttributes(bodyAttributes));
-    }
-  }
-  applyAttributes("html", htmlAttrs);
-  applyAttributes("body", bodyAttrs);
-};
-var React19Dispatcher = class extends Component {
-  componentDidMount() {
-    react19Instances.push(this);
-    syncAllAttributes();
-  }
-  componentDidUpdate() {
-    syncAllAttributes();
-  }
-  componentWillUnmount() {
-    const index = react19Instances.indexOf(this);
-    if (index !== -1) {
-      react19Instances.splice(index, 1);
-    }
-    syncAllAttributes();
-  }
-  resolveTitle() {
-    const { title, titleTemplate, defaultTitle } = this.props;
-    if (title && titleTemplate) {
-      return titleTemplate.replace(/%s/g, () => Array.isArray(title) ? title.join("") : title);
-    }
-    return title || defaultTitle || void 0;
-  }
-  renderTitle() {
-    const title = this.resolveTitle();
-    if (title === void 0)
-      return null;
-    const titleAttributes = this.props.titleAttributes || {};
-    return React3__default.createElement("title", toReactProps(titleAttributes), title);
-  }
-  renderBase() {
-    const { base } = this.props;
-    if (!base)
-      return null;
-    return React3__default.createElement("base", toReactProps(base));
-  }
-  renderMeta() {
-    const { meta } = this.props;
-    if (!meta || !Array.isArray(meta))
-      return null;
-    return meta.map(
-      (attrs, i) => React3__default.createElement("meta", {
-        key: i,
-        ...toReactProps(attrs)
-      })
-    );
-  }
-  renderLink() {
-    const { link } = this.props;
-    if (!link || !Array.isArray(link))
-      return null;
-    return link.map(
-      (attrs, i) => React3__default.createElement("link", {
-        key: i,
-        ...toReactProps(attrs)
-      })
-    );
-  }
-  renderScript() {
-    const { script } = this.props;
-    if (!script || !Array.isArray(script))
-      return null;
-    return script.map((attrs, i) => {
-      const { innerHTML, ...rest } = attrs;
-      const props = toReactProps(rest);
-      if (innerHTML) {
-        props.dangerouslySetInnerHTML = { __html: innerHTML };
-      }
-      return React3__default.createElement("script", { key: i, ...props });
-    });
-  }
-  renderStyle() {
-    const { style } = this.props;
-    if (!style || !Array.isArray(style))
-      return null;
-    return style.map((attrs, i) => {
-      const { cssText, ...rest } = attrs;
-      const props = toReactProps(rest);
-      if (cssText) {
-        props.dangerouslySetInnerHTML = { __html: cssText };
-      }
-      return React3__default.createElement("style", { key: i, ...props });
-    });
-  }
-  renderNoscript() {
-    const { noscript } = this.props;
-    if (!noscript || !Array.isArray(noscript))
-      return null;
-    return noscript.map((attrs, i) => {
-      const { innerHTML, ...rest } = attrs;
-      const props = toReactProps(rest);
-      if (innerHTML) {
-        props.dangerouslySetInnerHTML = { __html: innerHTML };
-      }
-      return React3__default.createElement("noscript", { key: i, ...props });
-    });
-  }
-  render() {
-    return React3__default.createElement(
-      React3__default.Fragment,
-      null,
-      this.renderTitle(),
-      this.renderBase(),
-      this.renderMeta(),
-      this.renderLink(),
-      this.renderScript(),
-      this.renderStyle(),
-      this.renderNoscript()
-    );
-  }
-};
-var Helmet = (_b = class extends Component {
-  shouldComponentUpdate(nextProps) {
-    return !fastCompare(without(this.props, "helmetData"), without(nextProps, "helmetData"));
-  }
-  mapNestedChildrenToProps(child, nestedChildren) {
-    if (!nestedChildren) {
-      return null;
-    }
-    switch (child.type) {
-      case "script":
-      case "noscript":
-        return {
-          innerHTML: nestedChildren
-        };
-      case "style":
-        return {
-          cssText: nestedChildren
-        };
-      default:
-        throw new Error(
-          `<${child.type} /> elements are self-closing and can not contain children. Refer to our API for more information.`
-        );
-    }
-  }
-  flattenArrayTypeChildren(child, arrayTypeChildren, newChildProps, nestedChildren) {
-    return {
-      ...arrayTypeChildren,
-      [child.type]: [
-        ...arrayTypeChildren[child.type] || [],
-        {
-          ...newChildProps,
-          ...this.mapNestedChildrenToProps(child, nestedChildren)
-        }
-      ]
-    };
-  }
-  mapObjectTypeChildren(child, newProps, newChildProps, nestedChildren) {
-    switch (child.type) {
-      case "title":
-        return {
-          ...newProps,
-          [child.type]: nestedChildren,
-          titleAttributes: { ...newChildProps }
-        };
-      case "body":
-        return {
-          ...newProps,
-          bodyAttributes: { ...newChildProps }
-        };
-      case "html":
-        return {
-          ...newProps,
-          htmlAttributes: { ...newChildProps }
-        };
-      default:
-        return {
-          ...newProps,
-          [child.type]: { ...newChildProps }
-        };
-    }
-  }
-  mapArrayTypeChildrenToProps(arrayTypeChildren, newProps) {
-    let newFlattenedProps = { ...newProps };
-    Object.keys(arrayTypeChildren).forEach((arrayChildName) => {
-      newFlattenedProps = {
-        ...newFlattenedProps,
-        [arrayChildName]: arrayTypeChildren[arrayChildName]
-      };
-    });
-    return newFlattenedProps;
-  }
-  warnOnInvalidChildren(child, nestedChildren) {
-    invariant$2(
-      VALID_TAG_NAMES.some((name) => child.type === name),
-      typeof child.type === "function" ? `You may be attempting to nest <Helmet> components within each other, which is not allowed. Refer to our API for more information.` : `Only elements types ${VALID_TAG_NAMES.join(
-        ", "
-      )} are allowed. Helmet does not support rendering <${child.type}> elements. Refer to our API for more information.`
-    );
-    invariant$2(
-      !nestedChildren || typeof nestedChildren === "string" || Array.isArray(nestedChildren) && !nestedChildren.some((nestedChild) => typeof nestedChild !== "string"),
-      `Helmet expects a string as a child of <${child.type}>. Did you forget to wrap your children in braces? ( <${child.type}>{\`\`}</${child.type}> ) Refer to our API for more information.`
-    );
-    return true;
-  }
-  mapChildrenToProps(children, newProps) {
-    let arrayTypeChildren = {};
-    React3__default.Children.forEach(children, (child) => {
-      if (!child || !child.props) {
-        return;
-      }
-      const { children: nestedChildren, ...childProps } = child.props;
-      const newChildProps = Object.keys(childProps).reduce((obj, key) => {
-        obj[HTML_TAG_MAP[key] || key] = childProps[key];
-        return obj;
-      }, {});
-      let { type } = child;
-      if (typeof type === "symbol") {
-        type = type.toString();
-      } else {
-        this.warnOnInvalidChildren(child, nestedChildren);
-      }
-      switch (type) {
-        case "Symbol(react.fragment)":
-          newProps = this.mapChildrenToProps(nestedChildren, newProps);
-          break;
-        case "link":
-        case "meta":
-        case "noscript":
-        case "script":
-        case "style":
-          arrayTypeChildren = this.flattenArrayTypeChildren(
-            child,
-            arrayTypeChildren,
-            newChildProps,
-            nestedChildren
-          );
-          break;
-        default:
-          newProps = this.mapObjectTypeChildren(child, newProps, newChildProps, nestedChildren);
-          break;
-      }
-    });
-    return this.mapArrayTypeChildrenToProps(arrayTypeChildren, newProps);
-  }
-  render() {
-    const { children, ...props } = this.props;
-    let newProps = { ...props };
-    let { helmetData } = props;
-    if (children) {
-      newProps = this.mapChildrenToProps(children, newProps);
-    }
-    if (helmetData && !(helmetData instanceof HelmetData)) {
-      const data2 = helmetData;
-      helmetData = new HelmetData(data2.context, true);
-      delete newProps.helmetData;
-    }
-    if (isReact19) {
-      return /* @__PURE__ */ React3__default.createElement(React19Dispatcher, { ...newProps });
-    }
-    return helmetData ? /* @__PURE__ */ React3__default.createElement(HelmetDispatcher, { ...newProps, context: helmetData.value }) : /* @__PURE__ */ React3__default.createElement(Context.Consumer, null, (context) => /* @__PURE__ */ React3__default.createElement(HelmetDispatcher, { ...newProps, context }));
-  }
-}, __publicField(_b, "defaultProps", {
-  defer: true,
-  encodeSpecialCharacters: true,
-  prioritizeSeoTags: false
-}), _b);
-function getAugmentedNamespace(n) {
-  if (Object.prototype.hasOwnProperty.call(n, "__esModule")) return n;
-  var f = n.default;
-  if (typeof f == "function") {
-    var a = function a2() {
-      if (this instanceof a2) {
-        return Reflect.construct(f, arguments, this.constructor);
-      }
-      return f.apply(this, arguments);
-    };
-    a.prototype = f.prototype;
-  } else a = {};
-  Object.defineProperty(a, "__esModule", { value: true });
-  Object.keys(n).forEach(function(k) {
-    var d = Object.getOwnPropertyDescriptor(n, k);
-    Object.defineProperty(a, k, d.get ? d : {
-      enumerable: true,
-      get: function() {
-        return n[k];
-      }
-    });
-  });
-  return a;
-}
-var dist$1 = { exports: {} };
-/**
- * react-router v7.14.0
- *
- * Copyright (c) Remix Software Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.md file in the root directory of this source tree.
- *
- * @license MIT
- */
-var __typeError = (msg) => {
-  throw TypeError(msg);
-};
-var __accessCheck = (obj, member, msg) => member.has(obj) || __typeError("Cannot " + msg);
-var __privateGet = (obj, member, getter) => (__accessCheck(obj, member, "read from private field"), getter ? getter.call(obj) : member.get(obj));
-var __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot add the same private member more than once") : member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
-var Action = /* @__PURE__ */ ((Action2) => {
-  Action2["Pop"] = "POP";
-  Action2["Push"] = "PUSH";
-  Action2["Replace"] = "REPLACE";
-  return Action2;
-})(Action || {});
-var PopStateEventType = "popstate";
-function isLocation(obj) {
-  return typeof obj === "object" && obj != null && "pathname" in obj && "search" in obj && "hash" in obj && "state" in obj && "key" in obj;
-}
-function createMemoryHistory(options = {}) {
-  let { initialEntries = ["/"], initialIndex, v5Compat = false } = options;
-  let entries;
-  entries = initialEntries.map(
-    (entry, index2) => createMemoryLocation(
-      entry,
-      typeof entry === "string" ? null : entry.state,
-      index2 === 0 ? "default" : void 0,
-      typeof entry === "string" ? void 0 : entry.unstable_mask
-    )
-  );
-  let index = clampIndex(
-    initialIndex == null ? entries.length - 1 : initialIndex
-  );
-  let action = "POP";
-  let listener = null;
-  function clampIndex(n) {
-    return Math.min(Math.max(n, 0), entries.length - 1);
-  }
-  function getCurrentLocation() {
-    return entries[index];
-  }
-  function createMemoryLocation(to, state = null, key, unstable_mask) {
-    let location2 = createLocation(
-      entries ? getCurrentLocation().pathname : "/",
-      to,
-      state,
-      key,
-      unstable_mask
-    );
-    warning(
-      location2.pathname.charAt(0) === "/",
-      `relative pathnames are not supported in memory history: ${JSON.stringify(
-        to
-      )}`
-    );
-    return location2;
-  }
-  function createHref2(to) {
-    return typeof to === "string" ? to : createPath(to);
-  }
-  let history = {
-    get index() {
-      return index;
-    },
-    get action() {
-      return action;
-    },
-    get location() {
-      return getCurrentLocation();
-    },
-    createHref: createHref2,
-    createURL(to) {
-      return new URL(createHref2(to), "http://localhost");
-    },
-    encodeLocation(to) {
-      let path = typeof to === "string" ? parsePath(to) : to;
-      return {
-        pathname: path.pathname || "",
-        search: path.search || "",
-        hash: path.hash || ""
-      };
-    },
-    push(to, state) {
-      action = "PUSH";
-      let nextLocation = isLocation(to) ? to : createMemoryLocation(to, state);
-      index += 1;
-      entries.splice(index, entries.length, nextLocation);
-      if (v5Compat && listener) {
-        listener({ action, location: nextLocation, delta: 1 });
-      }
-    },
-    replace(to, state) {
-      action = "REPLACE";
-      let nextLocation = isLocation(to) ? to : createMemoryLocation(to, state);
-      entries[index] = nextLocation;
-      if (v5Compat && listener) {
-        listener({ action, location: nextLocation, delta: 0 });
-      }
-    },
-    go(delta) {
-      action = "POP";
-      let nextIndex = clampIndex(index + delta);
-      let nextLocation = entries[nextIndex];
-      index = nextIndex;
-      if (listener) {
-        listener({ action, location: nextLocation, delta });
-      }
-    },
-    listen(fn) {
-      listener = fn;
-      return () => {
-        listener = null;
-      };
-    }
-  };
-  return history;
-}
-function createBrowserHistory(options = {}) {
-  function createBrowserLocation(window2, globalHistory) {
-    var _a2;
-    let maskedLocation = (_a2 = globalHistory.state) == null ? void 0 : _a2.masked;
-    let { pathname, search, hash } = maskedLocation || window2.location;
-    return createLocation(
-      "",
-      { pathname, search, hash },
-      // state defaults to `null` because `window.history.state` does
-      globalHistory.state && globalHistory.state.usr || null,
-      globalHistory.state && globalHistory.state.key || "default",
-      maskedLocation ? {
-        pathname: window2.location.pathname,
-        search: window2.location.search,
-        hash: window2.location.hash
-      } : void 0
-    );
-  }
-  function createBrowserHref(window2, to) {
-    return typeof to === "string" ? to : createPath(to);
-  }
-  return getUrlBasedHistory(
-    createBrowserLocation,
-    createBrowserHref,
-    null,
-    options
-  );
-}
-function createHashHistory(options = {}) {
-  function createHashLocation(window2, globalHistory) {
-    let {
-      pathname = "/",
-      search = "",
-      hash = ""
-    } = parsePath(window2.location.hash.substring(1));
-    if (!pathname.startsWith("/") && !pathname.startsWith(".")) {
-      pathname = "/" + pathname;
-    }
-    return createLocation(
-      "",
-      { pathname, search, hash },
-      // state defaults to `null` because `window.history.state` does
-      globalHistory.state && globalHistory.state.usr || null,
-      globalHistory.state && globalHistory.state.key || "default"
-    );
-  }
-  function createHashHref(window2, to) {
-    let base = window2.document.querySelector("base");
-    let href2 = "";
-    if (base && base.getAttribute("href")) {
-      let url = window2.location.href;
-      let hashIndex = url.indexOf("#");
-      href2 = hashIndex === -1 ? url : url.slice(0, hashIndex);
-    }
-    return href2 + "#" + (typeof to === "string" ? to : createPath(to));
-  }
-  function validateHashLocation(location2, to) {
-    warning(
-      location2.pathname.charAt(0) === "/",
-      `relative pathnames are not supported in hash history.push(${JSON.stringify(
-        to
-      )})`
-    );
-  }
-  return getUrlBasedHistory(
-    createHashLocation,
-    createHashHref,
-    validateHashLocation,
-    options
-  );
-}
-function invariant$1(value, message) {
-  if (value === false || value === null || typeof value === "undefined") {
-    throw new Error(message);
-  }
-}
-function warning(cond, message) {
-  if (!cond) {
-    if (typeof console !== "undefined") console.warn(message);
-    try {
-      throw new Error(message);
-    } catch (e) {
-    }
-  }
-}
-function createKey$1() {
-  return Math.random().toString(36).substring(2, 10);
-}
-function getHistoryState(location2, index) {
-  return {
-    usr: location2.state,
-    key: location2.key,
-    idx: index,
-    masked: location2.unstable_mask ? {
-      pathname: location2.pathname,
-      search: location2.search,
-      hash: location2.hash
-    } : void 0
-  };
-}
-function createLocation(current, to, state = null, key, unstable_mask) {
-  let location2 = {
-    pathname: typeof current === "string" ? current : current.pathname,
-    search: "",
-    hash: "",
-    ...typeof to === "string" ? parsePath(to) : to,
-    state,
-    // TODO: This could be cleaned up.  push/replace should probably just take
-    // full Locations now and avoid the need to run through this flow at all
-    // But that's a pretty big refactor to the current test suite so going to
-    // keep as is for the time being and just let any incoming keys take precedence
-    key: to && to.key || key || createKey$1(),
-    unstable_mask
-  };
-  return location2;
-}
-function createPath({
-  pathname = "/",
-  search = "",
-  hash = ""
-}) {
-  if (search && search !== "?")
-    pathname += search.charAt(0) === "?" ? search : "?" + search;
-  if (hash && hash !== "#")
-    pathname += hash.charAt(0) === "#" ? hash : "#" + hash;
-  return pathname;
-}
-function parsePath(path) {
-  let parsedPath = {};
-  if (path) {
-    let hashIndex = path.indexOf("#");
-    if (hashIndex >= 0) {
-      parsedPath.hash = path.substring(hashIndex);
-      path = path.substring(0, hashIndex);
-    }
-    let searchIndex = path.indexOf("?");
-    if (searchIndex >= 0) {
-      parsedPath.search = path.substring(searchIndex);
-      path = path.substring(0, searchIndex);
-    }
-    if (path) {
-      parsedPath.pathname = path;
-    }
-  }
-  return parsedPath;
-}
-function getUrlBasedHistory(getLocation, createHref2, validateLocation, options = {}) {
-  let { window: window2 = document.defaultView, v5Compat = false } = options;
-  let globalHistory = window2.history;
-  let action = "POP";
-  let listener = null;
-  let index = getIndex();
-  if (index == null) {
-    index = 0;
-    globalHistory.replaceState({ ...globalHistory.state, idx: index }, "");
-  }
-  function getIndex() {
-    let state = globalHistory.state || { idx: null };
-    return state.idx;
-  }
-  function handlePop() {
-    action = "POP";
-    let nextIndex = getIndex();
-    let delta = nextIndex == null ? null : nextIndex - index;
-    index = nextIndex;
-    if (listener) {
-      listener({ action, location: history.location, delta });
-    }
-  }
-  function push(to, state) {
-    action = "PUSH";
-    let location2 = isLocation(to) ? to : createLocation(history.location, to, state);
-    if (validateLocation) validateLocation(location2, to);
-    index = getIndex() + 1;
-    let historyState = getHistoryState(location2, index);
-    let url = history.createHref(location2.unstable_mask || location2);
-    try {
-      globalHistory.pushState(historyState, "", url);
-    } catch (error) {
-      if (error instanceof DOMException && error.name === "DataCloneError") {
-        throw error;
-      }
-      window2.location.assign(url);
-    }
-    if (v5Compat && listener) {
-      listener({ action, location: history.location, delta: 1 });
-    }
-  }
-  function replace2(to, state) {
-    action = "REPLACE";
-    let location2 = isLocation(to) ? to : createLocation(history.location, to, state);
-    if (validateLocation) validateLocation(location2, to);
-    index = getIndex();
-    let historyState = getHistoryState(location2, index);
-    let url = history.createHref(location2.unstable_mask || location2);
-    globalHistory.replaceState(historyState, "", url);
-    if (v5Compat && listener) {
-      listener({ action, location: history.location, delta: 0 });
-    }
-  }
-  function createURL(to) {
-    return createBrowserURLImpl(to);
-  }
-  let history = {
-    get action() {
-      return action;
-    },
-    get location() {
-      return getLocation(window2, globalHistory);
-    },
-    listen(fn) {
-      if (listener) {
-        throw new Error("A history only accepts one active listener");
-      }
-      window2.addEventListener(PopStateEventType, handlePop);
-      listener = fn;
-      return () => {
-        window2.removeEventListener(PopStateEventType, handlePop);
-        listener = null;
-      };
-    },
-    createHref(to) {
-      return createHref2(window2, to);
-    },
-    createURL,
-    encodeLocation(to) {
-      let url = createURL(to);
-      return {
-        pathname: url.pathname,
-        search: url.search,
-        hash: url.hash
-      };
-    },
-    push,
-    replace: replace2,
-    go(n) {
-      return globalHistory.go(n);
-    }
-  };
-  return history;
-}
-function createBrowserURLImpl(to, isAbsolute = false) {
-  let base = "http://localhost";
-  if (typeof window !== "undefined") {
-    base = window.location.origin !== "null" ? window.location.origin : window.location.href;
-  }
-  invariant$1(base, "No window.location.(origin|href) available to create URL");
-  let href2 = typeof to === "string" ? to : createPath(to);
-  href2 = href2.replace(/ $/, "%20");
-  if (!isAbsolute && href2.startsWith("//")) {
-    href2 = base + href2;
-  }
-  return new URL(href2, base);
-}
-function createContext(defaultValue2) {
-  return { defaultValue: defaultValue2 };
-}
-var _map;
-var RouterContextProvider = class {
-  /**
-   * Create a new `RouterContextProvider` instance
-   * @param init An optional initial context map to populate the provider with
-   */
-  constructor(init) {
-    __privateAdd(this, _map, /* @__PURE__ */ new Map());
-    if (init) {
-      for (let [context, value] of init) {
-        this.set(context, value);
-      }
-    }
-  }
-  /**
-   * Access a value from the context. If no value has been set for the context,
-   * it will return the context's `defaultValue` if provided, or throw an error
-   * if no `defaultValue` was set.
-   * @param context The context to get the value for
-   * @returns The value for the context, or the context's `defaultValue` if no
-   * value was set
-   */
-  get(context) {
-    if (__privateGet(this, _map).has(context)) {
-      return __privateGet(this, _map).get(context);
-    }
-    if (context.defaultValue !== void 0) {
-      return context.defaultValue;
-    }
-    throw new Error("No value found for context");
-  }
-  /**
-   * Set a value for the context. If the context already has a value set, this
-   * will overwrite it.
-   *
-   * @param context The context to set the value for
-   * @param value The value to set for the context
-   * @returns {void}
-   */
-  set(context, value) {
-    __privateGet(this, _map).set(context, value);
-  }
-};
-_map = /* @__PURE__ */ new WeakMap();
-var unsupportedLazyRouteObjectKeys = /* @__PURE__ */ new Set([
-  "lazy",
-  "caseSensitive",
-  "path",
-  "id",
-  "index",
-  "children"
-]);
-function isUnsupportedLazyRouteObjectKey(key) {
-  return unsupportedLazyRouteObjectKeys.has(
-    key
-  );
-}
-var unsupportedLazyRouteFunctionKeys = /* @__PURE__ */ new Set([
-  "lazy",
-  "caseSensitive",
-  "path",
-  "id",
-  "index",
-  "middleware",
-  "children"
-]);
-function isUnsupportedLazyRouteFunctionKey(key) {
-  return unsupportedLazyRouteFunctionKeys.has(
-    key
-  );
-}
-function isIndexRoute(route) {
-  return route.index === true;
-}
-function convertRoutesToDataRoutes(routes, mapRouteProperties2, parentPath = [], manifest = {}, allowInPlaceMutations = false) {
-  return routes.map((route, index) => {
-    let treePath = [...parentPath, String(index)];
-    let id = typeof route.id === "string" ? route.id : treePath.join("-");
-    invariant$1(
-      route.index !== true || !route.children,
-      `Cannot specify children on an index route`
-    );
-    invariant$1(
-      allowInPlaceMutations || !manifest[id],
-      `Found a route id collision on id "${id}".  Route id's must be globally unique within Data Router usages`
-    );
-    if (isIndexRoute(route)) {
-      let indexRoute = {
-        ...route,
-        id
-      };
-      manifest[id] = mergeRouteUpdates(
-        indexRoute,
-        mapRouteProperties2(indexRoute)
-      );
-      return indexRoute;
-    } else {
-      let pathOrLayoutRoute = {
-        ...route,
-        id,
-        children: void 0
-      };
-      manifest[id] = mergeRouteUpdates(
-        pathOrLayoutRoute,
-        mapRouteProperties2(pathOrLayoutRoute)
-      );
-      if (route.children) {
-        pathOrLayoutRoute.children = convertRoutesToDataRoutes(
-          route.children,
-          mapRouteProperties2,
-          treePath,
-          manifest,
-          allowInPlaceMutations
-        );
-      }
-      return pathOrLayoutRoute;
-    }
-  });
-}
-function mergeRouteUpdates(route, updates) {
-  return Object.assign(route, {
-    ...updates,
-    ...typeof updates.lazy === "object" && updates.lazy != null ? {
-      lazy: {
-        ...route.lazy,
-        ...updates.lazy
-      }
-    } : {}
-  });
-}
-function matchRoutes(routes, locationArg, basename = "/") {
-  return matchRoutesImpl(routes, locationArg, basename, false);
-}
-function matchRoutesImpl(routes, locationArg, basename, allowPartial) {
-  let location2 = typeof locationArg === "string" ? parsePath(locationArg) : locationArg;
-  let pathname = stripBasename(location2.pathname || "/", basename);
-  if (pathname == null) {
-    return null;
-  }
-  let branches = flattenRoutes(routes);
-  rankRouteBranches(branches);
-  let matches = null;
-  for (let i = 0; matches == null && i < branches.length; ++i) {
-    let decoded = decodePath(pathname);
-    matches = matchRouteBranch(
-      branches[i],
-      decoded,
-      allowPartial
-    );
-  }
-  return matches;
-}
-function convertRouteMatchToUiMatch(match, loaderData) {
-  let { route, pathname, params } = match;
-  return {
-    id: route.id,
-    pathname,
-    params,
-    data: loaderData[route.id],
-    loaderData: loaderData[route.id],
-    handle: route.handle
-  };
-}
-function flattenRoutes(routes, branches = [], parentsMeta = [], parentPath = "", _hasParentOptionalSegments = false) {
-  let flattenRoute = (route, index, hasParentOptionalSegments = _hasParentOptionalSegments, relativePath) => {
-    let meta = {
-      relativePath: relativePath === void 0 ? route.path || "" : relativePath,
-      caseSensitive: route.caseSensitive === true,
-      childrenIndex: index,
-      route
-    };
-    if (meta.relativePath.startsWith("/")) {
-      if (!meta.relativePath.startsWith(parentPath) && hasParentOptionalSegments) {
-        return;
-      }
-      invariant$1(
-        meta.relativePath.startsWith(parentPath),
-        `Absolute route path "${meta.relativePath}" nested under path "${parentPath}" is not valid. An absolute child route path must start with the combined path of all its parent routes.`
-      );
-      meta.relativePath = meta.relativePath.slice(parentPath.length);
-    }
-    let path = joinPaths([parentPath, meta.relativePath]);
-    let routesMeta = parentsMeta.concat(meta);
-    if (route.children && route.children.length > 0) {
-      invariant$1(
-        // Our types know better, but runtime JS may not!
-        // @ts-expect-error
-        route.index !== true,
-        `Index routes must not have child routes. Please remove all child routes from route path "${path}".`
-      );
-      flattenRoutes(
-        route.children,
-        branches,
-        routesMeta,
-        path,
-        hasParentOptionalSegments
-      );
-    }
-    if (route.path == null && !route.index) {
-      return;
-    }
-    branches.push({
-      path,
-      score: computeScore(path, route.index),
-      routesMeta
-    });
-  };
-  routes.forEach((route, index) => {
-    var _a2;
-    if (route.path === "" || !((_a2 = route.path) == null ? void 0 : _a2.includes("?"))) {
-      flattenRoute(route, index);
-    } else {
-      for (let exploded of explodeOptionalSegments(route.path)) {
-        flattenRoute(route, index, true, exploded);
-      }
-    }
-  });
-  return branches;
-}
-function explodeOptionalSegments(path) {
-  let segments = path.split("/");
-  if (segments.length === 0) return [];
-  let [first, ...rest] = segments;
-  let isOptional = first.endsWith("?");
-  let required = first.replace(/\?$/, "");
-  if (rest.length === 0) {
-    return isOptional ? [required, ""] : [required];
-  }
-  let restExploded = explodeOptionalSegments(rest.join("/"));
-  let result = [];
-  result.push(
-    ...restExploded.map(
-      (subpath) => subpath === "" ? required : [required, subpath].join("/")
-    )
-  );
-  if (isOptional) {
-    result.push(...restExploded);
-  }
-  return result.map(
-    (exploded) => path.startsWith("/") && exploded === "" ? "/" : exploded
-  );
-}
-function rankRouteBranches(branches) {
-  branches.sort(
-    (a, b) => a.score !== b.score ? b.score - a.score : compareIndexes(
-      a.routesMeta.map((meta) => meta.childrenIndex),
-      b.routesMeta.map((meta) => meta.childrenIndex)
-    )
-  );
-}
-var paramRe = /^:[\w-]+$/;
-var dynamicSegmentValue = 3;
-var indexRouteValue = 2;
-var emptySegmentValue = 1;
-var staticSegmentValue = 10;
-var splatPenalty = -2;
-var isSplat = (s) => s === "*";
-function computeScore(path, index) {
-  let segments = path.split("/");
-  let initialScore = segments.length;
-  if (segments.some(isSplat)) {
-    initialScore += splatPenalty;
-  }
-  if (index) {
-    initialScore += indexRouteValue;
-  }
-  return segments.filter((s) => !isSplat(s)).reduce(
-    (score, segment) => score + (paramRe.test(segment) ? dynamicSegmentValue : segment === "" ? emptySegmentValue : staticSegmentValue),
-    initialScore
-  );
-}
-function compareIndexes(a, b) {
-  let siblings = a.length === b.length && a.slice(0, -1).every((n, i) => n === b[i]);
-  return siblings ? (
-    // If two routes are siblings, we should try to match the earlier sibling
-    // first. This allows people to have fine-grained control over the matching
-    // behavior by simply putting routes with identical paths in the order they
-    // want them tried.
-    a[a.length - 1] - b[b.length - 1]
-  ) : (
-    // Otherwise, it doesn't really make sense to rank non-siblings by index,
-    // so they sort equally.
-    0
-  );
-}
-function matchRouteBranch(branch, pathname, allowPartial = false) {
-  let { routesMeta } = branch;
-  let matchedParams = {};
-  let matchedPathname = "/";
-  let matches = [];
-  for (let i = 0; i < routesMeta.length; ++i) {
-    let meta = routesMeta[i];
-    let end = i === routesMeta.length - 1;
-    let remainingPathname = matchedPathname === "/" ? pathname : pathname.slice(matchedPathname.length) || "/";
-    let match = matchPath(
-      { path: meta.relativePath, caseSensitive: meta.caseSensitive, end },
-      remainingPathname
-    );
-    let route = meta.route;
-    if (!match && end && allowPartial && !routesMeta[routesMeta.length - 1].route.index) {
-      match = matchPath(
-        {
-          path: meta.relativePath,
-          caseSensitive: meta.caseSensitive,
-          end: false
-        },
-        remainingPathname
-      );
-    }
-    if (!match) {
-      return null;
-    }
-    Object.assign(matchedParams, match.params);
-    matches.push({
-      // TODO: Can this as be avoided?
-      params: matchedParams,
-      pathname: joinPaths([matchedPathname, match.pathname]),
-      pathnameBase: normalizePathname(
-        joinPaths([matchedPathname, match.pathnameBase])
-      ),
-      route
-    });
-    if (match.pathnameBase !== "/") {
-      matchedPathname = joinPaths([matchedPathname, match.pathnameBase]);
-    }
-  }
-  return matches;
-}
-function generatePath(originalPath, params = {}) {
-  let path = originalPath;
-  if (path.endsWith("*") && path !== "*" && !path.endsWith("/*")) {
-    warning(
-      false,
-      `Route path "${path}" will be treated as if it were "${path.replace(/\*$/, "/*")}" because the \`*\` character must always follow a \`/\` in the pattern. To get rid of this warning, please change the route path to "${path.replace(/\*$/, "/*")}".`
-    );
-    path = path.replace(/\*$/, "/*");
-  }
-  const prefix = path.startsWith("/") ? "/" : "";
-  const stringify2 = (p) => p == null ? "" : typeof p === "string" ? p : String(p);
-  const segments = path.split(/\/+/).map((segment, index, array) => {
-    const isLastSegment = index === array.length - 1;
-    if (isLastSegment && segment === "*") {
-      const star = "*";
-      return stringify2(params[star]);
-    }
-    const keyMatch = segment.match(/^:([\w-]+)(\??)(.*)/);
-    if (keyMatch) {
-      const [, key, optional, suffix] = keyMatch;
-      let param = params[key];
-      invariant$1(optional === "?" || param != null, `Missing ":${key}" param`);
-      return encodeURIComponent(stringify2(param)) + suffix;
-    }
-    return segment.replace(/\?$/g, "");
-  }).filter((segment) => !!segment);
-  return prefix + segments.join("/");
-}
-function matchPath(pattern, pathname) {
-  if (typeof pattern === "string") {
-    pattern = { path: pattern, caseSensitive: false, end: true };
-  }
-  let [matcher, compiledParams] = compilePath(
-    pattern.path,
-    pattern.caseSensitive,
-    pattern.end
-  );
-  let match = pathname.match(matcher);
-  if (!match) return null;
-  let matchedPathname = match[0];
-  let pathnameBase = matchedPathname.replace(/(.)\/+$/, "$1");
-  let captureGroups = match.slice(1);
-  let params = compiledParams.reduce(
-    (memo2, { paramName, isOptional }, index) => {
-      if (paramName === "*") {
-        let splatValue = captureGroups[index] || "";
-        pathnameBase = matchedPathname.slice(0, matchedPathname.length - splatValue.length).replace(/(.)\/+$/, "$1");
-      }
-      const value = captureGroups[index];
-      if (isOptional && !value) {
-        memo2[paramName] = void 0;
-      } else {
-        memo2[paramName] = (value || "").replace(/%2F/g, "/");
-      }
-      return memo2;
-    },
-    {}
-  );
-  return {
-    params,
-    pathname: matchedPathname,
-    pathnameBase,
-    pattern
-  };
-}
-function compilePath(path, caseSensitive = false, end = true) {
-  warning(
-    path === "*" || !path.endsWith("*") || path.endsWith("/*"),
-    `Route path "${path}" will be treated as if it were "${path.replace(/\*$/, "/*")}" because the \`*\` character must always follow a \`/\` in the pattern. To get rid of this warning, please change the route path to "${path.replace(/\*$/, "/*")}".`
-  );
-  let params = [];
-  let regexpSource = "^" + path.replace(/\/*\*?$/, "").replace(/^\/*/, "/").replace(/[\\.*+^${}|()[\]]/g, "\\$&").replace(
-    /\/:([\w-]+)(\?)?/g,
-    (match, paramName, isOptional, index, str) => {
-      params.push({ paramName, isOptional: isOptional != null });
-      if (isOptional) {
-        let nextChar = str.charAt(index + match.length);
-        if (nextChar && nextChar !== "/") {
-          return "/([^\\/]*)";
-        }
-        return "(?:/([^\\/]*))?";
-      }
-      return "/([^\\/]+)";
-    }
-  ).replace(/\/([\w-]+)\?(\/|$)/g, "(/$1)?$2");
-  if (path.endsWith("*")) {
-    params.push({ paramName: "*" });
-    regexpSource += path === "*" || path === "/*" ? "(.*)$" : "(?:\\/(.+)|\\/*)$";
-  } else if (end) {
-    regexpSource += "\\/*$";
-  } else if (path !== "" && path !== "/") {
-    regexpSource += "(?:(?=\\/|$))";
-  } else ;
-  let matcher = new RegExp(regexpSource, caseSensitive ? void 0 : "i");
-  return [matcher, params];
-}
-function decodePath(value) {
-  try {
-    return value.split("/").map((v) => decodeURIComponent(v).replace(/\//g, "%2F")).join("/");
-  } catch (error) {
-    warning(
-      false,
-      `The URL path "${value}" could not be decoded because it is a malformed URL segment. This is probably due to a bad percent encoding (${error}).`
-    );
-    return value;
-  }
-}
-function stripBasename(pathname, basename) {
-  if (basename === "/") return pathname;
-  if (!pathname.toLowerCase().startsWith(basename.toLowerCase())) {
-    return null;
-  }
-  let startIndex = basename.endsWith("/") ? basename.length - 1 : basename.length;
-  let nextChar = pathname.charAt(startIndex);
-  if (nextChar && nextChar !== "/") {
-    return null;
-  }
-  return pathname.slice(startIndex) || "/";
-}
-function prependBasename({
-  basename,
-  pathname
-}) {
-  return pathname === "/" ? basename : joinPaths([basename, pathname]);
-}
-var ABSOLUTE_URL_REGEX = /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i;
-var isAbsoluteUrl = (url) => ABSOLUTE_URL_REGEX.test(url);
-function resolvePath(to, fromPathname = "/") {
-  let {
-    pathname: toPathname,
-    search = "",
-    hash = ""
-  } = typeof to === "string" ? parsePath(to) : to;
-  let pathname;
-  if (toPathname) {
-    toPathname = toPathname.replace(/\/\/+/g, "/");
-    if (toPathname.startsWith("/")) {
-      pathname = resolvePathname(toPathname.substring(1), "/");
-    } else {
-      pathname = resolvePathname(toPathname, fromPathname);
-    }
-  } else {
-    pathname = fromPathname;
-  }
-  return {
-    pathname,
-    search: normalizeSearch(search),
-    hash: normalizeHash(hash)
-  };
-}
-function resolvePathname(relativePath, fromPathname) {
-  let segments = fromPathname.replace(/\/+$/, "").split("/");
-  let relativeSegments = relativePath.split("/");
-  relativeSegments.forEach((segment) => {
-    if (segment === "..") {
-      if (segments.length > 1) segments.pop();
-    } else if (segment !== ".") {
-      segments.push(segment);
-    }
-  });
-  return segments.length > 1 ? segments.join("/") : "/";
-}
-function getInvalidPathError(char, field, dest, path) {
-  return `Cannot include a '${char}' character in a manually specified \`to.${field}\` field [${JSON.stringify(
-    path
-  )}].  Please separate it out to the \`to.${dest}\` field. Alternatively you may provide the full path as a string in <Link to="..."> and the router will parse it for you.`;
-}
-function getPathContributingMatches(matches) {
-  return matches.filter(
-    (match, index) => index === 0 || match.route.path && match.route.path.length > 0
-  );
-}
-function getResolveToMatches(matches) {
-  let pathMatches = getPathContributingMatches(matches);
-  return pathMatches.map(
-    (match, idx) => idx === pathMatches.length - 1 ? match.pathname : match.pathnameBase
-  );
-}
-function resolveTo(toArg, routePathnames, locationPathname, isPathRelative = false) {
-  let to;
-  if (typeof toArg === "string") {
-    to = parsePath(toArg);
-  } else {
-    to = { ...toArg };
-    invariant$1(
-      !to.pathname || !to.pathname.includes("?"),
-      getInvalidPathError("?", "pathname", "search", to)
-    );
-    invariant$1(
-      !to.pathname || !to.pathname.includes("#"),
-      getInvalidPathError("#", "pathname", "hash", to)
-    );
-    invariant$1(
-      !to.search || !to.search.includes("#"),
-      getInvalidPathError("#", "search", "hash", to)
-    );
-  }
-  let isEmptyPath = toArg === "" || to.pathname === "";
-  let toPathname = isEmptyPath ? "/" : to.pathname;
-  let from;
-  if (toPathname == null) {
-    from = locationPathname;
-  } else {
-    let routePathnameIndex = routePathnames.length - 1;
-    if (!isPathRelative && toPathname.startsWith("..")) {
-      let toSegments = toPathname.split("/");
-      while (toSegments[0] === "..") {
-        toSegments.shift();
-        routePathnameIndex -= 1;
-      }
-      to.pathname = toSegments.join("/");
-    }
-    from = routePathnameIndex >= 0 ? routePathnames[routePathnameIndex] : "/";
-  }
-  let path = resolvePath(to, from);
-  let hasExplicitTrailingSlash = toPathname && toPathname !== "/" && toPathname.endsWith("/");
-  let hasCurrentTrailingSlash = (isEmptyPath || toPathname === ".") && locationPathname.endsWith("/");
-  if (!path.pathname.endsWith("/") && (hasExplicitTrailingSlash || hasCurrentTrailingSlash)) {
-    path.pathname += "/";
-  }
-  return path;
-}
-var joinPaths = (paths) => paths.join("/").replace(/\/\/+/g, "/");
-var normalizePathname = (pathname) => pathname.replace(/\/+$/, "").replace(/^\/*/, "/");
-var normalizeSearch = (search) => !search || search === "?" ? "" : search.startsWith("?") ? search : "?" + search;
-var normalizeHash = (hash) => !hash || hash === "#" ? "" : hash.startsWith("#") ? hash : "#" + hash;
-var DataWithResponseInit = class {
-  constructor(data2, init) {
-    this.type = "DataWithResponseInit";
-    this.data = data2;
-    this.init = init || null;
-  }
-};
-function data(data2, init) {
-  return new DataWithResponseInit(
-    data2,
-    typeof init === "number" ? { status: init } : init
-  );
-}
-var redirect = (url, init = 302) => {
-  let responseInit = init;
-  if (typeof responseInit === "number") {
-    responseInit = { status: responseInit };
-  } else if (typeof responseInit.status === "undefined") {
-    responseInit.status = 302;
-  }
-  let headers = new Headers(responseInit.headers);
-  headers.set("Location", url);
-  return new Response(null, { ...responseInit, headers });
-};
-var redirectDocument = (url, init) => {
-  let response = redirect(url, init);
-  response.headers.set("X-Remix-Reload-Document", "true");
-  return response;
-};
-var replace = (url, init) => {
-  let response = redirect(url, init);
-  response.headers.set("X-Remix-Replace", "true");
-  return response;
-};
-var ErrorResponseImpl = class {
-  constructor(status, statusText, data2, internal = false) {
-    this.status = status;
-    this.statusText = statusText || "";
-    this.internal = internal;
-    if (data2 instanceof Error) {
-      this.data = data2.toString();
-      this.error = data2;
-    } else {
-      this.data = data2;
-    }
-  }
-};
-function isRouteErrorResponse(error) {
-  return error != null && typeof error.status === "number" && typeof error.statusText === "string" && typeof error.internal === "boolean" && "data" in error;
-}
-function getRoutePattern(matches) {
-  return matches.map((m) => m.route.path).filter(Boolean).join("/").replace(/\/\/*/g, "/") || "/";
-}
-var isBrowser = typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined";
-function parseToInfo(_to, basename) {
-  let to = _to;
-  if (typeof to !== "string" || !ABSOLUTE_URL_REGEX.test(to)) {
-    return {
-      absoluteURL: void 0,
-      isExternal: false,
-      to
-    };
-  }
-  let absoluteURL = to;
-  let isExternal = false;
-  if (isBrowser) {
-    try {
-      let currentUrl = new URL(window.location.href);
-      let targetUrl = to.startsWith("//") ? new URL(currentUrl.protocol + to) : new URL(to);
-      let path = stripBasename(targetUrl.pathname, basename);
-      if (targetUrl.origin === currentUrl.origin && path != null) {
-        to = path + targetUrl.search + targetUrl.hash;
-      } else {
-        isExternal = true;
-      }
-    } catch (e) {
-      warning(
-        false,
-        `<Link to="${to}"> contains an invalid URL which will probably break when clicked - please update to a valid URL path.`
-      );
-    }
-  }
-  return {
-    absoluteURL,
-    isExternal,
-    to
-  };
-}
-var UninstrumentedSymbol = Symbol("Uninstrumented");
-function getRouteInstrumentationUpdates(fns, route) {
-  let aggregated = {
-    lazy: [],
-    "lazy.loader": [],
-    "lazy.action": [],
-    "lazy.middleware": [],
-    middleware: [],
-    loader: [],
-    action: []
-  };
-  fns.forEach(
-    (fn) => fn({
-      id: route.id,
-      index: route.index,
-      path: route.path,
-      instrument(i) {
-        let keys = Object.keys(aggregated);
-        for (let key of keys) {
-          if (i[key]) {
-            aggregated[key].push(i[key]);
-          }
-        }
-      }
-    })
-  );
-  let updates = {};
-  if (typeof route.lazy === "function" && aggregated.lazy.length > 0) {
-    let instrumented = wrapImpl(aggregated.lazy, route.lazy, () => void 0);
-    if (instrumented) {
-      updates.lazy = instrumented;
-    }
-  }
-  if (typeof route.lazy === "object") {
-    let lazyObject = route.lazy;
-    ["middleware", "loader", "action"].forEach((key) => {
-      let lazyFn = lazyObject[key];
-      let instrumentations = aggregated[`lazy.${key}`];
-      if (typeof lazyFn === "function" && instrumentations.length > 0) {
-        let instrumented = wrapImpl(instrumentations, lazyFn, () => void 0);
-        if (instrumented) {
-          updates.lazy = Object.assign(updates.lazy || {}, {
-            [key]: instrumented
-          });
-        }
-      }
-    });
-  }
-  ["loader", "action"].forEach((key) => {
-    let handler = route[key];
-    if (typeof handler === "function" && aggregated[key].length > 0) {
-      let original = handler[UninstrumentedSymbol] ?? handler;
-      let instrumented = wrapImpl(
-        aggregated[key],
-        original,
-        (...args) => getHandlerInfo(args[0])
-      );
-      if (instrumented) {
-        if (key === "loader" && original.hydrate === true) {
-          instrumented.hydrate = true;
-        }
-        instrumented[UninstrumentedSymbol] = original;
-        updates[key] = instrumented;
-      }
-    }
-  });
-  if (route.middleware && route.middleware.length > 0 && aggregated.middleware.length > 0) {
-    updates.middleware = route.middleware.map((middleware) => {
-      let original = middleware[UninstrumentedSymbol] ?? middleware;
-      let instrumented = wrapImpl(
-        aggregated.middleware,
-        original,
-        (...args) => getHandlerInfo(args[0])
-      );
-      if (instrumented) {
-        instrumented[UninstrumentedSymbol] = original;
-        return instrumented;
-      }
-      return middleware;
-    });
-  }
-  return updates;
-}
-function instrumentClientSideRouter(router2, fns) {
-  let aggregated = {
-    navigate: [],
-    fetch: []
-  };
-  fns.forEach(
-    (fn) => fn({
-      instrument(i) {
-        let keys = Object.keys(i);
-        for (let key of keys) {
-          if (i[key]) {
-            aggregated[key].push(i[key]);
-          }
-        }
-      }
-    })
-  );
-  if (aggregated.navigate.length > 0) {
-    let navigate = router2.navigate[UninstrumentedSymbol] ?? router2.navigate;
-    let instrumentedNavigate = wrapImpl(
-      aggregated.navigate,
-      navigate,
-      (...args) => {
-        let [to, opts] = args;
-        return {
-          to: typeof to === "number" || typeof to === "string" ? to : to ? createPath(to) : ".",
-          ...getRouterInfo(router2, opts ?? {})
-        };
-      }
-    );
-    if (instrumentedNavigate) {
-      instrumentedNavigate[UninstrumentedSymbol] = navigate;
-      router2.navigate = instrumentedNavigate;
-    }
-  }
-  if (aggregated.fetch.length > 0) {
-    let fetch2 = router2.fetch[UninstrumentedSymbol] ?? router2.fetch;
-    let instrumentedFetch = wrapImpl(aggregated.fetch, fetch2, (...args) => {
-      let [key, , href2, opts] = args;
-      return {
-        href: href2 ?? ".",
-        fetcherKey: key,
-        ...getRouterInfo(router2, opts ?? {})
-      };
-    });
-    if (instrumentedFetch) {
-      instrumentedFetch[UninstrumentedSymbol] = fetch2;
-      router2.fetch = instrumentedFetch;
-    }
-  }
-  return router2;
-}
-function instrumentHandler(handler, fns) {
-  let aggregated = {
-    request: []
-  };
-  fns.forEach(
-    (fn) => fn({
-      instrument(i) {
-        let keys = Object.keys(i);
-        for (let key of keys) {
-          if (i[key]) {
-            aggregated[key].push(i[key]);
-          }
-        }
-      }
-    })
-  );
-  let instrumentedHandler = handler;
-  if (aggregated.request.length > 0) {
-    instrumentedHandler = wrapImpl(aggregated.request, handler, (...args) => {
-      let [request, context] = args;
-      return {
-        request: getReadonlyRequest(request),
-        context: context != null ? getReadonlyContext(context) : context
-      };
-    });
-  }
-  return instrumentedHandler;
-}
-function wrapImpl(impls, handler, getInfo) {
-  if (impls.length === 0) {
-    return null;
-  }
-  return async (...args) => {
-    let result = await recurseRight(
-      impls,
-      getInfo(...args),
-      () => handler(...args),
-      impls.length - 1
-    );
-    if (result.type === "error") {
-      throw result.value;
-    }
-    return result.value;
-  };
-}
-async function recurseRight(impls, info, handler, index) {
-  let impl = impls[index];
-  let result;
-  if (!impl) {
-    try {
-      let value = await handler();
-      result = { type: "success", value };
-    } catch (e) {
-      result = { type: "error", value: e };
-    }
-  } else {
-    let handlerPromise = void 0;
-    let callHandler = async () => {
-      if (handlerPromise) {
-        console.error("You cannot call instrumented handlers more than once");
-      } else {
-        handlerPromise = recurseRight(impls, info, handler, index - 1);
-      }
-      result = await handlerPromise;
-      invariant$1(result, "Expected a result");
-      if (result.type === "error" && result.value instanceof Error) {
-        return { status: "error", error: result.value };
-      }
-      return { status: "success", error: void 0 };
-    };
-    try {
-      await impl(callHandler, info);
-    } catch (e) {
-      console.error("An instrumentation function threw an error:", e);
-    }
-    if (!handlerPromise) {
-      await callHandler();
-    }
-    await handlerPromise;
-  }
-  if (result) {
-    return result;
-  }
-  return {
-    type: "error",
-    value: new Error("No result assigned in instrumentation chain.")
-  };
-}
-function getHandlerInfo(args) {
-  let { request, context, params, unstable_pattern } = args;
-  return {
-    request: getReadonlyRequest(request),
-    params: { ...params },
-    unstable_pattern,
-    context: getReadonlyContext(context)
-  };
-}
-function getRouterInfo(router2, opts) {
-  return {
-    currentUrl: createPath(router2.state.location),
-    ..."formMethod" in opts ? { formMethod: opts.formMethod } : {},
-    ..."formEncType" in opts ? { formEncType: opts.formEncType } : {},
-    ..."formData" in opts ? { formData: opts.formData } : {},
-    ..."body" in opts ? { body: opts.body } : {}
-  };
-}
-function getReadonlyRequest(request) {
-  return {
-    method: request.method,
-    url: request.url,
-    headers: {
-      get: (...args) => request.headers.get(...args)
-    }
-  };
-}
-function getReadonlyContext(context) {
-  if (isPlainObject(context)) {
-    let frozen = { ...context };
-    Object.freeze(frozen);
-    return frozen;
-  } else {
-    return {
-      get: (ctx) => context.get(ctx)
-    };
-  }
-}
-var objectProtoNames = Object.getOwnPropertyNames(Object.prototype).sort().join("\0");
-function isPlainObject(thing) {
-  if (thing === null || typeof thing !== "object") {
-    return false;
-  }
-  const proto = Object.getPrototypeOf(thing);
-  return proto === Object.prototype || proto === null || Object.getOwnPropertyNames(proto).sort().join("\0") === objectProtoNames;
-}
-var validMutationMethodsArr = [
-  "POST",
-  "PUT",
-  "PATCH",
-  "DELETE"
-];
-var validMutationMethods = new Set(
-  validMutationMethodsArr
-);
-var validRequestMethodsArr = [
-  "GET",
-  ...validMutationMethodsArr
-];
-var validRequestMethods = new Set(validRequestMethodsArr);
-var redirectStatusCodes = /* @__PURE__ */ new Set([301, 302, 303, 307, 308]);
-var redirectPreserveMethodStatusCodes = /* @__PURE__ */ new Set([307, 308]);
-var IDLE_NAVIGATION = {
-  state: "idle",
-  location: void 0,
-  formMethod: void 0,
-  formAction: void 0,
-  formEncType: void 0,
-  formData: void 0,
-  json: void 0,
-  text: void 0
-};
-var IDLE_FETCHER = {
-  state: "idle",
-  data: void 0,
-  formMethod: void 0,
-  formAction: void 0,
-  formEncType: void 0,
-  formData: void 0,
-  json: void 0,
-  text: void 0
-};
-var IDLE_BLOCKER = {
-  state: "unblocked",
-  proceed: void 0,
-  reset: void 0,
-  location: void 0
-};
-var defaultMapRouteProperties = (route) => ({
-  hasErrorBoundary: Boolean(route.hasErrorBoundary)
-});
-var TRANSITIONS_STORAGE_KEY = "remix-router-transitions";
-var ResetLoaderDataSymbol = Symbol("ResetLoaderData");
-function createRouter(init) {
-  const routerWindow = init.window ? init.window : typeof window !== "undefined" ? window : void 0;
-  const isBrowser3 = typeof routerWindow !== "undefined" && typeof routerWindow.document !== "undefined" && typeof routerWindow.document.createElement !== "undefined";
-  invariant$1(
-    init.routes.length > 0,
-    "You must provide a non-empty routes array to createRouter"
-  );
-  let hydrationRouteProperties2 = init.hydrationRouteProperties || [];
-  let _mapRouteProperties = init.mapRouteProperties || defaultMapRouteProperties;
-  let mapRouteProperties2 = _mapRouteProperties;
-  if (init.unstable_instrumentations) {
-    let instrumentations = init.unstable_instrumentations;
-    mapRouteProperties2 = (route) => {
-      return {
-        ..._mapRouteProperties(route),
-        ...getRouteInstrumentationUpdates(
-          instrumentations.map((i) => i.route).filter(Boolean),
-          route
-        )
-      };
-    };
-  }
-  let manifest = {};
-  let dataRoutes = convertRoutesToDataRoutes(
-    init.routes,
-    mapRouteProperties2,
-    void 0,
-    manifest
-  );
-  let inFlightDataRoutes;
-  let basename = init.basename || "/";
-  if (!basename.startsWith("/")) {
-    basename = `/${basename}`;
-  }
-  let dataStrategyImpl = init.dataStrategy || defaultDataStrategyWithMiddleware;
-  let future = {
-    unstable_passThroughRequests: false,
-    ...init.future
-  };
-  let unlistenHistory = null;
-  let subscribers = /* @__PURE__ */ new Set();
-  let savedScrollPositions2 = null;
-  let getScrollRestorationKey2 = null;
-  let getScrollPosition = null;
-  let initialScrollRestored = init.hydrationData != null;
-  let initialMatches = matchRoutes(dataRoutes, init.history.location, basename);
-  let initialMatchesIsFOW = false;
-  let initialErrors = null;
-  let initialized;
-  let renderFallback;
-  if (initialMatches == null && !init.patchRoutesOnNavigation) {
-    let error = getInternalRouterError(404, {
-      pathname: init.history.location.pathname
-    });
-    let { matches, route } = getShortCircuitMatches(dataRoutes);
-    initialized = true;
-    renderFallback = !initialized;
-    initialMatches = matches;
-    initialErrors = { [route.id]: error };
-  } else {
-    if (initialMatches && !init.hydrationData) {
-      let fogOfWar = checkFogOfWar(
-        initialMatches,
-        dataRoutes,
-        init.history.location.pathname
-      );
-      if (fogOfWar.active) {
-        initialMatches = null;
-      }
-    }
-    if (!initialMatches) {
-      initialized = false;
-      renderFallback = !initialized;
-      initialMatches = [];
-      let fogOfWar = checkFogOfWar(
-        null,
-        dataRoutes,
-        init.history.location.pathname
-      );
-      if (fogOfWar.active && fogOfWar.matches) {
-        initialMatchesIsFOW = true;
-        initialMatches = fogOfWar.matches;
-      }
-    } else if (initialMatches.some((m) => m.route.lazy)) {
-      initialized = false;
-      renderFallback = !initialized;
-    } else if (!initialMatches.some((m) => routeHasLoaderOrMiddleware(m.route))) {
-      initialized = true;
-      renderFallback = !initialized;
-    } else {
-      let loaderData = init.hydrationData ? init.hydrationData.loaderData : null;
-      let errors = init.hydrationData ? init.hydrationData.errors : null;
-      let relevantMatches = initialMatches;
-      if (errors) {
-        let idx = initialMatches.findIndex(
-          (m) => errors[m.route.id] !== void 0
-        );
-        relevantMatches = relevantMatches.slice(0, idx + 1);
-      }
-      renderFallback = false;
-      initialized = true;
-      relevantMatches.forEach((m) => {
-        let status = getRouteHydrationStatus(m.route, loaderData, errors);
-        renderFallback = renderFallback || status.renderFallback;
-        initialized = initialized && !status.shouldLoad;
-      });
-    }
-  }
-  let router2;
-  let state = {
-    historyAction: init.history.action,
-    location: init.history.location,
-    matches: initialMatches,
-    initialized,
-    renderFallback,
-    navigation: IDLE_NAVIGATION,
-    // Don't restore on initial updateState() if we were SSR'd
-    restoreScrollPosition: init.hydrationData != null ? false : null,
-    preventScrollReset: false,
-    revalidation: "idle",
-    loaderData: init.hydrationData && init.hydrationData.loaderData || {},
-    actionData: init.hydrationData && init.hydrationData.actionData || null,
-    errors: init.hydrationData && init.hydrationData.errors || initialErrors,
-    fetchers: /* @__PURE__ */ new Map(),
-    blockers: /* @__PURE__ */ new Map()
-  };
-  let pendingAction = "POP";
-  let pendingPopstateNavigationDfd = null;
-  let pendingPreventScrollReset = false;
-  let pendingNavigationController;
-  let pendingViewTransitionEnabled = false;
-  let appliedViewTransitions = /* @__PURE__ */ new Map();
-  let removePageHideEventListener = null;
-  let isUninterruptedRevalidation = false;
-  let isRevalidationRequired = false;
-  let cancelledFetcherLoads = /* @__PURE__ */ new Set();
-  let fetchControllers = /* @__PURE__ */ new Map();
-  let incrementingLoadId = 0;
-  let pendingNavigationLoadId = -1;
-  let fetchReloadIds = /* @__PURE__ */ new Map();
-  let fetchRedirectIds = /* @__PURE__ */ new Set();
-  let fetchLoadMatches = /* @__PURE__ */ new Map();
-  let activeFetchers = /* @__PURE__ */ new Map();
-  let fetchersQueuedForDeletion = /* @__PURE__ */ new Set();
-  let blockerFunctions = /* @__PURE__ */ new Map();
-  let unblockBlockerHistoryUpdate = void 0;
-  let pendingRevalidationDfd = null;
-  function initialize() {
-    unlistenHistory = init.history.listen(
-      ({ action: historyAction, location: location2, delta }) => {
-        if (unblockBlockerHistoryUpdate) {
-          unblockBlockerHistoryUpdate();
-          unblockBlockerHistoryUpdate = void 0;
-          return;
-        }
-        warning(
-          blockerFunctions.size === 0 || delta != null,
-          "You are trying to use a blocker on a POP navigation to a location that was not created by @remix-run/router. This will fail silently in production. This can happen if you are navigating outside the router via `window.history.pushState`/`window.location.hash` instead of using router navigation APIs.  This can also happen if you are using createHashRouter and the user manually changes the URL."
-        );
-        let blockerKey = shouldBlockNavigation({
-          currentLocation: state.location,
-          nextLocation: location2,
-          historyAction
-        });
-        if (blockerKey && delta != null) {
-          let nextHistoryUpdatePromise = new Promise((resolve) => {
-            unblockBlockerHistoryUpdate = resolve;
-          });
-          init.history.go(delta * -1);
-          updateBlocker(blockerKey, {
-            state: "blocked",
-            location: location2,
-            proceed() {
-              updateBlocker(blockerKey, {
-                state: "proceeding",
-                proceed: void 0,
-                reset: void 0,
-                location: location2
-              });
-              nextHistoryUpdatePromise.then(() => init.history.go(delta));
-            },
-            reset() {
-              let blockers = new Map(state.blockers);
-              blockers.set(blockerKey, IDLE_BLOCKER);
-              updateState({ blockers });
-            }
-          });
-          pendingPopstateNavigationDfd == null ? void 0 : pendingPopstateNavigationDfd.resolve();
-          pendingPopstateNavigationDfd = null;
-          return;
-        }
-        return startNavigation(historyAction, location2);
-      }
-    );
-    if (isBrowser3) {
-      restoreAppliedTransitions(routerWindow, appliedViewTransitions);
-      let _saveAppliedTransitions = () => persistAppliedTransitions(routerWindow, appliedViewTransitions);
-      routerWindow.addEventListener("pagehide", _saveAppliedTransitions);
-      removePageHideEventListener = () => routerWindow.removeEventListener("pagehide", _saveAppliedTransitions);
-    }
-    if (!state.initialized) {
-      startNavigation("POP", state.location, {
-        initialHydration: true
-      });
-    }
-    return router2;
-  }
-  function dispose() {
-    if (unlistenHistory) {
-      unlistenHistory();
-    }
-    if (removePageHideEventListener) {
-      removePageHideEventListener();
-    }
-    subscribers.clear();
-    pendingNavigationController && pendingNavigationController.abort();
-    state.fetchers.forEach((_, key) => deleteFetcher(key));
-    state.blockers.forEach((_, key) => deleteBlocker(key));
-  }
-  function subscribe(fn) {
-    subscribers.add(fn);
-    return () => subscribers.delete(fn);
-  }
-  function updateState(newState, opts = {}) {
-    if (newState.matches) {
-      newState.matches = newState.matches.map((m) => {
-        let route = manifest[m.route.id];
-        let matchRoute = m.route;
-        if (matchRoute.element !== route.element || matchRoute.errorElement !== route.errorElement || matchRoute.hydrateFallbackElement !== route.hydrateFallbackElement) {
-          return {
-            ...m,
-            route
-          };
-        }
-        return m;
-      });
-    }
-    state = {
-      ...state,
-      ...newState
-    };
-    let unmountedFetchers = [];
-    let mountedFetchers = [];
-    state.fetchers.forEach((fetcher, key) => {
-      if (fetcher.state === "idle") {
-        if (fetchersQueuedForDeletion.has(key)) {
-          unmountedFetchers.push(key);
-        } else {
-          mountedFetchers.push(key);
-        }
-      }
-    });
-    fetchersQueuedForDeletion.forEach((key) => {
-      if (!state.fetchers.has(key) && !fetchControllers.has(key)) {
-        unmountedFetchers.push(key);
-      }
-    });
-    [...subscribers].forEach(
-      (subscriber) => subscriber(state, {
-        deletedFetchers: unmountedFetchers,
-        newErrors: newState.errors ?? null,
-        viewTransitionOpts: opts.viewTransitionOpts,
-        flushSync: opts.flushSync === true
-      })
-    );
-    unmountedFetchers.forEach((key) => deleteFetcher(key));
-    mountedFetchers.forEach((key) => state.fetchers.delete(key));
-  }
-  function completeNavigation(location2, newState, { flushSync } = {}) {
-    var _a2, _b2;
-    let isActionReload = state.actionData != null && state.navigation.formMethod != null && isMutationMethod(state.navigation.formMethod) && state.navigation.state === "loading" && ((_a2 = location2.state) == null ? void 0 : _a2._isRedirect) !== true;
-    let actionData;
-    if (newState.actionData) {
-      if (Object.keys(newState.actionData).length > 0) {
-        actionData = newState.actionData;
-      } else {
-        actionData = null;
-      }
-    } else if (isActionReload) {
-      actionData = state.actionData;
-    } else {
-      actionData = null;
-    }
-    let loaderData = newState.loaderData ? mergeLoaderData(
-      state.loaderData,
-      newState.loaderData,
-      newState.matches || [],
-      newState.errors
-    ) : state.loaderData;
-    let blockers = state.blockers;
-    if (blockers.size > 0) {
-      blockers = new Map(blockers);
-      blockers.forEach((_, k) => blockers.set(k, IDLE_BLOCKER));
-    }
-    let restoreScrollPosition = isUninterruptedRevalidation ? false : getSavedScrollPosition(location2, newState.matches || state.matches);
-    let preventScrollReset = pendingPreventScrollReset === true || state.navigation.formMethod != null && isMutationMethod(state.navigation.formMethod) && ((_b2 = location2.state) == null ? void 0 : _b2._isRedirect) !== true;
-    if (inFlightDataRoutes) {
-      dataRoutes = inFlightDataRoutes;
-      inFlightDataRoutes = void 0;
-    }
-    if (isUninterruptedRevalidation) ;
-    else if (pendingAction === "POP") ;
-    else if (pendingAction === "PUSH") {
-      init.history.push(location2, location2.state);
-    } else if (pendingAction === "REPLACE") {
-      init.history.replace(location2, location2.state);
-    }
-    let viewTransitionOpts;
-    if (pendingAction === "POP") {
-      let priorPaths = appliedViewTransitions.get(state.location.pathname);
-      if (priorPaths && priorPaths.has(location2.pathname)) {
-        viewTransitionOpts = {
-          currentLocation: state.location,
-          nextLocation: location2
-        };
-      } else if (appliedViewTransitions.has(location2.pathname)) {
-        viewTransitionOpts = {
-          currentLocation: location2,
-          nextLocation: state.location
-        };
-      }
-    } else if (pendingViewTransitionEnabled) {
-      let toPaths = appliedViewTransitions.get(state.location.pathname);
-      if (toPaths) {
-        toPaths.add(location2.pathname);
-      } else {
-        toPaths = /* @__PURE__ */ new Set([location2.pathname]);
-        appliedViewTransitions.set(state.location.pathname, toPaths);
-      }
-      viewTransitionOpts = {
-        currentLocation: state.location,
-        nextLocation: location2
-      };
-    }
-    updateState(
-      {
-        ...newState,
-        // matches, errors, fetchers go through as-is
-        actionData,
-        loaderData,
-        historyAction: pendingAction,
-        location: location2,
-        initialized: true,
-        renderFallback: false,
-        navigation: IDLE_NAVIGATION,
-        revalidation: "idle",
-        restoreScrollPosition,
-        preventScrollReset,
-        blockers
-      },
-      {
-        viewTransitionOpts,
-        flushSync: flushSync === true
-      }
-    );
-    pendingAction = "POP";
-    pendingPreventScrollReset = false;
-    pendingViewTransitionEnabled = false;
-    isUninterruptedRevalidation = false;
-    isRevalidationRequired = false;
-    pendingPopstateNavigationDfd == null ? void 0 : pendingPopstateNavigationDfd.resolve();
-    pendingPopstateNavigationDfd = null;
-    pendingRevalidationDfd == null ? void 0 : pendingRevalidationDfd.resolve();
-    pendingRevalidationDfd = null;
-  }
-  async function navigate(to, opts) {
-    pendingPopstateNavigationDfd == null ? void 0 : pendingPopstateNavigationDfd.resolve();
-    pendingPopstateNavigationDfd = null;
-    if (typeof to === "number") {
-      if (!pendingPopstateNavigationDfd) {
-        pendingPopstateNavigationDfd = createDeferred();
-      }
-      let promise = pendingPopstateNavigationDfd.promise;
-      init.history.go(to);
-      return promise;
-    }
-    let normalizedPath = normalizeTo(
-      state.location,
-      state.matches,
-      basename,
-      to,
-      opts == null ? void 0 : opts.fromRouteId,
-      opts == null ? void 0 : opts.relative
-    );
-    let { path, submission, error } = normalizeNavigateOptions(
-      false,
-      normalizedPath,
-      opts
-    );
-    let maskPath;
-    if (opts == null ? void 0 : opts.unstable_mask) {
-      let partialPath = typeof opts.unstable_mask === "string" ? parsePath(opts.unstable_mask) : {
-        ...state.location.unstable_mask,
-        ...opts.unstable_mask
-      };
-      maskPath = {
-        pathname: "",
-        search: "",
-        hash: "",
-        ...partialPath
-      };
-    }
-    let currentLocation = state.location;
-    let nextLocation = createLocation(
-      currentLocation,
-      path,
-      opts && opts.state,
-      void 0,
-      maskPath
-    );
-    nextLocation = {
-      ...nextLocation,
-      ...init.history.encodeLocation(nextLocation)
-    };
-    let userReplace = opts && opts.replace != null ? opts.replace : void 0;
-    let historyAction = "PUSH";
-    if (userReplace === true) {
-      historyAction = "REPLACE";
-    } else if (userReplace === false) ;
-    else if (submission != null && isMutationMethod(submission.formMethod) && submission.formAction === state.location.pathname + state.location.search) {
-      historyAction = "REPLACE";
-    }
-    let preventScrollReset = opts && "preventScrollReset" in opts ? opts.preventScrollReset === true : void 0;
-    let flushSync = (opts && opts.flushSync) === true;
-    let blockerKey = shouldBlockNavigation({
-      currentLocation,
-      nextLocation,
-      historyAction
-    });
-    if (blockerKey) {
-      updateBlocker(blockerKey, {
-        state: "blocked",
-        location: nextLocation,
-        proceed() {
-          updateBlocker(blockerKey, {
-            state: "proceeding",
-            proceed: void 0,
-            reset: void 0,
-            location: nextLocation
-          });
-          navigate(to, opts);
-        },
-        reset() {
-          let blockers = new Map(state.blockers);
-          blockers.set(blockerKey, IDLE_BLOCKER);
-          updateState({ blockers });
-        }
-      });
-      return;
-    }
-    await startNavigation(historyAction, nextLocation, {
-      submission,
-      // Send through the formData serialization error if we have one so we can
-      // render at the right error boundary after we match routes
-      pendingError: error,
-      preventScrollReset,
-      replace: opts && opts.replace,
-      enableViewTransition: opts && opts.viewTransition,
-      flushSync,
-      callSiteDefaultShouldRevalidate: opts && opts.unstable_defaultShouldRevalidate
-    });
-  }
-  function revalidate() {
-    if (!pendingRevalidationDfd) {
-      pendingRevalidationDfd = createDeferred();
-    }
-    interruptActiveLoads();
-    updateState({ revalidation: "loading" });
-    let promise = pendingRevalidationDfd.promise;
-    if (state.navigation.state === "submitting") {
-      return promise;
-    }
-    if (state.navigation.state === "idle") {
-      startNavigation(state.historyAction, state.location, {
-        startUninterruptedRevalidation: true
-      });
-      return promise;
-    }
-    startNavigation(
-      pendingAction || state.historyAction,
-      state.navigation.location,
-      {
-        overrideNavigation: state.navigation,
-        // Proxy through any rending view transition
-        enableViewTransition: pendingViewTransitionEnabled === true
-      }
-    );
-    return promise;
-  }
-  async function startNavigation(historyAction, location2, opts) {
-    pendingNavigationController && pendingNavigationController.abort();
-    pendingNavigationController = null;
-    pendingAction = historyAction;
-    isUninterruptedRevalidation = (opts && opts.startUninterruptedRevalidation) === true;
-    saveScrollPosition(state.location, state.matches);
-    pendingPreventScrollReset = (opts && opts.preventScrollReset) === true;
-    pendingViewTransitionEnabled = (opts && opts.enableViewTransition) === true;
-    let routesToUse = inFlightDataRoutes || dataRoutes;
-    let loadingNavigation = opts && opts.overrideNavigation;
-    let matches = (opts == null ? void 0 : opts.initialHydration) && state.matches && state.matches.length > 0 && !initialMatchesIsFOW ? (
-      // `matchRoutes()` has already been called if we're in here via `router.initialize()`
-      state.matches
-    ) : matchRoutes(routesToUse, location2, basename);
-    let flushSync = (opts && opts.flushSync) === true;
-    if (matches && state.initialized && !isRevalidationRequired && isHashChangeOnly(state.location, location2) && !(opts && opts.submission && isMutationMethod(opts.submission.formMethod))) {
-      completeNavigation(location2, { matches }, { flushSync });
-      return;
-    }
-    let fogOfWar = checkFogOfWar(matches, routesToUse, location2.pathname);
-    if (fogOfWar.active && fogOfWar.matches) {
-      matches = fogOfWar.matches;
-    }
-    if (!matches) {
-      let { error, notFoundMatches, route } = handleNavigational404(
-        location2.pathname
-      );
-      completeNavigation(
-        location2,
-        {
-          matches: notFoundMatches,
-          loaderData: {},
-          errors: {
-            [route.id]: error
-          }
-        },
-        { flushSync }
-      );
-      return;
-    }
-    pendingNavigationController = new AbortController();
-    let request = createClientSideRequest(
-      init.history,
-      location2,
-      pendingNavigationController.signal,
-      opts && opts.submission
-    );
-    let scopedContext = init.getContext ? await init.getContext() : new RouterContextProvider();
-    let pendingActionResult;
-    if (opts && opts.pendingError) {
-      pendingActionResult = [
-        findNearestBoundary(matches).route.id,
-        { type: "error", error: opts.pendingError }
-      ];
-    } else if (opts && opts.submission && isMutationMethod(opts.submission.formMethod)) {
-      let actionResult = await handleAction(
-        request,
-        location2,
-        opts.submission,
-        matches,
-        scopedContext,
-        fogOfWar.active,
-        opts && opts.initialHydration === true,
-        { replace: opts.replace, flushSync }
-      );
-      if (actionResult.shortCircuited) {
-        return;
-      }
-      if (actionResult.pendingActionResult) {
-        let [routeId, result] = actionResult.pendingActionResult;
-        if (isErrorResult(result) && isRouteErrorResponse(result.error) && result.error.status === 404) {
-          pendingNavigationController = null;
-          completeNavigation(location2, {
-            matches: actionResult.matches,
-            loaderData: {},
-            errors: {
-              [routeId]: result.error
-            }
-          });
-          return;
-        }
-      }
-      matches = actionResult.matches || matches;
-      pendingActionResult = actionResult.pendingActionResult;
-      loadingNavigation = getLoadingNavigation(location2, opts.submission);
-      flushSync = false;
-      fogOfWar.active = false;
-      request = createClientSideRequest(
-        init.history,
-        request.url,
-        request.signal
-      );
-    }
-    let {
-      shortCircuited,
-      matches: updatedMatches,
-      loaderData,
-      errors
-    } = await handleLoaders(
-      request,
-      location2,
-      matches,
-      scopedContext,
-      fogOfWar.active,
-      loadingNavigation,
-      opts && opts.submission,
-      opts && opts.fetcherSubmission,
-      opts && opts.replace,
-      opts && opts.initialHydration === true,
-      flushSync,
-      pendingActionResult,
-      opts && opts.callSiteDefaultShouldRevalidate
-    );
-    if (shortCircuited) {
-      return;
-    }
-    pendingNavigationController = null;
-    completeNavigation(location2, {
-      matches: updatedMatches || matches,
-      ...getActionDataForCommit(pendingActionResult),
-      loaderData,
-      errors
-    });
-  }
-  async function handleAction(request, location2, submission, matches, scopedContext, isFogOfWar, initialHydration, opts = {}) {
-    interruptActiveLoads();
-    let navigation = getSubmittingNavigation(location2, submission);
-    updateState({ navigation }, { flushSync: opts.flushSync === true });
-    if (isFogOfWar) {
-      let discoverResult = await discoverRoutes(
-        matches,
-        location2.pathname,
-        request.signal
-      );
-      if (discoverResult.type === "aborted") {
-        return { shortCircuited: true };
-      } else if (discoverResult.type === "error") {
-        if (discoverResult.partialMatches.length === 0) {
-          let { matches: matches2, route } = getShortCircuitMatches(dataRoutes);
-          return {
-            matches: matches2,
-            pendingActionResult: [
-              route.id,
-              {
-                type: "error",
-                error: discoverResult.error
-              }
-            ]
-          };
-        }
-        let boundaryId = findNearestBoundary(discoverResult.partialMatches).route.id;
-        return {
-          matches: discoverResult.partialMatches,
-          pendingActionResult: [
-            boundaryId,
-            {
-              type: "error",
-              error: discoverResult.error
-            }
-          ]
-        };
-      } else if (!discoverResult.matches) {
-        let { notFoundMatches, error, route } = handleNavigational404(
-          location2.pathname
-        );
-        return {
-          matches: notFoundMatches,
-          pendingActionResult: [
-            route.id,
-            {
-              type: "error",
-              error
-            }
-          ]
-        };
-      } else {
-        matches = discoverResult.matches;
-      }
-    }
-    let result;
-    let actionMatch = getTargetMatch(matches, location2);
-    if (!actionMatch.route.action && !actionMatch.route.lazy) {
-      result = {
-        type: "error",
-        error: getInternalRouterError(405, {
-          method: request.method,
-          pathname: location2.pathname,
-          routeId: actionMatch.route.id
-        })
-      };
-    } else {
-      let dsMatches = getTargetedDataStrategyMatches(
-        mapRouteProperties2,
-        manifest,
-        request,
-        location2,
-        matches,
-        actionMatch,
-        initialHydration ? [] : hydrationRouteProperties2,
-        scopedContext
-      );
-      let results = await callDataStrategy(
-        request,
-        location2,
-        dsMatches,
-        scopedContext,
-        null
-      );
-      result = results[actionMatch.route.id];
-      if (!result) {
-        for (let match of matches) {
-          if (results[match.route.id]) {
-            result = results[match.route.id];
-            break;
-          }
-        }
-      }
-      if (request.signal.aborted) {
-        return { shortCircuited: true };
-      }
-    }
-    if (isRedirectResult(result)) {
-      let replace2;
-      if (opts && opts.replace != null) {
-        replace2 = opts.replace;
-      } else {
-        let location22 = normalizeRedirectLocation(
-          result.response.headers.get("Location"),
-          new URL(request.url),
-          basename,
-          init.history
-        );
-        replace2 = location22 === state.location.pathname + state.location.search;
-      }
-      await startRedirectNavigation(request, result, true, {
-        submission,
-        replace: replace2
-      });
-      return { shortCircuited: true };
-    }
-    if (isErrorResult(result)) {
-      let boundaryMatch = findNearestBoundary(matches, actionMatch.route.id);
-      if ((opts && opts.replace) !== true) {
-        pendingAction = "PUSH";
-      }
-      return {
-        matches,
-        pendingActionResult: [
-          boundaryMatch.route.id,
-          result,
-          actionMatch.route.id
-        ]
-      };
-    }
-    return {
-      matches,
-      pendingActionResult: [actionMatch.route.id, result]
-    };
-  }
-  async function handleLoaders(request, location2, matches, scopedContext, isFogOfWar, overrideNavigation, submission, fetcherSubmission, replace2, initialHydration, flushSync, pendingActionResult, callSiteDefaultShouldRevalidate) {
-    let loadingNavigation = overrideNavigation || getLoadingNavigation(location2, submission);
-    let activeSubmission = submission || fetcherSubmission || getSubmissionFromNavigation(loadingNavigation);
-    let shouldUpdateNavigationState = !isUninterruptedRevalidation && !initialHydration;
-    if (isFogOfWar) {
-      if (shouldUpdateNavigationState) {
-        let actionData = getUpdatedActionData(pendingActionResult);
-        updateState(
-          {
-            navigation: loadingNavigation,
-            ...actionData !== void 0 ? { actionData } : {}
-          },
-          {
-            flushSync
-          }
-        );
-      }
-      let discoverResult = await discoverRoutes(
-        matches,
-        location2.pathname,
-        request.signal
-      );
-      if (discoverResult.type === "aborted") {
-        return { shortCircuited: true };
-      } else if (discoverResult.type === "error") {
-        if (discoverResult.partialMatches.length === 0) {
-          let { matches: matches2, route } = getShortCircuitMatches(dataRoutes);
-          return {
-            matches: matches2,
-            loaderData: {},
-            errors: {
-              [route.id]: discoverResult.error
-            }
-          };
-        }
-        let boundaryId = findNearestBoundary(discoverResult.partialMatches).route.id;
-        return {
-          matches: discoverResult.partialMatches,
-          loaderData: {},
-          errors: {
-            [boundaryId]: discoverResult.error
-          }
-        };
-      } else if (!discoverResult.matches) {
-        let { error, notFoundMatches, route } = handleNavigational404(
-          location2.pathname
-        );
-        return {
-          matches: notFoundMatches,
-          loaderData: {},
-          errors: {
-            [route.id]: error
-          }
-        };
-      } else {
-        matches = discoverResult.matches;
-      }
-    }
-    let routesToUse = inFlightDataRoutes || dataRoutes;
-    let { dsMatches, revalidatingFetchers } = getMatchesToLoad(
-      request,
-      scopedContext,
-      mapRouteProperties2,
-      manifest,
-      init.history,
-      state,
-      matches,
-      activeSubmission,
-      location2,
-      initialHydration ? [] : hydrationRouteProperties2,
-      initialHydration === true,
-      isRevalidationRequired,
-      cancelledFetcherLoads,
-      fetchersQueuedForDeletion,
-      fetchLoadMatches,
-      fetchRedirectIds,
-      routesToUse,
-      basename,
-      init.patchRoutesOnNavigation != null,
-      pendingActionResult,
-      callSiteDefaultShouldRevalidate
-    );
-    pendingNavigationLoadId = ++incrementingLoadId;
-    if (!init.dataStrategy && !dsMatches.some((m) => m.shouldLoad) && !dsMatches.some(
-      (m) => m.route.middleware && m.route.middleware.length > 0
-    ) && revalidatingFetchers.length === 0) {
-      let updatedFetchers2 = markFetchRedirectsDone();
-      completeNavigation(
-        location2,
-        {
-          matches,
-          loaderData: {},
-          // Commit pending error if we're short circuiting
-          errors: pendingActionResult && isErrorResult(pendingActionResult[1]) ? { [pendingActionResult[0]]: pendingActionResult[1].error } : null,
-          ...getActionDataForCommit(pendingActionResult),
-          ...updatedFetchers2 ? { fetchers: new Map(state.fetchers) } : {}
-        },
-        { flushSync }
-      );
-      return { shortCircuited: true };
-    }
-    if (shouldUpdateNavigationState) {
-      let updates = {};
-      if (!isFogOfWar) {
-        updates.navigation = loadingNavigation;
-        let actionData = getUpdatedActionData(pendingActionResult);
-        if (actionData !== void 0) {
-          updates.actionData = actionData;
-        }
-      }
-      if (revalidatingFetchers.length > 0) {
-        updates.fetchers = getUpdatedRevalidatingFetchers(revalidatingFetchers);
-      }
-      updateState(updates, { flushSync });
-    }
-    revalidatingFetchers.forEach((rf) => {
-      abortFetcher(rf.key);
-      if (rf.controller) {
-        fetchControllers.set(rf.key, rf.controller);
-      }
-    });
-    let abortPendingFetchRevalidations = () => revalidatingFetchers.forEach((f) => abortFetcher(f.key));
-    if (pendingNavigationController) {
-      pendingNavigationController.signal.addEventListener(
-        "abort",
-        abortPendingFetchRevalidations
-      );
-    }
-    let { loaderResults, fetcherResults } = await callLoadersAndMaybeResolveData(
-      dsMatches,
-      revalidatingFetchers,
-      request,
-      location2,
-      scopedContext
-    );
-    if (request.signal.aborted) {
-      return { shortCircuited: true };
-    }
-    if (pendingNavigationController) {
-      pendingNavigationController.signal.removeEventListener(
-        "abort",
-        abortPendingFetchRevalidations
-      );
-    }
-    revalidatingFetchers.forEach((rf) => fetchControllers.delete(rf.key));
-    let redirect2 = findRedirect(loaderResults);
-    if (redirect2) {
-      await startRedirectNavigation(request, redirect2.result, true, {
-        replace: replace2
-      });
-      return { shortCircuited: true };
-    }
-    redirect2 = findRedirect(fetcherResults);
-    if (redirect2) {
-      fetchRedirectIds.add(redirect2.key);
-      await startRedirectNavigation(request, redirect2.result, true, {
-        replace: replace2
-      });
-      return { shortCircuited: true };
-    }
-    let { loaderData, errors } = processLoaderData(
-      state,
-      matches,
-      loaderResults,
-      pendingActionResult,
-      revalidatingFetchers,
-      fetcherResults
-    );
-    if (initialHydration && state.errors) {
-      errors = { ...state.errors, ...errors };
-    }
-    let updatedFetchers = markFetchRedirectsDone();
-    let didAbortFetchLoads = abortStaleFetchLoads(pendingNavigationLoadId);
-    let shouldUpdateFetchers = updatedFetchers || didAbortFetchLoads || revalidatingFetchers.length > 0;
-    return {
-      matches,
-      loaderData,
-      errors,
-      ...shouldUpdateFetchers ? { fetchers: new Map(state.fetchers) } : {}
-    };
-  }
-  function getUpdatedActionData(pendingActionResult) {
-    if (pendingActionResult && !isErrorResult(pendingActionResult[1])) {
-      return {
-        [pendingActionResult[0]]: pendingActionResult[1].data
-      };
-    } else if (state.actionData) {
-      if (Object.keys(state.actionData).length === 0) {
-        return null;
-      } else {
-        return state.actionData;
-      }
-    }
-  }
-  function getUpdatedRevalidatingFetchers(revalidatingFetchers) {
-    revalidatingFetchers.forEach((rf) => {
-      let fetcher = state.fetchers.get(rf.key);
-      let revalidatingFetcher = getLoadingFetcher(
-        void 0,
-        fetcher ? fetcher.data : void 0
-      );
-      state.fetchers.set(rf.key, revalidatingFetcher);
-    });
-    return new Map(state.fetchers);
-  }
-  async function fetch2(key, routeId, href2, opts) {
-    abortFetcher(key);
-    let flushSync = (opts && opts.flushSync) === true;
-    let routesToUse = inFlightDataRoutes || dataRoutes;
-    let normalizedPath = normalizeTo(
-      state.location,
-      state.matches,
-      basename,
-      href2,
-      routeId,
-      opts == null ? void 0 : opts.relative
-    );
-    let matches = matchRoutes(routesToUse, normalizedPath, basename);
-    let fogOfWar = checkFogOfWar(matches, routesToUse, normalizedPath);
-    if (fogOfWar.active && fogOfWar.matches) {
-      matches = fogOfWar.matches;
-    }
-    if (!matches) {
-      setFetcherError(
-        key,
-        routeId,
-        getInternalRouterError(404, { pathname: normalizedPath }),
-        { flushSync }
-      );
-      return;
-    }
-    let { path, submission, error } = normalizeNavigateOptions(
-      true,
-      normalizedPath,
-      opts
-    );
-    if (error) {
-      setFetcherError(key, routeId, error, { flushSync });
-      return;
-    }
-    let scopedContext = init.getContext ? await init.getContext() : new RouterContextProvider();
-    let preventScrollReset = (opts && opts.preventScrollReset) === true;
-    if (submission && isMutationMethod(submission.formMethod)) {
-      await handleFetcherAction(
-        key,
-        routeId,
-        path,
-        matches,
-        scopedContext,
-        fogOfWar.active,
-        flushSync,
-        preventScrollReset,
-        submission,
-        opts && opts.unstable_defaultShouldRevalidate
-      );
-      return;
-    }
-    fetchLoadMatches.set(key, { routeId, path });
-    await handleFetcherLoader(
-      key,
-      routeId,
-      path,
-      matches,
-      scopedContext,
-      fogOfWar.active,
-      flushSync,
-      preventScrollReset,
-      submission
-    );
-  }
-  async function handleFetcherAction(key, routeId, path, requestMatches, scopedContext, isFogOfWar, flushSync, preventScrollReset, submission, callSiteDefaultShouldRevalidate) {
-    interruptActiveLoads();
-    fetchLoadMatches.delete(key);
-    let existingFetcher = state.fetchers.get(key);
-    updateFetcherState(key, getSubmittingFetcher(submission, existingFetcher), {
-      flushSync
-    });
-    let abortController = new AbortController();
-    let fetchRequest = createClientSideRequest(
-      init.history,
-      path,
-      abortController.signal,
-      submission
-    );
-    if (isFogOfWar) {
-      let discoverResult = await discoverRoutes(
-        requestMatches,
-        new URL(fetchRequest.url).pathname,
-        fetchRequest.signal,
-        key
-      );
-      if (discoverResult.type === "aborted") {
-        return;
-      } else if (discoverResult.type === "error") {
-        setFetcherError(key, routeId, discoverResult.error, { flushSync });
-        return;
-      } else if (!discoverResult.matches) {
-        setFetcherError(
-          key,
-          routeId,
-          getInternalRouterError(404, { pathname: path }),
-          { flushSync }
-        );
-        return;
-      } else {
-        requestMatches = discoverResult.matches;
-      }
-    }
-    let match = getTargetMatch(requestMatches, path);
-    if (!match.route.action && !match.route.lazy) {
-      let error = getInternalRouterError(405, {
-        method: submission.formMethod,
-        pathname: path,
-        routeId
-      });
-      setFetcherError(key, routeId, error, { flushSync });
-      return;
-    }
-    fetchControllers.set(key, abortController);
-    let originatingLoadId = incrementingLoadId;
-    let fetchMatches = getTargetedDataStrategyMatches(
-      mapRouteProperties2,
-      manifest,
-      fetchRequest,
-      path,
-      requestMatches,
-      match,
-      hydrationRouteProperties2,
-      scopedContext
-    );
-    let actionResults = await callDataStrategy(
-      fetchRequest,
-      path,
-      fetchMatches,
-      scopedContext,
-      key
-    );
-    let actionResult = actionResults[match.route.id];
-    if (!actionResult) {
-      for (let match2 of fetchMatches) {
-        if (actionResults[match2.route.id]) {
-          actionResult = actionResults[match2.route.id];
-          break;
-        }
-      }
-    }
-    if (fetchRequest.signal.aborted) {
-      if (fetchControllers.get(key) === abortController) {
-        fetchControllers.delete(key);
-      }
-      return;
-    }
-    if (fetchersQueuedForDeletion.has(key)) {
-      if (isRedirectResult(actionResult) || isErrorResult(actionResult)) {
-        updateFetcherState(key, getDoneFetcher(void 0));
-        return;
-      }
-    } else {
-      if (isRedirectResult(actionResult)) {
-        fetchControllers.delete(key);
-        if (pendingNavigationLoadId > originatingLoadId) {
-          updateFetcherState(key, getDoneFetcher(void 0));
-          return;
-        } else {
-          fetchRedirectIds.add(key);
-          updateFetcherState(key, getLoadingFetcher(submission));
-          return startRedirectNavigation(fetchRequest, actionResult, false, {
-            fetcherSubmission: submission,
-            preventScrollReset
-          });
-        }
-      }
-      if (isErrorResult(actionResult)) {
-        setFetcherError(key, routeId, actionResult.error);
-        return;
-      }
-    }
-    let nextLocation = state.navigation.location || state.location;
-    let revalidationRequest = createClientSideRequest(
-      init.history,
-      nextLocation,
-      abortController.signal
-    );
-    let routesToUse = inFlightDataRoutes || dataRoutes;
-    let matches = state.navigation.state !== "idle" ? matchRoutes(routesToUse, state.navigation.location, basename) : state.matches;
-    invariant$1(matches, "Didn't find any matches after fetcher action");
-    let loadId = ++incrementingLoadId;
-    fetchReloadIds.set(key, loadId);
-    let loadFetcher = getLoadingFetcher(submission, actionResult.data);
-    state.fetchers.set(key, loadFetcher);
-    let { dsMatches, revalidatingFetchers } = getMatchesToLoad(
-      revalidationRequest,
-      scopedContext,
-      mapRouteProperties2,
-      manifest,
-      init.history,
-      state,
-      matches,
-      submission,
-      nextLocation,
-      hydrationRouteProperties2,
-      false,
-      isRevalidationRequired,
-      cancelledFetcherLoads,
-      fetchersQueuedForDeletion,
-      fetchLoadMatches,
-      fetchRedirectIds,
-      routesToUse,
-      basename,
-      init.patchRoutesOnNavigation != null,
-      [match.route.id, actionResult],
-      callSiteDefaultShouldRevalidate
-    );
-    revalidatingFetchers.filter((rf) => rf.key !== key).forEach((rf) => {
-      let staleKey = rf.key;
-      let existingFetcher2 = state.fetchers.get(staleKey);
-      let revalidatingFetcher = getLoadingFetcher(
-        void 0,
-        existingFetcher2 ? existingFetcher2.data : void 0
-      );
-      state.fetchers.set(staleKey, revalidatingFetcher);
-      abortFetcher(staleKey);
-      if (rf.controller) {
-        fetchControllers.set(staleKey, rf.controller);
-      }
-    });
-    updateState({ fetchers: new Map(state.fetchers) });
-    let abortPendingFetchRevalidations = () => revalidatingFetchers.forEach((rf) => abortFetcher(rf.key));
-    abortController.signal.addEventListener(
-      "abort",
-      abortPendingFetchRevalidations
-    );
-    let { loaderResults, fetcherResults } = await callLoadersAndMaybeResolveData(
-      dsMatches,
-      revalidatingFetchers,
-      revalidationRequest,
-      nextLocation,
-      scopedContext
-    );
-    if (abortController.signal.aborted) {
-      return;
-    }
-    abortController.signal.removeEventListener(
-      "abort",
-      abortPendingFetchRevalidations
-    );
-    fetchReloadIds.delete(key);
-    fetchControllers.delete(key);
-    revalidatingFetchers.forEach((r) => fetchControllers.delete(r.key));
-    if (state.fetchers.has(key)) {
-      let doneFetcher = getDoneFetcher(actionResult.data);
-      state.fetchers.set(key, doneFetcher);
-    }
-    let redirect2 = findRedirect(loaderResults);
-    if (redirect2) {
-      return startRedirectNavigation(
-        revalidationRequest,
-        redirect2.result,
-        false,
-        { preventScrollReset }
-      );
-    }
-    redirect2 = findRedirect(fetcherResults);
-    if (redirect2) {
-      fetchRedirectIds.add(redirect2.key);
-      return startRedirectNavigation(
-        revalidationRequest,
-        redirect2.result,
-        false,
-        { preventScrollReset }
-      );
-    }
-    let { loaderData, errors } = processLoaderData(
-      state,
-      matches,
-      loaderResults,
-      void 0,
-      revalidatingFetchers,
-      fetcherResults
-    );
-    abortStaleFetchLoads(loadId);
-    if (state.navigation.state === "loading" && loadId > pendingNavigationLoadId) {
-      invariant$1(pendingAction, "Expected pending action");
-      pendingNavigationController && pendingNavigationController.abort();
-      completeNavigation(state.navigation.location, {
-        matches,
-        loaderData,
-        errors,
-        fetchers: new Map(state.fetchers)
-      });
-    } else {
-      updateState({
-        errors,
-        loaderData: mergeLoaderData(
-          state.loaderData,
-          loaderData,
-          matches,
-          errors
-        ),
-        fetchers: new Map(state.fetchers)
-      });
-      isRevalidationRequired = false;
-    }
-  }
-  async function handleFetcherLoader(key, routeId, path, matches, scopedContext, isFogOfWar, flushSync, preventScrollReset, submission) {
-    let existingFetcher = state.fetchers.get(key);
-    updateFetcherState(
-      key,
-      getLoadingFetcher(
-        submission,
-        existingFetcher ? existingFetcher.data : void 0
-      ),
-      { flushSync }
-    );
-    let abortController = new AbortController();
-    let fetchRequest = createClientSideRequest(
-      init.history,
-      path,
-      abortController.signal
-    );
-    if (isFogOfWar) {
-      let discoverResult = await discoverRoutes(
-        matches,
-        new URL(fetchRequest.url).pathname,
-        fetchRequest.signal,
-        key
-      );
-      if (discoverResult.type === "aborted") {
-        return;
-      } else if (discoverResult.type === "error") {
-        setFetcherError(key, routeId, discoverResult.error, { flushSync });
-        return;
-      } else if (!discoverResult.matches) {
-        setFetcherError(
-          key,
-          routeId,
-          getInternalRouterError(404, { pathname: path }),
-          { flushSync }
-        );
-        return;
-      } else {
-        matches = discoverResult.matches;
-      }
-    }
-    let match = getTargetMatch(matches, path);
-    fetchControllers.set(key, abortController);
-    let originatingLoadId = incrementingLoadId;
-    let dsMatches = getTargetedDataStrategyMatches(
-      mapRouteProperties2,
-      manifest,
-      fetchRequest,
-      path,
-      matches,
-      match,
-      hydrationRouteProperties2,
-      scopedContext
-    );
-    let results = await callDataStrategy(
-      fetchRequest,
-      path,
-      dsMatches,
-      scopedContext,
-      key
-    );
-    let result = results[match.route.id];
-    if (fetchControllers.get(key) === abortController) {
-      fetchControllers.delete(key);
-    }
-    if (fetchRequest.signal.aborted) {
-      return;
-    }
-    if (fetchersQueuedForDeletion.has(key)) {
-      updateFetcherState(key, getDoneFetcher(void 0));
-      return;
-    }
-    if (isRedirectResult(result)) {
-      if (pendingNavigationLoadId > originatingLoadId) {
-        updateFetcherState(key, getDoneFetcher(void 0));
-        return;
-      } else {
-        fetchRedirectIds.add(key);
-        await startRedirectNavigation(fetchRequest, result, false, {
-          preventScrollReset
-        });
-        return;
-      }
-    }
-    if (isErrorResult(result)) {
-      setFetcherError(key, routeId, result.error);
-      return;
-    }
-    updateFetcherState(key, getDoneFetcher(result.data));
-  }
-  async function startRedirectNavigation(request, redirect2, isNavigation, {
-    submission,
-    fetcherSubmission,
-    preventScrollReset,
-    replace: replace2
-  } = {}) {
-    if (!isNavigation) {
-      pendingPopstateNavigationDfd == null ? void 0 : pendingPopstateNavigationDfd.resolve();
-      pendingPopstateNavigationDfd = null;
-    }
-    if (redirect2.response.headers.has("X-Remix-Revalidate")) {
-      isRevalidationRequired = true;
-    }
-    let location2 = redirect2.response.headers.get("Location");
-    invariant$1(location2, "Expected a Location header on the redirect Response");
-    location2 = normalizeRedirectLocation(
-      location2,
-      new URL(request.url),
-      basename,
-      init.history
-    );
-    let redirectLocation = createLocation(state.location, location2, {
-      _isRedirect: true
-    });
-    if (isBrowser3) {
-      let isDocumentReload = false;
-      if (redirect2.response.headers.has("X-Remix-Reload-Document")) {
-        isDocumentReload = true;
-      } else if (isAbsoluteUrl(location2)) {
-        const url = createBrowserURLImpl(location2, true);
-        isDocumentReload = // Hard reload if it's an absolute URL to a new origin
-        url.origin !== routerWindow.location.origin || // Hard reload if it's an absolute URL that does not match our basename
-        stripBasename(url.pathname, basename) == null;
-      }
-      if (isDocumentReload) {
-        if (replace2) {
-          routerWindow.location.replace(location2);
-        } else {
-          routerWindow.location.assign(location2);
-        }
-        return;
-      }
-    }
-    pendingNavigationController = null;
-    let redirectNavigationType = replace2 === true || redirect2.response.headers.has("X-Remix-Replace") ? "REPLACE" : "PUSH";
-    let { formMethod, formAction, formEncType } = state.navigation;
-    if (!submission && !fetcherSubmission && formMethod && formAction && formEncType) {
-      submission = getSubmissionFromNavigation(state.navigation);
-    }
-    let activeSubmission = submission || fetcherSubmission;
-    if (redirectPreserveMethodStatusCodes.has(redirect2.response.status) && activeSubmission && isMutationMethod(activeSubmission.formMethod)) {
-      await startNavigation(redirectNavigationType, redirectLocation, {
-        submission: {
-          ...activeSubmission,
-          formAction: location2
-        },
-        // Preserve these flags across redirects
-        preventScrollReset: preventScrollReset || pendingPreventScrollReset,
-        enableViewTransition: isNavigation ? pendingViewTransitionEnabled : void 0
-      });
-    } else {
-      let overrideNavigation = getLoadingNavigation(
-        redirectLocation,
-        submission
-      );
-      await startNavigation(redirectNavigationType, redirectLocation, {
-        overrideNavigation,
-        // Send fetcher submissions through for shouldRevalidate
-        fetcherSubmission,
-        // Preserve these flags across redirects
-        preventScrollReset: preventScrollReset || pendingPreventScrollReset,
-        enableViewTransition: isNavigation ? pendingViewTransitionEnabled : void 0
-      });
-    }
-  }
-  async function callDataStrategy(request, path, matches, scopedContext, fetcherKey) {
-    var _a2;
-    let results;
-    let dataResults = {};
-    try {
-      results = await callDataStrategyImpl(
-        dataStrategyImpl,
-        request,
-        path,
-        matches,
-        fetcherKey,
-        scopedContext,
-        false
-      );
-    } catch (e) {
-      matches.filter((m) => m.shouldLoad).forEach((m) => {
-        dataResults[m.route.id] = {
-          type: "error",
-          error: e
-        };
-      });
-      return dataResults;
-    }
-    if (request.signal.aborted) {
-      return dataResults;
-    }
-    if (!isMutationMethod(request.method)) {
-      for (let match of matches) {
-        if (((_a2 = results[match.route.id]) == null ? void 0 : _a2.type) === "error") {
-          break;
-        }
-        if (!results.hasOwnProperty(match.route.id) && !state.loaderData.hasOwnProperty(match.route.id) && (!state.errors || !state.errors.hasOwnProperty(match.route.id)) && match.shouldCallHandler()) {
-          results[match.route.id] = {
-            type: "error",
-            result: new Error(
-              `No result returned from dataStrategy for route ${match.route.id}`
-            )
-          };
-        }
-      }
-    }
-    for (let [routeId, result] of Object.entries(results)) {
-      if (isRedirectDataStrategyResult(result)) {
-        let response = result.result;
-        dataResults[routeId] = {
-          type: "redirect",
-          response: normalizeRelativeRoutingRedirectResponse(
-            response,
-            request,
-            routeId,
-            matches,
-            basename
-          )
-        };
-      } else {
-        dataResults[routeId] = await convertDataStrategyResultToDataResult(result);
-      }
-    }
-    return dataResults;
-  }
-  async function callLoadersAndMaybeResolveData(matches, fetchersToLoad, request, location2, scopedContext) {
-    let loaderResultsPromise = callDataStrategy(
-      request,
-      location2,
-      matches,
-      scopedContext,
-      null
-    );
-    let fetcherResultsPromise = Promise.all(
-      fetchersToLoad.map(async (f) => {
-        if (f.matches && f.match && f.request && f.controller) {
-          let results = await callDataStrategy(
-            f.request,
-            f.path,
-            f.matches,
-            scopedContext,
-            f.key
-          );
-          let result = results[f.match.route.id];
-          return { [f.key]: result };
-        } else {
-          return Promise.resolve({
-            [f.key]: {
-              type: "error",
-              error: getInternalRouterError(404, {
-                pathname: f.path
-              })
-            }
-          });
-        }
-      })
-    );
-    let loaderResults = await loaderResultsPromise;
-    let fetcherResults = (await fetcherResultsPromise).reduce(
-      (acc, r) => Object.assign(acc, r),
-      {}
-    );
-    return {
-      loaderResults,
-      fetcherResults
-    };
-  }
-  function interruptActiveLoads() {
-    isRevalidationRequired = true;
-    fetchLoadMatches.forEach((_, key) => {
-      if (fetchControllers.has(key)) {
-        cancelledFetcherLoads.add(key);
-      }
-      abortFetcher(key);
-    });
-  }
-  function updateFetcherState(key, fetcher, opts = {}) {
-    state.fetchers.set(key, fetcher);
-    updateState(
-      { fetchers: new Map(state.fetchers) },
-      { flushSync: (opts && opts.flushSync) === true }
-    );
-  }
-  function setFetcherError(key, routeId, error, opts = {}) {
-    let boundaryMatch = findNearestBoundary(state.matches, routeId);
-    deleteFetcher(key);
-    updateState(
-      {
-        errors: {
-          [boundaryMatch.route.id]: error
-        },
-        fetchers: new Map(state.fetchers)
-      },
-      { flushSync: (opts && opts.flushSync) === true }
-    );
-  }
-  function getFetcher(key) {
-    activeFetchers.set(key, (activeFetchers.get(key) || 0) + 1);
-    if (fetchersQueuedForDeletion.has(key)) {
-      fetchersQueuedForDeletion.delete(key);
-    }
-    return state.fetchers.get(key) || IDLE_FETCHER;
-  }
-  function resetFetcher(key, opts) {
-    abortFetcher(key, opts == null ? void 0 : opts.reason);
-    updateFetcherState(key, getDoneFetcher(null));
-  }
-  function deleteFetcher(key) {
-    let fetcher = state.fetchers.get(key);
-    if (fetchControllers.has(key) && !(fetcher && fetcher.state === "loading" && fetchReloadIds.has(key))) {
-      abortFetcher(key);
-    }
-    fetchLoadMatches.delete(key);
-    fetchReloadIds.delete(key);
-    fetchRedirectIds.delete(key);
-    fetchersQueuedForDeletion.delete(key);
-    cancelledFetcherLoads.delete(key);
-    state.fetchers.delete(key);
-  }
-  function queueFetcherForDeletion(key) {
-    let count = (activeFetchers.get(key) || 0) - 1;
-    if (count <= 0) {
-      activeFetchers.delete(key);
-      fetchersQueuedForDeletion.add(key);
-    } else {
-      activeFetchers.set(key, count);
-    }
-    updateState({ fetchers: new Map(state.fetchers) });
-  }
-  function abortFetcher(key, reason) {
-    let controller = fetchControllers.get(key);
-    if (controller) {
-      controller.abort(reason);
-      fetchControllers.delete(key);
-    }
-  }
-  function markFetchersDone(keys) {
-    for (let key of keys) {
-      let fetcher = getFetcher(key);
-      let doneFetcher = getDoneFetcher(fetcher.data);
-      state.fetchers.set(key, doneFetcher);
-    }
-  }
-  function markFetchRedirectsDone() {
-    let doneKeys = [];
-    let updatedFetchers = false;
-    for (let key of fetchRedirectIds) {
-      let fetcher = state.fetchers.get(key);
-      invariant$1(fetcher, `Expected fetcher: ${key}`);
-      if (fetcher.state === "loading") {
-        fetchRedirectIds.delete(key);
-        doneKeys.push(key);
-        updatedFetchers = true;
-      }
-    }
-    markFetchersDone(doneKeys);
-    return updatedFetchers;
-  }
-  function abortStaleFetchLoads(landedId) {
-    let yeetedKeys = [];
-    for (let [key, id] of fetchReloadIds) {
-      if (id < landedId) {
-        let fetcher = state.fetchers.get(key);
-        invariant$1(fetcher, `Expected fetcher: ${key}`);
-        if (fetcher.state === "loading") {
-          abortFetcher(key);
-          fetchReloadIds.delete(key);
-          yeetedKeys.push(key);
-        }
-      }
-    }
-    markFetchersDone(yeetedKeys);
-    return yeetedKeys.length > 0;
-  }
-  function getBlocker(key, fn) {
-    let blocker = state.blockers.get(key) || IDLE_BLOCKER;
-    if (blockerFunctions.get(key) !== fn) {
-      blockerFunctions.set(key, fn);
-    }
-    return blocker;
-  }
-  function deleteBlocker(key) {
-    state.blockers.delete(key);
-    blockerFunctions.delete(key);
-  }
-  function updateBlocker(key, newBlocker) {
-    let blocker = state.blockers.get(key) || IDLE_BLOCKER;
-    invariant$1(
-      blocker.state === "unblocked" && newBlocker.state === "blocked" || blocker.state === "blocked" && newBlocker.state === "blocked" || blocker.state === "blocked" && newBlocker.state === "proceeding" || blocker.state === "blocked" && newBlocker.state === "unblocked" || blocker.state === "proceeding" && newBlocker.state === "unblocked",
-      `Invalid blocker state transition: ${blocker.state} -> ${newBlocker.state}`
-    );
-    let blockers = new Map(state.blockers);
-    blockers.set(key, newBlocker);
-    updateState({ blockers });
-  }
-  function shouldBlockNavigation({
-    currentLocation,
-    nextLocation,
-    historyAction
-  }) {
-    if (blockerFunctions.size === 0) {
-      return;
-    }
-    if (blockerFunctions.size > 1) {
-      warning(false, "A router only supports one blocker at a time");
-    }
-    let entries = Array.from(blockerFunctions.entries());
-    let [blockerKey, blockerFunction] = entries[entries.length - 1];
-    let blocker = state.blockers.get(blockerKey);
-    if (blocker && blocker.state === "proceeding") {
-      return;
-    }
-    if (blockerFunction({ currentLocation, nextLocation, historyAction })) {
-      return blockerKey;
-    }
-  }
-  function handleNavigational404(pathname) {
-    let error = getInternalRouterError(404, { pathname });
-    let routesToUse = inFlightDataRoutes || dataRoutes;
-    let { matches, route } = getShortCircuitMatches(routesToUse);
-    return { notFoundMatches: matches, route, error };
-  }
-  function enableScrollRestoration(positions, getPosition, getKey) {
-    savedScrollPositions2 = positions;
-    getScrollPosition = getPosition;
-    getScrollRestorationKey2 = getKey || null;
-    if (!initialScrollRestored && state.navigation === IDLE_NAVIGATION) {
-      initialScrollRestored = true;
-      let y = getSavedScrollPosition(state.location, state.matches);
-      if (y != null) {
-        updateState({ restoreScrollPosition: y });
-      }
-    }
-    return () => {
-      savedScrollPositions2 = null;
-      getScrollPosition = null;
-      getScrollRestorationKey2 = null;
-    };
-  }
-  function getScrollKey(location2, matches) {
-    if (getScrollRestorationKey2) {
-      let key = getScrollRestorationKey2(
-        location2,
-        matches.map((m) => convertRouteMatchToUiMatch(m, state.loaderData))
-      );
-      return key || location2.key;
-    }
-    return location2.key;
-  }
-  function saveScrollPosition(location2, matches) {
-    if (savedScrollPositions2 && getScrollPosition) {
-      let key = getScrollKey(location2, matches);
-      savedScrollPositions2[key] = getScrollPosition();
-    }
-  }
-  function getSavedScrollPosition(location2, matches) {
-    if (savedScrollPositions2) {
-      let key = getScrollKey(location2, matches);
-      let y = savedScrollPositions2[key];
-      if (typeof y === "number") {
-        return y;
-      }
-    }
-    return null;
-  }
-  function checkFogOfWar(matches, routesToUse, pathname) {
-    if (init.patchRoutesOnNavigation) {
-      if (!matches) {
-        let fogMatches = matchRoutesImpl(
-          routesToUse,
-          pathname,
-          basename,
-          true
-        );
-        return { active: true, matches: fogMatches || [] };
-      } else {
-        if (Object.keys(matches[0].params).length > 0) {
-          let partialMatches = matchRoutesImpl(
-            routesToUse,
-            pathname,
-            basename,
-            true
-          );
-          return { active: true, matches: partialMatches };
-        }
-      }
-    }
-    return { active: false, matches: null };
-  }
-  async function discoverRoutes(matches, pathname, signal, fetcherKey) {
-    if (!init.patchRoutesOnNavigation) {
-      return { type: "success", matches };
-    }
-    let partialMatches = matches;
-    while (true) {
-      let isNonHMR = inFlightDataRoutes == null;
-      let routesToUse = inFlightDataRoutes || dataRoutes;
-      let localManifest = manifest;
-      try {
-        await init.patchRoutesOnNavigation({
-          signal,
-          path: pathname,
-          matches: partialMatches,
-          fetcherKey,
-          patch: (routeId, children) => {
-            if (signal.aborted) return;
-            patchRoutesImpl(
-              routeId,
-              children,
-              routesToUse,
-              localManifest,
-              mapRouteProperties2,
-              false
-            );
-          }
-        });
-      } catch (e) {
-        return { type: "error", error: e, partialMatches };
-      } finally {
-        if (isNonHMR && !signal.aborted) {
-          dataRoutes = [...dataRoutes];
-        }
-      }
-      if (signal.aborted) {
-        return { type: "aborted" };
-      }
-      let newMatches = matchRoutes(routesToUse, pathname, basename);
-      let newPartialMatches = null;
-      if (newMatches) {
-        if (Object.keys(newMatches[0].params).length === 0) {
-          return { type: "success", matches: newMatches };
-        } else {
-          newPartialMatches = matchRoutesImpl(
-            routesToUse,
-            pathname,
-            basename,
-            true
-          );
-          let matchedDeeper = newPartialMatches && partialMatches.length < newPartialMatches.length && compareMatches(
-            partialMatches,
-            newPartialMatches.slice(0, partialMatches.length)
-          );
-          if (!matchedDeeper) {
-            return { type: "success", matches: newMatches };
-          }
-        }
-      }
-      if (!newPartialMatches) {
-        newPartialMatches = matchRoutesImpl(
-          routesToUse,
-          pathname,
-          basename,
-          true
-        );
-      }
-      if (!newPartialMatches || compareMatches(partialMatches, newPartialMatches)) {
-        return { type: "success", matches: null };
-      }
-      partialMatches = newPartialMatches;
-    }
-  }
-  function compareMatches(a, b) {
-    return a.length === b.length && a.every((m, i) => m.route.id === b[i].route.id);
-  }
-  function _internalSetRoutes(newRoutes) {
-    manifest = {};
-    inFlightDataRoutes = convertRoutesToDataRoutes(
-      newRoutes,
-      mapRouteProperties2,
-      void 0,
-      manifest
-    );
-  }
-  function patchRoutes(routeId, children, unstable_allowElementMutations = false) {
-    let isNonHMR = inFlightDataRoutes == null;
-    let routesToUse = inFlightDataRoutes || dataRoutes;
-    patchRoutesImpl(
-      routeId,
-      children,
-      routesToUse,
-      manifest,
-      mapRouteProperties2,
-      unstable_allowElementMutations
-    );
-    if (isNonHMR) {
-      dataRoutes = [...dataRoutes];
-      updateState({});
-    }
-  }
-  router2 = {
-    get basename() {
-      return basename;
-    },
-    get future() {
-      return future;
-    },
-    get state() {
-      return state;
-    },
-    get routes() {
-      return dataRoutes;
-    },
-    get window() {
-      return routerWindow;
-    },
-    initialize,
-    subscribe,
-    enableScrollRestoration,
-    navigate,
-    fetch: fetch2,
-    revalidate,
-    // Passthrough to history-aware createHref used by useHref so we get proper
-    // hash-aware URLs in DOM paths
-    createHref: (to) => init.history.createHref(to),
-    encodeLocation: (to) => init.history.encodeLocation(to),
-    getFetcher,
-    resetFetcher,
-    deleteFetcher: queueFetcherForDeletion,
-    dispose,
-    getBlocker,
-    deleteBlocker,
-    patchRoutes,
-    _internalFetchControllers: fetchControllers,
-    // TODO: Remove setRoutes, it's temporary to avoid dealing with
-    // updating the tree while validating the update algorithm.
-    _internalSetRoutes,
-    _internalSetStateDoNotUseOrYouWillBreakYourApp(newState) {
-      updateState(newState);
-    }
-  };
-  if (init.unstable_instrumentations) {
-    router2 = instrumentClientSideRouter(
-      router2,
-      init.unstable_instrumentations.map((i) => i.router).filter(Boolean)
-    );
-  }
-  return router2;
-}
-function createStaticHandler(routes, opts) {
-  invariant$1(
-    routes.length > 0,
-    "You must provide a non-empty routes array to createStaticHandler"
-  );
-  let manifest = {};
-  let basename = (opts ? opts.basename : null) || "/";
-  let _mapRouteProperties = (opts == null ? void 0 : opts.mapRouteProperties) || defaultMapRouteProperties;
-  let mapRouteProperties2 = _mapRouteProperties;
-  ({
-    // unused in static handler
-    ...opts == null ? void 0 : opts.future
-  });
-  if (opts == null ? void 0 : opts.unstable_instrumentations) {
-    let instrumentations = opts.unstable_instrumentations;
-    mapRouteProperties2 = (route) => {
-      return {
-        ..._mapRouteProperties(route),
-        ...getRouteInstrumentationUpdates(
-          instrumentations.map((i) => i.route).filter(Boolean),
-          route
-        )
-      };
-    };
-  }
-  let dataRoutes = convertRoutesToDataRoutes(
-    routes,
-    mapRouteProperties2,
-    void 0,
-    manifest
-  );
-  async function query(request, {
-    requestContext,
-    filterMatchesToLoad,
-    skipLoaderErrorBubbling,
-    skipRevalidation,
-    dataStrategy,
-    generateMiddlewareResponse,
-    unstable_normalizePath
-  } = {}) {
-    let normalizePath = unstable_normalizePath || defaultNormalizePath;
-    let method = request.method;
-    let location2 = createLocation("", normalizePath(request), null, "default");
-    let matches = matchRoutes(dataRoutes, location2, basename);
-    requestContext = requestContext != null ? requestContext : new RouterContextProvider();
-    if (!isValidMethod(method) && method !== "HEAD") {
-      let error = getInternalRouterError(405, { method });
-      let { matches: methodNotAllowedMatches, route } = getShortCircuitMatches(dataRoutes);
-      let staticContext = {
-        basename,
-        location: location2,
-        matches: methodNotAllowedMatches,
-        loaderData: {},
-        actionData: null,
-        errors: {
-          [route.id]: error
-        },
-        statusCode: error.status,
-        loaderHeaders: {},
-        actionHeaders: {}
-      };
-      return generateMiddlewareResponse ? generateMiddlewareResponse(() => Promise.resolve(staticContext)) : staticContext;
-    } else if (!matches) {
-      let error = getInternalRouterError(404, { pathname: location2.pathname });
-      let { matches: notFoundMatches, route } = getShortCircuitMatches(dataRoutes);
-      let staticContext = {
-        basename,
-        location: location2,
-        matches: notFoundMatches,
-        loaderData: {},
-        actionData: null,
-        errors: {
-          [route.id]: error
-        },
-        statusCode: error.status,
-        loaderHeaders: {},
-        actionHeaders: {}
-      };
-      return generateMiddlewareResponse ? generateMiddlewareResponse(() => Promise.resolve(staticContext)) : staticContext;
-    }
-    if (generateMiddlewareResponse) {
-      invariant$1(
-        requestContext instanceof RouterContextProvider,
-        "When using middleware in `staticHandler.query()`, any provided `requestContext` must be an instance of `RouterContextProvider`"
-      );
-      try {
-        await loadLazyMiddlewareForMatches(
-          matches,
-          manifest,
-          mapRouteProperties2
-        );
-        let renderedStaticContext;
-        let response = await runServerMiddlewarePipeline(
-          {
-            request,
-            unstable_url: createDataFunctionUrl(request, location2),
-            unstable_pattern: getRoutePattern(matches),
-            matches,
-            params: matches[0].params,
-            // If we're calling middleware then it must be enabled so we can cast
-            // this to the proper type knowing it's not an `AppLoadContext`
-            context: requestContext
-          },
-          async () => {
-            let res = await generateMiddlewareResponse(
-              async (revalidationRequest, opts2 = {}) => {
-                let result2 = await queryImpl(
-                  revalidationRequest,
-                  location2,
-                  matches,
-                  requestContext,
-                  dataStrategy || null,
-                  skipLoaderErrorBubbling === true,
-                  null,
-                  "filterMatchesToLoad" in opts2 ? opts2.filterMatchesToLoad ?? null : filterMatchesToLoad ?? null,
-                  skipRevalidation === true
-                );
-                if (isResponse(result2)) {
-                  return result2;
-                }
-                renderedStaticContext = { location: location2, basename, ...result2 };
-                return renderedStaticContext;
-              }
-            );
-            return res;
-          },
-          async (error, routeId) => {
-            var _a2;
-            if (isRedirectResponse(error)) {
-              return error;
-            }
-            if (isResponse(error)) {
-              try {
-                error = new ErrorResponseImpl(
-                  error.status,
-                  error.statusText,
-                  await parseResponseBody(error)
-                );
-              } catch (e) {
-                error = e;
-              }
-            }
-            if (isDataWithResponseInit(error)) {
-              error = dataWithResponseInitToErrorResponse(error);
-            }
-            if (renderedStaticContext) {
-              if (routeId in renderedStaticContext.loaderData) {
-                renderedStaticContext.loaderData[routeId] = void 0;
-              }
-              let staticContext = getStaticContextFromError(
-                dataRoutes,
-                renderedStaticContext,
-                error,
-                skipLoaderErrorBubbling ? routeId : findNearestBoundary(matches, routeId).route.id
-              );
-              return generateMiddlewareResponse(
-                () => Promise.resolve(staticContext)
-              );
-            } else {
-              let boundaryRouteId = skipLoaderErrorBubbling ? routeId : findNearestBoundary(
-                matches,
-                ((_a2 = matches.find(
-                  (m) => m.route.id === routeId || m.route.loader
-                )) == null ? void 0 : _a2.route.id) || routeId
-              ).route.id;
-              let staticContext = {
-                matches,
-                location: location2,
-                basename,
-                loaderData: {},
-                actionData: null,
-                errors: {
-                  [boundaryRouteId]: error
-                },
-                statusCode: isRouteErrorResponse(error) ? error.status : 500,
-                actionHeaders: {},
-                loaderHeaders: {}
-              };
-              return generateMiddlewareResponse(
-                () => Promise.resolve(staticContext)
-              );
-            }
-          }
-        );
-        invariant$1(isResponse(response), "Expected a response in query()");
-        return response;
-      } catch (e) {
-        if (isResponse(e)) {
-          return e;
-        }
-        throw e;
-      }
-    }
-    let result = await queryImpl(
-      request,
-      location2,
-      matches,
-      requestContext,
-      dataStrategy || null,
-      skipLoaderErrorBubbling === true,
-      null,
-      filterMatchesToLoad || null,
-      skipRevalidation === true
-    );
-    if (isResponse(result)) {
-      return result;
-    }
-    return { location: location2, basename, ...result };
-  }
-  async function queryRoute(request, {
-    routeId,
-    requestContext,
-    dataStrategy,
-    generateMiddlewareResponse,
-    unstable_normalizePath
-  } = {}) {
-    let normalizePath = unstable_normalizePath || defaultNormalizePath;
-    let method = request.method;
-    let location2 = createLocation("", normalizePath(request), null, "default");
-    let matches = matchRoutes(dataRoutes, location2, basename);
-    requestContext = requestContext != null ? requestContext : new RouterContextProvider();
-    if (!isValidMethod(method) && method !== "HEAD" && method !== "OPTIONS") {
-      throw getInternalRouterError(405, { method });
-    } else if (!matches) {
-      throw getInternalRouterError(404, { pathname: location2.pathname });
-    }
-    let match = routeId ? matches.find((m) => m.route.id === routeId) : getTargetMatch(matches, location2);
-    if (routeId && !match) {
-      throw getInternalRouterError(403, {
-        pathname: location2.pathname,
-        routeId
-      });
-    } else if (!match) {
-      throw getInternalRouterError(404, { pathname: location2.pathname });
-    }
-    if (generateMiddlewareResponse) {
-      invariant$1(
-        requestContext instanceof RouterContextProvider,
-        "When using middleware in `staticHandler.queryRoute()`, any provided `requestContext` must be an instance of `RouterContextProvider`"
-      );
-      await loadLazyMiddlewareForMatches(matches, manifest, mapRouteProperties2);
-      let response = await runServerMiddlewarePipeline(
-        {
-          request,
-          unstable_url: createDataFunctionUrl(request, location2),
-          unstable_pattern: getRoutePattern(matches),
-          matches,
-          params: matches[0].params,
-          // If we're calling middleware then it must be enabled so we can cast
-          // this to the proper type knowing it's not an `AppLoadContext`
-          context: requestContext
-        },
-        async () => {
-          let res = await generateMiddlewareResponse(
-            async (innerRequest) => {
-              let result2 = await queryImpl(
-                innerRequest,
-                location2,
-                matches,
-                requestContext,
-                dataStrategy || null,
-                false,
-                match,
-                null,
-                false
-              );
-              let processed = handleQueryResult(result2);
-              return isResponse(processed) ? processed : typeof processed === "string" ? new Response(processed) : Response.json(processed);
-            }
-          );
-          return res;
-        },
-        (error) => {
-          if (isDataWithResponseInit(error)) {
-            return Promise.resolve(dataWithResponseInitToResponse(error));
-          }
-          if (isResponse(error)) {
-            return Promise.resolve(error);
-          }
-          throw error;
-        }
-      );
-      return response;
-    }
-    let result = await queryImpl(
-      request,
-      location2,
-      matches,
-      requestContext,
-      dataStrategy || null,
-      false,
-      match,
-      null,
-      false
-    );
-    return handleQueryResult(result);
-    function handleQueryResult(result2) {
-      if (isResponse(result2)) {
-        return result2;
-      }
-      let error = result2.errors ? Object.values(result2.errors)[0] : void 0;
-      if (error !== void 0) {
-        throw error;
-      }
-      if (result2.actionData) {
-        return Object.values(result2.actionData)[0];
-      }
-      if (result2.loaderData) {
-        return Object.values(result2.loaderData)[0];
-      }
-      return void 0;
-    }
-  }
-  async function queryImpl(request, location2, matches, requestContext, dataStrategy, skipLoaderErrorBubbling, routeMatch, filterMatchesToLoad, skipRevalidation) {
-    invariant$1(
-      request.signal,
-      "query()/queryRoute() requests must contain an AbortController signal"
-    );
-    try {
-      if (isMutationMethod(request.method)) {
-        let result2 = await submit(
-          request,
-          location2,
-          matches,
-          routeMatch || getTargetMatch(matches, location2),
-          requestContext,
-          dataStrategy,
-          skipLoaderErrorBubbling,
-          routeMatch != null,
-          filterMatchesToLoad,
-          skipRevalidation
-        );
-        return result2;
-      }
-      let result = await loadRouteData(
-        request,
-        location2,
-        matches,
-        requestContext,
-        dataStrategy,
-        skipLoaderErrorBubbling,
-        routeMatch,
-        filterMatchesToLoad
-      );
-      return isResponse(result) ? result : {
-        ...result,
-        actionData: null,
-        actionHeaders: {}
-      };
-    } catch (e) {
-      if (isDataStrategyResult(e) && isResponse(e.result)) {
-        if (e.type === "error") {
-          throw e.result;
-        }
-        return e.result;
-      }
-      if (isRedirectResponse(e)) {
-        return e;
-      }
-      throw e;
-    }
-  }
-  async function submit(request, location2, matches, actionMatch, requestContext, dataStrategy, skipLoaderErrorBubbling, isRouteRequest, filterMatchesToLoad, skipRevalidation) {
-    let result;
-    if (!actionMatch.route.action && !actionMatch.route.lazy) {
-      let error = getInternalRouterError(405, {
-        method: request.method,
-        pathname: new URL(request.url).pathname,
-        routeId: actionMatch.route.id
-      });
-      if (isRouteRequest) {
-        throw error;
-      }
-      result = {
-        type: "error",
-        error
-      };
-    } else {
-      let dsMatches = getTargetedDataStrategyMatches(
-        mapRouteProperties2,
-        manifest,
-        request,
-        location2,
-        matches,
-        actionMatch,
-        [],
-        requestContext
-      );
-      let results = await callDataStrategy(
-        request,
-        location2,
-        dsMatches,
-        isRouteRequest,
-        requestContext,
-        dataStrategy
-      );
-      result = results[actionMatch.route.id];
-      if (request.signal.aborted) {
-        throwStaticHandlerAbortedError(request, isRouteRequest);
-      }
-    }
-    if (isRedirectResult(result)) {
-      throw new Response(null, {
-        status: result.response.status,
-        headers: {
-          Location: result.response.headers.get("Location")
-        }
-      });
-    }
-    if (isRouteRequest) {
-      if (isErrorResult(result)) {
-        throw result.error;
-      }
-      return {
-        matches: [actionMatch],
-        loaderData: {},
-        actionData: { [actionMatch.route.id]: result.data },
-        errors: null,
-        // Note: statusCode + headers are unused here since queryRoute will
-        // return the raw Response or value
-        statusCode: 200,
-        loaderHeaders: {},
-        actionHeaders: {}
-      };
-    }
-    if (skipRevalidation) {
-      if (isErrorResult(result)) {
-        let boundaryMatch = skipLoaderErrorBubbling ? actionMatch : findNearestBoundary(matches, actionMatch.route.id);
-        return {
-          statusCode: isRouteErrorResponse(result.error) ? result.error.status : result.statusCode != null ? result.statusCode : 500,
-          actionData: null,
-          actionHeaders: {
-            ...result.headers ? { [actionMatch.route.id]: result.headers } : {}
-          },
-          matches,
-          loaderData: {},
-          errors: {
-            [boundaryMatch.route.id]: result.error
-          },
-          loaderHeaders: {}
-        };
-      } else {
-        return {
-          actionData: {
-            [actionMatch.route.id]: result.data
-          },
-          actionHeaders: result.headers ? { [actionMatch.route.id]: result.headers } : {},
-          matches,
-          loaderData: {},
-          errors: null,
-          statusCode: result.statusCode || 200,
-          loaderHeaders: {}
-        };
-      }
-    }
-    let loaderRequest = new Request(request.url, {
-      headers: request.headers,
-      redirect: request.redirect,
-      signal: request.signal
-    });
-    if (isErrorResult(result)) {
-      let boundaryMatch = skipLoaderErrorBubbling ? actionMatch : findNearestBoundary(matches, actionMatch.route.id);
-      let handlerContext2 = await loadRouteData(
-        loaderRequest,
-        location2,
-        matches,
-        requestContext,
-        dataStrategy,
-        skipLoaderErrorBubbling,
-        null,
-        filterMatchesToLoad,
-        [boundaryMatch.route.id, result]
-      );
-      return {
-        ...handlerContext2,
-        statusCode: isRouteErrorResponse(result.error) ? result.error.status : result.statusCode != null ? result.statusCode : 500,
-        actionData: null,
-        actionHeaders: {
-          ...result.headers ? { [actionMatch.route.id]: result.headers } : {}
-        }
-      };
-    }
-    let handlerContext = await loadRouteData(
-      loaderRequest,
-      location2,
-      matches,
-      requestContext,
-      dataStrategy,
-      skipLoaderErrorBubbling,
-      null,
-      filterMatchesToLoad
-    );
-    return {
-      ...handlerContext,
-      actionData: {
-        [actionMatch.route.id]: result.data
-      },
-      // action status codes take precedence over loader status codes
-      ...result.statusCode ? { statusCode: result.statusCode } : {},
-      actionHeaders: result.headers ? { [actionMatch.route.id]: result.headers } : {}
-    };
-  }
-  async function loadRouteData(request, location2, matches, requestContext, dataStrategy, skipLoaderErrorBubbling, routeMatch, filterMatchesToLoad, pendingActionResult) {
-    let isRouteRequest = routeMatch != null;
-    if (isRouteRequest && !(routeMatch == null ? void 0 : routeMatch.route.loader) && !(routeMatch == null ? void 0 : routeMatch.route.lazy)) {
-      throw getInternalRouterError(400, {
-        method: request.method,
-        pathname: new URL(request.url).pathname,
-        routeId: routeMatch == null ? void 0 : routeMatch.route.id
-      });
-    }
-    let dsMatches;
-    if (routeMatch) {
-      dsMatches = getTargetedDataStrategyMatches(
-        mapRouteProperties2,
-        manifest,
-        request,
-        location2,
-        matches,
-        routeMatch,
-        [],
-        requestContext
-      );
-    } else {
-      let maxIdx = pendingActionResult && isErrorResult(pendingActionResult[1]) ? (
-        // Up to but not including the boundary
-        matches.findIndex((m) => m.route.id === pendingActionResult[0]) - 1
-      ) : void 0;
-      let pattern = getRoutePattern(matches);
-      dsMatches = matches.map((match, index) => {
-        if (maxIdx != null && index > maxIdx) {
-          return getDataStrategyMatch(
-            mapRouteProperties2,
-            manifest,
-            request,
-            location2,
-            pattern,
-            match,
-            [],
-            requestContext,
-            false
-          );
-        }
-        return getDataStrategyMatch(
-          mapRouteProperties2,
-          manifest,
-          request,
-          location2,
-          pattern,
-          match,
-          [],
-          requestContext,
-          (match.route.loader || match.route.lazy) != null && (!filterMatchesToLoad || filterMatchesToLoad(match))
-        );
-      });
-    }
-    if (!dataStrategy && !dsMatches.some((m) => m.shouldLoad)) {
-      return {
-        matches,
-        loaderData: {},
-        errors: pendingActionResult && isErrorResult(pendingActionResult[1]) ? {
-          [pendingActionResult[0]]: pendingActionResult[1].error
-        } : null,
-        statusCode: 200,
-        loaderHeaders: {}
-      };
-    }
-    let results = await callDataStrategy(
-      request,
-      location2,
-      dsMatches,
-      isRouteRequest,
-      requestContext,
-      dataStrategy
-    );
-    if (request.signal.aborted) {
-      throwStaticHandlerAbortedError(request, isRouteRequest);
-    }
-    let handlerContext = processRouteLoaderData(
-      matches,
-      results,
-      pendingActionResult,
-      true,
-      skipLoaderErrorBubbling
-    );
-    return {
-      ...handlerContext,
-      matches
-    };
-  }
-  async function callDataStrategy(request, location2, matches, isRouteRequest, requestContext, dataStrategy) {
-    let results = await callDataStrategyImpl(
-      dataStrategy || defaultDataStrategy,
-      request,
-      location2,
-      matches,
-      null,
-      requestContext,
-      true
-    );
-    let dataResults = {};
-    await Promise.all(
-      matches.map(async (match) => {
-        if (!(match.route.id in results)) {
-          return;
-        }
-        let result = results[match.route.id];
-        if (isRedirectDataStrategyResult(result)) {
-          let response = result.result;
-          throw normalizeRelativeRoutingRedirectResponse(
-            response,
-            request,
-            match.route.id,
-            matches,
-            basename
-          );
-        }
-        if (isRouteRequest) {
-          if (isResponse(result.result)) {
-            throw result;
-          } else if (isDataWithResponseInit(result.result)) {
-            throw dataWithResponseInitToResponse(result.result);
-          }
-        }
-        dataResults[match.route.id] = await convertDataStrategyResultToDataResult(result);
-      })
-    );
-    return dataResults;
-  }
-  return {
-    dataRoutes,
-    query,
-    queryRoute
-  };
-}
-function getStaticContextFromError(routes, handlerContext, error, boundaryId) {
-  let errorBoundaryId = boundaryId || handlerContext._deepestRenderedBoundaryId || routes[0].id;
-  return {
-    ...handlerContext,
-    statusCode: isRouteErrorResponse(error) ? error.status : 500,
-    errors: {
-      [errorBoundaryId]: error
-    }
-  };
-}
-function throwStaticHandlerAbortedError(request, isRouteRequest) {
-  if (request.signal.reason !== void 0) {
-    throw request.signal.reason;
-  }
-  let method = isRouteRequest ? "queryRoute" : "query";
-  throw new Error(
-    `${method}() call aborted without an \`AbortSignal.reason\`: ${request.method} ${request.url}`
-  );
-}
-function isSubmissionNavigation(opts) {
-  return opts != null && ("formData" in opts && opts.formData != null || "body" in opts && opts.body !== void 0);
-}
-function defaultNormalizePath(request) {
-  let url = new URL(request.url);
-  return {
-    pathname: url.pathname,
-    search: url.search,
-    hash: url.hash
-  };
-}
-function normalizeTo(location2, matches, basename, to, fromRouteId, relative) {
-  let contextualMatches;
-  let activeRouteMatch;
-  if (fromRouteId) {
-    contextualMatches = [];
-    for (let match of matches) {
-      contextualMatches.push(match);
-      if (match.route.id === fromRouteId) {
-        activeRouteMatch = match;
-        break;
-      }
-    }
-  } else {
-    contextualMatches = matches;
-    activeRouteMatch = matches[matches.length - 1];
-  }
-  let path = resolveTo(
-    to ? to : ".",
-    getResolveToMatches(contextualMatches),
-    stripBasename(location2.pathname, basename) || location2.pathname,
-    relative === "path"
-  );
-  if (to == null) {
-    path.search = location2.search;
-    path.hash = location2.hash;
-  }
-  if ((to == null || to === "" || to === ".") && activeRouteMatch) {
-    let nakedIndex = hasNakedIndexQuery(path.search);
-    if (activeRouteMatch.route.index && !nakedIndex) {
-      path.search = path.search ? path.search.replace(/^\?/, "?index&") : "?index";
-    } else if (!activeRouteMatch.route.index && nakedIndex) {
-      let params = new URLSearchParams(path.search);
-      let indexValues = params.getAll("index");
-      params.delete("index");
-      indexValues.filter((v) => v).forEach((v) => params.append("index", v));
-      let qs = params.toString();
-      path.search = qs ? `?${qs}` : "";
-    }
-  }
-  if (basename !== "/") {
-    path.pathname = prependBasename({ basename, pathname: path.pathname });
-  }
-  return createPath(path);
-}
-function normalizeNavigateOptions(isFetcher, path, opts) {
-  if (!opts || !isSubmissionNavigation(opts)) {
-    return { path };
-  }
-  if (opts.formMethod && !isValidMethod(opts.formMethod)) {
-    return {
-      path,
-      error: getInternalRouterError(405, { method: opts.formMethod })
-    };
-  }
-  let getInvalidBodyError = () => ({
-    path,
-    error: getInternalRouterError(400, { type: "invalid-body" })
-  });
-  let rawFormMethod = opts.formMethod || "get";
-  let formMethod = rawFormMethod.toUpperCase();
-  let formAction = stripHashFromPath(path);
-  if (opts.body !== void 0) {
-    if (opts.formEncType === "text/plain") {
-      if (!isMutationMethod(formMethod)) {
-        return getInvalidBodyError();
-      }
-      let text = typeof opts.body === "string" ? opts.body : opts.body instanceof FormData || opts.body instanceof URLSearchParams ? (
-        // https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#plain-text-form-data
-        Array.from(opts.body.entries()).reduce(
-          (acc, [name, value]) => `${acc}${name}=${value}
-`,
-          ""
-        )
-      ) : String(opts.body);
-      return {
-        path,
-        submission: {
-          formMethod,
-          formAction,
-          formEncType: opts.formEncType,
-          formData: void 0,
-          json: void 0,
-          text
-        }
-      };
-    } else if (opts.formEncType === "application/json") {
-      if (!isMutationMethod(formMethod)) {
-        return getInvalidBodyError();
-      }
-      try {
-        let json = typeof opts.body === "string" ? JSON.parse(opts.body) : opts.body;
-        return {
-          path,
-          submission: {
-            formMethod,
-            formAction,
-            formEncType: opts.formEncType,
-            formData: void 0,
-            json,
-            text: void 0
-          }
-        };
-      } catch (e) {
-        return getInvalidBodyError();
-      }
-    }
-  }
-  invariant$1(
-    typeof FormData === "function",
-    "FormData is not available in this environment"
-  );
-  let searchParams;
-  let formData;
-  if (opts.formData) {
-    searchParams = convertFormDataToSearchParams(opts.formData);
-    formData = opts.formData;
-  } else if (opts.body instanceof FormData) {
-    searchParams = convertFormDataToSearchParams(opts.body);
-    formData = opts.body;
-  } else if (opts.body instanceof URLSearchParams) {
-    searchParams = opts.body;
-    formData = convertSearchParamsToFormData(searchParams);
-  } else if (opts.body == null) {
-    searchParams = new URLSearchParams();
-    formData = new FormData();
-  } else {
-    try {
-      searchParams = new URLSearchParams(opts.body);
-      formData = convertSearchParamsToFormData(searchParams);
-    } catch (e) {
-      return getInvalidBodyError();
-    }
-  }
-  let submission = {
-    formMethod,
-    formAction,
-    formEncType: opts && opts.formEncType || "application/x-www-form-urlencoded",
-    formData,
-    json: void 0,
-    text: void 0
-  };
-  if (isMutationMethod(submission.formMethod)) {
-    return { path, submission };
-  }
-  let parsedPath = parsePath(path);
-  if (isFetcher && parsedPath.search && hasNakedIndexQuery(parsedPath.search)) {
-    searchParams.append("index", "");
-  }
-  parsedPath.search = `?${searchParams}`;
-  return { path: createPath(parsedPath), submission };
-}
-function getMatchesToLoad(request, scopedContext, mapRouteProperties2, manifest, history, state, matches, submission, location2, lazyRoutePropertiesToSkip, initialHydration, isRevalidationRequired, cancelledFetcherLoads, fetchersQueuedForDeletion, fetchLoadMatches, fetchRedirectIds, routesToUse, basename, hasPatchRoutesOnNavigation, pendingActionResult, callSiteDefaultShouldRevalidate) {
-  var _a2;
-  let actionResult = pendingActionResult ? isErrorResult(pendingActionResult[1]) ? pendingActionResult[1].error : pendingActionResult[1].data : void 0;
-  let currentUrl = history.createURL(state.location);
-  let nextUrl = history.createURL(location2);
-  let maxIdx;
-  if (initialHydration && state.errors) {
-    let boundaryId = Object.keys(state.errors)[0];
-    maxIdx = matches.findIndex((m) => m.route.id === boundaryId);
-  } else if (pendingActionResult && isErrorResult(pendingActionResult[1])) {
-    let boundaryId = pendingActionResult[0];
-    maxIdx = matches.findIndex((m) => m.route.id === boundaryId) - 1;
-  }
-  let actionStatus = pendingActionResult ? pendingActionResult[1].statusCode : void 0;
-  let shouldSkipRevalidation = actionStatus && actionStatus >= 400;
-  let baseShouldRevalidateArgs = {
-    currentUrl,
-    currentParams: ((_a2 = state.matches[0]) == null ? void 0 : _a2.params) || {},
-    nextUrl,
-    nextParams: matches[0].params,
-    ...submission,
-    actionResult,
-    actionStatus
-  };
-  let pattern = getRoutePattern(matches);
-  let dsMatches = matches.map((match, index) => {
-    let { route } = match;
-    let forceShouldLoad = null;
-    if (maxIdx != null && index > maxIdx) {
-      forceShouldLoad = false;
-    } else if (route.lazy) {
-      forceShouldLoad = true;
-    } else if (!routeHasLoaderOrMiddleware(route)) {
-      forceShouldLoad = false;
-    } else if (initialHydration) {
-      let { shouldLoad: shouldLoad2 } = getRouteHydrationStatus(
-        route,
-        state.loaderData,
-        state.errors
-      );
-      forceShouldLoad = shouldLoad2;
-    } else if (isNewLoader(state.loaderData, state.matches[index], match)) {
-      forceShouldLoad = true;
-    }
-    if (forceShouldLoad !== null) {
-      return getDataStrategyMatch(
-        mapRouteProperties2,
-        manifest,
-        request,
-        location2,
-        pattern,
-        match,
-        lazyRoutePropertiesToSkip,
-        scopedContext,
-        forceShouldLoad
-      );
-    }
-    let defaultShouldRevalidate = false;
-    if (typeof callSiteDefaultShouldRevalidate === "boolean") {
-      defaultShouldRevalidate = callSiteDefaultShouldRevalidate;
-    } else if (shouldSkipRevalidation) {
-      defaultShouldRevalidate = false;
-    } else if (isRevalidationRequired) {
-      defaultShouldRevalidate = true;
-    } else if (currentUrl.pathname + currentUrl.search === nextUrl.pathname + nextUrl.search) {
-      defaultShouldRevalidate = true;
-    } else if (currentUrl.search !== nextUrl.search) {
-      defaultShouldRevalidate = true;
-    } else if (isNewRouteInstance(state.matches[index], match)) {
-      defaultShouldRevalidate = true;
-    }
-    let shouldRevalidateArgs = {
-      ...baseShouldRevalidateArgs,
-      defaultShouldRevalidate
-    };
-    let shouldLoad = shouldRevalidateLoader(match, shouldRevalidateArgs);
-    return getDataStrategyMatch(
-      mapRouteProperties2,
-      manifest,
-      request,
-      location2,
-      pattern,
-      match,
-      lazyRoutePropertiesToSkip,
-      scopedContext,
-      shouldLoad,
-      shouldRevalidateArgs,
-      callSiteDefaultShouldRevalidate
-    );
-  });
-  let revalidatingFetchers = [];
-  fetchLoadMatches.forEach((f, key) => {
-    if (initialHydration || !matches.some((m) => m.route.id === f.routeId) || fetchersQueuedForDeletion.has(key)) {
-      return;
-    }
-    let fetcher = state.fetchers.get(key);
-    let isMidInitialLoad = fetcher && fetcher.state !== "idle" && fetcher.data === void 0;
-    let fetcherMatches = matchRoutes(routesToUse, f.path, basename);
-    if (!fetcherMatches) {
-      if (hasPatchRoutesOnNavigation && isMidInitialLoad) {
-        return;
-      }
-      revalidatingFetchers.push({
-        key,
-        routeId: f.routeId,
-        path: f.path,
-        matches: null,
-        match: null,
-        request: null,
-        controller: null
-      });
-      return;
-    }
-    if (fetchRedirectIds.has(key)) {
-      return;
-    }
-    let fetcherMatch = getTargetMatch(fetcherMatches, f.path);
-    let fetchController = new AbortController();
-    let fetchRequest = createClientSideRequest(
-      history,
-      f.path,
-      fetchController.signal
-    );
-    let fetcherDsMatches = null;
-    if (cancelledFetcherLoads.has(key)) {
-      cancelledFetcherLoads.delete(key);
-      fetcherDsMatches = getTargetedDataStrategyMatches(
-        mapRouteProperties2,
-        manifest,
-        fetchRequest,
-        f.path,
-        fetcherMatches,
-        fetcherMatch,
-        lazyRoutePropertiesToSkip,
-        scopedContext
-      );
-    } else if (isMidInitialLoad) {
-      if (isRevalidationRequired) {
-        fetcherDsMatches = getTargetedDataStrategyMatches(
-          mapRouteProperties2,
-          manifest,
-          fetchRequest,
-          f.path,
-          fetcherMatches,
-          fetcherMatch,
-          lazyRoutePropertiesToSkip,
-          scopedContext
-        );
-      }
-    } else {
-      let defaultShouldRevalidate;
-      if (typeof callSiteDefaultShouldRevalidate === "boolean") {
-        defaultShouldRevalidate = callSiteDefaultShouldRevalidate;
-      } else if (shouldSkipRevalidation) {
-        defaultShouldRevalidate = false;
-      } else {
-        defaultShouldRevalidate = isRevalidationRequired;
-      }
-      let shouldRevalidateArgs = {
-        ...baseShouldRevalidateArgs,
-        defaultShouldRevalidate
-      };
-      if (shouldRevalidateLoader(fetcherMatch, shouldRevalidateArgs)) {
-        fetcherDsMatches = getTargetedDataStrategyMatches(
-          mapRouteProperties2,
-          manifest,
-          fetchRequest,
-          f.path,
-          fetcherMatches,
-          fetcherMatch,
-          lazyRoutePropertiesToSkip,
-          scopedContext,
-          shouldRevalidateArgs
-        );
-      }
-    }
-    if (fetcherDsMatches) {
-      revalidatingFetchers.push({
-        key,
-        routeId: f.routeId,
-        path: f.path,
-        matches: fetcherDsMatches,
-        match: fetcherMatch,
-        request: fetchRequest,
-        controller: fetchController
-      });
-    }
-  });
-  return { dsMatches, revalidatingFetchers };
-}
-function routeHasLoaderOrMiddleware(route) {
-  return route.loader != null || route.middleware != null && route.middleware.length > 0;
-}
-function getRouteHydrationStatus(route, loaderData, errors) {
-  if (route.lazy) {
-    return { shouldLoad: true, renderFallback: true };
-  }
-  if (!routeHasLoaderOrMiddleware(route)) {
-    return { shouldLoad: false, renderFallback: false };
-  }
-  let hasData = loaderData != null && route.id in loaderData;
-  let hasError = errors != null && errors[route.id] !== void 0;
-  if (!hasData && hasError) {
-    return { shouldLoad: false, renderFallback: false };
-  }
-  if (typeof route.loader === "function" && route.loader.hydrate === true) {
-    return { shouldLoad: true, renderFallback: !hasData };
-  }
-  let shouldLoad = !hasData && !hasError;
-  return { shouldLoad, renderFallback: shouldLoad };
-}
-function isNewLoader(currentLoaderData, currentMatch, match) {
-  let isNew = (
-    // [a] -> [a, b]
-    !currentMatch || // [a, b] -> [a, c]
-    match.route.id !== currentMatch.route.id
-  );
-  let isMissingData = !currentLoaderData.hasOwnProperty(match.route.id);
-  return isNew || isMissingData;
-}
-function isNewRouteInstance(currentMatch, match) {
-  let currentPath = currentMatch.route.path;
-  return (
-    // param change for this match, /users/123 -> /users/456
-    currentMatch.pathname !== match.pathname || // splat param changed, which is not present in match.path
-    // e.g. /files/images/avatar.jpg -> files/finances.xls
-    currentPath != null && currentPath.endsWith("*") && currentMatch.params["*"] !== match.params["*"]
-  );
-}
-function shouldRevalidateLoader(loaderMatch, arg) {
-  if (loaderMatch.route.shouldRevalidate) {
-    let routeChoice = loaderMatch.route.shouldRevalidate(arg);
-    if (typeof routeChoice === "boolean") {
-      return routeChoice;
-    }
-  }
-  return arg.defaultShouldRevalidate;
-}
-function patchRoutesImpl(routeId, children, routesToUse, manifest, mapRouteProperties2, allowElementMutations) {
-  let childrenToPatch;
-  if (routeId) {
-    let route = manifest[routeId];
-    invariant$1(
-      route,
-      `No route found to patch children into: routeId = ${routeId}`
-    );
-    if (!route.children) {
-      route.children = [];
-    }
-    childrenToPatch = route.children;
-  } else {
-    childrenToPatch = routesToUse;
-  }
-  let uniqueChildren = [];
-  let existingChildren = [];
-  children.forEach((newRoute) => {
-    let existingRoute = childrenToPatch.find(
-      (existingRoute2) => isSameRoute(newRoute, existingRoute2)
-    );
-    if (existingRoute) {
-      existingChildren.push({ existingRoute, newRoute });
-    } else {
-      uniqueChildren.push(newRoute);
-    }
-  });
-  if (uniqueChildren.length > 0) {
-    let newRoutes = convertRoutesToDataRoutes(
-      uniqueChildren,
-      mapRouteProperties2,
-      [routeId || "_", "patch", String((childrenToPatch == null ? void 0 : childrenToPatch.length) || "0")],
-      manifest
-    );
-    childrenToPatch.push(...newRoutes);
-  }
-  if (allowElementMutations && existingChildren.length > 0) {
-    for (let i = 0; i < existingChildren.length; i++) {
-      let { existingRoute, newRoute } = existingChildren[i];
-      let existingRouteTyped = existingRoute;
-      let [newRouteTyped] = convertRoutesToDataRoutes(
-        [newRoute],
-        mapRouteProperties2,
-        [],
-        // Doesn't matter for mutated routes since they already have an id
-        {},
-        // Don't touch the manifest here since we're updating in place
-        true
-      );
-      Object.assign(existingRouteTyped, {
-        element: newRouteTyped.element ? newRouteTyped.element : existingRouteTyped.element,
-        errorElement: newRouteTyped.errorElement ? newRouteTyped.errorElement : existingRouteTyped.errorElement,
-        hydrateFallbackElement: newRouteTyped.hydrateFallbackElement ? newRouteTyped.hydrateFallbackElement : existingRouteTyped.hydrateFallbackElement
-      });
-    }
-  }
-}
-function isSameRoute(newRoute, existingRoute) {
-  var _a2;
-  if ("id" in newRoute && "id" in existingRoute && newRoute.id === existingRoute.id) {
-    return true;
-  }
-  if (!(newRoute.index === existingRoute.index && newRoute.path === existingRoute.path && newRoute.caseSensitive === existingRoute.caseSensitive)) {
-    return false;
-  }
-  if ((!newRoute.children || newRoute.children.length === 0) && (!existingRoute.children || existingRoute.children.length === 0)) {
-    return true;
-  }
-  return ((_a2 = newRoute.children) == null ? void 0 : _a2.every(
-    (aChild, i) => {
-      var _a3;
-      return (_a3 = existingRoute.children) == null ? void 0 : _a3.some((bChild) => isSameRoute(aChild, bChild));
-    }
-  )) ?? false;
-}
-var lazyRoutePropertyCache = /* @__PURE__ */ new WeakMap();
-var loadLazyRouteProperty = ({
-  key,
-  route,
-  manifest,
-  mapRouteProperties: mapRouteProperties2
-}) => {
-  let routeToUpdate = manifest[route.id];
-  invariant$1(routeToUpdate, "No route found in manifest");
-  if (!routeToUpdate.lazy || typeof routeToUpdate.lazy !== "object") {
-    return;
-  }
-  let lazyFn = routeToUpdate.lazy[key];
-  if (!lazyFn) {
-    return;
-  }
-  let cache = lazyRoutePropertyCache.get(routeToUpdate);
-  if (!cache) {
-    cache = {};
-    lazyRoutePropertyCache.set(routeToUpdate, cache);
-  }
-  let cachedPromise = cache[key];
-  if (cachedPromise) {
-    return cachedPromise;
-  }
-  let propertyPromise = (async () => {
-    let isUnsupported = isUnsupportedLazyRouteObjectKey(key);
-    let staticRouteValue = routeToUpdate[key];
-    let isStaticallyDefined = staticRouteValue !== void 0 && key !== "hasErrorBoundary";
-    if (isUnsupported) {
-      warning(
-        !isUnsupported,
-        "Route property " + key + " is not a supported lazy route property. This property will be ignored."
-      );
-      cache[key] = Promise.resolve();
-    } else if (isStaticallyDefined) {
-      warning(
-        false,
-        `Route "${routeToUpdate.id}" has a static property "${key}" defined. The lazy property will be ignored.`
-      );
-    } else {
-      let value = await lazyFn();
-      if (value != null) {
-        Object.assign(routeToUpdate, { [key]: value });
-        Object.assign(routeToUpdate, mapRouteProperties2(routeToUpdate));
-      }
-    }
-    if (typeof routeToUpdate.lazy === "object") {
-      routeToUpdate.lazy[key] = void 0;
-      if (Object.values(routeToUpdate.lazy).every((value) => value === void 0)) {
-        routeToUpdate.lazy = void 0;
-      }
-    }
-  })();
-  cache[key] = propertyPromise;
-  return propertyPromise;
-};
-var lazyRouteFunctionCache = /* @__PURE__ */ new WeakMap();
-function loadLazyRoute(route, type, manifest, mapRouteProperties2, lazyRoutePropertiesToSkip) {
-  let routeToUpdate = manifest[route.id];
-  invariant$1(routeToUpdate, "No route found in manifest");
-  if (!route.lazy) {
-    return {
-      lazyRoutePromise: void 0,
-      lazyHandlerPromise: void 0
-    };
-  }
-  if (typeof route.lazy === "function") {
-    let cachedPromise = lazyRouteFunctionCache.get(routeToUpdate);
-    if (cachedPromise) {
-      return {
-        lazyRoutePromise: cachedPromise,
-        lazyHandlerPromise: cachedPromise
-      };
-    }
-    let lazyRoutePromise2 = (async () => {
-      invariant$1(
-        typeof route.lazy === "function",
-        "No lazy route function found"
-      );
-      let lazyRoute = await route.lazy();
-      let routeUpdates = {};
-      for (let lazyRouteProperty in lazyRoute) {
-        let lazyValue = lazyRoute[lazyRouteProperty];
-        if (lazyValue === void 0) {
-          continue;
-        }
-        let isUnsupported = isUnsupportedLazyRouteFunctionKey(lazyRouteProperty);
-        let staticRouteValue = routeToUpdate[lazyRouteProperty];
-        let isStaticallyDefined = staticRouteValue !== void 0 && // This property isn't static since it should always be updated based
-        // on the route updates
-        lazyRouteProperty !== "hasErrorBoundary";
-        if (isUnsupported) {
-          warning(
-            !isUnsupported,
-            "Route property " + lazyRouteProperty + " is not a supported property to be returned from a lazy route function. This property will be ignored."
-          );
-        } else if (isStaticallyDefined) {
-          warning(
-            !isStaticallyDefined,
-            `Route "${routeToUpdate.id}" has a static property "${lazyRouteProperty}" defined but its lazy function is also returning a value for this property. The lazy route property "${lazyRouteProperty}" will be ignored.`
-          );
-        } else {
-          routeUpdates[lazyRouteProperty] = lazyValue;
-        }
-      }
-      Object.assign(routeToUpdate, routeUpdates);
-      Object.assign(routeToUpdate, {
-        // To keep things framework agnostic, we use the provided `mapRouteProperties`
-        // function to set the framework-aware properties (`element`/`hasErrorBoundary`)
-        // since the logic will differ between frameworks.
-        ...mapRouteProperties2(routeToUpdate),
-        lazy: void 0
-      });
-    })();
-    lazyRouteFunctionCache.set(routeToUpdate, lazyRoutePromise2);
-    lazyRoutePromise2.catch(() => {
-    });
-    return {
-      lazyRoutePromise: lazyRoutePromise2,
-      lazyHandlerPromise: lazyRoutePromise2
-    };
-  }
-  let lazyKeys = Object.keys(route.lazy);
-  let lazyPropertyPromises = [];
-  let lazyHandlerPromise = void 0;
-  for (let key of lazyKeys) {
-    if (lazyRoutePropertiesToSkip && lazyRoutePropertiesToSkip.includes(key)) {
-      continue;
-    }
-    let promise = loadLazyRouteProperty({
-      key,
-      route,
-      manifest,
-      mapRouteProperties: mapRouteProperties2
-    });
-    if (promise) {
-      lazyPropertyPromises.push(promise);
-      if (key === type) {
-        lazyHandlerPromise = promise;
-      }
-    }
-  }
-  let lazyRoutePromise = lazyPropertyPromises.length > 0 ? Promise.all(lazyPropertyPromises).then(() => {
-  }) : void 0;
-  lazyRoutePromise == null ? void 0 : lazyRoutePromise.catch(() => {
-  });
-  lazyHandlerPromise == null ? void 0 : lazyHandlerPromise.catch(() => {
-  });
-  return {
-    lazyRoutePromise,
-    lazyHandlerPromise
-  };
-}
-function isNonNullable(value) {
-  return value !== void 0;
-}
-function loadLazyMiddlewareForMatches(matches, manifest, mapRouteProperties2) {
-  let promises = matches.map(({ route }) => {
-    if (typeof route.lazy !== "object" || !route.lazy.middleware) {
-      return void 0;
-    }
-    return loadLazyRouteProperty({
-      key: "middleware",
-      route,
-      manifest,
-      mapRouteProperties: mapRouteProperties2
-    });
-  }).filter(isNonNullable);
-  return promises.length > 0 ? Promise.all(promises) : void 0;
-}
-async function defaultDataStrategy(args) {
-  let matchesToLoad = args.matches.filter((m) => m.shouldLoad);
-  let keyedResults = {};
-  let results = await Promise.all(matchesToLoad.map((m) => m.resolve()));
-  results.forEach((result, i) => {
-    keyedResults[matchesToLoad[i].route.id] = result;
-  });
-  return keyedResults;
-}
-async function defaultDataStrategyWithMiddleware(args) {
-  if (!args.matches.some((m) => m.route.middleware)) {
-    return defaultDataStrategy(args);
-  }
-  return runClientMiddlewarePipeline(args, () => defaultDataStrategy(args));
-}
-function runServerMiddlewarePipeline(args, handler, errorHandler) {
-  return runMiddlewarePipeline(
-    args,
-    handler,
-    processResult,
-    isResponse,
-    errorHandler
-  );
-  function processResult(result) {
-    return isDataWithResponseInit(result) ? dataWithResponseInitToResponse(result) : result;
-  }
-}
-function runClientMiddlewarePipeline(args, handler) {
-  return runMiddlewarePipeline(
-    args,
-    handler,
-    (r) => {
-      if (isRedirectResponse(r)) {
-        throw r;
-      }
-      return r;
-    },
-    isDataStrategyResults,
-    errorHandler
-  );
-  function errorHandler(error, routeId, nextResult) {
-    if (nextResult) {
-      return Promise.resolve(
-        Object.assign(nextResult.value, {
-          [routeId]: { type: "error", result: error }
-        })
-      );
-    } else {
-      let { matches } = args;
-      let maxBoundaryIdx = Math.min(
-        // Throwing route
-        Math.max(
-          matches.findIndex((m) => m.route.id === routeId),
-          0
-        ),
-        // or the shallowest route that needs to load data
-        Math.max(
-          matches.findIndex((m) => m.shouldCallHandler()),
-          0
-        )
-      );
-      let boundaryRouteId = findNearestBoundary(
-        matches,
-        matches[maxBoundaryIdx].route.id
-      ).route.id;
-      return Promise.resolve({
-        [boundaryRouteId]: { type: "error", result: error }
-      });
-    }
-  }
-}
-async function runMiddlewarePipeline(args, handler, processResult, isResult, errorHandler) {
-  let { matches, ...dataFnArgs } = args;
-  let tuples = matches.flatMap(
-    (m) => m.route.middleware ? m.route.middleware.map((fn) => [m.route.id, fn]) : []
-  );
-  let result = await callRouteMiddleware(
-    dataFnArgs,
-    tuples,
-    handler,
-    processResult,
-    isResult,
-    errorHandler
-  );
-  return result;
-}
-async function callRouteMiddleware(args, middlewares, handler, processResult, isResult, errorHandler, idx = 0) {
-  let { request } = args;
-  if (request.signal.aborted) {
-    throw request.signal.reason ?? new Error(`Request aborted: ${request.method} ${request.url}`);
-  }
-  let tuple = middlewares[idx];
-  if (!tuple) {
-    let result = await handler();
-    return result;
-  }
-  let [routeId, middleware] = tuple;
-  let nextResult;
-  let next = async () => {
-    if (nextResult) {
-      throw new Error("You may only call `next()` once per middleware");
-    }
-    try {
-      let result = await callRouteMiddleware(
-        args,
-        middlewares,
-        handler,
-        processResult,
-        isResult,
-        errorHandler,
-        idx + 1
-      );
-      nextResult = { value: result };
-      return nextResult.value;
-    } catch (error) {
-      nextResult = { value: await errorHandler(error, routeId, nextResult) };
-      return nextResult.value;
-    }
-  };
-  try {
-    let value = await middleware(args, next);
-    let result = value != null ? processResult(value) : void 0;
-    if (isResult(result)) {
-      return result;
-    } else if (nextResult) {
-      return result ?? nextResult.value;
-    } else {
-      nextResult = { value: await next() };
-      return nextResult.value;
-    }
-  } catch (error) {
-    let response = await errorHandler(error, routeId, nextResult);
-    return response;
-  }
-}
-function getDataStrategyMatchLazyPromises(mapRouteProperties2, manifest, request, match, lazyRoutePropertiesToSkip) {
-  let lazyMiddlewarePromise = loadLazyRouteProperty({
-    key: "middleware",
-    route: match.route,
-    manifest,
-    mapRouteProperties: mapRouteProperties2
-  });
-  let lazyRoutePromises = loadLazyRoute(
-    match.route,
-    isMutationMethod(request.method) ? "action" : "loader",
-    manifest,
-    mapRouteProperties2,
-    lazyRoutePropertiesToSkip
-  );
-  return {
-    middleware: lazyMiddlewarePromise,
-    route: lazyRoutePromises.lazyRoutePromise,
-    handler: lazyRoutePromises.lazyHandlerPromise
-  };
-}
-function getDataStrategyMatch(mapRouteProperties2, manifest, request, path, unstable_pattern, match, lazyRoutePropertiesToSkip, scopedContext, shouldLoad, shouldRevalidateArgs = null, callSiteDefaultShouldRevalidate) {
-  let isUsingNewApi = false;
-  let _lazyPromises = getDataStrategyMatchLazyPromises(
-    mapRouteProperties2,
-    manifest,
-    request,
-    match,
-    lazyRoutePropertiesToSkip
-  );
-  return {
-    ...match,
-    _lazyPromises,
-    shouldLoad,
-    shouldRevalidateArgs,
-    shouldCallHandler(defaultShouldRevalidate) {
-      isUsingNewApi = true;
-      if (!shouldRevalidateArgs) {
-        return shouldLoad;
-      }
-      if (typeof callSiteDefaultShouldRevalidate === "boolean") {
-        return shouldRevalidateLoader(match, {
-          ...shouldRevalidateArgs,
-          defaultShouldRevalidate: callSiteDefaultShouldRevalidate
-        });
-      }
-      if (typeof defaultShouldRevalidate === "boolean") {
-        return shouldRevalidateLoader(match, {
-          ...shouldRevalidateArgs,
-          defaultShouldRevalidate
-        });
-      }
-      return shouldRevalidateLoader(match, shouldRevalidateArgs);
-    },
-    resolve(handlerOverride) {
-      let { lazy, loader, middleware } = match.route;
-      let callHandler = isUsingNewApi || shouldLoad || handlerOverride && !isMutationMethod(request.method) && (lazy || loader);
-      let isMiddlewareOnlyRoute = middleware && middleware.length > 0 && !loader && !lazy;
-      if (callHandler && (isMutationMethod(request.method) || !isMiddlewareOnlyRoute)) {
-        return callLoaderOrAction({
-          request,
-          path,
-          unstable_pattern,
-          match,
-          lazyHandlerPromise: _lazyPromises == null ? void 0 : _lazyPromises.handler,
-          lazyRoutePromise: _lazyPromises == null ? void 0 : _lazyPromises.route,
-          handlerOverride,
-          scopedContext
-        });
-      }
-      return Promise.resolve({ type: "data", result: void 0 });
-    }
-  };
-}
-function getTargetedDataStrategyMatches(mapRouteProperties2, manifest, request, path, matches, targetMatch, lazyRoutePropertiesToSkip, scopedContext, shouldRevalidateArgs = null) {
-  return matches.map((match) => {
-    if (match.route.id !== targetMatch.route.id) {
-      return {
-        ...match,
-        shouldLoad: false,
-        shouldRevalidateArgs,
-        shouldCallHandler: () => false,
-        _lazyPromises: getDataStrategyMatchLazyPromises(
-          mapRouteProperties2,
-          manifest,
-          request,
-          match,
-          lazyRoutePropertiesToSkip
-        ),
-        resolve: () => Promise.resolve({ type: "data", result: void 0 })
-      };
-    }
-    return getDataStrategyMatch(
-      mapRouteProperties2,
-      manifest,
-      request,
-      path,
-      getRoutePattern(matches),
-      match,
-      lazyRoutePropertiesToSkip,
-      scopedContext,
-      true,
-      shouldRevalidateArgs
-    );
-  });
-}
-async function callDataStrategyImpl(dataStrategyImpl, request, path, matches, fetcherKey, scopedContext, isStaticHandler) {
-  if (matches.some((m) => {
-    var _a2;
-    return (_a2 = m._lazyPromises) == null ? void 0 : _a2.middleware;
-  })) {
-    await Promise.all(matches.map((m) => {
-      var _a2;
-      return (_a2 = m._lazyPromises) == null ? void 0 : _a2.middleware;
-    }));
-  }
-  let dataStrategyArgs = {
-    request,
-    unstable_url: createDataFunctionUrl(request, path),
-    unstable_pattern: getRoutePattern(matches),
-    params: matches[0].params,
-    context: scopedContext,
-    matches
-  };
-  let runClientMiddleware = isStaticHandler ? () => {
-    throw new Error(
-      "You cannot call `runClientMiddleware()` from a static handler `dataStrategy`. Middleware is run outside of `dataStrategy` during SSR in order to bubble up the Response.  You can enable middleware via the `respond` API in `query`/`queryRoute`"
-    );
-  } : (cb) => {
-    let typedDataStrategyArgs = dataStrategyArgs;
-    return runClientMiddlewarePipeline(typedDataStrategyArgs, () => {
-      return cb({
-        ...typedDataStrategyArgs,
-        fetcherKey,
-        runClientMiddleware: () => {
-          throw new Error(
-            "Cannot call `runClientMiddleware()` from within an `runClientMiddleware` handler"
-          );
-        }
-      });
-    });
-  };
-  let results = await dataStrategyImpl({
-    ...dataStrategyArgs,
-    fetcherKey,
-    runClientMiddleware
-  });
-  try {
-    await Promise.all(
-      matches.flatMap((m) => {
-        var _a2, _b2;
-        return [
-          (_a2 = m._lazyPromises) == null ? void 0 : _a2.handler,
-          (_b2 = m._lazyPromises) == null ? void 0 : _b2.route
-        ];
-      })
-    );
-  } catch (e) {
-  }
-  return results;
-}
-async function callLoaderOrAction({
-  request,
-  path,
-  unstable_pattern,
-  match,
-  lazyHandlerPromise,
-  lazyRoutePromise,
-  handlerOverride,
-  scopedContext
-}) {
-  let result;
-  let onReject;
-  let isAction = isMutationMethod(request.method);
-  let type = isAction ? "action" : "loader";
-  let runHandler = (handler) => {
-    let reject;
-    let abortPromise = new Promise((_, r) => reject = r);
-    onReject = () => reject();
-    request.signal.addEventListener("abort", onReject);
-    let actualHandler = (ctx) => {
-      if (typeof handler !== "function") {
-        return Promise.reject(
-          new Error(
-            `You cannot call the handler for a route which defines a boolean "${type}" [routeId: ${match.route.id}]`
-          )
-        );
-      }
-      return handler(
-        {
-          request,
-          unstable_url: createDataFunctionUrl(request, path),
-          unstable_pattern,
-          params: match.params,
-          context: scopedContext
-        },
-        ...ctx !== void 0 ? [ctx] : []
-      );
-    };
-    let handlerPromise = (async () => {
-      try {
-        let val = await (handlerOverride ? handlerOverride((ctx) => actualHandler(ctx)) : actualHandler());
-        return { type: "data", result: val };
-      } catch (e) {
-        return { type: "error", result: e };
-      }
-    })();
-    return Promise.race([handlerPromise, abortPromise]);
-  };
-  try {
-    let handler = isAction ? match.route.action : match.route.loader;
-    if (lazyHandlerPromise || lazyRoutePromise) {
-      if (handler) {
-        let handlerError;
-        let [value] = await Promise.all([
-          // If the handler throws, don't let it immediately bubble out,
-          // since we need to let the lazy() execution finish so we know if this
-          // route has a boundary that can handle the error
-          runHandler(handler).catch((e) => {
-            handlerError = e;
-          }),
-          // Ensure all lazy route promises are resolved before continuing
-          lazyHandlerPromise,
-          lazyRoutePromise
-        ]);
-        if (handlerError !== void 0) {
-          throw handlerError;
-        }
-        result = value;
-      } else {
-        await lazyHandlerPromise;
-        let handler2 = isAction ? match.route.action : match.route.loader;
-        if (handler2) {
-          [result] = await Promise.all([runHandler(handler2), lazyRoutePromise]);
-        } else if (type === "action") {
-          let url = new URL(request.url);
-          let pathname = url.pathname + url.search;
-          throw getInternalRouterError(405, {
-            method: request.method,
-            pathname,
-            routeId: match.route.id
-          });
-        } else {
-          return { type: "data", result: void 0 };
-        }
-      }
-    } else if (!handler) {
-      let url = new URL(request.url);
-      let pathname = url.pathname + url.search;
-      throw getInternalRouterError(404, {
-        pathname
-      });
-    } else {
-      result = await runHandler(handler);
-    }
-  } catch (e) {
-    return { type: "error", result: e };
-  } finally {
-    if (onReject) {
-      request.signal.removeEventListener("abort", onReject);
-    }
-  }
-  return result;
-}
-async function parseResponseBody(response) {
-  let contentType = response.headers.get("Content-Type");
-  if (contentType && /\bapplication\/json\b/.test(contentType)) {
-    return response.body == null ? null : response.json();
-  }
-  return response.text();
-}
-async function convertDataStrategyResultToDataResult(dataStrategyResult) {
-  var _a2, _b2, _c, _d, _e;
-  let { result, type } = dataStrategyResult;
-  if (isResponse(result)) {
-    let data2;
-    try {
-      data2 = await parseResponseBody(result);
-    } catch (e) {
-      return { type: "error", error: e };
-    }
-    if (type === "error") {
-      return {
-        type: "error",
-        error: new ErrorResponseImpl(result.status, result.statusText, data2),
-        statusCode: result.status,
-        headers: result.headers
-      };
-    }
-    return {
-      type: "data",
-      data: data2,
-      statusCode: result.status,
-      headers: result.headers
-    };
-  }
-  if (type === "error") {
-    if (isDataWithResponseInit(result)) {
-      if (result.data instanceof Error) {
-        return {
-          type: "error",
-          error: result.data,
-          statusCode: (_a2 = result.init) == null ? void 0 : _a2.status,
-          headers: ((_b2 = result.init) == null ? void 0 : _b2.headers) ? new Headers(result.init.headers) : void 0
-        };
-      }
-      return {
-        type: "error",
-        error: dataWithResponseInitToErrorResponse(result),
-        statusCode: isRouteErrorResponse(result) ? result.status : void 0,
-        headers: ((_c = result.init) == null ? void 0 : _c.headers) ? new Headers(result.init.headers) : void 0
-      };
-    }
-    return {
-      type: "error",
-      error: result,
-      statusCode: isRouteErrorResponse(result) ? result.status : void 0
-    };
-  }
-  if (isDataWithResponseInit(result)) {
-    return {
-      type: "data",
-      data: result.data,
-      statusCode: (_d = result.init) == null ? void 0 : _d.status,
-      headers: ((_e = result.init) == null ? void 0 : _e.headers) ? new Headers(result.init.headers) : void 0
-    };
-  }
-  return { type: "data", data: result };
-}
-function normalizeRelativeRoutingRedirectResponse(response, request, routeId, matches, basename) {
-  let location2 = response.headers.get("Location");
-  invariant$1(
-    location2,
-    "Redirects returned/thrown from loaders/actions must have a Location header"
-  );
-  if (!isAbsoluteUrl(location2)) {
-    let trimmedMatches = matches.slice(
-      0,
-      matches.findIndex((m) => m.route.id === routeId) + 1
-    );
-    location2 = normalizeTo(
-      new URL(request.url),
-      trimmedMatches,
-      basename,
-      location2
-    );
-    response.headers.set("Location", location2);
-  }
-  return response;
-}
-var invalidProtocols = [
-  "about:",
-  "blob:",
-  "chrome:",
-  "chrome-untrusted:",
-  "content:",
-  "data:",
-  "devtools:",
-  "file:",
-  "filesystem:",
-  // eslint-disable-next-line no-script-url
-  "javascript:"
-];
-function normalizeRedirectLocation(location2, currentUrl, basename, historyInstance) {
-  if (isAbsoluteUrl(location2)) {
-    let normalizedLocation = location2;
-    let url = normalizedLocation.startsWith("//") ? new URL(currentUrl.protocol + normalizedLocation) : new URL(normalizedLocation);
-    if (invalidProtocols.includes(url.protocol)) {
-      throw new Error("Invalid redirect location");
-    }
-    let isSameBasename = stripBasename(url.pathname, basename) != null;
-    if (url.origin === currentUrl.origin && isSameBasename) {
-      return url.pathname + url.search + url.hash;
-    }
-  }
-  try {
-    let url = historyInstance.createURL(location2);
-    if (invalidProtocols.includes(url.protocol)) {
-      throw new Error("Invalid redirect location");
-    }
-  } catch (e) {
-  }
-  return location2;
-}
-function createClientSideRequest(history, location2, signal, submission) {
-  let url = history.createURL(stripHashFromPath(location2)).toString();
-  let init = { signal };
-  if (submission && isMutationMethod(submission.formMethod)) {
-    let { formMethod, formEncType } = submission;
-    init.method = formMethod.toUpperCase();
-    if (formEncType === "application/json") {
-      init.headers = new Headers({ "Content-Type": formEncType });
-      init.body = JSON.stringify(submission.json);
-    } else if (formEncType === "text/plain") {
-      init.body = submission.text;
-    } else if (formEncType === "application/x-www-form-urlencoded" && submission.formData) {
-      init.body = convertFormDataToSearchParams(submission.formData);
-    } else {
-      init.body = submission.formData;
-    }
-  }
-  return new Request(url, init);
-}
-function createDataFunctionUrl(request, path) {
-  let url = new URL(request.url);
-  let parsed = typeof path === "string" ? parsePath(path) : path;
-  url.pathname = parsed.pathname || "/";
-  if (parsed.search) {
-    let searchParams = new URLSearchParams(parsed.search);
-    let indexValues = searchParams.getAll("index");
-    searchParams.delete("index");
-    for (let value of indexValues.filter(Boolean)) {
-      searchParams.append("index", value);
-    }
-    url.search = searchParams.size ? `?${searchParams.toString()}` : "";
-  } else {
-    url.search = "";
-  }
-  url.hash = parsed.hash || "";
-  return url;
-}
-function convertFormDataToSearchParams(formData) {
-  let searchParams = new URLSearchParams();
-  for (let [key, value] of formData.entries()) {
-    searchParams.append(key, typeof value === "string" ? value : value.name);
-  }
-  return searchParams;
-}
-function convertSearchParamsToFormData(searchParams) {
-  let formData = new FormData();
-  for (let [key, value] of searchParams.entries()) {
-    formData.append(key, value);
-  }
-  return formData;
-}
-function processRouteLoaderData(matches, results, pendingActionResult, isStaticHandler = false, skipLoaderErrorBubbling = false) {
-  let loaderData = {};
-  let errors = null;
-  let statusCode;
-  let foundError = false;
-  let loaderHeaders = {};
-  let pendingError = pendingActionResult && isErrorResult(pendingActionResult[1]) ? pendingActionResult[1].error : void 0;
-  matches.forEach((match) => {
-    if (!(match.route.id in results)) {
-      return;
-    }
-    let id = match.route.id;
-    let result = results[id];
-    invariant$1(
-      !isRedirectResult(result),
-      "Cannot handle redirect results in processLoaderData"
-    );
-    if (isErrorResult(result)) {
-      let error = result.error;
-      if (pendingError !== void 0) {
-        error = pendingError;
-        pendingError = void 0;
-      }
-      errors = errors || {};
-      if (skipLoaderErrorBubbling) {
-        errors[id] = error;
-      } else {
-        let boundaryMatch = findNearestBoundary(matches, id);
-        if (errors[boundaryMatch.route.id] == null) {
-          errors[boundaryMatch.route.id] = error;
-        }
-      }
-      if (!isStaticHandler) {
-        loaderData[id] = ResetLoaderDataSymbol;
-      }
-      if (!foundError) {
-        foundError = true;
-        statusCode = isRouteErrorResponse(result.error) ? result.error.status : 500;
-      }
-      if (result.headers) {
-        loaderHeaders[id] = result.headers;
-      }
-    } else {
-      loaderData[id] = result.data;
-      if (result.statusCode && result.statusCode !== 200 && !foundError) {
-        statusCode = result.statusCode;
-      }
-      if (result.headers) {
-        loaderHeaders[id] = result.headers;
-      }
-    }
-  });
-  if (pendingError !== void 0 && pendingActionResult) {
-    errors = { [pendingActionResult[0]]: pendingError };
-    if (pendingActionResult[2]) {
-      loaderData[pendingActionResult[2]] = void 0;
-    }
-  }
-  return {
-    loaderData,
-    errors,
-    statusCode: statusCode || 200,
-    loaderHeaders
-  };
-}
-function processLoaderData(state, matches, results, pendingActionResult, revalidatingFetchers, fetcherResults) {
-  let { loaderData, errors } = processRouteLoaderData(
-    matches,
-    results,
-    pendingActionResult
-  );
-  revalidatingFetchers.filter((f) => !f.matches || f.matches.some((m) => m.shouldLoad)).forEach((rf) => {
-    let { key, match, controller } = rf;
-    if (controller && controller.signal.aborted) {
-      return;
-    }
-    let result = fetcherResults[key];
-    invariant$1(result, "Did not find corresponding fetcher result");
-    if (isErrorResult(result)) {
-      let boundaryMatch = findNearestBoundary(state.matches, match == null ? void 0 : match.route.id);
-      if (!(errors && errors[boundaryMatch.route.id])) {
-        errors = {
-          ...errors,
-          [boundaryMatch.route.id]: result.error
-        };
-      }
-      state.fetchers.delete(key);
-    } else if (isRedirectResult(result)) {
-      invariant$1(false, "Unhandled fetcher revalidation redirect");
-    } else {
-      let doneFetcher = getDoneFetcher(result.data);
-      state.fetchers.set(key, doneFetcher);
-    }
-  });
-  return { loaderData, errors };
-}
-function mergeLoaderData(loaderData, newLoaderData, matches, errors) {
-  let mergedLoaderData = Object.entries(newLoaderData).filter(([, v]) => v !== ResetLoaderDataSymbol).reduce((merged, [k, v]) => {
-    merged[k] = v;
-    return merged;
-  }, {});
-  for (let match of matches) {
-    let id = match.route.id;
-    if (!newLoaderData.hasOwnProperty(id) && loaderData.hasOwnProperty(id) && match.route.loader) {
-      mergedLoaderData[id] = loaderData[id];
-    }
-    if (errors && errors.hasOwnProperty(id)) {
-      break;
-    }
-  }
-  return mergedLoaderData;
-}
-function getActionDataForCommit(pendingActionResult) {
-  if (!pendingActionResult) {
-    return {};
-  }
-  return isErrorResult(pendingActionResult[1]) ? {
-    // Clear out prior actionData on errors
-    actionData: {}
-  } : {
-    actionData: {
-      [pendingActionResult[0]]: pendingActionResult[1].data
-    }
-  };
-}
-function findNearestBoundary(matches, routeId) {
-  let eligibleMatches = routeId ? matches.slice(0, matches.findIndex((m) => m.route.id === routeId) + 1) : [...matches];
-  return eligibleMatches.reverse().find((m) => m.route.hasErrorBoundary === true) || matches[0];
-}
-function getShortCircuitMatches(routes) {
-  let route = routes.length === 1 ? routes[0] : routes.find((r) => r.index || !r.path || r.path === "/") || {
-    id: `__shim-error-route__`
-  };
-  return {
-    matches: [
-      {
-        params: {},
-        pathname: "",
-        pathnameBase: "",
-        route
-      }
-    ],
-    route
-  };
-}
-function getInternalRouterError(status, {
-  pathname,
-  routeId,
-  method,
-  type,
-  message
-} = {}) {
-  let statusText = "Unknown Server Error";
-  let errorMessage = "Unknown @remix-run/router error";
-  if (status === 400) {
-    statusText = "Bad Request";
-    if (method && pathname && routeId) {
-      errorMessage = `You made a ${method} request to "${pathname}" but did not provide a \`loader\` for route "${routeId}", so there is no way to handle the request.`;
-    } else if (type === "invalid-body") {
-      errorMessage = "Unable to encode submission body";
-    }
-  } else if (status === 403) {
-    statusText = "Forbidden";
-    errorMessage = `Route "${routeId}" does not match URL "${pathname}"`;
-  } else if (status === 404) {
-    statusText = "Not Found";
-    errorMessage = `No route matches URL "${pathname}"`;
-  } else if (status === 405) {
-    statusText = "Method Not Allowed";
-    if (method && pathname && routeId) {
-      errorMessage = `You made a ${method.toUpperCase()} request to "${pathname}" but did not provide an \`action\` for route "${routeId}", so there is no way to handle the request.`;
-    } else if (method) {
-      errorMessage = `Invalid request method "${method.toUpperCase()}"`;
-    }
-  }
-  return new ErrorResponseImpl(
-    status || 500,
-    statusText,
-    new Error(errorMessage),
-    true
-  );
-}
-function findRedirect(results) {
-  let entries = Object.entries(results);
-  for (let i = entries.length - 1; i >= 0; i--) {
-    let [key, result] = entries[i];
-    if (isRedirectResult(result)) {
-      return { key, result };
-    }
-  }
-}
-function stripHashFromPath(path) {
-  let parsedPath = typeof path === "string" ? parsePath(path) : path;
-  return createPath({ ...parsedPath, hash: "" });
-}
-function isHashChangeOnly(a, b) {
-  if (a.pathname !== b.pathname || a.search !== b.search) {
-    return false;
-  }
-  if (a.hash === "") {
-    return b.hash !== "";
-  } else if (a.hash === b.hash) {
-    return true;
-  } else if (b.hash !== "") {
-    return true;
-  }
-  return false;
-}
-function dataWithResponseInitToResponse(data2) {
-  return Response.json(data2.data, data2.init ?? void 0);
-}
-function dataWithResponseInitToErrorResponse(data2) {
-  var _a2, _b2;
-  return new ErrorResponseImpl(
-    ((_a2 = data2.init) == null ? void 0 : _a2.status) ?? 500,
-    ((_b2 = data2.init) == null ? void 0 : _b2.statusText) ?? "Internal Server Error",
-    data2.data
-  );
-}
-function isDataStrategyResults(result) {
-  return result != null && typeof result === "object" && Object.entries(result).every(
-    ([key, value]) => typeof key === "string" && isDataStrategyResult(value)
-  );
-}
-function isDataStrategyResult(result) {
-  return result != null && typeof result === "object" && "type" in result && "result" in result && (result.type === "data" || result.type === "error");
-}
-function isRedirectDataStrategyResult(result) {
-  return isResponse(result.result) && redirectStatusCodes.has(result.result.status);
-}
-function isErrorResult(result) {
-  return result.type === "error";
-}
-function isRedirectResult(result) {
-  return (result && result.type) === "redirect";
-}
-function isDataWithResponseInit(value) {
-  return typeof value === "object" && value != null && "type" in value && "data" in value && "init" in value && value.type === "DataWithResponseInit";
-}
-function isResponse(value) {
-  return value != null && typeof value.status === "number" && typeof value.statusText === "string" && typeof value.headers === "object" && typeof value.body !== "undefined";
-}
-function isRedirectStatusCode(statusCode) {
-  return redirectStatusCodes.has(statusCode);
-}
-function isRedirectResponse(result) {
-  return isResponse(result) && isRedirectStatusCode(result.status) && result.headers.has("Location");
-}
-function isValidMethod(method) {
-  return validRequestMethods.has(method.toUpperCase());
-}
-function isMutationMethod(method) {
-  return validMutationMethods.has(method.toUpperCase());
-}
-function hasNakedIndexQuery(search) {
-  return new URLSearchParams(search).getAll("index").some((v) => v === "");
-}
-function getTargetMatch(matches, location2) {
-  let search = typeof location2 === "string" ? parsePath(location2).search : location2.search;
-  if (matches[matches.length - 1].route.index && hasNakedIndexQuery(search || "")) {
-    return matches[matches.length - 1];
-  }
-  let pathMatches = getPathContributingMatches(matches);
-  return pathMatches[pathMatches.length - 1];
-}
-function getSubmissionFromNavigation(navigation) {
-  let { formMethod, formAction, formEncType, text, formData, json } = navigation;
-  if (!formMethod || !formAction || !formEncType) {
-    return;
-  }
-  if (text != null) {
-    return {
-      formMethod,
-      formAction,
-      formEncType,
-      formData: void 0,
-      json: void 0,
-      text
-    };
-  } else if (formData != null) {
-    return {
-      formMethod,
-      formAction,
-      formEncType,
-      formData,
-      json: void 0,
-      text: void 0
-    };
-  } else if (json !== void 0) {
-    return {
-      formMethod,
-      formAction,
-      formEncType,
-      formData: void 0,
-      json,
-      text: void 0
-    };
-  }
-}
-function getLoadingNavigation(location2, submission) {
-  if (submission) {
-    let navigation = {
-      state: "loading",
-      location: location2,
-      formMethod: submission.formMethod,
-      formAction: submission.formAction,
-      formEncType: submission.formEncType,
-      formData: submission.formData,
-      json: submission.json,
-      text: submission.text
-    };
-    return navigation;
-  } else {
-    let navigation = {
-      state: "loading",
-      location: location2,
-      formMethod: void 0,
-      formAction: void 0,
-      formEncType: void 0,
-      formData: void 0,
-      json: void 0,
-      text: void 0
-    };
-    return navigation;
-  }
-}
-function getSubmittingNavigation(location2, submission) {
-  let navigation = {
-    state: "submitting",
-    location: location2,
-    formMethod: submission.formMethod,
-    formAction: submission.formAction,
-    formEncType: submission.formEncType,
-    formData: submission.formData,
-    json: submission.json,
-    text: submission.text
-  };
-  return navigation;
-}
-function getLoadingFetcher(submission, data2) {
-  if (submission) {
-    let fetcher = {
-      state: "loading",
-      formMethod: submission.formMethod,
-      formAction: submission.formAction,
-      formEncType: submission.formEncType,
-      formData: submission.formData,
-      json: submission.json,
-      text: submission.text,
-      data: data2
-    };
-    return fetcher;
-  } else {
-    let fetcher = {
-      state: "loading",
-      formMethod: void 0,
-      formAction: void 0,
-      formEncType: void 0,
-      formData: void 0,
-      json: void 0,
-      text: void 0,
-      data: data2
-    };
-    return fetcher;
-  }
-}
-function getSubmittingFetcher(submission, existingFetcher) {
-  let fetcher = {
-    state: "submitting",
-    formMethod: submission.formMethod,
-    formAction: submission.formAction,
-    formEncType: submission.formEncType,
-    formData: submission.formData,
-    json: submission.json,
-    text: submission.text,
-    data: existingFetcher ? existingFetcher.data : void 0
-  };
-  return fetcher;
-}
-function getDoneFetcher(data2) {
-  let fetcher = {
-    state: "idle",
-    formMethod: void 0,
-    formAction: void 0,
-    formEncType: void 0,
-    formData: void 0,
-    json: void 0,
-    text: void 0,
-    data: data2
-  };
-  return fetcher;
-}
-function restoreAppliedTransitions(_window, transitions) {
-  try {
-    let sessionPositions = _window.sessionStorage.getItem(
-      TRANSITIONS_STORAGE_KEY
-    );
-    if (sessionPositions) {
-      let json = JSON.parse(sessionPositions);
-      for (let [k, v] of Object.entries(json || {})) {
-        if (v && Array.isArray(v)) {
-          transitions.set(k, new Set(v || []));
-        }
-      }
-    }
-  } catch (e) {
-  }
-}
-function persistAppliedTransitions(_window, transitions) {
-  if (transitions.size > 0) {
-    let json = {};
-    for (let [k, v] of transitions) {
-      json[k] = [...v];
-    }
-    try {
-      _window.sessionStorage.setItem(
-        TRANSITIONS_STORAGE_KEY,
-        JSON.stringify(json)
-      );
-    } catch (error) {
-      warning(
-        false,
-        `Failed to save applied view transitions in sessionStorage (${error}).`
-      );
-    }
-  }
-}
-function createDeferred() {
-  let resolve;
-  let reject;
-  let promise = new Promise((res, rej) => {
-    resolve = async (val) => {
-      res(val);
-      try {
-        await promise;
-      } catch (e) {
-      }
-    };
-    reject = async (error) => {
-      rej(error);
-      try {
-        await promise;
-      } catch (e) {
-      }
-    };
-  });
-  return {
-    promise,
-    //@ts-ignore
-    resolve,
-    //@ts-ignore
-    reject
-  };
-}
-var DataRouterContext = React3.createContext(null);
-DataRouterContext.displayName = "DataRouter";
-var DataRouterStateContext = React3.createContext(null);
-DataRouterStateContext.displayName = "DataRouterState";
-var RSCRouterContext = React3.createContext(false);
-function useIsRSCRouterContext() {
-  return React3.useContext(RSCRouterContext);
-}
-var ViewTransitionContext = React3.createContext({
-  isTransitioning: false
-});
-ViewTransitionContext.displayName = "ViewTransition";
-var FetchersContext = React3.createContext(
-  /* @__PURE__ */ new Map()
-);
-FetchersContext.displayName = "Fetchers";
-var AwaitContext = React3.createContext(null);
-AwaitContext.displayName = "Await";
-var AwaitContextProvider = (props) => React3.createElement(AwaitContext.Provider, props);
-var NavigationContext = React3.createContext(
-  null
-);
-NavigationContext.displayName = "Navigation";
-var LocationContext = React3.createContext(
-  null
-);
-LocationContext.displayName = "Location";
-var RouteContext = React3.createContext({
-  outlet: null,
-  matches: [],
-  isDataRoute: false
-});
-RouteContext.displayName = "Route";
-var RouteErrorContext = React3.createContext(null);
-RouteErrorContext.displayName = "RouteError";
-var ERROR_DIGEST_BASE = "REACT_ROUTER_ERROR";
-var ERROR_DIGEST_REDIRECT = "REDIRECT";
-var ERROR_DIGEST_ROUTE_ERROR_RESPONSE = "ROUTE_ERROR_RESPONSE";
-function decodeRedirectErrorDigest(digest) {
-  if (digest.startsWith(`${ERROR_DIGEST_BASE}:${ERROR_DIGEST_REDIRECT}:{`)) {
-    try {
-      let parsed = JSON.parse(digest.slice(28));
-      if (typeof parsed === "object" && parsed && typeof parsed.status === "number" && typeof parsed.statusText === "string" && typeof parsed.location === "string" && typeof parsed.reloadDocument === "boolean" && typeof parsed.replace === "boolean") {
-        return parsed;
-      }
-    } catch {
-    }
-  }
-}
-function decodeRouteErrorResponseDigest(digest) {
-  if (digest.startsWith(
-    `${ERROR_DIGEST_BASE}:${ERROR_DIGEST_ROUTE_ERROR_RESPONSE}:{`
-  )) {
-    try {
-      let parsed = JSON.parse(digest.slice(40));
-      if (typeof parsed === "object" && parsed && typeof parsed.status === "number" && typeof parsed.statusText === "string") {
-        return new ErrorResponseImpl(
-          parsed.status,
-          parsed.statusText,
-          parsed.data
-        );
-      }
-    } catch {
-    }
-  }
-}
-function useHref(to, { relative } = {}) {
-  invariant$1(
-    useInRouterContext(),
-    // TODO: This error is probably because they somehow have 2 versions of the
-    // router loaded. We can help them understand how to avoid that.
-    `useHref() may be used only in the context of a <Router> component.`
-  );
-  let { basename, navigator: navigator2 } = React3.useContext(NavigationContext);
-  let { hash, pathname, search } = useResolvedPath(to, { relative });
-  let joinedPathname = pathname;
-  if (basename !== "/") {
-    joinedPathname = pathname === "/" ? basename : joinPaths([basename, pathname]);
-  }
-  return navigator2.createHref({ pathname: joinedPathname, search, hash });
-}
-function useInRouterContext() {
-  return React3.useContext(LocationContext) != null;
-}
-function useLocation() {
-  invariant$1(
-    useInRouterContext(),
-    // TODO: This error is probably because they somehow have 2 versions of the
-    // router loaded. We can help them understand how to avoid that.
-    `useLocation() may be used only in the context of a <Router> component.`
-  );
-  return React3.useContext(LocationContext).location;
-}
-function useNavigationType() {
-  return React3.useContext(LocationContext).navigationType;
-}
-function useMatch(pattern) {
-  invariant$1(
-    useInRouterContext(),
-    // TODO: This error is probably because they somehow have 2 versions of the
-    // router loaded. We can help them understand how to avoid that.
-    `useMatch() may be used only in the context of a <Router> component.`
-  );
-  let { pathname } = useLocation();
-  return React3.useMemo(
-    () => matchPath(pattern, decodePath(pathname)),
-    [pathname, pattern]
-  );
-}
-var navigateEffectWarning = `You should call navigate() in a React.useEffect(), not when your component is first rendered.`;
-function useIsomorphicLayoutEffect(cb) {
-  let isStatic = React3.useContext(NavigationContext).static;
-  if (!isStatic) {
-    React3.useLayoutEffect(cb);
-  }
-}
-function useNavigate() {
-  let { isDataRoute } = React3.useContext(RouteContext);
-  return isDataRoute ? useNavigateStable() : useNavigateUnstable();
-}
-function useNavigateUnstable() {
-  invariant$1(
-    useInRouterContext(),
-    // TODO: This error is probably because they somehow have 2 versions of the
-    // router loaded. We can help them understand how to avoid that.
-    `useNavigate() may be used only in the context of a <Router> component.`
-  );
-  let dataRouterContext = React3.useContext(DataRouterContext);
-  let { basename, navigator: navigator2 } = React3.useContext(NavigationContext);
-  let { matches } = React3.useContext(RouteContext);
-  let { pathname: locationPathname } = useLocation();
-  let routePathnamesJson = JSON.stringify(getResolveToMatches(matches));
-  let activeRef = React3.useRef(false);
-  useIsomorphicLayoutEffect(() => {
-    activeRef.current = true;
-  });
-  let navigate = React3.useCallback(
-    (to, options = {}) => {
-      warning(activeRef.current, navigateEffectWarning);
-      if (!activeRef.current) return;
-      if (typeof to === "number") {
-        navigator2.go(to);
-        return;
-      }
-      let path = resolveTo(
-        to,
-        JSON.parse(routePathnamesJson),
-        locationPathname,
-        options.relative === "path"
-      );
-      if (dataRouterContext == null && basename !== "/") {
-        path.pathname = path.pathname === "/" ? basename : joinPaths([basename, path.pathname]);
-      }
-      (!!options.replace ? navigator2.replace : navigator2.push)(
-        path,
-        options.state,
-        options
-      );
-    },
-    [
-      basename,
-      navigator2,
-      routePathnamesJson,
-      locationPathname,
-      dataRouterContext
-    ]
-  );
-  return navigate;
-}
-var OutletContext = React3.createContext(null);
-function useOutletContext() {
-  return React3.useContext(OutletContext);
-}
-function useOutlet(context) {
-  let outlet = React3.useContext(RouteContext).outlet;
-  return React3.useMemo(
-    () => outlet && /* @__PURE__ */ React3.createElement(OutletContext.Provider, { value: context }, outlet),
-    [outlet, context]
-  );
-}
-function useParams() {
-  let { matches } = React3.useContext(RouteContext);
-  let routeMatch = matches[matches.length - 1];
-  return routeMatch ? routeMatch.params : {};
-}
-function useResolvedPath(to, { relative } = {}) {
-  let { matches } = React3.useContext(RouteContext);
-  let { pathname: locationPathname } = useLocation();
-  let routePathnamesJson = JSON.stringify(getResolveToMatches(matches));
-  return React3.useMemo(
-    () => resolveTo(
-      to,
-      JSON.parse(routePathnamesJson),
-      locationPathname,
-      relative === "path"
-    ),
-    [to, routePathnamesJson, locationPathname, relative]
-  );
-}
-function useRoutes(routes, locationArg) {
-  return useRoutesImpl(routes, locationArg);
-}
-function useRoutesImpl(routes, locationArg, dataRouterOpts) {
-  var _a2;
-  invariant$1(
-    useInRouterContext(),
-    // TODO: This error is probably because they somehow have 2 versions of the
-    // router loaded. We can help them understand how to avoid that.
-    `useRoutes() may be used only in the context of a <Router> component.`
-  );
-  let { navigator: navigator2 } = React3.useContext(NavigationContext);
-  let { matches: parentMatches } = React3.useContext(RouteContext);
-  let routeMatch = parentMatches[parentMatches.length - 1];
-  let parentParams = routeMatch ? routeMatch.params : {};
-  let parentPathname = routeMatch ? routeMatch.pathname : "/";
-  let parentPathnameBase = routeMatch ? routeMatch.pathnameBase : "/";
-  let parentRoute = routeMatch && routeMatch.route;
-  {
-    let parentPath = parentRoute && parentRoute.path || "";
-    warningOnce(
-      parentPathname,
-      !parentRoute || parentPath.endsWith("*") || parentPath.endsWith("*?"),
-      `You rendered descendant <Routes> (or called \`useRoutes()\`) at "${parentPathname}" (under <Route path="${parentPath}">) but the parent route path has no trailing "*". This means if you navigate deeper, the parent won't match anymore and therefore the child routes will never render.
-
-Please change the parent <Route path="${parentPath}"> to <Route path="${parentPath === "/" ? "*" : `${parentPath}/*`}">.`
-    );
-  }
-  let locationFromContext = useLocation();
-  let location2;
-  if (locationArg) {
-    let parsedLocationArg = typeof locationArg === "string" ? parsePath(locationArg) : locationArg;
-    invariant$1(
-      parentPathnameBase === "/" || ((_a2 = parsedLocationArg.pathname) == null ? void 0 : _a2.startsWith(parentPathnameBase)),
-      `When overriding the location using \`<Routes location>\` or \`useRoutes(routes, location)\`, the location pathname must begin with the portion of the URL pathname that was matched by all parent routes. The current pathname base is "${parentPathnameBase}" but pathname "${parsedLocationArg.pathname}" was given in the \`location\` prop.`
-    );
-    location2 = parsedLocationArg;
-  } else {
-    location2 = locationFromContext;
-  }
-  let pathname = location2.pathname || "/";
-  let remainingPathname = pathname;
-  if (parentPathnameBase !== "/") {
-    let parentSegments = parentPathnameBase.replace(/^\//, "").split("/");
-    let segments = pathname.replace(/^\//, "").split("/");
-    remainingPathname = "/" + segments.slice(parentSegments.length).join("/");
-  }
-  let matches = matchRoutes(routes, { pathname: remainingPathname });
-  {
-    warning(
-      parentRoute || matches != null,
-      `No routes matched location "${location2.pathname}${location2.search}${location2.hash}" `
-    );
-    warning(
-      matches == null || matches[matches.length - 1].route.element !== void 0 || matches[matches.length - 1].route.Component !== void 0 || matches[matches.length - 1].route.lazy !== void 0,
-      `Matched leaf route at location "${location2.pathname}${location2.search}${location2.hash}" does not have an element or Component. This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.`
-    );
-  }
-  let renderedMatches = _renderMatches(
-    matches && matches.map(
-      (match) => Object.assign({}, match, {
-        params: Object.assign({}, parentParams, match.params),
-        pathname: joinPaths([
-          parentPathnameBase,
-          // Re-encode pathnames that were decoded inside matchRoutes.
-          // Pre-encode `%`, `?` and `#` ahead of `encodeLocation` because it uses
-          // `new URL()` internally and we need to prevent it from treating
-          // them as separators
-          navigator2.encodeLocation ? navigator2.encodeLocation(
-            match.pathname.replace(/%/g, "%25").replace(/\?/g, "%3F").replace(/#/g, "%23")
-          ).pathname : match.pathname
-        ]),
-        pathnameBase: match.pathnameBase === "/" ? parentPathnameBase : joinPaths([
-          parentPathnameBase,
-          // Re-encode pathnames that were decoded inside matchRoutes
-          // Pre-encode `%`, `?` and `#` ahead of `encodeLocation` because it uses
-          // `new URL()` internally and we need to prevent it from treating
-          // them as separators
-          navigator2.encodeLocation ? navigator2.encodeLocation(
-            match.pathnameBase.replace(/%/g, "%25").replace(/\?/g, "%3F").replace(/#/g, "%23")
-          ).pathname : match.pathnameBase
-        ])
-      })
-    ),
-    parentMatches,
-    dataRouterOpts
-  );
-  if (locationArg && renderedMatches) {
-    return /* @__PURE__ */ React3.createElement(
-      LocationContext.Provider,
-      {
-        value: {
-          location: {
-            pathname: "/",
-            search: "",
-            hash: "",
-            state: null,
-            key: "default",
-            unstable_mask: void 0,
-            ...location2
-          },
-          navigationType: "POP"
-          /* Pop */
-        }
-      },
-      renderedMatches
-    );
-  }
-  return renderedMatches;
-}
-function DefaultErrorComponent() {
-  let error = useRouteError();
-  let message = isRouteErrorResponse(error) ? `${error.status} ${error.statusText}` : error instanceof Error ? error.message : JSON.stringify(error);
-  let stack = error instanceof Error ? error.stack : null;
-  let lightgrey = "rgba(200,200,200, 0.5)";
-  let preStyles = { padding: "0.5rem", backgroundColor: lightgrey };
-  let codeStyles = { padding: "2px 4px", backgroundColor: lightgrey };
-  let devInfo = null;
-  {
-    console.error(
-      "Error handled by React Router default ErrorBoundary:",
-      error
-    );
-    devInfo = /* @__PURE__ */ React3.createElement(React3.Fragment, null, /* @__PURE__ */ React3.createElement("p", null, "💿 Hey developer 👋"), /* @__PURE__ */ React3.createElement("p", null, "You can provide a way better UX than this when your app throws errors by providing your own ", /* @__PURE__ */ React3.createElement("code", { style: codeStyles }, "ErrorBoundary"), " or", " ", /* @__PURE__ */ React3.createElement("code", { style: codeStyles }, "errorElement"), " prop on your route."));
-  }
-  return /* @__PURE__ */ React3.createElement(React3.Fragment, null, /* @__PURE__ */ React3.createElement("h2", null, "Unexpected Application Error!"), /* @__PURE__ */ React3.createElement("h3", { style: { fontStyle: "italic" } }, message), stack ? /* @__PURE__ */ React3.createElement("pre", { style: preStyles }, stack) : null, devInfo);
-}
-var defaultErrorElement = /* @__PURE__ */ React3.createElement(DefaultErrorComponent, null);
-var RenderErrorBoundary = class extends React3.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      location: props.location,
-      revalidation: props.revalidation,
-      error: props.error
-    };
-  }
-  static getDerivedStateFromError(error) {
-    return { error };
-  }
-  static getDerivedStateFromProps(props, state) {
-    if (state.location !== props.location || state.revalidation !== "idle" && props.revalidation === "idle") {
-      return {
-        error: props.error,
-        location: props.location,
-        revalidation: props.revalidation
-      };
-    }
-    return {
-      error: props.error !== void 0 ? props.error : state.error,
-      location: state.location,
-      revalidation: props.revalidation || state.revalidation
-    };
-  }
-  componentDidCatch(error, errorInfo) {
-    if (this.props.onError) {
-      this.props.onError(error, errorInfo);
-    } else {
-      console.error(
-        "React Router caught the following error during render",
-        error
-      );
-    }
-  }
-  render() {
-    let error = this.state.error;
-    if (this.context && typeof error === "object" && error && "digest" in error && typeof error.digest === "string") {
-      const decoded = decodeRouteErrorResponseDigest(error.digest);
-      if (decoded) error = decoded;
-    }
-    let result = error !== void 0 ? /* @__PURE__ */ React3.createElement(RouteContext.Provider, { value: this.props.routeContext }, /* @__PURE__ */ React3.createElement(
-      RouteErrorContext.Provider,
-      {
-        value: error,
-        children: this.props.component
-      }
-    )) : this.props.children;
-    if (this.context) {
-      return /* @__PURE__ */ React3.createElement(RSCErrorHandler, { error }, result);
-    }
-    return result;
-  }
-};
-RenderErrorBoundary.contextType = RSCRouterContext;
-var errorRedirectHandledMap = /* @__PURE__ */ new WeakMap();
-function RSCErrorHandler({
-  children,
-  error
-}) {
-  let { basename } = React3.useContext(NavigationContext);
-  if (typeof error === "object" && error && "digest" in error && typeof error.digest === "string") {
-    let redirect2 = decodeRedirectErrorDigest(error.digest);
-    if (redirect2) {
-      let existingRedirect = errorRedirectHandledMap.get(error);
-      if (existingRedirect) throw existingRedirect;
-      let parsed = parseToInfo(redirect2.location, basename);
-      if (isBrowser && !errorRedirectHandledMap.get(error)) {
-        if (parsed.isExternal || redirect2.reloadDocument) {
-          window.location.href = parsed.absoluteURL || parsed.to;
-        } else {
-          const redirectPromise = Promise.resolve().then(
-            () => window.__reactRouterDataRouter.navigate(parsed.to, {
-              replace: redirect2.replace
-            })
-          );
-          errorRedirectHandledMap.set(error, redirectPromise);
-          throw redirectPromise;
-        }
-      }
-      return /* @__PURE__ */ React3.createElement(
-        "meta",
-        {
-          httpEquiv: "refresh",
-          content: `0;url=${parsed.absoluteURL || parsed.to}`
-        }
-      );
-    }
-  }
-  return children;
-}
-function RenderedRoute({ routeContext, match, children }) {
-  let dataRouterContext = React3.useContext(DataRouterContext);
-  if (dataRouterContext && dataRouterContext.static && dataRouterContext.staticContext && (match.route.errorElement || match.route.ErrorBoundary)) {
-    dataRouterContext.staticContext._deepestRenderedBoundaryId = match.route.id;
-  }
-  return /* @__PURE__ */ React3.createElement(RouteContext.Provider, { value: routeContext }, children);
-}
-function _renderMatches(matches, parentMatches = [], dataRouterOpts) {
-  let dataRouterState = dataRouterOpts == null ? void 0 : dataRouterOpts.state;
-  if (matches == null) {
-    if (!dataRouterState) {
-      return null;
-    }
-    if (dataRouterState.errors) {
-      matches = dataRouterState.matches;
-    } else if (parentMatches.length === 0 && !dataRouterState.initialized && dataRouterState.matches.length > 0) {
-      matches = dataRouterState.matches;
-    } else {
-      return null;
-    }
-  }
-  let renderedMatches = matches;
-  let errors = dataRouterState == null ? void 0 : dataRouterState.errors;
-  if (errors != null) {
-    let errorIndex = renderedMatches.findIndex(
-      (m) => m.route.id && (errors == null ? void 0 : errors[m.route.id]) !== void 0
-    );
-    invariant$1(
-      errorIndex >= 0,
-      `Could not find a matching route for errors on route IDs: ${Object.keys(
-        errors
-      ).join(",")}`
-    );
-    renderedMatches = renderedMatches.slice(
-      0,
-      Math.min(renderedMatches.length, errorIndex + 1)
-    );
-  }
-  let renderFallback = false;
-  let fallbackIndex = -1;
-  if (dataRouterOpts && dataRouterState) {
-    renderFallback = dataRouterState.renderFallback;
-    for (let i = 0; i < renderedMatches.length; i++) {
-      let match = renderedMatches[i];
-      if (match.route.HydrateFallback || match.route.hydrateFallbackElement) {
-        fallbackIndex = i;
-      }
-      if (match.route.id) {
-        let { loaderData, errors: errors2 } = dataRouterState;
-        let needsToRunLoader = match.route.loader && !loaderData.hasOwnProperty(match.route.id) && (!errors2 || errors2[match.route.id] === void 0);
-        if (match.route.lazy || needsToRunLoader) {
-          if (dataRouterOpts.isStatic) {
-            renderFallback = true;
-          }
-          if (fallbackIndex >= 0) {
-            renderedMatches = renderedMatches.slice(0, fallbackIndex + 1);
-          } else {
-            renderedMatches = [renderedMatches[0]];
-          }
-          break;
-        }
-      }
-    }
-  }
-  let onErrorHandler = dataRouterOpts == null ? void 0 : dataRouterOpts.onError;
-  let onError = dataRouterState && onErrorHandler ? (error, errorInfo) => {
-    var _a2, _b2;
-    onErrorHandler(error, {
-      location: dataRouterState.location,
-      params: ((_b2 = (_a2 = dataRouterState.matches) == null ? void 0 : _a2[0]) == null ? void 0 : _b2.params) ?? {},
-      unstable_pattern: getRoutePattern(dataRouterState.matches),
-      errorInfo
-    });
-  } : void 0;
-  return renderedMatches.reduceRight(
-    (outlet, match, index) => {
-      let error;
-      let shouldRenderHydrateFallback = false;
-      let errorElement = null;
-      let hydrateFallbackElement = null;
-      if (dataRouterState) {
-        error = errors && match.route.id ? errors[match.route.id] : void 0;
-        errorElement = match.route.errorElement || defaultErrorElement;
-        if (renderFallback) {
-          if (fallbackIndex < 0 && index === 0) {
-            warningOnce(
-              "route-fallback",
-              false,
-              "No `HydrateFallback` element provided to render during initial hydration"
-            );
-            shouldRenderHydrateFallback = true;
-            hydrateFallbackElement = null;
-          } else if (fallbackIndex === index) {
-            shouldRenderHydrateFallback = true;
-            hydrateFallbackElement = match.route.hydrateFallbackElement || null;
-          }
-        }
-      }
-      let matches2 = parentMatches.concat(renderedMatches.slice(0, index + 1));
-      let getChildren = () => {
-        let children;
-        if (error) {
-          children = errorElement;
-        } else if (shouldRenderHydrateFallback) {
-          children = hydrateFallbackElement;
-        } else if (match.route.Component) {
-          children = /* @__PURE__ */ React3.createElement(match.route.Component, null);
-        } else if (match.route.element) {
-          children = match.route.element;
-        } else {
-          children = outlet;
-        }
-        return /* @__PURE__ */ React3.createElement(
-          RenderedRoute,
-          {
-            match,
-            routeContext: {
-              outlet,
-              matches: matches2,
-              isDataRoute: dataRouterState != null
-            },
-            children
-          }
-        );
-      };
-      return dataRouterState && (match.route.ErrorBoundary || match.route.errorElement || index === 0) ? /* @__PURE__ */ React3.createElement(
-        RenderErrorBoundary,
-        {
-          location: dataRouterState.location,
-          revalidation: dataRouterState.revalidation,
-          component: errorElement,
-          error,
-          children: getChildren(),
-          routeContext: { outlet: null, matches: matches2, isDataRoute: true },
-          onError
-        }
-      ) : getChildren();
-    },
-    null
-  );
-}
-function getDataRouterConsoleError(hookName) {
-  return `${hookName} must be used within a data router.  See https://reactrouter.com/en/main/routers/picking-a-router.`;
-}
-function useDataRouterContext(hookName) {
-  let ctx = React3.useContext(DataRouterContext);
-  invariant$1(ctx, getDataRouterConsoleError(hookName));
-  return ctx;
-}
-function useDataRouterState(hookName) {
-  let state = React3.useContext(DataRouterStateContext);
-  invariant$1(state, getDataRouterConsoleError(hookName));
-  return state;
-}
-function useRouteContext(hookName) {
-  let route = React3.useContext(RouteContext);
-  invariant$1(route, getDataRouterConsoleError(hookName));
-  return route;
-}
-function useCurrentRouteId(hookName) {
-  let route = useRouteContext(hookName);
-  let thisRoute = route.matches[route.matches.length - 1];
-  invariant$1(
-    thisRoute.route.id,
-    `${hookName} can only be used on routes that contain a unique "id"`
-  );
-  return thisRoute.route.id;
-}
-function useRouteId() {
-  return useCurrentRouteId(
-    "useRouteId"
-    /* UseRouteId */
-  );
-}
-function useNavigation() {
-  let state = useDataRouterState(
-    "useNavigation"
-    /* UseNavigation */
-  );
-  return state.navigation;
-}
-function useRevalidator() {
-  let dataRouterContext = useDataRouterContext(
-    "useRevalidator"
-    /* UseRevalidator */
-  );
-  let state = useDataRouterState(
-    "useRevalidator"
-    /* UseRevalidator */
-  );
-  let revalidate = React3.useCallback(async () => {
-    await dataRouterContext.router.revalidate();
-  }, [dataRouterContext.router]);
-  return React3.useMemo(
-    () => ({ revalidate, state: state.revalidation }),
-    [revalidate, state.revalidation]
-  );
-}
-function useMatches() {
-  let { matches, loaderData } = useDataRouterState(
-    "useMatches"
-    /* UseMatches */
-  );
-  return React3.useMemo(
-    () => matches.map((m) => convertRouteMatchToUiMatch(m, loaderData)),
-    [matches, loaderData]
-  );
-}
-function useLoaderData() {
-  let state = useDataRouterState(
-    "useLoaderData"
-    /* UseLoaderData */
-  );
-  let routeId = useCurrentRouteId(
-    "useLoaderData"
-    /* UseLoaderData */
-  );
-  return state.loaderData[routeId];
-}
-function useRouteLoaderData(routeId) {
-  let state = useDataRouterState(
-    "useRouteLoaderData"
-    /* UseRouteLoaderData */
-  );
-  return state.loaderData[routeId];
-}
-function useActionData() {
-  let state = useDataRouterState(
-    "useActionData"
-    /* UseActionData */
-  );
-  let routeId = useCurrentRouteId(
-    "useLoaderData"
-    /* UseLoaderData */
-  );
-  return state.actionData ? state.actionData[routeId] : void 0;
-}
-function useRouteError() {
-  var _a2;
-  let error = React3.useContext(RouteErrorContext);
-  let state = useDataRouterState(
-    "useRouteError"
-    /* UseRouteError */
-  );
-  let routeId = useCurrentRouteId(
-    "useRouteError"
-    /* UseRouteError */
-  );
-  if (error !== void 0) {
-    return error;
-  }
-  return (_a2 = state.errors) == null ? void 0 : _a2[routeId];
-}
-function useAsyncValue() {
-  let value = React3.useContext(AwaitContext);
-  return value == null ? void 0 : value._data;
-}
-function useAsyncError() {
-  let value = React3.useContext(AwaitContext);
-  return value == null ? void 0 : value._error;
-}
-var blockerId = 0;
-function useBlocker(shouldBlock) {
-  let { router: router2, basename } = useDataRouterContext(
-    "useBlocker"
-    /* UseBlocker */
-  );
-  let state = useDataRouterState(
-    "useBlocker"
-    /* UseBlocker */
-  );
-  let [blockerKey, setBlockerKey] = React3.useState("");
-  let blockerFunction = React3.useCallback(
-    (arg) => {
-      if (typeof shouldBlock !== "function") {
-        return !!shouldBlock;
-      }
-      if (basename === "/") {
-        return shouldBlock(arg);
-      }
-      let { currentLocation, nextLocation, historyAction } = arg;
-      return shouldBlock({
-        currentLocation: {
-          ...currentLocation,
-          pathname: stripBasename(currentLocation.pathname, basename) || currentLocation.pathname
-        },
-        nextLocation: {
-          ...nextLocation,
-          pathname: stripBasename(nextLocation.pathname, basename) || nextLocation.pathname
-        },
-        historyAction
-      });
-    },
-    [basename, shouldBlock]
-  );
-  React3.useEffect(() => {
-    let key = String(++blockerId);
-    setBlockerKey(key);
-    return () => router2.deleteBlocker(key);
-  }, [router2]);
-  React3.useEffect(() => {
-    if (blockerKey !== "") {
-      router2.getBlocker(blockerKey, blockerFunction);
-    }
-  }, [router2, blockerKey, blockerFunction]);
-  return blockerKey && state.blockers.has(blockerKey) ? state.blockers.get(blockerKey) : IDLE_BLOCKER;
-}
-function useNavigateStable() {
-  let { router: router2 } = useDataRouterContext(
-    "useNavigate"
-    /* UseNavigateStable */
-  );
-  let id = useCurrentRouteId(
-    "useNavigate"
-    /* UseNavigateStable */
-  );
-  let activeRef = React3.useRef(false);
-  useIsomorphicLayoutEffect(() => {
-    activeRef.current = true;
-  });
-  let navigate = React3.useCallback(
-    async (to, options = {}) => {
-      warning(activeRef.current, navigateEffectWarning);
-      if (!activeRef.current) return;
-      if (typeof to === "number") {
-        await router2.navigate(to);
-      } else {
-        await router2.navigate(to, { fromRouteId: id, ...options });
-      }
-    },
-    [router2, id]
-  );
-  return navigate;
-}
-var alreadyWarned = {};
-function warningOnce(key, cond, message) {
-  if (!cond && !alreadyWarned[key]) {
-    alreadyWarned[key] = true;
-    warning(false, message);
-  }
-}
-function useRoute(...args) {
-  var _a2;
-  const currentRouteId = useCurrentRouteId(
-    "useRoute"
-    /* UseRoute */
-  );
-  const id = args[0] ?? currentRouteId;
-  const state = useDataRouterState(
-    "useRoute"
-    /* UseRoute */
-  );
-  const route = state.matches.find(({ route: route2 }) => route2.id === id);
-  if (route === void 0) return void 0;
-  return {
-    handle: route.route.handle,
-    loaderData: state.loaderData[id],
-    actionData: (_a2 = state.actionData) == null ? void 0 : _a2[id]
-  };
-}
-var alreadyWarned2 = {};
-function warnOnce(condition, message) {
-  if (!condition && !alreadyWarned2[message]) {
-    alreadyWarned2[message] = true;
-    console.warn(message);
-  }
-}
-var USE_OPTIMISTIC = "useOptimistic";
-var useOptimisticImpl = React3[USE_OPTIMISTIC];
-var stableUseOptimisticSetter = () => void 0;
-function useOptimisticSafe(val) {
-  if (useOptimisticImpl) {
-    return useOptimisticImpl(val);
-  } else {
-    return [val, stableUseOptimisticSetter];
-  }
-}
-function mapRouteProperties(route) {
-  let updates = {
-    // Note: this check also occurs in createRoutesFromChildren so update
-    // there if you change this -- please and thank you!
-    hasErrorBoundary: route.hasErrorBoundary || route.ErrorBoundary != null || route.errorElement != null
-  };
-  if (route.Component) {
-    {
-      if (route.element) {
-        warning(
-          false,
-          "You should not include both `Component` and `element` on your route - `Component` will be used."
-        );
-      }
-    }
-    Object.assign(updates, {
-      element: React3.createElement(route.Component),
-      Component: void 0
-    });
-  }
-  if (route.HydrateFallback) {
-    {
-      if (route.hydrateFallbackElement) {
-        warning(
-          false,
-          "You should not include both `HydrateFallback` and `hydrateFallbackElement` on your route - `HydrateFallback` will be used."
-        );
-      }
-    }
-    Object.assign(updates, {
-      hydrateFallbackElement: React3.createElement(route.HydrateFallback),
-      HydrateFallback: void 0
-    });
-  }
-  if (route.ErrorBoundary) {
-    {
-      if (route.errorElement) {
-        warning(
-          false,
-          "You should not include both `ErrorBoundary` and `errorElement` on your route - `ErrorBoundary` will be used."
-        );
-      }
-    }
-    Object.assign(updates, {
-      errorElement: React3.createElement(route.ErrorBoundary),
-      ErrorBoundary: void 0
-    });
-  }
-  return updates;
-}
-var hydrationRouteProperties = [
-  "HydrateFallback",
-  "hydrateFallbackElement"
-];
-function createMemoryRouter(routes, opts) {
-  return createRouter({
-    basename: opts == null ? void 0 : opts.basename,
-    getContext: opts == null ? void 0 : opts.getContext,
-    future: opts == null ? void 0 : opts.future,
-    history: createMemoryHistory({
-      initialEntries: opts == null ? void 0 : opts.initialEntries,
-      initialIndex: opts == null ? void 0 : opts.initialIndex
-    }),
-    hydrationData: opts == null ? void 0 : opts.hydrationData,
-    routes,
-    hydrationRouteProperties,
-    mapRouteProperties,
-    dataStrategy: opts == null ? void 0 : opts.dataStrategy,
-    patchRoutesOnNavigation: opts == null ? void 0 : opts.patchRoutesOnNavigation,
-    unstable_instrumentations: opts == null ? void 0 : opts.unstable_instrumentations
-  }).initialize();
-}
-var Deferred = class {
-  constructor() {
-    this.status = "pending";
-    this.promise = new Promise((resolve, reject) => {
-      this.resolve = (value) => {
-        if (this.status === "pending") {
-          this.status = "resolved";
-          resolve(value);
-        }
-      };
-      this.reject = (reason) => {
-        if (this.status === "pending") {
-          this.status = "rejected";
-          reject(reason);
-        }
-      };
-    });
-  }
-};
-function RouterProvider({
-  router: router2,
-  flushSync: reactDomFlushSyncImpl,
-  onError,
-  unstable_useTransitions
-}) {
-  let unstable_rsc = useIsRSCRouterContext();
-  unstable_useTransitions = unstable_rsc || unstable_useTransitions;
-  let [_state, setStateImpl] = React3.useState(router2.state);
-  let [state, setOptimisticState] = useOptimisticSafe(_state);
-  let [pendingState, setPendingState] = React3.useState();
-  let [vtContext, setVtContext] = React3.useState({
-    isTransitioning: false
-  });
-  let [renderDfd, setRenderDfd] = React3.useState();
-  let [transition, setTransition] = React3.useState();
-  let [interruption, setInterruption] = React3.useState();
-  let fetcherData = React3.useRef(/* @__PURE__ */ new Map());
-  let setState = React3.useCallback(
-    (newState, { deletedFetchers, newErrors, flushSync, viewTransitionOpts }) => {
-      if (newErrors && onError) {
-        Object.values(newErrors).forEach(
-          (error) => {
-            var _a2;
-            return onError(error, {
-              location: newState.location,
-              params: ((_a2 = newState.matches[0]) == null ? void 0 : _a2.params) ?? {},
-              unstable_pattern: getRoutePattern(newState.matches)
-            });
-          }
-        );
-      }
-      newState.fetchers.forEach((fetcher, key) => {
-        if (fetcher.data !== void 0) {
-          fetcherData.current.set(key, fetcher.data);
-        }
-      });
-      deletedFetchers.forEach((key) => fetcherData.current.delete(key));
-      warnOnce(
-        flushSync === false || reactDomFlushSyncImpl != null,
-        'You provided the `flushSync` option to a router update, but you are not using the `<RouterProvider>` from `react-router/dom` so `ReactDOM.flushSync()` is unavailable.  Please update your app to `import { RouterProvider } from "react-router/dom"` and ensure you have `react-dom` installed as a dependency to use the `flushSync` option.'
-      );
-      let isViewTransitionAvailable = router2.window != null && router2.window.document != null && typeof router2.window.document.startViewTransition === "function";
-      warnOnce(
-        viewTransitionOpts == null || isViewTransitionAvailable,
-        "You provided the `viewTransition` option to a router update, but you do not appear to be running in a DOM environment as `window.startViewTransition` is not available."
-      );
-      if (!viewTransitionOpts || !isViewTransitionAvailable) {
-        if (reactDomFlushSyncImpl && flushSync) {
-          reactDomFlushSyncImpl(() => setStateImpl(newState));
-        } else if (unstable_useTransitions === false) {
-          setStateImpl(newState);
-        } else {
-          React3.startTransition(() => {
-            if (unstable_useTransitions === true) {
-              setOptimisticState((s) => getOptimisticRouterState(s, newState));
-            }
-            setStateImpl(newState);
-          });
-        }
-        return;
-      }
-      if (reactDomFlushSyncImpl && flushSync) {
-        reactDomFlushSyncImpl(() => {
-          if (transition) {
-            renderDfd == null ? void 0 : renderDfd.resolve();
-            transition.skipTransition();
-          }
-          setVtContext({
-            isTransitioning: true,
-            flushSync: true,
-            currentLocation: viewTransitionOpts.currentLocation,
-            nextLocation: viewTransitionOpts.nextLocation
-          });
-        });
-        let t = router2.window.document.startViewTransition(() => {
-          reactDomFlushSyncImpl(() => setStateImpl(newState));
-        });
-        t.finished.finally(() => {
-          reactDomFlushSyncImpl(() => {
-            setRenderDfd(void 0);
-            setTransition(void 0);
-            setPendingState(void 0);
-            setVtContext({ isTransitioning: false });
-          });
-        });
-        reactDomFlushSyncImpl(() => setTransition(t));
-        return;
-      }
-      if (transition) {
-        renderDfd == null ? void 0 : renderDfd.resolve();
-        transition.skipTransition();
-        setInterruption({
-          state: newState,
-          currentLocation: viewTransitionOpts.currentLocation,
-          nextLocation: viewTransitionOpts.nextLocation
-        });
-      } else {
-        setPendingState(newState);
-        setVtContext({
-          isTransitioning: true,
-          flushSync: false,
-          currentLocation: viewTransitionOpts.currentLocation,
-          nextLocation: viewTransitionOpts.nextLocation
-        });
-      }
-    },
-    [
-      router2.window,
-      reactDomFlushSyncImpl,
-      transition,
-      renderDfd,
-      unstable_useTransitions,
-      setOptimisticState,
-      onError
-    ]
-  );
-  React3.useLayoutEffect(() => router2.subscribe(setState), [router2, setState]);
-  React3.useEffect(() => {
-    if (vtContext.isTransitioning && !vtContext.flushSync) {
-      setRenderDfd(new Deferred());
-    }
-  }, [vtContext]);
-  React3.useEffect(() => {
-    if (renderDfd && pendingState && router2.window) {
-      let newState = pendingState;
-      let renderPromise = renderDfd.promise;
-      let transition2 = router2.window.document.startViewTransition(async () => {
-        if (unstable_useTransitions === false) {
-          setStateImpl(newState);
-        } else {
-          React3.startTransition(() => {
-            if (unstable_useTransitions === true) {
-              setOptimisticState((s) => getOptimisticRouterState(s, newState));
-            }
-            setStateImpl(newState);
-          });
-        }
-        await renderPromise;
-      });
-      transition2.finished.finally(() => {
-        setRenderDfd(void 0);
-        setTransition(void 0);
-        setPendingState(void 0);
-        setVtContext({ isTransitioning: false });
-      });
-      setTransition(transition2);
-    }
-  }, [
-    pendingState,
-    renderDfd,
-    router2.window,
-    unstable_useTransitions,
-    setOptimisticState
-  ]);
-  React3.useEffect(() => {
-    if (renderDfd && pendingState && state.location.key === pendingState.location.key) {
-      renderDfd.resolve();
-    }
-  }, [renderDfd, transition, state.location, pendingState]);
-  React3.useEffect(() => {
-    if (!vtContext.isTransitioning && interruption) {
-      setPendingState(interruption.state);
-      setVtContext({
-        isTransitioning: true,
-        flushSync: false,
-        currentLocation: interruption.currentLocation,
-        nextLocation: interruption.nextLocation
-      });
-      setInterruption(void 0);
-    }
-  }, [vtContext.isTransitioning, interruption]);
-  let navigator2 = React3.useMemo(() => {
-    return {
-      createHref: router2.createHref,
-      encodeLocation: router2.encodeLocation,
-      go: (n) => router2.navigate(n),
-      push: (to, state2, opts) => router2.navigate(to, {
-        state: state2,
-        preventScrollReset: opts == null ? void 0 : opts.preventScrollReset
-      }),
-      replace: (to, state2, opts) => router2.navigate(to, {
-        replace: true,
-        state: state2,
-        preventScrollReset: opts == null ? void 0 : opts.preventScrollReset
-      })
-    };
-  }, [router2]);
-  let basename = router2.basename || "/";
-  let dataRouterContext = React3.useMemo(
-    () => ({
-      router: router2,
-      navigator: navigator2,
-      static: false,
-      basename,
-      onError
-    }),
-    [router2, navigator2, basename, onError]
-  );
-  return /* @__PURE__ */ React3.createElement(React3.Fragment, null, /* @__PURE__ */ React3.createElement(DataRouterContext.Provider, { value: dataRouterContext }, /* @__PURE__ */ React3.createElement(DataRouterStateContext.Provider, { value: state }, /* @__PURE__ */ React3.createElement(FetchersContext.Provider, { value: fetcherData.current }, /* @__PURE__ */ React3.createElement(ViewTransitionContext.Provider, { value: vtContext }, /* @__PURE__ */ React3.createElement(
-    Router,
-    {
-      basename,
-      location: state.location,
-      navigationType: state.historyAction,
-      navigator: navigator2,
-      unstable_useTransitions
-    },
-    /* @__PURE__ */ React3.createElement(
-      MemoizedDataRoutes,
-      {
-        routes: router2.routes,
-        future: router2.future,
-        state,
-        isStatic: false,
-        onError
-      }
-    )
-  ))))), null);
-}
-function getOptimisticRouterState(currentState, newState) {
-  return {
-    // Don't surface "current location specific" stuff mid-navigation
-    // (historyAction, location, matches, loaderData, errors, initialized,
-    // restoreScroll, preventScrollReset, blockers, etc.)
-    ...currentState,
-    // Only surface "pending/in-flight stuff"
-    // (navigation, revalidation, actionData, fetchers, )
-    navigation: newState.navigation.state !== "idle" ? newState.navigation : currentState.navigation,
-    revalidation: newState.revalidation !== "idle" ? newState.revalidation : currentState.revalidation,
-    actionData: newState.navigation.state !== "submitting" ? newState.actionData : currentState.actionData,
-    fetchers: newState.fetchers
-  };
-}
-var MemoizedDataRoutes = React3.memo(DataRoutes);
-function DataRoutes({
-  routes,
-  future,
-  state,
-  isStatic,
-  onError
-}) {
-  return useRoutesImpl(routes, void 0, { state, isStatic, onError });
-}
-function MemoryRouter({
-  basename,
-  children,
-  initialEntries,
-  initialIndex,
-  unstable_useTransitions
-}) {
-  let historyRef = React3.useRef();
-  if (historyRef.current == null) {
-    historyRef.current = createMemoryHistory({
-      initialEntries,
-      initialIndex,
-      v5Compat: true
-    });
-  }
-  let history = historyRef.current;
-  let [state, setStateImpl] = React3.useState({
-    action: history.action,
-    location: history.location
-  });
-  let setState = React3.useCallback(
-    (newState) => {
-      if (unstable_useTransitions === false) {
-        setStateImpl(newState);
-      } else {
-        React3.startTransition(() => setStateImpl(newState));
-      }
-    },
-    [unstable_useTransitions]
-  );
-  React3.useLayoutEffect(() => history.listen(setState), [history, setState]);
-  return /* @__PURE__ */ React3.createElement(
-    Router,
-    {
-      basename,
-      children,
-      location: state.location,
-      navigationType: state.action,
-      navigator: history,
-      unstable_useTransitions
-    }
-  );
-}
-function Navigate({
-  to,
-  replace: replace2,
-  state,
-  relative
-}) {
-  invariant$1(
-    useInRouterContext(),
-    // TODO: This error is probably because they somehow have 2 versions of
-    // the router loaded. We can help them understand how to avoid that.
-    `<Navigate> may be used only in the context of a <Router> component.`
-  );
-  let { static: isStatic } = React3.useContext(NavigationContext);
-  warning(
-    !isStatic,
-    `<Navigate> must not be used on the initial render in a <StaticRouter>. This is a no-op, but you should modify your code so the <Navigate> is only ever rendered in response to some user interaction or state change.`
-  );
-  let { matches } = React3.useContext(RouteContext);
-  let { pathname: locationPathname } = useLocation();
-  let navigate = useNavigate();
-  let path = resolveTo(
-    to,
-    getResolveToMatches(matches),
-    locationPathname,
-    relative === "path"
-  );
-  let jsonPath = JSON.stringify(path);
-  React3.useEffect(() => {
-    navigate(JSON.parse(jsonPath), { replace: replace2, state, relative });
-  }, [navigate, jsonPath, relative, replace2, state]);
-  return null;
-}
-function Outlet(props) {
-  return useOutlet(props.context);
-}
-function Route(props) {
-  invariant$1(
-    false,
-    `A <Route> is only ever to be used as the child of <Routes> element, never rendered directly. Please wrap your <Route> in a <Routes>.`
-  );
-}
-function Router({
-  basename: basenameProp = "/",
-  children = null,
-  location: locationProp,
-  navigationType = "POP",
-  navigator: navigator2,
-  static: staticProp = false,
-  unstable_useTransitions
-}) {
-  invariant$1(
-    !useInRouterContext(),
-    `You cannot render a <Router> inside another <Router>. You should never have more than one in your app.`
-  );
-  let basename = basenameProp.replace(/^\/*/, "/");
-  let navigationContext = React3.useMemo(
-    () => ({
-      basename,
-      navigator: navigator2,
-      static: staticProp,
-      unstable_useTransitions,
-      future: {}
-    }),
-    [basename, navigator2, staticProp, unstable_useTransitions]
-  );
-  if (typeof locationProp === "string") {
-    locationProp = parsePath(locationProp);
-  }
-  let {
-    pathname = "/",
-    search = "",
-    hash = "",
-    state = null,
-    key = "default",
-    unstable_mask
-  } = locationProp;
-  let locationContext = React3.useMemo(() => {
-    let trailingPathname = stripBasename(pathname, basename);
-    if (trailingPathname == null) {
-      return null;
-    }
-    return {
-      location: {
-        pathname: trailingPathname,
-        search,
-        hash,
-        state,
-        key,
-        unstable_mask
-      },
-      navigationType
-    };
-  }, [
-    basename,
-    pathname,
-    search,
-    hash,
-    state,
-    key,
-    navigationType,
-    unstable_mask
-  ]);
-  warning(
-    locationContext != null,
-    `<Router basename="${basename}"> is not able to match the URL "${pathname}${search}${hash}" because it does not start with the basename, so the <Router> won't render anything.`
-  );
-  if (locationContext == null) {
-    return null;
-  }
-  return /* @__PURE__ */ React3.createElement(NavigationContext.Provider, { value: navigationContext }, /* @__PURE__ */ React3.createElement(LocationContext.Provider, { children, value: locationContext }));
-}
-function Routes({
-  children,
-  location: location2
-}) {
-  return useRoutes(createRoutesFromChildren(children), location2);
-}
-function Await({
-  children,
-  errorElement,
-  resolve
-}) {
-  let dataRouterContext = React3.useContext(DataRouterContext);
-  let dataRouterStateContext = React3.useContext(DataRouterStateContext);
-  let onError = React3.useCallback(
-    (error, errorInfo) => {
-      var _a2;
-      if (dataRouterContext && dataRouterContext.onError && dataRouterStateContext) {
-        dataRouterContext.onError(error, {
-          location: dataRouterStateContext.location,
-          params: ((_a2 = dataRouterStateContext.matches[0]) == null ? void 0 : _a2.params) || {},
-          unstable_pattern: getRoutePattern(dataRouterStateContext.matches),
-          errorInfo
-        });
-      }
-    },
-    [dataRouterContext, dataRouterStateContext]
-  );
-  return /* @__PURE__ */ React3.createElement(
-    AwaitErrorBoundary,
-    {
-      resolve,
-      errorElement,
-      onError
-    },
-    /* @__PURE__ */ React3.createElement(ResolveAwait, null, children)
-  );
-}
-var AwaitErrorBoundary = class extends React3.Component {
-  constructor(props) {
-    super(props);
-    this.state = { error: null };
-  }
-  static getDerivedStateFromError(error) {
-    return { error };
-  }
-  componentDidCatch(error, errorInfo) {
-    if (this.props.onError) {
-      this.props.onError(error, errorInfo);
-    } else {
-      console.error(
-        "<Await> caught the following error during render",
-        error,
-        errorInfo
-      );
-    }
-  }
-  render() {
-    let { children, errorElement, resolve } = this.props;
-    let promise = null;
-    let status = 0;
-    if (!(resolve instanceof Promise)) {
-      status = 1;
-      promise = Promise.resolve();
-      Object.defineProperty(promise, "_tracked", { get: () => true });
-      Object.defineProperty(promise, "_data", { get: () => resolve });
-    } else if (this.state.error) {
-      status = 2;
-      let renderError = this.state.error;
-      promise = Promise.reject().catch(() => {
-      });
-      Object.defineProperty(promise, "_tracked", { get: () => true });
-      Object.defineProperty(promise, "_error", { get: () => renderError });
-    } else if (resolve._tracked) {
-      promise = resolve;
-      status = "_error" in promise ? 2 : "_data" in promise ? 1 : 0;
-    } else {
-      status = 0;
-      Object.defineProperty(resolve, "_tracked", { get: () => true });
-      promise = resolve.then(
-        (data2) => Object.defineProperty(resolve, "_data", { get: () => data2 }),
-        (error) => {
-          var _a2, _b2;
-          (_b2 = (_a2 = this.props).onError) == null ? void 0 : _b2.call(_a2, error);
-          Object.defineProperty(resolve, "_error", { get: () => error });
-        }
-      );
-    }
-    if (status === 2 && !errorElement) {
-      throw promise._error;
-    }
-    if (status === 2) {
-      return /* @__PURE__ */ React3.createElement(AwaitContext.Provider, { value: promise, children: errorElement });
-    }
-    if (status === 1) {
-      return /* @__PURE__ */ React3.createElement(AwaitContext.Provider, { value: promise, children });
-    }
-    throw promise;
-  }
-};
-function ResolveAwait({
-  children
-}) {
-  let data2 = useAsyncValue();
-  let toRender = typeof children === "function" ? children(data2) : children;
-  return /* @__PURE__ */ React3.createElement(React3.Fragment, null, toRender);
-}
-function createRoutesFromChildren(children, parentPath = []) {
-  let routes = [];
-  React3.Children.forEach(children, (element, index) => {
-    if (!React3.isValidElement(element)) {
-      return;
-    }
-    let treePath = [...parentPath, index];
-    if (element.type === React3.Fragment) {
-      routes.push.apply(
-        routes,
-        createRoutesFromChildren(element.props.children, treePath)
-      );
-      return;
-    }
-    invariant$1(
-      element.type === Route,
-      `[${typeof element.type === "string" ? element.type : element.type.name}] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>`
-    );
-    invariant$1(
-      !element.props.index || !element.props.children,
-      "An index route cannot have child routes."
-    );
-    let route = {
-      id: element.props.id || treePath.join("-"),
-      caseSensitive: element.props.caseSensitive,
-      element: element.props.element,
-      Component: element.props.Component,
-      index: element.props.index,
-      path: element.props.path,
-      middleware: element.props.middleware,
-      loader: element.props.loader,
-      action: element.props.action,
-      hydrateFallbackElement: element.props.hydrateFallbackElement,
-      HydrateFallback: element.props.HydrateFallback,
-      errorElement: element.props.errorElement,
-      ErrorBoundary: element.props.ErrorBoundary,
-      hasErrorBoundary: element.props.hasErrorBoundary === true || element.props.ErrorBoundary != null || element.props.errorElement != null,
-      shouldRevalidate: element.props.shouldRevalidate,
-      handle: element.props.handle,
-      lazy: element.props.lazy
-    };
-    if (element.props.children) {
-      route.children = createRoutesFromChildren(
-        element.props.children,
-        treePath
-      );
-    }
-    routes.push(route);
-  });
-  return routes;
-}
-var createRoutesFromElements = createRoutesFromChildren;
-function renderMatches(matches) {
-  return _renderMatches(matches);
-}
-function useRouteComponentProps() {
-  return {
-    params: useParams(),
-    loaderData: useLoaderData(),
-    actionData: useActionData(),
-    matches: useMatches()
-  };
-}
-function WithComponentProps({
-  children
-}) {
-  const props = useRouteComponentProps();
-  return React3.cloneElement(children, props);
-}
-function withComponentProps(Component4) {
-  return function WithComponentProps2() {
-    const props = useRouteComponentProps();
-    return React3.createElement(Component4, props);
-  };
-}
-function useHydrateFallbackProps() {
-  return {
-    params: useParams(),
-    loaderData: useLoaderData(),
-    actionData: useActionData()
-  };
-}
-function WithHydrateFallbackProps({
-  children
-}) {
-  const props = useHydrateFallbackProps();
-  return React3.cloneElement(children, props);
-}
-function withHydrateFallbackProps(HydrateFallback) {
-  return function WithHydrateFallbackProps2() {
-    const props = useHydrateFallbackProps();
-    return React3.createElement(HydrateFallback, props);
-  };
-}
-function useErrorBoundaryProps() {
-  return {
-    params: useParams(),
-    loaderData: useLoaderData(),
-    actionData: useActionData(),
-    error: useRouteError()
-  };
-}
-function WithErrorBoundaryProps({
-  children
-}) {
-  const props = useErrorBoundaryProps();
-  return React3.cloneElement(children, props);
-}
-function withErrorBoundaryProps(ErrorBoundary) {
-  return function WithErrorBoundaryProps2() {
-    const props = useErrorBoundaryProps();
-    return React3.createElement(ErrorBoundary, props);
-  };
-}
-var defaultMethod = "get";
-var defaultEncType = "application/x-www-form-urlencoded";
-function isHtmlElement(object) {
-  return typeof HTMLElement !== "undefined" && object instanceof HTMLElement;
-}
-function isButtonElement(object) {
-  return isHtmlElement(object) && object.tagName.toLowerCase() === "button";
-}
-function isFormElement(object) {
-  return isHtmlElement(object) && object.tagName.toLowerCase() === "form";
-}
-function isInputElement(object) {
-  return isHtmlElement(object) && object.tagName.toLowerCase() === "input";
-}
-function isModifiedEvent(event) {
-  return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
-}
-function shouldProcessLinkClick(event, target) {
-  return event.button === 0 && // Ignore everything but left clicks
-  (!target || target === "_self") && // Let browser handle "target=_blank" etc.
-  !isModifiedEvent(event);
-}
-function createSearchParams(init = "") {
-  return new URLSearchParams(
-    typeof init === "string" || Array.isArray(init) || init instanceof URLSearchParams ? init : Object.keys(init).reduce((memo2, key) => {
-      let value = init[key];
-      return memo2.concat(
-        Array.isArray(value) ? value.map((v) => [key, v]) : [[key, value]]
-      );
-    }, [])
-  );
-}
-function getSearchParamsForLocation(locationSearch, defaultSearchParams) {
-  let searchParams = createSearchParams(locationSearch);
-  if (defaultSearchParams) {
-    defaultSearchParams.forEach((_, key) => {
-      if (!searchParams.has(key)) {
-        defaultSearchParams.getAll(key).forEach((value) => {
-          searchParams.append(key, value);
-        });
-      }
-    });
-  }
-  return searchParams;
-}
-var _formDataSupportsSubmitter = null;
-function isFormDataSubmitterSupported() {
-  if (_formDataSupportsSubmitter === null) {
-    try {
-      new FormData(
-        document.createElement("form"),
-        // @ts-expect-error if FormData supports the submitter parameter, this will throw
-        0
-      );
-      _formDataSupportsSubmitter = false;
-    } catch (e) {
-      _formDataSupportsSubmitter = true;
-    }
-  }
-  return _formDataSupportsSubmitter;
-}
-var supportedFormEncTypes = /* @__PURE__ */ new Set([
-  "application/x-www-form-urlencoded",
-  "multipart/form-data",
-  "text/plain"
-]);
-function getFormEncType(encType) {
-  if (encType != null && !supportedFormEncTypes.has(encType)) {
-    warning(
-      false,
-      `"${encType}" is not a valid \`encType\` for \`<Form>\`/\`<fetcher.Form>\` and will default to "${defaultEncType}"`
-    );
-    return null;
-  }
-  return encType;
-}
-function getFormSubmissionInfo(target, basename) {
-  let method;
-  let action;
-  let encType;
-  let formData;
-  let body;
-  if (isFormElement(target)) {
-    let attr = target.getAttribute("action");
-    action = attr ? stripBasename(attr, basename) : null;
-    method = target.getAttribute("method") || defaultMethod;
-    encType = getFormEncType(target.getAttribute("enctype")) || defaultEncType;
-    formData = new FormData(target);
-  } else if (isButtonElement(target) || isInputElement(target) && (target.type === "submit" || target.type === "image")) {
-    let form = target.form;
-    if (form == null) {
-      throw new Error(
-        `Cannot submit a <button> or <input type="submit"> without a <form>`
-      );
-    }
-    let attr = target.getAttribute("formaction") || form.getAttribute("action");
-    action = attr ? stripBasename(attr, basename) : null;
-    method = target.getAttribute("formmethod") || form.getAttribute("method") || defaultMethod;
-    encType = getFormEncType(target.getAttribute("formenctype")) || getFormEncType(form.getAttribute("enctype")) || defaultEncType;
-    formData = new FormData(form, target);
-    if (!isFormDataSubmitterSupported()) {
-      let { name, type, value } = target;
-      if (type === "image") {
-        let prefix = name ? `${name}.` : "";
-        formData.append(`${prefix}x`, "0");
-        formData.append(`${prefix}y`, "0");
-      } else if (name) {
-        formData.append(name, value);
-      }
-    }
-  } else if (isHtmlElement(target)) {
-    throw new Error(
-      `Cannot submit element that is not <form>, <button>, or <input type="submit|image">`
-    );
-  } else {
-    method = defaultMethod;
-    action = null;
-    encType = defaultEncType;
-    body = target;
-  }
-  if (formData && encType === "text/plain") {
-    body = formData;
-    formData = void 0;
-  }
-  return { action, method: method.toLowerCase(), encType, formData, body };
-}
-var HOLE = -1;
-var NAN = -2;
-var NEGATIVE_INFINITY = -3;
-var NEGATIVE_ZERO = -4;
-var NULL = -5;
-var POSITIVE_INFINITY = -6;
-var UNDEFINED = -7;
-var TYPE_BIGINT = "B";
-var TYPE_DATE = "D";
-var TYPE_ERROR = "E";
-var TYPE_MAP = "M";
-var TYPE_NULL_OBJECT = "N";
-var TYPE_PROMISE = "P";
-var TYPE_REGEXP = "R";
-var TYPE_SET = "S";
-var TYPE_SYMBOL = "Y";
-var TYPE_URL = "U";
-var TYPE_PREVIOUS_RESOLVED = "Z";
-var Deferred2 = class {
-  constructor() {
-    this.promise = new Promise((resolve, reject) => {
-      this.resolve = resolve;
-      this.reject = reject;
-    });
-  }
-};
-function createLineSplittingTransform() {
-  const decoder = new TextDecoder();
-  let leftover = "";
-  return new TransformStream({
-    transform(chunk, controller) {
-      const str = decoder.decode(chunk, { stream: true });
-      const parts = (leftover + str).split("\n");
-      leftover = parts.pop() || "";
-      for (const part of parts) {
-        controller.enqueue(part);
-      }
-    },
-    flush(controller) {
-      if (leftover) {
-        controller.enqueue(leftover);
-      }
-    }
-  });
-}
-var TIME_LIMIT_MS = 1;
-var getNow = () => Date.now();
-var yieldToMain = () => new Promise((resolve) => setTimeout(resolve, 0));
-async function flatten(input) {
-  const { indices } = this;
-  const existing = indices.get(input);
-  if (existing) return [existing];
-  if (input === void 0) return UNDEFINED;
-  if (input === null) return NULL;
-  if (Number.isNaN(input)) return NAN;
-  if (input === Number.POSITIVE_INFINITY) return POSITIVE_INFINITY;
-  if (input === Number.NEGATIVE_INFINITY) return NEGATIVE_INFINITY;
-  if (input === 0 && 1 / input < 0) return NEGATIVE_ZERO;
-  const index = this.index++;
-  indices.set(input, index);
-  const stack = [[input, index]];
-  await stringify.call(this, stack);
-  return index;
-}
-async function stringify(stack) {
-  const { deferred, indices, plugins, postPlugins } = this;
-  const str = this.stringified;
-  let lastYieldTime = getNow();
-  const flattenValue = (value) => {
-    const existing = indices.get(value);
-    if (existing) return [existing];
-    if (value === void 0) return UNDEFINED;
-    if (value === null) return NULL;
-    if (Number.isNaN(value)) return NAN;
-    if (value === Number.POSITIVE_INFINITY) return POSITIVE_INFINITY;
-    if (value === Number.NEGATIVE_INFINITY) return NEGATIVE_INFINITY;
-    if (value === 0 && 1 / value < 0) return NEGATIVE_ZERO;
-    const index = this.index++;
-    indices.set(value, index);
-    stack.push([value, index]);
-    return index;
-  };
-  let i = 0;
-  while (stack.length > 0) {
-    const now = getNow();
-    if (++i % 6e3 === 0 && now - lastYieldTime >= TIME_LIMIT_MS) {
-      await yieldToMain();
-      lastYieldTime = getNow();
-    }
-    const [input, index] = stack.pop();
-    const partsForObj = (obj) => Object.keys(obj).map((k) => `"_${flattenValue(k)}":${flattenValue(obj[k])}`).join(",");
-    let error = null;
-    switch (typeof input) {
-      case "boolean":
-      case "number":
-      case "string":
-        str[index] = JSON.stringify(input);
-        break;
-      case "bigint":
-        str[index] = `["${TYPE_BIGINT}","${input}"]`;
-        break;
-      case "symbol": {
-        const keyFor = Symbol.keyFor(input);
-        if (!keyFor) {
-          error = new Error(
-            "Cannot encode symbol unless created with Symbol.for()"
-          );
-        } else {
-          str[index] = `["${TYPE_SYMBOL}",${JSON.stringify(keyFor)}]`;
-        }
-        break;
-      }
-      case "object": {
-        if (!input) {
-          str[index] = `${NULL}`;
-          break;
-        }
-        const isArray = Array.isArray(input);
-        let pluginHandled = false;
-        if (!isArray && plugins) {
-          for (const plugin of plugins) {
-            const pluginResult = plugin(input);
-            if (Array.isArray(pluginResult)) {
-              pluginHandled = true;
-              const [pluginIdentifier, ...rest] = pluginResult;
-              str[index] = `[${JSON.stringify(pluginIdentifier)}`;
-              if (rest.length > 0) {
-                str[index] += `,${rest.map((v) => flattenValue(v)).join(",")}`;
-              }
-              str[index] += "]";
-              break;
-            }
-          }
-        }
-        if (!pluginHandled) {
-          let result = isArray ? "[" : "{";
-          if (isArray) {
-            for (let i2 = 0; i2 < input.length; i2++)
-              result += (i2 ? "," : "") + (i2 in input ? flattenValue(input[i2]) : HOLE);
-            str[index] = `${result}]`;
-          } else if (input instanceof Date) {
-            const dateTime = input.getTime();
-            str[index] = `["${TYPE_DATE}",${Number.isNaN(dateTime) ? JSON.stringify("invalid") : dateTime}]`;
-          } else if (input instanceof URL) {
-            str[index] = `["${TYPE_URL}",${JSON.stringify(input.href)}]`;
-          } else if (input instanceof RegExp) {
-            str[index] = `["${TYPE_REGEXP}",${JSON.stringify(
-              input.source
-            )},${JSON.stringify(input.flags)}]`;
-          } else if (input instanceof Set) {
-            if (input.size > 0) {
-              str[index] = `["${TYPE_SET}",${[...input].map((val) => flattenValue(val)).join(",")}]`;
-            } else {
-              str[index] = `["${TYPE_SET}"]`;
-            }
-          } else if (input instanceof Map) {
-            if (input.size > 0) {
-              str[index] = `["${TYPE_MAP}",${[...input].flatMap(([k, v]) => [flattenValue(k), flattenValue(v)]).join(",")}]`;
-            } else {
-              str[index] = `["${TYPE_MAP}"]`;
-            }
-          } else if (input instanceof Promise) {
-            str[index] = `["${TYPE_PROMISE}",${index}]`;
-            deferred[index] = input;
-          } else if (input instanceof Error) {
-            str[index] = `["${TYPE_ERROR}",${JSON.stringify(input.message)}`;
-            if (input.name !== "Error") {
-              str[index] += `,${JSON.stringify(input.name)}`;
-            }
-            str[index] += "]";
-          } else if (Object.getPrototypeOf(input) === null) {
-            str[index] = `["${TYPE_NULL_OBJECT}",{${partsForObj(input)}}]`;
-          } else if (isPlainObject2(input)) {
-            str[index] = `{${partsForObj(input)}}`;
-          } else {
-            error = new Error("Cannot encode object with prototype");
-          }
-        }
-        break;
-      }
-      default: {
-        const isArray = Array.isArray(input);
-        let pluginHandled = false;
-        if (!isArray && plugins) {
-          for (const plugin of plugins) {
-            const pluginResult = plugin(input);
-            if (Array.isArray(pluginResult)) {
-              pluginHandled = true;
-              const [pluginIdentifier, ...rest] = pluginResult;
-              str[index] = `[${JSON.stringify(pluginIdentifier)}`;
-              if (rest.length > 0) {
-                str[index] += `,${rest.map((v) => flattenValue(v)).join(",")}`;
-              }
-              str[index] += "]";
-              break;
-            }
-          }
-        }
-        if (!pluginHandled) {
-          error = new Error("Cannot encode function or unexpected type");
-        }
-      }
-    }
-    if (error) {
-      let pluginHandled = false;
-      if (postPlugins) {
-        for (const plugin of postPlugins) {
-          const pluginResult = plugin(input);
-          if (Array.isArray(pluginResult)) {
-            pluginHandled = true;
-            const [pluginIdentifier, ...rest] = pluginResult;
-            str[index] = `[${JSON.stringify(pluginIdentifier)}`;
-            if (rest.length > 0) {
-              str[index] += `,${rest.map((v) => flattenValue(v)).join(",")}`;
-            }
-            str[index] += "]";
-            break;
-          }
-        }
-      }
-      if (!pluginHandled) {
-        throw error;
-      }
-    }
-  }
-}
-var objectProtoNames2 = Object.getOwnPropertyNames(Object.prototype).sort().join("\0");
-function isPlainObject2(thing) {
-  const proto = Object.getPrototypeOf(thing);
-  return proto === Object.prototype || proto === null || Object.getOwnPropertyNames(proto).sort().join("\0") === objectProtoNames2;
-}
-var globalObj = typeof window !== "undefined" ? window : typeof globalThis !== "undefined" ? globalThis : void 0;
-function unflatten(parsed) {
-  const { hydrated, values } = this;
-  if (typeof parsed === "number") return hydrate.call(this, parsed);
-  if (!Array.isArray(parsed) || !parsed.length) throw new SyntaxError();
-  const startIndex = values.length;
-  for (const value of parsed) {
-    values.push(value);
-  }
-  hydrated.length = values.length;
-  return hydrate.call(this, startIndex);
-}
-function hydrate(index) {
-  const { hydrated, values, deferred, plugins } = this;
-  let result;
-  const stack = [
-    [
-      index,
-      (v) => {
-        result = v;
-      }
-    ]
-  ];
-  let postRun = [];
-  while (stack.length > 0) {
-    const [index2, set] = stack.pop();
-    switch (index2) {
-      case UNDEFINED:
-        set(void 0);
-        continue;
-      case NULL:
-        set(null);
-        continue;
-      case NAN:
-        set(NaN);
-        continue;
-      case POSITIVE_INFINITY:
-        set(Infinity);
-        continue;
-      case NEGATIVE_INFINITY:
-        set(-Infinity);
-        continue;
-      case NEGATIVE_ZERO:
-        set(-0);
-        continue;
-    }
-    if (hydrated[index2]) {
-      set(hydrated[index2]);
-      continue;
-    }
-    const value = values[index2];
-    if (!value || typeof value !== "object") {
-      hydrated[index2] = value;
-      set(value);
-      continue;
-    }
-    if (Array.isArray(value)) {
-      if (typeof value[0] === "string") {
-        const [type, b, c] = value;
-        switch (type) {
-          case TYPE_DATE:
-            set(hydrated[index2] = new Date(b));
-            continue;
-          case TYPE_URL:
-            set(hydrated[index2] = new URL(b));
-            continue;
-          case TYPE_BIGINT:
-            set(hydrated[index2] = BigInt(b));
-            continue;
-          case TYPE_REGEXP:
-            set(hydrated[index2] = new RegExp(b, c));
-            continue;
-          case TYPE_SYMBOL:
-            set(hydrated[index2] = Symbol.for(b));
-            continue;
-          case TYPE_SET:
-            const newSet = /* @__PURE__ */ new Set();
-            hydrated[index2] = newSet;
-            for (let i = value.length - 1; i > 0; i--)
-              stack.push([
-                value[i],
-                (v) => {
-                  newSet.add(v);
-                }
-              ]);
-            set(newSet);
-            continue;
-          case TYPE_MAP:
-            const map = /* @__PURE__ */ new Map();
-            hydrated[index2] = map;
-            for (let i = value.length - 2; i > 0; i -= 2) {
-              const r = [];
-              stack.push([
-                value[i + 1],
-                (v) => {
-                  r[1] = v;
-                }
-              ]);
-              stack.push([
-                value[i],
-                (k) => {
-                  r[0] = k;
-                }
-              ]);
-              postRun.push(() => {
-                map.set(r[0], r[1]);
-              });
-            }
-            set(map);
-            continue;
-          case TYPE_NULL_OBJECT:
-            const obj = /* @__PURE__ */ Object.create(null);
-            hydrated[index2] = obj;
-            for (const key of Object.keys(b).reverse()) {
-              const r = [];
-              stack.push([
-                b[key],
-                (v) => {
-                  r[1] = v;
-                }
-              ]);
-              stack.push([
-                Number(key.slice(1)),
-                (k) => {
-                  r[0] = k;
-                }
-              ]);
-              postRun.push(() => {
-                obj[r[0]] = r[1];
-              });
-            }
-            set(obj);
-            continue;
-          case TYPE_PROMISE:
-            if (hydrated[b]) {
-              set(hydrated[index2] = hydrated[b]);
-            } else {
-              const d = new Deferred2();
-              deferred[b] = d;
-              set(hydrated[index2] = d.promise);
-            }
-            continue;
-          case TYPE_ERROR:
-            const [, message, errorType] = value;
-            let error = errorType && globalObj && globalObj[errorType] ? new globalObj[errorType](message) : new Error(message);
-            hydrated[index2] = error;
-            set(error);
-            continue;
-          case TYPE_PREVIOUS_RESOLVED:
-            set(hydrated[index2] = hydrated[b]);
-            continue;
-          default:
-            if (Array.isArray(plugins)) {
-              const r = [];
-              const vals = value.slice(1);
-              for (let i = 0; i < vals.length; i++) {
-                const v = vals[i];
-                stack.push([
-                  v,
-                  (v2) => {
-                    r[i] = v2;
-                  }
-                ]);
-              }
-              postRun.push(() => {
-                for (const plugin of plugins) {
-                  const result2 = plugin(value[0], ...r);
-                  if (result2) {
-                    set(hydrated[index2] = result2.value);
-                    return;
-                  }
-                }
-                throw new SyntaxError();
-              });
-              continue;
-            }
-            throw new SyntaxError();
-        }
-      } else {
-        const array = [];
-        hydrated[index2] = array;
-        for (let i = 0; i < value.length; i++) {
-          const n = value[i];
-          if (n !== HOLE) {
-            stack.push([
-              n,
-              (v) => {
-                array[i] = v;
-              }
-            ]);
-          }
-        }
-        set(array);
-        continue;
-      }
-    } else {
-      const object = {};
-      hydrated[index2] = object;
-      for (const key of Object.keys(value).reverse()) {
-        const r = [];
-        stack.push([
-          value[key],
-          (v) => {
-            r[1] = v;
-          }
-        ]);
-        stack.push([
-          Number(key.slice(1)),
-          (k) => {
-            r[0] = k;
-          }
-        ]);
-        postRun.push(() => {
-          object[r[0]] = r[1];
-        });
-      }
-      set(object);
-      continue;
-    }
-  }
-  while (postRun.length > 0) {
-    postRun.pop()();
-  }
-  return result;
-}
-async function decode(readable, options) {
-  const { plugins } = options ?? {};
-  const done = new Deferred2();
-  const reader = readable.pipeThrough(createLineSplittingTransform()).getReader();
-  const decoder = {
-    values: [],
-    hydrated: [],
-    deferred: {},
-    plugins
-  };
-  const decoded = await decodeInitial.call(decoder, reader);
-  let donePromise = done.promise;
-  if (decoded.done) {
-    done.resolve();
-  } else {
-    donePromise = decodeDeferred.call(decoder, reader).then(done.resolve).catch((reason) => {
-      for (const deferred of Object.values(decoder.deferred)) {
-        deferred.reject(reason);
-      }
-      done.reject(reason);
-    });
-  }
-  return {
-    done: donePromise.then(() => reader.closed),
-    value: decoded.value
-  };
-}
-async function decodeInitial(reader) {
-  const read = await reader.read();
-  if (!read.value) {
-    throw new SyntaxError();
-  }
-  let line;
-  try {
-    line = JSON.parse(read.value);
-  } catch (reason) {
-    throw new SyntaxError();
-  }
-  return {
-    done: read.done,
-    value: unflatten.call(this, line)
-  };
-}
-async function decodeDeferred(reader) {
-  let read = await reader.read();
-  while (!read.done) {
-    if (!read.value) continue;
-    const line = read.value;
-    switch (line[0]) {
-      case TYPE_PROMISE: {
-        const colonIndex = line.indexOf(":");
-        const deferredId = Number(line.slice(1, colonIndex));
-        const deferred = this.deferred[deferredId];
-        if (!deferred) {
-          throw new Error(`Deferred ID ${deferredId} not found in stream`);
-        }
-        const lineData = line.slice(colonIndex + 1);
-        let jsonLine;
-        try {
-          jsonLine = JSON.parse(lineData);
-        } catch (reason) {
-          throw new SyntaxError();
-        }
-        const value = unflatten.call(this, jsonLine);
-        deferred.resolve(value);
-        break;
-      }
-      case TYPE_ERROR: {
-        const colonIndex = line.indexOf(":");
-        const deferredId = Number(line.slice(1, colonIndex));
-        const deferred = this.deferred[deferredId];
-        if (!deferred) {
-          throw new Error(`Deferred ID ${deferredId} not found in stream`);
-        }
-        const lineData = line.slice(colonIndex + 1);
-        let jsonLine;
-        try {
-          jsonLine = JSON.parse(lineData);
-        } catch (reason) {
-          throw new SyntaxError();
-        }
-        const value = unflatten.call(this, jsonLine);
-        deferred.reject(value);
-        break;
-      }
-      default:
-        throw new SyntaxError();
-    }
-    read = await reader.read();
-  }
-}
-function encode(input, options) {
-  const { onComplete, plugins, postPlugins, signal } = options ?? {};
-  const encoder3 = {
-    deferred: {},
-    index: 0,
-    indices: /* @__PURE__ */ new Map(),
-    stringified: [],
-    plugins,
-    postPlugins,
-    signal
-  };
-  const textEncoder = new TextEncoder();
-  let lastSentIndex = 0;
-  const readable = new ReadableStream({
-    async start(controller) {
-      const id = await flatten.call(encoder3, input);
-      if (Array.isArray(id)) {
-        throw new Error("This should never happen");
-      }
-      if (id < 0) {
-        controller.enqueue(textEncoder.encode(`${id}
-`));
-      } else {
-        controller.enqueue(
-          textEncoder.encode(`[${encoder3.stringified.join(",")}]
-`)
-        );
-        lastSentIndex = encoder3.stringified.length - 1;
-      }
-      const seenPromises = /* @__PURE__ */ new WeakSet();
-      let processingChain = Promise.resolve();
-      if (Object.keys(encoder3.deferred).length) {
-        let raceDone;
-        const racePromise = new Promise((resolve, reject) => {
-          raceDone = resolve;
-          if (signal) {
-            const rejectPromise = () => reject(signal.reason || new Error("Signal was aborted."));
-            if (signal.aborted) {
-              rejectPromise();
-            } else {
-              signal.addEventListener("abort", (event) => {
-                rejectPromise();
-              });
-            }
-          }
-        });
-        while (Object.keys(encoder3.deferred).length > 0) {
-          for (const [deferredId, deferred] of Object.entries(
-            encoder3.deferred
-          )) {
-            if (seenPromises.has(deferred)) continue;
-            seenPromises.add(
-              // biome-ignore lint/suspicious/noAssignInExpressions: <explanation>
-              encoder3.deferred[Number(deferredId)] = Promise.race([
-                racePromise,
-                deferred
-              ]).then(
-                (resolved) => {
-                  processingChain = processingChain.then(async () => {
-                    const id2 = await flatten.call(encoder3, resolved);
-                    if (Array.isArray(id2)) {
-                      controller.enqueue(
-                        textEncoder.encode(
-                          `${TYPE_PROMISE}${deferredId}:[["${TYPE_PREVIOUS_RESOLVED}",${id2[0]}]]
-`
-                        )
-                      );
-                      encoder3.index++;
-                      lastSentIndex++;
-                    } else if (id2 < 0) {
-                      controller.enqueue(
-                        textEncoder.encode(
-                          `${TYPE_PROMISE}${deferredId}:${id2}
-`
-                        )
-                      );
-                    } else {
-                      const values = encoder3.stringified.slice(lastSentIndex + 1).join(",");
-                      controller.enqueue(
-                        textEncoder.encode(
-                          `${TYPE_PROMISE}${deferredId}:[${values}]
-`
-                        )
-                      );
-                      lastSentIndex = encoder3.stringified.length - 1;
-                    }
-                  });
-                  return processingChain;
-                },
-                (reason) => {
-                  processingChain = processingChain.then(async () => {
-                    if (!reason || typeof reason !== "object" || !(reason instanceof Error)) {
-                      reason = new Error("An unknown error occurred");
-                    }
-                    const id2 = await flatten.call(encoder3, reason);
-                    if (Array.isArray(id2)) {
-                      controller.enqueue(
-                        textEncoder.encode(
-                          `${TYPE_ERROR}${deferredId}:[["${TYPE_PREVIOUS_RESOLVED}",${id2[0]}]]
-`
-                        )
-                      );
-                      encoder3.index++;
-                      lastSentIndex++;
-                    } else if (id2 < 0) {
-                      controller.enqueue(
-                        textEncoder.encode(
-                          `${TYPE_ERROR}${deferredId}:${id2}
-`
-                        )
-                      );
-                    } else {
-                      const values = encoder3.stringified.slice(lastSentIndex + 1).join(",");
-                      controller.enqueue(
-                        textEncoder.encode(
-                          `${TYPE_ERROR}${deferredId}:[${values}]
-`
-                        )
-                      );
-                      lastSentIndex = encoder3.stringified.length - 1;
-                    }
-                  });
-                  return processingChain;
-                }
-              ).finally(() => {
-                delete encoder3.deferred[Number(deferredId)];
-              })
-            );
-          }
-          await Promise.race(Object.values(encoder3.deferred));
-        }
-        raceDone();
-      }
-      await Promise.all(Object.values(encoder3.deferred));
-      await processingChain;
-      controller.close();
-      onComplete == null ? void 0 : onComplete();
-    }
-  });
-  return readable;
-}
-async function createRequestInit(request) {
-  let init = { signal: request.signal };
-  if (request.method !== "GET") {
-    init.method = request.method;
-    let contentType = request.headers.get("Content-Type");
-    if (contentType && /\bapplication\/json\b/.test(contentType)) {
-      init.headers = { "Content-Type": contentType };
-      init.body = JSON.stringify(await request.json());
-    } else if (contentType && /\btext\/plain\b/.test(contentType)) {
-      init.headers = { "Content-Type": contentType };
-      init.body = await request.text();
-    } else if (contentType && /\bapplication\/x-www-form-urlencoded\b/.test(contentType)) {
-      init.body = new URLSearchParams(await request.text());
-    } else {
-      init.body = await request.formData();
-    }
-  }
-  return init;
-}
-var ESCAPE_LOOKUP = {
-  "&": "\\u0026",
-  ">": "\\u003e",
-  "<": "\\u003c",
-  "\u2028": "\\u2028",
-  "\u2029": "\\u2029"
-};
-var ESCAPE_REGEX = /[&><\u2028\u2029]/g;
-function escapeHtml(html) {
-  return html.replace(ESCAPE_REGEX, (match) => ESCAPE_LOOKUP[match]);
-}
-function invariant2(value, message) {
-  if (value === false || value === null || typeof value === "undefined") {
-    throw new Error(message);
-  }
-}
-var SingleFetchRedirectSymbol = Symbol("SingleFetchRedirect");
-var SingleFetchNoResultError = class extends Error {
-};
-var SINGLE_FETCH_REDIRECT_STATUS = 202;
-var NO_BODY_STATUS_CODES = /* @__PURE__ */ new Set([100, 101, 204, 205]);
-function StreamTransfer({
-  context,
-  identifier,
-  reader,
-  textDecoder,
-  nonce
-}) {
-  if (!context.renderMeta || !context.renderMeta.didRenderScripts) {
-    return null;
-  }
-  if (!context.renderMeta.streamCache) {
-    context.renderMeta.streamCache = {};
-  }
-  let { streamCache } = context.renderMeta;
-  let promise = streamCache[identifier];
-  if (!promise) {
-    promise = streamCache[identifier] = reader.read().then((result) => {
-      streamCache[identifier].result = {
-        done: result.done,
-        value: textDecoder.decode(result.value, { stream: true })
-      };
-    }).catch((e) => {
-      streamCache[identifier].error = e;
-    });
-  }
-  if (promise.error) {
-    throw promise.error;
-  }
-  if (promise.result === void 0) {
-    throw promise;
-  }
-  let { done, value } = promise.result;
-  let scriptTag = value ? /* @__PURE__ */ React3.createElement(
-    "script",
-    {
-      nonce,
-      dangerouslySetInnerHTML: {
-        __html: `window.__reactRouterContext.streamController.enqueue(${escapeHtml(
-          JSON.stringify(value)
-        )});`
-      }
-    }
-  ) : null;
-  if (done) {
-    return /* @__PURE__ */ React3.createElement(React3.Fragment, null, scriptTag, /* @__PURE__ */ React3.createElement(
-      "script",
-      {
-        nonce,
-        dangerouslySetInnerHTML: {
-          __html: `window.__reactRouterContext.streamController.close();`
-        }
-      }
-    ));
-  } else {
-    return /* @__PURE__ */ React3.createElement(React3.Fragment, null, scriptTag, /* @__PURE__ */ React3.createElement(React3.Suspense, null, /* @__PURE__ */ React3.createElement(
-      StreamTransfer,
-      {
-        context,
-        identifier: identifier + 1,
-        reader,
-        textDecoder,
-        nonce
-      }
-    )));
-  }
-}
-function getTurboStreamSingleFetchDataStrategy(getRouter, manifest, routeModules, ssr, basename, trailingSlashAware) {
-  let dataStrategy = getSingleFetchDataStrategyImpl(
-    getRouter,
-    (match) => {
-      let manifestRoute = manifest.routes[match.route.id];
-      invariant2(manifestRoute, "Route not found in manifest");
-      let routeModule = routeModules[match.route.id];
-      return {
-        hasLoader: manifestRoute.hasLoader,
-        hasClientLoader: manifestRoute.hasClientLoader,
-        hasShouldRevalidate: Boolean(routeModule == null ? void 0 : routeModule.shouldRevalidate)
-      };
-    },
-    fetchAndDecodeViaTurboStream,
-    ssr,
-    basename,
-    trailingSlashAware
-  );
-  return async (args) => args.runClientMiddleware(dataStrategy);
-}
-function getSingleFetchDataStrategyImpl(getRouter, getRouteInfo, fetchAndDecode, ssr, basename, trailingSlashAware, shouldAllowOptOut = () => true) {
-  return async (args) => {
-    let { request, matches, fetcherKey } = args;
-    let router2 = getRouter();
-    if (request.method !== "GET") {
-      return singleFetchActionStrategy(
-        args,
-        fetchAndDecode,
-        basename,
-        trailingSlashAware
-      );
-    }
-    let foundRevalidatingServerLoader = matches.some((m) => {
-      let { hasLoader, hasClientLoader } = getRouteInfo(m);
-      return m.shouldCallHandler() && hasLoader && !hasClientLoader;
-    });
-    if (!ssr && !foundRevalidatingServerLoader) {
-      return nonSsrStrategy(
-        args,
-        getRouteInfo,
-        fetchAndDecode,
-        basename,
-        trailingSlashAware
-      );
-    }
-    if (fetcherKey) {
-      return singleFetchLoaderFetcherStrategy(
-        args,
-        fetchAndDecode,
-        basename,
-        trailingSlashAware
-      );
-    }
-    return singleFetchLoaderNavigationStrategy(
-      args,
-      router2,
-      getRouteInfo,
-      fetchAndDecode,
-      ssr,
-      basename,
-      trailingSlashAware,
-      shouldAllowOptOut
-    );
-  };
-}
-async function singleFetchActionStrategy(args, fetchAndDecode, basename, trailingSlashAware) {
-  let actionMatch = args.matches.find((m) => m.shouldCallHandler());
-  invariant2(actionMatch, "No action match found");
-  let actionStatus = void 0;
-  let result = await actionMatch.resolve(async (handler) => {
-    let result2 = await handler(async () => {
-      let { data: data2, status } = await fetchAndDecode(
-        args,
-        basename,
-        trailingSlashAware,
-        [actionMatch.route.id]
-      );
-      actionStatus = status;
-      return unwrapSingleFetchResult(data2, actionMatch.route.id);
-    });
-    return result2;
-  });
-  if (isResponse(result.result) || isRouteErrorResponse(result.result) || isDataWithResponseInit(result.result)) {
-    return { [actionMatch.route.id]: result };
-  }
-  return {
-    [actionMatch.route.id]: {
-      type: result.type,
-      result: data(result.result, actionStatus)
-    }
-  };
-}
-async function nonSsrStrategy(args, getRouteInfo, fetchAndDecode, basename, trailingSlashAware) {
-  let matchesToLoad = args.matches.filter((m) => m.shouldCallHandler());
-  let results = {};
-  await Promise.all(
-    matchesToLoad.map(
-      (m) => m.resolve(async (handler) => {
-        try {
-          let { hasClientLoader } = getRouteInfo(m);
-          let routeId = m.route.id;
-          let result = hasClientLoader ? await handler(async () => {
-            let { data: data2 } = await fetchAndDecode(
-              args,
-              basename,
-              trailingSlashAware,
-              [routeId]
-            );
-            return unwrapSingleFetchResult(data2, routeId);
-          }) : await handler();
-          results[m.route.id] = { type: "data", result };
-        } catch (e) {
-          results[m.route.id] = { type: "error", result: e };
-        }
-      })
-    )
-  );
-  return results;
-}
-async function singleFetchLoaderNavigationStrategy(args, router2, getRouteInfo, fetchAndDecode, ssr, basename, trailingSlashAware, shouldAllowOptOut = () => true) {
-  let routesParams = /* @__PURE__ */ new Set();
-  let foundOptOutRoute = false;
-  let routeDfds = args.matches.map(() => createDeferred2());
-  let singleFetchDfd = createDeferred2();
-  let results = {};
-  let resolvePromise = Promise.all(
-    args.matches.map(
-      async (m, i) => m.resolve(async (handler) => {
-        routeDfds[i].resolve();
-        let routeId = m.route.id;
-        let { hasLoader, hasClientLoader, hasShouldRevalidate } = getRouteInfo(m);
-        let defaultShouldRevalidate = !m.shouldRevalidateArgs || m.shouldRevalidateArgs.actionStatus == null || m.shouldRevalidateArgs.actionStatus < 400;
-        let shouldCall = m.shouldCallHandler(defaultShouldRevalidate);
-        if (!shouldCall) {
-          foundOptOutRoute || (foundOptOutRoute = m.shouldRevalidateArgs != null && // This is a revalidation,
-          hasLoader && // for a route with a server loader,
-          hasShouldRevalidate === true);
-          return;
-        }
-        if (shouldAllowOptOut(m) && hasClientLoader) {
-          if (hasLoader) {
-            foundOptOutRoute = true;
-          }
-          try {
-            let result = await handler(async () => {
-              let { data: data2 } = await fetchAndDecode(
-                args,
-                basename,
-                trailingSlashAware,
-                [routeId]
-              );
-              return unwrapSingleFetchResult(data2, routeId);
-            });
-            results[routeId] = { type: "data", result };
-          } catch (e) {
-            results[routeId] = { type: "error", result: e };
-          }
-          return;
-        }
-        if (hasLoader) {
-          routesParams.add(routeId);
-        }
-        try {
-          let result = await handler(async () => {
-            let data2 = await singleFetchDfd.promise;
-            return unwrapSingleFetchResult(data2, routeId);
-          });
-          results[routeId] = { type: "data", result };
-        } catch (e) {
-          results[routeId] = { type: "error", result: e };
-        }
-      })
-    )
-  );
-  await Promise.all(routeDfds.map((d) => d.promise));
-  let isInitialLoad = !router2.state.initialized && router2.state.navigation.state === "idle";
-  if ((isInitialLoad || routesParams.size === 0) && !window.__reactRouterHdrActive) {
-    singleFetchDfd.resolve({ routes: {} });
-  } else {
-    let targetRoutes = ssr && foundOptOutRoute && routesParams.size > 0 ? [...routesParams.keys()] : void 0;
-    try {
-      let data2 = await fetchAndDecode(
-        args,
-        basename,
-        trailingSlashAware,
-        targetRoutes
-      );
-      singleFetchDfd.resolve(data2.data);
-    } catch (e) {
-      singleFetchDfd.reject(e);
-    }
-  }
-  await resolvePromise;
-  await bubbleMiddlewareErrors(
-    singleFetchDfd.promise,
-    args.matches,
-    routesParams,
-    results
-  );
-  return results;
-}
-async function bubbleMiddlewareErrors(singleFetchPromise, matches, routesParams, results) {
-  var _a2;
-  try {
-    let middlewareError;
-    let fetchedData = await singleFetchPromise;
-    if ("routes" in fetchedData) {
-      for (let match of matches) {
-        if (match.route.id in fetchedData.routes) {
-          let routeResult = fetchedData.routes[match.route.id];
-          if ("error" in routeResult) {
-            middlewareError = routeResult.error;
-            if (((_a2 = results[match.route.id]) == null ? void 0 : _a2.result) == null) {
-              results[match.route.id] = {
-                type: "error",
-                result: middlewareError
-              };
-            }
-            break;
-          }
-        }
-      }
-    }
-    if (middlewareError !== void 0) {
-      Array.from(routesParams.values()).forEach((routeId) => {
-        if (results[routeId].result instanceof SingleFetchNoResultError) {
-          results[routeId].result = middlewareError;
-        }
-      });
-    }
-  } catch (e) {
-  }
-}
-async function singleFetchLoaderFetcherStrategy(args, fetchAndDecode, basename, trailingSlashAware) {
-  let fetcherMatch = args.matches.find((m) => m.shouldCallHandler());
-  invariant2(fetcherMatch, "No fetcher match found");
-  let routeId = fetcherMatch.route.id;
-  let result = await fetcherMatch.resolve(
-    async (handler) => handler(async () => {
-      let { data: data2 } = await fetchAndDecode(args, basename, trailingSlashAware, [
-        routeId
-      ]);
-      return unwrapSingleFetchResult(data2, routeId);
-    })
-  );
-  return { [fetcherMatch.route.id]: result };
-}
-function stripIndexParam$1(url) {
-  let indexValues = url.searchParams.getAll("index");
-  url.searchParams.delete("index");
-  let indexValuesToKeep = [];
-  for (let indexValue of indexValues) {
-    if (indexValue) {
-      indexValuesToKeep.push(indexValue);
-    }
-  }
-  for (let toKeep of indexValuesToKeep) {
-    url.searchParams.append("index", toKeep);
-  }
-  return url;
-}
-function singleFetchUrl(reqUrl, basename, trailingSlashAware, extension) {
-  let url = typeof reqUrl === "string" ? new URL(
-    reqUrl,
-    // This can be called during the SSR flow via PrefetchPageLinksImpl so
-    // don't assume window is available
-    typeof window === "undefined" ? "server://singlefetch/" : window.location.origin
-  ) : reqUrl;
-  if (trailingSlashAware) {
-    if (url.pathname.endsWith("/")) {
-      url.pathname = `${url.pathname}_.${extension}`;
-    } else {
-      url.pathname = `${url.pathname}.${extension}`;
-    }
-  } else {
-    if (url.pathname === "/") {
-      url.pathname = `_root.${extension}`;
-    } else if (basename && stripBasename(url.pathname, basename) === "/") {
-      url.pathname = `${basename.replace(/\/$/, "")}/_root.${extension}`;
-    } else {
-      url.pathname = `${url.pathname.replace(/\/$/, "")}.${extension}`;
-    }
-  }
-  return url;
-}
-async function fetchAndDecodeViaTurboStream(args, basename, trailingSlashAware, targetRoutes) {
-  let { request } = args;
-  let url = singleFetchUrl(request.url, basename, trailingSlashAware, "data");
-  if (request.method === "GET") {
-    url = stripIndexParam$1(url);
-    if (targetRoutes) {
-      url.searchParams.set("_routes", targetRoutes.join(","));
-    }
-  }
-  let res = await fetch(url, await createRequestInit(request));
-  if (res.status >= 400 && !res.headers.has("X-Remix-Response")) {
-    throw new ErrorResponseImpl(res.status, res.statusText, await res.text());
-  }
-  if (res.status === 204 && res.headers.has("X-Remix-Redirect")) {
-    return {
-      status: SINGLE_FETCH_REDIRECT_STATUS,
-      data: {
-        redirect: {
-          redirect: res.headers.get("X-Remix-Redirect"),
-          status: Number(res.headers.get("X-Remix-Status") || "302"),
-          revalidate: res.headers.get("X-Remix-Revalidate") === "true",
-          reload: res.headers.get("X-Remix-Reload-Document") === "true",
-          replace: res.headers.get("X-Remix-Replace") === "true"
-        }
-      }
-    };
-  }
-  if (NO_BODY_STATUS_CODES.has(res.status)) {
-    let routes = {};
-    if (targetRoutes && request.method !== "GET") {
-      routes[targetRoutes[0]] = { data: void 0 };
-    }
-    return {
-      status: res.status,
-      data: { routes }
-    };
-  }
-  invariant2(res.body, "No response body to decode");
-  try {
-    let decoded = await decodeViaTurboStream(res.body, window);
-    let data2;
-    if (request.method === "GET") {
-      let typed = decoded.value;
-      if (SingleFetchRedirectSymbol in typed) {
-        data2 = { redirect: typed[SingleFetchRedirectSymbol] };
-      } else {
-        data2 = { routes: typed };
-      }
-    } else {
-      let typed = decoded.value;
-      let routeId = targetRoutes == null ? void 0 : targetRoutes[0];
-      invariant2(routeId, "No routeId found for single fetch call decoding");
-      if ("redirect" in typed) {
-        data2 = { redirect: typed };
-      } else {
-        data2 = { routes: { [routeId]: typed } };
-      }
-    }
-    return { status: res.status, data: data2 };
-  } catch (e) {
-    throw new Error("Unable to decode turbo-stream response");
-  }
-}
-function decodeViaTurboStream(body, global2) {
-  return decode(body, {
-    plugins: [
-      (type, ...rest) => {
-        if (type === "SanitizedError") {
-          let [name, message, stack] = rest;
-          let Constructor = Error;
-          if (name && name in global2 && typeof global2[name] === "function") {
-            Constructor = global2[name];
-          }
-          let error = new Constructor(message);
-          error.stack = stack;
-          return { value: error };
-        }
-        if (type === "ErrorResponse") {
-          let [data2, status, statusText] = rest;
-          return {
-            value: new ErrorResponseImpl(status, statusText, data2)
-          };
-        }
-        if (type === "SingleFetchRedirect") {
-          return { value: { [SingleFetchRedirectSymbol]: rest[0] } };
-        }
-        if (type === "SingleFetchClassInstance") {
-          return { value: rest[0] };
-        }
-        if (type === "SingleFetchFallback") {
-          return { value: void 0 };
-        }
-      }
-    ]
-  });
-}
-function unwrapSingleFetchResult(result, routeId) {
-  if ("redirect" in result) {
-    let {
-      redirect: location2,
-      revalidate,
-      reload,
-      replace: replace2,
-      status
-    } = result.redirect;
-    throw redirect(location2, {
-      status,
-      headers: {
-        // Three R's of redirecting (lol Veep)
-        ...revalidate ? { "X-Remix-Revalidate": "yes" } : null,
-        ...reload ? { "X-Remix-Reload-Document": "yes" } : null,
-        ...replace2 ? { "X-Remix-Replace": "yes" } : null
-      }
-    });
-  }
-  let routeResult = result.routes[routeId];
-  if (routeResult == null) {
-    throw new SingleFetchNoResultError(
-      `No result found for routeId "${routeId}"`
-    );
-  } else if ("error" in routeResult) {
-    throw routeResult.error;
-  } else if ("data" in routeResult) {
-    return routeResult.data;
-  } else {
-    throw new Error(`Invalid response found for routeId "${routeId}"`);
-  }
-}
-function createDeferred2() {
-  let resolve;
-  let reject;
-  let promise = new Promise((res, rej) => {
-    resolve = async (val) => {
-      res(val);
-      try {
-        await promise;
-      } catch (e) {
-      }
-    };
-    reject = async (error) => {
-      rej(error);
-      try {
-        await promise;
-      } catch (e) {
-      }
-    };
-  });
-  return {
-    promise,
-    //@ts-ignore
-    resolve,
-    //@ts-ignore
-    reject
-  };
-}
-async function loadRouteModule(route, routeModulesCache) {
-  if (route.id in routeModulesCache) {
-    return routeModulesCache[route.id];
-  }
-  try {
-    let routeModule = await import(
-      /* @vite-ignore */
-      /* webpackIgnore: true */
-      route.module
-    );
-    routeModulesCache[route.id] = routeModule;
-    return routeModule;
-  } catch (error) {
-    console.error(
-      `Error loading route module \`${route.module}\`, reloading page...`
-    );
-    console.error(error);
-    if (window.__reactRouterContext && window.__reactRouterContext.isSpaMode && // @ts-expect-error
-    void 0) ;
-    window.location.reload();
-    return new Promise(() => {
-    });
-  }
-}
-function getKeyedLinksForMatches(matches, routeModules, manifest) {
-  let descriptors = matches.map((match) => {
-    var _a2;
-    let module = routeModules[match.route.id];
-    let route = manifest.routes[match.route.id];
-    return [
-      route && route.css ? route.css.map((href2) => ({ rel: "stylesheet", href: href2 })) : [],
-      ((_a2 = module == null ? void 0 : module.links) == null ? void 0 : _a2.call(module)) || []
-    ];
-  }).flat(2);
-  let preloads = getModuleLinkHrefs(matches, manifest);
-  return dedupeLinkDescriptors(descriptors, preloads);
-}
-function getRouteCssDescriptors(route) {
-  if (!route.css) return [];
-  return route.css.map((href2) => ({ rel: "stylesheet", href: href2 }));
-}
-async function prefetchRouteCss(route) {
-  if (!route.css) return;
-  let descriptors = getRouteCssDescriptors(route);
-  await Promise.all(descriptors.map(prefetchStyleLink));
-}
-async function prefetchStyleLinks(route, routeModule) {
-  if (!route.css && !routeModule.links || !isPreloadSupported()) return;
-  let descriptors = [];
-  if (route.css) {
-    descriptors.push(...getRouteCssDescriptors(route));
-  }
-  if (routeModule.links) {
-    descriptors.push(...routeModule.links());
-  }
-  if (descriptors.length === 0) return;
-  let styleLinks = [];
-  for (let descriptor of descriptors) {
-    if (!isPageLinkDescriptor(descriptor) && descriptor.rel === "stylesheet") {
-      styleLinks.push({
-        ...descriptor,
-        rel: "preload",
-        as: "style"
-      });
-    }
-  }
-  await Promise.all(styleLinks.map(prefetchStyleLink));
-}
-async function prefetchStyleLink(descriptor) {
-  return new Promise((resolve) => {
-    if (descriptor.media && !window.matchMedia(descriptor.media).matches || document.querySelector(
-      `link[rel="stylesheet"][href="${descriptor.href}"]`
-    )) {
-      return resolve();
-    }
-    let link = document.createElement("link");
-    Object.assign(link, descriptor);
-    function removeLink() {
-      if (document.head.contains(link)) {
-        document.head.removeChild(link);
-      }
-    }
-    link.onload = () => {
-      removeLink();
-      resolve();
-    };
-    link.onerror = () => {
-      removeLink();
-      resolve();
-    };
-    document.head.appendChild(link);
-  });
-}
-function isPageLinkDescriptor(object) {
-  return object != null && typeof object.page === "string";
-}
-function isHtmlLinkDescriptor(object) {
-  if (object == null) {
-    return false;
-  }
-  if (object.href == null) {
-    return object.rel === "preload" && typeof object.imageSrcSet === "string" && typeof object.imageSizes === "string";
-  }
-  return typeof object.rel === "string" && typeof object.href === "string";
-}
-async function getKeyedPrefetchLinks(matches, manifest, routeModules) {
-  let links = await Promise.all(
-    matches.map(async (match) => {
-      let route = manifest.routes[match.route.id];
-      if (route) {
-        let mod = await loadRouteModule(route, routeModules);
-        return mod.links ? mod.links() : [];
-      }
-      return [];
-    })
-  );
-  return dedupeLinkDescriptors(
-    links.flat(1).filter(isHtmlLinkDescriptor).filter((link) => link.rel === "stylesheet" || link.rel === "preload").map(
-      (link) => link.rel === "stylesheet" ? { ...link, rel: "prefetch", as: "style" } : { ...link, rel: "prefetch" }
-    )
-  );
-}
-function getNewMatchesForLinks(page, nextMatches, currentMatches, manifest, location2, mode) {
-  let isNew = (match, index) => {
-    if (!currentMatches[index]) return true;
-    return match.route.id !== currentMatches[index].route.id;
-  };
-  let matchPathChanged = (match, index) => {
-    var _a2;
-    return (
-      // param change, /users/123 -> /users/456
-      currentMatches[index].pathname !== match.pathname || // splat param changed, which is not present in match.path
-      // e.g. /files/images/avatar.jpg -> files/finances.xls
-      ((_a2 = currentMatches[index].route.path) == null ? void 0 : _a2.endsWith("*")) && currentMatches[index].params["*"] !== match.params["*"]
-    );
-  };
-  if (mode === "assets") {
-    return nextMatches.filter(
-      (match, index) => isNew(match, index) || matchPathChanged(match, index)
-    );
-  }
-  if (mode === "data") {
-    return nextMatches.filter((match, index) => {
-      var _a2;
-      let manifestRoute = manifest.routes[match.route.id];
-      if (!manifestRoute || !manifestRoute.hasLoader) {
-        return false;
-      }
-      if (isNew(match, index) || matchPathChanged(match, index)) {
-        return true;
-      }
-      if (match.route.shouldRevalidate) {
-        let routeChoice = match.route.shouldRevalidate({
-          currentUrl: new URL(
-            location2.pathname + location2.search + location2.hash,
-            window.origin
-          ),
-          currentParams: ((_a2 = currentMatches[0]) == null ? void 0 : _a2.params) || {},
-          nextUrl: new URL(page, window.origin),
-          nextParams: match.params,
-          defaultShouldRevalidate: true
-        });
-        if (typeof routeChoice === "boolean") {
-          return routeChoice;
-        }
-      }
-      return true;
-    });
-  }
-  return [];
-}
-function getModuleLinkHrefs(matches, manifest, { includeHydrateFallback } = {}) {
-  return dedupeHrefs(
-    matches.map((match) => {
-      let route = manifest.routes[match.route.id];
-      if (!route) return [];
-      let hrefs = [route.module];
-      if (route.clientActionModule) {
-        hrefs = hrefs.concat(route.clientActionModule);
-      }
-      if (route.clientLoaderModule) {
-        hrefs = hrefs.concat(route.clientLoaderModule);
-      }
-      if (includeHydrateFallback && route.hydrateFallbackModule) {
-        hrefs = hrefs.concat(route.hydrateFallbackModule);
-      }
-      if (route.imports) {
-        hrefs = hrefs.concat(route.imports);
-      }
-      return hrefs;
-    }).flat(1)
-  );
-}
-function dedupeHrefs(hrefs) {
-  return [...new Set(hrefs)];
-}
-function sortKeys(obj) {
-  let sorted = {};
-  let keys = Object.keys(obj).sort();
-  for (let key of keys) {
-    sorted[key] = obj[key];
-  }
-  return sorted;
-}
-function dedupeLinkDescriptors(descriptors, preloads) {
-  let set = /* @__PURE__ */ new Set();
-  let preloadsSet = new Set(preloads);
-  return descriptors.reduce((deduped, descriptor) => {
-    let alreadyModulePreload = preloads && !isPageLinkDescriptor(descriptor) && descriptor.as === "script" && descriptor.href && preloadsSet.has(descriptor.href);
-    if (alreadyModulePreload) {
-      return deduped;
-    }
-    let key = JSON.stringify(sortKeys(descriptor));
-    if (!set.has(key)) {
-      set.add(key);
-      deduped.push({ key, link: descriptor });
-    }
-    return deduped;
-  }, []);
-}
-var _isPreloadSupported;
-function isPreloadSupported() {
-  if (_isPreloadSupported !== void 0) {
-    return _isPreloadSupported;
-  }
-  let el = document.createElement("link");
-  _isPreloadSupported = el.relList.supports("preload");
-  el = null;
-  return _isPreloadSupported;
-}
-function RemixRootDefaultHydrateFallback() {
-  return /* @__PURE__ */ React3.createElement(BoundaryShell, { title: "Loading...", renderScripts: true }, /* @__PURE__ */ React3.createElement(
-    "script",
-    {
-      dangerouslySetInnerHTML: {
-        __html: `
-              console.log(
-                "💿 Hey developer 👋. You can provide a way better UX than this " +
-                "when your app is loading JS modules and/or running \`clientLoader\` " +
-                "functions. Check out https://reactrouter.com/start/framework/route-module#hydratefallback " +
-                "for more information."
-              );
-            `
-      }
-    }
-  ));
-}
-function groupRoutesByParentId$1(manifest) {
-  let routes = {};
-  Object.values(manifest).forEach((route) => {
-    if (route) {
-      let parentId = route.parentId || "";
-      if (!routes[parentId]) {
-        routes[parentId] = [];
-      }
-      routes[parentId].push(route);
-    }
-  });
-  return routes;
-}
-function getRouteComponents(route, routeModule, isSpaMode) {
-  let Component4 = getRouteModuleComponent(routeModule);
-  let HydrateFallback = routeModule.HydrateFallback && (!isSpaMode || route.id === "root") ? routeModule.HydrateFallback : route.id === "root" ? RemixRootDefaultHydrateFallback : void 0;
-  let ErrorBoundary = routeModule.ErrorBoundary ? routeModule.ErrorBoundary : route.id === "root" ? () => /* @__PURE__ */ React3.createElement(RemixRootDefaultErrorBoundary, { error: useRouteError() }) : void 0;
-  if (route.id === "root" && routeModule.Layout) {
-    return {
-      ...Component4 ? {
-        element: /* @__PURE__ */ React3.createElement(routeModule.Layout, null, /* @__PURE__ */ React3.createElement(Component4, null))
-      } : { Component: Component4 },
-      ...ErrorBoundary ? {
-        errorElement: /* @__PURE__ */ React3.createElement(routeModule.Layout, null, /* @__PURE__ */ React3.createElement(ErrorBoundary, null))
-      } : { ErrorBoundary },
-      ...HydrateFallback ? {
-        hydrateFallbackElement: /* @__PURE__ */ React3.createElement(routeModule.Layout, null, /* @__PURE__ */ React3.createElement(HydrateFallback, null))
-      } : { HydrateFallback }
-    };
-  }
-  return { Component: Component4, ErrorBoundary, HydrateFallback };
-}
-function createServerRoutes(manifest, routeModules, future, isSpaMode, parentId = "", routesByParentId = groupRoutesByParentId$1(manifest), spaModeLazyPromise = Promise.resolve({ Component: () => null })) {
-  return (routesByParentId[parentId] || []).map((route) => {
-    let routeModule = routeModules[route.id];
-    invariant2(
-      routeModule,
-      "No `routeModule` available to create server routes"
-    );
-    let dataRoute = {
-      ...getRouteComponents(route, routeModule, isSpaMode),
-      caseSensitive: route.caseSensitive,
-      id: route.id,
-      index: route.index,
-      path: route.path,
-      handle: routeModule.handle,
-      // For SPA Mode, all routes are lazy except root.  However we tell the
-      // router root is also lazy here too since we don't need a full
-      // implementation - we just need a `lazy` prop to tell the RR rendering
-      // where to stop which is always at the root route in SPA mode
-      lazy: isSpaMode ? () => spaModeLazyPromise : void 0,
-      // For partial hydration rendering, we need to indicate when the route
-      // has a loader/clientLoader, but it won't ever be called during the static
-      // render, so just give it a no-op function so we can render down to the
-      // proper fallback
-      loader: route.hasLoader || route.hasClientLoader ? () => null : void 0
-      // We don't need middleware/action/shouldRevalidate on these routes since
-      // they're for a static render
-    };
-    let children = createServerRoutes(
-      manifest,
-      routeModules,
-      future,
-      isSpaMode,
-      route.id,
-      routesByParentId,
-      spaModeLazyPromise
-    );
-    if (children.length > 0) dataRoute.children = children;
-    return dataRoute;
-  });
-}
-function createClientRoutesWithHMRRevalidationOptOut(needsRevalidation, manifest, routeModulesCache, initialState, ssr, isSpaMode) {
-  return createClientRoutes(
-    manifest,
-    routeModulesCache,
-    initialState,
-    ssr,
-    isSpaMode,
-    "",
-    groupRoutesByParentId$1(manifest),
-    needsRevalidation
-  );
-}
-function preventInvalidServerHandlerCall$1(type, route) {
-  if (type === "loader" && !route.hasLoader || type === "action" && !route.hasAction) {
-    let fn = type === "action" ? "serverAction()" : "serverLoader()";
-    let msg = `You are trying to call ${fn} on a route that does not have a server ${type} (routeId: "${route.id}")`;
-    console.error(msg);
-    throw new ErrorResponseImpl(400, "Bad Request", new Error(msg), true);
-  }
-}
-function noActionDefinedError(type, routeId) {
-  let article = type === "clientAction" ? "a" : "an";
-  let msg = `Route "${routeId}" does not have ${article} ${type}, but you are trying to submit to it. To fix this, please add ${article} \`${type}\` function to the route`;
-  console.error(msg);
-  throw new ErrorResponseImpl(405, "Method Not Allowed", new Error(msg), true);
-}
-function createClientRoutes(manifest, routeModulesCache, initialState, ssr, isSpaMode, parentId = "", routesByParentId = groupRoutesByParentId$1(manifest), needsRevalidation) {
-  return (routesByParentId[parentId] || []).map((route) => {
-    var _a2, _b2, _c;
-    let routeModule = routeModulesCache[route.id];
-    function fetchServerHandler(singleFetch) {
-      invariant2(
-        typeof singleFetch === "function",
-        "No single fetch function available for route handler"
-      );
-      return singleFetch();
-    }
-    function fetchServerLoader(singleFetch) {
-      if (!route.hasLoader) return Promise.resolve(null);
-      return fetchServerHandler(singleFetch);
-    }
-    function fetchServerAction(singleFetch) {
-      if (!route.hasAction) {
-        throw noActionDefinedError("action", route.id);
-      }
-      return fetchServerHandler(singleFetch);
-    }
-    function prefetchModule(modulePath) {
-      import(
-        /* @vite-ignore */
-        /* webpackIgnore: true */
-        modulePath
-      );
-    }
-    function prefetchRouteModuleChunks(route2) {
-      if (route2.clientActionModule) {
-        prefetchModule(route2.clientActionModule);
-      }
-      if (route2.clientLoaderModule) {
-        prefetchModule(route2.clientLoaderModule);
-      }
-    }
-    async function prefetchStylesAndCallHandler(handler) {
-      let cachedModule = routeModulesCache[route.id];
-      let linkPrefetchPromise = cachedModule ? prefetchStyleLinks(route, cachedModule) : Promise.resolve();
-      try {
-        return handler();
-      } finally {
-        await linkPrefetchPromise;
-      }
-    }
-    let dataRoute = {
-      id: route.id,
-      index: route.index,
-      path: route.path
-    };
-    if (routeModule) {
-      Object.assign(dataRoute, {
-        ...dataRoute,
-        ...getRouteComponents(route, routeModule, isSpaMode),
-        middleware: routeModule.clientMiddleware,
-        handle: routeModule.handle,
-        shouldRevalidate: getShouldRevalidateFunction(
-          dataRoute.path,
-          routeModule,
-          route,
-          ssr,
-          needsRevalidation
-        )
-      });
-      let hasInitialData = initialState && initialState.loaderData && route.id in initialState.loaderData;
-      let initialData = hasInitialData ? (_a2 = initialState == null ? void 0 : initialState.loaderData) == null ? void 0 : _a2[route.id] : void 0;
-      let hasInitialError = initialState && initialState.errors && route.id in initialState.errors;
-      let initialError = hasInitialError ? (_b2 = initialState == null ? void 0 : initialState.errors) == null ? void 0 : _b2[route.id] : void 0;
-      let isHydrationRequest = needsRevalidation == null && (((_c = routeModule.clientLoader) == null ? void 0 : _c.hydrate) === true || !route.hasLoader);
-      dataRoute.loader = async ({
-        request,
-        params,
-        context,
-        unstable_pattern,
-        unstable_url
-      }, singleFetch) => {
-        try {
-          let result = await prefetchStylesAndCallHandler(async () => {
-            invariant2(
-              routeModule,
-              "No `routeModule` available for critical-route loader"
-            );
-            if (!routeModule.clientLoader) {
-              return fetchServerLoader(singleFetch);
-            }
-            return routeModule.clientLoader({
-              request,
-              params,
-              context,
-              unstable_pattern,
-              unstable_url,
-              async serverLoader() {
-                preventInvalidServerHandlerCall$1("loader", route);
-                if (isHydrationRequest) {
-                  if (hasInitialData) {
-                    return initialData;
-                  }
-                  if (hasInitialError) {
-                    throw initialError;
-                  }
-                }
-                return fetchServerLoader(singleFetch);
-              }
-            });
-          });
-          return result;
-        } finally {
-          isHydrationRequest = false;
-        }
-      };
-      dataRoute.loader.hydrate = shouldHydrateRouteLoader(
-        route.id,
-        routeModule.clientLoader,
-        route.hasLoader,
-        isSpaMode
-      );
-      dataRoute.action = ({
-        request,
-        params,
-        context,
-        unstable_pattern,
-        unstable_url
-      }, singleFetch) => {
-        return prefetchStylesAndCallHandler(async () => {
-          invariant2(
-            routeModule,
-            "No `routeModule` available for critical-route action"
-          );
-          if (!routeModule.clientAction) {
-            if (isSpaMode) {
-              throw noActionDefinedError("clientAction", route.id);
-            }
-            return fetchServerAction(singleFetch);
-          }
-          return routeModule.clientAction({
-            request,
-            params,
-            context,
-            unstable_pattern,
-            unstable_url,
-            async serverAction() {
-              preventInvalidServerHandlerCall$1("action", route);
-              return fetchServerAction(singleFetch);
-            }
-          });
-        });
-      };
-    } else {
-      if (!route.hasClientLoader) {
-        dataRoute.loader = (_, singleFetch) => prefetchStylesAndCallHandler(() => {
-          return fetchServerLoader(singleFetch);
-        });
-      }
-      if (!route.hasClientAction) {
-        dataRoute.action = (_, singleFetch) => prefetchStylesAndCallHandler(() => {
-          if (isSpaMode) {
-            throw noActionDefinedError("clientAction", route.id);
-          }
-          return fetchServerAction(singleFetch);
-        });
-      }
-      let lazyRoutePromise;
-      async function getLazyRoute() {
-        if (lazyRoutePromise) {
-          return await lazyRoutePromise;
-        }
-        lazyRoutePromise = (async () => {
-          if (route.clientLoaderModule || route.clientActionModule) {
-            await new Promise((resolve) => setTimeout(resolve, 0));
-          }
-          let routeModulePromise = loadRouteModuleWithBlockingLinks(
-            route,
-            routeModulesCache
-          );
-          prefetchRouteModuleChunks(route);
-          return await routeModulePromise;
-        })();
-        return await lazyRoutePromise;
-      }
-      dataRoute.lazy = {
-        loader: route.hasClientLoader ? async () => {
-          let { clientLoader } = route.clientLoaderModule ? await import(
-            /* @vite-ignore */
-            /* webpackIgnore: true */
-            route.clientLoaderModule
-          ) : await getLazyRoute();
-          invariant2(clientLoader, "No `clientLoader` export found");
-          return (args, singleFetch) => clientLoader({
-            ...args,
-            async serverLoader() {
-              preventInvalidServerHandlerCall$1("loader", route);
-              return fetchServerLoader(singleFetch);
-            }
-          });
-        } : void 0,
-        action: route.hasClientAction ? async () => {
-          let clientActionPromise = route.clientActionModule ? import(
-            /* @vite-ignore */
-            /* webpackIgnore: true */
-            route.clientActionModule
-          ) : getLazyRoute();
-          prefetchRouteModuleChunks(route);
-          let { clientAction } = await clientActionPromise;
-          invariant2(clientAction, "No `clientAction` export found");
-          return (args, singleFetch) => clientAction({
-            ...args,
-            async serverAction() {
-              preventInvalidServerHandlerCall$1("action", route);
-              return fetchServerAction(singleFetch);
-            }
-          });
-        } : void 0,
-        middleware: route.hasClientMiddleware ? async () => {
-          let { clientMiddleware } = route.clientMiddlewareModule ? await import(
-            /* @vite-ignore */
-            /* webpackIgnore: true */
-            route.clientMiddlewareModule
-          ) : await getLazyRoute();
-          invariant2(clientMiddleware, "No `clientMiddleware` export found");
-          return clientMiddleware;
-        } : void 0,
-        shouldRevalidate: async () => {
-          let lazyRoute = await getLazyRoute();
-          return getShouldRevalidateFunction(
-            dataRoute.path,
-            lazyRoute,
-            route,
-            ssr,
-            needsRevalidation
-          );
-        },
-        handle: async () => (await getLazyRoute()).handle,
-        // No need to wrap these in layout since the root route is never
-        // loaded via route.lazy()
-        Component: async () => (await getLazyRoute()).Component,
-        ErrorBoundary: route.hasErrorBoundary ? async () => (await getLazyRoute()).ErrorBoundary : void 0
-      };
-    }
-    let children = createClientRoutes(
-      manifest,
-      routeModulesCache,
-      initialState,
-      ssr,
-      isSpaMode,
-      route.id,
-      routesByParentId,
-      needsRevalidation
-    );
-    if (children.length > 0) dataRoute.children = children;
-    return dataRoute;
-  });
-}
-function getShouldRevalidateFunction(path, route, manifestRoute, ssr, needsRevalidation) {
-  if (needsRevalidation) {
-    return wrapShouldRevalidateForHdr(
-      manifestRoute.id,
-      route.shouldRevalidate,
-      needsRevalidation
-    );
-  }
-  if (!ssr && manifestRoute.hasLoader && !manifestRoute.hasClientLoader) {
-    let myParams = path ? compilePath(path)[1].map((p) => p.paramName) : [];
-    const didParamsChange = (opts) => myParams.some((p) => opts.currentParams[p] !== opts.nextParams[p]);
-    if (route.shouldRevalidate) {
-      let fn = route.shouldRevalidate;
-      return (opts) => fn({
-        ...opts,
-        defaultShouldRevalidate: didParamsChange(opts)
-      });
-    } else {
-      return (opts) => didParamsChange(opts);
-    }
-  }
-  return route.shouldRevalidate;
-}
-function wrapShouldRevalidateForHdr(routeId, routeShouldRevalidate, needsRevalidation) {
-  let handledRevalidation = false;
-  return (arg) => {
-    if (!handledRevalidation) {
-      handledRevalidation = true;
-      return needsRevalidation.has(routeId);
-    }
-    return routeShouldRevalidate ? routeShouldRevalidate(arg) : arg.defaultShouldRevalidate;
-  };
-}
-async function loadRouteModuleWithBlockingLinks(route, routeModules) {
-  let routeModulePromise = loadRouteModule(route, routeModules);
-  let prefetchRouteCssPromise = prefetchRouteCss(route);
-  let routeModule = await routeModulePromise;
-  await Promise.all([
-    prefetchRouteCssPromise,
-    prefetchStyleLinks(route, routeModule)
-  ]);
-  return {
-    Component: getRouteModuleComponent(routeModule),
-    ErrorBoundary: routeModule.ErrorBoundary,
-    clientMiddleware: routeModule.clientMiddleware,
-    clientAction: routeModule.clientAction,
-    clientLoader: routeModule.clientLoader,
-    handle: routeModule.handle,
-    links: routeModule.links,
-    meta: routeModule.meta,
-    shouldRevalidate: routeModule.shouldRevalidate
-  };
-}
-function getRouteModuleComponent(routeModule) {
-  if (routeModule.default == null) return void 0;
-  let isEmptyObject = typeof routeModule.default === "object" && Object.keys(routeModule.default).length === 0;
-  if (!isEmptyObject) {
-    return routeModule.default;
-  }
-}
-function shouldHydrateRouteLoader(routeId, clientLoader, hasLoader, isSpaMode) {
-  return isSpaMode && routeId !== "root" || clientLoader != null && (clientLoader.hydrate === true || hasLoader !== true);
-}
-var nextPaths$1 = /* @__PURE__ */ new Set();
-var discoveredPathsMaxSize$1 = 1e3;
-var discoveredPaths$1 = /* @__PURE__ */ new Set();
-var URL_LIMIT$1 = 7680;
-function isFogOfWarEnabled(routeDiscovery, ssr) {
-  return routeDiscovery.mode === "lazy" && ssr === true;
-}
-function getPartialManifest({ sri, ...manifest }, router2) {
-  let routeIds = new Set(router2.state.matches.map((m) => m.route.id));
-  let segments = router2.state.location.pathname.split("/").filter(Boolean);
-  let paths = ["/"];
-  segments.pop();
-  while (segments.length > 0) {
-    paths.push(`/${segments.join("/")}`);
-    segments.pop();
-  }
-  paths.forEach((path) => {
-    let matches = matchRoutes(router2.routes, path, router2.basename);
-    if (matches) {
-      matches.forEach((m) => routeIds.add(m.route.id));
-    }
-  });
-  let initialRoutes = [...routeIds].reduce(
-    (acc, id) => Object.assign(acc, { [id]: manifest.routes[id] }),
-    {}
-  );
-  return {
-    ...manifest,
-    routes: initialRoutes,
-    sri: sri ? true : void 0
-  };
-}
-function getPatchRoutesOnNavigationFunction(getRouter, manifest, routeModules, ssr, routeDiscovery, isSpaMode, basename) {
-  if (!isFogOfWarEnabled(routeDiscovery, ssr)) {
-    return void 0;
-  }
-  return async ({ path, patch, signal, fetcherKey }) => {
-    if (discoveredPaths$1.has(path)) {
-      return;
-    }
-    let { state } = getRouter();
-    await fetchAndApplyManifestPatches$1(
-      [path],
-      // If we're patching for a fetcher call, reload the current location
-      // Otherwise prefer any ongoing navigation location
-      fetcherKey ? window.location.href : createPath(state.navigation.location || state.location),
-      manifest,
-      routeModules,
-      ssr,
-      isSpaMode,
-      basename,
-      routeDiscovery.manifestPath,
-      patch,
-      signal
-    );
-  };
-}
-function useFogOFWarDiscovery(router2, manifest, routeModules, ssr, routeDiscovery, isSpaMode) {
-  React3.useEffect(() => {
-    var _a2, _b2;
-    if (!isFogOfWarEnabled(routeDiscovery, ssr) || // @ts-expect-error - TS doesn't know about this yet
-    ((_b2 = (_a2 = window.navigator) == null ? void 0 : _a2.connection) == null ? void 0 : _b2.saveData) === true) {
-      return;
-    }
-    function registerElement(el) {
-      let path = el.tagName === "FORM" ? el.getAttribute("action") : el.getAttribute("href");
-      if (!path) {
-        return;
-      }
-      let pathname = el.tagName === "A" ? el.pathname : new URL(path, window.location.origin).pathname;
-      if (!discoveredPaths$1.has(pathname)) {
-        nextPaths$1.add(pathname);
-      }
-    }
-    async function fetchPatches() {
-      document.querySelectorAll("a[data-discover], form[data-discover]").forEach(registerElement);
-      let lazyPaths = Array.from(nextPaths$1.keys()).filter((path) => {
-        if (discoveredPaths$1.has(path)) {
-          nextPaths$1.delete(path);
-          return false;
-        }
-        return true;
-      });
-      if (lazyPaths.length === 0) {
-        return;
-      }
-      try {
-        await fetchAndApplyManifestPatches$1(
-          lazyPaths,
-          null,
-          manifest,
-          routeModules,
-          ssr,
-          isSpaMode,
-          router2.basename,
-          routeDiscovery.manifestPath,
-          router2.patchRoutes
-        );
-      } catch (e) {
-        console.error("Failed to fetch manifest patches", e);
-      }
-    }
-    let debouncedFetchPatches = debounce$1(fetchPatches, 100);
-    fetchPatches();
-    let observer = new MutationObserver(() => debouncedFetchPatches());
-    observer.observe(document.documentElement, {
-      subtree: true,
-      childList: true,
-      attributes: true,
-      attributeFilter: ["data-discover", "href", "action"]
-    });
-    return () => observer.disconnect();
-  }, [ssr, isSpaMode, manifest, routeModules, router2, routeDiscovery]);
-}
-function getManifestPath(_manifestPath, basename) {
-  let manifestPath = _manifestPath || "/__manifest";
-  if (basename == null) {
-    return manifestPath;
-  }
-  return `${basename}${manifestPath}`.replace(/\/+/g, "/");
-}
-var MANIFEST_VERSION_STORAGE_KEY = "react-router-manifest-version";
-async function fetchAndApplyManifestPatches$1(paths, errorReloadPath, manifest, routeModules, ssr, isSpaMode, basename, manifestPath, patchRoutes, signal) {
-  const searchParams = new URLSearchParams();
-  searchParams.set("paths", paths.sort().join(","));
-  searchParams.set("version", manifest.version);
-  let url = new URL(
-    getManifestPath(manifestPath, basename),
-    window.location.origin
-  );
-  url.search = searchParams.toString();
-  if (url.toString().length > URL_LIMIT$1) {
-    nextPaths$1.clear();
-    return;
-  }
-  let serverPatches;
-  try {
-    let res = await fetch(url, { signal });
-    if (!res.ok) {
-      throw new Error(`${res.status} ${res.statusText}`);
-    } else if (res.status === 204 && res.headers.has("X-Remix-Reload-Document")) {
-      if (!errorReloadPath) {
-        console.warn(
-          "Detected a manifest version mismatch during eager route discovery. The next navigation/fetch to an undiscovered route will result in a new document navigation to sync up with the latest manifest."
-        );
-        return;
-      }
-      try {
-        if (sessionStorage.getItem(MANIFEST_VERSION_STORAGE_KEY) === manifest.version) {
-          console.error(
-            "Unable to discover routes due to manifest version mismatch."
-          );
-          return;
-        }
-        sessionStorage.setItem(MANIFEST_VERSION_STORAGE_KEY, manifest.version);
-      } catch {
-      }
-      window.location.href = errorReloadPath;
-      console.warn("Detected manifest version mismatch, reloading...");
-      await new Promise(() => {
-      });
-    } else if (res.status >= 400) {
-      throw new Error(await res.text());
-    }
-    try {
-      sessionStorage.removeItem(MANIFEST_VERSION_STORAGE_KEY);
-    } catch {
-    }
-    serverPatches = await res.json();
-  } catch (e) {
-    if (signal == null ? void 0 : signal.aborted) return;
-    throw e;
-  }
-  let knownRoutes = new Set(Object.keys(manifest.routes));
-  let patches = Object.values(serverPatches).reduce((acc, route) => {
-    if (route && !knownRoutes.has(route.id)) {
-      acc[route.id] = route;
-    }
-    return acc;
-  }, {});
-  Object.assign(manifest.routes, patches);
-  paths.forEach((p) => addToFifoQueue$1(p, discoveredPaths$1));
-  let parentIds = /* @__PURE__ */ new Set();
-  Object.values(patches).forEach((patch) => {
-    if (patch && (!patch.parentId || !patches[patch.parentId])) {
-      parentIds.add(patch.parentId);
-    }
-  });
-  parentIds.forEach(
-    (parentId) => patchRoutes(
-      parentId || null,
-      createClientRoutes(patches, routeModules, null, ssr, isSpaMode, parentId)
-    )
-  );
-}
-function addToFifoQueue$1(path, queue) {
-  if (queue.size >= discoveredPathsMaxSize$1) {
-    let first = queue.values().next().value;
-    queue.delete(first);
-  }
-  queue.add(path);
-}
-function debounce$1(callback, wait) {
-  let timeoutId;
-  return (...args) => {
-    window.clearTimeout(timeoutId);
-    timeoutId = window.setTimeout(() => callback(...args), wait);
-  };
-}
-function useDataRouterContext2() {
-  let context = React3.useContext(DataRouterContext);
-  invariant2(
-    context,
-    "You must render this element inside a <DataRouterContext.Provider> element"
-  );
-  return context;
-}
-function useDataRouterStateContext() {
-  let context = React3.useContext(DataRouterStateContext);
-  invariant2(
-    context,
-    "You must render this element inside a <DataRouterStateContext.Provider> element"
-  );
-  return context;
-}
-var FrameworkContext = React3.createContext(void 0);
-FrameworkContext.displayName = "FrameworkContext";
-function useFrameworkContext() {
-  let context = React3.useContext(FrameworkContext);
-  invariant2(
-    context,
-    "You must render this element inside a <HydratedRouter> element"
-  );
-  return context;
-}
-function usePrefetchBehavior(prefetch, theirElementProps) {
-  let frameworkContext = React3.useContext(FrameworkContext);
-  let [maybePrefetch, setMaybePrefetch] = React3.useState(false);
-  let [shouldPrefetch, setShouldPrefetch] = React3.useState(false);
-  let { onFocus, onBlur, onMouseEnter, onMouseLeave, onTouchStart } = theirElementProps;
-  let ref = React3.useRef(null);
-  React3.useEffect(() => {
-    if (prefetch === "render") {
-      setShouldPrefetch(true);
-    }
-    if (prefetch === "viewport") {
-      let callback = (entries) => {
-        entries.forEach((entry) => {
-          setShouldPrefetch(entry.isIntersecting);
-        });
-      };
-      let observer = new IntersectionObserver(callback, { threshold: 0.5 });
-      if (ref.current) observer.observe(ref.current);
-      return () => {
-        observer.disconnect();
-      };
-    }
-  }, [prefetch]);
-  React3.useEffect(() => {
-    if (maybePrefetch) {
-      let id = setTimeout(() => {
-        setShouldPrefetch(true);
-      }, 100);
-      return () => {
-        clearTimeout(id);
-      };
-    }
-  }, [maybePrefetch]);
-  let setIntent = () => {
-    setMaybePrefetch(true);
-  };
-  let cancelIntent = () => {
-    setMaybePrefetch(false);
-    setShouldPrefetch(false);
-  };
-  if (!frameworkContext) {
-    return [false, ref, {}];
-  }
-  if (prefetch !== "intent") {
-    return [shouldPrefetch, ref, {}];
-  }
-  return [
-    shouldPrefetch,
-    ref,
-    {
-      onFocus: composeEventHandlers(onFocus, setIntent),
-      onBlur: composeEventHandlers(onBlur, cancelIntent),
-      onMouseEnter: composeEventHandlers(onMouseEnter, setIntent),
-      onMouseLeave: composeEventHandlers(onMouseLeave, cancelIntent),
-      onTouchStart: composeEventHandlers(onTouchStart, setIntent)
-    }
-  ];
-}
-function composeEventHandlers(theirHandler, ourHandler) {
-  return (event) => {
-    theirHandler && theirHandler(event);
-    if (!event.defaultPrevented) {
-      ourHandler(event);
-    }
-  };
-}
-function getActiveMatches(matches, errors, isSpaMode) {
-  if (isSpaMode && !isHydrated) {
-    return [matches[0]];
-  }
-  if (errors) {
-    let errorIdx = matches.findIndex((m) => errors[m.route.id] !== void 0);
-    return matches.slice(0, errorIdx + 1);
-  }
-  return matches;
-}
-var CRITICAL_CSS_DATA_ATTRIBUTE = "data-react-router-critical-css";
-function Links({ nonce, crossOrigin }) {
-  let { isSpaMode, manifest, routeModules, criticalCss } = useFrameworkContext();
-  let { errors, matches: routerMatches } = useDataRouterStateContext();
-  let matches = getActiveMatches(routerMatches, errors, isSpaMode);
-  let keyedLinks = React3.useMemo(
-    () => getKeyedLinksForMatches(matches, routeModules, manifest),
-    [matches, routeModules, manifest]
-  );
-  return /* @__PURE__ */ React3.createElement(React3.Fragment, null, typeof criticalCss === "string" ? /* @__PURE__ */ React3.createElement(
-    "style",
-    {
-      ...{ [CRITICAL_CSS_DATA_ATTRIBUTE]: "" },
-      nonce,
-      dangerouslySetInnerHTML: { __html: criticalCss }
-    }
-  ) : null, typeof criticalCss === "object" ? /* @__PURE__ */ React3.createElement(
-    "link",
-    {
-      ...{ [CRITICAL_CSS_DATA_ATTRIBUTE]: "" },
-      rel: "stylesheet",
-      href: criticalCss.href,
-      nonce,
-      crossOrigin
-    }
-  ) : null, keyedLinks.map(
-    ({ key, link }) => isPageLinkDescriptor(link) ? /* @__PURE__ */ React3.createElement(
-      PrefetchPageLinks,
-      {
-        key,
-        nonce,
-        ...link,
-        crossOrigin: link.crossOrigin ?? crossOrigin
-      }
-    ) : /* @__PURE__ */ React3.createElement(
-      "link",
-      {
-        key,
-        nonce,
-        ...link,
-        crossOrigin: link.crossOrigin ?? crossOrigin
-      }
-    )
-  ));
-}
-function PrefetchPageLinks({ page, ...linkProps }) {
-  let rsc = useIsRSCRouterContext();
-  let { router: router2 } = useDataRouterContext2();
-  let matches = React3.useMemo(
-    () => matchRoutes(router2.routes, page, router2.basename),
-    [router2.routes, page, router2.basename]
-  );
-  if (!matches) {
-    return null;
-  }
-  if (rsc) {
-    return /* @__PURE__ */ React3.createElement(RSCPrefetchPageLinksImpl, { page, matches, ...linkProps });
-  }
-  return /* @__PURE__ */ React3.createElement(PrefetchPageLinksImpl, { page, matches, ...linkProps });
-}
-function useKeyedPrefetchLinks(matches) {
-  let { manifest, routeModules } = useFrameworkContext();
-  let [keyedPrefetchLinks, setKeyedPrefetchLinks] = React3.useState([]);
-  React3.useEffect(() => {
-    let interrupted = false;
-    void getKeyedPrefetchLinks(matches, manifest, routeModules).then(
-      (links) => {
-        if (!interrupted) {
-          setKeyedPrefetchLinks(links);
-        }
-      }
-    );
-    return () => {
-      interrupted = true;
-    };
-  }, [matches, manifest, routeModules]);
-  return keyedPrefetchLinks;
-}
-function RSCPrefetchPageLinksImpl({
-  page,
-  matches: nextMatches,
-  ...linkProps
-}) {
-  let location2 = useLocation();
-  let { future } = useFrameworkContext();
-  let { basename } = useDataRouterContext2();
-  let dataHrefs = React3.useMemo(() => {
-    if (page === location2.pathname + location2.search + location2.hash) {
-      return [];
-    }
-    let url = singleFetchUrl(
-      page,
-      basename,
-      future.unstable_trailingSlashAwareDataRequests,
-      "rsc"
-    );
-    let hasSomeRoutesWithShouldRevalidate = false;
-    let targetRoutes = [];
-    for (let match of nextMatches) {
-      if (typeof match.route.shouldRevalidate === "function") {
-        hasSomeRoutesWithShouldRevalidate = true;
-      } else {
-        targetRoutes.push(match.route.id);
-      }
-    }
-    if (hasSomeRoutesWithShouldRevalidate && targetRoutes.length > 0) {
-      url.searchParams.set("_routes", targetRoutes.join(","));
-    }
-    return [url.pathname + url.search];
-  }, [
-    basename,
-    future.unstable_trailingSlashAwareDataRequests,
-    page,
-    location2,
-    nextMatches
-  ]);
-  return /* @__PURE__ */ React3.createElement(React3.Fragment, null, dataHrefs.map((href2) => /* @__PURE__ */ React3.createElement("link", { key: href2, rel: "prefetch", as: "fetch", href: href2, ...linkProps })));
-}
-function PrefetchPageLinksImpl({
-  page,
-  matches: nextMatches,
-  ...linkProps
-}) {
-  let location2 = useLocation();
-  let { future, manifest, routeModules } = useFrameworkContext();
-  let { basename } = useDataRouterContext2();
-  let { loaderData, matches } = useDataRouterStateContext();
-  let newMatchesForData = React3.useMemo(
-    () => getNewMatchesForLinks(
-      page,
-      nextMatches,
-      matches,
-      manifest,
-      location2,
-      "data"
-    ),
-    [page, nextMatches, matches, manifest, location2]
-  );
-  let newMatchesForAssets = React3.useMemo(
-    () => getNewMatchesForLinks(
-      page,
-      nextMatches,
-      matches,
-      manifest,
-      location2,
-      "assets"
-    ),
-    [page, nextMatches, matches, manifest, location2]
-  );
-  let dataHrefs = React3.useMemo(() => {
-    if (page === location2.pathname + location2.search + location2.hash) {
-      return [];
-    }
-    let routesParams = /* @__PURE__ */ new Set();
-    let foundOptOutRoute = false;
-    nextMatches.forEach((m) => {
-      var _a2;
-      let manifestRoute = manifest.routes[m.route.id];
-      if (!manifestRoute || !manifestRoute.hasLoader) {
-        return;
-      }
-      if (!newMatchesForData.some((m2) => m2.route.id === m.route.id) && m.route.id in loaderData && ((_a2 = routeModules[m.route.id]) == null ? void 0 : _a2.shouldRevalidate)) {
-        foundOptOutRoute = true;
-      } else if (manifestRoute.hasClientLoader) {
-        foundOptOutRoute = true;
-      } else {
-        routesParams.add(m.route.id);
-      }
-    });
-    if (routesParams.size === 0) {
-      return [];
-    }
-    let url = singleFetchUrl(
-      page,
-      basename,
-      future.unstable_trailingSlashAwareDataRequests,
-      "data"
-    );
-    if (foundOptOutRoute && routesParams.size > 0) {
-      url.searchParams.set(
-        "_routes",
-        nextMatches.filter((m) => routesParams.has(m.route.id)).map((m) => m.route.id).join(",")
-      );
-    }
-    return [url.pathname + url.search];
-  }, [
-    basename,
-    future.unstable_trailingSlashAwareDataRequests,
-    loaderData,
-    location2,
-    manifest,
-    newMatchesForData,
-    nextMatches,
-    page,
-    routeModules
-  ]);
-  let moduleHrefs = React3.useMemo(
-    () => getModuleLinkHrefs(newMatchesForAssets, manifest),
-    [newMatchesForAssets, manifest]
-  );
-  let keyedPrefetchLinks = useKeyedPrefetchLinks(newMatchesForAssets);
-  return /* @__PURE__ */ React3.createElement(React3.Fragment, null, dataHrefs.map((href2) => /* @__PURE__ */ React3.createElement("link", { key: href2, rel: "prefetch", as: "fetch", href: href2, ...linkProps })), moduleHrefs.map((href2) => /* @__PURE__ */ React3.createElement("link", { key: href2, rel: "modulepreload", href: href2, ...linkProps })), keyedPrefetchLinks.map(({ key, link }) => (
-    // these don't spread `linkProps` because they are full link descriptors
-    // already with their own props
-    /* @__PURE__ */ React3.createElement(
-      "link",
-      {
-        key,
-        nonce: linkProps.nonce,
-        ...link,
-        crossOrigin: link.crossOrigin ?? linkProps.crossOrigin
-      }
-    )
-  )));
-}
-function Meta() {
-  let { isSpaMode, routeModules } = useFrameworkContext();
-  let {
-    errors,
-    matches: routerMatches,
-    loaderData
-  } = useDataRouterStateContext();
-  let location2 = useLocation();
-  let _matches = getActiveMatches(routerMatches, errors, isSpaMode);
-  let error = null;
-  if (errors) {
-    error = errors[_matches[_matches.length - 1].route.id];
-  }
-  let meta = [];
-  let leafMeta = null;
-  let matches = [];
-  for (let i = 0; i < _matches.length; i++) {
-    let _match = _matches[i];
-    let routeId = _match.route.id;
-    let data2 = loaderData[routeId];
-    let params = _match.params;
-    let routeModule = routeModules[routeId];
-    let routeMeta = [];
-    let match = {
-      id: routeId,
-      data: data2,
-      loaderData: data2,
-      meta: [],
-      params: _match.params,
-      pathname: _match.pathname,
-      handle: _match.route.handle,
-      error
-    };
-    matches[i] = match;
-    if (routeModule == null ? void 0 : routeModule.meta) {
-      routeMeta = typeof routeModule.meta === "function" ? routeModule.meta({
-        data: data2,
-        loaderData: data2,
-        params,
-        location: location2,
-        matches,
-        error
-      }) : Array.isArray(routeModule.meta) ? [...routeModule.meta] : routeModule.meta;
-    } else if (leafMeta) {
-      routeMeta = [...leafMeta];
-    }
-    routeMeta = routeMeta || [];
-    if (!Array.isArray(routeMeta)) {
-      throw new Error(
-        "The route at " + _match.route.path + " returns an invalid value. All route meta functions must return an array of meta objects.\n\nTo reference the meta function API, see https://reactrouter.com/start/framework/route-module#meta"
-      );
-    }
-    match.meta = routeMeta;
-    matches[i] = match;
-    meta = [...routeMeta];
-    leafMeta = meta;
-  }
-  return /* @__PURE__ */ React3.createElement(React3.Fragment, null, meta.flat().map((metaProps) => {
-    if (!metaProps) {
-      return null;
-    }
-    if ("tagName" in metaProps) {
-      let { tagName, ...rest } = metaProps;
-      if (!isValidMetaTag(tagName)) {
-        console.warn(
-          `A meta object uses an invalid tagName: ${tagName}. Expected either 'link' or 'meta'`
-        );
-        return null;
-      }
-      let Comp = tagName;
-      return /* @__PURE__ */ React3.createElement(Comp, { key: JSON.stringify(rest), ...rest });
-    }
-    if ("title" in metaProps) {
-      return /* @__PURE__ */ React3.createElement("title", { key: "title" }, String(metaProps.title));
-    }
-    if ("charset" in metaProps) {
-      metaProps.charSet ?? (metaProps.charSet = metaProps.charset);
-      delete metaProps.charset;
-    }
-    if ("charSet" in metaProps && metaProps.charSet != null) {
-      return typeof metaProps.charSet === "string" ? /* @__PURE__ */ React3.createElement("meta", { key: "charSet", charSet: metaProps.charSet }) : null;
-    }
-    if ("script:ld+json" in metaProps) {
-      try {
-        let json = JSON.stringify(metaProps["script:ld+json"]);
-        return /* @__PURE__ */ React3.createElement(
-          "script",
-          {
-            key: `script:ld+json:${json}`,
-            type: "application/ld+json",
-            dangerouslySetInnerHTML: { __html: escapeHtml(json) }
-          }
-        );
-      } catch (err) {
-        return null;
-      }
-    }
-    return /* @__PURE__ */ React3.createElement("meta", { key: JSON.stringify(metaProps), ...metaProps });
-  }));
-}
-function isValidMetaTag(tagName) {
-  return typeof tagName === "string" && /^(meta|link)$/.test(tagName);
-}
-var isHydrated = false;
-function setIsHydrated() {
-  isHydrated = true;
-}
-function Scripts(scriptProps) {
-  let {
-    manifest,
-    serverHandoffString,
-    isSpaMode,
-    renderMeta,
-    routeDiscovery,
-    ssr
-  } = useFrameworkContext();
-  let { router: router2, static: isStatic, staticContext } = useDataRouterContext2();
-  let { matches: routerMatches } = useDataRouterStateContext();
-  let isRSCRouterContext = useIsRSCRouterContext();
-  let enableFogOfWar = isFogOfWarEnabled(routeDiscovery, ssr);
-  if (renderMeta) {
-    renderMeta.didRenderScripts = true;
-  }
-  let matches = getActiveMatches(routerMatches, null, isSpaMode);
-  React3.useEffect(() => {
-    setIsHydrated();
-  }, []);
-  let initialScripts = React3.useMemo(() => {
-    var _a2;
-    if (isRSCRouterContext) {
-      return null;
-    }
-    let streamScript = "window.__reactRouterContext.stream = new ReadableStream({start(controller){window.__reactRouterContext.streamController = controller;}}).pipeThrough(new TextEncoderStream());";
-    let contextScript = staticContext ? `window.__reactRouterContext = ${serverHandoffString};${streamScript}` : " ";
-    let routeModulesScript = !isStatic ? " " : `${((_a2 = manifest.hmr) == null ? void 0 : _a2.runtime) ? `import ${JSON.stringify(manifest.hmr.runtime)};` : ""}${!enableFogOfWar ? `import ${JSON.stringify(manifest.url)}` : ""};
-${matches.map((match, routeIndex) => {
-      let routeVarName = `route${routeIndex}`;
-      let manifestEntry = manifest.routes[match.route.id];
-      invariant2(manifestEntry, `Route ${match.route.id} not found in manifest`);
-      let {
-        clientActionModule,
-        clientLoaderModule,
-        clientMiddlewareModule,
-        hydrateFallbackModule,
-        module
-      } = manifestEntry;
-      let chunks = [
-        ...clientActionModule ? [
-          {
-            module: clientActionModule,
-            varName: `${routeVarName}_clientAction`
-          }
-        ] : [],
-        ...clientLoaderModule ? [
-          {
-            module: clientLoaderModule,
-            varName: `${routeVarName}_clientLoader`
-          }
-        ] : [],
-        ...clientMiddlewareModule ? [
-          {
-            module: clientMiddlewareModule,
-            varName: `${routeVarName}_clientMiddleware`
-          }
-        ] : [],
-        ...hydrateFallbackModule ? [
-          {
-            module: hydrateFallbackModule,
-            varName: `${routeVarName}_HydrateFallback`
-          }
-        ] : [],
-        { module, varName: `${routeVarName}_main` }
-      ];
-      if (chunks.length === 1) {
-        return `import * as ${routeVarName} from ${JSON.stringify(module)};`;
-      }
-      let chunkImportsSnippet = chunks.map((chunk) => `import * as ${chunk.varName} from "${chunk.module}";`).join("\n");
-      let mergedChunksSnippet = `const ${routeVarName} = {${chunks.map((chunk) => `...${chunk.varName}`).join(",")}};`;
-      return [chunkImportsSnippet, mergedChunksSnippet].join("\n");
-    }).join("\n")}
-  ${enableFogOfWar ? (
-      // Inline a minimal manifest with the SSR matches
-      `window.__reactRouterManifest = ${JSON.stringify(
-        getPartialManifest(manifest, router2),
-        null,
-        2
-      )};`
-    ) : ""}
-  window.__reactRouterRouteModules = {${matches.map((match, index) => `${JSON.stringify(match.route.id)}:route${index}`).join(",")}};
-
-import(${JSON.stringify(manifest.entry.module)});`;
-    return /* @__PURE__ */ React3.createElement(React3.Fragment, null, /* @__PURE__ */ React3.createElement(
-      "script",
-      {
-        ...scriptProps,
-        suppressHydrationWarning: true,
-        dangerouslySetInnerHTML: { __html: contextScript },
-        type: void 0
-      }
-    ), /* @__PURE__ */ React3.createElement(
-      "script",
-      {
-        ...scriptProps,
-        suppressHydrationWarning: true,
-        dangerouslySetInnerHTML: { __html: routeModulesScript },
-        type: "module",
-        async: true
-      }
-    ));
-  }, []);
-  let preloads = isHydrated || isRSCRouterContext ? [] : dedupe(
-    manifest.entry.imports.concat(
-      getModuleLinkHrefs(matches, manifest, {
-        includeHydrateFallback: true
-      })
-    )
-  );
-  let sri = typeof manifest.sri === "object" ? manifest.sri : {};
-  warnOnce(
-    !isRSCRouterContext,
-    "The <Scripts /> element is a no-op when using RSC and can be safely removed."
-  );
-  return isHydrated || isRSCRouterContext ? null : /* @__PURE__ */ React3.createElement(React3.Fragment, null, typeof manifest.sri === "object" ? /* @__PURE__ */ React3.createElement(
-    "script",
-    {
-      ...scriptProps,
-      "rr-importmap": "",
-      type: "importmap",
-      suppressHydrationWarning: true,
-      dangerouslySetInnerHTML: {
-        __html: JSON.stringify({
-          integrity: sri
-        })
-      }
-    }
-  ) : null, !enableFogOfWar ? /* @__PURE__ */ React3.createElement(
-    "link",
-    {
-      rel: "modulepreload",
-      href: manifest.url,
-      crossOrigin: scriptProps.crossOrigin,
-      integrity: sri[manifest.url],
-      suppressHydrationWarning: true
-    }
-  ) : null, /* @__PURE__ */ React3.createElement(
-    "link",
-    {
-      rel: "modulepreload",
-      href: manifest.entry.module,
-      crossOrigin: scriptProps.crossOrigin,
-      integrity: sri[manifest.entry.module],
-      suppressHydrationWarning: true
-    }
-  ), preloads.map((path) => /* @__PURE__ */ React3.createElement(
-    "link",
-    {
-      key: path,
-      rel: "modulepreload",
-      href: path,
-      crossOrigin: scriptProps.crossOrigin,
-      integrity: sri[path],
-      suppressHydrationWarning: true
-    }
-  )), initialScripts);
-}
-function dedupe(array) {
-  return [...new Set(array)];
-}
-function mergeRefs(...refs) {
-  return (value) => {
-    refs.forEach((ref) => {
-      if (typeof ref === "function") {
-        ref(value);
-      } else if (ref != null) {
-        ref.current = value;
-      }
-    });
-  };
-}
-var RemixErrorBoundary = class extends React3.Component {
-  constructor(props) {
-    super(props);
-    this.state = { error: props.error || null, location: props.location };
-  }
-  static getDerivedStateFromError(error) {
-    return { error };
-  }
-  static getDerivedStateFromProps(props, state) {
-    if (state.location !== props.location) {
-      return { error: props.error || null, location: props.location };
-    }
-    return { error: props.error || state.error, location: state.location };
-  }
-  render() {
-    if (this.state.error) {
-      return /* @__PURE__ */ React3.createElement(
-        RemixRootDefaultErrorBoundary,
-        {
-          error: this.state.error,
-          isOutsideRemixApp: true
-        }
-      );
-    } else {
-      return this.props.children;
-    }
-  }
-};
-function RemixRootDefaultErrorBoundary({
-  error,
-  isOutsideRemixApp
-}) {
-  console.error(error);
-  let heyDeveloper = /* @__PURE__ */ React3.createElement(
-    "script",
-    {
-      dangerouslySetInnerHTML: {
-        __html: `
-        console.log(
-          "💿 Hey developer 👋. You can provide a way better UX than this when your app throws errors. Check out https://reactrouter.com/how-to/error-boundary for more information."
-        );
-      `
-      }
-    }
-  );
-  if (isRouteErrorResponse(error)) {
-    return /* @__PURE__ */ React3.createElement(BoundaryShell, { title: "Unhandled Thrown Response!" }, /* @__PURE__ */ React3.createElement("h1", { style: { fontSize: "24px" } }, error.status, " ", error.statusText), heyDeveloper);
-  }
-  let errorInstance;
-  if (error instanceof Error) {
-    errorInstance = error;
-  } else {
-    let errorString = error == null ? "Unknown Error" : typeof error === "object" && "toString" in error ? error.toString() : JSON.stringify(error);
-    errorInstance = new Error(errorString);
-  }
-  return /* @__PURE__ */ React3.createElement(
-    BoundaryShell,
-    {
-      title: "Application Error!",
-      isOutsideRemixApp
-    },
-    /* @__PURE__ */ React3.createElement("h1", { style: { fontSize: "24px" } }, "Application Error"),
-    /* @__PURE__ */ React3.createElement(
-      "pre",
-      {
-        style: {
-          padding: "2rem",
-          background: "hsla(10, 50%, 50%, 0.1)",
-          color: "red",
-          overflow: "auto"
-        }
-      },
-      errorInstance.stack
-    ),
-    heyDeveloper
-  );
-}
-function BoundaryShell({
-  title,
-  renderScripts,
-  isOutsideRemixApp,
-  children
-}) {
-  var _a2;
-  let { routeModules } = useFrameworkContext();
-  if (((_a2 = routeModules.root) == null ? void 0 : _a2.Layout) && !isOutsideRemixApp) {
-    return children;
-  }
-  return /* @__PURE__ */ React3.createElement("html", { lang: "en" }, /* @__PURE__ */ React3.createElement("head", null, /* @__PURE__ */ React3.createElement("meta", { charSet: "utf-8" }), /* @__PURE__ */ React3.createElement(
-    "meta",
-    {
-      name: "viewport",
-      content: "width=device-width,initial-scale=1,viewport-fit=cover"
-    }
-  ), /* @__PURE__ */ React3.createElement("title", null, title)), /* @__PURE__ */ React3.createElement("body", null, /* @__PURE__ */ React3.createElement("main", { style: { fontFamily: "system-ui, sans-serif", padding: "2rem" } }, children, renderScripts ? /* @__PURE__ */ React3.createElement(Scripts, null) : null)));
-}
-var isBrowser2 = typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined";
-try {
-  if (isBrowser2) {
-    window.__reactRouterVersion = // @ts-expect-error
-    "7.14.0";
-  }
-} catch (e) {
-}
-function createBrowserRouter(routes, opts) {
-  return createRouter({
-    basename: opts == null ? void 0 : opts.basename,
-    getContext: opts == null ? void 0 : opts.getContext,
-    future: opts == null ? void 0 : opts.future,
-    history: createBrowserHistory({ window: opts == null ? void 0 : opts.window }),
-    hydrationData: (opts == null ? void 0 : opts.hydrationData) || parseHydrationData(),
-    routes,
-    mapRouteProperties,
-    hydrationRouteProperties,
-    dataStrategy: opts == null ? void 0 : opts.dataStrategy,
-    patchRoutesOnNavigation: opts == null ? void 0 : opts.patchRoutesOnNavigation,
-    window: opts == null ? void 0 : opts.window,
-    unstable_instrumentations: opts == null ? void 0 : opts.unstable_instrumentations
-  }).initialize();
-}
-function createHashRouter(routes, opts) {
-  return createRouter({
-    basename: opts == null ? void 0 : opts.basename,
-    getContext: opts == null ? void 0 : opts.getContext,
-    future: opts == null ? void 0 : opts.future,
-    history: createHashHistory({ window: opts == null ? void 0 : opts.window }),
-    hydrationData: (opts == null ? void 0 : opts.hydrationData) || parseHydrationData(),
-    routes,
-    mapRouteProperties,
-    hydrationRouteProperties,
-    dataStrategy: opts == null ? void 0 : opts.dataStrategy,
-    patchRoutesOnNavigation: opts == null ? void 0 : opts.patchRoutesOnNavigation,
-    window: opts == null ? void 0 : opts.window,
-    unstable_instrumentations: opts == null ? void 0 : opts.unstable_instrumentations
-  }).initialize();
-}
-function parseHydrationData() {
-  let state = window == null ? void 0 : window.__staticRouterHydrationData;
-  if (state && state.errors) {
-    state = {
-      ...state,
-      errors: deserializeErrors$1(state.errors)
-    };
-  }
-  return state;
-}
-function deserializeErrors$1(errors) {
-  if (!errors) return null;
-  let entries = Object.entries(errors);
-  let serialized = {};
-  for (let [key, val] of entries) {
-    if (val && val.__type === "RouteErrorResponse") {
-      serialized[key] = new ErrorResponseImpl(
-        val.status,
-        val.statusText,
-        val.data,
-        val.internal === true
-      );
-    } else if (val && val.__type === "Error") {
-      if (val.__subType) {
-        let ErrorConstructor = window[val.__subType];
-        if (typeof ErrorConstructor === "function") {
-          try {
-            let error = new ErrorConstructor(val.message);
-            error.stack = "";
-            serialized[key] = error;
-          } catch (e) {
-          }
-        }
-      }
-      if (serialized[key] == null) {
-        let error = new Error(val.message);
-        error.stack = "";
-        serialized[key] = error;
-      }
-    } else {
-      serialized[key] = val;
-    }
-  }
-  return serialized;
-}
-function BrowserRouter({
-  basename,
-  children,
-  unstable_useTransitions,
-  window: window2
-}) {
-  let historyRef = React3.useRef();
-  if (historyRef.current == null) {
-    historyRef.current = createBrowserHistory({ window: window2, v5Compat: true });
-  }
-  let history = historyRef.current;
-  let [state, setStateImpl] = React3.useState({
-    action: history.action,
-    location: history.location
-  });
-  let setState = React3.useCallback(
-    (newState) => {
-      if (unstable_useTransitions === false) {
-        setStateImpl(newState);
-      } else {
-        React3.startTransition(() => setStateImpl(newState));
-      }
-    },
-    [unstable_useTransitions]
-  );
-  React3.useLayoutEffect(() => history.listen(setState), [history, setState]);
-  return /* @__PURE__ */ React3.createElement(
-    Router,
-    {
-      basename,
-      children,
-      location: state.location,
-      navigationType: state.action,
-      navigator: history,
-      unstable_useTransitions
-    }
-  );
-}
-function HashRouter({
-  basename,
-  children,
-  unstable_useTransitions,
-  window: window2
-}) {
-  let historyRef = React3.useRef();
-  if (historyRef.current == null) {
-    historyRef.current = createHashHistory({ window: window2, v5Compat: true });
-  }
-  let history = historyRef.current;
-  let [state, setStateImpl] = React3.useState({
-    action: history.action,
-    location: history.location
-  });
-  let setState = React3.useCallback(
-    (newState) => {
-      if (unstable_useTransitions === false) {
-        setStateImpl(newState);
-      } else {
-        React3.startTransition(() => setStateImpl(newState));
-      }
-    },
-    [unstable_useTransitions]
-  );
-  React3.useLayoutEffect(() => history.listen(setState), [history, setState]);
-  return /* @__PURE__ */ React3.createElement(
-    Router,
-    {
-      basename,
-      children,
-      location: state.location,
-      navigationType: state.action,
-      navigator: history,
-      unstable_useTransitions
-    }
-  );
-}
-function HistoryRouter({
-  basename,
-  children,
-  history,
-  unstable_useTransitions
-}) {
-  let [state, setStateImpl] = React3.useState({
-    action: history.action,
-    location: history.location
-  });
-  let setState = React3.useCallback(
-    (newState) => {
-      if (unstable_useTransitions === false) {
-        setStateImpl(newState);
-      } else {
-        React3.startTransition(() => setStateImpl(newState));
-      }
-    },
-    [unstable_useTransitions]
-  );
-  React3.useLayoutEffect(() => history.listen(setState), [history, setState]);
-  return /* @__PURE__ */ React3.createElement(
-    Router,
-    {
-      basename,
-      children,
-      location: state.location,
-      navigationType: state.action,
-      navigator: history,
-      unstable_useTransitions
-    }
-  );
-}
-HistoryRouter.displayName = "unstable_HistoryRouter";
-var ABSOLUTE_URL_REGEX2 = /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i;
-var Link = React3.forwardRef(
-  function LinkWithRef({
-    onClick,
-    discover = "render",
-    prefetch = "none",
-    relative,
-    reloadDocument,
-    replace: replace2,
-    unstable_mask,
-    state,
-    target,
-    to,
-    preventScrollReset,
-    viewTransition,
-    unstable_defaultShouldRevalidate,
-    ...rest
-  }, forwardedRef) {
-    let { basename, navigator: navigator2, unstable_useTransitions } = React3.useContext(NavigationContext);
-    let isAbsolute = typeof to === "string" && ABSOLUTE_URL_REGEX2.test(to);
-    let parsed = parseToInfo(to, basename);
-    to = parsed.to;
-    let href2 = useHref(to, { relative });
-    let location2 = useLocation();
-    let maskedHref = null;
-    if (unstable_mask) {
-      let resolved = resolveTo(
-        unstable_mask,
-        [],
-        location2.unstable_mask ? location2.unstable_mask.pathname : "/",
-        true
-      );
-      if (basename !== "/") {
-        resolved.pathname = resolved.pathname === "/" ? basename : joinPaths([basename, resolved.pathname]);
-      }
-      maskedHref = navigator2.createHref(resolved);
-    }
-    let [shouldPrefetch, prefetchRef, prefetchHandlers] = usePrefetchBehavior(
-      prefetch,
-      rest
-    );
-    let internalOnClick = useLinkClickHandler(to, {
-      replace: replace2,
-      unstable_mask,
-      state,
-      target,
-      preventScrollReset,
-      relative,
-      viewTransition,
-      unstable_defaultShouldRevalidate,
-      unstable_useTransitions
-    });
-    function handleClick(event) {
-      if (onClick) onClick(event);
-      if (!event.defaultPrevented) {
-        internalOnClick(event);
-      }
-    }
-    let isSpaLink = !(parsed.isExternal || reloadDocument);
-    let link = (
-      // eslint-disable-next-line jsx-a11y/anchor-has-content
-      /* @__PURE__ */ React3.createElement(
-        "a",
-        {
-          ...rest,
-          ...prefetchHandlers,
-          href: (isSpaLink ? maskedHref : void 0) || parsed.absoluteURL || href2,
-          onClick: isSpaLink ? handleClick : onClick,
-          ref: mergeRefs(forwardedRef, prefetchRef),
-          target,
-          "data-discover": !isAbsolute && discover === "render" ? "true" : void 0
-        }
-      )
-    );
-    return shouldPrefetch && !isAbsolute ? /* @__PURE__ */ React3.createElement(React3.Fragment, null, link, /* @__PURE__ */ React3.createElement(PrefetchPageLinks, { page: href2 })) : link;
-  }
-);
-Link.displayName = "Link";
-var NavLink = React3.forwardRef(
-  function NavLinkWithRef({
-    "aria-current": ariaCurrentProp = "page",
-    caseSensitive = false,
-    className: classNameProp = "",
-    end = false,
-    style: styleProp,
-    to,
-    viewTransition,
-    children,
-    ...rest
-  }, ref) {
-    let path = useResolvedPath(to, { relative: rest.relative });
-    let location2 = useLocation();
-    let routerState = React3.useContext(DataRouterStateContext);
-    let { navigator: navigator2, basename } = React3.useContext(NavigationContext);
-    let isTransitioning = routerState != null && // Conditional usage is OK here because the usage of a data router is static
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useViewTransitionState(path) && viewTransition === true;
-    let toPathname = navigator2.encodeLocation ? navigator2.encodeLocation(path).pathname : path.pathname;
-    let locationPathname = location2.pathname;
-    let nextLocationPathname = routerState && routerState.navigation && routerState.navigation.location ? routerState.navigation.location.pathname : null;
-    if (!caseSensitive) {
-      locationPathname = locationPathname.toLowerCase();
-      nextLocationPathname = nextLocationPathname ? nextLocationPathname.toLowerCase() : null;
-      toPathname = toPathname.toLowerCase();
-    }
-    if (nextLocationPathname && basename) {
-      nextLocationPathname = stripBasename(nextLocationPathname, basename) || nextLocationPathname;
-    }
-    const endSlashPosition = toPathname !== "/" && toPathname.endsWith("/") ? toPathname.length - 1 : toPathname.length;
-    let isActive = locationPathname === toPathname || !end && locationPathname.startsWith(toPathname) && locationPathname.charAt(endSlashPosition) === "/";
-    let isPending = nextLocationPathname != null && (nextLocationPathname === toPathname || !end && nextLocationPathname.startsWith(toPathname) && nextLocationPathname.charAt(toPathname.length) === "/");
-    let renderProps = {
-      isActive,
-      isPending,
-      isTransitioning
-    };
-    let ariaCurrent = isActive ? ariaCurrentProp : void 0;
-    let className;
-    if (typeof classNameProp === "function") {
-      className = classNameProp(renderProps);
-    } else {
-      className = [
-        classNameProp,
-        isActive ? "active" : null,
-        isPending ? "pending" : null,
-        isTransitioning ? "transitioning" : null
-      ].filter(Boolean).join(" ");
-    }
-    let style = typeof styleProp === "function" ? styleProp(renderProps) : styleProp;
-    return /* @__PURE__ */ React3.createElement(
-      Link,
-      {
-        ...rest,
-        "aria-current": ariaCurrent,
-        className,
-        ref,
-        style,
-        to,
-        viewTransition
-      },
-      typeof children === "function" ? children(renderProps) : children
-    );
-  }
-);
-NavLink.displayName = "NavLink";
-var Form = React3.forwardRef(
-  ({
-    discover = "render",
-    fetcherKey,
-    navigate,
-    reloadDocument,
-    replace: replace2,
-    state,
-    method = defaultMethod,
-    action,
-    onSubmit,
-    relative,
-    preventScrollReset,
-    viewTransition,
-    unstable_defaultShouldRevalidate,
-    ...props
-  }, forwardedRef) => {
-    let { unstable_useTransitions } = React3.useContext(NavigationContext);
-    let submit = useSubmit();
-    let formAction = useFormAction(action, { relative });
-    let formMethod = method.toLowerCase() === "get" ? "get" : "post";
-    let isAbsolute = typeof action === "string" && ABSOLUTE_URL_REGEX2.test(action);
-    let submitHandler = (event) => {
-      onSubmit && onSubmit(event);
-      if (event.defaultPrevented) return;
-      event.preventDefault();
-      let submitter = event.nativeEvent.submitter;
-      let submitMethod = (submitter == null ? void 0 : submitter.getAttribute("formmethod")) || method;
-      let doSubmit = () => submit(submitter || event.currentTarget, {
-        fetcherKey,
-        method: submitMethod,
-        navigate,
-        replace: replace2,
-        state,
-        relative,
-        preventScrollReset,
-        viewTransition,
-        unstable_defaultShouldRevalidate
-      });
-      if (unstable_useTransitions && navigate !== false) {
-        React3.startTransition(() => doSubmit());
-      } else {
-        doSubmit();
-      }
-    };
-    return /* @__PURE__ */ React3.createElement(
-      "form",
-      {
-        ref: forwardedRef,
-        method: formMethod,
-        action: formAction,
-        onSubmit: reloadDocument ? onSubmit : submitHandler,
-        ...props,
-        "data-discover": !isAbsolute && discover === "render" ? "true" : void 0
-      }
-    );
-  }
-);
-Form.displayName = "Form";
-function ScrollRestoration({
-  getKey,
-  storageKey,
-  ...props
-}) {
-  let remixContext = React3.useContext(FrameworkContext);
-  let { basename } = React3.useContext(NavigationContext);
-  let location2 = useLocation();
-  let matches = useMatches();
-  useScrollRestoration({ getKey, storageKey });
-  let ssrKey = React3.useMemo(
-    () => {
-      if (!remixContext || !getKey) return null;
-      let userKey = getScrollRestorationKey(
-        location2,
-        matches,
-        basename,
-        getKey
-      );
-      return userKey !== location2.key ? userKey : null;
-    },
-    // Nah, we only need this the first time for the SSR render
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
-  if (!remixContext || remixContext.isSpaMode) {
-    return null;
-  }
-  let restoreScroll = ((storageKey2, restoreKey) => {
-    if (!window.history.state || !window.history.state.key) {
-      let key = Math.random().toString(32).slice(2);
-      window.history.replaceState({ key }, "");
-    }
-    try {
-      let positions = JSON.parse(sessionStorage.getItem(storageKey2) || "{}");
-      let storedY = positions[restoreKey || window.history.state.key];
-      if (typeof storedY === "number") {
-        window.scrollTo(0, storedY);
-      }
-    } catch (error) {
-      console.error(error);
-      sessionStorage.removeItem(storageKey2);
-    }
-  }).toString();
-  return /* @__PURE__ */ React3.createElement(
-    "script",
-    {
-      ...props,
-      suppressHydrationWarning: true,
-      dangerouslySetInnerHTML: {
-        __html: `(${restoreScroll})(${escapeHtml(
-          JSON.stringify(storageKey || SCROLL_RESTORATION_STORAGE_KEY)
-        )}, ${escapeHtml(JSON.stringify(ssrKey))})`
-      }
-    }
-  );
-}
-ScrollRestoration.displayName = "ScrollRestoration";
-function getDataRouterConsoleError2(hookName) {
-  return `${hookName} must be used within a data router.  See https://reactrouter.com/en/main/routers/picking-a-router.`;
-}
-function useDataRouterContext3(hookName) {
-  let ctx = React3.useContext(DataRouterContext);
-  invariant$1(ctx, getDataRouterConsoleError2(hookName));
-  return ctx;
-}
-function useDataRouterState2(hookName) {
-  let state = React3.useContext(DataRouterStateContext);
-  invariant$1(state, getDataRouterConsoleError2(hookName));
-  return state;
-}
-function useLinkClickHandler(to, {
-  target,
-  replace: replaceProp,
-  unstable_mask,
-  state,
-  preventScrollReset,
-  relative,
-  viewTransition,
-  unstable_defaultShouldRevalidate,
-  unstable_useTransitions
-} = {}) {
-  let navigate = useNavigate();
-  let location2 = useLocation();
-  let path = useResolvedPath(to, { relative });
-  return React3.useCallback(
-    (event) => {
-      if (shouldProcessLinkClick(event, target)) {
-        event.preventDefault();
-        let replace2 = replaceProp !== void 0 ? replaceProp : createPath(location2) === createPath(path);
-        let doNavigate = () => navigate(to, {
-          replace: replace2,
-          unstable_mask,
-          state,
-          preventScrollReset,
-          relative,
-          viewTransition,
-          unstable_defaultShouldRevalidate
-        });
-        if (unstable_useTransitions) {
-          React3.startTransition(() => doNavigate());
-        } else {
-          doNavigate();
-        }
-      }
-    },
-    [
-      location2,
-      navigate,
-      path,
-      replaceProp,
-      unstable_mask,
-      state,
-      target,
-      to,
-      preventScrollReset,
-      relative,
-      viewTransition,
-      unstable_defaultShouldRevalidate,
-      unstable_useTransitions
-    ]
-  );
-}
-function useSearchParams(defaultInit) {
-  warning(
-    typeof URLSearchParams !== "undefined",
-    `You cannot use the \`useSearchParams\` hook in a browser that does not support the URLSearchParams API. If you need to support Internet Explorer 11, we recommend you load a polyfill such as https://github.com/ungap/url-search-params.`
-  );
-  let defaultSearchParamsRef = React3.useRef(createSearchParams(defaultInit));
-  let hasSetSearchParamsRef = React3.useRef(false);
-  let location2 = useLocation();
-  let searchParams = React3.useMemo(
-    () => (
-      // Only merge in the defaults if we haven't yet called setSearchParams.
-      // Once we call that we want those to take precedence, otherwise you can't
-      // remove a param with setSearchParams({}) if it has an initial value
-      getSearchParamsForLocation(
-        location2.search,
-        hasSetSearchParamsRef.current ? null : defaultSearchParamsRef.current
-      )
-    ),
-    [location2.search]
-  );
-  let navigate = useNavigate();
-  let setSearchParams = React3.useCallback(
-    (nextInit, navigateOptions) => {
-      const newSearchParams = createSearchParams(
-        typeof nextInit === "function" ? nextInit(new URLSearchParams(searchParams)) : nextInit
-      );
-      hasSetSearchParamsRef.current = true;
-      navigate("?" + newSearchParams, navigateOptions);
-    },
-    [navigate, searchParams]
-  );
-  return [searchParams, setSearchParams];
-}
-var fetcherId = 0;
-var getUniqueFetcherId = () => `__${String(++fetcherId)}__`;
-function useSubmit() {
-  let { router: router2 } = useDataRouterContext3(
-    "useSubmit"
-    /* UseSubmit */
-  );
-  let { basename } = React3.useContext(NavigationContext);
-  let currentRouteId = useRouteId();
-  let routerFetch = router2.fetch;
-  let routerNavigate = router2.navigate;
-  return React3.useCallback(
-    async (target, options = {}) => {
-      let { action, method, encType, formData, body } = getFormSubmissionInfo(
-        target,
-        basename
-      );
-      if (options.navigate === false) {
-        let key = options.fetcherKey || getUniqueFetcherId();
-        await routerFetch(key, currentRouteId, options.action || action, {
-          unstable_defaultShouldRevalidate: options.unstable_defaultShouldRevalidate,
-          preventScrollReset: options.preventScrollReset,
-          formData,
-          body,
-          formMethod: options.method || method,
-          formEncType: options.encType || encType,
-          flushSync: options.flushSync
-        });
-      } else {
-        await routerNavigate(options.action || action, {
-          unstable_defaultShouldRevalidate: options.unstable_defaultShouldRevalidate,
-          preventScrollReset: options.preventScrollReset,
-          formData,
-          body,
-          formMethod: options.method || method,
-          formEncType: options.encType || encType,
-          replace: options.replace,
-          state: options.state,
-          fromRouteId: currentRouteId,
-          flushSync: options.flushSync,
-          viewTransition: options.viewTransition
-        });
-      }
-    },
-    [routerFetch, routerNavigate, basename, currentRouteId]
-  );
-}
-function useFormAction(action, { relative } = {}) {
-  let { basename } = React3.useContext(NavigationContext);
-  let routeContext = React3.useContext(RouteContext);
-  invariant$1(routeContext, "useFormAction must be used inside a RouteContext");
-  let [match] = routeContext.matches.slice(-1);
-  let path = { ...useResolvedPath(action ? action : ".", { relative }) };
-  let location2 = useLocation();
-  if (action == null) {
-    path.search = location2.search;
-    let params = new URLSearchParams(path.search);
-    let indexValues = params.getAll("index");
-    let hasNakedIndexParam = indexValues.some((v) => v === "");
-    if (hasNakedIndexParam) {
-      params.delete("index");
-      indexValues.filter((v) => v).forEach((v) => params.append("index", v));
-      let qs = params.toString();
-      path.search = qs ? `?${qs}` : "";
-    }
-  }
-  if ((!action || action === ".") && match.route.index) {
-    path.search = path.search ? path.search.replace(/^\?/, "?index&") : "?index";
-  }
-  if (basename !== "/") {
-    path.pathname = path.pathname === "/" ? basename : joinPaths([basename, path.pathname]);
-  }
-  return createPath(path);
-}
-function useFetcher({
-  key
-} = {}) {
-  var _a2;
-  let { router: router2 } = useDataRouterContext3(
-    "useFetcher"
-    /* UseFetcher */
-  );
-  let state = useDataRouterState2(
-    "useFetcher"
-    /* UseFetcher */
-  );
-  let fetcherData = React3.useContext(FetchersContext);
-  let route = React3.useContext(RouteContext);
-  let routeId = (_a2 = route.matches[route.matches.length - 1]) == null ? void 0 : _a2.route.id;
-  invariant$1(fetcherData, `useFetcher must be used inside a FetchersContext`);
-  invariant$1(route, `useFetcher must be used inside a RouteContext`);
-  invariant$1(
-    routeId != null,
-    `useFetcher can only be used on routes that contain a unique "id"`
-  );
-  let defaultKey = React3.useId();
-  let [fetcherKey, setFetcherKey] = React3.useState(key || defaultKey);
-  if (key && key !== fetcherKey) {
-    setFetcherKey(key);
-  }
-  let { deleteFetcher, getFetcher, resetFetcher, fetch: routerFetch } = router2;
-  React3.useEffect(() => {
-    getFetcher(fetcherKey);
-    return () => deleteFetcher(fetcherKey);
-  }, [deleteFetcher, getFetcher, fetcherKey]);
-  let load = React3.useCallback(
-    async (href2, opts) => {
-      invariant$1(routeId, "No routeId available for fetcher.load()");
-      await routerFetch(fetcherKey, routeId, href2, opts);
-    },
-    [fetcherKey, routeId, routerFetch]
-  );
-  let submitImpl = useSubmit();
-  let submit = React3.useCallback(
-    async (target, opts) => {
-      await submitImpl(target, {
-        ...opts,
-        navigate: false,
-        fetcherKey
-      });
-    },
-    [fetcherKey, submitImpl]
-  );
-  let reset = React3.useCallback(
-    (opts) => resetFetcher(fetcherKey, opts),
-    [resetFetcher, fetcherKey]
-  );
-  let FetcherForm = React3.useMemo(() => {
-    let FetcherForm2 = React3.forwardRef(
-      (props, ref) => {
-        return /* @__PURE__ */ React3.createElement(Form, { ...props, navigate: false, fetcherKey, ref });
-      }
-    );
-    FetcherForm2.displayName = "fetcher.Form";
-    return FetcherForm2;
-  }, [fetcherKey]);
-  let fetcher = state.fetchers.get(fetcherKey) || IDLE_FETCHER;
-  let data2 = fetcherData.get(fetcherKey);
-  let fetcherWithComponents = React3.useMemo(
-    () => ({
-      Form: FetcherForm,
-      submit,
-      load,
-      reset,
-      ...fetcher,
-      data: data2
-    }),
-    [FetcherForm, submit, load, reset, fetcher, data2]
-  );
-  return fetcherWithComponents;
-}
-function useFetchers() {
-  let state = useDataRouterState2(
-    "useFetchers"
-    /* UseFetchers */
-  );
-  return Array.from(state.fetchers.entries()).map(([key, fetcher]) => ({
-    ...fetcher,
-    key
-  }));
-}
-var SCROLL_RESTORATION_STORAGE_KEY = "react-router-scroll-positions";
-var savedScrollPositions = {};
-function getScrollRestorationKey(location2, matches, basename, getKey) {
-  let key = null;
-  if (getKey) {
-    if (basename !== "/") {
-      key = getKey(
-        {
-          ...location2,
-          pathname: stripBasename(location2.pathname, basename) || location2.pathname
-        },
-        matches
-      );
-    } else {
-      key = getKey(location2, matches);
-    }
-  }
-  if (key == null) {
-    key = location2.key;
-  }
-  return key;
-}
-function useScrollRestoration({
-  getKey,
-  storageKey
-} = {}) {
-  let { router: router2 } = useDataRouterContext3(
-    "useScrollRestoration"
-    /* UseScrollRestoration */
-  );
-  let { restoreScrollPosition, preventScrollReset } = useDataRouterState2(
-    "useScrollRestoration"
-    /* UseScrollRestoration */
-  );
-  let { basename } = React3.useContext(NavigationContext);
-  let location2 = useLocation();
-  let matches = useMatches();
-  let navigation = useNavigation();
-  React3.useEffect(() => {
-    window.history.scrollRestoration = "manual";
-    return () => {
-      window.history.scrollRestoration = "auto";
-    };
-  }, []);
-  usePageHide(
-    React3.useCallback(() => {
-      if (navigation.state === "idle") {
-        let key = getScrollRestorationKey(location2, matches, basename, getKey);
-        savedScrollPositions[key] = window.scrollY;
-      }
-      try {
-        sessionStorage.setItem(
-          storageKey || SCROLL_RESTORATION_STORAGE_KEY,
-          JSON.stringify(savedScrollPositions)
-        );
-      } catch (error) {
-        warning(
-          false,
-          `Failed to save scroll positions in sessionStorage, <ScrollRestoration /> will not work properly (${error}).`
-        );
-      }
-      window.history.scrollRestoration = "auto";
-    }, [navigation.state, getKey, basename, location2, matches, storageKey])
-  );
-  if (typeof document !== "undefined") {
-    React3.useLayoutEffect(() => {
-      try {
-        let sessionPositions = sessionStorage.getItem(
-          storageKey || SCROLL_RESTORATION_STORAGE_KEY
-        );
-        if (sessionPositions) {
-          savedScrollPositions = JSON.parse(sessionPositions);
-        }
-      } catch (e) {
-      }
-    }, [storageKey]);
-    React3.useLayoutEffect(() => {
-      let disableScrollRestoration = router2 == null ? void 0 : router2.enableScrollRestoration(
-        savedScrollPositions,
-        () => window.scrollY,
-        getKey ? (location22, matches2) => getScrollRestorationKey(location22, matches2, basename, getKey) : void 0
-      );
-      return () => disableScrollRestoration && disableScrollRestoration();
-    }, [router2, basename, getKey]);
-    React3.useLayoutEffect(() => {
-      if (restoreScrollPosition === false) {
-        return;
-      }
-      if (typeof restoreScrollPosition === "number") {
-        window.scrollTo(0, restoreScrollPosition);
-        return;
-      }
-      try {
-        if (location2.hash) {
-          let el = document.getElementById(
-            decodeURIComponent(location2.hash.slice(1))
-          );
-          if (el) {
-            el.scrollIntoView();
-            return;
-          }
-        }
-      } catch {
-        warning(
-          false,
-          `"${location2.hash.slice(
-            1
-          )}" is not a decodable element ID. The view will not scroll to it.`
-        );
-      }
-      if (preventScrollReset === true) {
-        return;
-      }
-      window.scrollTo(0, 0);
-    }, [location2, restoreScrollPosition, preventScrollReset]);
-  }
-}
-function useBeforeUnload(callback, options) {
-  let { capture } = options || {};
-  React3.useEffect(() => {
-    let opts = capture != null ? { capture } : void 0;
-    window.addEventListener("beforeunload", callback, opts);
-    return () => {
-      window.removeEventListener("beforeunload", callback, opts);
-    };
-  }, [callback, capture]);
-}
-function usePageHide(callback, options) {
-  let { capture } = {};
-  React3.useEffect(() => {
-    let opts = capture != null ? { capture } : void 0;
-    window.addEventListener("pagehide", callback, opts);
-    return () => {
-      window.removeEventListener("pagehide", callback, opts);
-    };
-  }, [callback, capture]);
-}
-function usePrompt({
-  when,
-  message
-}) {
-  let blocker = useBlocker(when);
-  React3.useEffect(() => {
-    if (blocker.state === "blocked") {
-      let proceed = window.confirm(message);
-      if (proceed) {
-        setTimeout(blocker.proceed, 0);
-      } else {
-        blocker.reset();
-      }
-    }
-  }, [blocker, message]);
-  React3.useEffect(() => {
-    if (blocker.state === "blocked" && !when) {
-      blocker.reset();
-    }
-  }, [blocker, when]);
-}
-function useViewTransitionState(to, { relative } = {}) {
-  let vtContext = React3.useContext(ViewTransitionContext);
-  invariant$1(
-    vtContext != null,
-    "`useViewTransitionState` must be used within `react-router-dom`'s `RouterProvider`.  Did you accidentally import `RouterProvider` from `react-router`?"
-  );
-  let { basename } = useDataRouterContext3(
-    "useViewTransitionState"
-    /* useViewTransitionState */
-  );
-  let path = useResolvedPath(to, { relative });
-  if (!vtContext.isTransitioning) {
-    return false;
-  }
-  let currentPath = stripBasename(vtContext.currentLocation.pathname, basename) || vtContext.currentLocation.pathname;
-  let nextPath = stripBasename(vtContext.nextLocation.pathname, basename) || vtContext.nextLocation.pathname;
-  return matchPath(path.pathname, nextPath) != null || matchPath(path.pathname, currentPath) != null;
-}
-function StaticRouter({
-  basename,
-  children,
-  location: locationProp = "/"
-}) {
-  if (typeof locationProp === "string") {
-    locationProp = parsePath(locationProp);
-  }
-  let action = "POP";
-  let location2 = {
-    pathname: locationProp.pathname || "/",
-    search: locationProp.search || "",
-    hash: locationProp.hash || "",
-    state: locationProp.state != null ? locationProp.state : null,
-    key: locationProp.key || "default",
-    unstable_mask: void 0
-  };
-  let staticNavigator = getStatelessNavigator();
-  return /* @__PURE__ */ React3.createElement(
-    Router,
-    {
-      basename,
-      children,
-      location: location2,
-      navigationType: action,
-      navigator: staticNavigator,
-      static: true,
-      unstable_useTransitions: false
-    }
-  );
-}
-function StaticRouterProvider({
-  context,
-  router: router2,
-  hydrate: hydrate2 = true,
-  nonce
-}) {
-  invariant$1(
-    router2 && context,
-    "You must provide `router` and `context` to <StaticRouterProvider>"
-  );
-  let dataRouterContext = {
-    router: router2,
-    navigator: getStatelessNavigator(),
-    static: true,
-    staticContext: context,
-    basename: context.basename || "/"
-  };
-  let fetchersContext = /* @__PURE__ */ new Map();
-  let hydrateScript = "";
-  if (hydrate2 !== false) {
-    let data2 = {
-      loaderData: context.loaderData,
-      actionData: context.actionData,
-      errors: serializeErrors$1(context.errors)
-    };
-    let json = escapeHtml(JSON.stringify(JSON.stringify(data2)));
-    hydrateScript = `window.__staticRouterHydrationData = JSON.parse(${json});`;
-  }
-  let { state } = dataRouterContext.router;
-  return /* @__PURE__ */ React3.createElement(React3.Fragment, null, /* @__PURE__ */ React3.createElement(DataRouterContext.Provider, { value: dataRouterContext }, /* @__PURE__ */ React3.createElement(DataRouterStateContext.Provider, { value: state }, /* @__PURE__ */ React3.createElement(FetchersContext.Provider, { value: fetchersContext }, /* @__PURE__ */ React3.createElement(ViewTransitionContext.Provider, { value: { isTransitioning: false } }, /* @__PURE__ */ React3.createElement(
-    Router,
-    {
-      basename: dataRouterContext.basename,
-      location: state.location,
-      navigationType: state.historyAction,
-      navigator: dataRouterContext.navigator,
-      static: dataRouterContext.static,
-      unstable_useTransitions: false
-    },
-    /* @__PURE__ */ React3.createElement(
-      DataRoutes,
-      {
-        routes: router2.routes,
-        future: router2.future,
-        state,
-        isStatic: true
-      }
-    )
-  ))))), hydrateScript ? /* @__PURE__ */ React3.createElement(
-    "script",
-    {
-      suppressHydrationWarning: true,
-      nonce,
-      dangerouslySetInnerHTML: { __html: hydrateScript }
-    }
-  ) : null);
-}
-function serializeErrors$1(errors) {
-  if (!errors) return null;
-  let entries = Object.entries(errors);
-  let serialized = {};
-  for (let [key, val] of entries) {
-    if (isRouteErrorResponse(val)) {
-      serialized[key] = { ...val, __type: "RouteErrorResponse" };
-    } else if (val instanceof Error) {
-      serialized[key] = {
-        message: val.message,
-        __type: "Error",
-        // If this is a subclass (i.e., ReferenceError), send up the type so we
-        // can re-create the same type during hydration.
-        ...val.name !== "Error" ? {
-          __subType: val.name
-        } : {}
-      };
-    } else {
-      serialized[key] = val;
-    }
-  }
-  return serialized;
-}
-function getStatelessNavigator() {
-  return {
-    createHref,
-    encodeLocation,
-    push(to) {
-      throw new Error(
-        `You cannot use navigator.push() on the server because it is a stateless environment. This error was probably triggered when you did a \`navigate(${JSON.stringify(to)})\` somewhere in your app.`
-      );
-    },
-    replace(to) {
-      throw new Error(
-        `You cannot use navigator.replace() on the server because it is a stateless environment. This error was probably triggered when you did a \`navigate(${JSON.stringify(to)}, { replace: true })\` somewhere in your app.`
-      );
-    },
-    go(delta) {
-      throw new Error(
-        `You cannot use navigator.go() on the server because it is a stateless environment. This error was probably triggered when you did a \`navigate(${delta})\` somewhere in your app.`
-      );
-    },
-    back() {
-      throw new Error(
-        `You cannot use navigator.back() on the server because it is a stateless environment.`
-      );
-    },
-    forward() {
-      throw new Error(
-        `You cannot use navigator.forward() on the server because it is a stateless environment.`
-      );
-    }
-  };
-}
-function createStaticHandler2(routes, opts) {
-  return createStaticHandler(routes, {
-    ...opts,
-    mapRouteProperties
-  });
-}
-function createStaticRouter(routes, context, opts = {}) {
-  let manifest = {};
-  let dataRoutes = convertRoutesToDataRoutes(
-    routes,
-    mapRouteProperties,
-    void 0,
-    manifest
-  );
-  let matches = context.matches.map((match) => {
-    let route = manifest[match.route.id] || match.route;
-    return {
-      ...match,
-      route
-    };
-  });
-  let msg = (method) => `You cannot use router.${method}() on the server because it is a stateless environment`;
-  return {
-    get basename() {
-      return context.basename;
-    },
-    get future() {
-      return {
-        v8_middleware: false,
-        unstable_passThroughRequests: false,
-        ...opts == null ? void 0 : opts.future
-      };
-    },
-    get state() {
-      return {
-        historyAction: "POP",
-        location: context.location,
-        matches,
-        loaderData: context.loaderData,
-        actionData: context.actionData,
-        errors: context.errors,
-        initialized: true,
-        renderFallback: false,
-        navigation: IDLE_NAVIGATION,
-        restoreScrollPosition: null,
-        preventScrollReset: false,
-        revalidation: "idle",
-        fetchers: /* @__PURE__ */ new Map(),
-        blockers: /* @__PURE__ */ new Map()
-      };
-    },
-    get routes() {
-      return dataRoutes;
-    },
-    get window() {
-      return void 0;
-    },
-    initialize() {
-      throw msg("initialize");
-    },
-    subscribe() {
-      throw msg("subscribe");
-    },
-    enableScrollRestoration() {
-      throw msg("enableScrollRestoration");
-    },
-    navigate() {
-      throw msg("navigate");
-    },
-    fetch() {
-      throw msg("fetch");
-    },
-    revalidate() {
-      throw msg("revalidate");
-    },
-    createHref,
-    encodeLocation,
-    getFetcher() {
-      return IDLE_FETCHER;
-    },
-    deleteFetcher() {
-      throw msg("deleteFetcher");
-    },
-    resetFetcher() {
-      throw msg("resetFetcher");
-    },
-    dispose() {
-      throw msg("dispose");
-    },
-    getBlocker() {
-      return IDLE_BLOCKER;
-    },
-    deleteBlocker() {
-      throw msg("deleteBlocker");
-    },
-    patchRoutes() {
-      throw msg("patchRoutes");
-    },
-    _internalFetchControllers: /* @__PURE__ */ new Map(),
-    _internalSetRoutes() {
-      throw msg("_internalSetRoutes");
-    },
-    _internalSetStateDoNotUseOrYouWillBreakYourApp() {
-      throw msg("_internalSetStateDoNotUseOrYouWillBreakYourApp");
-    }
-  };
-}
-function createHref(to) {
-  return typeof to === "string" ? to : createPath(to);
-}
-function encodeLocation(to) {
-  let href2 = typeof to === "string" ? to : createPath(to);
-  href2 = href2.replace(/ $/, "%20");
-  let encoded = ABSOLUTE_URL_REGEX3.test(href2) ? new URL(href2) : new URL(href2, "http://localhost");
-  return {
-    pathname: encoded.pathname,
-    search: encoded.search,
-    hash: encoded.hash
-  };
-}
-var ABSOLUTE_URL_REGEX3 = /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i;
-var dist = {};
-var hasRequiredDist$1;
-function requireDist$1() {
-  if (hasRequiredDist$1) return dist;
-  hasRequiredDist$1 = 1;
-  Object.defineProperty(dist, "__esModule", { value: true });
-  dist.parseCookie = parseCookie;
-  dist.parse = parseCookie;
-  dist.stringifyCookie = stringifyCookie;
-  dist.stringifySetCookie = stringifySetCookie;
-  dist.serialize = stringifySetCookie;
-  dist.parseSetCookie = parseSetCookie;
-  dist.stringifySetCookie = stringifySetCookie;
-  dist.serialize = stringifySetCookie;
-  const cookieNameRegExp = /^[\u0021-\u003A\u003C\u003E-\u007E]+$/;
-  const cookieValueRegExp = /^[\u0021-\u003A\u003C-\u007E]*$/;
-  const domainValueRegExp = /^([.]?[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)([.][a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)*$/i;
-  const pathValueRegExp = /^[\u0020-\u003A\u003D-\u007E]*$/;
-  const maxAgeRegExp = /^-?\d+$/;
-  const __toString = Object.prototype.toString;
-  const NullObject = /* @__PURE__ */ (() => {
-    const C = function() {
-    };
-    C.prototype = /* @__PURE__ */ Object.create(null);
-    return C;
-  })();
-  function parseCookie(str, options) {
-    const obj = new NullObject();
-    const len = str.length;
-    if (len < 2)
-      return obj;
-    const dec = (options == null ? void 0 : options.decode) || decode2;
-    let index = 0;
-    do {
-      const eqIdx = eqIndex(str, index, len);
-      if (eqIdx === -1)
-        break;
-      const endIdx = endIndex(str, index, len);
-      if (eqIdx > endIdx) {
-        index = str.lastIndexOf(";", eqIdx - 1) + 1;
-        continue;
-      }
-      const key = valueSlice(str, index, eqIdx);
-      if (obj[key] === void 0) {
-        obj[key] = dec(valueSlice(str, eqIdx + 1, endIdx));
-      }
-      index = endIdx + 1;
-    } while (index < len);
-    return obj;
-  }
-  function stringifyCookie(cookie, options) {
-    const enc = (options == null ? void 0 : options.encode) || encodeURIComponent;
-    const cookieStrings = [];
-    for (const name of Object.keys(cookie)) {
-      const val = cookie[name];
-      if (val === void 0)
-        continue;
-      if (!cookieNameRegExp.test(name)) {
-        throw new TypeError(`cookie name is invalid: ${name}`);
-      }
-      const value = enc(val);
-      if (!cookieValueRegExp.test(value)) {
-        throw new TypeError(`cookie val is invalid: ${val}`);
-      }
-      cookieStrings.push(`${name}=${value}`);
-    }
-    return cookieStrings.join("; ");
-  }
-  function stringifySetCookie(_name, _val, _opts) {
-    const cookie = typeof _name === "object" ? _name : { ..._opts, name: _name, value: String(_val) };
-    const options = typeof _val === "object" ? _val : _opts;
-    const enc = (options == null ? void 0 : options.encode) || encodeURIComponent;
-    if (!cookieNameRegExp.test(cookie.name)) {
-      throw new TypeError(`argument name is invalid: ${cookie.name}`);
-    }
-    const value = cookie.value ? enc(cookie.value) : "";
-    if (!cookieValueRegExp.test(value)) {
-      throw new TypeError(`argument val is invalid: ${cookie.value}`);
-    }
-    let str = cookie.name + "=" + value;
-    if (cookie.maxAge !== void 0) {
-      if (!Number.isInteger(cookie.maxAge)) {
-        throw new TypeError(`option maxAge is invalid: ${cookie.maxAge}`);
-      }
-      str += "; Max-Age=" + cookie.maxAge;
-    }
-    if (cookie.domain) {
-      if (!domainValueRegExp.test(cookie.domain)) {
-        throw new TypeError(`option domain is invalid: ${cookie.domain}`);
-      }
-      str += "; Domain=" + cookie.domain;
-    }
-    if (cookie.path) {
-      if (!pathValueRegExp.test(cookie.path)) {
-        throw new TypeError(`option path is invalid: ${cookie.path}`);
-      }
-      str += "; Path=" + cookie.path;
-    }
-    if (cookie.expires) {
-      if (!isDate(cookie.expires) || !Number.isFinite(cookie.expires.valueOf())) {
-        throw new TypeError(`option expires is invalid: ${cookie.expires}`);
-      }
-      str += "; Expires=" + cookie.expires.toUTCString();
-    }
-    if (cookie.httpOnly) {
-      str += "; HttpOnly";
-    }
-    if (cookie.secure) {
-      str += "; Secure";
-    }
-    if (cookie.partitioned) {
-      str += "; Partitioned";
-    }
-    if (cookie.priority) {
-      const priority = typeof cookie.priority === "string" ? cookie.priority.toLowerCase() : void 0;
-      switch (priority) {
-        case "low":
-          str += "; Priority=Low";
-          break;
-        case "medium":
-          str += "; Priority=Medium";
-          break;
-        case "high":
-          str += "; Priority=High";
-          break;
-        default:
-          throw new TypeError(`option priority is invalid: ${cookie.priority}`);
-      }
-    }
-    if (cookie.sameSite) {
-      const sameSite = typeof cookie.sameSite === "string" ? cookie.sameSite.toLowerCase() : cookie.sameSite;
-      switch (sameSite) {
-        case true:
-        case "strict":
-          str += "; SameSite=Strict";
-          break;
-        case "lax":
-          str += "; SameSite=Lax";
-          break;
-        case "none":
-          str += "; SameSite=None";
-          break;
-        default:
-          throw new TypeError(`option sameSite is invalid: ${cookie.sameSite}`);
-      }
-    }
-    return str;
-  }
-  function parseSetCookie(str, options) {
-    const dec = (options == null ? void 0 : options.decode) || decode2;
-    const len = str.length;
-    const endIdx = endIndex(str, 0, len);
-    const eqIdx = eqIndex(str, 0, endIdx);
-    const setCookie = eqIdx === -1 ? { name: "", value: dec(valueSlice(str, 0, endIdx)) } : {
-      name: valueSlice(str, 0, eqIdx),
-      value: dec(valueSlice(str, eqIdx + 1, endIdx))
-    };
-    let index = endIdx + 1;
-    while (index < len) {
-      const endIdx2 = endIndex(str, index, len);
-      const eqIdx2 = eqIndex(str, index, endIdx2);
-      const attr = eqIdx2 === -1 ? valueSlice(str, index, endIdx2) : valueSlice(str, index, eqIdx2);
-      const val = eqIdx2 === -1 ? void 0 : valueSlice(str, eqIdx2 + 1, endIdx2);
-      switch (attr.toLowerCase()) {
-        case "httponly":
-          setCookie.httpOnly = true;
-          break;
-        case "secure":
-          setCookie.secure = true;
-          break;
-        case "partitioned":
-          setCookie.partitioned = true;
-          break;
-        case "domain":
-          setCookie.domain = val;
-          break;
-        case "path":
-          setCookie.path = val;
-          break;
-        case "max-age":
-          if (val && maxAgeRegExp.test(val))
-            setCookie.maxAge = Number(val);
-          break;
-        case "expires":
-          if (!val)
-            break;
-          const date = new Date(val);
-          if (Number.isFinite(date.valueOf()))
-            setCookie.expires = date;
-          break;
-        case "priority":
-          if (!val)
-            break;
-          const priority = val.toLowerCase();
-          if (priority === "low" || priority === "medium" || priority === "high") {
-            setCookie.priority = priority;
-          }
-          break;
-        case "samesite":
-          if (!val)
-            break;
-          const sameSite = val.toLowerCase();
-          if (sameSite === "lax" || sameSite === "strict" || sameSite === "none") {
-            setCookie.sameSite = sameSite;
-          }
-          break;
-      }
-      index = endIdx2 + 1;
-    }
-    return setCookie;
-  }
-  function endIndex(str, min, len) {
-    const index = str.indexOf(";", min);
-    return index === -1 ? len : index;
-  }
-  function eqIndex(str, min, max) {
-    const index = str.indexOf("=", min);
-    return index < max ? index : -1;
-  }
-  function valueSlice(str, min, max) {
-    let start = min;
-    let end = max;
-    do {
-      const code = str.charCodeAt(start);
-      if (code !== 32 && code !== 9)
-        break;
-    } while (++start < end);
-    while (end > start) {
-      const code = str.charCodeAt(end - 1);
-      if (code !== 32 && code !== 9)
-        break;
-      end--;
-    }
-    return str.slice(start, end);
-  }
-  function decode2(str) {
-    if (str.indexOf("%") === -1)
-      return str;
-    try {
-      return decodeURIComponent(str);
-    } catch (e) {
-      return str;
-    }
-  }
-  function isDate(val) {
-    return __toString.call(val) === "[object Date]";
-  }
-  return dist;
-}
-var distExports$1 = /* @__PURE__ */ requireDist$1();
-/**
- * react-router v7.14.0
- *
- * Copyright (c) Remix Software Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.md file in the root directory of this source tree.
- *
- * @license MIT
- */
-function ServerRouter({
-  context,
-  url,
-  nonce
-}) {
-  if (typeof url === "string") {
-    url = new URL(url);
-  }
-  let { manifest, routeModules, criticalCss, serverHandoffString } = context;
-  let routes = createServerRoutes(
-    manifest.routes,
-    routeModules,
-    context.future,
-    context.isSpaMode
-  );
-  context.staticHandlerContext.loaderData = {
-    ...context.staticHandlerContext.loaderData
-  };
-  for (let match of context.staticHandlerContext.matches) {
-    let routeId = match.route.id;
-    let route = routeModules[routeId];
-    let manifestRoute = context.manifest.routes[routeId];
-    if (route && manifestRoute && shouldHydrateRouteLoader(
-      routeId,
-      route.clientLoader,
-      manifestRoute.hasLoader,
-      context.isSpaMode
-    ) && (route.HydrateFallback || !manifestRoute.hasLoader)) {
-      delete context.staticHandlerContext.loaderData[routeId];
-    }
-  }
-  let router2 = createStaticRouter(routes, context.staticHandlerContext);
-  return /* @__PURE__ */ React3.createElement(React3.Fragment, null, /* @__PURE__ */ React3.createElement(
-    FrameworkContext.Provider,
-    {
-      value: {
-        manifest,
-        routeModules,
-        criticalCss,
-        serverHandoffString,
-        future: context.future,
-        ssr: context.ssr,
-        isSpaMode: context.isSpaMode,
-        routeDiscovery: context.routeDiscovery,
-        serializeError: context.serializeError,
-        renderMeta: context.renderMeta
-      }
-    },
-    /* @__PURE__ */ React3.createElement(RemixErrorBoundary, { location: router2.state.location }, /* @__PURE__ */ React3.createElement(
-      StaticRouterProvider,
-      {
-        router: router2,
-        context: context.staticHandlerContext,
-        hydrate: false
-      }
-    ))
-  ), context.serverHandoffStream ? /* @__PURE__ */ React3.createElement(React3.Suspense, null, /* @__PURE__ */ React3.createElement(
-    StreamTransfer,
-    {
-      context,
-      identifier: 0,
-      reader: context.serverHandoffStream.getReader(),
-      textDecoder: new TextDecoder(),
-      nonce
-    }
-  )) : null);
-}
-function createRoutesStub(routes, _context) {
-  return function RoutesTestStub({
-    initialEntries,
-    initialIndex,
-    hydrationData,
-    future
-  }) {
-    let routerRef = React3.useRef();
-    let frameworkContextRef = React3.useRef();
-    if (routerRef.current == null) {
-      frameworkContextRef.current = {
-        future: {
-          unstable_passThroughRequests: (future == null ? void 0 : future.unstable_passThroughRequests) === true,
-          unstable_subResourceIntegrity: (future == null ? void 0 : future.unstable_subResourceIntegrity) === true,
-          v8_middleware: (future == null ? void 0 : future.v8_middleware) === true,
-          unstable_trailingSlashAwareDataRequests: (future == null ? void 0 : future.unstable_trailingSlashAwareDataRequests) === true
-        },
-        manifest: {
-          routes: {},
-          entry: { imports: [], module: "" },
-          url: "",
-          version: ""
-        },
-        routeModules: {},
-        ssr: false,
-        isSpaMode: false,
-        routeDiscovery: { mode: "lazy", manifestPath: "/__manifest" }
-      };
-      let patched = processRoutes(
-        // @ts-expect-error `StubRouteObject` is stricter about `loader`/`action`
-        // types compared to `RouteObject`
-        convertRoutesToDataRoutes(routes, (r) => r),
-        _context !== void 0 ? _context : (future == null ? void 0 : future.v8_middleware) ? new RouterContextProvider() : {},
-        frameworkContextRef.current.manifest,
-        frameworkContextRef.current.routeModules
-      );
-      routerRef.current = createMemoryRouter(patched, {
-        initialEntries,
-        initialIndex,
-        hydrationData
-      });
-    }
-    return /* @__PURE__ */ React3.createElement(FrameworkContext.Provider, { value: frameworkContextRef.current }, /* @__PURE__ */ React3.createElement(RouterProvider, { router: routerRef.current }));
-  };
-}
-function processRoutes(routes, context, manifest, routeModules, parentId) {
-  return routes.map((route) => {
-    if (!route.id) {
-      throw new Error(
-        "Expected a route.id in react-router processRoutes() function"
-      );
-    }
-    let newRoute = {
-      id: route.id,
-      path: route.path,
-      index: route.index,
-      Component: route.Component ? withComponentProps(route.Component) : void 0,
-      HydrateFallback: route.HydrateFallback ? withHydrateFallbackProps(route.HydrateFallback) : void 0,
-      ErrorBoundary: route.ErrorBoundary ? withErrorBoundaryProps(route.ErrorBoundary) : void 0,
-      action: route.action ? (args) => route.action({ ...args, context }) : void 0,
-      loader: route.loader ? (args) => route.loader({ ...args, context }) : void 0,
-      middleware: route.middleware ? route.middleware.map(
-        (mw) => (...args) => mw(
-          { ...args[0], context },
-          args[1]
-        )
-      ) : void 0,
-      handle: route.handle,
-      shouldRevalidate: route.shouldRevalidate
-    };
-    let entryRoute = {
-      id: route.id,
-      path: route.path,
-      index: route.index,
-      parentId,
-      hasAction: route.action != null,
-      hasLoader: route.loader != null,
-      // When testing routes, you should be stubbing loader/action/middleware,
-      // not trying to re-implement the full loader/clientLoader/SSR/hydration
-      // flow. That is better tested via E2E tests.
-      hasClientAction: false,
-      hasClientLoader: false,
-      hasClientMiddleware: false,
-      hasErrorBoundary: route.ErrorBoundary != null,
-      // any need for these?
-      module: "build/stub-path-to-module.js",
-      clientActionModule: void 0,
-      clientLoaderModule: void 0,
-      clientMiddlewareModule: void 0,
-      hydrateFallbackModule: void 0
-    };
-    manifest.routes[newRoute.id] = entryRoute;
-    routeModules[route.id] = {
-      default: newRoute.Component || Outlet,
-      ErrorBoundary: newRoute.ErrorBoundary || void 0,
-      handle: route.handle,
-      links: route.links,
-      meta: route.meta,
-      shouldRevalidate: route.shouldRevalidate
-    };
-    if (route.children) {
-      newRoute.children = processRoutes(
-        route.children,
-        context,
-        manifest,
-        routeModules,
-        newRoute.id
-      );
-    }
-    return newRoute;
-  });
-}
-var encoder = /* @__PURE__ */ new TextEncoder();
-var sign = async (value, secret) => {
-  let data2 = encoder.encode(value);
-  let key = await createKey(secret, ["sign"]);
-  let signature = await crypto.subtle.sign("HMAC", key, data2);
-  let hash = btoa(String.fromCharCode(...new Uint8Array(signature))).replace(
-    /=+$/,
-    ""
-  );
-  return value + "." + hash;
-};
-var unsign = async (cookie, secret) => {
-  let index = cookie.lastIndexOf(".");
-  let value = cookie.slice(0, index);
-  let hash = cookie.slice(index + 1);
-  let data2 = encoder.encode(value);
-  let key = await createKey(secret, ["verify"]);
-  try {
-    let signature = byteStringToUint8Array(atob(hash));
-    let valid = await crypto.subtle.verify("HMAC", key, signature, data2);
-    return valid ? value : false;
-  } catch (error) {
-    return false;
-  }
-};
-var createKey = async (secret, usages) => crypto.subtle.importKey(
-  "raw",
-  encoder.encode(secret),
-  { name: "HMAC", hash: "SHA-256" },
-  false,
-  usages
-);
-function byteStringToUint8Array(byteString) {
-  let array = new Uint8Array(byteString.length);
-  for (let i = 0; i < byteString.length; i++) {
-    array[i] = byteString.charCodeAt(i);
-  }
-  return array;
-}
-var createCookie = (name, cookieOptions = {}) => {
-  let { secrets = [], ...options } = {
-    path: "/",
-    sameSite: "lax",
-    ...cookieOptions
-  };
-  warnOnceAboutExpiresCookie(name, options.expires);
-  return {
-    get name() {
-      return name;
-    },
-    get isSigned() {
-      return secrets.length > 0;
-    },
-    get expires() {
-      return typeof options.maxAge !== "undefined" ? new Date(Date.now() + options.maxAge * 1e3) : options.expires;
-    },
-    async parse(cookieHeader, parseOptions) {
-      if (!cookieHeader) return null;
-      let cookies = distExports$1.parse(cookieHeader, { ...options, ...parseOptions });
-      if (name in cookies) {
-        let value = cookies[name];
-        if (typeof value === "string" && value !== "") {
-          let decoded = await decodeCookieValue(value, secrets);
-          return decoded;
-        } else {
-          return "";
-        }
-      } else {
-        return null;
-      }
-    },
-    async serialize(value, serializeOptions) {
-      return distExports$1.serialize(
-        name,
-        value === "" ? "" : await encodeCookieValue(value, secrets),
-        {
-          ...options,
-          ...serializeOptions
-        }
-      );
-    }
-  };
-};
-var isCookie = (object) => {
-  return object != null && typeof object.name === "string" && typeof object.isSigned === "boolean" && typeof object.parse === "function" && typeof object.serialize === "function";
-};
-async function encodeCookieValue(value, secrets) {
-  let encoded = encodeData(value);
-  if (secrets.length > 0) {
-    encoded = await sign(encoded, secrets[0]);
-  }
-  return encoded;
-}
-async function decodeCookieValue(value, secrets) {
-  if (secrets.length > 0) {
-    for (let secret of secrets) {
-      let unsignedValue = await unsign(value, secret);
-      if (unsignedValue !== false) {
-        return decodeData(unsignedValue);
-      }
-    }
-    return null;
-  }
-  return decodeData(value);
-}
-function encodeData(value) {
-  return btoa(myUnescape(encodeURIComponent(JSON.stringify(value))));
-}
-function decodeData(value) {
-  try {
-    return JSON.parse(decodeURIComponent(myEscape(atob(value))));
-  } catch (error) {
-    return {};
-  }
-}
-function myEscape(value) {
-  let str = value.toString();
-  let result = "";
-  let index = 0;
-  let chr, code;
-  while (index < str.length) {
-    chr = str.charAt(index++);
-    if (/[\w*+\-./@]/.exec(chr)) {
-      result += chr;
-    } else {
-      code = chr.charCodeAt(0);
-      if (code < 256) {
-        result += "%" + hex(code, 2);
-      } else {
-        result += "%u" + hex(code, 4).toUpperCase();
-      }
-    }
-  }
-  return result;
-}
-function hex(code, length) {
-  let result = code.toString(16);
-  while (result.length < length) result = "0" + result;
-  return result;
-}
-function myUnescape(value) {
-  let str = value.toString();
-  let result = "";
-  let index = 0;
-  let chr, part;
-  while (index < str.length) {
-    chr = str.charAt(index++);
-    if (chr === "%") {
-      if (str.charAt(index) === "u") {
-        part = str.slice(index + 1, index + 5);
-        if (/^[\da-f]{4}$/i.exec(part)) {
-          result += String.fromCharCode(parseInt(part, 16));
-          index += 5;
-          continue;
-        }
-      } else {
-        part = str.slice(index, index + 2);
-        if (/^[\da-f]{2}$/i.exec(part)) {
-          result += String.fromCharCode(parseInt(part, 16));
-          index += 2;
-          continue;
-        }
-      }
-    }
-    result += chr;
-  }
-  return result;
-}
-function warnOnceAboutExpiresCookie(name, expires) {
-  warnOnce(
-    !expires,
-    `The "${name}" cookie has an "expires" property set. This will cause the expires value to not be updated when the session is committed. Instead, you should set the expires value when serializing the cookie. You can use \`commitSession(session, { expires })\` if using a session storage object, or \`cookie.serialize("value", { expires })\` if you're using the cookie directly.`
-  );
-}
-function createEntryRouteModules(manifest) {
-  return Object.keys(manifest).reduce((memo, routeId) => {
-    let route = manifest[routeId];
-    if (route) {
-      memo[routeId] = route.module;
-    }
-    return memo;
-  }, {});
-}
-var ServerMode = /* @__PURE__ */ ((ServerMode2) => {
-  ServerMode2["Development"] = "development";
-  ServerMode2["Production"] = "production";
-  ServerMode2["Test"] = "test";
-  return ServerMode2;
-})(ServerMode || {});
-function isServerMode(value) {
-  return value === "development" || value === "production" || value === "test";
-}
-function sanitizeError(error, serverMode) {
-  if (error instanceof Error && serverMode !== "development") {
-    let sanitized = new Error("Unexpected Server Error");
-    sanitized.stack = void 0;
-    return sanitized;
-  }
-  return error;
-}
-function sanitizeErrors(errors, serverMode) {
-  return Object.entries(errors).reduce((acc, [routeId, error]) => {
-    return Object.assign(acc, { [routeId]: sanitizeError(error, serverMode) });
-  }, {});
-}
-function serializeError(error, serverMode) {
-  let sanitized = sanitizeError(error, serverMode);
-  return {
-    message: sanitized.message,
-    stack: sanitized.stack
-  };
-}
-function serializeErrors(errors, serverMode) {
-  if (!errors) return null;
-  let entries = Object.entries(errors);
-  let serialized = {};
-  for (let [key, val] of entries) {
-    if (isRouteErrorResponse(val)) {
-      serialized[key] = { ...val, __type: "RouteErrorResponse" };
-    } else if (val instanceof Error) {
-      let sanitized = sanitizeError(val, serverMode);
-      serialized[key] = {
-        message: sanitized.message,
-        stack: sanitized.stack,
-        __type: "Error",
-        // If this is a subclass (i.e., ReferenceError), send up the type so we
-        // can re-create the same type during hydration.  This will only apply
-        // in dev mode since all production errors are sanitized to normal
-        // Error instances
-        ...sanitized.name !== "Error" ? {
-          __subType: sanitized.name
-        } : {}
-      };
-    } else {
-      serialized[key] = val;
-    }
-  }
-  return serialized;
-}
-function matchServerRoutes(routes, pathname, basename) {
-  let matches = matchRoutes(
-    routes,
-    pathname,
-    basename
-  );
-  if (!matches) return null;
-  return matches.map((match) => ({
-    params: match.params,
-    pathname: match.pathname,
-    route: match.route
-  }));
-}
-async function callRouteHandler(handler, args, future) {
-  let result = await handler({
-    request: future.unstable_passThroughRequests ? args.request : stripRoutesParam(stripIndexParam(args.request)),
-    unstable_url: args.unstable_url,
-    params: args.params,
-    context: args.context,
-    unstable_pattern: args.unstable_pattern
-  });
-  if (isDataWithResponseInit(result) && result.init && result.init.status && isRedirectStatusCode(result.init.status)) {
-    throw new Response(null, result.init);
-  }
-  return result;
-}
-function stripIndexParam(request) {
-  let url = new URL(request.url);
-  let indexValues = url.searchParams.getAll("index");
-  url.searchParams.delete("index");
-  let indexValuesToKeep = [];
-  for (let indexValue of indexValues) {
-    if (indexValue) {
-      indexValuesToKeep.push(indexValue);
-    }
-  }
-  for (let toKeep of indexValuesToKeep) {
-    url.searchParams.append("index", toKeep);
-  }
-  let init = {
-    method: request.method,
-    body: request.body,
-    headers: request.headers,
-    signal: request.signal
-  };
-  if (init.body) {
-    init.duplex = "half";
-  }
-  return new Request(url.href, init);
-}
-function stripRoutesParam(request) {
-  let url = new URL(request.url);
-  url.searchParams.delete("_routes");
-  let init = {
-    method: request.method,
-    body: request.body,
-    headers: request.headers,
-    signal: request.signal
-  };
-  if (init.body) {
-    init.duplex = "half";
-  }
-  return new Request(url.href, init);
-}
-function invariant(value, message) {
-  if (value === false || value === null || typeof value === "undefined") {
-    console.error(
-      "The following error is a bug in React Router; please open an issue! https://github.com/remix-run/react-router/issues/new/choose"
-    );
-    throw new Error(message);
-  }
-}
-var globalDevServerHooksKey = "__reactRouterDevServerHooks";
-function setDevServerHooks(devServerHooks) {
-  globalThis[globalDevServerHooksKey] = devServerHooks;
-}
-function getDevServerHooks() {
-  return globalThis[globalDevServerHooksKey];
-}
-function getBuildTimeHeader(request, headerName) {
-  var _a2;
-  if (typeof process !== "undefined") {
-    try {
-      if (((_a2 = process.env) == null ? void 0 : _a2.IS_RR_BUILD_REQUEST) === "yes") {
-        return request.headers.get(headerName);
-      }
-    } catch (e) {
-    }
-  }
-  return null;
-}
-function groupRoutesByParentId(manifest) {
-  let routes = {};
-  Object.values(manifest).forEach((route) => {
-    if (route) {
-      let parentId = route.parentId || "";
-      if (!routes[parentId]) {
-        routes[parentId] = [];
-      }
-      routes[parentId].push(route);
-    }
-  });
-  return routes;
-}
-function createRoutes(manifest, parentId = "", routesByParentId = groupRoutesByParentId(manifest)) {
-  return (routesByParentId[parentId] || []).map((route) => ({
-    ...route,
-    children: createRoutes(manifest, route.id, routesByParentId)
-  }));
-}
-function createStaticHandlerDataRoutes(manifest, future, parentId = "", routesByParentId = groupRoutesByParentId(manifest)) {
-  return (routesByParentId[parentId] || []).map((route) => {
-    let commonRoute = {
-      // Always include root due to default boundaries
-      hasErrorBoundary: route.id === "root" || route.module.ErrorBoundary != null,
-      id: route.id,
-      path: route.path,
-      middleware: route.module.middleware,
-      // Need to use RR's version in the param typed here to permit the optional
-      // context even though we know it'll always be provided in remix
-      loader: route.module.loader ? async (args) => {
-        let preRenderedData = getBuildTimeHeader(
-          args.request,
-          "X-React-Router-Prerender-Data"
-        );
-        if (preRenderedData != null) {
-          let encoded = preRenderedData ? decodeURI(preRenderedData) : preRenderedData;
-          invariant(encoded, "Missing prerendered data for route");
-          let uint8array = new TextEncoder().encode(encoded);
-          let stream = new ReadableStream({
-            start(controller) {
-              controller.enqueue(uint8array);
-              controller.close();
-            }
-          });
-          let decoded = await decodeViaTurboStream(stream, global);
-          let data2 = decoded.value;
-          if (data2 && SingleFetchRedirectSymbol in data2) {
-            let result = data2[SingleFetchRedirectSymbol];
-            let init = { status: result.status };
-            if (result.reload) {
-              throw redirectDocument(result.redirect, init);
-            } else if (result.replace) {
-              throw replace(result.redirect, init);
-            } else {
-              throw redirect(result.redirect, init);
-            }
-          } else {
-            invariant(
-              data2 && route.id in data2,
-              "Unable to decode prerendered data"
-            );
-            let result = data2[route.id];
-            invariant(
-              "data" in result,
-              "Unable to process prerendered data"
-            );
-            return result.data;
-          }
-        }
-        let val = await callRouteHandler(
-          route.module.loader,
-          args,
-          future
-        );
-        return val;
-      } : void 0,
-      action: route.module.action ? (args) => callRouteHandler(route.module.action, args, future) : void 0,
-      handle: route.module.handle
-    };
-    return route.index ? {
-      index: true,
-      ...commonRoute
-    } : {
-      caseSensitive: route.caseSensitive,
-      children: createStaticHandlerDataRoutes(
-        manifest,
-        future,
-        route.id,
-        routesByParentId
-      ),
-      ...commonRoute
-    };
-  });
-}
-function createServerHandoffString(serverHandoff) {
-  return escapeHtml(JSON.stringify(serverHandoff));
-}
-function getDocumentHeaders(context, build) {
-  return getDocumentHeadersImpl(context, (m) => {
-    let route = build.routes[m.route.id];
-    invariant(route, `Route with id "${m.route.id}" not found in build`);
-    return route.module.headers;
-  });
-}
-function getDocumentHeadersImpl(context, getRouteHeadersFn, _defaultHeaders) {
-  let boundaryIdx = context.errors ? context.matches.findIndex((m) => context.errors[m.route.id]) : -1;
-  let matches = boundaryIdx >= 0 ? context.matches.slice(0, boundaryIdx + 1) : context.matches;
-  let errorHeaders;
-  if (boundaryIdx >= 0) {
-    let { actionHeaders, actionData, loaderHeaders, loaderData } = context;
-    context.matches.slice(boundaryIdx).some((match) => {
-      let id = match.route.id;
-      if (actionHeaders[id] && (!actionData || !actionData.hasOwnProperty(id))) {
-        errorHeaders = actionHeaders[id];
-      } else if (loaderHeaders[id] && !loaderData.hasOwnProperty(id)) {
-        errorHeaders = loaderHeaders[id];
-      }
-      return errorHeaders != null;
-    });
-  }
-  const defaultHeaders = new Headers(_defaultHeaders);
-  return matches.reduce((parentHeaders, match, idx) => {
-    let { id } = match.route;
-    let loaderHeaders = context.loaderHeaders[id] || new Headers();
-    let actionHeaders = context.actionHeaders[id] || new Headers();
-    let includeErrorHeaders = errorHeaders != null && idx === matches.length - 1;
-    let includeErrorCookies = includeErrorHeaders && errorHeaders !== loaderHeaders && errorHeaders !== actionHeaders;
-    let headersFn = getRouteHeadersFn(match);
-    if (headersFn == null) {
-      let headers2 = new Headers(parentHeaders);
-      if (includeErrorCookies) {
-        prependCookies(errorHeaders, headers2);
-      }
-      prependCookies(actionHeaders, headers2);
-      prependCookies(loaderHeaders, headers2);
-      return headers2;
-    }
-    let headers = new Headers(
-      typeof headersFn === "function" ? headersFn({
-        loaderHeaders,
-        parentHeaders,
-        actionHeaders,
-        errorHeaders: includeErrorHeaders ? errorHeaders : void 0
-      }) : headersFn
-    );
-    if (includeErrorCookies) {
-      prependCookies(errorHeaders, headers);
-    }
-    prependCookies(actionHeaders, headers);
-    prependCookies(loaderHeaders, headers);
-    prependCookies(parentHeaders, headers);
-    return headers;
-  }, new Headers(defaultHeaders));
-}
-function prependCookies(parentHeaders, childHeaders) {
-  let parentSetCookieString = parentHeaders.get("Set-Cookie");
-  if (parentSetCookieString) {
-    let cookies = splitCookiesString(parentSetCookieString);
-    let childCookies = new Set(childHeaders.getSetCookie());
-    cookies.forEach((cookie) => {
-      if (!childCookies.has(cookie)) {
-        childHeaders.append("Set-Cookie", cookie);
-      }
-    });
-  }
-}
-function throwIfPotentialCSRFAttack(headers, allowedActionOrigins) {
-  let originHeader = headers.get("origin");
-  let originDomain = null;
-  try {
-    originDomain = typeof originHeader === "string" && originHeader !== "null" ? new URL(originHeader).host : originHeader;
-  } catch {
-    throw new Error(
-      `\`origin\` header is not a valid URL. Aborting the action.`
-    );
-  }
-  let host = parseHostHeader(headers);
-  if (originDomain && (!host || originDomain !== host.value)) {
-    if (!isAllowedOrigin(originDomain, allowedActionOrigins)) {
-      if (host) {
-        throw new Error(
-          `${host.type} header does not match \`origin\` header from a forwarded action request. Aborting the action.`
-        );
-      } else {
-        throw new Error(
-          "`x-forwarded-host` or `host` headers are not provided. One of these is needed to compare the `origin` header from a forwarded action request. Aborting the action."
-        );
-      }
-    }
-  }
-}
-function matchWildcardDomain(domain, pattern) {
-  const domainParts = domain.split(".");
-  const patternParts = pattern.split(".");
-  if (patternParts.length < 1) {
-    return false;
-  }
-  if (domainParts.length < patternParts.length) {
-    return false;
-  }
-  while (patternParts.length) {
-    const patternPart = patternParts.pop();
-    const domainPart = domainParts.pop();
-    switch (patternPart) {
-      case "": {
-        return false;
-      }
-      case "*": {
-        if (domainPart) {
-          continue;
-        } else {
-          return false;
-        }
-      }
-      case "**": {
-        if (patternParts.length > 0) {
-          return false;
-        }
-        return domainPart !== void 0;
-      }
-      case void 0:
-      default: {
-        if (domainPart !== patternPart) {
-          return false;
-        }
-      }
-    }
-  }
-  return domainParts.length === 0;
-}
-function isAllowedOrigin(originDomain, allowedActionOrigins = []) {
-  return allowedActionOrigins.some(
-    (allowedOrigin) => allowedOrigin && (allowedOrigin === originDomain || matchWildcardDomain(originDomain, allowedOrigin))
-  );
-}
-function parseHostHeader(headers) {
-  var _a2;
-  let forwardedHostHeader = headers.get("x-forwarded-host");
-  let forwardedHostValue = (_a2 = forwardedHostHeader == null ? void 0 : forwardedHostHeader.split(",")[0]) == null ? void 0 : _a2.trim();
-  let hostHeader = headers.get("host");
-  return forwardedHostValue ? {
-    type: "x-forwarded-host",
-    value: forwardedHostValue
-  } : hostHeader ? {
-    type: "host",
-    value: hostHeader
-  } : void 0;
-}
-function getNormalizedPath(request, basename, future) {
-  basename = basename || "/";
-  let url = new URL(request.url);
-  let pathname = url.pathname;
-  if (future == null ? void 0 : future.unstable_trailingSlashAwareDataRequests) {
-    if (pathname.endsWith("/_.data")) {
-      pathname = pathname.replace(/_\.data$/, "");
-    } else {
-      pathname = pathname.replace(/\.data$/, "");
-    }
-  } else {
-    if (stripBasename(pathname, basename) === "/_root.data") {
-      pathname = basename;
-    } else if (pathname.endsWith(".data")) {
-      pathname = pathname.replace(/\.data$/, "");
-    }
-    if (stripBasename(pathname, basename) !== "/" && pathname.endsWith("/")) {
-      pathname = pathname.slice(0, -1);
-    }
-  }
-  let searchParams = new URLSearchParams(url.search);
-  searchParams.delete("_routes");
-  let search = searchParams.toString();
-  if (search) {
-    search = `?${search}`;
-  }
-  return {
-    pathname,
-    search,
-    // No hashes on the server
-    hash: ""
-  };
-}
-var SERVER_NO_BODY_STATUS_CODES = /* @__PURE__ */ new Set([
-  ...NO_BODY_STATUS_CODES,
-  304
-]);
-async function singleFetchAction(build, serverMode, staticHandler, request, handlerUrl, loadContext, handleError) {
-  try {
-    try {
-      throwIfPotentialCSRFAttack(
-        request.headers,
-        Array.isArray(build.allowedActionOrigins) ? build.allowedActionOrigins : []
-      );
-    } catch (e) {
-      return handleQueryError(new Error("Bad Request"), 400);
-    }
-    let handlerRequest = build.future.unstable_passThroughRequests ? request : new Request(handlerUrl, {
-      method: request.method,
-      body: request.body,
-      headers: request.headers,
-      signal: request.signal,
-      ...request.body ? { duplex: "half" } : void 0
-    });
-    let result = await staticHandler.query(handlerRequest, {
-      requestContext: loadContext,
-      skipLoaderErrorBubbling: true,
-      skipRevalidation: true,
-      generateMiddlewareResponse: build.future.v8_middleware ? async (query) => {
-        try {
-          let innerResult = await query(handlerRequest);
-          return handleQueryResult(innerResult);
-        } catch (error) {
-          return handleQueryError(error);
-        }
-      } : void 0,
-      unstable_normalizePath: (r) => getNormalizedPath(r, build.basename, build.future)
-    });
-    return handleQueryResult(result);
-  } catch (error) {
-    return handleQueryError(error);
-  }
-  function handleQueryResult(result) {
-    return isResponse(result) ? result : staticContextToResponse(result);
-  }
-  function handleQueryError(error, status = 500) {
-    handleError(error);
-    return generateSingleFetchResponse(request, build, serverMode, {
-      result: { error },
-      headers: new Headers(),
-      status
-    });
-  }
-  function staticContextToResponse(context) {
-    let headers = getDocumentHeaders(context, build);
-    if (isRedirectStatusCode(context.statusCode) && headers.has("Location")) {
-      return new Response(null, { status: context.statusCode, headers });
-    }
-    if (context.errors) {
-      Object.values(context.errors).forEach((err) => {
-        if (!isRouteErrorResponse(err) || err.error) {
-          handleError(err);
-        }
-      });
-      context.errors = sanitizeErrors(context.errors, serverMode);
-    }
-    let singleFetchResult;
-    if (context.errors) {
-      singleFetchResult = { error: Object.values(context.errors)[0] };
-    } else {
-      singleFetchResult = {
-        data: Object.values(context.actionData || {})[0]
-      };
-    }
-    return generateSingleFetchResponse(request, build, serverMode, {
-      result: singleFetchResult,
-      headers,
-      status: context.statusCode
-    });
-  }
-}
-async function singleFetchLoaders(build, serverMode, staticHandler, request, handlerUrl, loadContext, handleError) {
-  let routesParam = new URL(request.url).searchParams.get("_routes");
-  let loadRouteIds = routesParam ? new Set(routesParam.split(",")) : null;
-  try {
-    let handlerRequest = build.future.unstable_passThroughRequests ? request : new Request(handlerUrl, {
-      headers: request.headers,
-      signal: request.signal
-    });
-    let result = await staticHandler.query(handlerRequest, {
-      requestContext: loadContext,
-      filterMatchesToLoad: (m) => !loadRouteIds || loadRouteIds.has(m.route.id),
-      skipLoaderErrorBubbling: true,
-      generateMiddlewareResponse: build.future.v8_middleware ? async (query) => {
-        try {
-          let innerResult = await query(handlerRequest);
-          return handleQueryResult(innerResult);
-        } catch (error) {
-          return handleQueryError(error);
-        }
-      } : void 0,
-      unstable_normalizePath: (r) => getNormalizedPath(r, build.basename, build.future)
-    });
-    return handleQueryResult(result);
-  } catch (error) {
-    return handleQueryError(error);
-  }
-  function handleQueryResult(result) {
-    return isResponse(result) ? result : staticContextToResponse(result);
-  }
-  function handleQueryError(error) {
-    handleError(error);
-    return generateSingleFetchResponse(request, build, serverMode, {
-      result: { error },
-      headers: new Headers(),
-      status: 500
-    });
-  }
-  function staticContextToResponse(context) {
-    let headers = getDocumentHeaders(context, build);
-    if (isRedirectStatusCode(context.statusCode) && headers.has("Location")) {
-      return new Response(null, { status: context.statusCode, headers });
-    }
-    if (context.errors) {
-      Object.values(context.errors).forEach((err) => {
-        if (!isRouteErrorResponse(err) || err.error) {
-          handleError(err);
-        }
-      });
-      context.errors = sanitizeErrors(context.errors, serverMode);
-    }
-    let results = {};
-    let loadedMatches = new Set(
-      context.matches.filter(
-        (m) => loadRouteIds ? loadRouteIds.has(m.route.id) : m.route.loader != null
-      ).map((m) => m.route.id)
-    );
-    if (context.errors) {
-      for (let [id, error] of Object.entries(context.errors)) {
-        results[id] = { error };
-      }
-    }
-    for (let [id, data2] of Object.entries(context.loaderData)) {
-      if (!(id in results) && loadedMatches.has(id)) {
-        results[id] = { data: data2 };
-      }
-    }
-    return generateSingleFetchResponse(request, build, serverMode, {
-      result: results,
-      headers,
-      status: context.statusCode
-    });
-  }
-}
-function generateSingleFetchResponse(request, build, serverMode, {
-  result,
-  headers,
-  status
-}) {
-  let resultHeaders = new Headers(headers);
-  resultHeaders.set("X-Remix-Response", "yes");
-  if (SERVER_NO_BODY_STATUS_CODES.has(status)) {
-    return new Response(null, { status, headers: resultHeaders });
-  }
-  resultHeaders.set("Content-Type", "text/x-script");
-  resultHeaders.delete("Content-Length");
-  return new Response(
-    encodeViaTurboStream(
-      result,
-      request.signal,
-      build.entry.module.streamTimeout,
-      serverMode
-    ),
-    {
-      status: status || 200,
-      headers: resultHeaders
-    }
-  );
-}
-function generateSingleFetchRedirectResponse(redirectResponse, request, build, serverMode) {
-  let redirect2 = getSingleFetchRedirect(
-    redirectResponse.status,
-    redirectResponse.headers,
-    build.basename
-  );
-  let headers = new Headers(redirectResponse.headers);
-  headers.delete("Location");
-  headers.set("Content-Type", "text/x-script");
-  return generateSingleFetchResponse(request, build, serverMode, {
-    result: request.method === "GET" ? { [SingleFetchRedirectSymbol]: redirect2 } : redirect2,
-    headers,
-    status: SINGLE_FETCH_REDIRECT_STATUS
-  });
-}
-function getSingleFetchRedirect(status, headers, basename) {
-  let redirect2 = headers.get("Location");
-  if (basename) {
-    redirect2 = stripBasename(redirect2, basename) || redirect2;
-  }
-  return {
-    redirect: redirect2,
-    status,
-    revalidate: (
-      // Technically X-Remix-Revalidate isn't needed here - that was an implementation
-      // detail of ?_data requests as our way to tell the front end to revalidate when
-      // we didn't have a response body to include that information in.
-      // With single fetch, we tell the front end via this revalidate boolean field.
-      // However, we're respecting it for now because it may be something folks have
-      // used in their own responses
-      // TODO(v3): Consider removing or making this official public API
-      headers.has("X-Remix-Revalidate") || headers.has("Set-Cookie")
-    ),
-    reload: headers.has("X-Remix-Reload-Document"),
-    replace: headers.has("X-Remix-Replace")
-  };
-}
-function encodeViaTurboStream(data2, requestSignal, streamTimeout, serverMode) {
-  let controller = new AbortController();
-  let timeoutId = setTimeout(
-    () => {
-      controller.abort(new Error("Server Timeout"));
-      cleanupCallbacks();
-    },
-    typeof streamTimeout === "number" ? streamTimeout : 4950
-  );
-  let abortControllerOnRequestAbort = () => {
-    controller.abort(requestSignal.reason);
-    cleanupCallbacks();
-  };
-  requestSignal.addEventListener("abort", abortControllerOnRequestAbort);
-  let cleanupCallbacks = () => {
-    clearTimeout(timeoutId);
-    requestSignal.removeEventListener("abort", abortControllerOnRequestAbort);
-  };
-  return encode(data2, {
-    signal: controller.signal,
-    onComplete: cleanupCallbacks,
-    plugins: [
-      (value) => {
-        if (value instanceof Error) {
-          let { name, message, stack } = serverMode === "production" ? sanitizeError(value, serverMode) : value;
-          return ["SanitizedError", name, message, stack];
-        }
-        if (value instanceof ErrorResponseImpl) {
-          let { data: data3, status, statusText } = value;
-          return ["ErrorResponse", data3, status, statusText];
-        }
-        if (value && typeof value === "object" && SingleFetchRedirectSymbol in value) {
-          return ["SingleFetchRedirect", value[SingleFetchRedirectSymbol]];
-        }
-      }
-    ],
-    postPlugins: [
-      (value) => {
-        if (!value) return;
-        if (typeof value !== "object") return;
-        return [
-          "SingleFetchClassInstance",
-          Object.fromEntries(Object.entries(value))
-        ];
-      },
-      () => ["SingleFetchFallback"]
-    ]
-  });
-}
-function derive(build, mode) {
-  let routes = createRoutes(build.routes);
-  let dataRoutes = createStaticHandlerDataRoutes(build.routes, build.future);
-  let serverMode = isServerMode(mode) ? mode : "production";
-  let staticHandler = createStaticHandler(dataRoutes, {
-    basename: build.basename,
-    unstable_instrumentations: build.entry.module.unstable_instrumentations
-  });
-  let errorHandler = build.entry.module.handleError || ((error, { request }) => {
-    if (serverMode !== "test" && !request.signal.aborted) {
-      console.error(
-        // @ts-expect-error This is "private" from users but intended for internal use
-        isRouteErrorResponse(error) && error.error ? error.error : error
-      );
-    }
-  });
-  let requestHandler = async (request, initialContext) => {
-    var _a2, _b2, _c;
-    let params = {};
-    let loadContext;
-    let handleError = (error) => {
-      var _a3, _b3;
-      if (mode === "development") {
-        (_b3 = (_a3 = getDevServerHooks()) == null ? void 0 : _a3.processRequestError) == null ? void 0 : _b3.call(_a3, error);
-      }
-      errorHandler(error, {
-        context: loadContext,
-        params,
-        request
-      });
-    };
-    if (build.future.v8_middleware) {
-      if (initialContext && !(initialContext instanceof RouterContextProvider)) {
-        let error = new Error(
-          "Invalid `context` value provided to `handleRequest`. When middleware is enabled you must return an instance of `RouterContextProvider` from your `getLoadContext` function."
-        );
-        handleError(error);
-        return returnLastResortErrorResponse(error, serverMode);
-      }
-      loadContext = initialContext || new RouterContextProvider();
-    } else {
-      loadContext = initialContext || {};
-    }
-    let requestUrl = new URL(request.url);
-    let normalizedPathname = getNormalizedPath(
-      request,
-      build.basename,
-      build.future
-    ).pathname;
-    let isSpaMode = getBuildTimeHeader(request, "X-React-Router-SPA-Mode") === "yes";
-    if (!build.ssr) {
-      let decodedPath = decodeURI(normalizedPathname);
-      if (build.basename && build.basename !== "/") {
-        let strippedPath = stripBasename(decodedPath, build.basename);
-        if (strippedPath == null) {
-          errorHandler(
-            new ErrorResponseImpl(
-              404,
-              "Not Found",
-              `Refusing to prerender the \`${decodedPath}\` path because it does not start with the basename \`${build.basename}\``
-            ),
-            {
-              context: loadContext,
-              params,
-              request
-            }
-          );
-          return new Response("Not Found", {
-            status: 404,
-            statusText: "Not Found"
-          });
-        }
-        decodedPath = strippedPath;
-      }
-      if (build.prerender.length === 0) {
-        isSpaMode = true;
-      } else if (!build.prerender.includes(decodedPath) && !build.prerender.includes(decodedPath + "/")) {
-        if (requestUrl.pathname.endsWith(".data")) {
-          errorHandler(
-            new ErrorResponseImpl(
-              404,
-              "Not Found",
-              `Refusing to SSR the path \`${decodedPath}\` because \`ssr:false\` is set and the path is not included in the \`prerender\` config, so in production the path will be a 404.`
-            ),
-            {
-              context: loadContext,
-              params,
-              request
-            }
-          );
-          return new Response("Not Found", {
-            status: 404,
-            statusText: "Not Found"
-          });
-        } else {
-          isSpaMode = true;
-        }
-      }
-    }
-    let manifestUrl = getManifestPath(
-      build.routeDiscovery.manifestPath,
-      build.basename
-    );
-    if (requestUrl.pathname === manifestUrl) {
-      try {
-        let res = await handleManifestRequest(build, routes, requestUrl);
-        return res;
-      } catch (e) {
-        handleError(e);
-        return new Response("Unknown Server Error", { status: 500 });
-      }
-    }
-    let matches = matchServerRoutes(routes, normalizedPathname, build.basename);
-    if (matches && matches.length > 0) {
-      Object.assign(params, matches[0].params);
-    }
-    let response;
-    if (requestUrl.pathname.endsWith(".data")) {
-      let singleFetchMatches = matchServerRoutes(
-        routes,
-        normalizedPathname,
-        build.basename
-      );
-      response = await handleSingleFetchRequest(
-        serverMode,
-        build,
-        staticHandler,
-        request,
-        normalizedPathname,
-        loadContext,
-        handleError
-      );
-      if (isRedirectResponse(response)) {
-        response = generateSingleFetchRedirectResponse(
-          response,
-          request,
-          build,
-          serverMode
-        );
-      }
-      if (build.entry.module.handleDataRequest) {
-        response = await build.entry.module.handleDataRequest(response, {
-          context: loadContext,
-          params: singleFetchMatches ? singleFetchMatches[0].params : {},
-          request
-        });
-        if (isRedirectResponse(response)) {
-          response = generateSingleFetchRedirectResponse(
-            response,
-            request,
-            build,
-            serverMode
-          );
-        }
-      }
-    } else if (!isSpaMode && matches && matches[matches.length - 1].route.module.default == null && matches[matches.length - 1].route.module.ErrorBoundary == null) {
-      response = await handleResourceRequest(
-        serverMode,
-        build,
-        staticHandler,
-        matches.slice(-1)[0].route.id,
-        request,
-        loadContext,
-        handleError
-      );
-    } else {
-      let { pathname } = requestUrl;
-      let criticalCss = void 0;
-      if (build.unstable_getCriticalCss) {
-        criticalCss = await build.unstable_getCriticalCss({ pathname });
-      } else if (mode === "development" && ((_a2 = getDevServerHooks()) == null ? void 0 : _a2.getCriticalCss)) {
-        criticalCss = await ((_c = (_b2 = getDevServerHooks()) == null ? void 0 : _b2.getCriticalCss) == null ? void 0 : _c.call(_b2, pathname));
-      }
-      response = await handleDocumentRequest(
-        serverMode,
-        build,
-        staticHandler,
-        request,
-        loadContext,
-        handleError,
-        isSpaMode,
-        criticalCss
-      );
-    }
-    if (request.method === "HEAD") {
-      return new Response(null, {
-        headers: response.headers,
-        status: response.status,
-        statusText: response.statusText
-      });
-    }
-    return response;
-  };
-  if (build.entry.module.unstable_instrumentations) {
-    requestHandler = instrumentHandler(
-      requestHandler,
-      build.entry.module.unstable_instrumentations.map((i) => i.handler).filter(Boolean)
-    );
-  }
-  return {
-    routes,
-    dataRoutes,
-    serverMode,
-    staticHandler,
-    errorHandler,
-    requestHandler
-  };
-}
-var createRequestHandler = (build, mode) => {
-  let _build;
-  let routes;
-  let serverMode;
-  let staticHandler;
-  let errorHandler;
-  let _requestHandler;
-  return async function requestHandler(request, initialContext) {
-    _build = typeof build === "function" ? await build() : build;
-    if (typeof build === "function") {
-      let derived = derive(_build, mode);
-      routes = derived.routes;
-      serverMode = derived.serverMode;
-      staticHandler = derived.staticHandler;
-      errorHandler = derived.errorHandler;
-      _requestHandler = derived.requestHandler;
-    } else if (!routes || !serverMode || !staticHandler || !errorHandler || !_requestHandler) {
-      let derived = derive(_build, mode);
-      routes = derived.routes;
-      serverMode = derived.serverMode;
-      staticHandler = derived.staticHandler;
-      errorHandler = derived.errorHandler;
-      _requestHandler = derived.requestHandler;
-    }
-    return _requestHandler(request, initialContext);
-  };
-};
-async function handleManifestRequest(build, routes, url) {
-  if (build.assets.version !== url.searchParams.get("version")) {
-    return new Response(null, {
-      status: 204,
-      headers: {
-        "X-Remix-Reload-Document": "true"
-      }
-    });
-  }
-  let patches = {};
-  if (url.searchParams.has("paths")) {
-    let paths = /* @__PURE__ */ new Set();
-    let pathParam = url.searchParams.get("paths") || "";
-    let requestedPaths = pathParam.split(",").filter(Boolean);
-    requestedPaths.forEach((path) => {
-      if (!path.startsWith("/")) {
-        path = `/${path}`;
-      }
-      let segments = path.split("/").slice(1);
-      segments.forEach((_, i) => {
-        let partialPath = segments.slice(0, i + 1).join("/");
-        paths.add(`/${partialPath}`);
-      });
-    });
-    for (let path of paths) {
-      let matches = matchServerRoutes(routes, path, build.basename);
-      if (matches) {
-        for (let match of matches) {
-          let routeId = match.route.id;
-          let route = build.assets.routes[routeId];
-          if (route) {
-            patches[routeId] = route;
-          }
-        }
-      }
-    }
-    return Response.json(patches, {
-      headers: {
-        "Cache-Control": "public, max-age=31536000, immutable"
-      }
-    });
-  }
-  return new Response("Invalid Request", { status: 400 });
-}
-async function handleSingleFetchRequest(serverMode, build, staticHandler, request, normalizedPath, loadContext, handleError) {
-  let handlerUrl = new URL(request.url);
-  handlerUrl.pathname = normalizedPath;
-  let response = request.method !== "GET" ? await singleFetchAction(
-    build,
-    serverMode,
-    staticHandler,
-    request,
-    handlerUrl,
-    loadContext,
-    handleError
-  ) : await singleFetchLoaders(
-    build,
-    serverMode,
-    staticHandler,
-    request,
-    handlerUrl,
-    loadContext,
-    handleError
-  );
-  return response;
-}
-async function handleDocumentRequest(serverMode, build, staticHandler, request, loadContext, handleError, isSpaMode, criticalCss) {
-  try {
-    if (request.method === "POST") {
-      try {
-        throwIfPotentialCSRFAttack(
-          request.headers,
-          Array.isArray(build.allowedActionOrigins) ? build.allowedActionOrigins : []
-        );
-      } catch (e) {
-        handleError(e);
-        return new Response("Bad Request", { status: 400 });
-      }
-    }
-    let result = await staticHandler.query(request, {
-      requestContext: loadContext,
-      generateMiddlewareResponse: build.future.v8_middleware ? async (query) => {
-        try {
-          let innerResult = await query(request);
-          if (!isResponse(innerResult)) {
-            innerResult = await renderHtml(innerResult, isSpaMode);
-          }
-          return innerResult;
-        } catch (error) {
-          handleError(error);
-          return new Response(null, { status: 500 });
-        }
-      } : void 0,
-      unstable_normalizePath: (r) => getNormalizedPath(r, build.basename, build.future)
-    });
-    if (!isResponse(result)) {
-      result = await renderHtml(result, isSpaMode);
-    }
-    return result;
-  } catch (error) {
-    handleError(error);
-    return new Response(null, { status: 500 });
-  }
-  async function renderHtml(context, isSpaMode2) {
-    let headers = getDocumentHeaders(context, build);
-    if (SERVER_NO_BODY_STATUS_CODES.has(context.statusCode)) {
-      return new Response(null, { status: context.statusCode, headers });
-    }
-    if (context.errors) {
-      Object.values(context.errors).forEach((err) => {
-        if (!isRouteErrorResponse(err) || err.error) {
-          handleError(err);
-        }
-      });
-      context.errors = sanitizeErrors(context.errors, serverMode);
-    }
-    let state = {
-      loaderData: context.loaderData,
-      actionData: context.actionData,
-      errors: serializeErrors(context.errors, serverMode)
-    };
-    let baseServerHandoff = {
-      basename: build.basename,
-      future: build.future,
-      routeDiscovery: build.routeDiscovery,
-      ssr: build.ssr,
-      isSpaMode: isSpaMode2
-    };
-    let entryContext = {
-      manifest: build.assets,
-      routeModules: createEntryRouteModules(build.routes),
-      staticHandlerContext: context,
-      criticalCss,
-      serverHandoffString: createServerHandoffString({
-        ...baseServerHandoff,
-        criticalCss
-      }),
-      serverHandoffStream: encodeViaTurboStream(
-        state,
-        request.signal,
-        build.entry.module.streamTimeout,
-        serverMode
-      ),
-      renderMeta: {},
-      future: build.future,
-      ssr: build.ssr,
-      routeDiscovery: build.routeDiscovery,
-      isSpaMode: isSpaMode2,
-      serializeError: (err) => serializeError(err, serverMode)
-    };
-    let handleDocumentRequestFunction = build.entry.module.default;
-    try {
-      return await handleDocumentRequestFunction(
-        request,
-        context.statusCode,
-        headers,
-        entryContext,
-        loadContext
-      );
-    } catch (error) {
-      handleError(error);
-      let errorForSecondRender = error;
-      if (isResponse(error)) {
-        try {
-          let data2 = await unwrapResponse(error);
-          errorForSecondRender = new ErrorResponseImpl(
-            error.status,
-            error.statusText,
-            data2
-          );
-        } catch (e) {
-        }
-      }
-      context = getStaticContextFromError(
-        staticHandler.dataRoutes,
-        context,
-        errorForSecondRender
-      );
-      if (context.errors) {
-        context.errors = sanitizeErrors(context.errors, serverMode);
-      }
-      let state2 = {
-        loaderData: context.loaderData,
-        actionData: context.actionData,
-        errors: serializeErrors(context.errors, serverMode)
-      };
-      entryContext = {
-        ...entryContext,
-        staticHandlerContext: context,
-        serverHandoffString: createServerHandoffString(baseServerHandoff),
-        serverHandoffStream: encodeViaTurboStream(
-          state2,
-          request.signal,
-          build.entry.module.streamTimeout,
-          serverMode
-        ),
-        renderMeta: {}
-      };
-      try {
-        return await handleDocumentRequestFunction(
-          request,
-          context.statusCode,
-          headers,
-          entryContext,
-          loadContext
-        );
-      } catch (error2) {
-        handleError(error2);
-        return returnLastResortErrorResponse(error2, serverMode);
-      }
-    }
-  }
-}
-async function handleResourceRequest(serverMode, build, staticHandler, routeId, request, loadContext, handleError) {
-  try {
-    let result = await staticHandler.queryRoute(request, {
-      routeId,
-      requestContext: loadContext,
-      generateMiddlewareResponse: build.future.v8_middleware ? async (queryRoute) => {
-        try {
-          let innerResult = await queryRoute(request);
-          return handleQueryRouteResult(innerResult);
-        } catch (error) {
-          return handleQueryRouteError(error);
-        }
-      } : void 0,
-      unstable_normalizePath: (r) => getNormalizedPath(r, build.basename, build.future)
-    });
-    return handleQueryRouteResult(result);
-  } catch (error) {
-    return handleQueryRouteError(error);
-  }
-  function handleQueryRouteResult(result) {
-    if (isResponse(result)) {
-      return result;
-    }
-    if (typeof result === "string") {
-      return new Response(result);
-    }
-    return Response.json(result);
-  }
-  function handleQueryRouteError(error) {
-    if (isResponse(error)) {
-      return error;
-    }
-    if (isRouteErrorResponse(error)) {
-      handleError(error);
-      return errorResponseToJson(error, serverMode);
-    }
-    if (error instanceof Error && error.message === "Expected a response from queryRoute") {
-      let newError = new Error(
-        "Expected a Response to be returned from resource route handler"
-      );
-      handleError(newError);
-      return returnLastResortErrorResponse(newError, serverMode);
-    }
-    handleError(error);
-    return returnLastResortErrorResponse(error, serverMode);
-  }
-}
-function errorResponseToJson(errorResponse, serverMode) {
-  return Response.json(
-    serializeError(
-      // @ts-expect-error This is "private" from users but intended for internal use
-      errorResponse.error || new Error("Unexpected Server Error"),
-      serverMode
-    ),
-    {
-      status: errorResponse.status,
-      statusText: errorResponse.statusText
-    }
-  );
-}
-function returnLastResortErrorResponse(error, serverMode) {
-  let message = "Unexpected Server Error";
-  if (serverMode !== "production") {
-    message += `
-
-${String(error)}`;
-  }
-  return new Response(message, {
-    status: 500,
-    headers: {
-      "Content-Type": "text/plain"
-    }
-  });
-}
-function unwrapResponse(response) {
-  let contentType = response.headers.get("Content-Type");
-  return contentType && /\bapplication\/json\b/.test(contentType) ? response.body == null ? null : response.json() : response.text();
-}
-function flash(name) {
-  return `__flash_${name}__`;
-}
-var createSession = (initialData = {}, id = "") => {
-  let map = new Map(Object.entries(initialData));
-  return {
-    get id() {
-      return id;
-    },
-    get data() {
-      return Object.fromEntries(map);
-    },
-    has(name) {
-      return map.has(name) || map.has(flash(name));
-    },
-    get(name) {
-      if (map.has(name)) return map.get(name);
-      let flashName = flash(name);
-      if (map.has(flashName)) {
-        let value = map.get(flashName);
-        map.delete(flashName);
-        return value;
-      }
-      return void 0;
-    },
-    set(name, value) {
-      map.set(name, value);
-    },
-    flash(name, value) {
-      map.set(flash(name), value);
-    },
-    unset(name) {
-      map.delete(name);
-    }
-  };
-};
-var isSession = (object) => {
-  return object != null && typeof object.id === "string" && typeof object.data !== "undefined" && typeof object.has === "function" && typeof object.get === "function" && typeof object.set === "function" && typeof object.flash === "function" && typeof object.unset === "function";
-};
-function createSessionStorage({
-  cookie: cookieArg,
-  createData,
-  readData,
-  updateData,
-  deleteData
-}) {
-  let cookie = isCookie(cookieArg) ? cookieArg : createCookie((cookieArg == null ? void 0 : cookieArg.name) || "__session", cookieArg);
-  warnOnceAboutSigningSessionCookie(cookie);
-  return {
-    async getSession(cookieHeader, options) {
-      let id = cookieHeader && await cookie.parse(cookieHeader, options);
-      let data2 = id && await readData(id);
-      return createSession(data2 || {}, id || "");
-    },
-    async commitSession(session, options) {
-      let { id, data: data2 } = session;
-      let expires = (options == null ? void 0 : options.maxAge) != null ? new Date(Date.now() + options.maxAge * 1e3) : (options == null ? void 0 : options.expires) != null ? options.expires : cookie.expires;
-      if (id) {
-        await updateData(id, data2, expires);
-      } else {
-        id = await createData(data2, expires);
-      }
-      return cookie.serialize(id, options);
-    },
-    async destroySession(session, options) {
-      await deleteData(session.id);
-      return cookie.serialize("", {
-        ...options,
-        maxAge: void 0,
-        expires: /* @__PURE__ */ new Date(0)
-      });
-    }
-  };
-}
-function warnOnceAboutSigningSessionCookie(cookie) {
-  warnOnce(
-    cookie.isSigned,
-    `The "${cookie.name}" cookie is not signed, but session cookies should be signed to prevent tampering on the client before they are sent back to the server. See https://reactrouter.com/explanation/sessions-and-cookies#signing-cookies for more information.`
-  );
-}
-function createCookieSessionStorage({ cookie: cookieArg } = {}) {
-  let cookie = isCookie(cookieArg) ? cookieArg : createCookie((cookieArg == null ? void 0 : cookieArg.name) || "__session", cookieArg);
-  warnOnceAboutSigningSessionCookie(cookie);
-  return {
-    async getSession(cookieHeader, options) {
-      return createSession(
-        cookieHeader && await cookie.parse(cookieHeader, options) || {}
-      );
-    },
-    async commitSession(session, options) {
-      let serializedCookie = await cookie.serialize(session.data, options);
-      if (serializedCookie.length > 4096) {
-        throw new Error(
-          "Cookie length will exceed browser maximum. Length: " + serializedCookie.length
-        );
-      }
-      return serializedCookie;
-    },
-    async destroySession(_session, options) {
-      return cookie.serialize("", {
-        ...options,
-        maxAge: void 0,
-        expires: /* @__PURE__ */ new Date(0)
-      });
-    }
-  };
-}
-function createMemorySessionStorage({ cookie } = {}) {
-  let map = /* @__PURE__ */ new Map();
-  return createSessionStorage({
-    cookie,
-    async createData(data2, expires) {
-      let id = Math.random().toString(36).substring(2, 10);
-      map.set(id, { data: data2, expires });
-      return id;
-    },
-    async readData(id) {
-      if (map.has(id)) {
-        let { data: data2, expires } = map.get(id);
-        if (!expires || expires > /* @__PURE__ */ new Date()) {
-          return data2;
-        }
-        if (expires) map.delete(id);
-      }
-      return null;
-    },
-    async updateData(id, data2, expires) {
-      map.set(id, { data: data2, expires });
-    },
-    async deleteData(id) {
-      map.delete(id);
-    }
-  });
-}
-function href(path, ...args) {
-  let params = args[0];
-  let result = trimTrailingSplat(path).replace(
-    /\/:([\w-]+)(\?)?/g,
-    // same regex as in .\router\utils.ts: compilePath().
-    (_, param, questionMark) => {
-      const isRequired = questionMark === void 0;
-      const value = params == null ? void 0 : params[param];
-      if (isRequired && value === void 0) {
-        throw new Error(
-          `Path '${path}' requires param '${param}' but it was not provided`
-        );
-      }
-      return value === void 0 ? "" : "/" + value;
-    }
-  );
-  if (path.endsWith("*")) {
-    const value = params == null ? void 0 : params["*"];
-    if (value !== void 0) {
-      result += "/" + value;
-    }
-  }
-  return result || "/";
-}
-function trimTrailingSplat(path) {
-  let i = path.length - 1;
-  let char = path[i];
-  if (char !== "*" && char !== "/") return path;
-  i--;
-  for (; i >= 0; i--) {
-    if (path[i] !== "/") break;
-  }
-  return path.slice(0, i + 1);
-}
-var encoder2 = new TextEncoder();
-var trailer = "</body></html>";
-function injectRSCPayload(rscStream) {
-  let decoder = new TextDecoder();
-  let resolveFlightDataPromise;
-  let flightDataPromise = new Promise(
-    (resolve) => resolveFlightDataPromise = resolve
-  );
-  let startedRSC = false;
-  let buffered = [];
-  let timeout = null;
-  function flushBufferedChunks(controller) {
-    for (let chunk of buffered) {
-      let buf = decoder.decode(chunk, { stream: true });
-      if (buf.endsWith(trailer)) {
-        buf = buf.slice(0, -trailer.length);
-      }
-      controller.enqueue(encoder2.encode(buf));
-    }
-    buffered.length = 0;
-    timeout = null;
-  }
-  return new TransformStream({
-    transform(chunk, controller) {
-      buffered.push(chunk);
-      if (timeout) {
-        return;
-      }
-      timeout = setTimeout(async () => {
-        flushBufferedChunks(controller);
-        if (!startedRSC) {
-          startedRSC = true;
-          writeRSCStream(rscStream, controller).catch((err) => controller.error(err)).then(resolveFlightDataPromise);
-        }
-      }, 0);
-    },
-    async flush(controller) {
-      await flightDataPromise;
-      if (timeout) {
-        clearTimeout(timeout);
-        flushBufferedChunks(controller);
-      }
-      controller.enqueue(encoder2.encode("</body></html>"));
-    }
-  });
-}
-async function writeRSCStream(rscStream, controller) {
-  let decoder = new TextDecoder("utf-8", { fatal: true });
-  const reader = rscStream.getReader();
-  try {
-    let read;
-    while ((read = await reader.read()) && !read.done) {
-      const chunk = read.value;
-      try {
-        writeChunk(
-          JSON.stringify(decoder.decode(chunk, { stream: true })),
-          controller
-        );
-      } catch (err) {
-        let base64 = JSON.stringify(btoa(String.fromCodePoint(...chunk)));
-        writeChunk(
-          `Uint8Array.from(atob(${base64}), m => m.codePointAt(0))`,
-          controller
-        );
-      }
-    }
-  } finally {
-    reader.releaseLock();
-  }
-  let remaining = decoder.decode();
-  if (remaining.length) {
-    writeChunk(JSON.stringify(remaining), controller);
-  }
-}
-function writeChunk(chunk, controller) {
-  controller.enqueue(
-    encoder2.encode(
-      `<script>${escapeScript(
-        `(self.__FLIGHT_DATA||=[]).push(${chunk})`
-      )}<\/script>`
-    )
-  );
-}
-function escapeScript(script) {
-  return script.replace(/<!--/g, "<\\!--").replace(/<\/(script)/gi, "</\\$1");
-}
-var RSCRouterGlobalErrorBoundary = class extends React3__default.Component {
-  constructor(props) {
-    super(props);
-    this.state = { error: null, location: props.location };
-  }
-  static getDerivedStateFromError(error) {
-    return { error };
-  }
-  static getDerivedStateFromProps(props, state) {
-    if (state.location !== props.location) {
-      return { error: null, location: props.location };
-    }
-    return { error: state.error, location: state.location };
-  }
-  render() {
-    if (this.state.error) {
-      return /* @__PURE__ */ React3__default.createElement(
-        RSCDefaultRootErrorBoundaryImpl,
-        {
-          error: this.state.error,
-          renderAppShell: true
-        }
-      );
-    } else {
-      return this.props.children;
-    }
-  }
-};
-function ErrorWrapper({
-  renderAppShell,
-  title,
-  children
-}) {
-  if (!renderAppShell) {
-    return children;
-  }
-  return /* @__PURE__ */ React3__default.createElement("html", { lang: "en" }, /* @__PURE__ */ React3__default.createElement("head", null, /* @__PURE__ */ React3__default.createElement("meta", { charSet: "utf-8" }), /* @__PURE__ */ React3__default.createElement(
-    "meta",
-    {
-      name: "viewport",
-      content: "width=device-width,initial-scale=1,viewport-fit=cover"
-    }
-  ), /* @__PURE__ */ React3__default.createElement("title", null, title)), /* @__PURE__ */ React3__default.createElement("body", null, /* @__PURE__ */ React3__default.createElement("main", { style: { fontFamily: "system-ui, sans-serif", padding: "2rem" } }, children)));
-}
-function RSCDefaultRootErrorBoundaryImpl({
-  error,
-  renderAppShell
-}) {
-  console.error(error);
-  let heyDeveloper = /* @__PURE__ */ React3__default.createElement(
-    "script",
-    {
-      dangerouslySetInnerHTML: {
-        __html: `
-        console.log(
-          "💿 Hey developer 👋. You can provide a way better UX than this when your app throws errors. Check out https://reactrouter.com/how-to/error-boundary for more information."
-        );
-      `
-      }
-    }
-  );
-  if (isRouteErrorResponse(error)) {
-    return /* @__PURE__ */ React3__default.createElement(
-      ErrorWrapper,
-      {
-        renderAppShell,
-        title: "Unhandled Thrown Response!"
-      },
-      /* @__PURE__ */ React3__default.createElement("h1", { style: { fontSize: "24px" } }, error.status, " ", error.statusText),
-      heyDeveloper
-    );
-  }
-  let errorInstance;
-  if (error instanceof Error) {
-    errorInstance = error;
-  } else {
-    let errorString = error == null ? "Unknown Error" : typeof error === "object" && "toString" in error ? error.toString() : JSON.stringify(error);
-    errorInstance = new Error(errorString);
-  }
-  return /* @__PURE__ */ React3__default.createElement(ErrorWrapper, { renderAppShell, title: "Application Error!" }, /* @__PURE__ */ React3__default.createElement("h1", { style: { fontSize: "24px" } }, "Application Error"), /* @__PURE__ */ React3__default.createElement(
-    "pre",
-    {
-      style: {
-        padding: "2rem",
-        background: "hsla(10, 50%, 50%, 0.1)",
-        color: "red",
-        overflow: "auto"
-      }
-    },
-    errorInstance.stack
-  ), heyDeveloper);
-}
-function RSCDefaultRootErrorBoundary({
-  hasRootLayout
-}) {
-  let error = useRouteError();
-  if (hasRootLayout === void 0) {
-    throw new Error("Missing 'hasRootLayout' prop");
-  }
-  return /* @__PURE__ */ React3__default.createElement(
-    RSCDefaultRootErrorBoundaryImpl,
-    {
-      renderAppShell: !hasRootLayout,
-      error
-    }
-  );
-}
-function createRSCRouteModules(payload) {
-  const routeModules = {};
-  for (const match of payload.matches) {
-    populateRSCRouteModules(routeModules, match);
-  }
-  return routeModules;
-}
-function populateRSCRouteModules(routeModules, matches) {
-  matches = Array.isArray(matches) ? matches : [matches];
-  for (const match of matches) {
-    routeModules[match.id] = {
-      links: match.links,
-      meta: match.meta,
-      default: noopComponent
-    };
-  }
-}
-var noopComponent = () => null;
-var defaultManifestPath$1 = "/__manifest";
-var REACT_USE = "use";
-var useImpl = React3[REACT_USE];
-function useSafe(promise) {
-  if (useImpl) {
-    return useImpl(promise);
-  }
-  throw new Error("React Router v7 requires React 19+ for RSC features.");
-}
-async function routeRSCServerRequest({
-  request,
-  serverResponse,
-  createFromReadableStream,
-  renderHTML,
-  hydrate: hydrate2 = true
-}) {
-  const url = new URL(request.url);
-  const isDataRequest = isReactServerRequest(url);
-  const respondWithRSCPayload = isDataRequest || isManifestRequest(url) || request.headers.has("rsc-action-id");
-  if (respondWithRSCPayload || serverResponse.headers.get("React-Router-Resource") === "true") {
-    return serverResponse;
-  }
-  if (!serverResponse.body) {
-    throw new Error("Missing body in server response");
-  }
-  const detectRedirectResponse = serverResponse.clone();
-  let serverResponseB = null;
-  if (hydrate2) {
-    serverResponseB = serverResponse.clone();
-  }
-  const body = serverResponse.body;
-  let buffer;
-  let streamControllers = [];
-  const createStream = () => {
-    if (!buffer) {
-      buffer = [];
-      return body.pipeThrough(
-        new TransformStream({
-          transform(chunk, controller) {
-            buffer.push(chunk);
-            controller.enqueue(chunk);
-            streamControllers.forEach((c) => c.enqueue(chunk));
-          },
-          flush() {
-            streamControllers.forEach((c) => c.close());
-            streamControllers = [];
-          }
-        })
-      );
-    }
-    return new ReadableStream({
-      start(controller) {
-        buffer.forEach((chunk) => controller.enqueue(chunk));
-        streamControllers.push(controller);
-      }
-    });
-  };
-  let deepestRenderedBoundaryId = null;
-  const getPayload = () => {
-    const payloadPromise = Promise.resolve(
-      createFromReadableStream(createStream())
-    );
-    return Object.defineProperties(payloadPromise, {
-      _deepestRenderedBoundaryId: {
-        get() {
-          return deepestRenderedBoundaryId;
-        },
-        set(boundaryId) {
-          deepestRenderedBoundaryId = boundaryId;
-        }
-      },
-      formState: {
-        get() {
-          return payloadPromise.then(
-            (payload) => payload.type === "render" ? payload.formState : void 0
-          );
-        }
-      }
-    });
-  };
-  let renderRedirect;
-  let renderError;
-  try {
-    if (!detectRedirectResponse.body) {
-      throw new Error("Failed to clone server response");
-    }
-    const payload = await createFromReadableStream(
-      detectRedirectResponse.body
-    );
-    if (serverResponse.status === SINGLE_FETCH_REDIRECT_STATUS && payload.type === "redirect") {
-      const headers2 = new Headers(serverResponse.headers);
-      headers2.delete("Content-Encoding");
-      headers2.delete("Content-Length");
-      headers2.delete("Content-Type");
-      headers2.delete("X-Remix-Response");
-      headers2.set("Location", payload.location);
-      return new Response((serverResponseB == null ? void 0 : serverResponseB.body) || "", {
-        headers: headers2,
-        status: payload.status,
-        statusText: serverResponse.statusText
-      });
-    }
-    let reactHeaders = new Headers();
-    let status = serverResponse.status;
-    let statusText = serverResponse.statusText;
-    let html = await renderHTML(getPayload, {
-      onError(error) {
-        if (typeof error === "object" && error && "digest" in error && typeof error.digest === "string") {
-          renderRedirect = decodeRedirectErrorDigest(error.digest);
-          if (renderRedirect) {
-            return error.digest;
-          }
-          let routeErrorResponse = decodeRouteErrorResponseDigest(error.digest);
-          if (routeErrorResponse) {
-            renderError = routeErrorResponse;
-            status = routeErrorResponse.status;
-            statusText = routeErrorResponse.statusText;
-            return error.digest;
-          }
-        }
-      },
-      onHeaders(headers2) {
-        for (const [key, value] of headers2) {
-          reactHeaders.append(key, value);
-        }
-      }
-    });
-    const headers = new Headers(reactHeaders);
-    for (const [key, value] of serverResponse.headers) {
-      headers.append(key, value);
-    }
-    headers.set("Content-Type", "text/html; charset=utf-8");
-    if (renderRedirect) {
-      headers.set("Location", renderRedirect.location);
-      return new Response(html, {
-        status: renderRedirect.status,
-        headers
-      });
-    }
-    const redirectTransform = new TransformStream({
-      flush(controller) {
-        if (renderRedirect) {
-          controller.enqueue(
-            new TextEncoder().encode(
-              `<meta http-equiv="refresh" content="0;url=${escapeHtml(renderRedirect.location)}"/>`
-            )
-          );
-        }
-      }
-    });
-    if (!hydrate2) {
-      return new Response(html.pipeThrough(redirectTransform), {
-        status,
-        statusText,
-        headers
-      });
-    }
-    if (!(serverResponseB == null ? void 0 : serverResponseB.body)) {
-      throw new Error("Failed to clone server response");
-    }
-    const body2 = html.pipeThrough(injectRSCPayload(serverResponseB.body)).pipeThrough(redirectTransform);
-    return new Response(body2, {
-      status,
-      statusText,
-      headers
-    });
-  } catch (reason) {
-    if (reason instanceof Response) {
-      return reason;
-    }
-    if (renderRedirect) {
-      return new Response(`Redirect: ${renderRedirect.location}`, {
-        status: renderRedirect.status,
-        headers: {
-          Location: renderRedirect.location
-        }
-      });
-    }
-    try {
-      reason = renderError ?? reason;
-      let [status, statusText] = isRouteErrorResponse(reason) ? [reason.status, reason.statusText] : [500, ""];
-      let retryRedirect;
-      let reactHeaders = new Headers();
-      const html = await renderHTML(
-        () => {
-          const decoded = Promise.resolve(
-            createFromReadableStream(createStream())
-          );
-          const payloadPromise = decoded.then(
-            (payload) => Object.assign(payload, {
-              status,
-              errors: deepestRenderedBoundaryId ? {
-                [deepestRenderedBoundaryId]: reason
-              } : {}
-            })
-          );
-          return Object.defineProperties(payloadPromise, {
-            _deepestRenderedBoundaryId: {
-              get() {
-                return deepestRenderedBoundaryId;
-              },
-              set(boundaryId) {
-                deepestRenderedBoundaryId = boundaryId;
-              }
-            },
-            formState: {
-              get() {
-                return payloadPromise.then(
-                  (payload) => payload.type === "render" ? payload.formState : void 0
-                );
-              }
-            }
-          });
-        },
-        {
-          onError(error) {
-            if (typeof error === "object" && error && "digest" in error && typeof error.digest === "string") {
-              retryRedirect = decodeRedirectErrorDigest(error.digest);
-              if (retryRedirect) {
-                return error.digest;
-              }
-              let routeErrorResponse = decodeRouteErrorResponseDigest(
-                error.digest
-              );
-              if (routeErrorResponse) {
-                status = routeErrorResponse.status;
-                statusText = routeErrorResponse.statusText;
-                return error.digest;
-              }
-            }
-          },
-          onHeaders(headers2) {
-            for (const [key, value] of headers2) {
-              reactHeaders.append(key, value);
-            }
-          }
-        }
-      );
-      const headers = new Headers(reactHeaders);
-      for (const [key, value] of serverResponse.headers) {
-        headers.append(key, value);
-      }
-      headers.set("Content-Type", "text/html; charset=utf-8");
-      if (retryRedirect) {
-        headers.set("Location", retryRedirect.location);
-        return new Response(html, {
-          status: retryRedirect.status,
-          headers
-        });
-      }
-      const retryRedirectTransform = new TransformStream({
-        flush(controller) {
-          if (retryRedirect) {
-            controller.enqueue(
-              new TextEncoder().encode(
-                `<meta http-equiv="refresh" content="0;url=${escapeHtml(retryRedirect.location)}"/>`
-              )
-            );
-          }
-        }
-      });
-      if (!hydrate2) {
-        return new Response(html.pipeThrough(retryRedirectTransform), {
-          status,
-          statusText,
-          headers
-        });
-      }
-      if (!(serverResponseB == null ? void 0 : serverResponseB.body)) {
-        throw new Error("Failed to clone server response");
-      }
-      const body2 = html.pipeThrough(injectRSCPayload(serverResponseB.body)).pipeThrough(retryRedirectTransform);
-      return new Response(body2, {
-        status,
-        statusText,
-        headers
-      });
-    } catch {
-    }
-    throw reason;
-  }
-}
-function RSCStaticRouter({ getPayload }) {
-  const decoded = getPayload();
-  const payload = useSafe(decoded);
-  if (payload.type === "redirect") {
-    throw new Response(null, {
-      status: payload.status,
-      headers: {
-        Location: payload.location
-      }
-    });
-  }
-  if (payload.type !== "render") return null;
-  let patchedLoaderData = { ...payload.loaderData };
-  for (const match of payload.matches) {
-    if (shouldHydrateRouteLoader(
-      match.id,
-      match.clientLoader,
-      match.hasLoader,
-      false
-    ) && (match.hydrateFallbackElement || !match.hasLoader)) {
-      delete patchedLoaderData[match.id];
-    }
-  }
-  const context = {
-    get _deepestRenderedBoundaryId() {
-      return decoded._deepestRenderedBoundaryId ?? null;
-    },
-    set _deepestRenderedBoundaryId(boundaryId) {
-      decoded._deepestRenderedBoundaryId = boundaryId;
-    },
-    actionData: payload.actionData,
-    actionHeaders: {},
-    basename: payload.basename,
-    errors: payload.errors,
-    loaderData: patchedLoaderData,
-    loaderHeaders: {},
-    location: payload.location,
-    statusCode: 200,
-    matches: payload.matches.map((match) => ({
-      params: match.params,
-      pathname: match.pathname,
-      pathnameBase: match.pathnameBase,
-      route: {
-        id: match.id,
-        action: match.hasAction || !!match.clientAction,
-        handle: match.handle,
-        hasErrorBoundary: match.hasErrorBoundary,
-        loader: match.hasLoader || !!match.clientLoader,
-        index: match.index,
-        path: match.path,
-        shouldRevalidate: match.shouldRevalidate
-      }
-    }))
-  };
-  const router2 = createStaticRouter(
-    payload.matches.reduceRight((previous, match) => {
-      const route = {
-        id: match.id,
-        action: match.hasAction || !!match.clientAction,
-        element: match.element,
-        errorElement: match.errorElement,
-        handle: match.handle,
-        hasErrorBoundary: !!match.errorElement,
-        hydrateFallbackElement: match.hydrateFallbackElement,
-        index: match.index,
-        loader: match.hasLoader || !!match.clientLoader,
-        path: match.path,
-        shouldRevalidate: match.shouldRevalidate
-      };
-      if (previous.length > 0) {
-        route.children = previous;
-      }
-      return [route];
-    }, []),
-    context
-  );
-  const frameworkContext = {
-    future: {
-      // These flags have no runtime impact so can always be false.  If we add
-      // flags that drive runtime behavior they'll need to be proxied through.
-      v8_middleware: false,
-      unstable_subResourceIntegrity: false,
-      unstable_trailingSlashAwareDataRequests: true,
-      // always on for RSC
-      unstable_passThroughRequests: true
-      // always on for RSC
-    },
-    isSpaMode: false,
-    ssr: true,
-    criticalCss: "",
-    manifest: {
-      routes: {},
-      version: "1",
-      url: "",
-      entry: {
-        module: "",
-        imports: []
-      }
-    },
-    routeDiscovery: payload.routeDiscovery.mode === "initial" ? { mode: "initial", manifestPath: defaultManifestPath$1 } : {
-      mode: "lazy",
-      manifestPath: payload.routeDiscovery.manifestPath || defaultManifestPath$1
-    },
-    routeModules: createRSCRouteModules(payload)
-  };
-  return /* @__PURE__ */ React3.createElement(RSCRouterContext.Provider, { value: true }, /* @__PURE__ */ React3.createElement(RSCRouterGlobalErrorBoundary, { location: payload.location }, /* @__PURE__ */ React3.createElement(FrameworkContext.Provider, { value: frameworkContext }, /* @__PURE__ */ React3.createElement(
-    StaticRouterProvider,
-    {
-      context,
-      router: router2,
-      hydrate: false,
-      nonce: payload.nonce
-    }
-  ))));
-}
-function isReactServerRequest(url) {
-  return url.pathname.endsWith(".rsc");
-}
-function isManifestRequest(url) {
-  return url.pathname.endsWith(".manifest");
-}
-function deserializeErrors(errors) {
-  if (!errors) return null;
-  let entries = Object.entries(errors);
-  let serialized = {};
-  for (let [key, val] of entries) {
-    if (val && val.__type === "RouteErrorResponse") {
-      serialized[key] = new ErrorResponseImpl(
-        val.status,
-        val.statusText,
-        val.data,
-        val.internal === true
-      );
-    } else if (val && val.__type === "Error") {
-      if (val.__subType) {
-        let ErrorConstructor = window[val.__subType];
-        if (typeof ErrorConstructor === "function") {
-          try {
-            let error = new ErrorConstructor(val.message);
-            error.stack = val.stack;
-            serialized[key] = error;
-          } catch (e) {
-          }
-        }
-      }
-      if (serialized[key] == null) {
-        let error = new Error(val.message);
-        error.stack = val.stack;
-        serialized[key] = error;
-      }
-    } else {
-      serialized[key] = val;
-    }
-  }
-  return serialized;
-}
-function getHydrationData({
-  state,
-  routes,
-  getRouteInfo,
-  location: location2,
-  basename,
-  isSpaMode
-}) {
-  let hydrationData = {
-    ...state,
-    loaderData: { ...state.loaderData }
-  };
-  let initialMatches = matchRoutes(routes, location2, basename);
-  if (initialMatches) {
-    for (let match of initialMatches) {
-      let routeId = match.route.id;
-      let routeInfo = getRouteInfo(routeId);
-      if (shouldHydrateRouteLoader(
-        routeId,
-        routeInfo.clientLoader,
-        routeInfo.hasLoader,
-        isSpaMode
-      ) && (routeInfo.hasHydrateFallback || !routeInfo.hasLoader)) {
-        delete hydrationData.loaderData[routeId];
-      } else if (!routeInfo.hasLoader) {
-        hydrationData.loaderData[routeId] = null;
-      }
-    }
-  }
-  return hydrationData;
-}
-/**
- * react-router v7.14.0
- *
- * Copyright (c) Remix Software Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.md file in the root directory of this source tree.
- *
- * @license MIT
- */
-function RouterProvider2(props) {
-  return /* @__PURE__ */ React3.createElement(RouterProvider, { flushSync: ReactDOM.flushSync, ...props });
-}
-var ssrInfo = null;
-var router = null;
-function initSsrInfo() {
-  if (!ssrInfo && window.__reactRouterContext && window.__reactRouterManifest && window.__reactRouterRouteModules) {
-    if (window.__reactRouterManifest.sri === true) {
-      const importMap = document.querySelector("script[rr-importmap]");
-      if (importMap == null ? void 0 : importMap.textContent) {
-        try {
-          window.__reactRouterManifest.sri = JSON.parse(
-            importMap.textContent
-          ).integrity;
-        } catch (err) {
-          console.error("Failed to parse import map", err);
-        }
-      }
-    }
-    ssrInfo = {
-      context: window.__reactRouterContext,
-      manifest: window.__reactRouterManifest,
-      routeModules: window.__reactRouterRouteModules,
-      stateDecodingPromise: void 0,
-      router: void 0,
-      routerInitialized: false
-    };
-  }
-}
-function createHydratedRouter({
-  getContext,
-  unstable_instrumentations
-}) {
-  var _a2, _b2;
-  initSsrInfo();
-  if (!ssrInfo) {
-    throw new Error(
-      "You must be using the SSR features of React Router in order to skip passing a `router` prop to `<RouterProvider>`"
-    );
-  }
-  let localSsrInfo = ssrInfo;
-  if (!ssrInfo.stateDecodingPromise) {
-    let stream = ssrInfo.context.stream;
-    invariant$1(stream, "No stream found for single fetch decoding");
-    ssrInfo.context.stream = void 0;
-    ssrInfo.stateDecodingPromise = decodeViaTurboStream(stream, window).then((value) => {
-      ssrInfo.context.state = value.value;
-      localSsrInfo.stateDecodingPromise.value = true;
-    }).catch((e) => {
-      localSsrInfo.stateDecodingPromise.error = e;
-    });
-  }
-  if (ssrInfo.stateDecodingPromise.error) {
-    throw ssrInfo.stateDecodingPromise.error;
-  }
-  if (!ssrInfo.stateDecodingPromise.value) {
-    throw ssrInfo.stateDecodingPromise;
-  }
-  let routes = createClientRoutes(
-    ssrInfo.manifest.routes,
-    ssrInfo.routeModules,
-    ssrInfo.context.state,
-    ssrInfo.context.ssr,
-    ssrInfo.context.isSpaMode
-  );
-  let hydrationData = void 0;
-  if (ssrInfo.context.isSpaMode) {
-    let { loaderData } = ssrInfo.context.state;
-    if (((_a2 = ssrInfo.manifest.routes.root) == null ? void 0 : _a2.hasLoader) && loaderData && "root" in loaderData) {
-      hydrationData = {
-        loaderData: {
-          root: loaderData.root
-        }
-      };
-    }
-  } else {
-    hydrationData = getHydrationData({
-      state: ssrInfo.context.state,
-      routes,
-      getRouteInfo: (routeId) => {
-        var _a3, _b3, _c;
-        return {
-          clientLoader: (_a3 = ssrInfo.routeModules[routeId]) == null ? void 0 : _a3.clientLoader,
-          hasLoader: ((_b3 = ssrInfo.manifest.routes[routeId]) == null ? void 0 : _b3.hasLoader) === true,
-          hasHydrateFallback: ((_c = ssrInfo.routeModules[routeId]) == null ? void 0 : _c.HydrateFallback) != null
-        };
-      },
-      location: window.location,
-      basename: (_b2 = window.__reactRouterContext) == null ? void 0 : _b2.basename,
-      isSpaMode: ssrInfo.context.isSpaMode
-    });
-    if (hydrationData && hydrationData.errors) {
-      hydrationData.errors = deserializeErrors(hydrationData.errors);
-    }
-  }
-  if (window.history.state && window.history.state.masked) {
-    window.history.replaceState(
-      { ...window.history.state, masked: void 0 },
-      ""
-    );
-  }
-  let router2 = createRouter({
-    routes,
-    history: createBrowserHistory(),
-    basename: ssrInfo.context.basename,
-    getContext,
-    hydrationData,
-    hydrationRouteProperties,
-    unstable_instrumentations,
-    mapRouteProperties,
-    future: {
-      unstable_passThroughRequests: ssrInfo.context.future.unstable_passThroughRequests
-    },
-    dataStrategy: getTurboStreamSingleFetchDataStrategy(
-      () => router2,
-      ssrInfo.manifest,
-      ssrInfo.routeModules,
-      ssrInfo.context.ssr,
-      ssrInfo.context.basename,
-      ssrInfo.context.future.unstable_trailingSlashAwareDataRequests
-    ),
-    patchRoutesOnNavigation: getPatchRoutesOnNavigationFunction(
-      () => router2,
-      ssrInfo.manifest,
-      ssrInfo.routeModules,
-      ssrInfo.context.ssr,
-      ssrInfo.context.routeDiscovery,
-      ssrInfo.context.isSpaMode,
-      ssrInfo.context.basename
-    )
-  });
-  ssrInfo.router = router2;
-  if (router2.state.initialized) {
-    ssrInfo.routerInitialized = true;
-    router2.initialize();
-  }
-  router2.createRoutesForHMR = /* spacer so ts-ignore does not affect the right hand of the assignment */
-  createClientRoutesWithHMRRevalidationOptOut;
-  window.__reactRouterDataRouter = router2;
-  return router2;
-}
-function HydratedRouter(props) {
-  if (!router) {
-    router = createHydratedRouter({
-      getContext: props.getContext,
-      unstable_instrumentations: props.unstable_instrumentations
-    });
-  }
-  let [criticalCss, setCriticalCss] = React3.useState(
-    process.env.NODE_ENV === "development" ? ssrInfo == null ? void 0 : ssrInfo.context.criticalCss : void 0
-  );
-  React3.useEffect(() => {
-    if (process.env.NODE_ENV === "development") {
-      setCriticalCss(void 0);
-    }
-  }, []);
-  React3.useEffect(() => {
-    if (process.env.NODE_ENV === "development" && criticalCss === void 0) {
-      document.querySelectorAll(`[${CRITICAL_CSS_DATA_ATTRIBUTE}]`).forEach((element) => element.remove());
-    }
-  }, [criticalCss]);
-  let [location2, setLocation] = React3.useState(router.state.location);
-  React3.useLayoutEffect(() => {
-    if (ssrInfo && ssrInfo.router && !ssrInfo.routerInitialized) {
-      ssrInfo.routerInitialized = true;
-      ssrInfo.router.initialize();
-    }
-  }, []);
-  React3.useLayoutEffect(() => {
-    if (ssrInfo && ssrInfo.router) {
-      return ssrInfo.router.subscribe((newState) => {
-        if (newState.location !== location2) {
-          setLocation(newState.location);
-        }
-      });
-    }
-  }, [location2]);
-  invariant$1(ssrInfo, "ssrInfo unavailable for HydratedRouter");
-  useFogOFWarDiscovery(
-    router,
-    ssrInfo.manifest,
-    ssrInfo.routeModules,
-    ssrInfo.context.ssr,
-    ssrInfo.context.routeDiscovery,
-    ssrInfo.context.isSpaMode
-  );
-  return (
-    // This fragment is important to ensure we match the <ServerRouter> JSX
-    // structure so that useId values hydrate correctly
-    /* @__PURE__ */ React3.createElement(React3.Fragment, null, /* @__PURE__ */ React3.createElement(
-      FrameworkContext.Provider,
-      {
-        value: {
-          manifest: ssrInfo.manifest,
-          routeModules: ssrInfo.routeModules,
-          future: ssrInfo.context.future,
-          criticalCss,
-          ssr: ssrInfo.context.ssr,
-          isSpaMode: ssrInfo.context.isSpaMode,
-          routeDiscovery: ssrInfo.context.routeDiscovery
-        }
-      },
-      /* @__PURE__ */ React3.createElement(RemixErrorBoundary, { location: location2 }, /* @__PURE__ */ React3.createElement(
-        RouterProvider2,
-        {
-          router,
-          unstable_useTransitions: props.unstable_useTransitions,
-          onError: props.onError
-        }
-      ))
-    ), /* @__PURE__ */ React3.createElement(React3.Fragment, null))
-  );
-}
-var defaultManifestPath = "/__manifest";
-function createCallServer({
-  createFromReadableStream,
-  createTemporaryReferenceSet,
-  encodeReply,
-  fetch: fetchImplementation = fetch
-}) {
-  const globalVar = window;
-  let landedActionId = 0;
-  return async (id, args) => {
-    let actionId = globalVar.__routerActionID = (globalVar.__routerActionID ?? (globalVar.__routerActionID = 0)) + 1;
-    const temporaryReferences = createTemporaryReferenceSet();
-    const payloadPromise = fetchImplementation(
-      new Request(location.href, {
-        body: await encodeReply(args, { temporaryReferences }),
-        method: "POST",
-        headers: {
-          Accept: "text/x-component",
-          "rsc-action-id": id
-        }
-      })
-    ).then((response) => {
-      if (!response.body) {
-        throw new Error("No response body");
-      }
-      return createFromReadableStream(response.body, {
-        temporaryReferences
-      });
-    });
-    React3.startTransition(
-      () => (
-        // @ts-expect-error - Needs React 19 types
-        Promise.resolve(payloadPromise).then(async (payload) => {
-          if (payload.type === "redirect") {
-            if (payload.reload || isExternalLocation(payload.location)) {
-              if (hasInvalidProtocol(payload.location)) {
-                throw new Error("Invalid redirect location");
-              }
-              window.location.href = payload.location;
-              return;
-            }
-            React3.startTransition(() => {
-              globalVar.__reactRouterDataRouter.navigate(payload.location, {
-                replace: payload.replace
-              });
-            });
-            return;
-          }
-          if (payload.type !== "action") {
-            throw new Error("Unexpected payload type");
-          }
-          const rerender = await payload.rerender;
-          if (rerender && landedActionId < actionId && globalVar.__routerActionID <= actionId) {
-            if (rerender.type === "redirect") {
-              if (rerender.reload || isExternalLocation(rerender.location)) {
-                if (hasInvalidProtocol(rerender.location)) {
-                  throw new Error("Invalid redirect location");
-                }
-                window.location.href = rerender.location;
-                return;
-              }
-              React3.startTransition(() => {
-                globalVar.__reactRouterDataRouter.navigate(rerender.location, {
-                  replace: rerender.replace
-                });
-              });
-              return;
-            }
-            React3.startTransition(() => {
-              let lastMatch;
-              for (const match of rerender.matches) {
-                globalVar.__reactRouterDataRouter.patchRoutes(
-                  (lastMatch == null ? void 0 : lastMatch.id) ?? null,
-                  [createRouteFromServerManifest(match)],
-                  true
-                );
-                lastMatch = match;
-              }
-              window.__reactRouterDataRouter._internalSetStateDoNotUseOrYouWillBreakYourApp(
-                {
-                  loaderData: Object.assign(
-                    {},
-                    globalVar.__reactRouterDataRouter.state.loaderData,
-                    rerender.loaderData
-                  ),
-                  errors: rerender.errors ? Object.assign(
-                    {},
-                    globalVar.__reactRouterDataRouter.state.errors,
-                    rerender.errors
-                  ) : null
-                }
-              );
-            });
-          }
-        }).catch(() => {
-        })
-      )
-    );
-    return payloadPromise.then((payload) => {
-      if (payload.type !== "action" && payload.type !== "redirect") {
-        throw new Error("Unexpected payload type");
-      }
-      return payload.actionResult;
-    });
-  };
-}
-function createRouterFromPayload({
-  fetchImplementation,
-  createFromReadableStream,
-  getContext,
-  payload
-}) {
-  const globalVar = window;
-  if (globalVar.__reactRouterDataRouter && globalVar.__reactRouterRouteModules)
-    return {
-      router: globalVar.__reactRouterDataRouter,
-      routeModules: globalVar.__reactRouterRouteModules
-    };
-  if (payload.type !== "render") throw new Error("Invalid payload type");
-  globalVar.__reactRouterRouteModules = globalVar.__reactRouterRouteModules ?? {};
-  populateRSCRouteModules(globalVar.__reactRouterRouteModules, payload.matches);
-  let routes = payload.matches.reduceRight((previous, match) => {
-    const route = createRouteFromServerManifest(
-      match,
-      payload
-    );
-    if (previous.length > 0) {
-      route.children = previous;
-    } else if (!route.index) {
-      route.children = [];
-    }
-    return [route];
-  }, []);
-  let applyPatchesPromise;
-  globalVar.__reactRouterDataRouter = createRouter({
-    routes,
-    getContext,
-    basename: payload.basename,
-    history: createBrowserHistory(),
-    hydrationData: getHydrationData({
-      state: {
-        loaderData: payload.loaderData,
-        actionData: payload.actionData,
-        errors: payload.errors
-      },
-      routes,
-      getRouteInfo: (routeId) => {
-        let match = payload.matches.find((m) => m.id === routeId);
-        invariant$1(match, "Route not found in payload");
-        return {
-          clientLoader: match.clientLoader,
-          hasLoader: match.hasLoader,
-          hasHydrateFallback: match.hydrateFallbackElement != null
-        };
-      },
-      location: payload.location,
-      basename: payload.basename,
-      isSpaMode: false
-    }),
-    async patchRoutesOnNavigation({ path, signal }) {
-      if (payload.routeDiscovery.mode === "initial") {
-        if (!applyPatchesPromise) {
-          applyPatchesPromise = (async () => {
-            if (!payload.patches) return;
-            let patches = await payload.patches;
-            React3.startTransition(() => {
-              patches.forEach((p) => {
-                window.__reactRouterDataRouter.patchRoutes(p.parentId ?? null, [
-                  createRouteFromServerManifest(p)
-                ]);
-              });
-            });
-          })();
-        }
-        await applyPatchesPromise;
-        return;
-      }
-      if (discoveredPaths.has(path)) {
-        return;
-      }
-      await fetchAndApplyManifestPatches(
-        [path],
-        createFromReadableStream,
-        fetchImplementation,
-        signal
-      );
-    },
-    // FIXME: Pass `build.ssr` into this function
-    dataStrategy: getRSCSingleFetchDataStrategy(
-      () => globalVar.__reactRouterDataRouter,
-      true,
-      payload.basename,
-      createFromReadableStream,
-      fetchImplementation
-    )
-  });
-  if (globalVar.__reactRouterDataRouter.state.initialized) {
-    globalVar.__routerInitialized = true;
-    globalVar.__reactRouterDataRouter.initialize();
-  } else {
-    globalVar.__routerInitialized = false;
-  }
-  let lastLoaderData = void 0;
-  globalVar.__reactRouterDataRouter.subscribe(({ loaderData, actionData }) => {
-    if (lastLoaderData !== loaderData) {
-      globalVar.__routerActionID = (globalVar.__routerActionID ?? (globalVar.__routerActionID = 0)) + 1;
-    }
-  });
-  globalVar.__reactRouterDataRouter._updateRoutesForHMR = (routeUpdateByRouteId) => {
-    const oldRoutes = window.__reactRouterDataRouter.routes;
-    const newRoutes = [];
-    function walkRoutes(routes2, parentId) {
-      return routes2.map((route) => {
-        const routeUpdate = routeUpdateByRouteId.get(route.id);
-        if (routeUpdate) {
-          const {
-            routeModule,
-            hasAction,
-            hasComponent,
-            hasErrorBoundary,
-            hasLoader
-          } = routeUpdate;
-          const newRoute = createRouteFromServerManifest({
-            clientAction: routeModule.clientAction,
-            clientLoader: routeModule.clientLoader,
-            element: route.element,
-            errorElement: route.errorElement,
-            handle: route.handle,
-            hasAction,
-            hasComponent,
-            hasErrorBoundary,
-            hasLoader,
-            hydrateFallbackElement: route.hydrateFallbackElement,
-            id: route.id,
-            index: route.index,
-            links: routeModule.links,
-            meta: routeModule.meta,
-            parentId,
-            path: route.path,
-            shouldRevalidate: routeModule.shouldRevalidate
-          });
-          if (route.children) {
-            newRoute.children = walkRoutes(route.children, route.id);
-          }
-          return newRoute;
-        }
-        const updatedRoute = { ...route };
-        if (route.children) {
-          updatedRoute.children = walkRoutes(route.children, route.id);
-        }
-        return updatedRoute;
-      });
-    }
-    newRoutes.push(
-      ...walkRoutes(oldRoutes, void 0)
-    );
-    window.__reactRouterDataRouter._internalSetRoutes(newRoutes);
-  };
-  return {
-    router: globalVar.__reactRouterDataRouter,
-    routeModules: globalVar.__reactRouterRouteModules
-  };
-}
-var renderedRoutesContext = createContext();
-function getRSCSingleFetchDataStrategy(getRouter, ssr, basename, createFromReadableStream, fetchImplementation) {
-  let dataStrategy = getSingleFetchDataStrategyImpl(
-    getRouter,
-    (match) => {
-      let M = match;
-      return {
-        hasLoader: M.route.hasLoader,
-        hasClientLoader: M.route.hasClientLoader,
-        hasComponent: M.route.hasComponent,
-        hasAction: M.route.hasAction,
-        hasClientAction: M.route.hasClientAction,
-        hasShouldRevalidate: M.route.hasShouldRevalidate
-      };
-    },
-    // pass map into fetchAndDecode so it can add payloads
-    getFetchAndDecodeViaRSC(createFromReadableStream, fetchImplementation),
-    ssr,
-    basename,
-    // .rsc requests are always trailing slash aware
-    true,
-    // If the route has a component but we don't have an element, we need to hit
-    // the server loader flow regardless of whether the client loader calls
-    // `serverLoader` or not, otherwise we'll have nothing to render.
-    (match) => {
-      let M = match;
-      return M.route.hasComponent && !M.route.element;
-    }
-  );
-  return async (args) => args.runClientMiddleware(async () => {
-    let context = args.context;
-    context.set(renderedRoutesContext, []);
-    let results = await dataStrategy(args);
-    const renderedRoutesById = /* @__PURE__ */ new Map();
-    for (const route of context.get(renderedRoutesContext)) {
-      if (!renderedRoutesById.has(route.id)) {
-        renderedRoutesById.set(route.id, []);
-      }
-      renderedRoutesById.get(route.id).push(route);
-    }
-    React3.startTransition(() => {
-      for (const match of args.matches) {
-        const renderedRoutes = renderedRoutesById.get(match.route.id);
-        if (renderedRoutes) {
-          for (const rendered of renderedRoutes) {
-            window.__reactRouterDataRouter.patchRoutes(
-              rendered.parentId ?? null,
-              [createRouteFromServerManifest(rendered)],
-              true
-            );
-          }
-        }
-      }
-    });
-    return results;
-  });
-}
-function getFetchAndDecodeViaRSC(createFromReadableStream, fetchImplementation) {
-  return async (args, basename, trailingSlashAware, targetRoutes) => {
-    let { request, context } = args;
-    let url = singleFetchUrl(request.url, basename, trailingSlashAware, "rsc");
-    if (request.method === "GET") {
-      url = stripIndexParam$1(url);
-      if (targetRoutes) {
-        url.searchParams.set("_routes", targetRoutes.join(","));
-      }
-    }
-    let res = await fetchImplementation(
-      new Request(url, await createRequestInit(request))
-    );
-    if (res.status >= 400 && !res.headers.has("X-Remix-Response")) {
-      throw new ErrorResponseImpl(res.status, res.statusText, await res.text());
-    }
-    invariant$1(res.body, "No response body to decode");
-    try {
-      const payload = await createFromReadableStream(res.body, {
-        temporaryReferences: void 0
-      });
-      if (payload.type === "redirect") {
-        return {
-          status: res.status,
-          data: {
-            redirect: {
-              redirect: payload.location,
-              reload: payload.reload,
-              replace: payload.replace,
-              revalidate: false,
-              status: payload.status
-            }
-          }
-        };
-      }
-      if (payload.type !== "render") {
-        throw new Error("Unexpected payload type");
-      }
-      context.get(renderedRoutesContext).push(...payload.matches);
-      let results = { routes: {} };
-      const dataKey = isMutationMethod(request.method) ? "actionData" : "loaderData";
-      for (let [routeId, data2] of Object.entries(payload[dataKey] || {})) {
-        results.routes[routeId] = { data: data2 };
-      }
-      if (payload.errors) {
-        for (let [routeId, error] of Object.entries(payload.errors)) {
-          results.routes[routeId] = { error };
-        }
-      }
-      return { status: res.status, data: results };
-    } catch (cause) {
-      throw new Error("Unable to decode RSC response", { cause });
-    }
-  };
-}
-function RSCHydratedRouter({
-  createFromReadableStream,
-  fetch: fetchImplementation = fetch,
-  payload,
-  getContext
-}) {
-  if (payload.type !== "render") throw new Error("Invalid payload type");
-  let { routeDiscovery } = payload;
-  let { router: router2, routeModules } = React3.useMemo(
-    () => createRouterFromPayload({
-      payload,
-      fetchImplementation,
-      getContext,
-      createFromReadableStream
-    }),
-    [createFromReadableStream, payload, fetchImplementation, getContext]
-  );
-  React3.useEffect(() => {
-    setIsHydrated();
-  }, []);
-  React3.useLayoutEffect(() => {
-    const globalVar = window;
-    if (!globalVar.__routerInitialized) {
-      globalVar.__routerInitialized = true;
-      globalVar.__reactRouterDataRouter.initialize();
-    }
-  }, []);
-  let [{ routes, state }, setState] = React3.useState(() => ({
-    routes: cloneRoutes(router2.routes),
-    state: router2.state
-  }));
-  React3.useLayoutEffect(
-    () => router2.subscribe((newState) => {
-      if (diffRoutes(router2.routes, routes))
-        React3.startTransition(() => {
-          setState({
-            routes: cloneRoutes(router2.routes),
-            state: newState
-          });
-        });
-    }),
-    [router2.subscribe, routes, router2]
-  );
-  const transitionEnabledRouter = React3.useMemo(
-    () => ({
-      ...router2,
-      state,
-      routes
-    }),
-    [router2, routes, state]
-  );
-  React3.useEffect(() => {
-    var _a2, _b2;
-    if (routeDiscovery.mode === "initial" || // @ts-expect-error - TS doesn't know about this yet
-    ((_b2 = (_a2 = window.navigator) == null ? void 0 : _a2.connection) == null ? void 0 : _b2.saveData) === true) {
-      return;
-    }
-    function registerElement(el) {
-      let path = el.tagName === "FORM" ? el.getAttribute("action") : el.getAttribute("href");
-      if (!path) {
-        return;
-      }
-      let pathname = el.tagName === "A" ? el.pathname : new URL(path, window.location.origin).pathname;
-      if (!discoveredPaths.has(pathname)) {
-        nextPaths.add(pathname);
-      }
-    }
-    async function fetchPatches() {
-      document.querySelectorAll("a[data-discover], form[data-discover]").forEach(registerElement);
-      let paths = Array.from(nextPaths.keys()).filter((path) => {
-        if (discoveredPaths.has(path)) {
-          nextPaths.delete(path);
-          return false;
-        }
-        return true;
-      });
-      if (paths.length === 0) {
-        return;
-      }
-      try {
-        await fetchAndApplyManifestPatches(
-          paths,
-          createFromReadableStream,
-          fetchImplementation
-        );
-      } catch (e) {
-        console.error("Failed to fetch manifest patches", e);
-      }
-    }
-    let debouncedFetchPatches = debounce(fetchPatches, 100);
-    fetchPatches();
-    let observer = new MutationObserver(() => debouncedFetchPatches());
-    observer.observe(document.documentElement, {
-      subtree: true,
-      childList: true,
-      attributes: true,
-      attributeFilter: ["data-discover", "href", "action"]
-    });
-  }, [routeDiscovery, createFromReadableStream, fetchImplementation]);
-  const frameworkContext = {
-    future: {
-      // These flags have no runtime impact so can always be false.  If we add
-      // flags that drive runtime behavior they'll need to be proxied through.
-      v8_middleware: false,
-      unstable_subResourceIntegrity: false,
-      unstable_trailingSlashAwareDataRequests: true,
-      // always on for RSC
-      unstable_passThroughRequests: true
-      // always on for RSC
-    },
-    isSpaMode: false,
-    ssr: true,
-    criticalCss: "",
-    manifest: {
-      routes: {},
-      version: "1",
-      url: "",
-      entry: {
-        module: "",
-        imports: []
-      }
-    },
-    routeDiscovery: payload.routeDiscovery.mode === "initial" ? { mode: "initial", manifestPath: defaultManifestPath } : {
-      mode: "lazy",
-      manifestPath: payload.routeDiscovery.manifestPath || defaultManifestPath
-    },
-    routeModules
-  };
-  return /* @__PURE__ */ React3.createElement(RSCRouterContext.Provider, { value: true }, /* @__PURE__ */ React3.createElement(RSCRouterGlobalErrorBoundary, { location: state.location }, /* @__PURE__ */ React3.createElement(FrameworkContext.Provider, { value: frameworkContext }, /* @__PURE__ */ React3.createElement(
-    RouterProvider,
-    {
-      router: transitionEnabledRouter,
-      flushSync: ReactDOM.flushSync
-    }
-  ))));
-}
-function createRouteFromServerManifest(match, payload) {
-  var _a2, _b2;
-  let hasInitialData = payload && match.id in payload.loaderData;
-  let initialData = payload == null ? void 0 : payload.loaderData[match.id];
-  let hasInitialError = (payload == null ? void 0 : payload.errors) && match.id in payload.errors;
-  let initialError = (_a2 = payload == null ? void 0 : payload.errors) == null ? void 0 : _a2[match.id];
-  let isHydrationRequest = ((_b2 = match.clientLoader) == null ? void 0 : _b2.hydrate) === true || !match.hasLoader || // If the route has a component but we don't have an element, we need to hit
-  // the server loader flow regardless of whether the client loader calls
-  // `serverLoader` or not, otherwise we'll have nothing to render.
-  match.hasComponent && !match.element;
-  invariant$1(window.__reactRouterRouteModules);
-  populateRSCRouteModules(window.__reactRouterRouteModules, match);
-  let dataRoute = {
-    id: match.id,
-    element: match.element,
-    errorElement: match.errorElement,
-    handle: match.handle,
-    hasErrorBoundary: match.hasErrorBoundary,
-    hydrateFallbackElement: match.hydrateFallbackElement,
-    index: match.index,
-    loader: match.clientLoader ? async (args, singleFetch) => {
-      try {
-        let result = await match.clientLoader({
-          ...args,
-          serverLoader: () => {
-            preventInvalidServerHandlerCall(
-              "loader",
-              match.id,
-              match.hasLoader
-            );
-            if (isHydrationRequest) {
-              if (hasInitialData) {
-                return initialData;
-              }
-              if (hasInitialError) {
-                throw initialError;
-              }
-            }
-            return callSingleFetch(singleFetch);
-          }
-        });
-        return result;
-      } finally {
-        isHydrationRequest = false;
-      }
-    } : (
-      // We always make the call in this RSC world since even if we don't
-      // have a `loader` we may need to get the `element` implementation
-      ((_, singleFetch) => callSingleFetch(singleFetch))
-    ),
-    action: match.clientAction ? (args, singleFetch) => match.clientAction({
-      ...args,
-      serverAction: async () => {
-        preventInvalidServerHandlerCall(
-          "action",
-          match.id,
-          match.hasLoader
-        );
-        return await callSingleFetch(singleFetch);
-      }
-    }) : match.hasAction ? (_, singleFetch) => callSingleFetch(singleFetch) : () => {
-      throw noActionDefinedError("action", match.id);
-    },
-    path: match.path,
-    shouldRevalidate: match.shouldRevalidate,
-    // We always have a "loader" in this RSC world since even if we don't
-    // have a `loader` we may need to get the `element` implementation
-    hasLoader: true,
-    hasClientLoader: match.clientLoader != null,
-    hasAction: match.hasAction,
-    hasClientAction: match.clientAction != null,
-    hasShouldRevalidate: match.shouldRevalidate != null
-  };
-  if (typeof dataRoute.loader === "function") {
-    dataRoute.loader.hydrate = shouldHydrateRouteLoader(
-      match.id,
-      match.clientLoader,
-      match.hasLoader,
-      false
-    );
-  }
-  return dataRoute;
-}
-function callSingleFetch(singleFetch) {
-  invariant$1(typeof singleFetch === "function", "Invalid singleFetch parameter");
-  return singleFetch();
-}
-function preventInvalidServerHandlerCall(type, routeId, hasHandler) {
-  if (!hasHandler) {
-    let fn = type === "action" ? "serverAction()" : "serverLoader()";
-    let msg = `You are trying to call ${fn} on a route that does not have a server ${type} (routeId: "${routeId}")`;
-    console.error(msg);
-    throw new ErrorResponseImpl(400, "Bad Request", new Error(msg), true);
-  }
-}
-var nextPaths = /* @__PURE__ */ new Set();
-var discoveredPathsMaxSize = 1e3;
-var discoveredPaths = /* @__PURE__ */ new Set();
-var URL_LIMIT = 7680;
-function getManifestUrl(paths) {
-  if (paths.length === 0) {
-    return null;
-  }
-  if (paths.length === 1) {
-    return new URL(`${paths[0]}.manifest`, window.location.origin);
-  }
-  const globalVar = window;
-  let basename = (globalVar.__reactRouterDataRouter.basename ?? "").replace(
-    /^\/|\/$/g,
-    ""
-  );
-  let url = new URL(`${basename}/.manifest`, window.location.origin);
-  url.searchParams.set("paths", paths.sort().join(","));
-  return url;
-}
-async function fetchAndApplyManifestPatches(paths, createFromReadableStream, fetchImplementation, signal) {
-  let url = getManifestUrl(paths);
-  if (url == null) {
-    return;
-  }
-  if (url.toString().length > URL_LIMIT) {
-    nextPaths.clear();
-    return;
-  }
-  let response = await fetchImplementation(new Request(url, { signal }));
-  if (!response.body || response.status < 200 || response.status >= 300) {
-    throw new Error("Unable to fetch new route matches from the server");
-  }
-  let payload = await createFromReadableStream(response.body, {
-    temporaryReferences: void 0
-  });
-  if (payload.type !== "manifest") {
-    throw new Error("Failed to patch routes");
-  }
-  paths.forEach((p) => addToFifoQueue(p, discoveredPaths));
-  let patches = await payload.patches;
-  React3.startTransition(() => {
-    patches.forEach((p) => {
-      window.__reactRouterDataRouter.patchRoutes(
-        p.parentId ?? null,
-        [createRouteFromServerManifest(p)]
-      );
-    });
-  });
-}
-function addToFifoQueue(path, queue) {
-  if (queue.size >= discoveredPathsMaxSize) {
-    let first = queue.values().next().value;
-    if (typeof first === "string") queue.delete(first);
-  }
-  queue.add(path);
-}
-function debounce(callback, wait) {
-  let timeoutId;
-  return (...args) => {
-    window.clearTimeout(timeoutId);
-    timeoutId = window.setTimeout(() => callback(...args), wait);
-  };
-}
-function isExternalLocation(location2) {
-  const newLocation = new URL(location2, window.location.href);
-  return newLocation.origin !== window.location.origin;
-}
-function hasInvalidProtocol(location2) {
-  try {
-    return invalidProtocols.includes(new URL(location2).protocol);
-  } catch {
-    return false;
-  }
-}
-function cloneRoutes(routes) {
-  if (!routes) return void 0;
-  return routes.map((route) => ({
-    ...route,
-    children: cloneRoutes(route.children)
-  }));
-}
-function diffRoutes(a, b) {
-  if (a.length !== b.length) return true;
-  return a.some((route, index) => {
-    if (route.element !== b[index].element) return true;
-    if (route.errorElement !== b[index].errorElement)
-      return true;
-    if (route.hydrateFallbackElement !== b[index].hydrateFallbackElement)
-      return true;
-    if (route.hasErrorBoundary !== b[index].hasErrorBoundary)
-      return true;
-    if (route.hasLoader !== b[index].hasLoader) return true;
-    if (route.hasClientLoader !== b[index].hasClientLoader)
-      return true;
-    if (route.hasAction !== b[index].hasAction) return true;
-    if (route.hasClientAction !== b[index].hasClientAction)
-      return true;
-    return diffRoutes(route.children || [], b[index].children || []);
-  });
-}
-function getRSCStream() {
-  let encoder3 = new TextEncoder();
-  let streamController = null;
-  let rscStream = new ReadableStream({
-    start(controller) {
-      if (typeof window === "undefined") {
-        return;
-      }
-      let handleChunk = (chunk) => {
-        if (typeof chunk === "string") {
-          controller.enqueue(encoder3.encode(chunk));
-        } else {
-          controller.enqueue(chunk);
-        }
-      };
-      window.__FLIGHT_DATA || (window.__FLIGHT_DATA = []);
-      window.__FLIGHT_DATA.forEach(handleChunk);
-      window.__FLIGHT_DATA.push = (chunk) => {
-        handleChunk(chunk);
-        return 0;
-      };
-      streamController = controller;
-    }
-  });
-  if (typeof document !== "undefined" && document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => {
-      streamController == null ? void 0 : streamController.close();
-    });
-  } else {
-    streamController == null ? void 0 : streamController.close();
-  }
-  return rscStream;
-}
-const domExport = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  HydratedRouter,
-  RouterProvider: RouterProvider2,
-  unstable_RSCHydratedRouter: RSCHydratedRouter,
-  unstable_createCallServer: createCallServer,
-  unstable_getRSCStream: getRSCStream
-}, Symbol.toStringTag, { value: "Module" }));
-const require$$0 = /* @__PURE__ */ getAugmentedNamespace(domExport);
-/**
- * react-router v7.14.0
- *
- * Copyright (c) Remix Software Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.md file in the root directory of this source tree.
- *
- * @license MIT
- */
-const development = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  Await,
-  BrowserRouter,
-  Form,
-  HashRouter,
-  IDLE_BLOCKER,
-  IDLE_FETCHER,
-  IDLE_NAVIGATION,
-  Link,
-  Links,
-  MemoryRouter,
-  Meta,
-  NavLink,
-  Navigate,
-  NavigationType: Action,
-  Outlet,
-  PrefetchPageLinks,
-  Route,
-  Router,
-  RouterContextProvider,
-  RouterProvider,
-  Routes,
-  Scripts,
-  ScrollRestoration,
-  ServerRouter,
-  StaticRouter,
-  StaticRouterProvider,
-  UNSAFE_AwaitContextProvider: AwaitContextProvider,
-  UNSAFE_DataRouterContext: DataRouterContext,
-  UNSAFE_DataRouterStateContext: DataRouterStateContext,
-  UNSAFE_ErrorResponseImpl: ErrorResponseImpl,
-  UNSAFE_FetchersContext: FetchersContext,
-  UNSAFE_FrameworkContext: FrameworkContext,
-  UNSAFE_LocationContext: LocationContext,
-  UNSAFE_NavigationContext: NavigationContext,
-  UNSAFE_RSCDefaultRootErrorBoundary: RSCDefaultRootErrorBoundary,
-  UNSAFE_RemixErrorBoundary: RemixErrorBoundary,
-  UNSAFE_RouteContext: RouteContext,
-  UNSAFE_ServerMode: ServerMode,
-  UNSAFE_SingleFetchRedirectSymbol: SingleFetchRedirectSymbol,
-  UNSAFE_ViewTransitionContext: ViewTransitionContext,
-  UNSAFE_WithComponentProps: WithComponentProps,
-  UNSAFE_WithErrorBoundaryProps: WithErrorBoundaryProps,
-  UNSAFE_WithHydrateFallbackProps: WithHydrateFallbackProps,
-  UNSAFE_createBrowserHistory: createBrowserHistory,
-  UNSAFE_createClientRoutes: createClientRoutes,
-  UNSAFE_createClientRoutesWithHMRRevalidationOptOut: createClientRoutesWithHMRRevalidationOptOut,
-  UNSAFE_createHashHistory: createHashHistory,
-  UNSAFE_createMemoryHistory: createMemoryHistory,
-  UNSAFE_createRouter: createRouter,
-  UNSAFE_decodeViaTurboStream: decodeViaTurboStream,
-  UNSAFE_deserializeErrors: deserializeErrors,
-  UNSAFE_getHydrationData: getHydrationData,
-  UNSAFE_getPatchRoutesOnNavigationFunction: getPatchRoutesOnNavigationFunction,
-  UNSAFE_getTurboStreamSingleFetchDataStrategy: getTurboStreamSingleFetchDataStrategy,
-  UNSAFE_hydrationRouteProperties: hydrationRouteProperties,
-  UNSAFE_invariant: invariant$1,
-  UNSAFE_mapRouteProperties: mapRouteProperties,
-  UNSAFE_shouldHydrateRouteLoader: shouldHydrateRouteLoader,
-  UNSAFE_useFogOFWarDiscovery: useFogOFWarDiscovery,
-  UNSAFE_useScrollRestoration: useScrollRestoration,
-  UNSAFE_withComponentProps: withComponentProps,
-  UNSAFE_withErrorBoundaryProps: withErrorBoundaryProps,
-  UNSAFE_withHydrateFallbackProps: withHydrateFallbackProps,
-  createBrowserRouter,
-  createContext,
-  createCookie,
-  createCookieSessionStorage,
-  createHashRouter,
-  createMemoryRouter,
-  createMemorySessionStorage,
-  createPath,
-  createRequestHandler,
-  createRoutesFromChildren,
-  createRoutesFromElements,
-  createRoutesStub,
-  createSearchParams,
-  createSession,
-  createSessionStorage,
-  createStaticHandler: createStaticHandler2,
-  createStaticRouter,
-  data,
-  generatePath,
-  href,
-  isCookie,
-  isRouteErrorResponse,
-  isSession,
-  matchPath,
-  matchRoutes,
-  parsePath,
-  redirect,
-  redirectDocument,
-  renderMatches,
-  replace,
-  resolvePath,
-  unstable_HistoryRouter: HistoryRouter,
-  unstable_RSCStaticRouter: RSCStaticRouter,
-  unstable_routeRSCServerRequest: routeRSCServerRequest,
-  unstable_setDevServerHooks: setDevServerHooks,
-  unstable_usePrompt: usePrompt,
-  unstable_useRoute: useRoute,
-  useActionData,
-  useAsyncError,
-  useAsyncValue,
-  useBeforeUnload,
-  useBlocker,
-  useFetcher,
-  useFetchers,
-  useFormAction,
-  useHref,
-  useInRouterContext,
-  useLinkClickHandler,
-  useLoaderData,
-  useLocation,
-  useMatch,
-  useMatches,
-  useNavigate,
-  useNavigation,
-  useNavigationType,
-  useOutlet,
-  useOutletContext,
-  useParams,
-  useResolvedPath,
-  useRevalidator,
-  useRouteError,
-  useRouteLoaderData,
-  useRoutes,
-  useSearchParams,
-  useSubmit,
-  useViewTransitionState
-}, Symbol.toStringTag, { value: "Module" }));
-const require$$1 = /* @__PURE__ */ getAugmentedNamespace(development);
-/**
- * react-router-dom v7.14.0
- *
- * Copyright (c) Remix Software Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.md file in the root directory of this source tree.
- *
- * @license MIT
- */
-var hasRequiredDist;
-function requireDist() {
-  if (hasRequiredDist) return dist$1.exports;
-  hasRequiredDist = 1;
-  (function(module) {
-    var __defProp2 = Object.defineProperty;
-    var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-    var __getOwnPropNames = Object.getOwnPropertyNames;
-    var __hasOwnProp = Object.prototype.hasOwnProperty;
-    var __export = (target, all) => {
-      for (var name in all)
-        __defProp2(target, name, { get: all[name], enumerable: true });
-    };
-    var __copyProps = (to, from, except, desc) => {
-      if (from && typeof from === "object" || typeof from === "function") {
-        for (let key of __getOwnPropNames(from))
-          if (!__hasOwnProp.call(to, key) && key !== except)
-            __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-      }
-      return to;
-    };
-    var __reExport = (target, mod, secondTarget) => (__copyProps(target, mod, "default"), secondTarget && __copyProps(secondTarget, mod, "default"));
-    var __toCommonJS = (mod) => __copyProps(__defProp2({}, "__esModule", { value: true }), mod);
-    var index_exports = {};
-    __export(index_exports, {
-      HydratedRouter: () => import_dom.HydratedRouter,
-      RouterProvider: () => import_dom.RouterProvider
-    });
-    module.exports = __toCommonJS(index_exports);
-    var import_dom = require$$0;
-    __reExport(index_exports, require$$1, module.exports);
-  })(dist$1);
-  return dist$1.exports;
-}
-var distExports = /* @__PURE__ */ requireDist();
-const en = {
-  seo: {
-    home: {
-      title: "Kernel Guard | Secure Web Development & Cybersecurity Solutions",
-      description: "Kernel Guard specializes in building high-performance, secure web applications, hardened backend architectures, and post-quantum cryptography solutions. Discover our zero-trust approach.",
-      keywords: "Kernel Guard, secure web development, cybersecurity solutions, hardened backend, post-quantum cryptography, React security, zero-trust architecture, eBPF security, data protection"
-    },
-    projects: {
-      title: "Open Source Security Projects | Kernel Guard",
-      description: "Explore Kernel Guard's open-source cybersecurity tools, eBPF security modules, post-quantum cryptography apps, and systems programming initiatives.",
-      keywords: "Kernel Guard open source, cybersecurity tools, eBPF security, post-quantum cryptography, secure coding, web security tools"
-    },
-    completedProjects: {
-      title: "Completed Secure Web Projects | Kernel Guard",
-      description: "Review Kernel Guard's portfolio of completed secure web development projects. See how we implement zero-trust architectures and high-performance frontends.",
-      keywords: "Kernel Guard portfolio, secure web projects, zero-trust architecture examples, high-performance web apps, cybersecurity case studies"
-    },
-    services: {
-      title: "Our Services | Kernel Guard",
-      description: "Explore the comprehensive web development and cybersecurity services offered by Kernel Guard.",
-      keywords: "Kernel Guard services, web design, cybersecurity, custom software development, SaaS development, cloud management"
-    }
-  },
-  nav: {
-    home: "Home",
-    services: "Services",
-    openSource: "Open Source",
-    completedProjects: "Completed Projects",
-    github: "GitHub",
-    contact: "Contact"
-  },
-  servicesPage: {
-    title: "Our Services",
-    subtitle: "Secure and scalable technology solutions to propel your business into the future.",
-    services: [
-      { title: "Web Design", desc: "Modern, user-friendly, and conversion-focused interface designs.", icon: "layout" },
-      { title: "Cybersecurity", desc: "Protecting your systems and data against the latest threats.", icon: "shield" },
-      { title: "Custom Software Dev", desc: "Scalable software solutions tailored to your specific business needs.", icon: "code" },
-      { title: "Web Development", desc: "High-performance, secure, and modern web applications.", icon: "globe" },
-      { title: "SaaS Development", desc: "Building cloud-based, subscription-model software products.", icon: "box" },
-      { title: "Information Security", desc: "Ensuring the confidentiality, integrity, and availability of your corporate data.", icon: "lock" },
-      { title: "Cloud App Development", desc: "Modern applications built to run natively in cloud environments.", icon: "cloud" },
-      { title: "Cloud Management", desc: "Optimization, security, and 24/7 monitoring of your cloud infrastructure.", icon: "server" },
-      { title: "Database Development", desc: "Secure, fast, and scalable database architectures for big data loads.", icon: "database" }
-    ],
-    ctaTitle: "Ready for your project?",
-    ctaDesc: "Contact us to build a secure and modern infrastructure.",
-    ctaButton: "Get in Touch"
-  },
-  home: {
-    systemSecure: "SYSTEMS_SECURE // V2.4.1",
-    heroTitle1: "Secure & Scalable",
-    heroTitle2: "Web Development",
-    heroDesc: "Kernel-Guard specializes in building high-performance web applications with a security-first approach. We combine modern web development with advanced threat defense mechanisms.",
-    viewArch: "View Open Source",
-    viewCompletedProjects: "Completed Projects",
-    githubRepo: "GitHub Repository",
-    status: "STATUS:",
-    operational: "OPERATIONAL",
-    latency: "LATENCY:",
-    encryption: "ENCRYPTION:",
-    uptime: "UPTIME:",
-    missionTitle: "Security-First Web Engineering",
-    missionP1: "At Kernel-Guard, we believe that true security cannot be bolted onto a web application as an afterthought. It must be engineered into the very foundation of the codebase. We are a team of full-stack developers and security researchers dedicated to building robust digital experiences.",
-    missionP2: "Our focus spans from secure frontend architectures to hardened backend APIs and database management. We don't just build websites; we build resilient web infrastructure that stands against evolving threats.",
-    techStackTitle: "Our Arsenal",
-    techStackDesc: "We engineer our solutions using industry-leading, secure, and high-performance technologies.",
-    features: {
-      frontend: { title: "Secure Frontend", desc: "Modern, responsive user interfaces built with React and fortified against XSS and client-side vulnerabilities." },
-      backend: { title: "Hardened Backend", desc: "Scalable server architectures and APIs designed with zero-trust principles and robust authentication." },
-      data: { title: "Data Protection", desc: "Implementing state-of-the-art encryption and secure database practices to ensure user data confidentiality." },
-      performance: { title: "High Performance", desc: "Optimized web applications that deliver lightning-fast load times without compromising on security checks." }
-    },
-    principles: {
-      title: "Our Engineering Principles",
-      items: [
-        { title: "Open by Default", desc: "Transparent security through open-source code and public peer review." },
-        { title: "Zero Trust", desc: "Verify every request, trust no entity, and assume breach by default." },
-        { title: "Community Driven", desc: "Built collaboratively by and for systems engineers and security researchers." }
-      ]
-    },
-    community: {
-      title: "Building in Public",
-      desc: "We are actively building our core infrastructure and open-sourcing our progress. Follow our journey."
-    },
-    proof: {
-      badge: "MEASURED // PUBLIC_EVIDENCE",
-      title: "Proof, not presentation",
-      desc: "A transparent quality snapshot based on Lighthouse CLI, prerender output, and public GitHub repository data measured on June 1, 2026.",
-      cards: {
-        lighthouse: {
-          label: "Desktop Lighthouse",
-          detail: "Performance / accessibility on the production domain."
-        },
-        delivery: {
-          label: "Prerendered routes",
-          detail: "Static routes generated at build time across localized pages."
-        },
-        openSource: {
-          label: "Public repositories",
-          detail: "Kernel-Guard organization repositories visible on GitHub."
-        },
-        languages: {
-          label: "Supported languages",
-          detail: "Turkish, English, German, Japanese, Chinese, Spanish, French, and Korean."
-        }
-      },
-      summary: {
-        indexableUrls: "indexable URLs",
-        desktopTbt: "desktop TBT",
-        latestUpdate: "latest public repo update"
-      },
-      footnote: "Metrics are intentionally shown as measured values, not marketing claims."
-    }
-  },
-  projects: {
-    badge: "DIRECTORY // OPEN_SOURCE",
-    title1: "Open Source",
-    title2: "Projects",
-    desc: "A comprehensive index of our open-source tools, security modules, and systems programming initiatives.",
-    colName: "Project Name",
-    colDesc: "Description",
-    colTech: "Tech Stack",
-    colLinks: "Links"
-  },
-  completedProjects: {
-    badge: "DIRECTORY // COMPLETED_PROJECTS",
-    title1: "Completed",
-    title2: "Projects",
-    desc: "Explore our portfolio of completed web development projects and success stories.",
-    noAccount: "Public access enabled. No account required.",
-    credentials: "Authentication Data",
-    email: "User",
-    visit: "Visit Project",
-    links: "Project Links",
-    colName: "Name",
-    colDesc: "Description",
-    colTags: "Tags",
-    colLinks: "Links"
-  },
-  projectDetails: {
-    architectureDiagram: "System Architecture",
-    technicalOverview: "Technical Overview",
-    marketingOverview: "Value Proposition",
-    viewSource: "View Source Code",
-    liveDemo: "Live Preview",
-    backToProjects: "Back to Directory",
-    repositoryEvidence: {
-      title: "Repository Evidence",
-      measuredAt: "Measured from GitHub public repository data on May 31, 2026.",
-      primaryLanguage: "Primary language",
-      lastPublicUpdate: "Last public update",
-      trackedIssues: "Tracked issues",
-      repositorySize: "Repository size",
-      languageMix: "Language mix"
-    }
-  },
-  footer: {
-    desc: "Securing the future through advanced systems programming, kernel-level defense, and open-source innovation. Engineered for enterprise resilience.",
-    discover: "Discover",
-    connect: "Connect",
-    rights: "Kernel-Guard. All rights reserved.",
-    terms: "Terms of Service",
-    privacy: "Privacy Policy",
-    cookies: "Cookie Preferences",
-    newsletter: {
-      title: "Subscribe to our newsletter",
-      desc: "Get the latest updates on kernel security and infrastructure protection.",
-      placeholder: "Enter your email",
-      button: "Subscribe"
-    }
-  },
-  terms: {
-    title: "Terms of Service",
-    lastUpdated: "Last Updated: April 2024",
-    section1: {
-      title: "1. Acceptance of Terms",
-      content: "By accessing and using the Kernel-Guard website and services, you agree to be bound by these Terms of Service and all applicable laws and regulations."
-    },
-    section2: {
-      title: "2. Use License",
-      content: "Permission is granted to temporarily download one copy of the materials on Kernel-Guard's website for personal, non-commercial transitory viewing only."
-    },
-    section3: {
-      title: "3. Disclaimer",
-      content: "The materials on Kernel-Guard's website are provided on an 'as is' basis. Kernel-Guard makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability."
-    }
-  },
-  privacy: {
-    title: "Privacy Policy",
-    lastUpdated: "Last Updated: April 2024",
-    section1: {
-      title: "1. Information We Collect",
-      content: "We collect information you provide directly to us, such as when you create an account, subscribe to our newsletter, or contact us for support."
-    },
-    section2: {
-      title: "2. How We Use Your Information",
-      content: "We use the information we collect to provide, maintain, and improve our services, to develop new ones, and to protect Kernel-Guard and our users."
-    },
-    section3: {
-      title: "3. Data Security",
-      content: "We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information."
-    }
-  },
-  cookies: {
-    title: "Cookie Preferences",
-    lastUpdated: "Last Updated: April 2024",
-    desc: "This site uses cookies to provide a better user experience. You can manage your preferences below.",
-    essential: {
-      title: "Essential Cookies",
-      desc: "These cookies are necessary for the website to function and cannot be switched off."
-    },
-    analytics: {
-      title: "Analytics Cookies",
-      desc: "These cookies allow us to count visits and traffic sources so we can measure and improve the performance of our site."
-    },
-    save: "Save Preferences"
-  },
-  contact: {
-    seo: {
-      title: "Contact Us | Kernel Guard",
-      description: "Get in touch with Kernel Guard for secure web development, cybersecurity consulting, and infrastructure management.",
-      keywords: "contact kernel guard, cybersecurity consulting, web development agency"
-    },
-    title: "Get in Touch",
-    subtitle: "Have a project in mind or need security consultation? We'd love to hear from you.",
-    info: {
-      title: "Contact Information",
-      desc: "Reach out to us directly through the following channels.",
-      email: "Email Us",
-      location: "Location",
-      locationValue: "İzmir, Turkey",
-      social: "Social Media",
-      github: "GitHub Repository"
-    },
-    form: {
-      name: "Full Name",
-      namePlaceholder: "John Doe",
-      email: "Email Address",
-      emailPlaceholder: "john@example.com",
-      message: "Your Message",
-      messagePlaceholder: "How can we help you?",
-      submit: "Send Message",
-      sending: "Sending...",
-      success: "Message sent successfully! We will get back to you soon.",
-      error: "An error occurred while sending the message. Please try again later."
-    }
-  }
-};
-const tr = {
-  seo: {
-    home: {
-      title: "Kernel Guard | Güvenli Web Geliştirme ve Siber Güvenlik Çözümleri",
-      description: "Kernel Guard, yüksek performanslı ve güvenli web uygulamaları, güçlendirilmiş arka uç (backend) mimarileri ve kuantum sonrası kriptografi çözümleri sunar. Sıfır güven (zero-trust) yaklaşımımızı keşfedin.",
-      keywords: "Kernel Guard, güvenli web geliştirme, siber güvenlik çözümleri, güçlendirilmiş backend, kuantum sonrası kriptografi, React güvenliği, sıfır güven mimarisi, eBPF güvenliği, veri koruma"
-    },
-    projects: {
-      title: "Açık Kaynak Siber Güvenlik Projeleri | Kernel Guard",
-      description: "Kernel Guard'ın açık kaynaklı siber güvenlik araçlarını, eBPF güvenlik modüllerini, kuantum sonrası kriptografi uygulamalarını ve sistem programlama projelerini keşfedin.",
-      keywords: "Kernel Guard açık kaynak, siber güvenlik araçları, eBPF güvenliği, kuantum sonrası kriptografi, güvenli kodlama, web güvenlik araçları"
-    },
-    completedProjects: {
-      title: "Tamamlanan Güvenli Web Projeleri | Kernel Guard",
-      description: "Kernel Guard'ın tamamlanmış güvenli web geliştirme projeleri portföyünü inceleyin. Sıfır güven mimarilerini ve yüksek performanslı önyüzleri nasıl uyguladığımızı görün.",
-      keywords: "Kernel Guard portfolyo, güvenli web projeleri, sıfır güven mimarisi örnekleri, yüksek performanslı web uygulamaları, siber güvenlik vaka çalışmaları"
-    },
-    services: {
-      title: "Hizmetlerimiz | Kernel Guard",
-      description: "Kernel Guard tarafından sunulan kapsamlı web geliştirme ve siber güvenlik hizmetlerini keşfedin.",
-      keywords: "Kernel Guard hizmetler, web tasarımı, siber güvenlik, kişisel yazılım geliştirme, SaaS geliştirme, bulut yönetimi"
-    }
-  },
-  nav: {
-    home: "Ana Sayfa",
-    services: "Hizmetlerimiz",
-    openSource: "Açık Kaynak",
-    completedProjects: "Tamamlanan Projeler",
-    github: "GitHub",
-    contact: "İletişim"
-  },
-  servicesPage: {
-    title: "Hizmetlerimiz",
-    subtitle: "İşletmenizi geleceğe taşıyacak güvenli ve ölçeklenebilir teknoloji çözümleri.",
-    services: [
-      { title: "Web Tasarımı", desc: "Modern, kullanıcı dostu ve dönüşüm odaklı arayüz tasarımları.", icon: "layout" },
-      { title: "Siber Güvenlik", desc: "Sistemlerinizi ve verilerinizi en güncel tehditlere karşı koruma.", icon: "shield" },
-      { title: "Özel Yazılım Geliştirme", desc: "İşletmenizin özel ihtiyaçlarına tam uyan, ölçeklenebilir yazılım çözümleri.", icon: "code" },
-      { title: "Web Geliştirme", desc: "Yüksek performanslı, güvenli ve modern web uygulamaları.", icon: "globe" },
-      { title: "SaaS Geliştirme", desc: "Bulut tabanlı, abonelik modeliyle çalışan yazılım ürünleri inşası.", icon: "box" },
-      { title: "Bilgi Güvenliği", desc: "Kurumsal verilerinizin gizliliğini, bütünlüğünü ve erişilebilirliğini sağlama.", icon: "lock" },
-      { title: "Bulut Uygulama Geliştirme", desc: "Bulut ortamında (AWS, Azure) native çalışan modern uygulamalar.", icon: "cloud" },
-      { title: "Bulut Yönetimi", desc: "Bulut altyapınızın optimizasyonu, güvenliği ve 7/24 izlenmesi.", icon: "server" },
-      { title: "Veritabanı Geliştirme", desc: "Güvenli, hızlı ve büyük veri yüklerini kaldırabilen veritabanı mimarileri.", icon: "database" }
-    ],
-    ctaTitle: "Projeniz için hazır mısınız?",
-    ctaDesc: "Güvenli ve modern bir altyapı kurmak için bizimle iletişime geçin.",
-    ctaButton: "Bize Ulaşın"
-  },
-  home: {
-    systemSecure: "SİSTEM_GÜVENLİ // V2.4.1",
-    heroTitle1: "Güvenli ve Ölçeklenebilir",
-    heroTitle2: "Web Geliştirme",
-    heroDesc: "Kernel-Guard, güvenlik odaklı bir yaklaşımla yüksek performanslı web uygulamaları oluşturma konusunda uzmanlaşmıştır. Modern web geliştirmeyi gelişmiş tehdit savunma mekanizmalarıyla birleştiriyoruz.",
-    viewArch: "Açık Kaynak Projeler",
-    viewCompletedProjects: "Tamamlanan Projeler",
-    githubRepo: "GitHub Deposu",
-    status: "DURUM:",
-    operational: "AKTİF",
-    latency: "GECİKME:",
-    encryption: "ŞİFRELEME:",
-    uptime: "ÇALIŞMA SÜRESİ:",
-    missionTitle: "Güvenlik Odaklı Web Mühendisliği",
-    missionP1: "Kernel-Guard olarak, gerçek güvenliğin bir web uygulamasına sonradan eklenemeyeceğine inanıyoruz. Kod tabanının tam temeline mühendislik edilmelidir. Bizler, sağlam dijital deneyimler oluşturmaya adanmış full-stack geliştiriciler ve güvenlik araştırmacılarıyız.",
-    missionP2: "Odak noktamız, güvenli frontend mimarilerinden güçlendirilmiş backend API'lerine ve veritabanı yönetimine kadar uzanır. Biz sadece web sitesi yapmıyoruz; gelişen tehditlere karşı ayakta kalan dayanıklı web altyapıları inşa ediyoruz.",
-    techStackTitle: "Teknoloji Cephaneliğimiz",
-    techStackDesc: "Çözümlerimizi endüstri lideri, güvenli ve yüksek performanslı teknolojiler kullanarak inşa ediyoruz.",
-    features: {
-      frontend: { title: "Güvenli Frontend", desc: "React ile oluşturulmuş, XSS ve istemci tarafı güvenlik açıklarına karşı güçlendirilmiş modern, duyarlı kullanıcı arayüzleri." },
-      backend: { title: "Güçlendirilmiş Backend", desc: "Sıfır güven (zero-trust) prensipleri ve sağlam kimlik doğrulama ile tasarlanmış ölçeklenebilir sunucu mimarileri ve API'ler." },
-      data: { title: "Veri Koruması", desc: "Kullanıcı verilerinin gizliliğini sağlamak için en son teknoloji şifreleme ve güvenli veritabanı uygulamaları." },
-      performance: { title: "Yüksek Performans", desc: "Güvenlik kontrollerinden ödün vermeden ışık hızında yükleme süreleri sunan optimize edilmiş web uygulamaları." }
-    },
-    principles: {
-      title: "Mühendislik Prensiplerimiz",
-      items: [
-        { title: "Varsayılan Olarak Açık", desc: "Açık kaynak kod ve halka açık kod incelemesi ile şeffaf güvenlik." },
-        { title: "Sıfır Güven (Zero Trust)", desc: "Her isteği doğrulayın, hiçbir varlığa güvenmeyin ve her zaman tetikte olun." },
-        { title: "Topluluk Odaklı", desc: "Sistem mühendisleri ve güvenlik araştırmacıları tarafından ortaklaşa inşa ediliyor." }
-      ]
-    },
-    community: {
-      title: "Açık Geliştirme (Build in Public)",
-      desc: "Çekirdek altyapımızı aktif olarak inşa ediyor ve kodlarımızı açık kaynak olarak paylaşıyoruz. Yolculuğumuza katılın."
-    },
-    proof: {
-      badge: "ÖLÇÜLDÜ // AÇIK_KANIT",
-      title: "Sunum değil, kanıt",
-      desc: "1 Haziran 2026 tarihinde Lighthouse CLI, prerender çıktısı ve herkese açık GitHub repo verileriyle ölçülmüş şeffaf kalite özeti.",
-      cards: {
-        lighthouse: {
-          label: "Masaüstü Lighthouse",
-          detail: "Canlı domain üzerinde performans / erişilebilirlik."
-        },
-        delivery: {
-          label: "Prerender rota",
-          detail: "Çok dilli sayfalar için build sırasında üretilen statik rotalar."
-        },
-        openSource: {
-          label: "Public repo",
-          detail: "GitHub üzerindeki Kernel-Guard organizasyon repoları."
-        },
-        languages: {
-          label: "Desteklenen dil",
-          detail: "Türkçe, İngilizce, Almanca, Japonca, Çince, İspanyolca, Fransızca ve Korece."
-        }
-      },
-      summary: {
-        indexableUrls: "indexlenebilir URL",
-        desktopTbt: "masaüstü TBT",
-        latestUpdate: "son public repo güncellemesi"
-      },
-      footnote: "Metrikler pazarlama iddiası değil, ölçülmüş değer olarak gösterilir."
-    }
-  },
-  projects: {
-    badge: "DİZİN // AÇIK_KAYNAK",
-    title1: "Açık Kaynak",
-    title2: "Projelerimiz",
-    desc: "Açık kaynaklı araçlarımızın, güvenlik modüllerimizin ve sistem programlama girişimlerimizin kapsamlı bir indeksi.",
-    colName: "Proje Adı",
-    colDesc: "Açıklama",
-    colTech: "Teknoloji",
-    colLinks: "Bağlantılar"
-  },
-  completedProjects: {
-    badge: "DİZİN // TAMAMLANAN_PROJELER",
-    title1: "Tamamlanan",
-    title2: "Projeler",
-    desc: "Tamamlanmış web geliştirme projelerimizden oluşan portfolyomuzu inceleyin.",
-    noAccount: "Herkese açık erişim. Hesap gerekmez.",
-    credentials: "Kimlik Doğrulama Verileri",
-    email: "Kullanıcı",
-    visit: "Projeyi İncele",
-    links: "Proje Bağlantıları",
-    colName: "İsim",
-    colDesc: "Açıklama",
-    colTags: "Etiketler",
-    colLinks: "Bağlantılar"
-  },
-  projectDetails: {
-    architectureDiagram: "Sistem Mimarisi",
-    technicalOverview: "Teknik Genel Bakış",
-    marketingOverview: "Değer Önerisi",
-    viewSource: "Kaynak Kodunu Görüntüle",
-    liveDemo: "Canlı Önizleme",
-    backToProjects: "Dizine Dön",
-    repositoryEvidence: {
-      title: "Repo Kanıtları",
-      measuredAt: "31 Mayıs 2026 tarihinde herkese açık GitHub repo verilerinden ölçüldü.",
-      primaryLanguage: "Ana dil",
-      lastPublicUpdate: "Son public güncelleme",
-      trackedIssues: "Takip edilen issue",
-      repositorySize: "Repo boyutu",
-      languageMix: "Dil dağılımı"
-    }
-  },
-  footer: {
-    desc: "Gelişmiş sistem programlama, çekirdek düzeyinde savunma ve açık kaynaklı inovasyon ile geleceği güvence altına alıyoruz. Kurumsal dayanıklılık için tasarlandı.",
-    discover: "Keşfet",
-    connect: "Bağlan",
-    rights: "Kernel-Guard. Tüm hakları saklıdır.",
-    terms: "Hizmet Şartları",
-    privacy: "Gizlilik Politikası",
-    cookies: "Çerez Tercihleri",
-    newsletter: {
-      title: "Bültenimize abone olun",
-      desc: "Çekirdek güvenliği ve altyapı koruması hakkındaki en son güncellemeleri alın.",
-      placeholder: "E-posta adresiniz",
-      button: "Abone Ol"
-    }
-  },
-  terms: {
-    title: "Hizmet Şartları",
-    lastUpdated: "Son Güncelleme: Nisan 2024",
-    section1: {
-      title: "1. Şartların Kabulü",
-      content: "Kernel-Guard web sitesine ve hizmetlerine erişerek ve bunları kullanarak, bu Hizmet Şartlarına ve tüm ilgili yasa ve düzenlemelere bağlı kalmayı kabul etmiş olursunuz."
-    },
-    section2: {
-      title: "2. Kullanım Lisansı",
-      content: "Kernel-Guard web sitesindeki materyallerin bir kopyasının yalnızca kişisel, ticari olmayan geçici görüntüleme için geçici olarak indirilmesine izin verilir."
-    },
-    section3: {
-      title: "3. Feragatname",
-      content: "Kernel-Guard web sitesindeki materyaller 'olduğu gibi' sunulmaktadır. Kernel-Guard, açık veya zımni hiçbir garanti vermez ve işbu belgeyle, zımni garantiler veya satılabilirlik koşulları dahil ancak bunlarla sınırlı olmamak üzere diğer tüm garantileri reddeder."
-    }
-  },
-  privacy: {
-    title: "Gizlilik Politikası",
-    lastUpdated: "Son Güncelleme: Nisan 2024",
-    section1: {
-      title: "1. Topladığımız Bilgiler",
-      content: "Bir hesap oluşturduğunuzda, bültenimize abone olduğunuzda veya destek için bizimle iletişime geçtiğinizde olduğu gibi, doğrudan bize verdiğiniz bilgileri topluyoruz."
-    },
-    section2: {
-      title: "2. Bilgilerinizi Nasıl Kullanıyoruz",
-      content: "Topladığımız bilgileri hizmetlerimizi sunmak, sürdürmek ve iyileştirmek, yenilerini geliştirmek ve Kernel-Guard'ı ve kullanıcılarımızı korumak için kullanıyoruz."
-    },
-    section3: {
-      title: "3. Veri Güvenliği",
-      content: "Kişisel bilgilerinizi girdiğinizde, gönderdiğinizde veya bunlara eriştiğinizde kişisel bilgilerinizin güvenliğini sağlamak için çeşitli güvenlik önlemleri uyguluyoruz."
-    }
-  },
-  cookies: {
-    title: "Çerez Tercihleri",
-    lastUpdated: "Son Güncelleme: Nisan 2024",
-    desc: "Bu site, daha iyi bir kullanıcı deneyimi sunmak için çerezleri kullanır. Tercihlerinizi aşağıdan yönetebilirsiniz.",
-    essential: {
-      title: "Zorunlu Çerezler",
-      desc: "Bu çerezler web sitesinin çalışması için gereklidir ve kapatılamaz."
-    },
-    analytics: {
-      title: "Analiz Çerezleri",
-      desc: "Bu çerezler, sitemizin performansını ölçebilmemiz ve iyileştirebilmemiz için ziyaretleri ve trafik kaynaklarını saymamıza olanak tanır."
-    },
-    save: "Tercihleri Kaydet"
-  },
-  contact: {
-    seo: {
-      title: "İletişim | Kernel Guard",
-      description: "Güvenli web geliştirme, siber güvenlik danışmanlığı ve altyapı yönetimi için Kernel Guard ile iletişime geçin.",
-      keywords: "kernel guard iletişim, siber güvenlik danışmanlığı, web geliştirme ajansı"
-    },
-    title: "Bize Ulaşın",
-    subtitle: "Aklınızda bir proje mi var veya güvenlik danışmanlığına mı ihtiyacınız var? Sizinle tanışmak isteriz.",
-    info: {
-      title: "İletişim Bilgileri",
-      desc: "Aşağıdaki kanallar üzerinden bizimle doğrudan iletişime geçebilirsiniz.",
-      email: "E-posta Gönderin",
-      location: "Konum",
-      locationValue: "İzmir, Türkiye",
-      social: "Sosyal Medya",
-      github: "GitHub Deposu"
-    },
-    form: {
-      name: "Adınız Soyadınız",
-      namePlaceholder: "Ahmet Yılmaz",
-      email: "E-posta Adresiniz",
-      emailPlaceholder: "ahmet@ornek.com",
-      message: "Mesajınız",
-      messagePlaceholder: "Size nasıl yardımcı olabiliriz?",
-      submit: "Mesaj Gönder",
-      sending: "Gönderiliyor...",
-      success: "Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.",
-      error: "Mesaj gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin."
-    }
-  }
-};
-const de = {
-  ...en,
-  seo: {
-    home: {
-      title: "Kernel Guard | Sichere Webentwicklung und Cybersecurity",
-      description: "Kernel Guard entwickelt sichere, performante Webanwendungen, gehärtete Backend-Architekturen und moderne Sicherheitslösungen.",
-      keywords: "Kernel Guard, sichere Webentwicklung, Cybersecurity, gehärtetes Backend, Zero Trust, Datensicherheit"
-    },
-    projects: {
-      title: "Open-Source-Sicherheitsprojekte | Kernel Guard",
-      description: "Entdecken Sie die Open-Source-Sicherheitswerkzeuge, Systemprojekte und Web-Security-Initiativen von Kernel Guard.",
-      keywords: "Kernel Guard Open Source, Cybersecurity Tools, sichere Software, Web Security"
-    },
-    completedProjects: {
-      title: "Abgeschlossene sichere Webprojekte | Kernel Guard",
-      description: "Ein Überblick über abgeschlossene Webentwicklungsprojekte von Kernel Guard mit Fokus auf Sicherheit, Performance und zuverlässige Architektur.",
-      keywords: "Kernel Guard Portfolio, sichere Webprojekte, Zero Trust, Webentwicklung"
-    },
-    services: {
-      title: "Leistungen | Kernel Guard",
-      description: "Sichere Webentwicklung, Cybersecurity-Beratung und skalierbare Infrastrukturleistungen von Kernel Guard.",
-      keywords: "Kernel Guard Leistungen, Webentwicklung, Cybersecurity, SaaS Entwicklung, Cloud Management"
-    }
-  },
-  nav: {
-    home: "Startseite",
-    services: "Leistungen",
-    openSource: "Open Source",
-    completedProjects: "Referenzen",
-    github: "GitHub",
-    contact: "Kontakt"
-  },
-  servicesPage: {
-    title: "Unsere Leistungen",
-    subtitle: "Sichere und skalierbare Technologielösungen für belastbare digitale Produkte.",
-    services: [
-      { title: "Webdesign", desc: "Moderne, nutzerfreundliche und conversion-orientierte Oberflächen.", icon: "layout" },
-      { title: "Cybersecurity", desc: "Schutz von Systemen und Daten vor aktuellen Bedrohungen.", icon: "shield" },
-      { title: "Individuelle Software", desc: "Skalierbare Softwarelösungen für spezifische Geschäftsanforderungen.", icon: "code" },
-      { title: "Webentwicklung", desc: "Performante, sichere und moderne Webanwendungen.", icon: "globe" },
-      { title: "SaaS-Entwicklung", desc: "Cloudbasierte Softwareprodukte mit Abonnementmodellen.", icon: "box" },
-      { title: "Informationssicherheit", desc: "Schutz von Vertraulichkeit, Integrität und Verfügbarkeit Ihrer Daten.", icon: "lock" },
-      { title: "Cloud-App-Entwicklung", desc: "Moderne Anwendungen für cloud-native Umgebungen.", icon: "cloud" },
-      { title: "Cloud-Management", desc: "Optimierung, Absicherung und Überwachung Ihrer Cloud-Infrastruktur.", icon: "server" },
-      { title: "Datenbankentwicklung", desc: "Sichere, schnelle und skalierbare Datenbankarchitekturen.", icon: "database" }
-    ],
-    ctaTitle: "Bereit für Ihr Projekt?",
-    ctaDesc: "Kontaktieren Sie uns für eine sichere und moderne Infrastruktur.",
-    ctaButton: "Kontakt aufnehmen"
-  },
-  home: {
-    ...en.home,
-    systemSecure: "SYSTEME_SICHER // V2.4.1",
-    heroTitle1: "Sichere und skalierbare",
-    heroTitle2: "Webentwicklung",
-    heroDesc: "Kernel Guard entwickelt performante Webanwendungen mit Security-first-Ansatz und verbindet moderne Produktentwicklung mit robuster Abwehr gegen Bedrohungen.",
-    viewArch: "Open Source ansehen",
-    viewCompletedProjects: "Referenzen",
-    missionTitle: "Security-first Web Engineering",
-    missionP1: "Echte Sicherheit wird nicht nachträglich ergänzt. Sie muss in Architektur, Codebasis und Betrieb von Anfang an mitgedacht werden.",
-    missionP2: "Unser Fokus reicht von sicheren Frontend-Architekturen über gehärtete Backend-APIs bis zu Datenbank- und Cloud-Sicherheit.",
-    techStackTitle: "Unser Werkzeugkasten",
-    techStackDesc: "Wir nutzen moderne, sichere und performante Technologien für belastbare digitale Produkte.",
-    features: {
-      frontend: { title: "Sicheres Frontend", desc: "Moderne React-Oberflächen, gehärtet gegen XSS und clientseitige Schwachstellen." },
-      backend: { title: "Gehärtetes Backend", desc: "Skalierbare APIs und Serverarchitekturen nach Zero-Trust-Prinzipien." },
-      data: { title: "Datenschutz", desc: "Verschlüsselung und sichere Datenbankpraktiken zum Schutz sensibler Informationen." },
-      performance: { title: "Hohe Performance", desc: "Schnelle Webanwendungen ohne Kompromisse bei Sicherheitskontrollen." }
-    },
-    principles: {
-      title: "Unsere Engineering-Prinzipien",
-      items: [
-        { title: "Offen als Standard", desc: "Transparente Sicherheit durch Open-Source-Code und öffentliche Code-Reviews." },
-        { title: "Zero Trust", desc: "Jede Anfrage prüfen, keiner Entität blind vertrauen und Kompromittierung als Möglichkeit einplanen." },
-        { title: "Community-orientiert", desc: "Gemeinsam mit und für Systemingenieure und Sicherheitsforschende entwickelt." }
-      ]
-    },
-    community: {
-      title: "Öffentlich entwickeln",
-      desc: "Wir bauen unsere Kerninfrastruktur aktiv auf und veröffentlichen Fortschritte als Open Source."
-    },
-    proof: {
-      badge: "GEMESSEN // ÖFFENTLICHE_NACHWEISE",
-      title: "Nachweise statt Behauptungen",
-      desc: "Ein transparenter Qualitätsstand auf Basis von Lighthouse CLI, Prerender-Ausgabe und öffentlichen GitHub-Repository-Daten, gemessen am 1. Juni 2026.",
-      cards: {
-        lighthouse: { label: "Desktop Lighthouse", detail: "Performance / Barrierefreiheit auf der Produktionsdomain." },
-        delivery: { label: "Prerender-Routen", detail: "Statische Routen, die beim Build über lokalisierte Seiten erzeugt werden." },
-        openSource: { label: "Öffentliche Repos", detail: "Sichtbare Repositories der Kernel-Guard-Organisation auf GitHub." },
-        languages: { label: "Unterstützte Sprachen", detail: "Türkisch, Englisch, Deutsch, Japanisch, Chinesisch, Spanisch, Französisch und Koreanisch." }
-      },
-      summary: {
-        indexableUrls: "indexierbare URLs",
-        desktopTbt: "Desktop-TBT",
-        latestUpdate: "letztes öffentliches Repo-Update"
-      },
-      footnote: "Die Kennzahlen werden bewusst als gemessene Werte gezeigt, nicht als Marketingbehauptungen."
-    }
-  },
-  projects: {
-    ...en.projects,
-    badge: "VERZEICHNIS // OPEN_SOURCE",
-    title1: "Open Source",
-    title2: "Projekte",
-    desc: "Ein Überblick über unsere offenen Werkzeuge, Sicherheitsmodule und Systemprojekte.",
-    colName: "Projektname",
-    colDesc: "Beschreibung",
-    colTech: "Technologien",
-    colLinks: "Links"
-  },
-  completedProjects: {
-    ...en.completedProjects,
-    badge: "VERZEICHNIS // REFERENZEN",
-    title1: "Abgeschlossene",
-    title2: "Projekte",
-    desc: "Entdecken Sie abgeschlossene Webentwicklungsprojekte und Referenzen.",
-    noAccount: "Öffentlicher Zugriff. Kein Konto erforderlich.",
-    credentials: "Zugangsdaten",
-    email: "Benutzer",
-    visit: "Projekt öffnen",
-    links: "Projektlinks",
-    colName: "Name",
-    colDesc: "Beschreibung",
-    colTags: "Tags",
-    colLinks: "Links"
-  },
-  projectDetails: {
-    ...en.projectDetails,
-    architectureDiagram: "Systemarchitektur",
-    technicalOverview: "Technischer Überblick",
-    marketingOverview: "Wertversprechen",
-    viewSource: "Quellcode ansehen",
-    liveDemo: "Live-Vorschau",
-    backToProjects: "Zurück zum Verzeichnis",
-    repositoryEvidence: {
-      title: "Repository-Nachweise",
-      measuredAt: "Gemessen aus öffentlichen GitHub-Repository-Daten am 31. Mai 2026.",
-      primaryLanguage: "Hauptsprache",
-      lastPublicUpdate: "Letztes öffentliches Update",
-      trackedIssues: "Verfolgte Issues",
-      repositorySize: "Repository-Größe",
-      languageMix: "Sprachmix"
-    }
-  },
-  footer: {
-    ...en.footer,
-    desc: "Wir entwickeln sichere, performante und belastbare Webinfrastruktur für moderne digitale Produkte.",
-    discover: "Entdecken",
-    connect: "Kontakt",
-    rights: "Kernel-Guard. Alle Rechte vorbehalten.",
-    terms: "Nutzungsbedingungen",
-    privacy: "Datenschutz",
-    cookies: "Cookie-Einstellungen"
-  },
-  terms: {
-    title: "Nutzungsbedingungen",
-    lastUpdated: "Zuletzt aktualisiert: April 2024",
-    section1: { title: "1. Annahme der Bedingungen", content: "Durch die Nutzung der Website und Dienste von Kernel Guard stimmen Sie diesen Nutzungsbedingungen zu." },
-    section2: { title: "2. Nutzungslizenz", content: "Die Materialien auf dieser Website dürfen vorübergehend für persönliche, nicht-kommerzielle Ansicht genutzt werden." },
-    section3: { title: "3. Haftungsausschluss", content: "Die Materialien werden ohne ausdrückliche oder stillschweigende Gewährleistung bereitgestellt." }
-  },
-  privacy: {
-    title: "Datenschutzerklärung",
-    lastUpdated: "Zuletzt aktualisiert: April 2024",
-    section1: { title: "1. Erfasste Informationen", content: "Wir erfassen Informationen, die Sie uns direkt bereitstellen, zum Beispiel bei Kontaktanfragen." },
-    section2: { title: "2. Nutzung Ihrer Informationen", content: "Wir nutzen Informationen zur Bereitstellung, Wartung und Verbesserung unserer Dienste." },
-    section3: { title: "3. Datensicherheit", content: "Wir setzen Sicherheitsmaßnahmen ein, um personenbezogene Informationen zu schützen." }
-  },
-  cookies: {
-    title: "Cookie-Einstellungen",
-    lastUpdated: "Zuletzt aktualisiert: April 2024",
-    desc: "Diese Website verwendet Cookies, um die Nutzererfahrung zu verbessern.",
-    essential: { title: "Notwendige Cookies", desc: "Diese Cookies sind für den Betrieb der Website erforderlich." },
-    analytics: { title: "Analyse-Cookies", desc: "Diese Cookies helfen uns, die Leistung der Website zu messen und zu verbessern." },
-    save: "Einstellungen speichern"
-  },
-  contact: {
-    seo: {
-      title: "Kontakt | Kernel Guard",
-      description: "Kontaktieren Sie Kernel Guard für sichere Webentwicklung, Cybersecurity-Beratung und Infrastrukturmanagement.",
-      keywords: "Kernel Guard Kontakt, Cybersecurity Beratung, Webentwicklung"
-    },
-    title: "Kontakt aufnehmen",
-    subtitle: "Sie planen ein Projekt oder benötigen Sicherheitsberatung? Wir hören gern von Ihnen.",
-    info: {
-      title: "Kontaktinformationen",
-      desc: "Sie erreichen uns direkt über die folgenden Kanäle.",
-      email: "E-Mail",
-      location: "Standort",
-      locationValue: "Izmir, Türkei",
-      social: "Social Media",
-      github: "GitHub Repository"
-    },
-    form: {
-      name: "Vollständiger Name",
-      namePlaceholder: "Max Mustermann",
-      email: "E-Mail-Adresse",
-      emailPlaceholder: "max@example.com",
-      message: "Ihre Nachricht",
-      messagePlaceholder: "Wie können wir helfen?",
-      submit: "Nachricht senden",
-      sending: "Wird gesendet...",
-      success: "Nachricht erfolgreich gesendet. Wir melden uns zeitnah.",
-      error: "Beim Senden ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut."
-    }
-  }
-};
-const ja = {
-  ...en,
-  seo: {
-    home: {
-      title: "Kernel Guard | セキュアなWeb開発とサイバーセキュリティ",
-      description: "Kernel Guardは、高性能で安全なWebアプリケーション、堅牢なバックエンド、現代的なセキュリティ設計を提供します。",
-      keywords: "Kernel Guard, セキュアWeb開発, サイバーセキュリティ, Zero Trust, データ保護"
-    },
-    projects: {
-      title: "オープンソースセキュリティプロジェクト | Kernel Guard",
-      description: "Kernel Guardのオープンソースセキュリティツール、Webセキュリティプロジェクト、システム開発の取り組みをご覧ください。",
-      keywords: "Kernel Guard オープンソース, セキュリティツール, Webセキュリティ, セキュアコーディング"
-    },
-    completedProjects: {
-      title: "完了済みセキュアWebプロジェクト | Kernel Guard",
-      description: "Kernel Guardが手がけたセキュアで高性能なWeb開発プロジェクトをご覧ください。",
-      keywords: "Kernel Guard 実績, セキュアWebプロジェクト, Web開発, Zero Trust"
-    },
-    services: {
-      title: "サービス | Kernel Guard",
-      description: "Kernel Guardが提供するWeb開発、サイバーセキュリティ、クラウドインフラ支援サービス。",
-      keywords: "Kernel Guard サービス, Web開発, サイバーセキュリティ, SaaS開発, クラウド管理"
-    }
-  },
-  nav: {
-    home: "ホーム",
-    services: "サービス",
-    openSource: "オープンソース",
-    completedProjects: "実績",
-    github: "GitHub",
-    contact: "お問い合わせ"
-  },
-  servicesPage: {
-    title: "サービス",
-    subtitle: "安全でスケーラブルな技術基盤により、信頼できるデジタル製品を構築します。",
-    services: [
-      { title: "Webデザイン", desc: "使いやすく、成果につながるモダンなUI設計。", icon: "layout" },
-      { title: "サイバーセキュリティ", desc: "最新の脅威からシステムとデータを保護します。", icon: "shield" },
-      { title: "カスタムソフトウェア開発", desc: "事業要件に合わせたスケーラブルなソフトウェア。", icon: "code" },
-      { title: "Web開発", desc: "高性能で安全なモダンWebアプリケーション。", icon: "globe" },
-      { title: "SaaS開発", desc: "クラウドベースのサブスクリプション型プロダクト構築。", icon: "box" },
-      { title: "情報セキュリティ", desc: "企業データの機密性、完全性、可用性を守ります。", icon: "lock" },
-      { title: "クラウドアプリ開発", desc: "クラウドネイティブ環境向けのアプリケーション。", icon: "cloud" },
-      { title: "クラウド管理", desc: "クラウド基盤の最適化、保護、監視。", icon: "server" },
-      { title: "データベース開発", desc: "安全で高速、拡張性の高いデータベース設計。", icon: "database" }
-    ],
-    ctaTitle: "プロジェクトを始めますか？",
-    ctaDesc: "安全でモダンな基盤づくりについてご相談ください。",
-    ctaButton: "お問い合わせ"
-  },
-  home: {
-    ...en.home,
-    systemSecure: "SYSTEMS_SECURE // V2.4.1",
-    heroTitle1: "安全でスケーラブルな",
-    heroTitle2: "Web開発",
-    heroDesc: "Kernel Guardは、セキュリティファーストの設計で高性能なWebアプリケーションを構築します。",
-    viewArch: "オープンソースを見る",
-    viewCompletedProjects: "実績を見る",
-    missionTitle: "セキュリティファーストのWebエンジニアリング",
-    missionP1: "本当のセキュリティは後から追加するものではありません。アーキテクチャとコードベースの基礎に組み込む必要があります。",
-    missionP2: "安全なフロントエンド、堅牢なAPI、データベースとクラウドの保護まで、幅広く支援します。",
-    techStackTitle: "技術スタック",
-    techStackDesc: "安全性と性能を重視した技術で、信頼できるプロダクトを構築します。",
-    features: {
-      frontend: { title: "セキュアフロントエンド", desc: "ReactベースのUIをXSSなどのクライアント側リスクに備えて設計します。" },
-      backend: { title: "堅牢なバックエンド", desc: "Zero Trust原則に基づくスケーラブルなAPIとサーバー設計。" },
-      data: { title: "データ保護", desc: "暗号化と安全なデータベース運用により機密情報を守ります。" },
-      performance: { title: "高性能", desc: "高速なロード時間とセキュリティチェックを両立します。" }
-    },
-    principles: {
-      title: "エンジニアリング原則",
-      items: [
-        { title: "オープンを標準に", desc: "オープンソースコードと公開レビューにより、透明性の高いセキュリティを実現します。" },
-        { title: "Zero Trust", desc: "すべてのリクエストを検証し、どの主体も無条件には信頼しません。" },
-        { title: "コミュニティ主導", desc: "システムエンジニアとセキュリティ研究者のために共同で構築します。" }
-      ]
-    },
-    community: {
-      title: "公開しながら構築",
-      desc: "中核インフラを継続的に構築し、その進捗をオープンソースとして公開しています。"
-    },
-    proof: {
-      badge: "MEASURED // PUBLIC_EVIDENCE",
-      title: "見せ方ではなく、実測値",
-      desc: "2026年6月1日に Lighthouse CLI、prerender 出力、公開 GitHub リポジトリデータから取得した透明な品質スナップショットです。",
-      cards: {
-        lighthouse: { label: "Desktop Lighthouse", detail: "本番ドメインでのパフォーマンス / アクセシビリティ。" },
-        delivery: { label: "Prerender ルート", detail: "多言語ページを含め、ビルド時に生成される静的ルート数。" },
-        openSource: { label: "公開リポジトリ", detail: "GitHub 上で確認できる Kernel-Guard organization のリポジトリ。" },
-        languages: { label: "対応言語", detail: "トルコ語、英語、ドイツ語、日本語、中国語、スペイン語、フランス語、韓国語。" }
-      },
-      summary: {
-        indexableUrls: "indexable URL",
-        desktopTbt: "desktop TBT",
-        latestUpdate: "最新の公開リポジトリ更新"
-      },
-      footnote: "数値はマーケティング文句ではなく、測定値として表示しています。"
-    }
-  },
-  projects: {
-    ...en.projects,
-    badge: "DIRECTORY // OPEN_SOURCE",
-    title1: "オープンソース",
-    title2: "プロジェクト",
-    desc: "公開しているツール、セキュリティモジュール、システム開発プロジェクトの一覧です。",
-    colName: "プロジェクト名",
-    colDesc: "説明",
-    colTech: "技術スタック",
-    colLinks: "リンク"
-  },
-  completedProjects: {
-    ...en.completedProjects,
-    badge: "DIRECTORY // COMPLETED_PROJECTS",
-    title1: "完了済み",
-    title2: "プロジェクト",
-    desc: "Web開発プロジェクトと実績をご覧ください。",
-    noAccount: "公開アクセス可能。アカウントは不要です。",
-    credentials: "認証情報",
-    email: "ユーザー",
-    visit: "プロジェクトを見る",
-    links: "プロジェクトリンク",
-    colName: "名前",
-    colDesc: "説明",
-    colTags: "タグ",
-    colLinks: "リンク"
-  },
-  projectDetails: {
-    ...en.projectDetails,
-    architectureDiagram: "システム構成",
-    technicalOverview: "技術概要",
-    marketingOverview: "価値提案",
-    viewSource: "ソースコードを見る",
-    liveDemo: "ライブプレビュー",
-    backToProjects: "一覧に戻る",
-    repositoryEvidence: {
-      title: "リポジトリ情報",
-      measuredAt: "2026年5月31日に公開 GitHub リポジトリデータから測定。",
-      primaryLanguage: "主要言語",
-      lastPublicUpdate: "最終公開更新",
-      trackedIssues: "追跡中の issue",
-      repositorySize: "リポジトリサイズ",
-      languageMix: "言語構成"
-    }
-  },
-  footer: {
-    ...en.footer,
-    desc: "安全で高性能、信頼性の高いWebインフラを構築します。",
-    discover: "見る",
-    connect: "連絡先",
-    rights: "Kernel-Guard. All rights reserved.",
-    terms: "利用規約",
-    privacy: "プライバシーポリシー",
-    cookies: "Cookie設定"
-  },
-  terms: {
-    title: "利用規約",
-    lastUpdated: "最終更新: 2024年4月",
-    section1: { title: "1. 規約への同意", content: "Kernel GuardのWebサイトとサービスを利用することで、本規約に同意したものとみなされます。" },
-    section2: { title: "2. 利用許諾", content: "本サイトの資料は、個人的かつ非商用の閲覧目的に限り一時的に利用できます。" },
-    section3: { title: "3. 免責事項", content: "本サイトの資料は現状有姿で提供され、明示または黙示の保証はありません。" }
-  },
-  privacy: {
-    title: "プライバシーポリシー",
-    lastUpdated: "最終更新: 2024年4月",
-    section1: { title: "1. 収集する情報", content: "お問い合わせなどで直接提供された情報を収集する場合があります。" },
-    section2: { title: "2. 情報の利用", content: "収集した情報は、サービスの提供、維持、改善のために利用します。" },
-    section3: { title: "3. データセキュリティ", content: "個人情報を保護するため、適切なセキュリティ対策を実施します。" }
-  },
-  cookies: {
-    title: "Cookie設定",
-    lastUpdated: "最終更新: 2024年4月",
-    desc: "本サイトは利用体験を改善するためCookieを使用します。",
-    essential: { title: "必須Cookie", desc: "サイトの動作に必要なCookieです。" },
-    analytics: { title: "分析Cookie", desc: "サイトのパフォーマンス測定と改善に利用します。" },
-    save: "設定を保存"
-  },
-  contact: {
-    seo: {
-      title: "お問い合わせ | Kernel Guard",
-      description: "安全なWeb開発、サイバーセキュリティ、インフラ管理についてKernel Guardへお問い合わせください。",
-      keywords: "Kernel Guard お問い合わせ, サイバーセキュリティ, Web開発"
-    },
-    title: "お問い合わせ",
-    subtitle: "プロジェクトのご相談やセキュリティ支援が必要ですか？お気軽にご連絡ください。",
-    info: {
-      title: "連絡先情報",
-      desc: "以下の方法で直接ご連絡いただけます。",
-      email: "メール",
-      location: "所在地",
-      locationValue: "イズミル, トルコ",
-      social: "ソーシャル",
-      github: "GitHubリポジトリ"
-    },
-    form: {
-      name: "氏名",
-      namePlaceholder: "Taro Yamada",
-      email: "メールアドレス",
-      emailPlaceholder: "taro@example.com",
-      message: "メッセージ",
-      messagePlaceholder: "どのようにお手伝いできますか？",
-      submit: "送信",
-      sending: "送信中...",
-      success: "メッセージを送信しました。追ってご連絡します。",
-      error: "送信中にエラーが発生しました。後でもう一度お試しください。"
-    }
-  }
-};
-const zhCN = {
-  ...en,
-  seo: {
-    home: {
-      title: "Kernel Guard | 安全 Web 开发与网络安全解决方案",
-      description: "Kernel Guard 专注于高性能、安全的 Web 应用、加固后端架构和现代网络安全工程。",
-      keywords: "Kernel Guard, 安全 Web 开发, 网络安全, Zero Trust, 数据保护, 后端安全"
-    },
-    projects: {
-      title: "开源安全项目 | Kernel Guard",
-      description: "浏览 Kernel Guard 的开源安全工具、Web 安全项目和系统工程实践。",
-      keywords: "Kernel Guard 开源, 网络安全工具, Web 安全, 安全编码"
-    },
-    completedProjects: {
-      title: "已完成的安全 Web 项目 | Kernel Guard",
-      description: "查看 Kernel Guard 已完成的安全 Web 开发项目、性能优化和架构实践。",
-      keywords: "Kernel Guard 项目案例, 安全 Web 项目, Zero Trust, Web 开发"
-    },
-    services: {
-      title: "服务 | Kernel Guard",
-      description: "Kernel Guard 提供安全 Web 开发、网络安全咨询、SaaS 和云基础设施服务。",
-      keywords: "Kernel Guard 服务, Web 开发, 网络安全, SaaS 开发, 云管理"
-    }
-  },
-  nav: {
-    home: "首页",
-    services: "服务",
-    openSource: "开源项目",
-    completedProjects: "案例",
-    github: "GitHub",
-    contact: "联系"
-  },
-  servicesPage: {
-    title: "我们的服务",
-    subtitle: "构建安全、可扩展且面向未来的数字产品。",
-    services: [
-      { title: "Web 设计", desc: "现代、易用、以转化为目标的界面设计。", icon: "layout" },
-      { title: "网络安全", desc: "保护系统和数据免受最新威胁影响。", icon: "shield" },
-      { title: "定制软件开发", desc: "面向业务需求的可扩展软件解决方案。", icon: "code" },
-      { title: "Web 开发", desc: "高性能、安全、现代的 Web 应用。", icon: "globe" },
-      { title: "SaaS 开发", desc: "构建云端订阅型软件产品。", icon: "box" },
-      { title: "信息安全", desc: "保障企业数据的机密性、完整性和可用性。", icon: "lock" },
-      { title: "云应用开发", desc: "面向云原生环境构建现代应用。", icon: "cloud" },
-      { title: "云管理", desc: "云基础设施优化、安全加固与监控。", icon: "server" },
-      { title: "数据库开发", desc: "安全、快速、可扩展的数据库架构。", icon: "database" }
-    ],
-    ctaTitle: "准备开始项目了吗？",
-    ctaDesc: "联系我们，共同构建安全、现代的基础设施。",
-    ctaButton: "联系我们"
-  },
-  home: {
-    ...en.home,
-    systemSecure: "SYSTEMS_SECURE // V2.4.1",
-    heroTitle1: "安全且可扩展的",
-    heroTitle2: "Web 开发",
-    heroDesc: "Kernel Guard 以安全优先的方式构建高性能 Web 应用，将现代开发实践与强健的威胁防护结合起来。",
-    viewArch: "查看开源项目",
-    viewCompletedProjects: "查看案例",
-    missionTitle: "安全优先的 Web 工程",
-    missionP1: "真正的安全不能事后补丁式加入，而应从架构和代码基础中设计出来。",
-    missionP2: "我们覆盖安全前端、加固后端 API、数据库保护和云基础设施安全。",
-    techStackTitle: "技术栈",
-    techStackDesc: "我们使用安全、高性能的现代技术构建可靠产品。",
-    features: {
-      frontend: { title: "安全前端", desc: "基于 React 的现代界面，面向 XSS 和客户端风险进行加固。" },
-      backend: { title: "加固后端", desc: "遵循 Zero Trust 原则的可扩展 API 和服务端架构。" },
-      data: { title: "数据保护", desc: "通过加密和安全数据库实践保护敏感信息。" },
-      performance: { title: "高性能", desc: "在不牺牲安全检查的前提下实现快速加载。" }
-    },
-    principles: {
-      title: "工程原则",
-      items: [
-        { title: "默认开放", desc: "通过开源代码和公开代码审查实现透明安全。" },
-        { title: "Zero Trust", desc: "验证每个请求，不默认信任任何实体，并默认假设存在风险。" },
-        { title: "社区驱动", desc: "由系统工程师和安全研究人员共同构建。" }
-      ]
-    },
-    community: {
-      title: "公开构建",
-      desc: "我们正在持续构建核心基础设施，并以开源方式公开进展。"
-    },
-    proof: {
-      badge: "已测量 // 公开证据",
-      title: "不是展示，而是证据",
-      desc: "基于 2026 年 6 月 1 日的 Lighthouse CLI、预渲染输出和公开 GitHub 仓库数据生成的透明质量快照。",
-      cards: {
-        lighthouse: { label: "桌面 Lighthouse", detail: "生产域名上的性能 / 可访问性。" },
-        delivery: { label: "预渲染路由", detail: "构建时为多语言页面生成的静态路由。" },
-        openSource: { label: "公开仓库", detail: "GitHub 上可见的 Kernel-Guard 组织仓库。" },
-        languages: { label: "支持语言", detail: "土耳其语、英语、德语、日语、中文、西班牙语、法语和韩语。" }
-      },
-      summary: {
-        indexableUrls: "可索引 URL",
-        desktopTbt: "桌面 TBT",
-        latestUpdate: "最新公开仓库更新"
-      },
-      footnote: "这些指标按实测值展示，而不是营销声明。"
-    }
-  },
-  projects: {
-    ...en.projects,
-    badge: "DIRECTORY // OPEN_SOURCE",
-    title1: "开源",
-    title2: "项目",
-    desc: "我们的开源工具、安全模块和系统工程项目索引。",
-    colName: "项目名称",
-    colDesc: "描述",
-    colTech: "技术栈",
-    colLinks: "链接"
-  },
-  completedProjects: {
-    ...en.completedProjects,
-    badge: "DIRECTORY // COMPLETED_PROJECTS",
-    title1: "已完成",
-    title2: "项目",
-    desc: "查看我们已完成的 Web 开发项目和成功案例。",
-    noAccount: "公开访问，无需账户。",
-    credentials: "认证信息",
-    email: "用户",
-    visit: "访问项目",
-    links: "项目链接",
-    colName: "名称",
-    colDesc: "描述",
-    colTags: "标签",
-    colLinks: "链接"
-  },
-  projectDetails: {
-    ...en.projectDetails,
-    architectureDiagram: "系统架构",
-    technicalOverview: "技术概览",
-    marketingOverview: "价值主张",
-    viewSource: "查看源代码",
-    liveDemo: "在线预览",
-    backToProjects: "返回目录",
-    repositoryEvidence: {
-      title: "仓库证据",
-      measuredAt: "基于 2026 年 5 月 31 日的公开 GitHub 仓库数据测量。",
-      primaryLanguage: "主要语言",
-      lastPublicUpdate: "最后公开更新",
-      trackedIssues: "跟踪中的 issue",
-      repositorySize: "仓库大小",
-      languageMix: "语言组成"
-    }
-  },
-  footer: {
-    ...en.footer,
-    desc: "为现代数字产品构建安全、高性能、可靠的 Web 基础设施。",
-    discover: "发现",
-    connect: "联系",
-    rights: "Kernel-Guard. 保留所有权利。",
-    terms: "服务条款",
-    privacy: "隐私政策",
-    cookies: "Cookie 设置"
-  },
-  terms: {
-    title: "服务条款",
-    lastUpdated: "最后更新：2024 年 4 月",
-    section1: { title: "1. 接受条款", content: "访问和使用 Kernel Guard 网站与服务，即表示您同意遵守本服务条款。" },
-    section2: { title: "2. 使用许可", content: "本网站资料仅可用于个人、非商业性的临时查看。" },
-    section3: { title: "3. 免责声明", content: "本网站资料按“现状”提供，不作任何明示或默示保证。" }
-  },
-  privacy: {
-    title: "隐私政策",
-    lastUpdated: "最后更新：2024 年 4 月",
-    section1: { title: "1. 我们收集的信息", content: "我们会收集您在联系我们时直接提供的信息。" },
-    section2: { title: "2. 信息使用方式", content: "我们使用信息来提供、维护和改进服务。" },
-    section3: { title: "3. 数据安全", content: "我们采用安全措施保护您的个人信息。" }
-  },
-  cookies: {
-    title: "Cookie 设置",
-    lastUpdated: "最后更新：2024 年 4 月",
-    desc: "本网站使用 Cookie 以改善用户体验。",
-    essential: { title: "必要 Cookie", desc: "这些 Cookie 是网站正常运行所必需的。" },
-    analytics: { title: "分析 Cookie", desc: "这些 Cookie 帮助我们衡量并改进网站性能。" },
-    save: "保存设置"
-  },
-  contact: {
-    seo: {
-      title: "联系 | Kernel Guard",
-      description: "联系 Kernel Guard，获取安全 Web 开发、网络安全咨询和基础设施管理支持。",
-      keywords: "Kernel Guard 联系, 网络安全咨询, Web 开发"
-    },
-    title: "联系我们",
-    subtitle: "有项目计划或需要安全咨询？欢迎与我们联系。",
-    info: {
-      title: "联系信息",
-      desc: "您可以通过以下渠道直接联系我们。",
-      email: "电子邮件",
-      location: "地点",
-      locationValue: "土耳其 伊兹密尔",
-      social: "社交媒体",
-      github: "GitHub 仓库"
-    },
-    form: {
-      name: "姓名",
-      namePlaceholder: "Zhang Wei",
-      email: "电子邮件地址",
-      emailPlaceholder: "zhang@example.com",
-      message: "留言",
-      messagePlaceholder: "我们可以如何帮助您？",
-      submit: "发送消息",
-      sending: "发送中...",
-      success: "消息已成功发送，我们会尽快回复。",
-      error: "发送消息时出现错误，请稍后再试。"
-    }
-  }
-};
-const es = {
-  ...en,
-  seo: {
-    ...en.seo,
-    home: {
-      title: "Kernel Guard | Desarrollo web seguro y soluciones de ciberseguridad",
-      description: "Kernel Guard construye aplicaciones web de alto rendimiento con arquitecturas backend reforzadas y enfoque security-first.",
-      keywords: en.seo.home.keywords
-    },
-    services: {
-      title: "Servicios | Kernel Guard",
-      description: "Servicios de ingeniería web segura, ciberseguridad e infraestructura cloud de Kernel Guard.",
-      keywords: en.seo.services.keywords
-    }
-  },
-  nav: {
-    home: "Inicio",
-    services: "Servicios",
-    openSource: "Open Source",
-    completedProjects: "Casos",
-    github: "GitHub",
-    contact: "Contacto"
-  },
-  servicesPage: {
-    title: "Servicios",
-    subtitle: "Soluciones tecnológicas seguras y escalables para productos digitales exigentes.",
-    services: [
-      { title: "Diseño web", desc: "Interfaces modernas, claras y orientadas a conversión.", icon: "layout" },
-      { title: "Ciberseguridad", desc: "Protección de sistemas, APIs y datos frente a amenazas actuales.", icon: "shield" },
-      { title: "Software a medida", desc: "Soluciones escalables adaptadas a necesidades de negocio concretas.", icon: "code" },
-      { title: "Desarrollo web", desc: "Aplicaciones web modernas, rápidas y seguras.", icon: "globe" },
-      { title: "Desarrollo SaaS", desc: "Productos cloud con modelo de suscripción y operación estable.", icon: "box" },
-      { title: "Seguridad de la información", desc: "Controles para confidencialidad, integridad y disponibilidad.", icon: "lock" },
-      { title: "Apps cloud", desc: "Aplicaciones diseñadas para ejecutarse de forma nativa en cloud.", icon: "cloud" },
-      { title: "Gestión cloud", desc: "Optimización, seguridad y monitorización de infraestructura cloud.", icon: "server" },
-      { title: "Bases de datos", desc: "Arquitecturas de datos seguras, rápidas y preparadas para crecer.", icon: "database" }
-    ],
-    ctaTitle: "¿Listo para tu proyecto?",
-    ctaDesc: "Hablemos para construir una infraestructura segura y moderna.",
-    ctaButton: "Contactar"
-  },
-  home: {
-    ...en.home,
-    heroTitle1: "Desarrollo web",
-    heroTitle2: "seguro y escalable",
-    heroDesc: "Kernel-Guard construye aplicaciones web de alto rendimiento con enfoque security-first y mecanismos avanzados de defensa.",
-    viewArch: "Ver open source",
-    viewCompletedProjects: "Casos",
-    missionTitle: "Ingeniería web security-first",
-    missionP1: "La seguridad real no se añade al final; se diseña desde la base del código, la arquitectura y el proceso de entrega.",
-    missionP2: "Nuestro trabajo cubre frontends seguros, APIs reforzadas, administración de datos y operaciones cloud resistentes.",
-    techStackTitle: "Nuestro arsenal",
-    techStackDesc: "Construimos con tecnologías modernas, medibles y preparadas para entornos exigentes.",
-    proof: {
-      ...en.home.proof,
-      badge: "MEDIDO // EVIDENCIA_PUBLICA",
-      title: "Evidencia, no presentación",
-      desc: "Resumen transparente basado en Lighthouse CLI, prerender y datos públicos de GitHub medidos el 1 de junio de 2026.",
-      cards: {
-        ...en.home.proof.cards,
-        languages: {
-          label: "Idiomas soportados",
-          detail: "Turco, inglés, alemán, japonés, chino, español, francés y coreano."
-        }
-      },
-      footnote: "Los valores se muestran como mediciones, no como claims de marketing."
-    }
-  },
-  projects: {
-    ...en.projects,
-    badge: "DIRECTORIO // OPEN_SOURCE",
-    title1: "Proyectos",
-    title2: "Open Source",
-    desc: "Índice de herramientas abiertas, módulos de seguridad e iniciativas de sistemas.",
-    colName: "Proyecto",
-    colDesc: "Descripción",
-    colTech: "Tecnología",
-    colLinks: "Enlaces"
-  },
-  completedProjects: {
-    ...en.completedProjects,
-    title1: "Casos",
-    title2: "completados",
-    desc: "Portafolio de proyectos web completados y accesibles públicamente.",
-    visit: "Ver proyecto"
-  },
-  projectDetails: {
-    ...en.projectDetails,
-    architectureDiagram: "Arquitectura del sistema",
-    technicalOverview: "Resumen técnico",
-    marketingOverview: "Propuesta de valor",
-    viewSource: "Ver código fuente",
-    liveDemo: "Demo en vivo",
-    backToProjects: "Volver al directorio"
-  },
-  footer: {
-    ...en.footer,
-    desc: "Infraestructura web segura, eficiente y resistente para productos digitales modernos.",
-    discover: "Explorar",
-    connect: "Conectar",
-    rights: "Kernel-Guard. Todos los derechos reservados."
-  },
-  contact: {
-    ...en.contact,
-    title: "Contacto",
-    subtitle: "¿Tienes un proyecto o necesitas una revisión de seguridad? Escríbenos."
-  }
-};
-const fr = {
-  ...en,
-  seo: {
-    ...en.seo,
-    home: {
-      title: "Kernel Guard | Développement web sécurisé et cybersécurité",
-      description: "Kernel Guard conçoit des applications web performantes, des backends renforcés et des architectures security-first.",
-      keywords: en.seo.home.keywords
-    },
-    services: {
-      title: "Services | Kernel Guard",
-      description: "Services de développement web sécurisé, cybersécurité et infrastructure cloud.",
-      keywords: en.seo.services.keywords
-    }
-  },
-  nav: {
-    home: "Accueil",
-    services: "Services",
-    openSource: "Open Source",
-    completedProjects: "Réalisations",
-    github: "GitHub",
-    contact: "Contact"
-  },
-  servicesPage: {
-    title: "Services",
-    subtitle: "Des solutions technologiques sûres et évolutives pour produits numériques exigeants.",
-    services: [
-      { title: "Design web", desc: "Interfaces modernes, lisibles et orientées conversion.", icon: "layout" },
-      { title: "Cybersécurité", desc: "Protection des systèmes, APIs et données contre les menaces actuelles.", icon: "shield" },
-      { title: "Logiciel sur mesure", desc: "Solutions évolutives adaptées à vos besoins métier.", icon: "code" },
-      { title: "Développement web", desc: "Applications web modernes, rapides et sécurisées.", icon: "globe" },
-      { title: "Développement SaaS", desc: "Produits cloud fiables avec modèle d’abonnement.", icon: "box" },
-      { title: "Sécurité de l’information", desc: "Contrôles de confidentialité, intégrité et disponibilité.", icon: "lock" },
-      { title: "Applications cloud", desc: "Applications conçues pour des environnements cloud natifs.", icon: "cloud" },
-      { title: "Gestion cloud", desc: "Optimisation, sécurité et supervision de l’infrastructure.", icon: "server" },
-      { title: "Bases de données", desc: "Architectures de données sécurisées, rapides et scalables.", icon: "database" }
-    ],
-    ctaTitle: "Prêt pour votre projet ?",
-    ctaDesc: "Contactez-nous pour construire une infrastructure moderne et sécurisée.",
-    ctaButton: "Nous contacter"
-  },
-  home: {
-    ...en.home,
-    heroTitle1: "Développement web",
-    heroTitle2: "sécurisé et scalable",
-    heroDesc: "Kernel-Guard construit des applications web performantes avec une approche security-first et des mécanismes de défense avancés.",
-    viewArch: "Voir l’open source",
-    viewCompletedProjects: "Réalisations",
-    missionTitle: "Ingénierie web security-first",
-    missionP1: "La sécurité réelle ne s’ajoute pas après coup ; elle se conçoit dès le socle du code, de l’architecture et de la livraison.",
-    missionP2: "Nous couvrons les frontends sécurisés, les APIs renforcées, la gestion des données et les opérations cloud résilientes.",
-    techStackTitle: "Notre arsenal",
-    techStackDesc: "Nous construisons avec des technologies modernes, mesurables et adaptées aux environnements critiques.",
-    proof: {
-      ...en.home.proof,
-      badge: "MESURE // PREUVE_PUBLIQUE",
-      title: "Des preuves, pas une vitrine",
-      desc: "Synthèse qualité basée sur Lighthouse CLI, le prerender et les données GitHub publiques mesurées le 1er juin 2026.",
-      cards: {
-        ...en.home.proof.cards,
-        languages: {
-          label: "Langues prises en charge",
-          detail: "Turc, anglais, allemand, japonais, chinois, espagnol, français et coréen."
-        }
-      },
-      footnote: "Les métriques sont affichées comme mesures, pas comme slogans marketing."
-    }
-  },
-  projects: {
-    ...en.projects,
-    title1: "Projets",
-    title2: "Open Source",
-    desc: "Index de nos outils ouverts, modules de sécurité et initiatives systèmes.",
-    colName: "Projet",
-    colDesc: "Description",
-    colTech: "Technologies",
-    colLinks: "Liens"
-  },
-  completedProjects: {
-    ...en.completedProjects,
-    title1: "Réalisations",
-    title2: "livrées",
-    desc: "Portefeuille de projets web terminés et vérifiables.",
-    visit: "Voir le projet"
-  },
-  footer: {
-    ...en.footer,
-    desc: "Infrastructure web sécurisée, performante et résiliente pour produits numériques modernes.",
-    discover: "Découvrir",
-    connect: "Contact",
-    rights: "Kernel-Guard. Tous droits réservés."
-  },
-  contact: {
-    ...en.contact,
-    title: "Contact",
-    subtitle: "Un projet ou un besoin de conseil sécurité ? Écrivez-nous."
-  }
-};
-const ko = {
-  ...en,
-  seo: {
-    ...en.seo,
-    home: {
-      title: "Kernel Guard | 보안 중심 웹 개발 및 사이버보안",
-      description: "Kernel Guard는 고성능 웹 애플리케이션, 강화된 백엔드, security-first 아키텍처를 구축합니다.",
-      keywords: en.seo.home.keywords
-    },
-    services: {
-      title: "서비스 | Kernel Guard",
-      description: "보안 웹 개발, 사이버보안 컨설팅, 클라우드 인프라 서비스를 제공합니다.",
-      keywords: en.seo.services.keywords
-    }
-  },
-  nav: {
-    home: "홈",
-    services: "서비스",
-    openSource: "오픈소스",
-    completedProjects: "사례",
-    github: "GitHub",
-    contact: "문의"
-  },
-  servicesPage: {
-    title: "서비스",
-    subtitle: "디지털 제품을 위한 안전하고 확장 가능한 기술 솔루션.",
-    services: [
-      { title: "웹 디자인", desc: "명확하고 현대적인 사용자 인터페이스 설계.", icon: "layout" },
-      { title: "사이버보안", desc: "시스템, API, 데이터를 최신 위협으로부터 보호합니다.", icon: "shield" },
-      { title: "맞춤 소프트웨어", desc: "비즈니스 요구에 맞춘 확장 가능한 소프트웨어.", icon: "code" },
-      { title: "웹 개발", desc: "빠르고 안전한 현대적 웹 애플리케이션.", icon: "globe" },
-      { title: "SaaS 개발", desc: "구독 기반 클라우드 제품 구축.", icon: "box" },
-      { title: "정보보안", desc: "기밀성, 무결성, 가용성을 위한 보안 제어.", icon: "lock" },
-      { title: "클라우드 앱", desc: "클라우드 네이티브 환경을 위한 애플리케이션.", icon: "cloud" },
-      { title: "클라우드 관리", desc: "인프라 최적화, 보안, 모니터링.", icon: "server" },
-      { title: "데이터베이스", desc: "안전하고 빠르며 확장 가능한 데이터 아키텍처.", icon: "database" }
-    ],
-    ctaTitle: "프로젝트를 시작할 준비가 되셨나요?",
-    ctaDesc: "안전하고 현대적인 인프라를 함께 구축해 보세요.",
-    ctaButton: "문의하기"
-  },
-  home: {
-    ...en.home,
-    heroTitle1: "안전하고 확장 가능한",
-    heroTitle2: "웹 개발",
-    heroDesc: "Kernel-Guard는 security-first 접근과 고급 방어 메커니즘으로 고성능 웹 애플리케이션을 구축합니다.",
-    viewArch: "오픈소스 보기",
-    viewCompletedProjects: "사례 보기",
-    missionTitle: "Security-first 웹 엔지니어링",
-    missionP1: "진짜 보안은 나중에 덧붙이는 것이 아니라 코드, 아키텍처, 배포 프로세스의 기초부터 설계되어야 합니다.",
-    missionP2: "보안 프론트엔드, 강화된 API, 데이터 관리, 탄력적인 클라우드 운영까지 다룹니다.",
-    techStackTitle: "기술 스택",
-    techStackDesc: "현대적이고 측정 가능한 기술로 안정적인 솔루션을 만듭니다.",
-    proof: {
-      ...en.home.proof,
-      badge: "측정됨 // 공개_증거",
-      title: "프레젠테이션이 아닌 증거",
-      desc: "2026년 6월 1일 Lighthouse CLI, prerender 결과, 공개 GitHub 데이터를 기반으로 한 품질 요약.",
-      cards: {
-        ...en.home.proof.cards,
-        languages: {
-          label: "지원 언어",
-          detail: "터키어, 영어, 독일어, 일본어, 중국어, 스페인어, 프랑스어, 한국어."
-        }
-      },
-      footnote: "마케팅 문구가 아니라 실제 측정값을 표시합니다."
-    }
-  },
-  projects: {
-    ...en.projects,
-    title1: "오픈소스",
-    title2: "프로젝트",
-    desc: "보안 도구, 시스템 프로그래밍 프로젝트, 공개 소스 이니셔티브 목록.",
-    colName: "프로젝트",
-    colDesc: "설명",
-    colTech: "기술",
-    colLinks: "링크"
-  },
-  completedProjects: {
-    ...en.completedProjects,
-    title1: "완료된",
-    title2: "프로젝트",
-    desc: "완료된 웹 개발 사례와 공개 포트폴리오.",
-    visit: "프로젝트 보기"
-  },
-  footer: {
-    ...en.footer,
-    desc: "현대 디지털 제품을 위한 안전하고 빠르며 탄력적인 웹 인프라.",
-    discover: "탐색",
-    connect: "연결",
-    rights: "Kernel-Guard. 모든 권리 보유."
-  },
-  contact: {
-    ...en.contact,
-    title: "문의",
-    subtitle: "프로젝트 또는 보안 상담이 필요하시면 연락해 주세요."
-  }
-};
-const LanguageContext = createContext$1(void 0);
-const translations = {
-  tr,
-  en,
-  de,
-  ja,
-  "zh-CN": zhCN,
-  es,
-  fr,
-  ko
-};
-const LanguageProvider = ({ children, initialLanguage = "tr" }) => {
-  const [language, setLanguage] = useState(initialLanguage);
-  const t = translations[language];
-  return /* @__PURE__ */ jsx(LanguageContext.Provider, { value: { language, setLanguage, t }, children });
-};
-const useLanguage = () => {
-  const context = useContext(LanguageContext);
-  if (context === void 0) {
-    throw new Error("useLanguage must be used within a LanguageProvider");
-  }
-  return context;
-};
-const ThemeContext = createContext$1(void 0);
+import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { Fragment, jsx, jsxs } from "react/jsx-runtime";
+//#region src/context/ThemeContext.tsx
+var import_dist = require_dist();
+var ThemeContext = createContext(void 0);
 function readInitialTheme() {
-  if (typeof window === "undefined") {
-    return "dark";
-  }
-  try {
-    const savedTheme = window.localStorage.getItem("theme");
-    if (savedTheme === "light" || savedTheme === "dark") {
-      return savedTheme;
-    }
-  } catch {
-  }
-  if (typeof window.matchMedia === "function") {
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  }
-  return "dark";
+	if (typeof window === "undefined") return "dark";
+	try {
+		const savedTheme = window.localStorage.getItem("theme");
+		if (savedTheme === "light" || savedTheme === "dark") return savedTheme;
+	} catch {}
+	if (typeof window.matchMedia === "function") return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+	return "dark";
 }
 function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState(readInitialTheme);
-  useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
-    const root = window.document.documentElement;
-    root.classList.remove("light", "dark");
-    root.classList.add(theme);
-    try {
-      window.localStorage.setItem("theme", theme);
-    } catch {
-    }
-  }, [theme]);
-  const toggleTheme = () => {
-    setTheme((prev) => prev === "light" ? "dark" : "light");
-  };
-  return /* @__PURE__ */ jsx(ThemeContext.Provider, { value: { theme, toggleTheme }, children });
+	const [theme, setTheme] = useState(readInitialTheme);
+	useEffect(() => {
+		if (typeof window === "undefined") return;
+		const root = window.document.documentElement;
+		root.classList.remove("light", "dark");
+		root.classList.add(theme);
+		try {
+			window.localStorage.setItem("theme", theme);
+		} catch {}
+	}, [theme]);
+	const toggleTheme = () => {
+		setTheme((prev) => prev === "light" ? "dark" : "light");
+	};
+	return /* @__PURE__ */ jsx(ThemeContext.Provider, {
+		value: {
+			theme,
+			toggleTheme
+		},
+		children
+	});
 }
 function useTheme() {
-  const context = useContext(ThemeContext);
-  if (context === void 0) {
-    throw new Error("useTheme must be used within a ThemeProvider");
-  }
-  return context;
+	const context = useContext(ThemeContext);
+	if (context === void 0) throw new Error("useTheme must be used within a ThemeProvider");
+	return context;
 }
-const DEFAULT_SITE_URL = "https://www.kernelguard.net";
-function normalizeSiteUrl(value) {
-  return value.trim().replace(/\/$/, "");
-}
-function normalizeCanonicalPath(inputPath) {
-  var _a2;
-  const withoutQuery = ((_a2 = inputPath.split("?")[0]) == null ? void 0 : _a2.split("#")[0]) ?? "/";
-  const prefixed = withoutQuery.startsWith("/") ? withoutQuery : `/${withoutQuery}`;
-  const deduped = prefixed.replace(/\/+/g, "/");
-  if (deduped === "/") {
-    return "/";
-  }
-  return deduped.endsWith("/") ? deduped : `${deduped}/`;
-}
-function buildCanonicalUrl(siteUrl, path) {
-  return `${normalizeSiteUrl(siteUrl)}${normalizeCanonicalPath(path)}`;
-}
-const FILE_LIKE_PATH = /\.[a-z0-9]+$/i;
+//#endregion
+//#region src/components/CanonicalPathRedirect.tsx
+var FILE_LIKE_PATH = /\.[a-z0-9]+$/i;
 function CanonicalPathRedirect() {
-  const location2 = distExports.useLocation();
-  if (FILE_LIKE_PATH.test(location2.pathname)) {
-    return null;
-  }
-  const normalizedPathname = normalizeCanonicalPath(location2.pathname);
-  if (normalizedPathname === location2.pathname) {
-    return null;
-  }
-  const normalizedTarget = `${normalizedPathname}${location2.search}${location2.hash}`;
-  return /* @__PURE__ */ jsx(distExports.Navigate, { to: normalizedTarget, replace: true });
+	const location = (0, import_dist.useLocation)();
+	if (FILE_LIKE_PATH.test(location.pathname)) return null;
+	const normalizedPathname = normalizeCanonicalPath(location.pathname);
+	if (normalizedPathname === location.pathname) return null;
+	return /* @__PURE__ */ jsx(import_dist.Navigate, {
+		to: `${normalizedPathname}${location.search}${location.hash}`,
+		replace: true
+	});
 }
+//#endregion
+//#region src/components/ScrollToTop.tsx
 function ScrollToTop() {
-  const { pathname } = distExports.useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
+	const { pathname } = (0, import_dist.useLocation)();
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [pathname]);
+	return null;
 }
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const toKebabCase = (string) => string.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
-const toCamelCase = (string) => string.replace(
-  /^([A-Z])|[\s-_]+(\w)/g,
-  (match, p1, p2) => p2 ? p2.toUpperCase() : p1.toLowerCase()
-);
-const toPascalCase = (string) => {
-  const camelCase = toCamelCase(string);
-  return camelCase.charAt(0).toUpperCase() + camelCase.slice(1);
-};
-const mergeClasses = (...classes) => classes.filter((className, index, array) => {
-  return Boolean(className) && className.trim() !== "" && array.indexOf(className) === index;
-}).join(" ").trim();
-const hasA11yProp = (props) => {
-  for (const prop in props) {
-    if (prop.startsWith("aria-") || prop === "role" || prop === "title") {
-      return true;
-    }
-  }
-};
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var ArrowLeft = createLucideIcon("arrow-left", [["path", {
+	d: "m12 19-7-7 7-7",
+	key: "1l729n"
+}], ["path", {
+	d: "M19 12H5",
+	key: "x3x0zl"
+}]]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-var defaultAttributes = {
-  xmlns: "http://www.w3.org/2000/svg",
-  width: 24,
-  height: 24,
-  viewBox: "0 0 24 24",
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: 2,
-  strokeLinecap: "round",
-  strokeLinejoin: "round"
-};
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var ArrowRight = createLucideIcon("arrow-right", [["path", {
+	d: "M5 12h14",
+	key: "1ays0h"
+}], ["path", {
+	d: "m12 5 7 7-7 7",
+	key: "xquz4c"
+}]]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const Icon = forwardRef(
-  ({
-    color = "currentColor",
-    size = 24,
-    strokeWidth = 2,
-    absoluteStrokeWidth,
-    className = "",
-    children,
-    iconNode,
-    ...rest
-  }, ref) => createElement(
-    "svg",
-    {
-      ref,
-      ...defaultAttributes,
-      width: size,
-      height: size,
-      stroke: color,
-      strokeWidth: absoluteStrokeWidth ? Number(strokeWidth) * 24 / Number(size) : strokeWidth,
-      className: mergeClasses("lucide", className),
-      ...!children && !hasA11yProp(rest) && { "aria-hidden": "true" },
-      ...rest
-    },
-    [
-      ...iconNode.map(([tag, attrs]) => createElement(tag, attrs)),
-      ...Array.isArray(children) ? children : [children]
-    ]
-  )
-);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var Box = createLucideIcon("box", [
+	["path", {
+		d: "M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z",
+		key: "hh9hay"
+	}],
+	["path", {
+		d: "m3.3 7 8.7 5 8.7-5",
+		key: "g66t2b"
+	}],
+	["path", {
+		d: "M12 22V12",
+		key: "d0xqtd"
+	}]
+]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const createLucideIcon = (iconName, iconNode) => {
-  const Component2 = forwardRef(
-    ({ className, ...props }, ref) => createElement(Icon, {
-      ref,
-      iconNode,
-      className: mergeClasses(
-        `lucide-${toKebabCase(toPascalCase(iconName))}`,
-        `lucide-${iconName}`,
-        className
-      ),
-      ...props
-    })
-  );
-  Component2.displayName = toPascalCase(iconName);
-  return Component2;
-};
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var BriefcaseBusiness = createLucideIcon("briefcase-business", [
+	["path", {
+		d: "M12 12h.01",
+		key: "1mp3jc"
+	}],
+	["path", {
+		d: "M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2",
+		key: "1ksdt3"
+	}],
+	["path", {
+		d: "M22 13a18.15 18.15 0 0 1-20 0",
+		key: "12hx5q"
+	}],
+	["rect", {
+		width: "20",
+		height: "14",
+		x: "2",
+		y: "6",
+		rx: "2",
+		key: "i6l2r4"
+	}]
+]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$v = [
-  ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
-  ["path", { d: "M19 12H5", key: "x3x0zl" }]
-];
-const ArrowLeft = createLucideIcon("arrow-left", __iconNode$v);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var Check = createLucideIcon("check", [["path", {
+	d: "M20 6 9 17l-5-5",
+	key: "1gmf2c"
+}]]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$u = [
-  ["path", { d: "M5 12h14", key: "1ays0h" }],
-  ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
-];
-const ArrowRight = createLucideIcon("arrow-right", __iconNode$u);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var ChevronDown = createLucideIcon("chevron-down", [["path", {
+	d: "m6 9 6 6 6-6",
+	key: "qrunsl"
+}]]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$t = [
-  [
-    "path",
-    {
-      d: "M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z",
-      key: "hh9hay"
-    }
-  ],
-  ["path", { d: "m3.3 7 8.7 5 8.7-5", key: "g66t2b" }],
-  ["path", { d: "M12 22V12", key: "d0xqtd" }]
-];
-const Box = createLucideIcon("box", __iconNode$t);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var CircleCheck = createLucideIcon("circle-check", [["circle", {
+	cx: "12",
+	cy: "12",
+	r: "10",
+	key: "1mglay"
+}], ["path", {
+	d: "m9 12 2 2 4-4",
+	key: "dzmm74"
+}]]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$s = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
-const Check = createLucideIcon("check", __iconNode$s);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var Cloud = createLucideIcon("cloud", [["path", {
+	d: "M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z",
+	key: "p7xjir"
+}]]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$r = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
-const ChevronDown = createLucideIcon("chevron-down", __iconNode$r);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var Code = createLucideIcon("code", [["path", {
+	d: "m16 18 6-6-6-6",
+	key: "eg8j8"
+}], ["path", {
+	d: "m8 6-6 6 6 6",
+	key: "ppft3o"
+}]]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$q = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
-];
-const CircleCheck = createLucideIcon("circle-check", __iconNode$q);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var Database = createLucideIcon("database", [
+	["ellipse", {
+		cx: "12",
+		cy: "5",
+		rx: "9",
+		ry: "3",
+		key: "msslwz"
+	}],
+	["path", {
+		d: "M3 5V19A9 3 0 0 0 21 19V5",
+		key: "1wlel7"
+	}],
+	["path", {
+		d: "M3 12A9 3 0 0 0 21 12",
+		key: "mv7ke4"
+	}]
+]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$p = [
-  ["path", { d: "M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z", key: "p7xjir" }]
-];
-const Cloud = createLucideIcon("cloud", __iconNode$p);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var Earth = createLucideIcon("earth", [
+	["path", {
+		d: "M21.54 15H17a2 2 0 0 0-2 2v4.54",
+		key: "1djwo0"
+	}],
+	["path", {
+		d: "M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17",
+		key: "1tzkfa"
+	}],
+	["path", {
+		d: "M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05",
+		key: "14pb5j"
+	}],
+	["circle", {
+		cx: "12",
+		cy: "12",
+		r: "10",
+		key: "1mglay"
+	}]
+]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$o = [
-  ["path", { d: "m16 18 6-6-6-6", key: "eg8j8" }],
-  ["path", { d: "m8 6-6 6 6 6", key: "ppft3o" }]
-];
-const Code = createLucideIcon("code", __iconNode$o);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var ExternalLink = createLucideIcon("external-link", [
+	["path", {
+		d: "M15 3h6v6",
+		key: "1q9fwt"
+	}],
+	["path", {
+		d: "M10 14 21 3",
+		key: "gplh6r"
+	}],
+	["path", {
+		d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6",
+		key: "a6xqqp"
+	}]
+]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$n = [
-  ["ellipse", { cx: "12", cy: "5", rx: "9", ry: "3", key: "msslwz" }],
-  ["path", { d: "M3 5V19A9 3 0 0 0 21 19V5", key: "1wlel7" }],
-  ["path", { d: "M3 12A9 3 0 0 0 21 12", key: "mv7ke4" }]
-];
-const Database = createLucideIcon("database", __iconNode$n);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var FileText = createLucideIcon("file-text", [
+	["path", {
+		d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z",
+		key: "1rqfz7"
+	}],
+	["path", {
+		d: "M14 2v4a2 2 0 0 0 2 2h4",
+		key: "tnqrlb"
+	}],
+	["path", {
+		d: "M10 9H8",
+		key: "b1mrlr"
+	}],
+	["path", {
+		d: "M16 13H8",
+		key: "t4e002"
+	}],
+	["path", {
+		d: "M16 17H8",
+		key: "z1uh3a"
+	}]
+]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$m = [
-  ["path", { d: "M21.54 15H17a2 2 0 0 0-2 2v4.54", key: "1djwo0" }],
-  [
-    "path",
-    {
-      d: "M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17",
-      key: "1tzkfa"
-    }
-  ],
-  ["path", { d: "M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05", key: "14pb5j" }],
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }]
-];
-const Earth = createLucideIcon("earth", __iconNode$m);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var Gauge = createLucideIcon("gauge", [["path", {
+	d: "m12 14 4-4",
+	key: "9kzdfg"
+}], ["path", {
+	d: "M3.34 19a10 10 0 1 1 17.32 0",
+	key: "19p75a"
+}]]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$l = [
-  ["path", { d: "M15 3h6v6", key: "1q9fwt" }],
-  ["path", { d: "M10 14 21 3", key: "gplh6r" }],
-  ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6", key: "a6xqqp" }]
-];
-const ExternalLink = createLucideIcon("external-link", __iconNode$l);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var GitBranch = createLucideIcon("git-branch", [
+	["line", {
+		x1: "6",
+		x2: "6",
+		y1: "3",
+		y2: "15",
+		key: "17qcm7"
+	}],
+	["circle", {
+		cx: "18",
+		cy: "6",
+		r: "3",
+		key: "1h7g24"
+	}],
+	["circle", {
+		cx: "6",
+		cy: "18",
+		r: "3",
+		key: "fqmcym"
+	}],
+	["path", {
+		d: "M18 9a9 9 0 0 1-9 9",
+		key: "n2h4wq"
+	}]
+]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$k = [
-  ["path", { d: "m12 14 4-4", key: "9kzdfg" }],
-  ["path", { d: "M3.34 19a10 10 0 1 1 17.32 0", key: "19p75a" }]
-];
-const Gauge = createLucideIcon("gauge", __iconNode$k);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var GitMerge = createLucideIcon("git-merge", [
+	["circle", {
+		cx: "18",
+		cy: "18",
+		r: "3",
+		key: "1xkwt0"
+	}],
+	["circle", {
+		cx: "6",
+		cy: "6",
+		r: "3",
+		key: "1lh9wr"
+	}],
+	["path", {
+		d: "M6 21V9a9 9 0 0 0 9 9",
+		key: "7kw0sc"
+	}]
+]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$j = [
-  ["line", { x1: "6", x2: "6", y1: "3", y2: "15", key: "17qcm7" }],
-  ["circle", { cx: "18", cy: "6", r: "3", key: "1h7g24" }],
-  ["circle", { cx: "6", cy: "18", r: "3", key: "fqmcym" }],
-  ["path", { d: "M18 9a9 9 0 0 1-9 9", key: "n2h4wq" }]
-];
-const GitBranch = createLucideIcon("git-branch", __iconNode$j);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var Github = createLucideIcon("github", [["path", {
+	d: "M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4",
+	key: "tonef"
+}], ["path", {
+	d: "M9 18c-4.51 2-5-2-7-2",
+	key: "9comsn"
+}]]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$i = [
-  ["circle", { cx: "18", cy: "18", r: "3", key: "1xkwt0" }],
-  ["circle", { cx: "6", cy: "6", r: "3", key: "1lh9wr" }],
-  ["path", { d: "M6 21V9a9 9 0 0 0 9 9", key: "7kw0sc" }]
-];
-const GitMerge = createLucideIcon("git-merge", __iconNode$i);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var Globe = createLucideIcon("globe", [
+	["circle", {
+		cx: "12",
+		cy: "12",
+		r: "10",
+		key: "1mglay"
+	}],
+	["path", {
+		d: "M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20",
+		key: "13o1zl"
+	}],
+	["path", {
+		d: "M2 12h20",
+		key: "9i4pu4"
+	}]
+]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$h = [
-  [
-    "path",
-    {
-      d: "M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4",
-      key: "tonef"
-    }
-  ],
-  ["path", { d: "M9 18c-4.51 2-5-2-7-2", key: "9comsn" }]
-];
-const Github = createLucideIcon("github", __iconNode$h);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var LifeBuoy = createLucideIcon("life-buoy", [
+	["circle", {
+		cx: "12",
+		cy: "12",
+		r: "10",
+		key: "1mglay"
+	}],
+	["path", {
+		d: "m4.93 4.93 4.24 4.24",
+		key: "1ymg45"
+	}],
+	["path", {
+		d: "m14.83 9.17 4.24-4.24",
+		key: "1cb5xl"
+	}],
+	["path", {
+		d: "m14.83 14.83 4.24 4.24",
+		key: "q42g0n"
+	}],
+	["path", {
+		d: "m9.17 14.83-4.24 4.24",
+		key: "bqpfvv"
+	}],
+	["circle", {
+		cx: "12",
+		cy: "12",
+		r: "4",
+		key: "4exip2"
+	}]
+]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$g = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20", key: "13o1zl" }],
-  ["path", { d: "M2 12h20", key: "9i4pu4" }]
-];
-const Globe = createLucideIcon("globe", __iconNode$g);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var LockKeyhole = createLucideIcon("lock-keyhole", [
+	["circle", {
+		cx: "12",
+		cy: "16",
+		r: "1",
+		key: "1au0dj"
+	}],
+	["rect", {
+		x: "3",
+		y: "10",
+		width: "18",
+		height: "12",
+		rx: "2",
+		key: "6s8ecr"
+	}],
+	["path", {
+		d: "M7 10V7a5 5 0 0 1 10 0v3",
+		key: "1pqi11"
+	}]
+]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$f = [
-  ["rect", { width: "18", height: "11", x: "3", y: "11", rx: "2", ry: "2", key: "1w4ew1" }],
-  ["path", { d: "M7 11V7a5 5 0 0 1 10 0v4", key: "fwvmzm" }]
-];
-const Lock = createLucideIcon("lock", __iconNode$f);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var Lock = createLucideIcon("lock", [["rect", {
+	width: "18",
+	height: "11",
+	x: "3",
+	y: "11",
+	rx: "2",
+	ry: "2",
+	key: "1w4ew1"
+}], ["path", {
+	d: "M7 11V7a5 5 0 0 1 10 0v4",
+	key: "fwvmzm"
+}]]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$e = [
-  ["path", { d: "m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7", key: "132q7q" }],
-  ["rect", { x: "2", y: "4", width: "20", height: "16", rx: "2", key: "izxlao" }]
-];
-const Mail = createLucideIcon("mail", __iconNode$e);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var Mail = createLucideIcon("mail", [["path", {
+	d: "m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7",
+	key: "132q7q"
+}], ["rect", {
+	x: "2",
+	y: "4",
+	width: "20",
+	height: "16",
+	rx: "2",
+	key: "izxlao"
+}]]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$d = [
-  [
-    "path",
-    {
-      d: "M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0",
-      key: "1r0f0z"
-    }
-  ],
-  ["circle", { cx: "12", cy: "10", r: "3", key: "ilqhr7" }]
-];
-const MapPin = createLucideIcon("map-pin", __iconNode$d);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var MapPin = createLucideIcon("map-pin", [["path", {
+	d: "M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0",
+	key: "1r0f0z"
+}], ["circle", {
+	cx: "12",
+	cy: "10",
+	r: "3",
+	key: "ilqhr7"
+}]]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$c = [
-  ["path", { d: "M4 5h16", key: "1tepv9" }],
-  ["path", { d: "M4 12h16", key: "1lakjw" }],
-  ["path", { d: "M4 19h16", key: "1djgab" }]
-];
-const Menu = createLucideIcon("menu", __iconNode$c);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var Menu = createLucideIcon("menu", [
+	["path", {
+		d: "M4 5h16",
+		key: "1tepv9"
+	}],
+	["path", {
+		d: "M4 12h16",
+		key: "1lakjw"
+	}],
+	["path", {
+		d: "M4 19h16",
+		key: "1djgab"
+	}]
+]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$b = [
-  [
-    "path",
-    {
-      d: "M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401",
-      key: "kfwtm"
-    }
-  ]
-];
-const Moon = createLucideIcon("moon", __iconNode$b);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var Moon = createLucideIcon("moon", [["path", {
+	d: "M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401",
+	key: "kfwtm"
+}]]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$a = [
-  ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", key: "afitv7" }],
-  ["path", { d: "M3 9h18", key: "1pudct" }],
-  ["path", { d: "M9 21V9", key: "1oto5p" }]
-];
-const PanelsTopLeft = createLucideIcon("panels-top-left", __iconNode$a);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var PanelsTopLeft = createLucideIcon("panels-top-left", [
+	["rect", {
+		width: "18",
+		height: "18",
+		x: "3",
+		y: "3",
+		rx: "2",
+		key: "afitv7"
+	}],
+	["path", {
+		d: "M3 9h18",
+		key: "1pudct"
+	}],
+	["path", {
+		d: "M9 21V9",
+		key: "1oto5p"
+	}]
+]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$9 = [
-  [
-    "path",
-    {
-      d: "M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z",
-      key: "1ffxy3"
-    }
-  ],
-  ["path", { d: "m21.854 2.147-10.94 10.939", key: "12cjpa" }]
-];
-const Send = createLucideIcon("send", __iconNode$9);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var Send = createLucideIcon("send", [["path", {
+	d: "M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z",
+	key: "1ffxy3"
+}], ["path", {
+	d: "m21.854 2.147-10.94 10.939",
+	key: "12cjpa"
+}]]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$8 = [
-  ["rect", { width: "20", height: "8", x: "2", y: "2", rx: "2", ry: "2", key: "ngkwjq" }],
-  ["rect", { width: "20", height: "8", x: "2", y: "14", rx: "2", ry: "2", key: "iecqi9" }],
-  ["line", { x1: "6", x2: "6.01", y1: "6", y2: "6", key: "16zg32" }],
-  ["line", { x1: "6", x2: "6.01", y1: "18", y2: "18", key: "nzw8ys" }]
-];
-const Server = createLucideIcon("server", __iconNode$8);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var Server = createLucideIcon("server", [
+	["rect", {
+		width: "20",
+		height: "8",
+		x: "2",
+		y: "2",
+		rx: "2",
+		ry: "2",
+		key: "ngkwjq"
+	}],
+	["rect", {
+		width: "20",
+		height: "8",
+		x: "2",
+		y: "14",
+		rx: "2",
+		ry: "2",
+		key: "iecqi9"
+	}],
+	["line", {
+		x1: "6",
+		x2: "6.01",
+		y1: "6",
+		y2: "6",
+		key: "16zg32"
+	}],
+	["line", {
+		x1: "6",
+		x2: "6.01",
+		y1: "18",
+		y2: "18",
+		key: "nzw8ys"
+	}]
+]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$7 = [
-  [
-    "path",
-    {
-      d: "M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
-      key: "oel41y"
-    }
-  ],
-  ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
-];
-const ShieldCheck = createLucideIcon("shield-check", __iconNode$7);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var ShieldCheck = createLucideIcon("shield-check", [["path", {
+	d: "M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
+	key: "oel41y"
+}], ["path", {
+	d: "m9 12 2 2 4-4",
+	key: "dzmm74"
+}]]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$6 = [
-  [
-    "path",
-    {
-      d: "M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
-      key: "oel41y"
-    }
-  ]
-];
-const Shield = createLucideIcon("shield", __iconNode$6);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var Shield = createLucideIcon("shield", [["path", {
+	d: "M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
+	key: "oel41y"
+}]]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$5 = [
-  ["circle", { cx: "12", cy: "12", r: "4", key: "4exip2" }],
-  ["path", { d: "M12 2v2", key: "tus03m" }],
-  ["path", { d: "M12 20v2", key: "1lh1kg" }],
-  ["path", { d: "m4.93 4.93 1.41 1.41", key: "149t6j" }],
-  ["path", { d: "m17.66 17.66 1.41 1.41", key: "ptbguv" }],
-  ["path", { d: "M2 12h2", key: "1t8f8n" }],
-  ["path", { d: "M20 12h2", key: "1q8mjw" }],
-  ["path", { d: "m6.34 17.66-1.41 1.41", key: "1m8zz5" }],
-  ["path", { d: "m19.07 4.93-1.41 1.41", key: "1shlcs" }]
-];
-const Sun = createLucideIcon("sun", __iconNode$5);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var Sun = createLucideIcon("sun", [
+	["circle", {
+		cx: "12",
+		cy: "12",
+		r: "4",
+		key: "4exip2"
+	}],
+	["path", {
+		d: "M12 2v2",
+		key: "tus03m"
+	}],
+	["path", {
+		d: "M12 20v2",
+		key: "1lh1kg"
+	}],
+	["path", {
+		d: "m4.93 4.93 1.41 1.41",
+		key: "149t6j"
+	}],
+	["path", {
+		d: "m17.66 17.66 1.41 1.41",
+		key: "ptbguv"
+	}],
+	["path", {
+		d: "M2 12h2",
+		key: "1t8f8n"
+	}],
+	["path", {
+		d: "M20 12h2",
+		key: "1q8mjw"
+	}],
+	["path", {
+		d: "m6.34 17.66-1.41 1.41",
+		key: "1m8zz5"
+	}],
+	["path", {
+		d: "m19.07 4.93-1.41 1.41",
+		key: "1shlcs"
+	}]
+]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$4 = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["circle", { cx: "12", cy: "12", r: "6", key: "1vlfrh" }],
-  ["circle", { cx: "12", cy: "12", r: "2", key: "1c9p78" }]
-];
-const Target = createLucideIcon("target", __iconNode$4);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var Target = createLucideIcon("target", [
+	["circle", {
+		cx: "12",
+		cy: "12",
+		r: "10",
+		key: "1mglay"
+	}],
+	["circle", {
+		cx: "12",
+		cy: "12",
+		r: "6",
+		key: "1vlfrh"
+	}],
+	["circle", {
+		cx: "12",
+		cy: "12",
+		r: "2",
+		key: "1c9p78"
+	}]
+]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$3 = [
-  ["path", { d: "M12 19h8", key: "baeox8" }],
-  ["path", { d: "m4 17 6-6-6-6", key: "1yngyt" }]
-];
-const Terminal = createLucideIcon("terminal", __iconNode$3);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var Terminal = createLucideIcon("terminal", [["path", {
+	d: "M12 19h8",
+	key: "baeox8"
+}], ["path", {
+	d: "m4 17 6-6-6-6",
+	key: "1yngyt"
+}]]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$2 = [
-  ["path", { d: "M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2", key: "975kel" }],
-  ["circle", { cx: "12", cy: "7", r: "4", key: "17ys0d" }]
-];
-const User = createLucideIcon("user", __iconNode$2);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var User = createLucideIcon("user", [["path", {
+	d: "M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2",
+	key: "975kel"
+}], ["circle", {
+	cx: "12",
+	cy: "7",
+	r: "4",
+	key: "17ys0d"
+}]]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$1 = [
-  ["path", { d: "M18 6 6 18", key: "1bl5f8" }],
-  ["path", { d: "m6 6 12 12", key: "d8bk6v" }]
-];
-const X = createLucideIcon("x", __iconNode$1);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var X = createLucideIcon("x", [["path", {
+	d: "M18 6 6 18",
+	key: "1bl5f8"
+}], ["path", {
+	d: "m6 6 12 12",
+	key: "d8bk6v"
+}]]);
 /**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode = [
-  [
-    "path",
-    {
-      d: "M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z",
-      key: "1xq2db"
-    }
-  ]
-];
-const Zap = createLucideIcon("zap", __iconNode);
-const SUPPORTED_LANGUAGES = ["tr", "en", "de", "ja", "zh-CN", "es", "fr", "ko"];
-const LANGUAGE_PREFERENCE_STORAGE_KEY = "kg_language_preference";
-const LANGUAGE_PREFIXES = {
-  tr: "",
-  en: "/en",
-  de: "/de",
-  ja: "/ja",
-  "zh-CN": "/zh-cn",
-  es: "/es",
-  fr: "/fr",
-  ko: "/ko"
-};
-const LANGUAGE_HREFLANGS = {
-  tr: "tr",
-  en: "en",
-  de: "de",
-  ja: "ja",
-  "zh-CN": "zh-CN",
-  es: "es",
-  fr: "fr",
-  ko: "ko"
-};
-const LANGUAGE_LABELS = {
-  tr: "TR",
-  en: "EN",
-  de: "DE",
-  ja: "JA",
-  "zh-CN": "ZH",
-  es: "ES",
-  fr: "FR",
-  ko: "KO"
-};
-const PREFIX_LANGUAGE_ENTRIES = Object.entries(LANGUAGE_PREFIXES).filter(([, prefix]) => prefix).sort((a, b) => b[1].length - a[1].length);
-function stripLanguagePrefix(pathname) {
-  for (const [, prefix] of PREFIX_LANGUAGE_ENTRIES) {
-    if (pathname === prefix) return "/";
-    if (pathname.startsWith(`${prefix}/`)) {
-      const rest = pathname.slice(prefix.length);
-      return rest === "" ? "/" : rest;
-    }
-  }
-  return pathname;
-}
-function localizePath(path, lang) {
-  const stripped = stripLanguagePrefix(path);
-  const prefix = LANGUAGE_PREFIXES[lang];
-  if (!prefix) {
-    return stripped;
-  }
-  if (stripped === "/") {
-    return `${prefix}/`;
-  }
-  return `${prefix}${stripped.startsWith("/") ? "" : "/"}${stripped}`;
-}
-function setStoredLanguagePreference(language) {
-  if (typeof window === "undefined") {
-    return;
-  }
-  try {
-    window.localStorage.setItem(LANGUAGE_PREFERENCE_STORAGE_KEY, language);
-  } catch {
-  }
-}
-const CONSTRAINED_CONNECTION_TYPES = /* @__PURE__ */ new Set(["slow-2g", "2g"]);
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var Zap = createLucideIcon("zap", [["path", {
+	d: "M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z",
+	key: "1xq2db"
+}]]);
+//#endregion
+//#region src/routes/pageLoaders.ts
+var CONSTRAINED_CONNECTION_TYPES = new Set(["slow-2g", "2g"]);
 function cacheLoader(loader) {
-  let pending = null;
-  return () => {
-    if (!pending) {
-      pending = loader();
-    }
-    return pending;
-  };
+	let pending = null;
+	return () => {
+		if (!pending) pending = loader();
+		return pending;
+	};
 }
 function canPrefetchRoute() {
-  if (typeof navigator === "undefined") {
-    return false;
-  }
-  const connection = navigator.connection;
-  if (!connection) {
-    return true;
-  }
-  if (connection.saveData) {
-    return false;
-  }
-  return !CONSTRAINED_CONNECTION_TYPES.has(connection.effectiveType ?? "");
+	if (typeof navigator === "undefined") return false;
+	const connection = navigator.connection;
+	if (!connection) return true;
+	if (connection.saveData) return false;
+	return !CONSTRAINED_CONNECTION_TYPES.has(connection.effectiveType ?? "");
 }
-const loadHome = cacheLoader(() => Promise.resolve().then(() => Home$1));
-const loadProjects = cacheLoader(() => Promise.resolve().then(() => Projects$1));
-const loadProjectDetails = cacheLoader(() => Promise.resolve().then(() => ProjectDetails$1));
-const loadCompletedProjects = cacheLoader(() => Promise.resolve().then(() => CompletedProjects$1));
-const loadCompletedProjectDetails = cacheLoader(() => Promise.resolve().then(() => CompletedProjectDetails$1));
-const loadSecureFrontend = cacheLoader(() => Promise.resolve().then(() => SecureFrontend$1));
-const loadHardenedBackend = cacheLoader(() => Promise.resolve().then(() => HardenedBackend$1));
-const loadDataProtection = cacheLoader(() => Promise.resolve().then(() => DataProtection$1));
-const loadHighPerformance = cacheLoader(() => Promise.resolve().then(() => HighPerformance$1));
-const loadServices = cacheLoader(() => Promise.resolve().then(() => Services$1));
-const loadSecurity = cacheLoader(() => Promise.resolve().then(() => Security$1));
-const loadEngineering = cacheLoader(() => Promise.resolve().then(() => Engineering$1));
-const loadStatus = cacheLoader(() => Promise.resolve().then(() => Status$1));
-const loadChangelog = cacheLoader(() => Promise.resolve().then(() => Changelog$1));
-const loadTerms = cacheLoader(() => Promise.resolve().then(() => Terms$1));
-const loadPrivacy = cacheLoader(() => Promise.resolve().then(() => Privacy$1));
-const loadCookies = cacheLoader(() => Promise.resolve().then(() => Cookies$1));
-const loadContact = cacheLoader(() => Promise.resolve().then(() => Contact$1));
-const loadNotFound = cacheLoader(() => Promise.resolve().then(() => NotFound$1));
-const prefetchers = {
-  home: loadHome,
-  projects: loadProjects,
-  projectDetails: loadProjectDetails,
-  completedProjects: loadCompletedProjects,
-  completedProjectDetails: loadCompletedProjectDetails,
-  services: loadServices,
-  security: loadSecurity,
-  engineering: loadEngineering,
-  status: loadStatus,
-  changelog: loadChangelog,
-  secureFrontend: loadSecureFrontend,
-  hardenedBackend: loadHardenedBackend,
-  dataProtection: loadDataProtection,
-  highPerformance: loadHighPerformance,
-  terms: loadTerms,
-  privacy: loadPrivacy,
-  cookies: loadCookies,
-  contact: loadContact,
-  notFound: loadNotFound
+var loadHome = cacheLoader(() => Promise.resolve().then(() => Home_exports));
+var loadProjects = cacheLoader(() => Promise.resolve().then(() => Projects_exports));
+var loadProjectDetails = cacheLoader(() => Promise.resolve().then(() => ProjectDetails_exports));
+var loadCompletedProjects = cacheLoader(() => Promise.resolve().then(() => CompletedProjects_exports));
+var loadCompletedProjectDetails = cacheLoader(() => Promise.resolve().then(() => CompletedProjectDetails_exports));
+var loadSecureFrontend = cacheLoader(() => Promise.resolve().then(() => SecureFrontend_exports));
+var loadHardenedBackend = cacheLoader(() => Promise.resolve().then(() => HardenedBackend_exports));
+var loadDataProtection = cacheLoader(() => Promise.resolve().then(() => DataProtection_exports));
+var loadHighPerformance = cacheLoader(() => Promise.resolve().then(() => HighPerformance_exports));
+var prefetchers = {
+	home: loadHome,
+	projects: loadProjects,
+	projectDetails: loadProjectDetails,
+	completedProjects: loadCompletedProjects,
+	completedProjectDetails: loadCompletedProjectDetails,
+	services: cacheLoader(() => Promise.resolve().then(() => Services_exports)),
+	security: cacheLoader(() => Promise.resolve().then(() => Security_exports)),
+	engineering: cacheLoader(() => Promise.resolve().then(() => Engineering_exports)),
+	status: cacheLoader(() => Promise.resolve().then(() => Status_exports)),
+	changelog: cacheLoader(() => Promise.resolve().then(() => Changelog_exports)),
+	secureFrontend: loadSecureFrontend,
+	hardenedBackend: loadHardenedBackend,
+	dataProtection: loadDataProtection,
+	highPerformance: loadHighPerformance,
+	terms: cacheLoader(() => Promise.resolve().then(() => Terms_exports)),
+	privacy: cacheLoader(() => Promise.resolve().then(() => Privacy_exports)),
+	cookies: cacheLoader(() => Promise.resolve().then(() => Cookies_exports)),
+	contact: cacheLoader(() => Promise.resolve().then(() => Contact_exports)),
+	notFound: cacheLoader(() => Promise.resolve().then(() => NotFound_exports))
 };
 function prefetchRoute(route) {
-  if (!canPrefetchRoute()) {
-    return;
-  }
-  void prefetchers[route]();
+	if (!canPrefetchRoute()) return;
+	prefetchers[route]();
 }
 function prefetchRoutes(routes) {
-  for (const route of routes) {
-    prefetchRoute(route);
-  }
+	for (const route of routes) prefetchRoute(route);
 }
+//#endregion
+//#region src/components/Logo.tsx
 function Logo({ className = "", dark = false }) {
-  return /* @__PURE__ */ jsxs("div", { className: `flex flex-col items-center justify-center leading-none ${className}`, children: [
-    /* @__PURE__ */ jsx(
-      "span",
-      {
-        className: "font-['Michroma'] font-bold text-[1.35rem] tracking-[0.35em] uppercase ml-3",
-        style: {
-          color: dark ? "#ffffff" : "var(--logo-text)",
-          textShadow: dark ? "none" : "var(--logo-shadow)"
-        },
-        children: "Kernel"
-      }
-    ),
-    /* @__PURE__ */ jsx(
-      "span",
-      {
-        className: "font-['Michroma'] font-bold text-[2.75rem] tracking-[0.08em] text-transparent bg-clip-text bg-gradient-to-r from-[#0047b3] via-[#0066cc] to-[#00aaff] uppercase mt-1",
-        style: { textShadow: "0.5px 0.5px 0px rgba(0, 102, 204, 0.2)" },
-        children: "Guard"
-      }
-    ),
-    /* @__PURE__ */ jsx("div", { className: "h-[2px] w-[98%] bg-gradient-to-r from-transparent via-[#0066cc] to-transparent mt-2 opacity-80" })
-  ] });
+	return /* @__PURE__ */ jsxs("div", {
+		className: `flex flex-col items-center justify-center leading-none ${className}`,
+		children: [
+			/* @__PURE__ */ jsx("span", {
+				className: "font-['Michroma'] font-bold text-[1.35rem] tracking-[0.35em] uppercase ml-3",
+				style: {
+					color: dark ? "#ffffff" : "var(--logo-text)",
+					textShadow: dark ? "none" : "var(--logo-shadow)"
+				},
+				children: "Kernel"
+			}),
+			/* @__PURE__ */ jsx("span", {
+				className: "font-['Michroma'] font-bold text-[2.75rem] tracking-[0.08em] text-transparent bg-clip-text bg-gradient-to-r from-[#0047b3] via-[#0066cc] to-[#00aaff] uppercase mt-1",
+				style: { textShadow: "0.5px 0.5px 0px rgba(0, 102, 204, 0.2)" },
+				children: "Guard"
+			}),
+			/* @__PURE__ */ jsx("div", { className: "h-[2px] w-[98%] bg-gradient-to-r from-transparent via-[#0066cc] to-transparent mt-2 opacity-80" })
+		]
+	});
 }
+//#endregion
+//#region src/components/ThemeToggle.tsx
 function ThemeToggle() {
-  const { theme, toggleTheme } = useTheme();
-  return /* @__PURE__ */ jsx(
-    "button",
-    {
-      onClick: toggleTheme,
-      className: "relative inline-flex items-center justify-center w-10 h-10 overflow-hidden border border-border bg-background text-foreground hover:bg-surface transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50",
-      "aria-label": "Toggle theme",
-      title: theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode",
-      children: /* @__PURE__ */ jsxs("div", { className: "relative flex items-center justify-center w-full h-full", children: [
-        /* @__PURE__ */ jsx(
-          Sun,
-          {
-            className: `absolute w-5 h-5 transition-all duration-500 ease-in-out ${theme === "dark" ? "opacity-0 rotate-90 scale-50" : "opacity-100 rotate-0 scale-100"}`
-          }
-        ),
-        /* @__PURE__ */ jsx(
-          Moon,
-          {
-            className: `absolute w-5 h-5 transition-all duration-500 ease-in-out ${theme === "dark" ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-90 scale-50"}`
-          }
-        )
-      ] })
-    }
-  );
+	const { theme, toggleTheme } = useTheme();
+	return /* @__PURE__ */ jsx("button", {
+		onClick: toggleTheme,
+		className: "relative inline-flex items-center justify-center w-10 h-10 overflow-hidden border border-border bg-background text-foreground hover:bg-surface transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50",
+		"aria-label": "Toggle theme",
+		title: theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode",
+		children: /* @__PURE__ */ jsxs("div", {
+			className: "relative flex items-center justify-center w-full h-full",
+			children: [/* @__PURE__ */ jsx(Sun, { className: `absolute w-5 h-5 transition-all duration-500 ease-in-out ${theme === "dark" ? "opacity-0 rotate-90 scale-50" : "opacity-100 rotate-0 scale-100"}` }), /* @__PURE__ */ jsx(Moon, { className: `absolute w-5 h-5 transition-all duration-500 ease-in-out ${theme === "dark" ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-90 scale-50"}` })]
+		})
+	});
 }
-const LANGUAGE_NAMES = {
-  tr: "Turkish",
-  en: "English",
-  de: "German",
-  ja: "Japanese",
-  "zh-CN": "Chinese",
-  es: "Spanish",
-  fr: "French",
-  ko: "Korean"
+//#endregion
+//#region src/components/Navbar.tsx
+var LANGUAGE_NAMES = {
+	tr: "Turkish",
+	en: "English",
+	de: "German",
+	ja: "Japanese",
+	"zh-CN": "Chinese",
+	es: "Spanish",
+	fr: "French",
+	ko: "Korean"
 };
 function LanguageSwitcher({ language, onChange, compact = false }) {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const containerRef = useRef(null);
-  useEffect(() => {
-    if (!isExpanded) {
-      return;
-    }
-    const handlePointerDown = (event) => {
-      var _a2;
-      if (!((_a2 = containerRef.current) == null ? void 0 : _a2.contains(event.target))) {
-        setIsExpanded(false);
-      }
-    };
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
-        setIsExpanded(false);
-      }
-    };
-    document.addEventListener("pointerdown", handlePointerDown);
-    document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.removeEventListener("pointerdown", handlePointerDown);
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [isExpanded]);
-  const selectLanguage = (nextLanguage) => {
-    setIsExpanded(false);
-    if (nextLanguage !== language) {
-      onChange(nextLanguage);
-    }
-  };
-  return /* @__PURE__ */ jsxs("div", { ref: containerRef, className: "relative", children: [
-    /* @__PURE__ */ jsxs(
-      "button",
-      {
-        type: "button",
-        onClick: () => setIsExpanded((value) => !value),
-        "aria-haspopup": "listbox",
-        "aria-expanded": isExpanded,
-        "aria-label": "Select language",
-        className: `inline-flex h-10 items-center justify-center gap-2 border border-border bg-background text-foreground transition-colors hover:bg-surface focus:outline-none focus:ring-2 focus:ring-primary/50 ${compact ? "w-20 px-2" : "min-w-[104px] px-3"}`,
-        children: [
-          /* @__PURE__ */ jsx(Globe, { className: "h-4 w-4 shrink-0" }),
-          /* @__PURE__ */ jsx("span", { className: "font-mono text-sm font-medium uppercase leading-none", children: LANGUAGE_LABELS[language] }),
-          /* @__PURE__ */ jsx(
-            ChevronDown,
-            {
-              className: `h-4 w-4 shrink-0 transition-transform ${isExpanded ? "rotate-180" : ""}`
-            }
-          )
-        ]
-      }
-    ),
-    isExpanded && /* @__PURE__ */ jsx(
-      "div",
-      {
-        role: "listbox",
-        "aria-label": "Languages",
-        className: `absolute right-0 top-12 z-50 w-44 overflow-hidden border border-border bg-background shadow-xl shadow-black/10 ring-1 ring-black/5 dark:shadow-black/30 ${compact ? "right-0" : ""}`,
-        children: SUPPORTED_LANGUAGES.map((lang) => {
-          const isSelected = lang === language;
-          return /* @__PURE__ */ jsxs(
-            "button",
-            {
-              type: "button",
-              role: "option",
-              "aria-selected": isSelected,
-              onClick: () => selectLanguage(lang),
-              className: `flex w-full items-center justify-between gap-3 px-3 py-2.5 text-left transition-colors ${isSelected ? "kg-action-primary" : "bg-background text-foreground hover:bg-surface"}`,
-              children: [
-                /* @__PURE__ */ jsxs("span", { className: "flex min-w-0 items-center gap-3", children: [
-                  /* @__PURE__ */ jsx("span", { className: "w-8 shrink-0 font-mono text-sm font-semibold uppercase", children: LANGUAGE_LABELS[lang] }),
-                  /* @__PURE__ */ jsx("span", { className: "truncate text-sm", children: LANGUAGE_NAMES[lang] })
-                ] }),
-                isSelected && /* @__PURE__ */ jsx(Check, { className: "h-4 w-4 shrink-0" })
-              ]
-            },
-            lang
-          );
-        })
-      }
-    )
-  ] });
+	const [isExpanded, setIsExpanded] = useState(false);
+	const containerRef = useRef(null);
+	useEffect(() => {
+		if (!isExpanded) return;
+		const handlePointerDown = (event) => {
+			if (!containerRef.current?.contains(event.target)) setIsExpanded(false);
+		};
+		const handleKeyDown = (event) => {
+			if (event.key === "Escape") setIsExpanded(false);
+		};
+		document.addEventListener("pointerdown", handlePointerDown);
+		document.addEventListener("keydown", handleKeyDown);
+		return () => {
+			document.removeEventListener("pointerdown", handlePointerDown);
+			document.removeEventListener("keydown", handleKeyDown);
+		};
+	}, [isExpanded]);
+	const selectLanguage = (nextLanguage) => {
+		setIsExpanded(false);
+		if (nextLanguage !== language) onChange(nextLanguage);
+	};
+	return /* @__PURE__ */ jsxs("div", {
+		ref: containerRef,
+		className: "relative",
+		children: [/* @__PURE__ */ jsxs("button", {
+			type: "button",
+			onClick: () => setIsExpanded((value) => !value),
+			"aria-haspopup": "listbox",
+			"aria-expanded": isExpanded,
+			"aria-label": "Select language",
+			className: `inline-flex h-10 items-center justify-center gap-2 border border-border bg-background text-foreground transition-colors hover:bg-surface focus:outline-none focus:ring-2 focus:ring-primary/50 ${compact ? "w-20 px-2" : "min-w-[104px] px-3"}`,
+			children: [
+				/* @__PURE__ */ jsx(Globe, { className: "h-4 w-4 shrink-0" }),
+				/* @__PURE__ */ jsx("span", {
+					className: "font-mono text-sm font-medium uppercase leading-none",
+					children: LANGUAGE_LABELS[language]
+				}),
+				/* @__PURE__ */ jsx(ChevronDown, { className: `h-4 w-4 shrink-0 transition-transform ${isExpanded ? "rotate-180" : ""}` })
+			]
+		}), isExpanded && /* @__PURE__ */ jsx("div", {
+			role: "listbox",
+			"aria-label": "Languages",
+			className: `absolute right-0 top-12 z-50 w-44 overflow-hidden border border-border bg-background shadow-xl shadow-black/10 ring-1 ring-black/5 dark:shadow-black/30 ${compact ? "right-0" : ""}`,
+			children: SUPPORTED_LANGUAGES.map((lang) => {
+				const isSelected = lang === language;
+				return /* @__PURE__ */ jsxs("button", {
+					type: "button",
+					role: "option",
+					"aria-selected": isSelected,
+					onClick: () => selectLanguage(lang),
+					className: `flex w-full items-center justify-between gap-3 px-3 py-2.5 text-left transition-colors ${isSelected ? "kg-action-primary" : "bg-background text-foreground hover:bg-surface"}`,
+					children: [/* @__PURE__ */ jsxs("span", {
+						className: "flex min-w-0 items-center gap-3",
+						children: [/* @__PURE__ */ jsx("span", {
+							className: "w-8 shrink-0 font-mono text-sm font-semibold uppercase",
+							children: LANGUAGE_LABELS[lang]
+						}), /* @__PURE__ */ jsx("span", {
+							className: "truncate text-sm",
+							children: LANGUAGE_NAMES[lang]
+						})]
+					}), isSelected && /* @__PURE__ */ jsx(Check, { className: "h-4 w-4 shrink-0" })]
+				}, lang);
+			})
+		})]
+	});
 }
 function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const location2 = distExports.useLocation();
-  const navigate = distExports.useNavigate();
-  const { language, t } = useLanguage();
-  const normalizeNavPath = (path) => {
-    if (path === "/") {
-      return "/";
-    }
-    return path.endsWith("/") ? path.slice(0, -1) : path;
-  };
-  const baseNavLinks = [
-    { name: t.nav.home, path: "/", prefetch: ["home"] },
-    {
-      name: t.nav.services,
-      path: "/services/",
-      prefetch: ["services", "secureFrontend", "hardenedBackend", "dataProtection", "highPerformance"]
-    },
-    { name: t.nav.openSource, path: "/projects/", prefetch: ["projects", "projectDetails"] },
-    {
-      name: t.nav.completedProjects,
-      path: "/completed-projects/",
-      prefetch: ["completedProjects", "completedProjectDetails"]
-    },
-    { name: t.nav.contact, path: "/contact/", prefetch: ["contact"] }
-  ];
-  const navLinks = baseNavLinks.map((link) => ({
-    ...link,
-    path: localizePath(link.path, language)
-  }));
-  const isActive = (path) => normalizeNavPath(location2.pathname) === normalizeNavPath(path);
-  const handleLanguageChange = (nextLanguage) => {
-    setStoredLanguagePreference(nextLanguage);
-    const target = localizePath(location2.pathname, nextLanguage);
-    navigate(target);
-  };
-  const handleLinkIntent = (routes) => {
-    prefetchRoutes(routes);
-  };
-  return /* @__PURE__ */ jsxs("nav", { className: "fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border/50", children: [
-    /* @__PURE__ */ jsx("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-between h-16", children: [
-      /* @__PURE__ */ jsx("div", { className: "flex items-center", children: /* @__PURE__ */ jsx(distExports.Link, { to: localizePath("/", language), className: "flex items-center group hover:opacity-90 transition-opacity", children: /* @__PURE__ */ jsx(Logo, { className: "scale-[0.55] origin-left" }) }) }),
-      /* @__PURE__ */ jsx("div", { className: "hidden md:block", children: /* @__PURE__ */ jsxs("div", { className: "ml-10 flex items-center h-full", children: [
-        navLinks.map((link) => /* @__PURE__ */ jsx(
-          distExports.Link,
-          {
-            to: link.path,
-            onPointerEnter: () => handleLinkIntent(link.prefetch),
-            onFocus: () => handleLinkIntent(link.prefetch),
-            className: `px-4 h-14 flex items-center text-sm transition-colors border-b-2 ${isActive(link.path) ? "border-primary text-primary font-medium" : "border-transparent text-foreground hover:bg-surface"}`,
-            children: link.name
-          },
-          link.name
-        )),
-        /* @__PURE__ */ jsx("div", { className: "h-6 w-px bg-border mx-4" }),
-        /* @__PURE__ */ jsx(
-          "a",
-          {
-            href: "https://github.com/Kernel-Guard",
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: "text-foreground hover:text-primary transition-colors px-3 py-2 text-sm",
-            children: t.nav.github
-          }
-        ),
-        /* @__PURE__ */ jsx("div", { className: "h-6 w-px bg-border mx-2" }),
-        /* @__PURE__ */ jsx(LanguageSwitcher, { language, onChange: handleLanguageChange }),
-        /* @__PURE__ */ jsxs("div", { className: "ml-2 flex items-center gap-2", children: [
-          /* @__PURE__ */ jsx(ThemeToggle, {}),
-          /* @__PURE__ */ jsx(
-            distExports.Link,
-            {
-              to: "/admin",
-              className: "inline-flex items-center justify-center w-10 h-10 border border-border bg-background text-foreground hover:bg-surface transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50",
-              title: "Admin Login",
-              children: /* @__PURE__ */ jsx(Lock, { className: "w-5 h-5" })
-            }
-          )
-        ] })
-      ] }) }),
-      /* @__PURE__ */ jsxs("div", { className: "md:hidden flex items-center gap-2", children: [
-        /* @__PURE__ */ jsx(ThemeToggle, {}),
-        /* @__PURE__ */ jsx(
-          distExports.Link,
-          {
-            to: "/admin",
-            className: "inline-flex items-center justify-center w-10 h-10 border border-border bg-background text-foreground hover:bg-surface transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50",
-            title: "Admin Login",
-            children: /* @__PURE__ */ jsx(Lock, { className: "w-5 h-5" })
-          }
-        ),
-        /* @__PURE__ */ jsx(LanguageSwitcher, { language, onChange: handleLanguageChange, compact: true }),
-        /* @__PURE__ */ jsx(
-          "button",
-          {
-            onClick: () => setIsOpen(!isOpen),
-            "aria-label": isOpen ? "Close navigation menu" : "Open navigation menu",
-            "aria-expanded": isOpen,
-            "aria-controls": "mobile-navigation",
-            className: "inline-flex items-center justify-center p-2 text-foreground hover:bg-surface focus:outline-none",
-            children: isOpen ? /* @__PURE__ */ jsx(X, { className: "h-6 w-6" }) : /* @__PURE__ */ jsx(Menu, { className: "h-6 w-6" })
-          }
-        )
-      ] })
-    ] }) }),
-    isOpen && /* @__PURE__ */ jsx("div", { id: "mobile-navigation", className: "md:hidden bg-background border-b border-border", children: /* @__PURE__ */ jsxs("div", { className: "px-2 pt-2 pb-3 space-y-1 sm:px-3", children: [
-      navLinks.map((link) => /* @__PURE__ */ jsx(
-        distExports.Link,
-        {
-          to: link.path,
-          onPointerEnter: () => handleLinkIntent(link.prefetch),
-          onFocus: () => handleLinkIntent(link.prefetch),
-          onClick: () => setIsOpen(false),
-          className: `block px-3 py-3 text-base ${isActive(link.path) ? "text-primary bg-surface border-l-4 border-primary" : "text-foreground hover:bg-surface border-l-4 border-transparent"}`,
-          children: link.name
-        },
-        link.name
-      )),
-      /* @__PURE__ */ jsx(
-        "a",
-        {
-          href: "https://github.com/Kernel-Guard",
-          target: "_blank",
-          rel: "noopener noreferrer",
-          className: "block px-3 py-3 text-base text-foreground hover:bg-surface border-l-4 border-transparent",
-          children: t.nav.github
-        }
-      )
-    ] }) })
-  ] });
+	const [isOpen, setIsOpen] = useState(false);
+	const location = (0, import_dist.useLocation)();
+	const navigate = (0, import_dist.useNavigate)();
+	const { language, t } = useLanguage();
+	const normalizeNavPath = (path) => {
+		if (path === "/") return "/";
+		return path.endsWith("/") ? path.slice(0, -1) : path;
+	};
+	const navLinks = [
+		{
+			name: t.nav.home,
+			path: "/",
+			prefetch: ["home"]
+		},
+		{
+			name: t.nav.services,
+			path: "/services/",
+			prefetch: [
+				"services",
+				"secureFrontend",
+				"hardenedBackend",
+				"dataProtection",
+				"highPerformance"
+			]
+		},
+		{
+			name: t.nav.openSource,
+			path: "/projects/",
+			prefetch: ["projects", "projectDetails"]
+		},
+		{
+			name: t.nav.completedProjects,
+			path: "/completed-projects/",
+			prefetch: ["completedProjects", "completedProjectDetails"]
+		},
+		{
+			name: t.nav.contact,
+			path: "/contact/",
+			prefetch: ["contact"]
+		}
+	].map((link) => ({
+		...link,
+		path: localizePath(link.path, language)
+	}));
+	const isActive = (path) => normalizeNavPath(location.pathname) === normalizeNavPath(path);
+	const handleLanguageChange = (nextLanguage) => {
+		setStoredLanguagePreference(nextLanguage);
+		navigate(localizePath(location.pathname, nextLanguage));
+	};
+	const handleLinkIntent = (routes) => {
+		prefetchRoutes(routes);
+	};
+	return /* @__PURE__ */ jsxs("nav", {
+		className: "fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border/50",
+		children: [/* @__PURE__ */ jsx("div", {
+			className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+			children: /* @__PURE__ */ jsxs("div", {
+				className: "flex items-center justify-between h-16",
+				children: [
+					/* @__PURE__ */ jsx("div", {
+						className: "flex items-center",
+						children: /* @__PURE__ */ jsx(import_dist.Link, {
+							to: localizePath("/", language),
+							className: "flex items-center group hover:opacity-90 transition-opacity",
+							children: /* @__PURE__ */ jsx(Logo, { className: "scale-[0.55] origin-left" })
+						})
+					}),
+					/* @__PURE__ */ jsx("div", {
+						className: "hidden md:block",
+						children: /* @__PURE__ */ jsxs("div", {
+							className: "ml-10 flex items-center h-full",
+							children: [
+								navLinks.map((link) => /* @__PURE__ */ jsx(import_dist.Link, {
+									to: link.path,
+									onPointerEnter: () => handleLinkIntent(link.prefetch),
+									onFocus: () => handleLinkIntent(link.prefetch),
+									className: `px-4 h-14 flex items-center text-sm transition-colors border-b-2 ${isActive(link.path) ? "border-primary text-primary font-medium" : "border-transparent text-foreground hover:bg-surface"}`,
+									children: link.name
+								}, link.name)),
+								/* @__PURE__ */ jsx("div", { className: "h-6 w-px bg-border mx-4" }),
+								/* @__PURE__ */ jsx("a", {
+									href: "https://github.com/Kernel-Guard",
+									target: "_blank",
+									rel: "noopener noreferrer",
+									className: "text-foreground hover:text-primary transition-colors px-3 py-2 text-sm",
+									children: t.nav.github
+								}),
+								/* @__PURE__ */ jsx("div", { className: "h-6 w-px bg-border mx-2" }),
+								/* @__PURE__ */ jsx(LanguageSwitcher, {
+									language,
+									onChange: handleLanguageChange
+								}),
+								/* @__PURE__ */ jsxs("div", {
+									className: "ml-2 flex items-center gap-2",
+									children: [/* @__PURE__ */ jsx(ThemeToggle, {}), /* @__PURE__ */ jsx(import_dist.Link, {
+										to: "/admin",
+										className: "inline-flex items-center justify-center w-10 h-10 border border-border bg-background text-foreground hover:bg-surface transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50",
+										title: "Admin Login",
+										children: /* @__PURE__ */ jsx(Lock, { className: "w-5 h-5" })
+									})]
+								})
+							]
+						})
+					}),
+					/* @__PURE__ */ jsxs("div", {
+						className: "md:hidden flex items-center gap-2",
+						children: [
+							/* @__PURE__ */ jsx(ThemeToggle, {}),
+							/* @__PURE__ */ jsx(import_dist.Link, {
+								to: "/admin",
+								className: "inline-flex items-center justify-center w-10 h-10 border border-border bg-background text-foreground hover:bg-surface transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50",
+								title: "Admin Login",
+								children: /* @__PURE__ */ jsx(Lock, { className: "w-5 h-5" })
+							}),
+							/* @__PURE__ */ jsx(LanguageSwitcher, {
+								language,
+								onChange: handleLanguageChange,
+								compact: true
+							}),
+							/* @__PURE__ */ jsx("button", {
+								onClick: () => setIsOpen(!isOpen),
+								"aria-label": isOpen ? "Close navigation menu" : "Open navigation menu",
+								"aria-expanded": isOpen,
+								"aria-controls": "mobile-navigation",
+								className: "inline-flex items-center justify-center p-2 text-foreground hover:bg-surface focus:outline-none",
+								children: isOpen ? /* @__PURE__ */ jsx(X, { className: "h-6 w-6" }) : /* @__PURE__ */ jsx(Menu, { className: "h-6 w-6" })
+							})
+						]
+					})
+				]
+			})
+		}), isOpen && /* @__PURE__ */ jsx("div", {
+			id: "mobile-navigation",
+			className: "md:hidden bg-background border-b border-border",
+			children: /* @__PURE__ */ jsxs("div", {
+				className: "px-2 pt-2 pb-3 space-y-1 sm:px-3",
+				children: [navLinks.map((link) => /* @__PURE__ */ jsx(import_dist.Link, {
+					to: link.path,
+					onPointerEnter: () => handleLinkIntent(link.prefetch),
+					onFocus: () => handleLinkIntent(link.prefetch),
+					onClick: () => setIsOpen(false),
+					className: `block px-3 py-3 text-base ${isActive(link.path) ? "text-primary bg-surface border-l-4 border-primary" : "text-foreground hover:bg-surface border-l-4 border-transparent"}`,
+					children: link.name
+				}, link.name)), /* @__PURE__ */ jsx("a", {
+					href: "https://github.com/Kernel-Guard",
+					target: "_blank",
+					rel: "noopener noreferrer",
+					className: "block px-3 py-3 text-base text-foreground hover:bg-surface border-l-4 border-transparent",
+					children: t.nav.github
+				})]
+			})
+		})]
+	});
 }
-const english = {
-  links: {
-    security: "Security",
-    engineering: "Engineering",
-    status: "Status",
-    changelog: "Changelog"
-  },
-  pages: {
-    security: {
-      seoTitle: "Security Program | Kernel Guard",
-      seoDescription: "Kernel Guard security posture, platform controls, admin protection, dependency scanning, and disclosure channels.",
-      badge: "SECURITY // CONTROLS",
-      title: "Security Program",
-      description: "A public summary of the controls we use to keep the website, admin workflow, and open-source delivery pipeline defensible.",
-      facts: [
-        { label: "Dependency audit", value: "0", detail: "Known npm vulnerabilities after production audit." },
-        { label: "Admin backend", value: "Cloudflare", detail: "Pages Function with origin-aware CORS and optional Turnstile." },
-        { label: "Headers", value: "CSP/HSTS", detail: "Security headers managed through Cloudflare Pages." }
-      ],
-      sections: [
-        {
-          title: "Application controls",
-          body: "The public site is statically prerendered and served through Cloudflare Pages. The admin API is isolated as a server-side Pages Function.",
-          items: ["Content Security Policy and frame protection", "Same-origin admin API route", "No client-side GitHub token exposure"]
-        },
-        {
-          title: "Admin hardening",
-          body: "Administrative writes are authenticated server-side before GitHub content updates are allowed.",
-          items: ["Constant-time credential comparison", "Optional Turnstile verification", "Short-lived session token support"]
-        },
-        {
-          title: "Disclosure",
-          body: "Security reports should be sent directly to the maintainers with reproduction steps and affected URLs.",
-          items: ["Email: iletisim@kernelguard.net", "No public exploit disclosure before triage", "GitHub issues for non-sensitive bugs"]
-        }
-      ]
-    },
-    engineering: {
-      seoTitle: "Engineering Standards | Kernel Guard",
-      seoDescription: "Kernel Guard engineering standards for accessibility, performance, localization, CI, and measured evidence.",
-      badge: "ENGINEERING // STANDARDS",
-      title: "Engineering Standards",
-      description: "The operating model behind the public website: measurable quality, accessible interfaces, localized content, and repeatable delivery.",
-      facts: [
-        { label: "Languages", value: "8", detail: "Localized UI paths with hreflang alternates." },
-        { label: "Prerender", value: "Static", detail: "SEO-critical routes generated at build time." },
-        { label: "Quality gates", value: "CI", detail: "Typecheck, audit, build, and Lighthouse checks." }
-      ],
-      sections: [
-        {
-          title: "Design discipline",
-          body: "The interface favors restrained enterprise patterns: clear hierarchy, low decoration, measurable proof, and predictable navigation.",
-          items: ["WCAG-oriented color and control states", "Stable route structure", "Evidence cards tied to actual repository and build data"]
-        },
-        {
-          title: "Delivery discipline",
-          body: "Each release should be reproducible through the same commands used in CI.",
-          items: ["npm audit gate", "TypeScript no-emit check", "Cloudflare Pages Functions build validation"]
-        },
-        {
-          title: "Internationalization",
-          body: "Localized URLs are first-class pages, not query parameters.",
-          items: ["Self-canonical localized pages", "hreflang alternates", "Localized project descriptions"]
-        }
-      ]
-    },
-    status: {
-      seoTitle: "Service Status | Kernel Guard",
-      seoDescription: "Current service posture for Kernel Guard website, contact form, admin API, and static delivery.",
-      badge: "STATUS // LIVE",
-      title: "Service Status",
-      description: "A compact operational view of the public web surface and supporting endpoints.",
-      facts: [
-        { label: "Website", value: "Online", detail: "Cloudflare Pages static delivery." },
-        { label: "Admin API", value: "Protected", detail: "Server-side GitHub bridge." },
-        { label: "Contact", value: "Active", detail: "Web3Forms-backed contact flow." }
-      ],
-      sections: [
-        {
-          title: "Public website",
-          body: "Static pages are prerendered and served through Cloudflare for predictable availability and low operational surface.",
-          items: ["Home and language routes", "Project and service pages", "Sitemap and robots.txt"]
-        },
-        {
-          title: "Administrative surface",
-          body: "The admin panel is intentionally separate from public content delivery and uses a server-side write bridge.",
-          items: ["No public write token", "Credential-gated content updates", "Optional Turnstile challenge"]
-        },
-        {
-          title: "Monitoring practice",
-          body: "Status is validated through direct HTTP checks, Lighthouse runs, and build-time prerender reports.",
-          items: ["200 checks on live domain", "Lighthouse accessibility and performance checks", "npm audit verification"]
-        }
-      ]
-    },
-    changelog: {
-      seoTitle: "Changelog | Kernel Guard",
-      seoDescription: "Public changelog for Kernel Guard website security, localization, performance, and delivery changes.",
-      badge: "CHANGELOG // RELEASES",
-      title: "Changelog",
-      description: "A transparent record of meaningful website changes that affect trust, performance, localization, or operations.",
-      facts: [
-        { label: "Latest", value: "2026-06-01", detail: "Enterprise hardening and language expansion." },
-        { label: "Deploy", value: "Cloudflare", detail: "CLI-backed Pages deployments." },
-        { label: "Audit", value: "0", detail: "Known npm vulnerabilities at release time." }
-      ],
-      sections: [
-        {
-          title: "2026-06-01",
-          body: "Enterprise readiness package for the public website.",
-          items: ["Security headers and admin hardening", "French, Spanish, and Korean language support", "Security, engineering, status, and changelog pages"]
-        },
-        {
-          title: "2026-05-31",
-          body: "Measured proof and Cloudflare migration package.",
-          items: ["Cloudflare Pages Function for admin API", "Public GitHub evidence cards", "Accessibility and contrast fixes"]
-        },
-        {
-          title: "Quality policy",
-          body: "Only meaningful technical and trust-impacting changes are listed here.",
-          items: ["Security posture", "Performance metrics", "Localization coverage"]
-        }
-      ]
-    }
-  }
+//#endregion
+//#region src/data/enterprisePages.ts
+var english = {
+	links: {
+		security: "Security",
+		engineering: "Engineering",
+		status: "Status",
+		changelog: "Changelog"
+	},
+	pages: {
+		security: {
+			seoTitle: "Security Program | Kernel Guard",
+			seoDescription: "Kernel Guard security posture, platform controls, admin protection, dependency scanning, and disclosure channels.",
+			badge: "SECURITY // CONTROLS",
+			title: "Security Program",
+			description: "A public summary of the controls we use to keep the website, admin workflow, and open-source delivery pipeline defensible.",
+			facts: [
+				{
+					label: "Dependency audit",
+					value: "0",
+					detail: "Known npm vulnerabilities after production audit."
+				},
+				{
+					label: "Admin backend",
+					value: "Cloudflare",
+					detail: "Pages Function with origin-aware CORS and optional Turnstile."
+				},
+				{
+					label: "Headers",
+					value: "CSP/HSTS",
+					detail: "Security headers managed through Cloudflare Pages."
+				}
+			],
+			sections: [
+				{
+					title: "Application controls",
+					body: "The public site is statically prerendered and served through Cloudflare Pages. The admin API is isolated as a server-side Pages Function.",
+					items: [
+						"Content Security Policy and frame protection",
+						"Same-origin admin API route",
+						"No client-side GitHub token exposure"
+					]
+				},
+				{
+					title: "Admin hardening",
+					body: "Administrative writes are authenticated server-side before GitHub content updates are allowed.",
+					items: [
+						"Constant-time credential comparison",
+						"Optional Turnstile verification",
+						"Short-lived session token support"
+					]
+				},
+				{
+					title: "Disclosure",
+					body: "Security reports should be sent directly to the maintainers with reproduction steps and affected URLs.",
+					items: [
+						`Email: ${SITE_EMAILS.security}`,
+						"No public exploit disclosure before triage",
+						"GitHub issues for non-sensitive bugs"
+					]
+				}
+			]
+		},
+		engineering: {
+			seoTitle: "Engineering Standards | Kernel Guard",
+			seoDescription: "Kernel Guard engineering standards for accessibility, performance, localization, CI, and measured evidence.",
+			badge: "ENGINEERING // STANDARDS",
+			title: "Engineering Standards",
+			description: "The operating model behind the public website: measurable quality, accessible interfaces, localized content, and repeatable delivery.",
+			facts: [
+				{
+					label: "Languages",
+					value: "8",
+					detail: "Localized UI paths with hreflang alternates."
+				},
+				{
+					label: "Prerender",
+					value: "Static",
+					detail: "SEO-critical routes generated at build time."
+				},
+				{
+					label: "Quality gates",
+					value: "CI",
+					detail: "Typecheck, audit, build, and Lighthouse checks."
+				}
+			],
+			sections: [
+				{
+					title: "Design discipline",
+					body: "The interface favors restrained enterprise patterns: clear hierarchy, low decoration, measurable proof, and predictable navigation.",
+					items: [
+						"WCAG-oriented color and control states",
+						"Stable route structure",
+						"Evidence cards tied to actual repository and build data"
+					]
+				},
+				{
+					title: "Delivery discipline",
+					body: "Each release should be reproducible through the same commands used in CI.",
+					items: [
+						"npm audit gate",
+						"TypeScript no-emit check",
+						"Cloudflare Pages Functions build validation"
+					]
+				},
+				{
+					title: "Internationalization",
+					body: "Localized URLs are first-class pages, not query parameters.",
+					items: [
+						"Self-canonical localized pages",
+						"hreflang alternates",
+						"Localized project descriptions"
+					]
+				}
+			]
+		},
+		status: {
+			seoTitle: "Service Status | Kernel Guard",
+			seoDescription: "Current service posture for Kernel Guard website, contact form, admin API, and static delivery.",
+			badge: "STATUS // LIVE",
+			title: "Service Status",
+			description: "A compact operational view of the public web surface and supporting endpoints.",
+			facts: [
+				{
+					label: "Website",
+					value: "Online",
+					detail: "Cloudflare Pages static delivery."
+				},
+				{
+					label: "Admin API",
+					value: "Protected",
+					detail: "Server-side GitHub bridge."
+				},
+				{
+					label: "Contact",
+					value: "Active",
+					detail: "Web3Forms-backed contact flow."
+				}
+			],
+			sections: [
+				{
+					title: "Public website",
+					body: "Static pages are prerendered and served through Cloudflare for predictable availability and low operational surface.",
+					items: [
+						"Home and language routes",
+						"Project and service pages",
+						"Sitemap and robots.txt"
+					]
+				},
+				{
+					title: "Administrative surface",
+					body: "The admin panel is intentionally separate from public content delivery and uses a server-side write bridge.",
+					items: [
+						"No public write token",
+						"Credential-gated content updates",
+						"Optional Turnstile challenge"
+					]
+				},
+				{
+					title: "Monitoring practice",
+					body: "Status is validated through direct HTTP checks, Lighthouse runs, and build-time prerender reports.",
+					items: [
+						"200 checks on live domain",
+						"Lighthouse accessibility and performance checks",
+						"npm audit verification"
+					]
+				}
+			]
+		},
+		changelog: {
+			seoTitle: "Changelog | Kernel Guard",
+			seoDescription: "Public changelog for Kernel Guard website security, localization, performance, and delivery changes.",
+			badge: "CHANGELOG // RELEASES",
+			title: "Changelog",
+			description: "A transparent record of meaningful website changes that affect trust, performance, localization, or operations.",
+			facts: [
+				{
+					label: "Latest",
+					value: "2026-06-01",
+					detail: "Enterprise hardening and language expansion."
+				},
+				{
+					label: "Deploy",
+					value: "Cloudflare",
+					detail: "CLI-backed Pages deployments."
+				},
+				{
+					label: "Audit",
+					value: "0",
+					detail: "Known npm vulnerabilities at release time."
+				}
+			],
+			sections: [
+				{
+					title: "2026-06-01",
+					body: "Enterprise readiness package for the public website.",
+					items: [
+						"Security headers and admin hardening",
+						"French, Spanish, and Korean language support",
+						"Security, engineering, status, and changelog pages"
+					]
+				},
+				{
+					title: "2026-05-31",
+					body: "Measured proof and Cloudflare migration package.",
+					items: [
+						"Cloudflare Pages Function for admin API",
+						"Public GitHub evidence cards",
+						"Accessibility and contrast fixes"
+					]
+				},
+				{
+					title: "Quality policy",
+					body: "Only meaningful technical and trust-impacting changes are listed here.",
+					items: [
+						"Security posture",
+						"Performance metrics",
+						"Localization coverage"
+					]
+				}
+			]
+		}
+	}
 };
-const enterprisePages = {
-  en: english,
-  tr: {
-    links: { security: "Güvenlik", engineering: "Mühendislik", status: "Durum", changelog: "Değişiklikler" },
-    pages: {
-      security: {
-        ...english.pages.security,
-        seoTitle: "Güvenlik Programı | Kernel Guard",
-        seoDescription: "Kernel Guard güvenlik kontrolleri, admin koruması, bağımlılık taraması ve bildirim kanalları.",
-        badge: "GÜVENLİK // KONTROLLER",
-        title: "Güvenlik Programı",
-        description: "Web sitesi, admin akışı ve açık kaynak teslimat hattını savunulabilir tutmak için kullandığımız kontrollerin özeti."
-      },
-      engineering: {
-        ...english.pages.engineering,
-        seoTitle: "Mühendislik Standartları | Kernel Guard",
-        seoDescription: "Erişilebilirlik, performans, lokalizasyon, CI ve ölçülebilir kanıt standartları.",
-        badge: "MÜHENDİSLİK // STANDARTLAR",
-        title: "Mühendislik Standartları",
-        description: "Ölçülebilir kalite, erişilebilir arayüzler, lokalize içerik ve tekrar edilebilir teslimat modeli."
-      },
-      status: {
-        ...english.pages.status,
-        seoTitle: "Servis Durumu | Kernel Guard",
-        seoDescription: "Kernel Guard web sitesi, iletişim formu, admin API ve statik teslimat durumu.",
-        badge: "DURUM // CANLI",
-        title: "Servis Durumu",
-        description: "Public web yüzeyi ve destekleyen endpointler için kısa operasyonel görünüm."
-      },
-      changelog: {
-        ...english.pages.changelog,
-        seoTitle: "Değişiklik Günlüğü | Kernel Guard",
-        seoDescription: "Kernel Guard web sitesi güvenlik, lokalizasyon, performans ve teslimat değişiklikleri.",
-        badge: "CHANGELOG // SÜRÜMLER",
-        title: "Değişiklik Günlüğü",
-        description: "Güven, performans, lokalizasyon veya operasyonu etkileyen anlamlı değişikliklerin kaydı."
-      }
-    }
-  },
-  de: {
-    links: { security: "Sicherheit", engineering: "Engineering", status: "Status", changelog: "Changelog" },
-    pages: english.pages
-  },
-  ja: {
-    links: { security: "セキュリティ", engineering: "エンジニアリング", status: "ステータス", changelog: "変更履歴" },
-    pages: english.pages
-  },
-  "zh-CN": {
-    links: { security: "安全", engineering: "工程", status: "状态", changelog: "更新日志" },
-    pages: english.pages
-  },
-  es: {
-    links: { security: "Seguridad", engineering: "Ingeniería", status: "Estado", changelog: "Cambios" },
-    pages: english.pages
-  },
-  fr: {
-    links: { security: "Sécurité", engineering: "Ingénierie", status: "Statut", changelog: "Changelog" },
-    pages: english.pages
-  },
-  ko: {
-    links: { security: "보안", engineering: "엔지니어링", status: "상태", changelog: "변경 내역" },
-    pages: english.pages
-  }
+var enterprisePages = {
+	en: english,
+	tr: {
+		links: {
+			security: "Güvenlik",
+			engineering: "Mühendislik",
+			status: "Durum",
+			changelog: "Değişiklikler"
+		},
+		pages: {
+			security: {
+				...english.pages.security,
+				seoTitle: "Güvenlik Programı | Kernel Guard",
+				seoDescription: "Kernel Guard güvenlik kontrolleri, admin koruması, bağımlılık taraması ve bildirim kanalları.",
+				badge: "GÜVENLİK // KONTROLLER",
+				title: "Güvenlik Programı",
+				description: "Web sitesi, admin akışı ve açık kaynak teslimat hattını savunulabilir tutmak için kullandığımız kontrollerin özeti."
+			},
+			engineering: {
+				...english.pages.engineering,
+				seoTitle: "Mühendislik Standartları | Kernel Guard",
+				seoDescription: "Erişilebilirlik, performans, lokalizasyon, CI ve ölçülebilir kanıt standartları.",
+				badge: "MÜHENDİSLİK // STANDARTLAR",
+				title: "Mühendislik Standartları",
+				description: "Ölçülebilir kalite, erişilebilir arayüzler, lokalize içerik ve tekrar edilebilir teslimat modeli."
+			},
+			status: {
+				...english.pages.status,
+				seoTitle: "Servis Durumu | Kernel Guard",
+				seoDescription: "Kernel Guard web sitesi, iletişim formu, admin API ve statik teslimat durumu.",
+				badge: "DURUM // CANLI",
+				title: "Servis Durumu",
+				description: "Public web yüzeyi ve destekleyen endpointler için kısa operasyonel görünüm."
+			},
+			changelog: {
+				...english.pages.changelog,
+				seoTitle: "Değişiklik Günlüğü | Kernel Guard",
+				seoDescription: "Kernel Guard web sitesi güvenlik, lokalizasyon, performans ve teslimat değişiklikleri.",
+				badge: "CHANGELOG // SÜRÜMLER",
+				title: "Değişiklik Günlüğü",
+				description: "Güven, performans, lokalizasyon veya operasyonu etkileyen anlamlı değişikliklerin kaydı."
+			}
+		}
+	},
+	de: {
+		links: {
+			security: "Sicherheit",
+			engineering: "Engineering",
+			status: "Status",
+			changelog: "Changelog"
+		},
+		pages: english.pages
+	},
+	ja: {
+		links: {
+			security: "セキュリティ",
+			engineering: "エンジニアリング",
+			status: "ステータス",
+			changelog: "変更履歴"
+		},
+		pages: english.pages
+	},
+	"zh-CN": {
+		links: {
+			security: "安全",
+			engineering: "工程",
+			status: "状态",
+			changelog: "更新日志"
+		},
+		pages: english.pages
+	},
+	es: {
+		links: {
+			security: "Seguridad",
+			engineering: "Ingeniería",
+			status: "Estado",
+			changelog: "Cambios"
+		},
+		pages: english.pages
+	},
+	fr: {
+		links: {
+			security: "Sécurité",
+			engineering: "Ingénierie",
+			status: "Statut",
+			changelog: "Changelog"
+		},
+		pages: english.pages
+	},
+	ko: {
+		links: {
+			security: "보안",
+			engineering: "엔지니어링",
+			status: "상태",
+			changelog: "변경 내역"
+		},
+		pages: english.pages
+	}
 };
+//#endregion
+//#region src/components/Footer.tsx
 function Footer() {
-  const { language, t } = useLanguage();
-  const enterpriseLinks = ["security", "engineering", "status", "changelog"];
-  return /* @__PURE__ */ jsx("footer", { className: "bg-[var(--color-dark-bg)] text-[var(--color-dark-fg)] mt-auto", children: /* @__PURE__ */ jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16", children: [
-    /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-1 md:grid-cols-4 gap-12", children: [
-      /* @__PURE__ */ jsxs("div", { className: "md:col-span-2 space-y-6", children: [
-        /* @__PURE__ */ jsx(distExports.Link, { to: localizePath("/", language), className: "inline-block group hover:opacity-90 transition-opacity", children: /* @__PURE__ */ jsx(Logo, { dark: true, className: "scale-[0.65] origin-left" }) }),
-        /* @__PURE__ */ jsx("p", { className: "text-gray-400 text-sm max-w-md leading-relaxed mt-4", children: t.footer.desc })
-      ] }),
-      /* @__PURE__ */ jsxs("div", { children: [
-        /* @__PURE__ */ jsx("h3", { className: "font-semibold text-white mb-6 text-sm tracking-wide uppercase", children: t.footer.discover }),
-        /* @__PURE__ */ jsxs("ul", { className: "space-y-4", children: [
-          /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(distExports.Link, { to: localizePath("/", language), className: "text-gray-400 hover:text-white transition-colors text-sm", children: t.nav.home }) }),
-          /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(
-            distExports.Link,
-            {
-              to: localizePath("/projects/", language),
-              onPointerEnter: () => prefetchRoutes(["projects", "projectDetails"]),
-              onFocus: () => prefetchRoutes(["projects", "projectDetails"]),
-              className: "text-gray-400 hover:text-white transition-colors text-sm",
-              children: t.nav.openSource
-            }
-          ) }),
-          /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(
-            distExports.Link,
-            {
-              to: localizePath("/completed-projects/", language),
-              onPointerEnter: () => prefetchRoutes(["completedProjects", "completedProjectDetails"]),
-              onFocus: () => prefetchRoutes(["completedProjects", "completedProjectDetails"]),
-              className: "text-gray-400 hover:text-white transition-colors text-sm",
-              children: t.nav.completedProjects
-            }
-          ) }),
-          /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(
-            distExports.Link,
-            {
-              to: localizePath("/contact/", language),
-              onPointerEnter: () => prefetchRoute("contact"),
-              onFocus: () => prefetchRoute("contact"),
-              className: "text-gray-400 hover:text-white transition-colors text-sm",
-              children: t.nav.contact
-            }
-          ) })
-        ] })
-      ] }),
-      /* @__PURE__ */ jsxs("div", { children: [
-        /* @__PURE__ */ jsx("h3", { className: "font-semibold text-white mb-6 text-sm tracking-wide uppercase", children: t.footer.connect }),
-        /* @__PURE__ */ jsxs("ul", { className: "space-y-4", children: [
-          /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsxs(
-            "a",
-            {
-              href: "mailto:iletisim@kernelguard.net",
-              className: "text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2",
-              children: [
-                /* @__PURE__ */ jsx(Mail, { className: "w-4 h-4" }),
-                "iletisim@kernelguard.net"
-              ]
-            }
-          ) }),
-          /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsxs(
-            "a",
-            {
-              href: "https://github.com/Kernel-Guard",
-              target: "_blank",
-              rel: "noopener noreferrer",
-              className: "text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2",
-              children: [
-                /* @__PURE__ */ jsx(Github, { className: "w-4 h-4" }),
-                t.nav.github
-              ]
-            }
-          ) })
-        ] })
-      ] }),
-      /* @__PURE__ */ jsx("div", { className: "md:col-span-4 border-t border-gray-800 pt-8", children: /* @__PURE__ */ jsx("ul", { className: "flex flex-wrap gap-x-6 gap-y-3 text-sm text-gray-400", children: enterpriseLinks.map((key) => /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(
-        distExports.Link,
-        {
-          to: localizePath(`/${key}/`, language),
-          onPointerEnter: () => prefetchRoute(key),
-          onFocus: () => prefetchRoute(key),
-          className: "hover:text-white transition-colors",
-          children: enterprisePages[language].links[key]
-        }
-      ) }, key)) }) })
-    ] }),
-    /* @__PURE__ */ jsxs("div", { className: "mt-16 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4", children: [
-      /* @__PURE__ */ jsxs("p", { className: "text-gray-400 text-sm", children: [
-        "© ",
-        (/* @__PURE__ */ new Date()).getFullYear(),
-        " ",
-        t.footer.rights
-      ] }),
-      /* @__PURE__ */ jsxs("div", { className: "flex space-x-6 text-sm text-gray-400", children: [
-        /* @__PURE__ */ jsx(
-          distExports.Link,
-          {
-            to: localizePath("/terms/", language),
-            onPointerEnter: () => prefetchRoute("terms"),
-            onFocus: () => prefetchRoute("terms"),
-            className: "hover:text-gray-300 transition-colors",
-            children: t.footer.terms
-          }
-        ),
-        /* @__PURE__ */ jsx(
-          distExports.Link,
-          {
-            to: localizePath("/privacy/", language),
-            onPointerEnter: () => prefetchRoute("privacy"),
-            onFocus: () => prefetchRoute("privacy"),
-            className: "hover:text-gray-300 transition-colors",
-            children: t.footer.privacy
-          }
-        ),
-        /* @__PURE__ */ jsx(
-          distExports.Link,
-          {
-            to: localizePath("/cookies/", language),
-            onPointerEnter: () => prefetchRoute("cookies"),
-            onFocus: () => prefetchRoute("cookies"),
-            className: "hover:text-gray-300 transition-colors",
-            children: t.footer.cookies
-          }
-        ),
-        /* @__PURE__ */ jsx("div", { className: "w-px h-4 bg-gray-800 self-center hidden sm:block" }),
-        /* @__PURE__ */ jsxs(
-          distExports.Link,
-          {
-            to: "/admin",
-            className: "hover:text-white transition-colors flex items-center gap-1.5",
-            title: "Admin Login",
-            children: [
-              /* @__PURE__ */ jsx(Lock, { className: "w-3.5 h-3.5" }),
-              "Admin"
-            ]
-          }
-        )
-      ] })
-    ] })
-  ] }) });
+	const { language, t } = useLanguage();
+	return /* @__PURE__ */ jsx("footer", {
+		className: "bg-[var(--color-dark-bg)] text-[var(--color-dark-fg)] mt-auto",
+		children: /* @__PURE__ */ jsxs("div", {
+			className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16",
+			children: [/* @__PURE__ */ jsxs("div", {
+				className: "grid grid-cols-1 md:grid-cols-4 gap-12",
+				children: [
+					/* @__PURE__ */ jsxs("div", {
+						className: "md:col-span-2 space-y-6",
+						children: [/* @__PURE__ */ jsx(import_dist.Link, {
+							to: localizePath("/", language),
+							className: "inline-block group hover:opacity-90 transition-opacity",
+							children: /* @__PURE__ */ jsx(Logo, {
+								dark: true,
+								className: "scale-[0.65] origin-left"
+							})
+						}), /* @__PURE__ */ jsx("p", {
+							className: "text-gray-400 text-sm max-w-md leading-relaxed mt-4",
+							children: t.footer.desc
+						})]
+					}),
+					/* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx("h3", {
+						className: "font-semibold text-white mb-6 text-sm tracking-wide uppercase",
+						children: t.footer.discover
+					}), /* @__PURE__ */ jsxs("ul", {
+						className: "space-y-4",
+						children: [
+							/* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(import_dist.Link, {
+								to: localizePath("/", language),
+								className: "text-gray-400 hover:text-white transition-colors text-sm",
+								children: t.nav.home
+							}) }),
+							/* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(import_dist.Link, {
+								to: localizePath("/projects/", language),
+								onPointerEnter: () => prefetchRoutes(["projects", "projectDetails"]),
+								onFocus: () => prefetchRoutes(["projects", "projectDetails"]),
+								className: "text-gray-400 hover:text-white transition-colors text-sm",
+								children: t.nav.openSource
+							}) }),
+							/* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(import_dist.Link, {
+								to: localizePath("/completed-projects/", language),
+								onPointerEnter: () => prefetchRoutes(["completedProjects", "completedProjectDetails"]),
+								onFocus: () => prefetchRoutes(["completedProjects", "completedProjectDetails"]),
+								className: "text-gray-400 hover:text-white transition-colors text-sm",
+								children: t.nav.completedProjects
+							}) }),
+							/* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(import_dist.Link, {
+								to: localizePath("/contact/", language),
+								onPointerEnter: () => prefetchRoute("contact"),
+								onFocus: () => prefetchRoute("contact"),
+								className: "text-gray-400 hover:text-white transition-colors text-sm",
+								children: t.nav.contact
+							}) })
+						]
+					})] }),
+					/* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx("h3", {
+						className: "font-semibold text-white mb-6 text-sm tracking-wide uppercase",
+						children: t.footer.connect
+					}), /* @__PURE__ */ jsxs("ul", {
+						className: "space-y-4",
+						children: [/* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsxs("a", {
+							href: mailto(SITE_EMAILS.contact),
+							className: "text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2",
+							children: [/* @__PURE__ */ jsx(Mail, { className: "w-4 h-4" }), SITE_EMAILS.contact]
+						}) }), /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsxs("a", {
+							href: "https://github.com/Kernel-Guard",
+							target: "_blank",
+							rel: "noopener noreferrer",
+							className: "text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2",
+							children: [/* @__PURE__ */ jsx(Github, { className: "w-4 h-4" }), t.nav.github]
+						}) })]
+					})] }),
+					/* @__PURE__ */ jsx("div", {
+						className: "md:col-span-4 border-t border-gray-800 pt-8",
+						children: /* @__PURE__ */ jsx("ul", {
+							className: "flex flex-wrap gap-x-6 gap-y-3 text-sm text-gray-400",
+							children: [
+								"security",
+								"engineering",
+								"status",
+								"changelog"
+							].map((key) => /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(import_dist.Link, {
+								to: localizePath(`/${key}/`, language),
+								onPointerEnter: () => prefetchRoute(key),
+								onFocus: () => prefetchRoute(key),
+								className: "hover:text-white transition-colors",
+								children: enterprisePages[language].links[key]
+							}) }, key))
+						})
+					})
+				]
+			}), /* @__PURE__ */ jsxs("div", {
+				className: "mt-16 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4",
+				children: [/* @__PURE__ */ jsxs("p", {
+					className: "text-gray-400 text-sm",
+					children: [
+						"© ",
+						(/* @__PURE__ */ new Date()).getFullYear(),
+						" ",
+						t.footer.rights
+					]
+				}), /* @__PURE__ */ jsxs("div", {
+					className: "flex space-x-6 text-sm text-gray-400",
+					children: [
+						/* @__PURE__ */ jsx(import_dist.Link, {
+							to: localizePath("/terms/", language),
+							onPointerEnter: () => prefetchRoute("terms"),
+							onFocus: () => prefetchRoute("terms"),
+							className: "hover:text-gray-300 transition-colors",
+							children: t.footer.terms
+						}),
+						/* @__PURE__ */ jsx(import_dist.Link, {
+							to: localizePath("/privacy/", language),
+							onPointerEnter: () => prefetchRoute("privacy"),
+							onFocus: () => prefetchRoute("privacy"),
+							className: "hover:text-gray-300 transition-colors",
+							children: t.footer.privacy
+						}),
+						/* @__PURE__ */ jsx(import_dist.Link, {
+							to: localizePath("/cookies/", language),
+							onPointerEnter: () => prefetchRoute("cookies"),
+							onFocus: () => prefetchRoute("cookies"),
+							className: "hover:text-gray-300 transition-colors",
+							children: t.footer.cookies
+						}),
+						/* @__PURE__ */ jsx("div", { className: "w-px h-4 bg-gray-800 self-center hidden sm:block" }),
+						/* @__PURE__ */ jsxs(import_dist.Link, {
+							to: "/admin",
+							className: "hover:text-white transition-colors flex items-center gap-1.5",
+							title: "Admin Login",
+							children: [/* @__PURE__ */ jsx(Lock, { className: "w-3.5 h-3.5" }), "Admin"]
+						})
+					]
+				})]
+			})]
+		})
+	});
 }
 function Layout() {
-  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen flex flex-col", children: [
-    /* @__PURE__ */ jsx(Navbar, {}),
-    /* @__PURE__ */ jsx("main", { className: "flex-grow pt-16", children: /* @__PURE__ */ jsx(distExports.Outlet, {}) }),
-    /* @__PURE__ */ jsx(Footer, {})
-  ] });
+	return /* @__PURE__ */ jsxs("div", {
+		className: "min-h-screen flex flex-col",
+		children: [
+			/* @__PURE__ */ jsx(Navbar, {}),
+			/* @__PURE__ */ jsx("main", {
+				className: "flex-grow pt-16",
+				children: /* @__PURE__ */ jsx(import_dist.Outlet, {})
+			}),
+			/* @__PURE__ */ jsx(Footer, {})
+		]
+	});
 }
-const LOG_SEQUENCE = [
-  { text: "kernel-guard@sys:~$ init_secure_server", type: "cmd", delay: 800 },
-  { text: "[INFO] Initializing zero-trust architecture...", type: "info", delay: 400 },
-  { text: "[INFO] Compiling React application...", type: "info", delay: 600 },
-  { text: "[WARN] Scanning for vulnerabilities...", type: "warn", delay: 1200 },
-  { text: "[OK] XSS Protection: ACTIVE", type: "success", delay: 200 },
-  { text: "[OK] CSRF Tokens: VERIFIED", type: "success", delay: 200 },
-  { text: "[OK] API Endpoints: ENCRYPTED (AES-256)", type: "success", delay: 200 },
-  { text: "[SUCCESS] Build completed securely in 2.4s.", type: "success", delay: 1e3 },
-  { text: "kernel-guard@sys:~$ monitor_traffic", type: "cmd", delay: 800 },
-  { text: "[INFO] Intercepting incoming requests...", type: "info", delay: 500 },
-  { text: "[ERROR] Blocked malicious payload (SQLi attempt)", type: "error", delay: 300 },
-  { text: "[INFO] Validating JWT signatures... OK", type: "success", delay: 400 },
-  { text: "[INFO] System secure. Awaiting input...", type: "info", delay: 3e3 }
+//#endregion
+//#region src/components/SecurityTerminal.tsx
+var LOG_SEQUENCE = [
+	{
+		text: "kernel-guard@sys:~$ init_secure_server",
+		type: "cmd",
+		delay: 800
+	},
+	{
+		text: "[INFO] Initializing zero-trust architecture...",
+		type: "info",
+		delay: 400
+	},
+	{
+		text: "[INFO] Compiling React application...",
+		type: "info",
+		delay: 600
+	},
+	{
+		text: "[WARN] Scanning for vulnerabilities...",
+		type: "warn",
+		delay: 1200
+	},
+	{
+		text: "[OK] XSS Protection: ACTIVE",
+		type: "success",
+		delay: 200
+	},
+	{
+		text: "[OK] CSRF Tokens: VERIFIED",
+		type: "success",
+		delay: 200
+	},
+	{
+		text: "[OK] API Endpoints: ENCRYPTED (AES-256)",
+		type: "success",
+		delay: 200
+	},
+	{
+		text: "[SUCCESS] Build completed securely in 2.4s.",
+		type: "success",
+		delay: 1e3
+	},
+	{
+		text: "kernel-guard@sys:~$ monitor_traffic",
+		type: "cmd",
+		delay: 800
+	},
+	{
+		text: "[INFO] Intercepting incoming requests...",
+		type: "info",
+		delay: 500
+	},
+	{
+		text: "[ERROR] Blocked malicious payload (SQLi attempt)",
+		type: "error",
+		delay: 300
+	},
+	{
+		text: "[INFO] Validating JWT signatures... OK",
+		type: "success",
+		delay: 400
+	},
+	{
+		text: "[INFO] System secure. Awaiting input...",
+		type: "info",
+		delay: 3e3
+	}
 ];
 function getLogColor(type) {
-  switch (type) {
-    case "cmd":
-      return "text-gray-200";
-    case "info":
-      return "text-[#78a9ff]";
-    case "warn":
-      return "text-[#f1c21b]";
-    case "success":
-      return "text-[#42be65]";
-    case "error":
-      return "text-[#ff8389]";
-    default:
-      return "text-gray-200";
-  }
+	switch (type) {
+		case "cmd": return "text-gray-200";
+		case "info": return "text-[#78a9ff]";
+		case "warn": return "text-[#f1c21b]";
+		case "success": return "text-[#42be65]";
+		case "error": return "text-[#ff8389]";
+		default: return "text-gray-200";
+	}
 }
 function SecurityTerminal() {
-  const [visibleLines, setVisibleLines] = useState(0);
-  useEffect(() => {
-    let timeout;
-    if (visibleLines === 0) {
-      timeout = setTimeout(() => setVisibleLines(1), 1e3);
-    } else if (visibleLines > LOG_SEQUENCE.length) {
-      timeout = setTimeout(() => setVisibleLines(0), 2e3);
-    } else {
-      const currentLog = LOG_SEQUENCE[visibleLines - 1];
-      timeout = setTimeout(() => {
-        setVisibleLines((value) => value + 1);
-      }, currentLog.delay);
-    }
-    return () => clearTimeout(timeout);
-  }, [visibleLines]);
-  return /* @__PURE__ */ jsxs("div", { className: "w-full max-w-lg mx-auto rounded-lg overflow-hidden border border-gray-800 bg-[#0a0a0a] shadow-2xl shadow-primary/10", children: [
-    /* @__PURE__ */ jsxs("div", { className: "bg-[#1a1a1a] border-b border-gray-800 px-4 py-3 flex items-center gap-2", children: [
-      /* @__PURE__ */ jsx("div", { className: "w-3 h-3 rounded-full bg-red-500/80" }),
-      /* @__PURE__ */ jsx("div", { className: "w-3 h-3 rounded-full bg-yellow-500/80" }),
-      /* @__PURE__ */ jsx("div", { className: "w-3 h-3 rounded-full bg-green-500/80" }),
-      /* @__PURE__ */ jsx("div", { className: "ml-4 text-xs font-mono text-gray-400", children: "kernel-guard@server:~" })
-    ] }),
-    /* @__PURE__ */ jsxs("div", { className: "p-5 font-mono text-sm h-[320px] overflow-y-auto flex flex-col gap-2", children: [
-      LOG_SEQUENCE.slice(0, visibleLines).map((log, index) => /* @__PURE__ */ jsxs("div", { className: "flex items-start gap-2 animate-fade-in", children: [
-        log.type === "cmd" && /* @__PURE__ */ jsx("span", { className: "text-[#78a9ff] shrink-0 mt-0.5", children: ">" }),
-        /* @__PURE__ */ jsx("span", { className: getLogColor(log.type), children: log.text })
-      ] }, index)),
-      /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2 mt-1", children: [
-        /* @__PURE__ */ jsx("span", { className: "text-[#78a9ff] shrink-0", children: ">" }),
-        /* @__PURE__ */ jsx("span", { className: "w-2 h-4 bg-gray-300/70 animate-pulse" })
-      ] })
-    ] }),
-    /* @__PURE__ */ jsx("style", { children: `
+	const [visibleLines, setVisibleLines] = useState(0);
+	useEffect(() => {
+		let timeout;
+		if (visibleLines === 0) timeout = setTimeout(() => setVisibleLines(1), 1e3);
+		else if (visibleLines > LOG_SEQUENCE.length) timeout = setTimeout(() => setVisibleLines(0), 2e3);
+		else {
+			const currentLog = LOG_SEQUENCE[visibleLines - 1];
+			timeout = setTimeout(() => {
+				setVisibleLines((value) => value + 1);
+			}, currentLog.delay);
+		}
+		return () => clearTimeout(timeout);
+	}, [visibleLines]);
+	return /* @__PURE__ */ jsxs("div", {
+		className: "w-full max-w-lg mx-auto rounded-lg overflow-hidden border border-gray-800 bg-[#0a0a0a] shadow-2xl shadow-primary/10",
+		children: [
+			/* @__PURE__ */ jsxs("div", {
+				className: "bg-[#1a1a1a] border-b border-gray-800 px-4 py-3 flex items-center gap-2",
+				children: [
+					/* @__PURE__ */ jsx("div", { className: "w-3 h-3 rounded-full bg-red-500/80" }),
+					/* @__PURE__ */ jsx("div", { className: "w-3 h-3 rounded-full bg-yellow-500/80" }),
+					/* @__PURE__ */ jsx("div", { className: "w-3 h-3 rounded-full bg-green-500/80" }),
+					/* @__PURE__ */ jsx("div", {
+						className: "ml-4 text-xs font-mono text-gray-400",
+						children: "kernel-guard@server:~"
+					})
+				]
+			}),
+			/* @__PURE__ */ jsxs("div", {
+				className: "p-5 font-mono text-sm h-[320px] overflow-y-auto flex flex-col gap-2",
+				children: [LOG_SEQUENCE.slice(0, visibleLines).map((log, index) => /* @__PURE__ */ jsxs("div", {
+					className: "flex items-start gap-2 animate-fade-in",
+					children: [log.type === "cmd" && /* @__PURE__ */ jsx("span", {
+						className: "text-[#78a9ff] shrink-0 mt-0.5",
+						children: ">"
+					}), /* @__PURE__ */ jsx("span", {
+						className: getLogColor(log.type),
+						children: log.text
+					})]
+				}, index)), /* @__PURE__ */ jsxs("div", {
+					className: "flex items-center gap-2 mt-1",
+					children: [/* @__PURE__ */ jsx("span", {
+						className: "text-[#78a9ff] shrink-0",
+						children: ">"
+					}), /* @__PURE__ */ jsx("span", { className: "w-2 h-4 bg-gray-300/70 animate-pulse" })]
+				})]
+			}),
+			/* @__PURE__ */ jsx("style", { children: `
         .animate-fade-in {
           animation: fadeIn 0.2s ease-out forwards;
         }
@@ -18859,1823 +1704,2721 @@ function SecurityTerminal() {
           to { opacity: 1; transform: translateY(0); }
         }
       ` })
-  ] });
+		]
+	});
 }
-const SITE_URL = normalizeSiteUrl(DEFAULT_SITE_URL);
-const ORGANIZATION_ID = `${SITE_URL}/#organization`;
-function absoluteUrl(path, language) {
-  return `${SITE_URL}${normalizeCanonicalPath(localizePath(path, language))}`;
-}
-const englishLabels = {
-  home: "Home",
-  services: "Services",
-  projects: "Open Source Projects",
-  completedProjects: "Completed Projects",
-  terms: "Terms of Service",
-  privacy: "Privacy Policy",
-  cookies: "Cookie Preferences",
-  contact: "Contact",
-  security: "Security",
-  engineering: "Engineering",
-  status: "Status",
-  changelog: "Changelog",
-  notFound: "Not Found",
-  serviceDetails: {
-    "secure-frontend": "Secure Frontend",
-    "hardened-backend": "Hardened Backend",
-    "data-protection": "Data Protection",
-    "high-performance": "High Performance"
-  }
+//#endregion
+//#region src/data/engineeringEvidence.ts
+var engineeringEvidence = {
+	measuredAt: "2026-06-01",
+	delivery: {
+		prerenderedRoutes: 192,
+		indexableUrls: 160,
+		supportedLanguages: 8
+	},
+	lighthouse: {
+		desktop: {
+			performance: 100,
+			accessibility: 100,
+			bestPractices: 96,
+			seo: 92,
+			totalBlockingTime: "0 ms",
+			cumulativeLayoutShift: "0.001"
+		},
+		mobile: {
+			performance: 91,
+			accessibility: 100,
+			bestPractices: 96,
+			seo: 92,
+			totalBlockingTime: "0 ms",
+			cumulativeLayoutShift: "0"
+		}
+	},
+	github: {
+		publicRepositories: 7,
+		featuredRepositories: 3,
+		latestPublicUpdate: "2026-05-29",
+		primaryLanguages: [
+			"Python",
+			"Rust",
+			"C++",
+			"TypeScript",
+			"Go"
+		]
+	}
 };
-const LABELS = {
-  tr: {
-    home: "Ana Sayfa",
-    services: "Hizmetler",
-    projects: "Acik Kaynak Projeler",
-    completedProjects: "Tamamlanan Projeler",
-    terms: "Kullanim Kosullari",
-    privacy: "Gizlilik Politikasi",
-    cookies: "Cerez Tercihleri",
-    contact: "Iletisim",
-    security: "Guvenlik",
-    engineering: "Muhendislik",
-    status: "Durum",
-    changelog: "Degisiklikler",
-    notFound: "Sayfa Bulunamadi",
-    serviceDetails: {
-      "secure-frontend": "Guvenli Frontend",
-      "hardened-backend": "Guclendirilmis Backend",
-      "data-protection": "Veri Koruma",
-      "high-performance": "Yuksek Performans"
-    }
-  },
-  en: englishLabels,
-  de: {
-    home: "Startseite",
-    services: "Leistungen",
-    projects: "Open Source Projekte",
-    completedProjects: "Referenzen",
-    terms: "Nutzungsbedingungen",
-    privacy: "Datenschutz",
-    cookies: "Cookie-Einstellungen",
-    contact: "Kontakt",
-    security: "Sicherheit",
-    engineering: "Engineering",
-    status: "Status",
-    changelog: "Changelog",
-    notFound: "Nicht gefunden",
-    serviceDetails: {
-      "secure-frontend": "Sicheres Frontend",
-      "hardened-backend": "Gehaertetes Backend",
-      "data-protection": "Datenschutz",
-      "high-performance": "Hohe Performance"
-    }
-  },
-  ja: englishLabels,
-  "zh-CN": englishLabels,
-  es: englishLabels,
-  fr: englishLabels,
-  ko: englishLabels
-};
-function buildBreadcrumbItems(pathname, language) {
-  const logical = stripLanguagePrefix(pathname).replace(/\/+$/, "") || "/";
-  const labels = LABELS[language];
-  if (logical === "/") return null;
-  const home = { name: labels.home, path: "/" };
-  if (logical === "/services") {
-    return [home, { name: labels.services, path: "/services/" }];
-  }
-  const serviceMatch = logical.match(/^\/services\/([^/]+)$/);
-  if (serviceMatch) {
-    const slug = serviceMatch[1];
-    const detailLabel = labels.serviceDetails[slug];
-    if (!detailLabel) return null;
-    return [
-      home,
-      { name: labels.services, path: "/services/" },
-      { name: detailLabel, path: `/services/${slug}/` }
-    ];
-  }
-  if (logical === "/projects") {
-    return [home, { name: labels.projects, path: "/projects/" }];
-  }
-  const projectMatch = logical.match(/^\/projects\/([^/]+)$/);
-  if (projectMatch) {
-    return [
-      home,
-      { name: labels.projects, path: "/projects/" },
-      { name: projectMatch[1], path: `/projects/${projectMatch[1]}/` }
-    ];
-  }
-  if (logical === "/completed-projects") {
-    return [home, { name: labels.completedProjects, path: "/completed-projects/" }];
-  }
-  const completedMatch = logical.match(/^\/completed-projects\/([^/]+)$/);
-  if (completedMatch) {
-    return [
-      home,
-      { name: labels.completedProjects, path: "/completed-projects/" },
-      { name: completedMatch[1], path: `/completed-projects/${completedMatch[1]}/` }
-    ];
-  }
-  if (logical === "/terms") return [home, { name: labels.terms, path: "/terms/" }];
-  if (logical === "/privacy") return [home, { name: labels.privacy, path: "/privacy/" }];
-  if (logical === "/cookies") return [home, { name: labels.cookies, path: "/cookies/" }];
-  if (logical === "/contact") return [home, { name: labels.contact, path: "/contact/" }];
-  if (logical === "/security") return [home, { name: labels.security, path: "/security/" }];
-  if (logical === "/engineering") return [home, { name: labels.engineering, path: "/engineering/" }];
-  if (logical === "/status") return [home, { name: labels.status, path: "/status/" }];
-  if (logical === "/changelog") return [home, { name: labels.changelog, path: "/changelog/" }];
-  if (logical === "/not-found") return [home, { name: labels.notFound, path: "/not-found/" }];
-  return null;
-}
-function buildBreadcrumbSchema(pathname, language, siteUrl, localizeForSchema) {
-  const items2 = buildBreadcrumbItems(pathname, language);
-  if (!items2) return null;
-  return {
-    "@type": "BreadcrumbList",
-    itemListElement: items2.map((item, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: item.name,
-      item: `${siteUrl}${localizeForSchema(item.path)}`
-    }))
-  };
-}
-function buildServiceSchema({
-  name,
-  description,
-  path,
-  language,
-  serviceType
-}) {
-  return {
-    "@type": "Service",
-    name,
-    description,
-    url: absoluteUrl(path, language),
-    serviceType,
-    provider: { "@id": ORGANIZATION_ID },
-    areaServed: "Worldwide",
-    inLanguage: language
-  };
-}
-function buildSoftwareSourceCodeSchema({
-  name,
-  description,
-  path,
-  language,
-  codeRepository,
-  programmingLanguage
-}) {
-  const node = {
-    "@type": "SoftwareSourceCode",
-    name,
-    description,
-    url: absoluteUrl(path, language),
-    author: { "@id": ORGANIZATION_ID },
-    maintainer: { "@id": ORGANIZATION_ID },
-    inLanguage: language
-  };
-  if (codeRepository) {
-    node.codeRepository = codeRepository;
-  }
-  if (programmingLanguage && programmingLanguage.length > 0) {
-    node.programmingLanguage = programmingLanguage;
-  }
-  return node;
-}
-function normalizeSchemaItems(schema) {
-  if (!schema) {
-    return [];
-  }
-  return Array.isArray(schema) ? schema : [schema];
-}
-function SEO({
-  title = "Kernel Guard | Secure Web Development & Cybersecurity",
-  description = "Kernel Guard specializes in building high-performance, secure web applications, hardened backend architectures, and post-quantum cryptography solutions.",
-  keywords,
-  type = "website",
-  name = "Kernel Guard",
-  image = "/og/default.svg",
-  imageAlt = "Kernel Guard - Secure & Scalable Web Engineering",
-  path,
-  noIndex = false,
-  noFollow = false,
-  schema
-}) {
-  var _a2;
-  const { language } = useLanguage();
-  const location2 = distExports.useLocation();
-  const currentPath = normalizeCanonicalPath(path || location2.pathname);
-  const siteUrl = normalizeSiteUrl(DEFAULT_SITE_URL);
-  const canonicalUrl = buildCanonicalUrl(siteUrl, currentPath);
-  const robotsContent = noIndex ? noFollow ? "noindex, nofollow" : "noindex, follow" : noFollow ? "index, nofollow" : "index, follow";
-  const ogLocales = {
-    tr: "tr_TR",
-    en: "en_US",
-    de: "de_DE",
-    ja: "ja_JP",
-    "zh-CN": "zh_CN",
-    es: "es_ES",
-    fr: "fr_FR",
-    ko: "ko_KR"
-  };
-  const locale = ogLocales[language];
-  const alternateLocales = SUPPORTED_LANGUAGES.filter((lang) => lang !== language).map((lang) => ogLocales[lang]);
-  const logicalPath = stripLanguagePrefix(currentPath);
-  const alternateUrls = SUPPORTED_LANGUAGES.map((lang) => ({
-    language: lang,
-    hrefLang: LANGUAGE_HREFLANGS[lang],
-    url: buildCanonicalUrl(siteUrl, normalizeCanonicalPath(localizePath(logicalPath, lang)))
-  }));
-  const defaultUrl = ((_a2 = alternateUrls.find((alternate) => alternate.language === "tr")) == null ? void 0 : _a2.url) ?? canonicalUrl;
-  const absoluteImage = image.startsWith("http") ? image : `${siteUrl}${image.startsWith("/") ? "" : "/"}${image}`;
-  const schemaItems = normalizeSchemaItems(schema);
-  const organizationId = `${siteUrl}/#organization`;
-  const websiteId = `${siteUrl}/#website`;
-  const breadcrumb = buildBreadcrumbSchema(
-    currentPath,
-    language,
-    siteUrl,
-    (p) => normalizeCanonicalPath(localizePath(p, language))
-  );
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": organizationId,
-        name,
-        url: `${siteUrl}/`,
-        logo: absoluteImage,
-        sameAs: [
-          "https://github.com/Kernel-Guard"
-        ]
-      },
-      {
-        "@type": "WebSite",
-        "@id": websiteId,
-        url: `${siteUrl}/`,
-        name,
-        inLanguage: language,
-        publisher: {
-          "@id": organizationId
-        }
-      },
-      {
-        "@type": "WebPage",
-        "@id": `${canonicalUrl}#webpage`,
-        url: canonicalUrl,
-        name: title,
-        description,
-        inLanguage: language,
-        isPartOf: {
-          "@id": websiteId
-        },
-        ...breadcrumb ? { breadcrumb: { "@id": `${canonicalUrl}#breadcrumb` } } : {}
-      },
-      ...breadcrumb ? [{ ...breadcrumb, "@id": `${canonicalUrl}#breadcrumb` }] : [],
-      ...schemaItems
-    ]
-  };
-  return /* @__PURE__ */ jsxs(Helmet, { htmlAttributes: { lang: language }, children: [
-    /* @__PURE__ */ jsx("title", { children: title }),
-    /* @__PURE__ */ jsx("meta", { name: "description", content: description }),
-    /* @__PURE__ */ jsx("meta", { name: "robots", content: robotsContent }),
-    /* @__PURE__ */ jsx("meta", { name: "googlebot", content: robotsContent }),
-    /* @__PURE__ */ jsx("link", { rel: "canonical", href: canonicalUrl }),
-    alternateUrls.map((alternate) => /* @__PURE__ */ jsx("link", { rel: "alternate", hrefLang: alternate.hrefLang, href: alternate.url }, alternate.hrefLang)),
-    /* @__PURE__ */ jsx("link", { rel: "alternate", hrefLang: "x-default", href: defaultUrl }),
-    /* @__PURE__ */ jsx("meta", { property: "og:url", content: canonicalUrl }),
-    /* @__PURE__ */ jsx("meta", { property: "og:type", content: type }),
-    /* @__PURE__ */ jsx("meta", { property: "og:title", content: title }),
-    /* @__PURE__ */ jsx("meta", { property: "og:description", content: description }),
-    /* @__PURE__ */ jsx("meta", { property: "og:site_name", content: name }),
-    /* @__PURE__ */ jsx("meta", { property: "og:image", content: absoluteImage }),
-    /* @__PURE__ */ jsx("meta", { property: "og:image:width", content: "1200" }),
-    /* @__PURE__ */ jsx("meta", { property: "og:image:height", content: "630" }),
-    /* @__PURE__ */ jsx("meta", { property: "og:image:alt", content: imageAlt }),
-    /* @__PURE__ */ jsx("meta", { property: "og:locale", content: locale }),
-    alternateLocales.map((alternateLocale) => /* @__PURE__ */ jsx("meta", { property: "og:locale:alternate", content: alternateLocale }, alternateLocale)),
-    /* @__PURE__ */ jsx("meta", { name: "twitter:creator", content: "@kernelguard" }),
-    /* @__PURE__ */ jsx("meta", { name: "twitter:site", content: "@kernelguard" }),
-    /* @__PURE__ */ jsx("meta", { name: "twitter:card", content: "summary_large_image" }),
-    /* @__PURE__ */ jsx("meta", { name: "twitter:title", content: title }),
-    /* @__PURE__ */ jsx("meta", { name: "twitter:description", content: description }),
-    /* @__PURE__ */ jsx("meta", { name: "twitter:image", content: absoluteImage }),
-    /* @__PURE__ */ jsx("meta", { name: "twitter:image:alt", content: imageAlt }),
-    /* @__PURE__ */ jsx("script", { type: "application/ld+json", children: JSON.stringify(structuredData) })
-  ] });
-}
-const engineeringEvidence = {
-  measuredAt: "2026-06-01",
-  delivery: {
-    prerenderedRoutes: 192,
-    indexableUrls: 160,
-    supportedLanguages: 8
-  },
-  lighthouse: {
-    desktop: {
-      performance: 100,
-      accessibility: 100,
-      totalBlockingTime: "0 ms"
-    }
-  },
-  github: {
-    publicRepositories: 7,
-    latestPublicUpdate: "2026-05-29"
-  }
-};
+//#endregion
+//#region src/pages/Home.tsx
+var Home_exports = /* @__PURE__ */ __exportAll({ default: () => Home });
 function Home() {
-  const { language, t } = useLanguage();
-  const features = [
-    {
-      icon: /* @__PURE__ */ jsx(PanelsTopLeft, { className: "w-6 h-6 text-primary" }),
-      title: t.home.features.frontend.title,
-      description: t.home.features.frontend.desc,
-      link: localizePath("/services/secure-frontend/", language),
-      prefetch: "secureFrontend"
-    },
-    {
-      icon: /* @__PURE__ */ jsx(Server, { className: "w-6 h-6 text-primary" }),
-      title: t.home.features.backend.title,
-      description: t.home.features.backend.desc,
-      link: localizePath("/services/hardened-backend/", language),
-      prefetch: "hardenedBackend"
-    },
-    {
-      icon: /* @__PURE__ */ jsx(Database, { className: "w-6 h-6 text-primary" }),
-      title: t.home.features.data.title,
-      description: t.home.features.data.desc,
-      link: localizePath("/services/data-protection/", language),
-      prefetch: "dataProtection"
-    },
-    {
-      icon: /* @__PURE__ */ jsx(Zap, { className: "w-6 h-6 text-primary" }),
-      title: t.home.features.performance.title,
-      description: t.home.features.performance.desc,
-      link: localizePath("/services/high-performance/", language),
-      prefetch: "highPerformance"
-    }
-  ];
-  const proofCards = [
-    {
-      icon: /* @__PURE__ */ jsx(Gauge, { className: "h-5 w-5" }),
-      value: `${engineeringEvidence.lighthouse.desktop.performance}/${engineeringEvidence.lighthouse.desktop.accessibility}`,
-      label: t.home.proof.cards.lighthouse.label,
-      detail: t.home.proof.cards.lighthouse.detail
-    },
-    {
-      icon: /* @__PURE__ */ jsx(ShieldCheck, { className: "h-5 w-5" }),
-      value: `${engineeringEvidence.delivery.prerenderedRoutes}`,
-      label: t.home.proof.cards.delivery.label,
-      detail: t.home.proof.cards.delivery.detail
-    },
-    {
-      icon: /* @__PURE__ */ jsx(GitBranch, { className: "h-5 w-5" }),
-      value: `${engineeringEvidence.github.publicRepositories}`,
-      label: t.home.proof.cards.openSource.label,
-      detail: t.home.proof.cards.openSource.detail
-    },
-    {
-      icon: /* @__PURE__ */ jsx(Earth, { className: "h-5 w-5" }),
-      value: `${engineeringEvidence.delivery.supportedLanguages}`,
-      label: t.home.proof.cards.languages.label,
-      detail: t.home.proof.cards.languages.detail
-    }
-  ];
-  return /* @__PURE__ */ jsxs("div", { className: "flex flex-col bg-background", children: [
-    /* @__PURE__ */ jsx(
-      SEO,
-      {
-        title: t.seo.home.title,
-        description: t.seo.home.description,
-        keywords: t.seo.home.keywords
-      }
-    ),
-    /* @__PURE__ */ jsx("section", { className: "pt-32 pb-20 md:pt-48 md:pb-32 border-b border-border overflow-hidden", children: /* @__PURE__ */ jsx("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-1 lg:grid-cols-2 gap-12 items-center", children: [
-      /* @__PURE__ */ jsxs("div", { className: "max-w-4xl relative z-10", children: [
-        /* @__PURE__ */ jsxs("h1", { className: "text-5xl md:text-7xl font-light text-foreground leading-[1.1] mb-8", children: [
-          t.home.heroTitle1,
-          " ",
-          /* @__PURE__ */ jsx("br", {}),
-          /* @__PURE__ */ jsx("span", { className: "font-semibold", children: t.home.heroTitle2 })
-        ] }),
-        /* @__PURE__ */ jsx("p", { className: "text-xl md:text-2xl text-foreground mb-12 max-w-2xl leading-relaxed font-light", children: t.home.heroDesc }),
-        /* @__PURE__ */ jsxs("div", { className: "flex flex-col sm:flex-row flex-wrap gap-4", children: [
-          /* @__PURE__ */ jsxs(
-            distExports.Link,
-            {
-              to: localizePath("/projects/", language),
-              onPointerEnter: () => prefetchRoutes(["projects", "projectDetails"]),
-              onFocus: () => prefetchRoutes(["projects", "projectDetails"]),
-              className: "inline-flex items-center justify-between px-6 py-4 kg-action-primary transition-colors w-full sm:w-64",
-              children: [
-                /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.home.viewArch }),
-                /* @__PURE__ */ jsx(ArrowRight, { className: "w-5 h-5" })
-              ]
-            }
-          ),
-          /* @__PURE__ */ jsxs(
-            distExports.Link,
-            {
-              to: localizePath("/completed-projects/", language),
-              onPointerEnter: () => prefetchRoutes(["completedProjects", "completedProjectDetails"]),
-              onFocus: () => prefetchRoutes(["completedProjects", "completedProjectDetails"]),
-              className: "inline-flex items-center justify-between px-6 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors w-full sm:w-64",
-              children: [
-                /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.home.viewCompletedProjects }),
-                /* @__PURE__ */ jsx(ArrowRight, { className: "w-5 h-5" })
-              ]
-            }
-          ),
-          /* @__PURE__ */ jsxs(
-            "a",
-            {
-              href: "https://github.com/Kernel-Guard",
-              target: "_blank",
-              rel: "noopener noreferrer",
-              className: "inline-flex items-center justify-between px-6 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors w-full sm:w-64",
-              children: [
-                /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.home.githubRepo }),
-                /* @__PURE__ */ jsx(ArrowRight, { className: "w-5 h-5" })
-              ]
-            }
-          )
-        ] })
-      ] }),
-      /* @__PURE__ */ jsx("div", { className: "hidden lg:flex justify-center items-center relative", children: /* @__PURE__ */ jsx(SecurityTerminal, {}) })
-    ] }) }) }),
-    /* @__PURE__ */ jsx("section", { className: "py-24 bg-surface overflow-hidden", children: /* @__PURE__ */ jsx("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8", children: [
-      /* @__PURE__ */ jsx("div", { className: "lg:col-span-4", children: /* @__PURE__ */ jsx("h2", { className: "text-3xl font-light mb-6", children: t.home.missionTitle }) }),
-      /* @__PURE__ */ jsxs("div", { className: "lg:col-span-8 space-y-8 text-lg text-foreground leading-relaxed font-light", children: [
-        /* @__PURE__ */ jsx("p", { children: t.home.missionP1 }),
-        /* @__PURE__ */ jsx("p", { children: t.home.missionP2 })
-      ] })
-    ] }) }) }),
-    /* @__PURE__ */ jsx("section", { className: "py-24 border-t border-border bg-background", children: /* @__PURE__ */ jsx("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-1 lg:grid-cols-12 gap-12", children: [
-      /* @__PURE__ */ jsxs("div", { className: "lg:col-span-4", children: [
-        /* @__PURE__ */ jsx("div", { className: "inline-block px-3 py-1 mb-6 border border-border text-xs font-mono tracking-widest text-foreground/70 uppercase", children: t.home.proof.badge }),
-        /* @__PURE__ */ jsx("h2", { className: "text-3xl md:text-4xl font-light mb-6", children: t.home.proof.title }),
-        /* @__PURE__ */ jsx("p", { className: "text-lg text-foreground/70 font-light leading-relaxed", children: t.home.proof.desc })
-      ] }),
-      /* @__PURE__ */ jsxs("div", { className: "lg:col-span-8", children: [
-        /* @__PURE__ */ jsx("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-4", children: proofCards.map((card) => /* @__PURE__ */ jsxs("div", { className: "border border-border bg-surface p-6", children: [
-          /* @__PURE__ */ jsxs("div", { className: "mb-8 flex items-center justify-between text-primary", children: [
-            card.icon,
-            /* @__PURE__ */ jsx("span", { className: "font-mono text-xs text-foreground/60", children: engineeringEvidence.measuredAt })
-          ] }),
-          /* @__PURE__ */ jsx("div", { className: "font-mono text-4xl text-foreground mb-3", children: card.value }),
-          /* @__PURE__ */ jsx("h3", { className: "text-base font-medium text-foreground mb-2", children: card.label }),
-          /* @__PURE__ */ jsx("p", { className: "text-sm leading-relaxed text-foreground/70", children: card.detail })
-        ] }, card.label)) }),
-        /* @__PURE__ */ jsxs("div", { className: "mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 border border-border bg-surface p-5 text-sm text-foreground/70", children: [
-          /* @__PURE__ */ jsxs("div", { children: [
-            /* @__PURE__ */ jsx("span", { className: "font-mono text-foreground", children: engineeringEvidence.delivery.indexableUrls }),
-            " ",
-            t.home.proof.summary.indexableUrls
-          ] }),
-          /* @__PURE__ */ jsxs("div", { children: [
-            /* @__PURE__ */ jsx("span", { className: "font-mono text-foreground", children: engineeringEvidence.lighthouse.desktop.totalBlockingTime }),
-            " ",
-            t.home.proof.summary.desktopTbt
-          ] }),
-          /* @__PURE__ */ jsxs("div", { children: [
-            /* @__PURE__ */ jsx("span", { className: "font-mono text-foreground", children: engineeringEvidence.github.latestPublicUpdate }),
-            " ",
-            t.home.proof.summary.latestUpdate
-          ] })
-        ] }),
-        /* @__PURE__ */ jsx("p", { className: "mt-4 text-xs text-foreground/50 font-mono", children: t.home.proof.footnote })
-      ] })
-    ] }) }) }),
-    /* @__PURE__ */ jsxs("section", { className: "py-24 border-t border-border bg-surface overflow-hidden", children: [
-      /* @__PURE__ */ jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center", children: [
-        /* @__PURE__ */ jsx("h2", { className: "text-3xl font-light mb-4", children: t.home.techStackTitle }),
-        /* @__PURE__ */ jsx("p", { className: "text-lg text-foreground/70 font-light max-w-2xl mx-auto", children: t.home.techStackDesc })
-      ] }),
-      /* @__PURE__ */ jsxs("div", { className: "relative w-full flex overflow-hidden", children: [
-        /* @__PURE__ */ jsx("div", { className: "absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-surface to-transparent z-10 pointer-events-none" }),
-        /* @__PURE__ */ jsx("div", { className: "absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-surface to-transparent z-10 pointer-events-none" }),
-        /* @__PURE__ */ jsxs("div", { className: "flex animate-marquee whitespace-nowrap", children: [
-          /* @__PURE__ */ jsx("div", { className: "flex gap-8 px-4 items-center", children: ["React", "TypeScript", "Node.js", "Rust", "Go", "Docker", "Kubernetes", "PostgreSQL", "GraphQL", "WebAssembly"].map((tech, i) => /* @__PURE__ */ jsx("div", { className: "px-6 py-3 border border-border bg-background text-foreground font-mono text-lg font-medium shadow-[0_0_15px_rgba(15,98,254,0.1)]", children: tech }, i)) }),
-          /* @__PURE__ */ jsx("div", { className: "flex gap-8 px-4 items-center", children: ["React", "TypeScript", "Node.js", "Rust", "Go", "Docker", "Kubernetes", "PostgreSQL", "GraphQL", "WebAssembly"].map((tech, i) => /* @__PURE__ */ jsx("div", { className: "px-6 py-3 border border-border bg-background text-foreground font-mono text-lg font-medium shadow-[0_0_15px_rgba(15,98,254,0.1)]", children: tech }, `dup-${i}`)) })
-        ] })
-      ] })
-    ] }),
-    /* @__PURE__ */ jsx("section", { className: "py-24 border-t border-border bg-background", children: /* @__PURE__ */ jsx("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: /* @__PURE__ */ jsx("div", { className: "grid grid-cols-1 md:grid-cols-3 gap-6", children: features.map((feature, index) => {
-      const isLarge = index === 0 || index === 3;
-      return /* @__PURE__ */ jsx(
-        "div",
-        {
-          className: `${isLarge ? "md:col-span-2" : "md:col-span-1"}`,
-          children: /* @__PURE__ */ jsxs(
-            distExports.Link,
-            {
-              to: feature.link,
-              onPointerEnter: () => prefetchRoute(feature.prefetch),
-              onFocus: () => prefetchRoute(feature.prefetch),
-              className: "group relative block h-full p-8 bg-surface border border-border hover:border-primary/50 transition-colors overflow-hidden",
-              children: [
-                /* @__PURE__ */ jsx("div", { className: "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none", children: /* @__PURE__ */ jsx("div", { className: "absolute -inset-[100%] bg-gradient-to-r from-transparent via-primary/5 to-transparent rotate-45 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" }) }),
-                /* @__PURE__ */ jsxs("div", { className: "relative z-10 flex flex-col h-full", children: [
-                  /* @__PURE__ */ jsx("div", { className: "mb-12", children: feature.icon }),
-                  /* @__PURE__ */ jsx("h3", { className: "text-2xl font-medium mb-4", children: feature.title }),
-                  /* @__PURE__ */ jsx("p", { className: "text-foreground/80 text-base leading-relaxed font-light flex-grow", children: feature.description }),
-                  /* @__PURE__ */ jsx("div", { className: "mt-8 flex justify-end opacity-0 group-hover:opacity-100 transition-opacity translate-x-[-10px] group-hover:translate-x-0 duration-300", children: /* @__PURE__ */ jsx(ArrowRight, { className: "w-6 h-6 text-primary" }) })
-                ] })
-              ]
-            }
-          )
-        },
-        index
-      );
-    }) }) }) }),
-    /* @__PURE__ */ jsx("section", { className: "py-24 border-t border-border bg-surface", children: /* @__PURE__ */ jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: [
-      /* @__PURE__ */ jsx("h2", { className: "text-3xl font-light mb-16 max-w-2xl", children: t.home.principles.title }),
-      /* @__PURE__ */ jsx("div", { className: "grid grid-cols-1 md:grid-cols-3 gap-12 divide-y md:divide-y-0 md:divide-x divide-border", children: t.home.principles.items.map((item, index) => /* @__PURE__ */ jsxs("div", { className: `pt-8 md:pt-0 ${index === 0 ? "md:pr-8" : index === 1 ? "md:px-8" : "md:pl-8"}`, children: [
-        /* @__PURE__ */ jsx("div", { className: "text-xl font-medium text-primary mb-4", children: item.title }),
-        /* @__PURE__ */ jsx("div", { className: "text-base font-light leading-relaxed text-foreground/80", children: item.desc })
-      ] }, index)) })
-    ] }) }),
-    /* @__PURE__ */ jsx("section", { className: "py-24 border-t border-border bg-background", children: /* @__PURE__ */ jsx("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center", children: /* @__PURE__ */ jsxs("div", { className: "max-w-3xl mx-auto", children: [
-      /* @__PURE__ */ jsx("h2", { className: "text-3xl font-light mb-6", children: t.home.community.title }),
-      /* @__PURE__ */ jsx("p", { className: "text-xl font-light text-foreground/70 mb-10 leading-relaxed", children: t.home.community.desc }),
-      /* @__PURE__ */ jsxs(
-        "a",
-        {
-          href: "https://github.com/Kernel-Guard",
-          target: "_blank",
-          rel: "noopener noreferrer",
-          className: "inline-flex items-center justify-center px-8 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-white transition-colors",
-          children: [
-            /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.nav.github }),
-            /* @__PURE__ */ jsx(ArrowRight, { className: "w-5 h-5 ml-3" })
-          ]
-        }
-      )
-    ] }) }) })
-  ] });
+	const { language, t } = useLanguage();
+	const features = [
+		{
+			icon: /* @__PURE__ */ jsx(PanelsTopLeft, { className: "w-6 h-6 text-primary" }),
+			title: t.home.features.frontend.title,
+			description: t.home.features.frontend.desc,
+			link: localizePath("/services/secure-frontend/", language),
+			prefetch: "secureFrontend"
+		},
+		{
+			icon: /* @__PURE__ */ jsx(Server, { className: "w-6 h-6 text-primary" }),
+			title: t.home.features.backend.title,
+			description: t.home.features.backend.desc,
+			link: localizePath("/services/hardened-backend/", language),
+			prefetch: "hardenedBackend"
+		},
+		{
+			icon: /* @__PURE__ */ jsx(Database, { className: "w-6 h-6 text-primary" }),
+			title: t.home.features.data.title,
+			description: t.home.features.data.desc,
+			link: localizePath("/services/data-protection/", language),
+			prefetch: "dataProtection"
+		},
+		{
+			icon: /* @__PURE__ */ jsx(Zap, { className: "w-6 h-6 text-primary" }),
+			title: t.home.features.performance.title,
+			description: t.home.features.performance.desc,
+			link: localizePath("/services/high-performance/", language),
+			prefetch: "highPerformance"
+		}
+	];
+	const proofCards = [
+		{
+			icon: /* @__PURE__ */ jsx(Gauge, { className: "h-5 w-5" }),
+			value: `${engineeringEvidence.lighthouse.desktop.performance}/${engineeringEvidence.lighthouse.desktop.accessibility}`,
+			label: t.home.proof.cards.lighthouse.label,
+			detail: t.home.proof.cards.lighthouse.detail
+		},
+		{
+			icon: /* @__PURE__ */ jsx(ShieldCheck, { className: "h-5 w-5" }),
+			value: `${engineeringEvidence.delivery.prerenderedRoutes}`,
+			label: t.home.proof.cards.delivery.label,
+			detail: t.home.proof.cards.delivery.detail
+		},
+		{
+			icon: /* @__PURE__ */ jsx(GitBranch, { className: "h-5 w-5" }),
+			value: `${engineeringEvidence.github.publicRepositories}`,
+			label: t.home.proof.cards.openSource.label,
+			detail: t.home.proof.cards.openSource.detail
+		},
+		{
+			icon: /* @__PURE__ */ jsx(Earth, { className: "h-5 w-5" }),
+			value: `${engineeringEvidence.delivery.supportedLanguages}`,
+			label: t.home.proof.cards.languages.label,
+			detail: t.home.proof.cards.languages.detail
+		}
+	];
+	return /* @__PURE__ */ jsxs("div", {
+		className: "flex flex-col bg-background",
+		children: [
+			/* @__PURE__ */ jsx(SEO, {
+				title: t.seo.home.title,
+				description: t.seo.home.description,
+				keywords: t.seo.home.keywords
+			}),
+			/* @__PURE__ */ jsx("section", {
+				className: "kg-dot-grid pt-32 pb-20 md:pt-48 md:pb-32 border-b border-border overflow-hidden",
+				children: /* @__PURE__ */ jsx("div", {
+					className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+					children: /* @__PURE__ */ jsxs("div", {
+						className: "grid grid-cols-1 lg:grid-cols-2 gap-12 items-center",
+						children: [/* @__PURE__ */ jsxs("div", {
+							className: "max-w-4xl relative z-10",
+							children: [
+								/* @__PURE__ */ jsxs("h1", {
+									className: "text-5xl md:text-7xl font-light text-foreground leading-[1.1] mb-8",
+									children: [
+										t.home.heroTitle1,
+										" ",
+										/* @__PURE__ */ jsx("br", {}),
+										/* @__PURE__ */ jsx("span", {
+											className: "font-semibold",
+											children: t.home.heroTitle2
+										}),
+										/* @__PURE__ */ jsx("span", {
+											"aria-hidden": "true",
+											className: "kg-caret"
+										})
+									]
+								}),
+								/* @__PURE__ */ jsx("p", {
+									className: "text-xl md:text-2xl text-foreground mb-12 max-w-2xl leading-relaxed font-light",
+									children: t.home.heroDesc
+								}),
+								/* @__PURE__ */ jsxs("div", {
+									className: "flex flex-col sm:flex-row flex-wrap gap-4",
+									children: [
+										/* @__PURE__ */ jsxs(import_dist.Link, {
+											to: localizePath("/projects/", language),
+											onPointerEnter: () => prefetchRoutes(["projects", "projectDetails"]),
+											onFocus: () => prefetchRoutes(["projects", "projectDetails"]),
+											className: "inline-flex items-center justify-between px-6 py-4 kg-action-primary transition-colors w-full sm:w-64",
+											children: [/* @__PURE__ */ jsx("span", {
+												className: "font-medium",
+												children: t.home.viewArch
+											}), /* @__PURE__ */ jsx(ArrowRight, { className: "w-5 h-5" })]
+										}),
+										/* @__PURE__ */ jsxs(import_dist.Link, {
+											to: localizePath("/completed-projects/", language),
+											onPointerEnter: () => prefetchRoutes(["completedProjects", "completedProjectDetails"]),
+											onFocus: () => prefetchRoutes(["completedProjects", "completedProjectDetails"]),
+											className: "inline-flex items-center justify-between px-6 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors w-full sm:w-64",
+											children: [/* @__PURE__ */ jsx("span", {
+												className: "font-medium",
+												children: t.home.viewCompletedProjects
+											}), /* @__PURE__ */ jsx(ArrowRight, { className: "w-5 h-5" })]
+										}),
+										/* @__PURE__ */ jsxs("a", {
+											href: "https://github.com/Kernel-Guard",
+											target: "_blank",
+											rel: "noopener noreferrer",
+											className: "inline-flex items-center justify-between px-6 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors w-full sm:w-64",
+											children: [/* @__PURE__ */ jsx("span", {
+												className: "font-medium",
+												children: t.home.githubRepo
+											}), /* @__PURE__ */ jsx(ArrowRight, { className: "w-5 h-5" })]
+										})
+									]
+								})
+							]
+						}), /* @__PURE__ */ jsx("div", {
+							className: "hidden lg:flex justify-center items-center relative",
+							children: /* @__PURE__ */ jsx(SecurityTerminal, {})
+						})]
+					})
+				})
+			}),
+			/* @__PURE__ */ jsx("section", {
+				className: "py-24 bg-surface overflow-hidden",
+				children: /* @__PURE__ */ jsx("div", {
+					className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+					children: /* @__PURE__ */ jsxs("div", {
+						className: "grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8",
+						children: [/* @__PURE__ */ jsx("div", {
+							className: "lg:col-span-4",
+							children: /* @__PURE__ */ jsx("h2", {
+								className: "text-3xl font-light mb-6",
+								children: t.home.missionTitle
+							})
+						}), /* @__PURE__ */ jsxs("div", {
+							className: "lg:col-span-8 space-y-8 text-lg text-foreground leading-relaxed font-light",
+							children: [/* @__PURE__ */ jsx("p", { children: t.home.missionP1 }), /* @__PURE__ */ jsx("p", { children: t.home.missionP2 })]
+						})]
+					})
+				})
+			}),
+			/* @__PURE__ */ jsx("section", {
+				className: "py-24 border-t border-border bg-background",
+				children: /* @__PURE__ */ jsx("div", {
+					className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+					children: /* @__PURE__ */ jsxs("div", {
+						className: "grid grid-cols-1 lg:grid-cols-12 gap-12",
+						children: [/* @__PURE__ */ jsxs("div", {
+							className: "lg:col-span-4",
+							children: [
+								/* @__PURE__ */ jsx("div", {
+									className: "inline-block px-3 py-1 mb-6 border border-border text-xs font-mono tracking-widest text-foreground/70 uppercase",
+									children: t.home.proof.badge
+								}),
+								/* @__PURE__ */ jsx("h2", {
+									className: "text-3xl md:text-4xl font-light mb-6",
+									children: t.home.proof.title
+								}),
+								/* @__PURE__ */ jsx("p", {
+									className: "text-lg text-foreground/70 font-light leading-relaxed",
+									children: t.home.proof.desc
+								})
+							]
+						}), /* @__PURE__ */ jsxs("div", {
+							className: "lg:col-span-8",
+							children: [
+								/* @__PURE__ */ jsx("div", {
+									className: "grid grid-cols-1 sm:grid-cols-2 gap-4",
+									children: proofCards.map((card) => /* @__PURE__ */ jsxs("div", {
+										className: "border border-border bg-surface p-6",
+										children: [
+											/* @__PURE__ */ jsxs("div", {
+												className: "mb-8 flex items-center justify-between text-primary",
+												children: [card.icon, /* @__PURE__ */ jsx("span", {
+													className: "font-mono text-xs text-foreground/60",
+													children: engineeringEvidence.measuredAt
+												})]
+											}),
+											/* @__PURE__ */ jsx("div", {
+												className: "font-mono text-4xl text-foreground mb-3",
+												children: card.value
+											}),
+											/* @__PURE__ */ jsx("h3", {
+												className: "text-base font-medium text-foreground mb-2",
+												children: card.label
+											}),
+											/* @__PURE__ */ jsx("p", {
+												className: "text-sm leading-relaxed text-foreground/70",
+												children: card.detail
+											})
+										]
+									}, card.label))
+								}),
+								/* @__PURE__ */ jsxs("div", {
+									className: "mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 border border-border bg-surface p-5 text-sm text-foreground/70",
+									children: [
+										/* @__PURE__ */ jsxs("div", { children: [
+											/* @__PURE__ */ jsx("span", {
+												className: "font-mono text-foreground",
+												children: engineeringEvidence.delivery.indexableUrls
+											}),
+											" ",
+											t.home.proof.summary.indexableUrls
+										] }),
+										/* @__PURE__ */ jsxs("div", { children: [
+											/* @__PURE__ */ jsx("span", {
+												className: "font-mono text-foreground",
+												children: engineeringEvidence.lighthouse.desktop.totalBlockingTime
+											}),
+											" ",
+											t.home.proof.summary.desktopTbt
+										] }),
+										/* @__PURE__ */ jsxs("div", { children: [
+											/* @__PURE__ */ jsx("span", {
+												className: "font-mono text-foreground",
+												children: engineeringEvidence.github.latestPublicUpdate
+											}),
+											" ",
+											t.home.proof.summary.latestUpdate
+										] })
+									]
+								}),
+								/* @__PURE__ */ jsx("p", {
+									className: "mt-4 text-xs text-foreground/50 font-mono",
+									children: t.home.proof.footnote
+								})
+							]
+						})]
+					})
+				})
+			}),
+			/* @__PURE__ */ jsxs("section", {
+				className: "py-24 border-t border-border bg-surface overflow-hidden",
+				children: [/* @__PURE__ */ jsxs("div", {
+					className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center",
+					children: [/* @__PURE__ */ jsx("h2", {
+						className: "text-3xl font-light mb-4",
+						children: t.home.techStackTitle
+					}), /* @__PURE__ */ jsx("p", {
+						className: "text-lg text-foreground/70 font-light max-w-2xl mx-auto",
+						children: t.home.techStackDesc
+					})]
+				}), /* @__PURE__ */ jsxs("div", {
+					className: "relative w-full flex overflow-hidden",
+					children: [
+						/* @__PURE__ */ jsx("div", { className: "absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-surface to-transparent z-10 pointer-events-none" }),
+						/* @__PURE__ */ jsx("div", { className: "absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-surface to-transparent z-10 pointer-events-none" }),
+						/* @__PURE__ */ jsxs("div", {
+							className: "flex animate-marquee whitespace-nowrap",
+							children: [/* @__PURE__ */ jsx("div", {
+								className: "flex gap-8 px-4 items-center",
+								children: [
+									"React",
+									"TypeScript",
+									"Node.js",
+									"Rust",
+									"Go",
+									"Docker",
+									"Kubernetes",
+									"PostgreSQL",
+									"GraphQL",
+									"WebAssembly"
+								].map((tech, i) => /* @__PURE__ */ jsx("div", {
+									className: "px-6 py-3 border border-border bg-background text-foreground font-mono text-lg font-medium shadow-[0_0_15px_rgba(15,98,254,0.1)]",
+									children: tech
+								}, i))
+							}), /* @__PURE__ */ jsx("div", {
+								className: "flex gap-8 px-4 items-center",
+								children: [
+									"React",
+									"TypeScript",
+									"Node.js",
+									"Rust",
+									"Go",
+									"Docker",
+									"Kubernetes",
+									"PostgreSQL",
+									"GraphQL",
+									"WebAssembly"
+								].map((tech, i) => /* @__PURE__ */ jsx("div", {
+									className: "px-6 py-3 border border-border bg-background text-foreground font-mono text-lg font-medium shadow-[0_0_15px_rgba(15,98,254,0.1)]",
+									children: tech
+								}, `dup-${i}`))
+							})]
+						})
+					]
+				})]
+			}),
+			/* @__PURE__ */ jsx("section", {
+				className: "py-24 border-t border-border bg-background",
+				children: /* @__PURE__ */ jsx("div", {
+					className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+					children: /* @__PURE__ */ jsx("div", {
+						className: "grid grid-cols-1 md:grid-cols-3 gap-6",
+						children: features.map((feature, index) => {
+							return /* @__PURE__ */ jsx("div", {
+								className: `${index === 0 || index === 3 ? "md:col-span-2" : "md:col-span-1"}`,
+								children: /* @__PURE__ */ jsxs(import_dist.Link, {
+									to: feature.link,
+									onPointerEnter: () => prefetchRoute(feature.prefetch),
+									onFocus: () => prefetchRoute(feature.prefetch),
+									className: "group relative block h-full p-8 bg-surface border border-border hover:border-primary/50 transition-colors overflow-hidden",
+									children: [/* @__PURE__ */ jsx("div", {
+										className: "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none",
+										children: /* @__PURE__ */ jsx("div", { className: "absolute -inset-[100%] bg-gradient-to-r from-transparent via-primary/5 to-transparent rotate-45 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" })
+									}), /* @__PURE__ */ jsxs("div", {
+										className: "relative z-10 flex flex-col h-full",
+										children: [
+											/* @__PURE__ */ jsx("div", {
+												className: "mb-12",
+												children: feature.icon
+											}),
+											/* @__PURE__ */ jsx("h3", {
+												className: "text-2xl font-medium mb-4",
+												children: feature.title
+											}),
+											/* @__PURE__ */ jsx("p", {
+												className: "text-foreground/80 text-base leading-relaxed font-light flex-grow",
+												children: feature.description
+											}),
+											/* @__PURE__ */ jsx("div", {
+												className: "mt-8 flex justify-end opacity-0 group-hover:opacity-100 transition-opacity translate-x-[-10px] group-hover:translate-x-0 duration-300",
+												children: /* @__PURE__ */ jsx(ArrowRight, { className: "w-6 h-6 text-primary" })
+											})
+										]
+									})]
+								})
+							}, index);
+						})
+					})
+				})
+			}),
+			/* @__PURE__ */ jsx("section", {
+				className: "py-24 border-t border-border bg-surface",
+				children: /* @__PURE__ */ jsxs("div", {
+					className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+					children: [/* @__PURE__ */ jsx("h2", {
+						className: "text-3xl font-light mb-16 max-w-2xl",
+						children: t.home.principles.title
+					}), /* @__PURE__ */ jsx("div", {
+						className: "grid grid-cols-1 md:grid-cols-3 gap-12 divide-y md:divide-y-0 md:divide-x divide-border",
+						children: t.home.principles.items.map((item, index) => /* @__PURE__ */ jsxs("div", {
+							className: `pt-8 md:pt-0 ${index === 0 ? "md:pr-8" : index === 1 ? "md:px-8" : "md:pl-8"}`,
+							children: [/* @__PURE__ */ jsx("div", {
+								className: "text-xl font-medium text-primary mb-4",
+								children: item.title
+							}), /* @__PURE__ */ jsx("div", {
+								className: "text-base font-light leading-relaxed text-foreground/80",
+								children: item.desc
+							})]
+						}, index))
+					})]
+				})
+			}),
+			/* @__PURE__ */ jsx("section", {
+				className: "py-24 border-t border-border bg-background",
+				children: /* @__PURE__ */ jsx("div", {
+					className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center",
+					children: /* @__PURE__ */ jsxs("div", {
+						className: "max-w-3xl mx-auto",
+						children: [
+							/* @__PURE__ */ jsx("h2", {
+								className: "text-3xl font-light mb-6",
+								children: t.home.community.title
+							}),
+							/* @__PURE__ */ jsx("p", {
+								className: "text-xl font-light text-foreground/70 mb-10 leading-relaxed",
+								children: t.home.community.desc
+							}),
+							/* @__PURE__ */ jsxs("a", {
+								href: "https://github.com/Kernel-Guard",
+								target: "_blank",
+								rel: "noopener noreferrer",
+								className: "inline-flex items-center justify-center px-8 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors",
+								children: [/* @__PURE__ */ jsx("span", {
+									className: "font-medium",
+									children: t.nav.github
+								}), /* @__PURE__ */ jsx(ArrowRight, { className: "w-5 h-5 ml-3" })]
+							})
+						]
+					})
+				})
+			})
+		]
+	});
 }
-const Home$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: Home
-}, Symbol.toStringTag, { value: "Module" }));
-const items$1 = /* @__PURE__ */ JSON.parse(`[{"id":"cathodex","title":"CathodeX","description":{"en":"AI-powered cathode material screening platform using graph neural networks for predicting battery material properties.","tr":"Pil malzemesi özelliklerini tahmin etmek için çizge sinir ağlarını kullanan yapay zeka destekli katot malzemesi tarama platformu.","de":"KI-gestuetzte Plattform zur Pruefung von Kathodenmaterialien, die Graph Neural Networks zur Vorhersage von Batterieeigenschaften nutzt.","ja":"グラフニューラルネットワークを用いて電池材料の特性を予測する、AI搭載のカソード材料スクリーニングプラットフォームです。","zh-CN":"一个由 AI 驱动的正极材料筛选平台，使用图神经网络预测电池材料属性。","es":"Plataforma de cribado de materiales de cátodo impulsada por IA que usa redes neuronales de grafos para predecir propiedades de materiales de baterías.","fr":"Plateforme de criblage de matériaux de cathode assistée par IA, utilisant des réseaux neuronaux de graphes pour prédire les propriétés des matériaux de batteries.","ko":"배터리 소재 특성을 예측하기 위해 그래프 신경망을 사용하는 AI 기반 양극재 스크리닝 플랫폼입니다."},"technicalDetails":{"en":"Built using PyTorch and Graph Neural Networks (GNNs) to model the atomic structure of cathode materials. It leverages high-throughput screening algorithms to predict key battery properties such as energy density and stability.","tr":"Katot malzemelerinin atomik yapısını modellemek için PyTorch ve Çizge Sinir Ağları (GNN'ler) kullanılarak oluşturulmuştur. Enerji yoğunluğu ve kararlılık gibi temel pil özelliklerini tahmin etmek için yüksek verimli tarama algoritmalarından yararlanır.","de":"Entwickelt mit PyTorch und Graph Neural Networks (GNNs), um die atomare Struktur von Kathodenmaterialien zu modellieren. Hochdurchsatz-Screening-Algorithmen prognostizieren zentrale Batterieeigenschaften wie Energiedichte und Stabilitaet.","ja":"PyTorch とグラフニューラルネットワーク（GNN）を用いて、カソード材料の原子構造をモデル化しています。高スループットスクリーニングにより、エネルギー密度や安定性などの主要な電池特性を予測します。","zh-CN":"该平台基于 PyTorch 和图神经网络（GNN）构建，用于建模正极材料的原子结构。它利用高通量筛选算法预测能量密度、稳定性等关键电池属性。","es":"Construida con PyTorch y redes neuronales de grafos (GNN) para modelar la estructura atómica de materiales de cátodo. Usa algoritmos de cribado de alto rendimiento para predecir propiedades clave de baterías como densidad energética y estabilidad.","fr":"Construite avec PyTorch et des réseaux neuronaux de graphes (GNN) pour modéliser la structure atomique des matériaux de cathode. Elle s’appuie sur des algorithmes de criblage à haut débit pour prédire des propriétés clés comme la densité énergétique et la stabilité.","ko":"PyTorch와 그래프 신경망(GNN)을 사용해 양극재의 원자 구조를 모델링합니다. 고처리량 스크리닝 알고리즘으로 에너지 밀도와 안정성 같은 핵심 배터리 특성을 예측합니다."},"marketingDetails":{"en":"Accelerating the future of energy storage. CathodeX reduces the time and cost of battery material discovery by orders of magnitude, empowering researchers to find the next generation of sustainable energy solutions.","tr":"Enerji depolamanın geleceğini hızlandırıyoruz. CathodeX, pil malzemesi keşfinin zamanını ve maliyetini büyük ölçüde azaltarak araştırmacıların yeni nesil sürdürülebilir enerji çözümlerini bulmalarını sağlar.","de":"Beschleunigt die Zukunft der Energiespeicherung. CathodeX senkt Zeit und Kosten der Batteriematerialforschung drastisch und hilft Forschenden, nachhaltige Energieloesungen der naechsten Generation zu finden.","ja":"エネルギー貯蔵の未来を加速します。CathodeX は電池材料探索にかかる時間とコストを大幅に削減し、研究者が次世代の持続可能なエネルギーソリューションを発見できるよう支援します。","zh-CN":"加速储能技术的未来。CathodeX 大幅降低电池材料发现的时间和成本，帮助研究人员寻找下一代可持续能源解决方案。","es":"Acelera el futuro del almacenamiento energético. CathodeX reduce drásticamente el tiempo y el coste del descubrimiento de materiales de batería, ayudando a los investigadores a encontrar soluciones energéticas sostenibles de nueva generación.","fr":"Accélérer l’avenir du stockage d’énergie. CathodeX réduit fortement le temps et le coût de découverte des matériaux de batteries, afin d’aider les chercheurs à identifier les prochaines solutions énergétiques durables.","ko":"에너지 저장의 미래를 앞당깁니다. CathodeX는 배터리 소재 탐색에 드는 시간과 비용을 크게 줄여 연구자가 차세대 지속 가능한 에너지 솔루션을 찾도록 돕습니다."},"tags":["Python","AI","Graph Neural Networks"],"github":"https://github.com/Kernel-Guard/CathodeX","link":"https://cathode-screening.vercel.app/","diagram":"graph LR\\n    User[User / Chemist] -->|HTTPS| FE(Next.js on Vercel)\\n    FE -->|JSON| API(FastAPI on Render)\\n    subgraph \\"Inference Engine\\"\\n        API -->|Parse| Pymatgen(Structure Parser)\\n        Pymatgen -->|Graph| M1(MACE Member 1)\\n        Pymatgen -->|Graph| M2(MACE Member 2)\\n        Pymatgen -->|Graph| M3(MACE Member 3)\\n        Pymatgen -->|Graph| M4(MACE Member 4)\\n        Pymatgen -->|Graph| M5(MACE Member 5)\\n    end\\n    M1 & M2 & M3 & M4 & M5 -->|Aggregate| Stats[q10 / q50 / q90 + Conformal]\\n    Stats -->|Policy| Result[KEEP / MAYBE / KILL]"},{"id":"post-quantum-messaging-app","title":"post-quantum-messaging-app","description":{"en":"A secure messaging application implementing post-quantum cryptographic algorithms to ensure future-proof communication.","tr":"Geleceğe dönük iletişimi sağlamak için kuantum sonrası kriptografik algoritmalar uygulayan güvenli bir mesajlaşma uygulaması.","de":"Eine sichere Messaging-Anwendung mit Post-Quantum-Kryptografie, die Kommunikation langfristig schuetzen soll.","ja":"将来にわたって安全な通信を実現するため、ポスト量子暗号アルゴリズムを実装したセキュアメッセージングアプリケーションです。","zh-CN":"一款实现后量子密码算法的安全消息应用，用于保障面向未来的通信安全。","es":"Aplicación de mensajería segura que implementa algoritmos criptográficos poscuánticos para proteger la comunicación a futuro.","fr":"Application de messagerie sécurisée qui implémente des algorithmes cryptographiques post-quantiques pour protéger les communications à long terme.","ko":"미래의 통신 보안을 보장하기 위해 포스트 양자 암호 알고리즘을 구현한 보안 메시징 애플리케이션입니다."},"technicalDetails":{"en":"Implemented in Rust for memory safety and performance. Utilizes NIST-approved post-quantum cryptographic algorithms (like CRYSTALS-Kyber and CRYSTALS-Dilithium) to secure message exchange against attacks from quantum computers.","tr":"Bellek güvenliği ve performans için Rust ile uygulanmıştır. Mesaj alışverişini kuantum bilgisayarlardan gelebilecek saldırılara karşı güvence altına almak için NIST onaylı kuantum sonrası kriptografik algoritmaları (CRYSTALS-Kyber ve CRYSTALS-Dilithium gibi) kullanır.","de":"In Rust umgesetzt, um Speichersicherheit und Performance zu verbinden. Die Anwendung nutzt NIST-standardisierte Post-Quantum-Algorithmen wie CRYSTALS-Kyber und CRYSTALS-Dilithium, um Nachrichtenaustausch gegen Angriffe durch Quantencomputer abzusichern.","ja":"メモリ安全性と性能を重視して Rust で実装されています。CRYSTALS-Kyber や CRYSTALS-Dilithium など、NIST 標準のポスト量子暗号アルゴリズムを用いて、量子コンピュータによる攻撃からメッセージ交換を保護します。","zh-CN":"该应用使用 Rust 实现，以兼顾内存安全与性能。它采用 NIST 标准化的后量子密码算法（如 CRYSTALS-Kyber 和 CRYSTALS-Dilithium），保护消息交换免受量子计算机攻击。","es":"Implementada en Rust para seguridad de memoria y rendimiento. Utiliza algoritmos poscuánticos aprobados por NIST, como CRYSTALS-Kyber y CRYSTALS-Dilithium, para proteger el intercambio de mensajes frente a ataques de computadores cuánticos.","fr":"Implémentée en Rust pour la sûreté mémoire et la performance. Elle utilise des algorithmes post-quantiques approuvés par le NIST, comme CRYSTALS-Kyber et CRYSTALS-Dilithium, afin de protéger l’échange de messages contre les attaques d’ordinateurs quantiques.","ko":"메모리 안전성과 성능을 위해 Rust로 구현되었습니다. CRYSTALS-Kyber와 CRYSTALS-Dilithium 같은 NIST 승인 포스트 양자 암호 알고리즘을 사용해 양자 컴퓨터 공격으로부터 메시지 교환을 보호합니다."},"marketingDetails":{"en":"Future-proof your communications. As quantum computing advances, traditional encryption will become obsolete. Our post-quantum messaging app ensures your sensitive data remains secure against tomorrow's threats, today.","tr":"İletişiminizi geleceğe hazırlayın. Kuantum hesaplama geliştikçe geleneksel şifreleme geçersiz hale gelecektir. Kuantum sonrası mesajlaşma uygulamamız, hassas verilerinizin bugünden yarının tehditlerine karşı güvende kalmasını sağlar.","de":"Machen Sie Ihre Kommunikation zukunftssicher. Mit dem Fortschritt des Quantencomputings wird klassische Verschluesselung unter Druck geraten. Diese Post-Quantum-Messaging-App schuetzt sensible Daten schon heute vor den Risiken von morgen.","ja":"通信を未来に備えます。量子コンピューティングが進化すると、従来の暗号化は通用しなくなる可能性があります。このポスト量子メッセージングアプリは、明日の脅威に対して今日から機密データを保護します。","zh-CN":"让通信面向未来。随着量子计算的发展，传统加密将面临失效风险。我们的后量子消息应用从今天开始保护敏感数据，应对未来威胁。","es":"Prepara tus comunicaciones para el futuro. A medida que avanza la computación cuántica, el cifrado tradicional perderá eficacia. Esta aplicación mantiene los datos sensibles protegidos frente a las amenazas de mañana desde hoy.","fr":"Préparez vos communications pour l’avenir. À mesure que l’informatique quantique progresse, le chiffrement traditionnel sera mis sous pression. Cette application protège dès aujourd’hui les données sensibles contre les menaces de demain.","ko":"커뮤니케이션을 미래에 대비하세요. 양자 컴퓨팅이 발전하면 기존 암호화는 한계에 직면할 수 있습니다. 이 앱은 오늘부터 민감한 데이터를 내일의 위협에 대비해 보호합니다."},"tags":["Rust","Cryptography","Post-Quantum"],"github":"https://github.com/Kernel-Guard/post-quantum-messaging-app","diagram":"flowchart LR\\n    C[\\"CLI / Android / iOS / Web / Desktop\\"] -->|HTTP JSON + TLS| S[\\"pqmsg-server\\"]\\n    S -->|Sealed inbox sync / realtime relay| C\\n    A[\\"Android bridge\\"] --> CORE[\\"pqmsg-core\\"]\\n    I[\\"iOS bridge\\"] --> CORE\\n    W[\\"Web WASM bridge\\"] --> CORE\\n    D[\\"Desktop wrapper\\"] --> W\\n    S --> DB[\\"PostgreSQL / SQLite\\"]\\n    S --> RD[\\"Redis rate limiter\\"]\\n    PV[\\"ProVerif model\\"] -.- V[\\"CI verification gate\\"]\\n    TM[\\"Tamarin model\\"] -.- V"},{"id":"aegis-bpf","title":"Aegis-BPF","description":{"en":"A prototype for enforcing security policies using eBPF (Extended Berkeley Packet Filter) with CO-RE (Compile Once - Run Everywhere) support.","tr":"CO-RE (Bir Kere Derle - Her Yerde Çalıştır) desteğiyle eBPF (Genişletilmiş Berkeley Paket Filtresi) kullanarak güvenlik politikalarını uygulamak için bir prototip.","de":"Ein Prototyp zur Durchsetzung von Sicherheitsrichtlinien mit eBPF und CO-RE-Unterstuetzung (Compile Once - Run Everywhere).","ja":"CO-RE（Compile Once - Run Everywhere）対応の eBPF（Extended Berkeley Packet Filter）を用いて、セキュリティポリシーを適用するためのプロトタイプです。","zh-CN":"一个使用 eBPF（扩展伯克利包过滤器）并支持 CO-RE（一次编译，到处运行）的安全策略执行原型。","es":"Prototipo para aplicar políticas de seguridad con eBPF (Extended Berkeley Packet Filter) y soporte CO-RE (Compile Once - Run Everywhere).","fr":"Prototype d’application de politiques de sécurité avec eBPF (Extended Berkeley Packet Filter) et prise en charge CO-RE (Compile Once - Run Everywhere).","ko":"CO-RE(Compile Once - Run Everywhere)를 지원하는 eBPF(Extended Berkeley Packet Filter) 기반 보안 정책 적용 프로토타입입니다."},"technicalDetails":{"en":"Developed using C++ and eBPF technology. It utilizes CO-RE (Compile Once - Run Everywhere) to ensure portability across different Linux kernel versions without recompilation, providing low-overhead, kernel-level security enforcement.","tr":"C++ ve eBPF teknolojisi kullanılarak geliştirilmiştir. Yeniden derlemeye gerek kalmadan farklı Linux çekirdek sürümlerinde taşınabilirliği sağlamak için CO-RE (Bir Kere Derle - Her Yerde Çalıştır) kullanır ve düşük ek yüklü, çekirdek düzeyinde güvenlik uygulaması sağlar.","de":"Entwickelt mit C++ und eBPF-Technologie. CO-RE sorgt fuer Portabilitaet ueber verschiedene Linux-Kernelversionen hinweg, ohne erneutes Kompilieren zu erfordern, und ermoeglicht Sicherheitsdurchsetzung auf Kernel-Ebene mit geringer Laufzeitbelastung.","ja":"C++ と eBPF 技術で開発されています。CO-RE（Compile Once - Run Everywhere）により、再コンパイルなしで異なる Linux カーネルバージョン間の移植性を確保し、低オーバーヘッドなカーネルレベルのセキュリティ制御を実現します。","zh-CN":"该项目使用 C++ 和 eBPF 技术开发。它通过 CO-RE 在不同 Linux 内核版本之间实现无需重新编译的可移植性，并提供低开销的内核级安全策略执行能力。","es":"Desarrollado con C++ y tecnología eBPF. Utiliza CO-RE para mantener portabilidad entre distintas versiones del kernel Linux sin recompilar, ofreciendo aplicación de políticas de seguridad a nivel de kernel con bajo overhead.","fr":"Développé avec C++ et la technologie eBPF. CO-RE assure la portabilité entre différentes versions du noyau Linux sans recompilation, avec une application des politiques de sécurité au niveau noyau et une faible surcharge.","ko":"C++와 eBPF 기술로 개발되었습니다. CO-RE를 사용해 재컴파일 없이 다양한 Linux 커널 버전에서 이식성을 확보하고, 낮은 오버헤드로 커널 수준 보안 정책을 적용합니다."},"marketingDetails":{"en":"Enterprise-grade security at the kernel level. Aegis provides deep visibility and control over system behavior with zero overhead. Protect your infrastructure from advanced persistent threats with our cutting-edge eBPF technology.","tr":"Çekirdek düzeyinde kurumsal düzeyde güvenlik. Aegis, sıfır ek yük ile sistem davranışı üzerinde derin görünürlük ve kontrol sağlar. En son eBPF teknolojimizle altyapınızı gelişmiş kalıcı tehditlerden koruyun.","de":"Unternehmenssicherheit direkt auf Kernel-Ebene. Aegis bietet tiefe Einblicke und Kontrolle ueber Systemverhalten bei minimaler Belastung. Schuetzen Sie Ihre Infrastruktur mit moderner eBPF-Technologie vor fortgeschrittenen Bedrohungen.","ja":"カーネルレベルでのエンタープライズグレードのセキュリティ。Aegis はシステム挙動に対する深い可視性と制御を、最小限のオーバーヘッドで提供します。先進的な eBPF 技術により、高度な持続的脅威からインフラを保護します。","zh-CN":"内核级企业安全能力。Aegis 以极低开销提供对系统行为的深度可见性与控制，帮助您利用先进的 eBPF 技术保护基础设施免受高级持续性威胁。","es":"Seguridad empresarial en el nivel del kernel. Aegis ofrece visibilidad profunda y control sobre el comportamiento del sistema con una carga mínima. Protege la infraestructura frente a amenazas persistentes avanzadas con tecnología eBPF moderna.","fr":"Sécurité d’entreprise au niveau du noyau. Aegis fournit une visibilité profonde et un contrôle du comportement système avec une surcharge minimale. Protégez l’infrastructure contre les menaces persistantes avancées grâce à eBPF.","ko":"커널 수준의 엔터프라이즈 보안입니다. Aegis는 최소한의 오버헤드로 시스템 동작에 대한 깊은 가시성과 제어를 제공합니다. 최신 eBPF 기술로 고도화된 지속 위협으로부터 인프라를 보호합니다."},"tags":["C++","eBPF","Security","Linux Kernel"],"github":"https://github.com/Kernel-Guard/Aegis-BPF","diagram":"graph TD\\n    subgraph \\"AegisBPF User Space\\"\\n        A[File/Net Deny Rules] --> Z\\n        B[Allow Allowlist] --> Z\\n        C[Policy + Signing] --> Z\\n        D[Metrics + Health] --> Z\\n        E[Plugins + Rules] --> Z\\n        Z[(Pinned BPF Maps & Ring Buffer)]\\n    end\\n    subgraph \\"Linux Kernel\\"\\n        Z --- F\\n        F[LSM Hooks Enforce/Audit]\\n        F --> G[file_open / inode_permission]\\n        F --> H[inode_copy_up overlayfs]\\n        F --> I[bprm_check + IMA hash]\\n        F --> J[socket connect/bind/listen/accept]\\n        F --> K[socket sendmsg/recvmsg]\\n        L[Tracepoint Fallback]\\n        L --> M[openat/exec/fork/exit]\\n    end"}]`);
-const projectsData = {
-  items: items$1
-};
-const projects = projectsData.items;
+//#endregion
+//#region src/data/projects.ts
+var projects = { items: [
+	{
+		"id": "bpfcompat",
+		"title": "bpfcompat",
+		"description": {
+			"en": "An open-source eBPF compatibility validator: it boots real Linux kernels in disposable VMs, loads your compiled BPF programs inside each one, and gates your CI on an artifact-by-kernel pass/fail matrix.",
+			"tr": "Açık kaynaklı bir eBPF uyumluluk doğrulayıcısı: gerçek Linux çekirdeklerini tek kullanımlık sanal makinelerde başlatır, derlenmiş BPF programlarınızı her birinin içinde yükler ve CI'nızı yapıt-çekirdek geçti/kaldı matrisi üzerinden denetler."
+		},
+		"technicalDetails": {
+			"en": "Written in Go with a C/libbpf validator that runs inside each guest. For every kernel profile, bpfcompat boots a disposable QEMU/KVM overlay VM from a cloud image (Ubuntu and Fedora, 5.x–6.x, x86_64 and ARM64), then actually loads and attaches each program — recording BTF status, CO-RE relocations, and capability checks. Results aggregate into a pass/fail matrix, and exit code 2 marks a compatibility regression for CI gating.",
+			"tr": "Her konuğun içinde çalışan bir C/libbpf doğrulayıcısıyla birlikte Go ile yazılmıştır. bpfcompat her çekirdek profili için bir bulut imajından tek kullanımlık bir QEMU/KVM örtüşme VM'i başlatır (Ubuntu ve Fedora, 5.x–6.x, x86_64 ve ARM64), ardından her programı gerçekten yükleyip bağlar — BTF durumunu, CO-RE yer değiştirmelerini ve yetenek kontrollerini kaydeder. Sonuçlar bir geçti/kaldı matrisine toplanır ve çıkış kodu 2, CI denetimi için bir uyumluluk gerilemesini işaretler."
+		},
+		"marketingDetails": {
+			"en": "Stop discovering kernel incompatibilities in production. bpfcompat proves your eBPF programs load on every kernel you ship to — in CI, before your users do — with verifiable evidence instead of guesswork.",
+			"tr": "Çekirdek uyumsuzluklarını üretimde keşfetmeyi bırakın. bpfcompat, eBPF programlarınızın gönderim yaptığınız her çekirdekte yüklendiğini — kullanıcılarınızdan önce, CI içinde — tahmin yerine doğrulanabilir kanıtlarla kanıtlar."
+		},
+		"tags": [
+			"Go",
+			"eBPF",
+			"CI/CD",
+			"Apache-2.0"
+		],
+		"github": "https://github.com/Kernel-Guard/bpfcompat",
+		"link": "https://bpfcompat-se24-8008b8.swedencentral.cloudapp.azure.com/"
+	},
+	{
+		"id": "cathodex",
+		"title": "CathodeX",
+		"description": {
+			"en": "AI-powered cathode material screening platform using graph neural networks for predicting battery material properties.",
+			"tr": "Pil malzemesi özelliklerini tahmin etmek için çizge sinir ağlarını kullanan yapay zeka destekli katot malzemesi tarama platformu.",
+			"de": "KI-gestuetzte Plattform zur Pruefung von Kathodenmaterialien, die Graph Neural Networks zur Vorhersage von Batterieeigenschaften nutzt.",
+			"ja": "グラフニューラルネットワークを用いて電池材料の特性を予測する、AI搭載のカソード材料スクリーニングプラットフォームです。",
+			"zh-CN": "一个由 AI 驱动的正极材料筛选平台，使用图神经网络预测电池材料属性。",
+			"es": "Plataforma de cribado de materiales de cátodo impulsada por IA que usa redes neuronales de grafos para predecir propiedades de materiales de baterías.",
+			"fr": "Plateforme de criblage de matériaux de cathode assistée par IA, utilisant des réseaux neuronaux de graphes pour prédire les propriétés des matériaux de batteries.",
+			"ko": "배터리 소재 특성을 예측하기 위해 그래프 신경망을 사용하는 AI 기반 양극재 스크리닝 플랫폼입니다."
+		},
+		"technicalDetails": {
+			"en": "Built using PyTorch and Graph Neural Networks (GNNs) to model the atomic structure of cathode materials. It leverages high-throughput screening algorithms to predict key battery properties such as energy density and stability.",
+			"tr": "Katot malzemelerinin atomik yapısını modellemek için PyTorch ve Çizge Sinir Ağları (GNN'ler) kullanılarak oluşturulmuştur. Enerji yoğunluğu ve kararlılık gibi temel pil özelliklerini tahmin etmek için yüksek verimli tarama algoritmalarından yararlanır.",
+			"de": "Entwickelt mit PyTorch und Graph Neural Networks (GNNs), um die atomare Struktur von Kathodenmaterialien zu modellieren. Hochdurchsatz-Screening-Algorithmen prognostizieren zentrale Batterieeigenschaften wie Energiedichte und Stabilitaet.",
+			"ja": "PyTorch とグラフニューラルネットワーク（GNN）を用いて、カソード材料の原子構造をモデル化しています。高スループットスクリーニングにより、エネルギー密度や安定性などの主要な電池特性を予測します。",
+			"zh-CN": "该平台基于 PyTorch 和图神经网络（GNN）构建，用于建模正极材料的原子结构。它利用高通量筛选算法预测能量密度、稳定性等关键电池属性。",
+			"es": "Construida con PyTorch y redes neuronales de grafos (GNN) para modelar la estructura atómica de materiales de cátodo. Usa algoritmos de cribado de alto rendimiento para predecir propiedades clave de baterías como densidad energética y estabilidad.",
+			"fr": "Construite avec PyTorch et des réseaux neuronaux de graphes (GNN) pour modéliser la structure atomique des matériaux de cathode. Elle s’appuie sur des algorithmes de criblage à haut débit pour prédire des propriétés clés comme la densité énergétique et la stabilité.",
+			"ko": "PyTorch와 그래프 신경망(GNN)을 사용해 양극재의 원자 구조를 모델링합니다. 고처리량 스크리닝 알고리즘으로 에너지 밀도와 안정성 같은 핵심 배터리 특성을 예측합니다."
+		},
+		"marketingDetails": {
+			"en": "Accelerating the future of energy storage. CathodeX reduces the time and cost of battery material discovery by orders of magnitude, empowering researchers to find the next generation of sustainable energy solutions.",
+			"tr": "Enerji depolamanın geleceğini hızlandırıyoruz. CathodeX, pil malzemesi keşfinin zamanını ve maliyetini büyük ölçüde azaltarak araştırmacıların yeni nesil sürdürülebilir enerji çözümlerini bulmalarını sağlar.",
+			"de": "Beschleunigt die Zukunft der Energiespeicherung. CathodeX senkt Zeit und Kosten der Batteriematerialforschung drastisch und hilft Forschenden, nachhaltige Energieloesungen der naechsten Generation zu finden.",
+			"ja": "エネルギー貯蔵の未来を加速します。CathodeX は電池材料探索にかかる時間とコストを大幅に削減し、研究者が次世代の持続可能なエネルギーソリューションを発見できるよう支援します。",
+			"zh-CN": "加速储能技术的未来。CathodeX 大幅降低电池材料发现的时间和成本，帮助研究人员寻找下一代可持续能源解决方案。",
+			"es": "Acelera el futuro del almacenamiento energético. CathodeX reduce drásticamente el tiempo y el coste del descubrimiento de materiales de batería, ayudando a los investigadores a encontrar soluciones energéticas sostenibles de nueva generación.",
+			"fr": "Accélérer l’avenir du stockage d’énergie. CathodeX réduit fortement le temps et le coût de découverte des matériaux de batteries, afin d’aider les chercheurs à identifier les prochaines solutions énergétiques durables.",
+			"ko": "에너지 저장의 미래를 앞당깁니다. CathodeX는 배터리 소재 탐색에 드는 시간과 비용을 크게 줄여 연구자가 차세대 지속 가능한 에너지 솔루션을 찾도록 돕습니다."
+		},
+		"tags": [
+			"Python",
+			"AI",
+			"Graph Neural Networks"
+		],
+		"github": "https://github.com/Kernel-Guard/CathodeX",
+		"link": "https://cathode-screening.vercel.app/",
+		"diagram": "graph LR\n    User[User / Chemist] -->|HTTPS| FE(Next.js on Vercel)\n    FE -->|JSON| API(FastAPI on Render)\n    subgraph \"Inference Engine\"\n        API -->|Parse| Pymatgen(Structure Parser)\n        Pymatgen -->|Graph| M1(MACE Member 1)\n        Pymatgen -->|Graph| M2(MACE Member 2)\n        Pymatgen -->|Graph| M3(MACE Member 3)\n        Pymatgen -->|Graph| M4(MACE Member 4)\n        Pymatgen -->|Graph| M5(MACE Member 5)\n    end\n    M1 & M2 & M3 & M4 & M5 -->|Aggregate| Stats[q10 / q50 / q90 + Conformal]\n    Stats -->|Policy| Result[KEEP / MAYBE / KILL]"
+	},
+	{
+		"id": "post-quantum-messaging-app",
+		"title": "post-quantum-messaging-app",
+		"description": {
+			"en": "A secure messaging application implementing post-quantum cryptographic algorithms to ensure future-proof communication.",
+			"tr": "Geleceğe dönük iletişimi sağlamak için kuantum sonrası kriptografik algoritmalar uygulayan güvenli bir mesajlaşma uygulaması.",
+			"de": "Eine sichere Messaging-Anwendung mit Post-Quantum-Kryptografie, die Kommunikation langfristig schuetzen soll.",
+			"ja": "将来にわたって安全な通信を実現するため、ポスト量子暗号アルゴリズムを実装したセキュアメッセージングアプリケーションです。",
+			"zh-CN": "一款实现后量子密码算法的安全消息应用，用于保障面向未来的通信安全。",
+			"es": "Aplicación de mensajería segura que implementa algoritmos criptográficos poscuánticos para proteger la comunicación a futuro.",
+			"fr": "Application de messagerie sécurisée qui implémente des algorithmes cryptographiques post-quantiques pour protéger les communications à long terme.",
+			"ko": "미래의 통신 보안을 보장하기 위해 포스트 양자 암호 알고리즘을 구현한 보안 메시징 애플리케이션입니다."
+		},
+		"technicalDetails": {
+			"en": "Implemented in Rust for memory safety and performance. Utilizes NIST-approved post-quantum cryptographic algorithms (like CRYSTALS-Kyber and CRYSTALS-Dilithium) to secure message exchange against attacks from quantum computers.",
+			"tr": "Bellek güvenliği ve performans için Rust ile uygulanmıştır. Mesaj alışverişini kuantum bilgisayarlardan gelebilecek saldırılara karşı güvence altına almak için NIST onaylı kuantum sonrası kriptografik algoritmaları (CRYSTALS-Kyber ve CRYSTALS-Dilithium gibi) kullanır.",
+			"de": "In Rust umgesetzt, um Speichersicherheit und Performance zu verbinden. Die Anwendung nutzt NIST-standardisierte Post-Quantum-Algorithmen wie CRYSTALS-Kyber und CRYSTALS-Dilithium, um Nachrichtenaustausch gegen Angriffe durch Quantencomputer abzusichern.",
+			"ja": "メモリ安全性と性能を重視して Rust で実装されています。CRYSTALS-Kyber や CRYSTALS-Dilithium など、NIST 標準のポスト量子暗号アルゴリズムを用いて、量子コンピュータによる攻撃からメッセージ交換を保護します。",
+			"zh-CN": "该应用使用 Rust 实现，以兼顾内存安全与性能。它采用 NIST 标准化的后量子密码算法（如 CRYSTALS-Kyber 和 CRYSTALS-Dilithium），保护消息交换免受量子计算机攻击。",
+			"es": "Implementada en Rust para seguridad de memoria y rendimiento. Utiliza algoritmos poscuánticos aprobados por NIST, como CRYSTALS-Kyber y CRYSTALS-Dilithium, para proteger el intercambio de mensajes frente a ataques de computadores cuánticos.",
+			"fr": "Implémentée en Rust pour la sûreté mémoire et la performance. Elle utilise des algorithmes post-quantiques approuvés par le NIST, comme CRYSTALS-Kyber et CRYSTALS-Dilithium, afin de protéger l’échange de messages contre les attaques d’ordinateurs quantiques.",
+			"ko": "메모리 안전성과 성능을 위해 Rust로 구현되었습니다. CRYSTALS-Kyber와 CRYSTALS-Dilithium 같은 NIST 승인 포스트 양자 암호 알고리즘을 사용해 양자 컴퓨터 공격으로부터 메시지 교환을 보호합니다."
+		},
+		"marketingDetails": {
+			"en": "Future-proof your communications. As quantum computing advances, traditional encryption will become obsolete. Our post-quantum messaging app ensures your sensitive data remains secure against tomorrow's threats, today.",
+			"tr": "İletişiminizi geleceğe hazırlayın. Kuantum hesaplama geliştikçe geleneksel şifreleme geçersiz hale gelecektir. Kuantum sonrası mesajlaşma uygulamamız, hassas verilerinizin bugünden yarının tehditlerine karşı güvende kalmasını sağlar.",
+			"de": "Machen Sie Ihre Kommunikation zukunftssicher. Mit dem Fortschritt des Quantencomputings wird klassische Verschluesselung unter Druck geraten. Diese Post-Quantum-Messaging-App schuetzt sensible Daten schon heute vor den Risiken von morgen.",
+			"ja": "通信を未来に備えます。量子コンピューティングが進化すると、従来の暗号化は通用しなくなる可能性があります。このポスト量子メッセージングアプリは、明日の脅威に対して今日から機密データを保護します。",
+			"zh-CN": "让通信面向未来。随着量子计算的发展，传统加密将面临失效风险。我们的后量子消息应用从今天开始保护敏感数据，应对未来威胁。",
+			"es": "Prepara tus comunicaciones para el futuro. A medida que avanza la computación cuántica, el cifrado tradicional perderá eficacia. Esta aplicación mantiene los datos sensibles protegidos frente a las amenazas de mañana desde hoy.",
+			"fr": "Préparez vos communications pour l’avenir. À mesure que l’informatique quantique progresse, le chiffrement traditionnel sera mis sous pression. Cette application protège dès aujourd’hui les données sensibles contre les menaces de demain.",
+			"ko": "커뮤니케이션을 미래에 대비하세요. 양자 컴퓨팅이 발전하면 기존 암호화는 한계에 직면할 수 있습니다. 이 앱은 오늘부터 민감한 데이터를 내일의 위협에 대비해 보호합니다."
+		},
+		"tags": [
+			"Rust",
+			"Cryptography",
+			"Post-Quantum"
+		],
+		"github": "https://github.com/Kernel-Guard/post-quantum-messaging-app",
+		"diagram": "flowchart LR\n    C[\"CLI / Android / iOS / Web / Desktop\"] -->|HTTP JSON + TLS| S[\"pqmsg-server\"]\n    S -->|Sealed inbox sync / realtime relay| C\n    A[\"Android bridge\"] --> CORE[\"pqmsg-core\"]\n    I[\"iOS bridge\"] --> CORE\n    W[\"Web WASM bridge\"] --> CORE\n    D[\"Desktop wrapper\"] --> W\n    S --> DB[\"PostgreSQL / SQLite\"]\n    S --> RD[\"Redis rate limiter\"]\n    PV[\"ProVerif model\"] -.- V[\"CI verification gate\"]\n    TM[\"Tamarin model\"] -.- V"
+	},
+	{
+		"id": "aegis-bpf",
+		"title": "Aegis-BPF",
+		"description": {
+			"en": "A prototype for enforcing security policies using eBPF (Extended Berkeley Packet Filter) with CO-RE (Compile Once - Run Everywhere) support.",
+			"tr": "CO-RE (Bir Kere Derle - Her Yerde Çalıştır) desteğiyle eBPF (Genişletilmiş Berkeley Paket Filtresi) kullanarak güvenlik politikalarını uygulamak için bir prototip.",
+			"de": "Ein Prototyp zur Durchsetzung von Sicherheitsrichtlinien mit eBPF und CO-RE-Unterstuetzung (Compile Once - Run Everywhere).",
+			"ja": "CO-RE（Compile Once - Run Everywhere）対応の eBPF（Extended Berkeley Packet Filter）を用いて、セキュリティポリシーを適用するためのプロトタイプです。",
+			"zh-CN": "一个使用 eBPF（扩展伯克利包过滤器）并支持 CO-RE（一次编译，到处运行）的安全策略执行原型。",
+			"es": "Prototipo para aplicar políticas de seguridad con eBPF (Extended Berkeley Packet Filter) y soporte CO-RE (Compile Once - Run Everywhere).",
+			"fr": "Prototype d’application de politiques de sécurité avec eBPF (Extended Berkeley Packet Filter) et prise en charge CO-RE (Compile Once - Run Everywhere).",
+			"ko": "CO-RE(Compile Once - Run Everywhere)를 지원하는 eBPF(Extended Berkeley Packet Filter) 기반 보안 정책 적용 프로토타입입니다."
+		},
+		"technicalDetails": {
+			"en": "Developed using C++ and eBPF technology. It utilizes CO-RE (Compile Once - Run Everywhere) to ensure portability across different Linux kernel versions without recompilation, providing low-overhead, kernel-level security enforcement.",
+			"tr": "C++ ve eBPF teknolojisi kullanılarak geliştirilmiştir. Yeniden derlemeye gerek kalmadan farklı Linux çekirdek sürümlerinde taşınabilirliği sağlamak için CO-RE (Bir Kere Derle - Her Yerde Çalıştır) kullanır ve düşük ek yüklü, çekirdek düzeyinde güvenlik uygulaması sağlar.",
+			"de": "Entwickelt mit C++ und eBPF-Technologie. CO-RE sorgt fuer Portabilitaet ueber verschiedene Linux-Kernelversionen hinweg, ohne erneutes Kompilieren zu erfordern, und ermoeglicht Sicherheitsdurchsetzung auf Kernel-Ebene mit geringer Laufzeitbelastung.",
+			"ja": "C++ と eBPF 技術で開発されています。CO-RE（Compile Once - Run Everywhere）により、再コンパイルなしで異なる Linux カーネルバージョン間の移植性を確保し、低オーバーヘッドなカーネルレベルのセキュリティ制御を実現します。",
+			"zh-CN": "该项目使用 C++ 和 eBPF 技术开发。它通过 CO-RE 在不同 Linux 内核版本之间实现无需重新编译的可移植性，并提供低开销的内核级安全策略执行能力。",
+			"es": "Desarrollado con C++ y tecnología eBPF. Utiliza CO-RE para mantener portabilidad entre distintas versiones del kernel Linux sin recompilar, ofreciendo aplicación de políticas de seguridad a nivel de kernel con bajo overhead.",
+			"fr": "Développé avec C++ et la technologie eBPF. CO-RE assure la portabilité entre différentes versions du noyau Linux sans recompilation, avec une application des politiques de sécurité au niveau noyau et une faible surcharge.",
+			"ko": "C++와 eBPF 기술로 개발되었습니다. CO-RE를 사용해 재컴파일 없이 다양한 Linux 커널 버전에서 이식성을 확보하고, 낮은 오버헤드로 커널 수준 보안 정책을 적용합니다."
+		},
+		"marketingDetails": {
+			"en": "Enterprise-grade security at the kernel level. Aegis provides deep visibility and control over system behavior with zero overhead. Protect your infrastructure from advanced persistent threats with our cutting-edge eBPF technology.",
+			"tr": "Çekirdek düzeyinde kurumsal düzeyde güvenlik. Aegis, sıfır ek yük ile sistem davranışı üzerinde derin görünürlük ve kontrol sağlar. En son eBPF teknolojimizle altyapınızı gelişmiş kalıcı tehditlerden koruyun.",
+			"de": "Unternehmenssicherheit direkt auf Kernel-Ebene. Aegis bietet tiefe Einblicke und Kontrolle ueber Systemverhalten bei minimaler Belastung. Schuetzen Sie Ihre Infrastruktur mit moderner eBPF-Technologie vor fortgeschrittenen Bedrohungen.",
+			"ja": "カーネルレベルでのエンタープライズグレードのセキュリティ。Aegis はシステム挙動に対する深い可視性と制御を、最小限のオーバーヘッドで提供します。先進的な eBPF 技術により、高度な持続的脅威からインフラを保護します。",
+			"zh-CN": "内核级企业安全能力。Aegis 以极低开销提供对系统行为的深度可见性与控制，帮助您利用先进的 eBPF 技术保护基础设施免受高级持续性威胁。",
+			"es": "Seguridad empresarial en el nivel del kernel. Aegis ofrece visibilidad profunda y control sobre el comportamiento del sistema con una carga mínima. Protege la infraestructura frente a amenazas persistentes avanzadas con tecnología eBPF moderna.",
+			"fr": "Sécurité d’entreprise au niveau du noyau. Aegis fournit une visibilité profonde et un contrôle du comportement système avec une surcharge minimale. Protégez l’infrastructure contre les menaces persistantes avancées grâce à eBPF.",
+			"ko": "커널 수준의 엔터프라이즈 보안입니다. Aegis는 최소한의 오버헤드로 시스템 동작에 대한 깊은 가시성과 제어를 제공합니다. 최신 eBPF 기술로 고도화된 지속 위협으로부터 인프라를 보호합니다."
+		},
+		"tags": [
+			"C++",
+			"C",
+			"eBPF",
+			"Security",
+			"Linux Kernel"
+		],
+		"github": "https://github.com/Kernel-Guard/Aegis-BPF",
+		"diagram": "graph TD\n    subgraph \"AegisBPF User Space\"\n        A[File/Net Deny Rules] --> Z\n        B[Allow Allowlist] --> Z\n        C[Policy + Signing] --> Z\n        D[Metrics + Health] --> Z\n        E[Plugins + Rules] --> Z\n        Z[(Pinned BPF Maps & Ring Buffer)]\n    end\n    subgraph \"Linux Kernel\"\n        Z --- F\n        F[LSM Hooks Enforce/Audit]\n        F --> G[file_open / inode_permission]\n        F --> H[inode_copy_up overlayfs]\n        F --> I[bprm_check + IMA hash]\n        F --> J[socket connect/bind/listen/accept]\n        F --> K[socket sendmsg/recvmsg]\n        L[Tracepoint Fallback]\n        L --> M[openat/exec/fork/exit]\n    end"
+	}
+] }.items;
+//#endregion
+//#region src/i18n/text.ts
 function localizedText(value, language) {
-  return value[language] ?? value.en ?? value.tr ?? "";
+	return value[language] ?? value.en ?? value.tr ?? "";
 }
+//#endregion
+//#region src/pages/Projects.tsx
+var Projects_exports = /* @__PURE__ */ __exportAll({ default: () => Projects });
 function Projects() {
-  const { language, t } = useLanguage();
-  const navigate = distExports.useNavigate();
-  const projectPath = (id) => `${language === "tr" ? "" : language === "zh-CN" ? "/zh-cn" : `/${language}`}/projects/${id}/`;
-  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-24", children: [
-    /* @__PURE__ */ jsx(
-      SEO,
-      {
-        title: t.seo.projects.title,
-        description: t.seo.projects.description,
-        keywords: t.seo.projects.keywords,
-        path: "/projects/"
-      }
-    ),
-    /* @__PURE__ */ jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: [
-      /* @__PURE__ */ jsxs("div", { className: "mb-16 max-w-3xl", children: [
-        /* @__PURE__ */ jsxs("h1", { className: "text-5xl md:text-6xl font-light mb-6 text-foreground", children: [
-          t.projects.title1,
-          " ",
-          /* @__PURE__ */ jsx("span", { className: "font-semibold", children: t.projects.title2 })
-        ] }),
-        /* @__PURE__ */ jsx("p", { className: "text-foreground text-xl leading-relaxed font-light", children: t.projects.desc })
-      ] }),
-      /* @__PURE__ */ jsxs("div", { className: "border-t border-border", children: [
-        /* @__PURE__ */ jsxs("div", { className: "hidden md:grid grid-cols-12 gap-4 py-4 border-b-2 border-foreground bg-surface text-sm font-semibold text-foreground", children: [
-          /* @__PURE__ */ jsx("div", { className: "col-span-3 pl-4", children: t.projects.colName }),
-          /* @__PURE__ */ jsx("div", { className: "col-span-5", children: t.projects.colDesc }),
-          /* @__PURE__ */ jsx("div", { className: "col-span-3", children: t.projects.colTech }),
-          /* @__PURE__ */ jsx("div", { className: "col-span-1 text-right pr-4", children: t.projects.colLinks })
-        ] }),
-        /* @__PURE__ */ jsx("div", { className: "divide-y divide-border", children: projects.map((project) => /* @__PURE__ */ jsxs(
-          "div",
-          {
-            onClick: () => navigate(projectPath(project.id)),
-            className: "group grid grid-cols-1 md:grid-cols-12 gap-4 py-6 hover:bg-surface transition-colors items-start cursor-pointer",
-            children: [
-              /* @__PURE__ */ jsxs("div", { className: "md:col-span-3 pl-4", children: [
-                /* @__PURE__ */ jsx(
-                  distExports.Link,
-                  {
-                    to: projectPath(project.id),
-                    onClick: (e) => e.stopPropagation(),
-                    className: "text-lg font-medium text-primary hover:underline flex items-center gap-2",
-                    children: project.title
-                  }
-                ),
-                /* @__PURE__ */ jsx("p", { className: "md:hidden text-sm text-foreground/80 mt-2 font-light", children: localizedText(project.description, language) })
-              ] }),
-              /* @__PURE__ */ jsx("div", { className: "hidden md:block md:col-span-5 text-base text-foreground/80 pr-4 font-light", children: localizedText(project.description, language) }),
-              /* @__PURE__ */ jsx("div", { className: "md:col-span-3 flex flex-wrap gap-2 mt-4 md:mt-0", children: project.tags.map((tag) => /* @__PURE__ */ jsx(
-                "span",
-                {
-                  className: "px-3 py-1 text-xs bg-border text-foreground",
-                  children: tag
-                },
-                tag
-              )) }),
-              /* @__PURE__ */ jsxs("div", { className: "md:col-span-1 flex items-center justify-start md:justify-end gap-4 mt-4 md:mt-0 pr-4", children: [
-                project.github && /* @__PURE__ */ jsx(
-                  "a",
-                  {
-                    href: project.github,
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                    onClick: (e) => e.stopPropagation(),
-                    className: "text-primary hover:text-primary-dark transition-colors flex items-center gap-1 text-sm font-medium",
-                    title: t.projectDetails.viewSource,
-                    "aria-label": `${project.title}: ${t.projectDetails.viewSource}`,
-                    children: /* @__PURE__ */ jsx(Github, { className: "w-5 h-5" })
-                  }
-                ),
-                project.link && /* @__PURE__ */ jsx(
-                  "a",
-                  {
-                    href: project.link,
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                    onClick: (e) => e.stopPropagation(),
-                    className: "text-primary hover:text-primary-dark transition-colors flex items-center gap-1 text-sm font-medium",
-                    title: t.projectDetails.liveDemo,
-                    "aria-label": `${project.title}: ${t.projectDetails.liveDemo}`,
-                    children: /* @__PURE__ */ jsx(ExternalLink, { className: "w-5 h-5" })
-                  }
-                )
-              ] })
-            ]
-          },
-          project.id
-        )) })
-      ] })
-    ] })
-  ] });
+	const { language, t } = useLanguage();
+	const navigate = (0, import_dist.useNavigate)();
+	const projectPath = (id) => `${language === "tr" ? "" : language === "zh-CN" ? "/zh-cn" : `/${language}`}/projects/${id}/`;
+	return /* @__PURE__ */ jsxs("div", {
+		className: "min-h-screen bg-background pt-32 pb-24",
+		children: [/* @__PURE__ */ jsx(SEO, {
+			title: t.seo.projects.title,
+			description: t.seo.projects.description,
+			keywords: t.seo.projects.keywords,
+			path: "/projects/"
+		}), /* @__PURE__ */ jsxs("div", {
+			className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+			children: [/* @__PURE__ */ jsxs("div", {
+				className: "mb-16 max-w-3xl",
+				children: [/* @__PURE__ */ jsxs("h1", {
+					className: "text-5xl md:text-6xl font-light mb-6 text-foreground",
+					children: [
+						t.projects.title1,
+						" ",
+						/* @__PURE__ */ jsx("span", {
+							className: "font-semibold",
+							children: t.projects.title2
+						})
+					]
+				}), /* @__PURE__ */ jsx("p", {
+					className: "text-foreground text-xl leading-relaxed font-light",
+					children: t.projects.desc
+				})]
+			}), /* @__PURE__ */ jsxs("div", {
+				className: "border-t border-border",
+				children: [/* @__PURE__ */ jsxs("div", {
+					className: "hidden md:grid grid-cols-12 gap-4 py-4 border-b-2 border-foreground bg-surface text-sm font-semibold text-foreground",
+					children: [
+						/* @__PURE__ */ jsx("div", {
+							className: "col-span-3 pl-4",
+							children: t.projects.colName
+						}),
+						/* @__PURE__ */ jsx("div", {
+							className: "col-span-5",
+							children: t.projects.colDesc
+						}),
+						/* @__PURE__ */ jsx("div", {
+							className: "col-span-3",
+							children: t.projects.colTech
+						}),
+						/* @__PURE__ */ jsx("div", {
+							className: "col-span-1 text-right pr-4",
+							children: t.projects.colLinks
+						})
+					]
+				}), /* @__PURE__ */ jsx("div", {
+					className: "divide-y divide-border",
+					children: projects.map((project) => /* @__PURE__ */ jsxs("div", {
+						onClick: () => navigate(projectPath(project.id)),
+						className: "group grid grid-cols-1 md:grid-cols-12 gap-4 py-6 hover:bg-surface transition-colors items-start cursor-pointer",
+						children: [
+							/* @__PURE__ */ jsxs("div", {
+								className: "md:col-span-3 pl-4",
+								children: [/* @__PURE__ */ jsx(import_dist.Link, {
+									to: projectPath(project.id),
+									onClick: (e) => e.stopPropagation(),
+									className: "text-lg font-medium text-primary hover:underline flex items-center gap-2",
+									children: project.title
+								}), /* @__PURE__ */ jsx("p", {
+									className: "md:hidden text-sm text-foreground/80 mt-2 font-light",
+									children: localizedText(project.description, language)
+								})]
+							}),
+							/* @__PURE__ */ jsx("div", {
+								className: "hidden md:block md:col-span-5 text-base text-foreground/80 pr-4 font-light",
+								children: localizedText(project.description, language)
+							}),
+							/* @__PURE__ */ jsx("div", {
+								className: "md:col-span-3 flex flex-wrap gap-2 mt-4 md:mt-0",
+								children: project.tags.map((tag) => /* @__PURE__ */ jsx("span", {
+									className: "px-3 py-1 text-xs bg-border text-foreground",
+									children: tag
+								}, tag))
+							}),
+							/* @__PURE__ */ jsxs("div", {
+								className: "md:col-span-1 flex items-center justify-start md:justify-end gap-4 mt-4 md:mt-0 pr-4",
+								children: [project.github && /* @__PURE__ */ jsx("a", {
+									href: project.github,
+									target: "_blank",
+									rel: "noopener noreferrer",
+									onClick: (e) => e.stopPropagation(),
+									className: "text-primary hover:text-primary-dark transition-colors flex items-center gap-1 text-sm font-medium",
+									title: t.projectDetails.viewSource,
+									"aria-label": `${project.title}: ${t.projectDetails.viewSource}`,
+									children: /* @__PURE__ */ jsx(Github, { className: "w-5 h-5" })
+								}), project.link && /* @__PURE__ */ jsx("a", {
+									href: project.link,
+									target: "_blank",
+									rel: "noopener noreferrer",
+									onClick: (e) => e.stopPropagation(),
+									className: "text-primary hover:text-primary-dark transition-colors flex items-center gap-1 text-sm font-medium",
+									title: t.projectDetails.liveDemo,
+									"aria-label": `${project.title}: ${t.projectDetails.liveDemo}`,
+									children: /* @__PURE__ */ jsx(ExternalLink, { className: "w-5 h-5" })
+								})]
+							})
+						]
+					}, project.id))
+				})]
+			})]
+		})]
+	});
 }
-const Projects$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: Projects
-}, Symbol.toStringTag, { value: "Module" }));
-const repositoryEvidence = {
-  cathodex: {
-    primaryLanguage: "Python",
-    lastPublicUpdate: "2026-04-13",
-    trackedIssues: 1,
-    repositorySizeKb: 24921,
-    languageMix: ["Python", "TypeScript", "HTML", "PowerShell", "Shell"]
-  },
-  "post-quantum-messaging-app": {
-    primaryLanguage: "Rust",
-    lastPublicUpdate: "2026-04-16",
-    trackedIssues: 0,
-    repositorySizeKb: 14381,
-    languageMix: ["Rust", "TypeScript", "Kotlin", "Python", "Swift"]
-  },
-  "aegis-bpf": {
-    primaryLanguage: "C++",
-    lastPublicUpdate: "2026-05-24",
-    trackedIssues: 11,
-    repositorySizeKb: 5575,
-    languageMix: ["C++", "Shell", "C", "Go", "Python"]
-  }
+//#endregion
+//#region src/data/repositoryEvidence.ts
+var repositoryEvidence = {
+	cathodex: {
+		primaryLanguage: "Python",
+		lastPublicUpdate: "2026-04-13",
+		trackedIssues: 1,
+		repositorySizeKb: 24921,
+		languageMix: [
+			"Python",
+			"TypeScript",
+			"HTML",
+			"PowerShell",
+			"Shell"
+		]
+	},
+	"post-quantum-messaging-app": {
+		primaryLanguage: "Rust",
+		lastPublicUpdate: "2026-04-16",
+		trackedIssues: 0,
+		repositorySizeKb: 14381,
+		languageMix: [
+			"Rust",
+			"TypeScript",
+			"Kotlin",
+			"Python",
+			"Swift"
+		]
+	},
+	"aegis-bpf": {
+		primaryLanguage: "C++",
+		lastPublicUpdate: "2026-05-24",
+		trackedIssues: 11,
+		repositorySizeKb: 5575,
+		languageMix: [
+			"C++",
+			"Shell",
+			"C",
+			"Go",
+			"Python"
+		]
+	}
 };
-const KNOWN_PROGRAMMING_LANGUAGES = /* @__PURE__ */ new Set([
-  "Python",
-  "Rust",
-  "C++",
-  "C",
-  "Go",
-  "TypeScript",
-  "JavaScript",
-  "Java",
-  "Kotlin",
-  "Swift"
+//#endregion
+//#region src/pages/ProjectDetails.tsx
+var ProjectDetails_exports = /* @__PURE__ */ __exportAll({ default: () => ProjectDetails });
+var KNOWN_PROGRAMMING_LANGUAGES = new Set([
+	"Python",
+	"Rust",
+	"C++",
+	"C",
+	"Go",
+	"TypeScript",
+	"JavaScript",
+	"Java",
+	"Kotlin",
+	"Swift"
 ]);
 function ProjectDetails() {
-  const { id } = distExports.useParams();
-  const { language, t } = useLanguage();
-  const project = projects.find((p) => p.id === id);
-  if (!project) {
-    return /* @__PURE__ */ jsx(distExports.Navigate, { to: "/not-found/", replace: true });
-  }
-  const programmingLanguages = project.tags.filter((tag) => KNOWN_PROGRAMMING_LANGUAGES.has(tag));
-  const description = localizedText(project.description, language);
-  const technicalDetails = localizedText(project.technicalDetails, language);
-  const marketingDetails = localizedText(project.marketingDetails, language);
-  const repoEvidence = repositoryEvidence[project.id];
-  const repositorySize = repoEvidence ? `${(repoEvidence.repositorySizeKb / 1024).toFixed(1)} MB` : null;
-  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-24", children: [
-    /* @__PURE__ */ jsx(
-      SEO,
-      {
-        title: `${project.title} - Kernel Guard`,
-        description,
-        path: `/projects/${project.id}/`,
-        schema: buildSoftwareSourceCodeSchema({
-          name: project.title,
-          description,
-          path: `/projects/${project.id}/`,
-          language,
-          codeRepository: project.github,
-          programmingLanguage: programmingLanguages.length > 0 ? programmingLanguages : void 0
-        })
-      }
-    ),
-    /* @__PURE__ */ jsxs("div", { className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8", children: [
-      /* @__PURE__ */ jsxs(
-        distExports.Link,
-        {
-          to: localizePath("/projects/", language),
-          className: "inline-flex items-center gap-2 text-foreground/60 hover:text-primary transition-colors mb-12 font-medium text-sm",
-          children: [
-            /* @__PURE__ */ jsx(ArrowLeft, { className: "w-4 h-4" }),
-            t.projectDetails.backToProjects
-          ]
-        }
-      ),
-      /* @__PURE__ */ jsxs("div", { className: "mb-16", children: [
-        /* @__PURE__ */ jsx("h1", { className: "text-4xl md:text-5xl font-light mb-6 text-foreground", children: project.title }),
-        /* @__PURE__ */ jsx("p", { className: "text-foreground/80 text-xl leading-relaxed font-light", children: description }),
-        /* @__PURE__ */ jsx("div", { className: "flex flex-wrap gap-2 mt-8", children: project.tags.map((tag) => /* @__PURE__ */ jsx(
-          "span",
-          {
-            className: "px-3 py-1 text-xs bg-surface border border-border text-foreground",
-            children: tag
-          },
-          tag
-        )) })
-      ] }),
-      project.image && /* @__PURE__ */ jsx("div", { className: "mb-16 w-full overflow-hidden border border-border", children: /* @__PURE__ */ jsx(
-        "img",
-        {
-          src: project.image,
-          alt: project.title,
-          className: "w-full h-auto object-cover max-h-[600px]"
-        }
-      ) }),
-      project.diagram && /* @__PURE__ */ jsxs("div", { className: "mb-16 bg-surface p-8 border border-border", children: [
-        /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-3 mb-6", children: [
-          /* @__PURE__ */ jsx(GitMerge, { className: "w-6 h-6 text-primary" }),
-          /* @__PURE__ */ jsx("h2", { className: "text-2xl font-light", children: t.projectDetails.architectureDiagram })
-        ] }),
-        /* @__PURE__ */ jsx("div", { className: "relative w-full", style: { aspectRatio: "4 / 3" }, children: /* @__PURE__ */ jsx(
-          "img",
-          {
-            src: `/diagrams/${project.id}.svg`,
-            alt: `${project.title} architecture diagram`,
-            className: "absolute inset-0 h-full w-full object-contain",
-            loading: "lazy",
-            decoding: "async"
-          }
-        ) })
-      ] }),
-      repoEvidence && /* @__PURE__ */ jsxs("section", { className: "mb-16 border border-border bg-surface p-8", children: [
-        /* @__PURE__ */ jsxs("div", { className: "flex flex-col gap-3 mb-8 md:flex-row md:items-end md:justify-between", children: [
-          /* @__PURE__ */ jsxs("div", { children: [
-            /* @__PURE__ */ jsx("h2", { className: "text-2xl font-light", children: t.projectDetails.repositoryEvidence.title }),
-            /* @__PURE__ */ jsx("p", { className: "mt-2 text-sm text-foreground/60 font-mono", children: t.projectDetails.repositoryEvidence.measuredAt })
-          ] }),
-          project.github && /* @__PURE__ */ jsxs(
-            "a",
-            {
-              href: project.github,
-              target: "_blank",
-              rel: "noopener noreferrer",
-              className: "inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary-dark",
-              children: [
-                "GitHub",
-                /* @__PURE__ */ jsx(ExternalLink, { className: "h-4 w-4" })
-              ]
-            }
-          )
-        ] }),
-        /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-1 md:grid-cols-4 gap-4", children: [
-          /* @__PURE__ */ jsxs("div", { className: "border border-border bg-background p-4", children: [
-            /* @__PURE__ */ jsx("div", { className: "text-xs font-mono uppercase text-foreground/50 mb-2", children: t.projectDetails.repositoryEvidence.primaryLanguage }),
-            /* @__PURE__ */ jsx("div", { className: "text-lg font-medium text-foreground", children: repoEvidence.primaryLanguage })
-          ] }),
-          /* @__PURE__ */ jsxs("div", { className: "border border-border bg-background p-4", children: [
-            /* @__PURE__ */ jsx("div", { className: "text-xs font-mono uppercase text-foreground/50 mb-2", children: t.projectDetails.repositoryEvidence.lastPublicUpdate }),
-            /* @__PURE__ */ jsx("div", { className: "text-lg font-medium text-foreground", children: repoEvidence.lastPublicUpdate })
-          ] }),
-          /* @__PURE__ */ jsxs("div", { className: "border border-border bg-background p-4", children: [
-            /* @__PURE__ */ jsx("div", { className: "text-xs font-mono uppercase text-foreground/50 mb-2", children: t.projectDetails.repositoryEvidence.trackedIssues }),
-            /* @__PURE__ */ jsx("div", { className: "text-lg font-medium text-foreground", children: repoEvidence.trackedIssues })
-          ] }),
-          /* @__PURE__ */ jsxs("div", { className: "border border-border bg-background p-4", children: [
-            /* @__PURE__ */ jsx("div", { className: "text-xs font-mono uppercase text-foreground/50 mb-2", children: t.projectDetails.repositoryEvidence.repositorySize }),
-            /* @__PURE__ */ jsx("div", { className: "text-lg font-medium text-foreground", children: repositorySize })
-          ] })
-        ] }),
-        /* @__PURE__ */ jsxs("div", { className: "mt-6", children: [
-          /* @__PURE__ */ jsx("div", { className: "text-xs font-mono uppercase text-foreground/50 mb-3", children: t.projectDetails.repositoryEvidence.languageMix }),
-          /* @__PURE__ */ jsx("div", { className: "flex flex-wrap gap-2", children: repoEvidence.languageMix.map((item) => /* @__PURE__ */ jsx("span", { className: "border border-border bg-background px-3 py-1 text-xs text-foreground", children: item }, item)) })
-        ] })
-      ] }),
-      /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-1 md:grid-cols-2 gap-12 mb-16", children: [
-        /* @__PURE__ */ jsxs("div", { className: "bg-surface p-8 border border-border", children: [
-          /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-3 mb-6", children: [
-            /* @__PURE__ */ jsx(Terminal, { className: "w-6 h-6 text-primary" }),
-            /* @__PURE__ */ jsx("h2", { className: "text-2xl font-light", children: t.projectDetails.technicalOverview })
-          ] }),
-          /* @__PURE__ */ jsx("p", { className: "text-foreground/80 leading-relaxed font-light", children: technicalDetails })
-        ] }),
-        /* @__PURE__ */ jsxs("div", { className: "bg-surface p-8 border border-border", children: [
-          /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-3 mb-6", children: [
-            /* @__PURE__ */ jsx(Target, { className: "w-6 h-6 text-primary" }),
-            /* @__PURE__ */ jsx("h2", { className: "text-2xl font-light", children: t.projectDetails.marketingOverview })
-          ] }),
-          /* @__PURE__ */ jsx("p", { className: "text-foreground/80 leading-relaxed font-light", children: marketingDetails })
-        ] })
-      ] }),
-      /* @__PURE__ */ jsxs("div", { className: "flex flex-col sm:flex-row gap-4 border-t border-border pt-12", children: [
-        project.github && /* @__PURE__ */ jsxs(
-          "a",
-          {
-            href: project.github,
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: "inline-flex items-center justify-between px-6 py-4 kg-action-primary transition-colors w-full sm:w-64",
-            children: [
-              /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.projectDetails.viewSource }),
-              /* @__PURE__ */ jsx(Github, { className: "w-5 h-5" })
-            ]
-          }
-        ),
-        project.link && /* @__PURE__ */ jsxs(
-          "a",
-          {
-            href: project.link,
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: "inline-flex items-center justify-between px-6 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-white transition-colors w-full sm:w-64",
-            children: [
-              /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.projectDetails.liveDemo }),
-              /* @__PURE__ */ jsx(ExternalLink, { className: "w-5 h-5" })
-            ]
-          }
-        )
-      ] })
-    ] })
-  ] });
+	const { id } = (0, import_dist.useParams)();
+	const { language, t } = useLanguage();
+	const project = projects.find((p) => p.id === id);
+	if (!project) return /* @__PURE__ */ jsx(import_dist.Navigate, {
+		to: "/not-found/",
+		replace: true
+	});
+	const programmingLanguages = project.tags.filter((tag) => KNOWN_PROGRAMMING_LANGUAGES.has(tag));
+	const description = localizedText(project.description, language);
+	const technicalDetails = localizedText(project.technicalDetails, language);
+	const marketingDetails = localizedText(project.marketingDetails, language);
+	const repoEvidence = repositoryEvidence[project.id];
+	const repositorySize = repoEvidence ? `${(repoEvidence.repositorySizeKb / 1024).toFixed(1)} MB` : null;
+	return /* @__PURE__ */ jsxs("div", {
+		className: "min-h-screen bg-background pt-32 pb-24",
+		children: [/* @__PURE__ */ jsx(SEO, {
+			title: `${project.title} - Kernel Guard`,
+			description,
+			path: `/projects/${project.id}/`,
+			schema: buildSoftwareSourceCodeSchema({
+				name: project.title,
+				description,
+				path: `/projects/${project.id}/`,
+				language,
+				codeRepository: project.github,
+				programmingLanguage: programmingLanguages.length > 0 ? programmingLanguages : void 0
+			})
+		}), /* @__PURE__ */ jsxs("div", {
+			className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8",
+			children: [
+				/* @__PURE__ */ jsxs(import_dist.Link, {
+					to: localizePath("/projects/", language),
+					className: "inline-flex items-center gap-2 text-foreground/60 hover:text-primary transition-colors mb-12 font-medium text-sm",
+					children: [/* @__PURE__ */ jsx(ArrowLeft, { className: "w-4 h-4" }), t.projectDetails.backToProjects]
+				}),
+				/* @__PURE__ */ jsxs("div", {
+					className: "mb-16",
+					children: [
+						/* @__PURE__ */ jsx("h1", {
+							className: "text-4xl md:text-5xl font-light mb-6 text-foreground",
+							children: project.title
+						}),
+						/* @__PURE__ */ jsx("p", {
+							className: "text-foreground/80 text-xl leading-relaxed font-light",
+							children: description
+						}),
+						/* @__PURE__ */ jsx("div", {
+							className: "flex flex-wrap gap-2 mt-8",
+							children: project.tags.map((tag) => /* @__PURE__ */ jsx("span", {
+								className: "px-3 py-1 text-xs bg-surface border border-border text-foreground",
+								children: tag
+							}, tag))
+						})
+					]
+				}),
+				project.image && /* @__PURE__ */ jsx("div", {
+					className: "mb-16 w-full overflow-hidden border border-border",
+					children: /* @__PURE__ */ jsx("img", {
+						src: project.image,
+						alt: project.title,
+						className: "w-full h-auto object-cover max-h-[600px]"
+					})
+				}),
+				project.diagram && /* @__PURE__ */ jsxs("div", {
+					className: "mb-16 bg-surface p-8 border border-border",
+					children: [/* @__PURE__ */ jsxs("div", {
+						className: "flex items-center gap-3 mb-6",
+						children: [/* @__PURE__ */ jsx(GitMerge, { className: "w-6 h-6 text-primary" }), /* @__PURE__ */ jsx("h2", {
+							className: "text-2xl font-light",
+							children: t.projectDetails.architectureDiagram
+						})]
+					}), /* @__PURE__ */ jsx("div", {
+						className: "relative w-full",
+						style: { aspectRatio: "4 / 3" },
+						children: /* @__PURE__ */ jsx("img", {
+							src: `/diagrams/${project.id}.svg`,
+							alt: `${project.title} architecture diagram`,
+							className: "absolute inset-0 h-full w-full object-contain",
+							loading: "lazy",
+							decoding: "async"
+						})
+					})]
+				}),
+				repoEvidence && /* @__PURE__ */ jsxs("section", {
+					className: "mb-16 border border-border bg-surface p-8",
+					children: [
+						/* @__PURE__ */ jsxs("div", {
+							className: "flex flex-col gap-3 mb-8 md:flex-row md:items-end md:justify-between",
+							children: [/* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx("h2", {
+								className: "text-2xl font-light",
+								children: t.projectDetails.repositoryEvidence.title
+							}), /* @__PURE__ */ jsx("p", {
+								className: "mt-2 text-sm text-foreground/60 font-mono",
+								children: t.projectDetails.repositoryEvidence.measuredAt
+							})] }), project.github && /* @__PURE__ */ jsxs("a", {
+								href: project.github,
+								target: "_blank",
+								rel: "noopener noreferrer",
+								className: "inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary-dark",
+								children: ["GitHub", /* @__PURE__ */ jsx(ExternalLink, { className: "h-4 w-4" })]
+							})]
+						}),
+						/* @__PURE__ */ jsxs("div", {
+							className: "grid grid-cols-1 md:grid-cols-4 gap-4",
+							children: [
+								/* @__PURE__ */ jsxs("div", {
+									className: "border border-border bg-background p-4",
+									children: [/* @__PURE__ */ jsx("div", {
+										className: "text-xs font-mono uppercase text-foreground/50 mb-2",
+										children: t.projectDetails.repositoryEvidence.primaryLanguage
+									}), /* @__PURE__ */ jsx("div", {
+										className: "text-lg font-medium text-foreground",
+										children: repoEvidence.primaryLanguage
+									})]
+								}),
+								/* @__PURE__ */ jsxs("div", {
+									className: "border border-border bg-background p-4",
+									children: [/* @__PURE__ */ jsx("div", {
+										className: "text-xs font-mono uppercase text-foreground/50 mb-2",
+										children: t.projectDetails.repositoryEvidence.lastPublicUpdate
+									}), /* @__PURE__ */ jsx("div", {
+										className: "text-lg font-medium text-foreground",
+										children: repoEvidence.lastPublicUpdate
+									})]
+								}),
+								/* @__PURE__ */ jsxs("div", {
+									className: "border border-border bg-background p-4",
+									children: [/* @__PURE__ */ jsx("div", {
+										className: "text-xs font-mono uppercase text-foreground/50 mb-2",
+										children: t.projectDetails.repositoryEvidence.trackedIssues
+									}), /* @__PURE__ */ jsx("div", {
+										className: "text-lg font-medium text-foreground",
+										children: repoEvidence.trackedIssues
+									})]
+								}),
+								/* @__PURE__ */ jsxs("div", {
+									className: "border border-border bg-background p-4",
+									children: [/* @__PURE__ */ jsx("div", {
+										className: "text-xs font-mono uppercase text-foreground/50 mb-2",
+										children: t.projectDetails.repositoryEvidence.repositorySize
+									}), /* @__PURE__ */ jsx("div", {
+										className: "text-lg font-medium text-foreground",
+										children: repositorySize
+									})]
+								})
+							]
+						}),
+						/* @__PURE__ */ jsxs("div", {
+							className: "mt-6",
+							children: [/* @__PURE__ */ jsx("div", {
+								className: "text-xs font-mono uppercase text-foreground/50 mb-3",
+								children: t.projectDetails.repositoryEvidence.languageMix
+							}), /* @__PURE__ */ jsx("div", {
+								className: "flex flex-wrap gap-2",
+								children: repoEvidence.languageMix.map((item) => /* @__PURE__ */ jsx("span", {
+									className: "border border-border bg-background px-3 py-1 text-xs text-foreground",
+									children: item
+								}, item))
+							})]
+						})
+					]
+				}),
+				/* @__PURE__ */ jsxs("div", {
+					className: "grid grid-cols-1 md:grid-cols-2 gap-12 mb-16",
+					children: [/* @__PURE__ */ jsxs("div", {
+						className: "bg-surface p-8 border border-border",
+						children: [/* @__PURE__ */ jsxs("div", {
+							className: "flex items-center gap-3 mb-6",
+							children: [/* @__PURE__ */ jsx(Terminal, { className: "w-6 h-6 text-primary" }), /* @__PURE__ */ jsx("h2", {
+								className: "text-2xl font-light",
+								children: t.projectDetails.technicalOverview
+							})]
+						}), /* @__PURE__ */ jsx("p", {
+							className: "text-foreground/80 leading-relaxed font-light",
+							children: technicalDetails
+						})]
+					}), /* @__PURE__ */ jsxs("div", {
+						className: "bg-surface p-8 border border-border",
+						children: [/* @__PURE__ */ jsxs("div", {
+							className: "flex items-center gap-3 mb-6",
+							children: [/* @__PURE__ */ jsx(Target, { className: "w-6 h-6 text-primary" }), /* @__PURE__ */ jsx("h2", {
+								className: "text-2xl font-light",
+								children: t.projectDetails.marketingOverview
+							})]
+						}), /* @__PURE__ */ jsx("p", {
+							className: "text-foreground/80 leading-relaxed font-light",
+							children: marketingDetails
+						})]
+					})]
+				}),
+				/* @__PURE__ */ jsxs("div", {
+					className: "flex flex-col sm:flex-row gap-4 border-t border-border pt-12",
+					children: [project.github && /* @__PURE__ */ jsxs("a", {
+						href: project.github,
+						target: "_blank",
+						rel: "noopener noreferrer",
+						className: "inline-flex items-center justify-between px-6 py-4 kg-action-primary transition-colors w-full sm:w-64",
+						children: [/* @__PURE__ */ jsx("span", {
+							className: "font-medium",
+							children: t.projectDetails.viewSource
+						}), /* @__PURE__ */ jsx(Github, { className: "w-5 h-5" })]
+					}), project.link && /* @__PURE__ */ jsxs("a", {
+						href: project.link,
+						target: "_blank",
+						rel: "noopener noreferrer",
+						className: "inline-flex items-center justify-between px-6 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-white transition-colors w-full sm:w-64",
+						children: [/* @__PURE__ */ jsx("span", {
+							className: "font-medium",
+							children: t.projectDetails.liveDemo
+						}), /* @__PURE__ */ jsx(ExternalLink, { className: "w-5 h-5" })]
+					})]
+				})
+			]
+		})]
+	});
 }
-const ProjectDetails$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: ProjectDetails
-}, Symbol.toStringTag, { value: "Module" }));
-const items = /* @__PURE__ */ JSON.parse('[{"id":"ref-atelier","title":"Ref Atelier","description":{"en":"Modern corporate portfolio and digital reference showcase platform.","tr":"Modern kurumsal portfolyo ve dijital referans sergileme platformu.","de":"Moderne Unternehmensportfolio- und digitale Referenzplattform.","ja":"モダンな企業ポートフォリオとデジタル実績紹介のためのプラットフォームです。","zh-CN":"现代企业作品集与数字案例展示平台。","es":"Plataforma moderna de portafolio corporativo y muestra de referencias digitales.","fr":"Plateforme moderne de portfolio d’entreprise et de présentation de références numériques.","ko":"현대적인 기업 포트폴리오 및 디지털 레퍼런스 쇼케이스 플랫폼입니다."},"longDescription":{"en":"Ref Atelier is a premium corporate portfolio platform designed to showcase digital references and past projects with an elegant, modern interface. It features a fully responsive design, optimized media loading, and a seamless user experience tailored for creative agencies and corporate entities.","tr":"Ref Atelier, dijital referansları ve geçmiş projeleri zarif ve modern bir arayüzle sergilemek için tasarlanmış premium bir kurumsal portfolyo platformudur. Tamamen duyarlı bir tasarıma, optimize edilmiş medya yüklemesine ve yaratıcı ajanslar ile kurumsal şirketler için özel olarak tasarlanmış kusursuz bir kullanıcı deneyimine sahiptir.","de":"Ref Atelier ist eine hochwertige Unternehmensportfolio-Plattform, die digitale Referenzen und abgeschlossene Projekte in einer eleganten, modernen Oberflaeche praesentiert. Sie bietet responsives Design, optimiertes Medienladen und eine fluessige Nutzererfahrung fuer Kreativagenturen und Unternehmen.","ja":"Ref Atelier は、デジタル実績や過去のプロジェクトを洗練されたモダンなインターフェースで紹介するための、プレミアムな企業ポートフォリオプラットフォームです。完全レスポンシブ設計、最適化されたメディア読み込み、クリエイティブエージェンシーや企業向けのスムーズなユーザー体験を備えています。","zh-CN":"Ref Atelier 是一个高端企业作品集平台，用优雅现代的界面展示数字案例与过往项目。它具备完整响应式设计、优化的媒体加载，以及面向创意机构和企业客户的流畅用户体验。","es":"Ref Atelier es una plataforma premium de portafolio corporativo diseñada para mostrar referencias digitales y proyectos anteriores con una interfaz elegante y moderna. Incluye diseño totalmente responsive, carga multimedia optimizada y una experiencia de usuario fluida para agencias creativas y empresas.","fr":"Ref Atelier est une plateforme premium de portfolio d’entreprise conçue pour présenter des références numériques et des projets passés dans une interface élégante et moderne. Elle offre un design entièrement responsive, un chargement média optimisé et une expérience fluide pour les agences créatives et les entreprises.","ko":"Ref Atelier는 디지털 레퍼런스와 과거 프로젝트를 세련되고 현대적인 인터페이스로 보여주기 위해 설계된 프리미엄 기업 포트폴리오 플랫폼입니다. 완전 반응형 디자인, 최적화된 미디어 로딩, 크리에이티브 에이전시와 기업을 위한 매끄러운 사용자 경험을 제공합니다."},"url":"https://refatelier.com/index.html","tags":["Corporate","Portfolio","UI/UX"],"accounts":[]},{"id":"dershane-management","title":"Dershane Management","description":{"en":"Comprehensive educational institution management system including student tracking and administrative tools.","tr":"Öğrenci takibi ve idari araçları içeren kapsamlı eğitim kurumu (dershane) yönetim sistemi.","de":"Umfassendes Managementsystem fuer Bildungseinrichtungen mit Schuelerverfolgung und Verwaltungstools.","ja":"生徒管理と管理業務ツールを備えた、教育機関向けの包括的な管理システムです。","zh-CN":"面向教育机构的综合管理系统，包含学生跟踪和行政管理工具。","es":"Sistema integral de gestión para instituciones educativas con seguimiento de estudiantes y herramientas administrativas.","fr":"Système complet de gestion d’établissement éducatif avec suivi des élèves et outils administratifs.","ko":"학생 추적과 관리 도구를 포함한 종합 교육기관 관리 시스템입니다."},"longDescription":{"en":"A full-featured management system tailored for educational institutions. It provides tools for student enrollment, attendance tracking, grade management, and administrative reporting. The platform streamlines daily operations and improves communication between staff and students.","tr":"Eğitim kurumları için özel olarak tasarlanmış tam özellikli bir yönetim sistemi. Öğrenci kaydı, yoklama takibi, not yönetimi ve idari raporlama için araçlar sunar. Platform, günlük operasyonları kolaylaştırır ve personel ile öğrenciler arasındaki iletişimi geliştirir.","de":"Ein voll ausgestattetes Managementsystem fuer Bildungseinrichtungen. Es bietet Werkzeuge fuer Einschreibung, Anwesenheitskontrolle, Notenverwaltung und administrative Berichte. Die Plattform vereinfacht den Tagesbetrieb und verbessert die Kommunikation zwischen Mitarbeitenden und Lernenden.","ja":"教育機関向けに設計された多機能な管理システムです。生徒登録、出席管理、成績管理、管理レポート作成のためのツールを提供します。日々の業務を効率化し、スタッフと生徒間のコミュニケーションを改善します。","zh-CN":"一个为教育机构定制的完整管理系统。它提供学生注册、考勤跟踪、成绩管理和行政报告工具，帮助简化日常运营并提升教职员工与学生之间的沟通效率。","es":"Sistema de gestión completo diseñado para instituciones educativas. Ofrece herramientas para inscripción de estudiantes, control de asistencia, gestión de calificaciones e informes administrativos. La plataforma simplifica las operaciones diarias y mejora la comunicación entre personal y estudiantes.","fr":"Système de gestion complet conçu pour les établissements éducatifs. Il fournit des outils pour les inscriptions, le suivi des présences, la gestion des notes et les rapports administratifs. La plateforme simplifie les opérations quotidiennes et améliore la communication entre le personnel et les élèves.","ko":"교육기관을 위해 설계된 완전한 관리 시스템입니다. 학생 등록, 출석 추적, 성적 관리, 행정 보고 도구를 제공하며 일상 운영을 단순화하고 직원과 학생 간 커뮤니케이션을 개선합니다."},"url":"https://trfont.com/adana/","tags":["Education","Management","SaaS"],"accounts":[{"email":"admin@dershane.com","role":"Admin"}]},{"id":"technova-hr","title":"TechNova HR","description":{"en":"Enterprise human resources management portal with multi-role employee access.","tr":"Çoklu rol erişimine sahip kurumsal insan kaynakları (İK) yönetim portalı.","de":"Enterprise-HR-Portal mit rollenbasiertem Zugriff fuer Mitarbeitende.","ja":"複数ロールの従業員アクセスに対応した、エンタープライズ向け人事管理ポータルです。","zh-CN":"支持多角色员工访问的企业人力资源管理门户。","es":"Portal empresarial de gestión de recursos humanos con acceso multirol para empleados.","fr":"Portail RH d’entreprise avec accès multi-rôles pour les employés.","ko":"다중 역할 직원 접근을 지원하는 엔터프라이즈 인사 관리 포털입니다."},"longDescription":{"en":"TechNova HR is an enterprise-grade Human Resources management portal. It supports multi-role access control, allowing administrators to manage employee records, leave requests, and performance reviews, while providing employees with a self-service portal to view their data and submit requests.","tr":"TechNova İK, kurumsal düzeyde bir İnsan Kaynakları yönetim portalıdır. Çoklu rol erişim kontrolünü destekleyerek, yöneticilerin çalışan kayıtlarını, izin taleplerini ve performans değerlendirmelerini yönetmesine olanak tanırken, çalışanlara verilerini görüntülemeleri ve talepte bulunmaları için bir self-servis portalı sunar.","de":"TechNova HR ist ein HR-Management-Portal auf Unternehmensniveau. Es unterstuetzt rollenbasierte Zugriffskontrolle, sodass Administratoren Mitarbeiterdaten, Urlaubsantraege und Leistungsbewertungen verwalten koennen, waehrend Mitarbeitende ihre Daten einsehen und Anfragen ueber ein Self-Service-Portal stellen.","ja":"TechNova HR は、エンタープライズグレードの人事管理ポータルです。複数ロールのアクセス制御に対応しており、管理者は従業員情報、休暇申請、評価を管理できます。従業員はセルフサービスポータルから自分のデータを確認し、申請を送信できます。","zh-CN":"TechNova HR 是一个企业级人力资源管理门户。它支持多角色访问控制，使管理员能够管理员工记录、请假申请和绩效评估，同时为员工提供自助门户，用于查看个人数据并提交申请。","es":"TechNova HR es un portal de gestión de Recursos Humanos de nivel empresarial. Admite control de acceso multirol para que los administradores gestionen registros de empleados, solicitudes de permisos y evaluaciones de desempeño, mientras los empleados consultan sus datos y envían solicitudes desde un portal de autoservicio.","fr":"TechNova HR est un portail de gestion des ressources humaines de niveau entreprise. Il prend en charge le contrôle d’accès multi-rôles, permettant aux administrateurs de gérer les dossiers employés, les demandes de congé et les évaluations de performance, tout en offrant aux employés un portail en libre-service.","ko":"TechNova HR은 엔터프라이즈급 인사 관리 포털입니다. 다중 역할 접근 제어를 지원해 관리자가 직원 기록, 휴가 요청, 성과 평가를 관리할 수 있고, 직원은 셀프서비스 포털에서 자신의 데이터를 확인하고 요청을 제출할 수 있습니다."},"url":"https://trfont.com/%C4%B1k/","tags":["HR","Enterprise","Portal"],"accounts":[{"email":"admin@technova.com.tr","role":"Admin"},{"email":"ahmet.yilmaz@technova.com.tr","role":"Employee"},{"email":"zeynep.sahin@technova.com.tr","role":"Employee"},{"email":"ayse.bulut@technova.com.tr","role":"Employee"},{"email":"mehmet.kaya@technova.com.tr","role":"Employee"}]},{"id":"algo-egitim","title":"Algo Eğitim","description":{"en":"Advanced algorithmic education platform and student learning dashboard.","tr":"Gelişmiş algoritmik eğitim platformu ve öğrenci öğrenim paneli.","de":"Fortgeschrittene algorithmische Lernplattform mit Schueler-Dashboard.","ja":"高度なアルゴリズム教育プラットフォームと学習者向けダッシュボードです。","zh-CN":"高级算法教育平台与学生学习仪表板。","es":"Plataforma avanzada de educación algorítmica y panel de aprendizaje para estudiantes.","fr":"Plateforme avancée d’apprentissage algorithmique avec tableau de bord étudiant.","ko":"고급 알고리즘 교육 플랫폼 및 학생 학습 대시보드입니다."},"longDescription":{"en":"Algo Eğitim is an advanced educational platform focused on algorithmic learning and programming. It features a comprehensive student dashboard, progress tracking, and interactive learning modules designed to enhance coding skills and logical thinking.","tr":"Algo Eğitim, algoritmik öğrenme ve programlamaya odaklanan gelişmiş bir eğitim platformudur. Kodlama becerilerini ve mantıksal düşünmeyi geliştirmek için tasarlanmış kapsamlı bir öğrenci paneli, ilerleme takibi ve etkileşimli öğrenme modülleri içerir.","de":"Algo Egitim ist eine fortgeschrittene Bildungsplattform fuer algorithmisches Lernen und Programmierung. Sie bietet ein umfassendes Schueler-Dashboard, Fortschrittsverfolgung und interaktive Lernmodule zur Foerderung von Programmierfaehigkeiten und logischem Denken.","ja":"Algo Egitim は、アルゴリズム学習とプログラミングに焦点を当てた高度な教育プラットフォームです。包括的な学習者ダッシュボード、進捗管理、コーディングスキルと論理的思考を高めるインタラクティブな学習モジュールを備えています。","zh-CN":"Algo Egitim 是一个专注于算法学习和编程的高级教育平台。它包含完整的学生仪表板、进度跟踪和互动学习模块，旨在提升编程能力与逻辑思维。","es":"Algo Eğitim es una plataforma educativa avanzada centrada en el aprendizaje algorítmico y la programación. Incluye un panel integral para estudiantes, seguimiento de progreso y módulos interactivos diseñados para mejorar habilidades de programación y pensamiento lógico.","fr":"Algo Eğitim est une plateforme éducative avancée axée sur l’apprentissage algorithmique et la programmation. Elle comprend un tableau de bord étudiant complet, un suivi de progression et des modules interactifs conçus pour renforcer les compétences de codage et la pensée logique.","ko":"Algo Eğitim은 알고리즘 학습과 프로그래밍에 초점을 맞춘 고급 교육 플랫폼입니다. 종합 학생 대시보드, 진행 상황 추적, 코딩 능력과 논리적 사고를 높이기 위한 인터랙티브 학습 모듈을 제공합니다."},"url":"https://trfont.com/ada/","tags":["EdTech","Algorithms","Dashboard"],"accounts":[{"email":"admin@example.com","role":"Admin"}]}]');
-const completedProjectsData = {
-  items
-};
-const completedProjects = completedProjectsData.items;
+//#endregion
+//#region src/data/completedProjects.ts
+var completedProjects = { items: [
+	{
+		"id": "ref-atelier",
+		"title": "Ref Atelier",
+		"description": {
+			"en": "Modern corporate portfolio and digital reference showcase platform.",
+			"tr": "Modern kurumsal portfolyo ve dijital referans sergileme platformu.",
+			"de": "Moderne Unternehmensportfolio- und digitale Referenzplattform.",
+			"ja": "モダンな企業ポートフォリオとデジタル実績紹介のためのプラットフォームです。",
+			"zh-CN": "现代企业作品集与数字案例展示平台。",
+			"es": "Plataforma moderna de portafolio corporativo y muestra de referencias digitales.",
+			"fr": "Plateforme moderne de portfolio d’entreprise et de présentation de références numériques.",
+			"ko": "현대적인 기업 포트폴리오 및 디지털 레퍼런스 쇼케이스 플랫폼입니다."
+		},
+		"longDescription": {
+			"en": "Ref Atelier is a premium corporate portfolio platform designed to showcase digital references and past projects with an elegant, modern interface. It features a fully responsive design, optimized media loading, and a seamless user experience tailored for creative agencies and corporate entities.",
+			"tr": "Ref Atelier, dijital referansları ve geçmiş projeleri zarif ve modern bir arayüzle sergilemek için tasarlanmış premium bir kurumsal portfolyo platformudur. Tamamen duyarlı bir tasarıma, optimize edilmiş medya yüklemesine ve yaratıcı ajanslar ile kurumsal şirketler için özel olarak tasarlanmış kusursuz bir kullanıcı deneyimine sahiptir.",
+			"de": "Ref Atelier ist eine hochwertige Unternehmensportfolio-Plattform, die digitale Referenzen und abgeschlossene Projekte in einer eleganten, modernen Oberflaeche praesentiert. Sie bietet responsives Design, optimiertes Medienladen und eine fluessige Nutzererfahrung fuer Kreativagenturen und Unternehmen.",
+			"ja": "Ref Atelier は、デジタル実績や過去のプロジェクトを洗練されたモダンなインターフェースで紹介するための、プレミアムな企業ポートフォリオプラットフォームです。完全レスポンシブ設計、最適化されたメディア読み込み、クリエイティブエージェンシーや企業向けのスムーズなユーザー体験を備えています。",
+			"zh-CN": "Ref Atelier 是一个高端企业作品集平台，用优雅现代的界面展示数字案例与过往项目。它具备完整响应式设计、优化的媒体加载，以及面向创意机构和企业客户的流畅用户体验。",
+			"es": "Ref Atelier es una plataforma premium de portafolio corporativo diseñada para mostrar referencias digitales y proyectos anteriores con una interfaz elegante y moderna. Incluye diseño totalmente responsive, carga multimedia optimizada y una experiencia de usuario fluida para agencias creativas y empresas.",
+			"fr": "Ref Atelier est une plateforme premium de portfolio d’entreprise conçue pour présenter des références numériques et des projets passés dans une interface élégante et moderne. Elle offre un design entièrement responsive, un chargement média optimisé et une expérience fluide pour les agences créatives et les entreprises.",
+			"ko": "Ref Atelier는 디지털 레퍼런스와 과거 프로젝트를 세련되고 현대적인 인터페이스로 보여주기 위해 설계된 프리미엄 기업 포트폴리오 플랫폼입니다. 완전 반응형 디자인, 최적화된 미디어 로딩, 크리에이티브 에이전시와 기업을 위한 매끄러운 사용자 경험을 제공합니다."
+		},
+		"url": "https://refatelier.com/index.html",
+		"tags": [
+			"Corporate",
+			"Portfolio",
+			"UI/UX"
+		],
+		"accounts": []
+	},
+	{
+		"id": "dershane-management",
+		"title": "Dershane Management",
+		"description": {
+			"en": "Comprehensive educational institution management system including student tracking and administrative tools.",
+			"tr": "Öğrenci takibi ve idari araçları içeren kapsamlı eğitim kurumu (dershane) yönetim sistemi.",
+			"de": "Umfassendes Managementsystem fuer Bildungseinrichtungen mit Schuelerverfolgung und Verwaltungstools.",
+			"ja": "生徒管理と管理業務ツールを備えた、教育機関向けの包括的な管理システムです。",
+			"zh-CN": "面向教育机构的综合管理系统，包含学生跟踪和行政管理工具。",
+			"es": "Sistema integral de gestión para instituciones educativas con seguimiento de estudiantes y herramientas administrativas.",
+			"fr": "Système complet de gestion d’établissement éducatif avec suivi des élèves et outils administratifs.",
+			"ko": "학생 추적과 관리 도구를 포함한 종합 교육기관 관리 시스템입니다."
+		},
+		"longDescription": {
+			"en": "A full-featured management system tailored for educational institutions. It provides tools for student enrollment, attendance tracking, grade management, and administrative reporting. The platform streamlines daily operations and improves communication between staff and students.",
+			"tr": "Eğitim kurumları için özel olarak tasarlanmış tam özellikli bir yönetim sistemi. Öğrenci kaydı, yoklama takibi, not yönetimi ve idari raporlama için araçlar sunar. Platform, günlük operasyonları kolaylaştırır ve personel ile öğrenciler arasındaki iletişimi geliştirir.",
+			"de": "Ein voll ausgestattetes Managementsystem fuer Bildungseinrichtungen. Es bietet Werkzeuge fuer Einschreibung, Anwesenheitskontrolle, Notenverwaltung und administrative Berichte. Die Plattform vereinfacht den Tagesbetrieb und verbessert die Kommunikation zwischen Mitarbeitenden und Lernenden.",
+			"ja": "教育機関向けに設計された多機能な管理システムです。生徒登録、出席管理、成績管理、管理レポート作成のためのツールを提供します。日々の業務を効率化し、スタッフと生徒間のコミュニケーションを改善します。",
+			"zh-CN": "一个为教育机构定制的完整管理系统。它提供学生注册、考勤跟踪、成绩管理和行政报告工具，帮助简化日常运营并提升教职员工与学生之间的沟通效率。",
+			"es": "Sistema de gestión completo diseñado para instituciones educativas. Ofrece herramientas para inscripción de estudiantes, control de asistencia, gestión de calificaciones e informes administrativos. La plataforma simplifica las operaciones diarias y mejora la comunicación entre personal y estudiantes.",
+			"fr": "Système de gestion complet conçu pour les établissements éducatifs. Il fournit des outils pour les inscriptions, le suivi des présences, la gestion des notes et les rapports administratifs. La plateforme simplifie les opérations quotidiennes et améliore la communication entre le personnel et les élèves.",
+			"ko": "교육기관을 위해 설계된 완전한 관리 시스템입니다. 학생 등록, 출석 추적, 성적 관리, 행정 보고 도구를 제공하며 일상 운영을 단순화하고 직원과 학생 간 커뮤니케이션을 개선합니다."
+		},
+		"url": "https://trfont.com/adana/",
+		"tags": [
+			"Education",
+			"Management",
+			"SaaS"
+		],
+		"accounts": [{
+			"email": "admin@dershane.com",
+			"role": "Admin"
+		}]
+	},
+	{
+		"id": "technova-hr",
+		"title": "TechNova HR",
+		"description": {
+			"en": "Enterprise human resources management portal with multi-role employee access.",
+			"tr": "Çoklu rol erişimine sahip kurumsal insan kaynakları (İK) yönetim portalı.",
+			"de": "Enterprise-HR-Portal mit rollenbasiertem Zugriff fuer Mitarbeitende.",
+			"ja": "複数ロールの従業員アクセスに対応した、エンタープライズ向け人事管理ポータルです。",
+			"zh-CN": "支持多角色员工访问的企业人力资源管理门户。",
+			"es": "Portal empresarial de gestión de recursos humanos con acceso multirol para empleados.",
+			"fr": "Portail RH d’entreprise avec accès multi-rôles pour les employés.",
+			"ko": "다중 역할 직원 접근을 지원하는 엔터프라이즈 인사 관리 포털입니다."
+		},
+		"longDescription": {
+			"en": "TechNova HR is an enterprise-grade Human Resources management portal. It supports multi-role access control, allowing administrators to manage employee records, leave requests, and performance reviews, while providing employees with a self-service portal to view their data and submit requests.",
+			"tr": "TechNova İK, kurumsal düzeyde bir İnsan Kaynakları yönetim portalıdır. Çoklu rol erişim kontrolünü destekleyerek, yöneticilerin çalışan kayıtlarını, izin taleplerini ve performans değerlendirmelerini yönetmesine olanak tanırken, çalışanlara verilerini görüntülemeleri ve talepte bulunmaları için bir self-servis portalı sunar.",
+			"de": "TechNova HR ist ein HR-Management-Portal auf Unternehmensniveau. Es unterstuetzt rollenbasierte Zugriffskontrolle, sodass Administratoren Mitarbeiterdaten, Urlaubsantraege und Leistungsbewertungen verwalten koennen, waehrend Mitarbeitende ihre Daten einsehen und Anfragen ueber ein Self-Service-Portal stellen.",
+			"ja": "TechNova HR は、エンタープライズグレードの人事管理ポータルです。複数ロールのアクセス制御に対応しており、管理者は従業員情報、休暇申請、評価を管理できます。従業員はセルフサービスポータルから自分のデータを確認し、申請を送信できます。",
+			"zh-CN": "TechNova HR 是一个企业级人力资源管理门户。它支持多角色访问控制，使管理员能够管理员工记录、请假申请和绩效评估，同时为员工提供自助门户，用于查看个人数据并提交申请。",
+			"es": "TechNova HR es un portal de gestión de Recursos Humanos de nivel empresarial. Admite control de acceso multirol para que los administradores gestionen registros de empleados, solicitudes de permisos y evaluaciones de desempeño, mientras los empleados consultan sus datos y envían solicitudes desde un portal de autoservicio.",
+			"fr": "TechNova HR est un portail de gestion des ressources humaines de niveau entreprise. Il prend en charge le contrôle d’accès multi-rôles, permettant aux administrateurs de gérer les dossiers employés, les demandes de congé et les évaluations de performance, tout en offrant aux employés un portail en libre-service.",
+			"ko": "TechNova HR은 엔터프라이즈급 인사 관리 포털입니다. 다중 역할 접근 제어를 지원해 관리자가 직원 기록, 휴가 요청, 성과 평가를 관리할 수 있고, 직원은 셀프서비스 포털에서 자신의 데이터를 확인하고 요청을 제출할 수 있습니다."
+		},
+		"url": "https://trfont.com/%C4%B1k/",
+		"tags": [
+			"HR",
+			"Enterprise",
+			"Portal"
+		],
+		"accounts": [
+			{
+				"email": "admin@technova.com.tr",
+				"role": "Admin"
+			},
+			{
+				"email": "ahmet.yilmaz@technova.com.tr",
+				"role": "Employee"
+			},
+			{
+				"email": "zeynep.sahin@technova.com.tr",
+				"role": "Employee"
+			},
+			{
+				"email": "ayse.bulut@technova.com.tr",
+				"role": "Employee"
+			},
+			{
+				"email": "mehmet.kaya@technova.com.tr",
+				"role": "Employee"
+			}
+		]
+	},
+	{
+		"id": "algo-egitim",
+		"title": "Algo Eğitim",
+		"description": {
+			"en": "Advanced algorithmic education platform and student learning dashboard.",
+			"tr": "Gelişmiş algoritmik eğitim platformu ve öğrenci öğrenim paneli.",
+			"de": "Fortgeschrittene algorithmische Lernplattform mit Schueler-Dashboard.",
+			"ja": "高度なアルゴリズム教育プラットフォームと学習者向けダッシュボードです。",
+			"zh-CN": "高级算法教育平台与学生学习仪表板。",
+			"es": "Plataforma avanzada de educación algorítmica y panel de aprendizaje para estudiantes.",
+			"fr": "Plateforme avancée d’apprentissage algorithmique avec tableau de bord étudiant.",
+			"ko": "고급 알고리즘 교육 플랫폼 및 학생 학습 대시보드입니다."
+		},
+		"longDescription": {
+			"en": "Algo Eğitim is an advanced educational platform focused on algorithmic learning and programming. It features a comprehensive student dashboard, progress tracking, and interactive learning modules designed to enhance coding skills and logical thinking.",
+			"tr": "Algo Eğitim, algoritmik öğrenme ve programlamaya odaklanan gelişmiş bir eğitim platformudur. Kodlama becerilerini ve mantıksal düşünmeyi geliştirmek için tasarlanmış kapsamlı bir öğrenci paneli, ilerleme takibi ve etkileşimli öğrenme modülleri içerir.",
+			"de": "Algo Egitim ist eine fortgeschrittene Bildungsplattform fuer algorithmisches Lernen und Programmierung. Sie bietet ein umfassendes Schueler-Dashboard, Fortschrittsverfolgung und interaktive Lernmodule zur Foerderung von Programmierfaehigkeiten und logischem Denken.",
+			"ja": "Algo Egitim は、アルゴリズム学習とプログラミングに焦点を当てた高度な教育プラットフォームです。包括的な学習者ダッシュボード、進捗管理、コーディングスキルと論理的思考を高めるインタラクティブな学習モジュールを備えています。",
+			"zh-CN": "Algo Egitim 是一个专注于算法学习和编程的高级教育平台。它包含完整的学生仪表板、进度跟踪和互动学习模块，旨在提升编程能力与逻辑思维。",
+			"es": "Algo Eğitim es una plataforma educativa avanzada centrada en el aprendizaje algorítmico y la programación. Incluye un panel integral para estudiantes, seguimiento de progreso y módulos interactivos diseñados para mejorar habilidades de programación y pensamiento lógico.",
+			"fr": "Algo Eğitim est une plateforme éducative avancée axée sur l’apprentissage algorithmique et la programmation. Elle comprend un tableau de bord étudiant complet, un suivi de progression et des modules interactifs conçus pour renforcer les compétences de codage et la pensée logique.",
+			"ko": "Algo Eğitim은 알고리즘 학습과 프로그래밍에 초점을 맞춘 고급 교육 플랫폼입니다. 종합 학생 대시보드, 진행 상황 추적, 코딩 능력과 논리적 사고를 높이기 위한 인터랙티브 학습 모듈을 제공합니다."
+		},
+		"url": "https://trfont.com/ada/",
+		"tags": [
+			"EdTech",
+			"Algorithms",
+			"Dashboard"
+		],
+		"accounts": [{
+			"email": "admin@example.com",
+			"role": "Admin"
+		}]
+	}
+] }.items;
+//#endregion
+//#region src/pages/CompletedProjects.tsx
+var CompletedProjects_exports = /* @__PURE__ */ __exportAll({ default: () => CompletedProjects });
 function CompletedProjects() {
-  const { language, t } = useLanguage();
-  const navigate = distExports.useNavigate();
-  const projectPath = (id) => localizePath(`/completed-projects/${id}/`, language);
-  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-24", children: [
-    /* @__PURE__ */ jsx(
-      SEO,
-      {
-        title: t.seo.completedProjects.title,
-        description: t.seo.completedProjects.description,
-        keywords: t.seo.completedProjects.keywords,
-        path: "/completed-projects/"
-      }
-    ),
-    /* @__PURE__ */ jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: [
-      /* @__PURE__ */ jsxs("div", { className: "mb-16 max-w-3xl", children: [
-        /* @__PURE__ */ jsx("div", { className: "inline-block px-3 py-1 mb-6 border border-border text-xs font-mono tracking-widest text-foreground/70 uppercase", children: t.completedProjects.badge }),
-        /* @__PURE__ */ jsxs("h1", { className: "text-5xl md:text-6xl font-light mb-6 text-foreground", children: [
-          t.completedProjects.title1,
-          " ",
-          /* @__PURE__ */ jsx("span", { className: "font-semibold", children: t.completedProjects.title2 })
-        ] }),
-        /* @__PURE__ */ jsx("p", { className: "text-foreground text-xl leading-relaxed font-light", children: t.completedProjects.desc })
-      ] }),
-      /* @__PURE__ */ jsxs("div", { className: "border-t border-border", children: [
-        /* @__PURE__ */ jsxs("div", { className: "hidden md:grid grid-cols-12 gap-4 py-4 border-b-2 border-foreground bg-surface text-sm font-semibold text-foreground", children: [
-          /* @__PURE__ */ jsx("div", { className: "col-span-3 pl-4", children: t.completedProjects.colName }),
-          /* @__PURE__ */ jsx("div", { className: "col-span-5", children: t.completedProjects.colDesc }),
-          /* @__PURE__ */ jsx("div", { className: "col-span-3", children: t.completedProjects.colTags }),
-          /* @__PURE__ */ jsx("div", { className: "col-span-1 text-right pr-4", children: t.completedProjects.colLinks })
-        ] }),
-        /* @__PURE__ */ jsx("div", { className: "divide-y divide-border", children: completedProjects.map((project) => /* @__PURE__ */ jsxs(
-          "div",
-          {
-            onClick: () => navigate(projectPath(project.id)),
-            className: "group grid grid-cols-1 md:grid-cols-12 gap-4 py-6 hover:bg-surface transition-colors items-start cursor-pointer",
-            children: [
-              /* @__PURE__ */ jsxs("div", { className: "md:col-span-3 pl-4", children: [
-                /* @__PURE__ */ jsx(
-                  distExports.Link,
-                  {
-                    to: projectPath(project.id),
-                    onClick: (e) => e.stopPropagation(),
-                    className: "text-lg font-medium text-primary hover:underline flex items-center gap-2",
-                    children: project.title
-                  }
-                ),
-                /* @__PURE__ */ jsx("p", { className: "md:hidden text-sm text-foreground/80 mt-2 font-light", children: localizedText(project.description, language) })
-              ] }),
-              /* @__PURE__ */ jsx("div", { className: "hidden md:block md:col-span-5 text-base text-foreground/80 pr-4 font-light", children: localizedText(project.description, language) }),
-              /* @__PURE__ */ jsx("div", { className: "md:col-span-3 flex flex-wrap gap-2 mt-4 md:mt-0", children: project.tags.map((tag) => /* @__PURE__ */ jsx(
-                "span",
-                {
-                  className: "px-3 py-1 text-xs bg-border text-foreground",
-                  children: tag
-                },
-                tag
-              )) }),
-              /* @__PURE__ */ jsx("div", { className: "md:col-span-1 flex items-center justify-start md:justify-end gap-4 mt-4 md:mt-0 pr-4", children: /* @__PURE__ */ jsx(
-                "a",
-                {
-                  href: project.url,
-                  target: "_blank",
-                  rel: "noopener noreferrer",
-                  onClick: (e) => e.stopPropagation(),
-                  className: "text-primary hover:text-primary-dark transition-colors flex items-center gap-1 text-sm font-medium",
-                  title: t.completedProjects.visit,
-                  "aria-label": `${project.title}: ${t.completedProjects.visit}`,
-                  children: /* @__PURE__ */ jsx(ExternalLink, { className: "w-5 h-5" })
-                }
-              ) })
-            ]
-          },
-          project.id
-        )) })
-      ] })
-    ] })
-  ] });
+	const { language, t } = useLanguage();
+	const navigate = (0, import_dist.useNavigate)();
+	const projectPath = (id) => localizePath(`/completed-projects/${id}/`, language);
+	return /* @__PURE__ */ jsxs("div", {
+		className: "min-h-screen bg-background pt-32 pb-24",
+		children: [/* @__PURE__ */ jsx(SEO, {
+			title: t.seo.completedProjects.title,
+			description: t.seo.completedProjects.description,
+			keywords: t.seo.completedProjects.keywords,
+			path: "/completed-projects/"
+		}), /* @__PURE__ */ jsxs("div", {
+			className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+			children: [/* @__PURE__ */ jsxs("div", {
+				className: "mb-16 max-w-3xl",
+				children: [
+					/* @__PURE__ */ jsx("div", {
+						className: "inline-block px-3 py-1 mb-6 border border-border text-xs font-mono tracking-widest text-foreground/70 uppercase",
+						children: t.completedProjects.badge
+					}),
+					/* @__PURE__ */ jsxs("h1", {
+						className: "text-5xl md:text-6xl font-light mb-6 text-foreground",
+						children: [
+							t.completedProjects.title1,
+							" ",
+							/* @__PURE__ */ jsx("span", {
+								className: "font-semibold",
+								children: t.completedProjects.title2
+							})
+						]
+					}),
+					/* @__PURE__ */ jsx("p", {
+						className: "text-foreground text-xl leading-relaxed font-light",
+						children: t.completedProjects.desc
+					})
+				]
+			}), /* @__PURE__ */ jsxs("div", {
+				className: "border-t border-border",
+				children: [/* @__PURE__ */ jsxs("div", {
+					className: "hidden md:grid grid-cols-12 gap-4 py-4 border-b-2 border-foreground bg-surface text-sm font-semibold text-foreground",
+					children: [
+						/* @__PURE__ */ jsx("div", {
+							className: "col-span-3 pl-4",
+							children: t.completedProjects.colName
+						}),
+						/* @__PURE__ */ jsx("div", {
+							className: "col-span-5",
+							children: t.completedProjects.colDesc
+						}),
+						/* @__PURE__ */ jsx("div", {
+							className: "col-span-3",
+							children: t.completedProjects.colTags
+						}),
+						/* @__PURE__ */ jsx("div", {
+							className: "col-span-1 text-right pr-4",
+							children: t.completedProjects.colLinks
+						})
+					]
+				}), /* @__PURE__ */ jsx("div", {
+					className: "divide-y divide-border",
+					children: completedProjects.map((project) => /* @__PURE__ */ jsxs("div", {
+						onClick: () => navigate(projectPath(project.id)),
+						className: "group grid grid-cols-1 md:grid-cols-12 gap-4 py-6 hover:bg-surface transition-colors items-start cursor-pointer",
+						children: [
+							/* @__PURE__ */ jsxs("div", {
+								className: "md:col-span-3 pl-4",
+								children: [/* @__PURE__ */ jsx(import_dist.Link, {
+									to: projectPath(project.id),
+									onClick: (e) => e.stopPropagation(),
+									className: "text-lg font-medium text-primary hover:underline flex items-center gap-2",
+									children: project.title
+								}), /* @__PURE__ */ jsx("p", {
+									className: "md:hidden text-sm text-foreground/80 mt-2 font-light",
+									children: localizedText(project.description, language)
+								})]
+							}),
+							/* @__PURE__ */ jsx("div", {
+								className: "hidden md:block md:col-span-5 text-base text-foreground/80 pr-4 font-light",
+								children: localizedText(project.description, language)
+							}),
+							/* @__PURE__ */ jsx("div", {
+								className: "md:col-span-3 flex flex-wrap gap-2 mt-4 md:mt-0",
+								children: project.tags.map((tag) => /* @__PURE__ */ jsx("span", {
+									className: "px-3 py-1 text-xs bg-border text-foreground",
+									children: tag
+								}, tag))
+							}),
+							/* @__PURE__ */ jsx("div", {
+								className: "md:col-span-1 flex items-center justify-start md:justify-end gap-4 mt-4 md:mt-0 pr-4",
+								children: /* @__PURE__ */ jsx("a", {
+									href: project.url,
+									target: "_blank",
+									rel: "noopener noreferrer",
+									onClick: (e) => e.stopPropagation(),
+									className: "text-primary hover:text-primary-dark transition-colors flex items-center gap-1 text-sm font-medium",
+									title: t.completedProjects.visit,
+									"aria-label": `${project.title}: ${t.completedProjects.visit}`,
+									children: /* @__PURE__ */ jsx(ExternalLink, { className: "w-5 h-5" })
+								})
+							})
+						]
+					}, project.id))
+				})]
+			})]
+		})]
+	});
 }
-const CompletedProjects$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: CompletedProjects
-}, Symbol.toStringTag, { value: "Module" }));
+//#endregion
+//#region src/pages/CompletedProjectDetails.tsx
+var CompletedProjectDetails_exports = /* @__PURE__ */ __exportAll({ default: () => CompletedProjectDetails });
 function CompletedProjectDetails() {
-  const { id } = distExports.useParams();
-  const { language, t } = useLanguage();
-  const project = completedProjects.find((p) => p.id === id);
-  if (!project) {
-    return /* @__PURE__ */ jsx(distExports.Navigate, { to: "/not-found/", replace: true });
-  }
-  const description = localizedText(project.description, language);
-  const longDescription = localizedText(project.longDescription, language);
-  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-24", children: [
-    /* @__PURE__ */ jsx(
-      SEO,
-      {
-        title: `${project.title} - Kernel Guard`,
-        description,
-        keywords: `${project.tags.join(", ")}, Kernel Guard, secure web project, case study`,
-        path: `/completed-projects/${project.id}/`,
-        noIndex: project.accounts.length > 0
-      }
-    ),
-    /* @__PURE__ */ jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: [
-      /* @__PURE__ */ jsxs(
-        distExports.Link,
-        {
-          to: localizePath("/completed-projects/", language),
-          className: "inline-flex items-center gap-2 text-foreground/60 hover:text-primary transition-colors mb-12 font-mono text-sm uppercase tracking-wider",
-          children: [
-            /* @__PURE__ */ jsx(ArrowLeft, { className: "w-4 h-4" }),
-            t.nav.completedProjects
-          ]
-        }
-      ),
-      /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-1 lg:grid-cols-3 gap-12", children: [
-        /* @__PURE__ */ jsxs("div", { className: "lg:col-span-2 space-y-12", children: [
-          /* @__PURE__ */ jsxs("div", { children: [
-            /* @__PURE__ */ jsx("h1", { className: "text-4xl md:text-5xl font-light text-foreground mb-6", children: project.title }),
-            /* @__PURE__ */ jsx("div", { className: "flex flex-wrap gap-3 mb-8", children: project.tags.map((tag) => /* @__PURE__ */ jsx("span", { className: "px-3 py-1 text-xs font-mono bg-surface border border-border text-foreground", children: tag }, tag)) }),
-            /* @__PURE__ */ jsx("p", { className: "text-xl text-foreground/80 font-light leading-relaxed", children: longDescription })
-          ] }),
-          project.image && /* @__PURE__ */ jsx("div", { className: "w-full overflow-hidden border border-border", children: /* @__PURE__ */ jsx(
-            "img",
-            {
-              src: project.image,
-              alt: project.title,
-              className: "w-full h-auto object-cover max-h-[600px]"
-            }
-          ) })
-        ] }),
-        /* @__PURE__ */ jsxs("div", { className: "space-y-8", children: [
-          /* @__PURE__ */ jsxs("div", { className: "bg-surface border border-border p-6", children: [
-            /* @__PURE__ */ jsx("h3", { className: "text-sm font-mono text-foreground/50 uppercase tracking-wider mb-6", children: t.completedProjects.links }),
-            /* @__PURE__ */ jsxs("div", { className: "space-y-4", children: [
-              project.url && /* @__PURE__ */ jsxs(
-                "a",
-                {
-                  href: project.url,
-                  target: "_blank",
-                  rel: "noopener noreferrer",
-                  className: "flex items-center justify-between p-4 kg-action-primary transition-colors group",
-                  children: [
-                    /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.completedProjects.visit }),
-                    /* @__PURE__ */ jsx(ExternalLink, { className: "w-5 h-5 group-hover:scale-110 transition-transform" })
-                  ]
-                }
-              ),
-              project.github && /* @__PURE__ */ jsxs(
-                "a",
-                {
-                  href: project.github,
-                  target: "_blank",
-                  rel: "noopener noreferrer",
-                  className: "flex items-center justify-between p-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-white transition-colors group",
-                  children: [
-                    /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.projectDetails.viewSource }),
-                    /* @__PURE__ */ jsx(ExternalLink, { className: "w-5 h-5 group-hover:scale-110 transition-transform" })
-                  ]
-                }
-              )
-            ] })
-          ] }),
-          /* @__PURE__ */ jsxs("div", { className: "bg-surface border border-border p-6 text-sm", children: [
-            /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2 text-foreground/50 mb-6 uppercase tracking-wider text-xs font-mono", children: [
-              /* @__PURE__ */ jsx(ShieldCheck, { className: "w-4 h-4" }),
-              /* @__PURE__ */ jsx("span", { children: t.completedProjects.credentials })
-            ] }),
-            project.accounts.length === 0 ? /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2 text-foreground/70 italic", children: [
-              /* @__PURE__ */ jsx(ShieldCheck, { className: "w-4 h-4" }),
-              /* @__PURE__ */ jsx("span", { children: t.completedProjects.noAccount })
-            ] }) : /* @__PURE__ */ jsx("div", { className: "space-y-4", children: project.accounts.map((acc, accIdx) => /* @__PURE__ */ jsxs(
-              "div",
-              {
-                className: "bg-background border border-border p-4 flex flex-col gap-3 hover:border-primary/50 transition-colors",
-                children: [
-                  acc.role && /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-1.5 text-xs text-primary uppercase tracking-wider font-mono", children: [
-                    /* @__PURE__ */ jsx(ShieldCheck, { className: "w-3.5 h-3.5" }),
-                    acc.role
-                  ] }),
-                  /* @__PURE__ */ jsxs("div", { className: "flex items-start gap-3", children: [
-                    /* @__PURE__ */ jsx(User, { className: "w-4 h-4 text-foreground/40 shrink-0 mt-0.5" }),
-                    /* @__PURE__ */ jsx("span", { className: "text-foreground font-mono break-all", children: acc.email })
-                  ] })
-                ]
-              },
-              accIdx
-            )) })
-          ] })
-        ] })
-      ] })
-    ] })
-  ] });
+	const { id } = (0, import_dist.useParams)();
+	const { language, t } = useLanguage();
+	const project = completedProjects.find((p) => p.id === id);
+	if (!project) return /* @__PURE__ */ jsx(import_dist.Navigate, {
+		to: "/not-found/",
+		replace: true
+	});
+	const description = localizedText(project.description, language);
+	const longDescription = localizedText(project.longDescription, language);
+	return /* @__PURE__ */ jsxs("div", {
+		className: "min-h-screen bg-background pt-32 pb-24",
+		children: [/* @__PURE__ */ jsx(SEO, {
+			title: `${project.title} - Kernel Guard`,
+			description,
+			keywords: `${project.tags.join(", ")}, Kernel Guard, secure web project, case study`,
+			path: `/completed-projects/${project.id}/`,
+			noIndex: project.accounts.length > 0
+		}), /* @__PURE__ */ jsxs("div", {
+			className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+			children: [/* @__PURE__ */ jsxs(import_dist.Link, {
+				to: localizePath("/completed-projects/", language),
+				className: "inline-flex items-center gap-2 text-foreground/60 hover:text-primary transition-colors mb-12 font-mono text-sm uppercase tracking-wider",
+				children: [/* @__PURE__ */ jsx(ArrowLeft, { className: "w-4 h-4" }), t.nav.completedProjects]
+			}), /* @__PURE__ */ jsxs("div", {
+				className: "grid grid-cols-1 lg:grid-cols-3 gap-12",
+				children: [/* @__PURE__ */ jsxs("div", {
+					className: "lg:col-span-2 space-y-12",
+					children: [/* @__PURE__ */ jsxs("div", { children: [
+						/* @__PURE__ */ jsx("h1", {
+							className: "text-4xl md:text-5xl font-light text-foreground mb-6",
+							children: project.title
+						}),
+						/* @__PURE__ */ jsx("div", {
+							className: "flex flex-wrap gap-3 mb-8",
+							children: project.tags.map((tag) => /* @__PURE__ */ jsx("span", {
+								className: "px-3 py-1 text-xs font-mono bg-surface border border-border text-foreground",
+								children: tag
+							}, tag))
+						}),
+						/* @__PURE__ */ jsx("p", {
+							className: "text-xl text-foreground/80 font-light leading-relaxed",
+							children: longDescription
+						})
+					] }), project.image && /* @__PURE__ */ jsx("div", {
+						className: "w-full overflow-hidden border border-border",
+						children: /* @__PURE__ */ jsx("img", {
+							src: project.image,
+							alt: project.title,
+							className: "w-full h-auto object-cover max-h-[600px]"
+						})
+					})]
+				}), /* @__PURE__ */ jsxs("div", {
+					className: "space-y-8",
+					children: [/* @__PURE__ */ jsxs("div", {
+						className: "bg-surface border border-border p-6",
+						children: [/* @__PURE__ */ jsx("h3", {
+							className: "text-sm font-mono text-foreground/50 uppercase tracking-wider mb-6",
+							children: t.completedProjects.links
+						}), /* @__PURE__ */ jsxs("div", {
+							className: "space-y-4",
+							children: [project.url && /* @__PURE__ */ jsxs("a", {
+								href: project.url,
+								target: "_blank",
+								rel: "noopener noreferrer",
+								className: "flex items-center justify-between p-4 kg-action-primary transition-colors group",
+								children: [/* @__PURE__ */ jsx("span", {
+									className: "font-medium",
+									children: t.completedProjects.visit
+								}), /* @__PURE__ */ jsx(ExternalLink, { className: "w-5 h-5 group-hover:scale-110 transition-transform" })]
+							}), project.github && /* @__PURE__ */ jsxs("a", {
+								href: project.github,
+								target: "_blank",
+								rel: "noopener noreferrer",
+								className: "flex items-center justify-between p-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-white transition-colors group",
+								children: [/* @__PURE__ */ jsx("span", {
+									className: "font-medium",
+									children: t.projectDetails.viewSource
+								}), /* @__PURE__ */ jsx(ExternalLink, { className: "w-5 h-5 group-hover:scale-110 transition-transform" })]
+							})]
+						})]
+					}), /* @__PURE__ */ jsxs("div", {
+						className: "bg-surface border border-border p-6 text-sm",
+						children: [/* @__PURE__ */ jsxs("div", {
+							className: "flex items-center gap-2 text-foreground/50 mb-6 uppercase tracking-wider text-xs font-mono",
+							children: [/* @__PURE__ */ jsx(ShieldCheck, { className: "w-4 h-4" }), /* @__PURE__ */ jsx("span", { children: t.completedProjects.credentials })]
+						}), project.accounts.length === 0 ? /* @__PURE__ */ jsxs("div", {
+							className: "flex items-center gap-2 text-foreground/70 italic",
+							children: [/* @__PURE__ */ jsx(ShieldCheck, { className: "w-4 h-4" }), /* @__PURE__ */ jsx("span", { children: t.completedProjects.noAccount })]
+						}) : /* @__PURE__ */ jsx("div", {
+							className: "space-y-4",
+							children: project.accounts.map((acc, accIdx) => /* @__PURE__ */ jsxs("div", {
+								className: "bg-background border border-border p-4 flex flex-col gap-3 hover:border-primary/50 transition-colors",
+								children: [acc.role && /* @__PURE__ */ jsxs("div", {
+									className: "flex items-center gap-1.5 text-xs text-primary uppercase tracking-wider font-mono",
+									children: [/* @__PURE__ */ jsx(ShieldCheck, { className: "w-3.5 h-3.5" }), acc.role]
+								}), /* @__PURE__ */ jsxs("div", {
+									className: "flex items-start gap-3",
+									children: [/* @__PURE__ */ jsx(User, { className: "w-4 h-4 text-foreground/40 shrink-0 mt-0.5" }), /* @__PURE__ */ jsx("span", {
+										className: "text-foreground font-mono break-all",
+										children: acc.email
+									})]
+								})]
+							}, accIdx))
+						})]
+					})]
+				})]
+			})]
+		})]
+	});
 }
-const CompletedProjectDetails$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: CompletedProjectDetails
-}, Symbol.toStringTag, { value: "Module" }));
+//#endregion
+//#region src/pages/SecureFrontend.tsx
+var SecureFrontend_exports = /* @__PURE__ */ __exportAll({ default: () => SecureFrontend });
 function SecureFrontend() {
-  const { t, language } = useLanguage();
-  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-24", children: [
-    /* @__PURE__ */ jsx(
-      SEO,
-      {
-        title: `${t.home.features.frontend.title} - Kernel Guard`,
-        description: t.home.features.frontend.desc,
-        path: "/services/secure-frontend/",
-        schema: buildServiceSchema({
-          name: t.home.features.frontend.title,
-          description: t.home.features.frontend.desc,
-          path: "/services/secure-frontend/",
-          language,
-          serviceType: "Secure Frontend Engineering"
-        })
-      }
-    ),
-    /* @__PURE__ */ jsxs("div", { className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8", children: [
-      /* @__PURE__ */ jsxs(distExports.Link, { to: "/", className: "inline-flex items-center text-sm font-medium text-primary hover:underline mb-8", children: [
-        /* @__PURE__ */ jsx(ArrowLeft, { className: "w-4 h-4 mr-2" }),
-        "Back to Home"
-      ] }),
-      /* @__PURE__ */ jsx("h1", { className: "text-4xl md:text-5xl font-light mb-6 text-foreground", children: t.home.features.frontend.title }),
-      /* @__PURE__ */ jsx("p", { className: "text-xl text-foreground/80 font-light leading-relaxed mb-12", children: t.home.features.frontend.desc }),
-      /* @__PURE__ */ jsxs("div", { className: "space-y-12", children: [
-        /* @__PURE__ */ jsxs("section", { children: [
-          /* @__PURE__ */ jsx("h2", { className: "text-2xl font-medium mb-4", children: "Our Approach" }),
-          /* @__PURE__ */ jsx("p", { className: "text-foreground/80 leading-relaxed font-light mb-4", children: "At Kernel Guard, we believe that security should never compromise user experience. Our frontend architectures are built using modern frameworks like React, ensuring lightning-fast, responsive interfaces." }),
-          /* @__PURE__ */ jsx("p", { className: "text-foreground/80 leading-relaxed font-light", children: "We implement strict Content Security Policies (CSP), sanitize all user inputs to prevent Cross-Site Scripting (XSS), and utilize secure authentication flows to protect client-side state." })
-        ] }),
-        /* @__PURE__ */ jsxs("section", { className: "bg-surface p-8 border-l-4 border-primary", children: [
-          /* @__PURE__ */ jsx("h2", { className: "text-2xl font-medium mb-4", children: "Featured Projects" }),
-          /* @__PURE__ */ jsxs("div", { className: "space-y-6", children: [
-            /* @__PURE__ */ jsxs("div", { children: [
-              /* @__PURE__ */ jsx("h3", { className: "text-lg font-medium text-primary mb-2", children: "Ref Atelier" }),
-              /* @__PURE__ */ jsx("p", { className: "text-foreground/80 text-sm font-light", children: "A modern corporate portfolio platform showcasing our ability to deliver highly polished, secure, and accessible user interfaces. Built with React and fortified against common web vulnerabilities." })
-            ] }),
-            /* @__PURE__ */ jsxs("div", { children: [
-              /* @__PURE__ */ jsx("h3", { className: "text-lg font-medium text-primary mb-2", children: "Dershane Management" }),
-              /* @__PURE__ */ jsx("p", { className: "text-foreground/80 text-sm font-light", children: "A comprehensive SaaS platform requiring complex state management and secure role-based UI rendering to ensure students and administrators only see what they are authorized to access." })
-            ] })
-          ] })
-        ] })
-      ] })
-    ] })
-  ] });
+	const { t, language } = useLanguage();
+	return /* @__PURE__ */ jsxs("div", {
+		className: "min-h-screen bg-background pt-32 pb-24",
+		children: [/* @__PURE__ */ jsx(SEO, {
+			title: `${t.home.features.frontend.title} - Kernel Guard`,
+			description: t.home.features.frontend.desc,
+			path: "/services/secure-frontend/",
+			schema: buildServiceSchema({
+				name: t.home.features.frontend.title,
+				description: t.home.features.frontend.desc,
+				path: "/services/secure-frontend/",
+				language,
+				serviceType: "Secure Frontend Engineering"
+			})
+		}), /* @__PURE__ */ jsxs("div", {
+			className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8",
+			children: [
+				/* @__PURE__ */ jsxs(import_dist.Link, {
+					to: "/",
+					className: "inline-flex items-center text-sm font-medium text-primary hover:underline mb-8",
+					children: [/* @__PURE__ */ jsx(ArrowLeft, { className: "w-4 h-4 mr-2" }), "Back to Home"]
+				}),
+				/* @__PURE__ */ jsx("h1", {
+					className: "text-4xl md:text-5xl font-light mb-6 text-foreground",
+					children: t.home.features.frontend.title
+				}),
+				/* @__PURE__ */ jsx("p", {
+					className: "text-xl text-foreground/80 font-light leading-relaxed mb-12",
+					children: t.home.features.frontend.desc
+				}),
+				/* @__PURE__ */ jsxs("div", {
+					className: "space-y-12",
+					children: [/* @__PURE__ */ jsxs("section", { children: [
+						/* @__PURE__ */ jsx("h2", {
+							className: "text-2xl font-medium mb-4",
+							children: "Our Approach"
+						}),
+						/* @__PURE__ */ jsx("p", {
+							className: "text-foreground/80 leading-relaxed font-light mb-4",
+							children: "At Kernel Guard, we believe that security should never compromise user experience. Our frontend architectures are built using modern frameworks like React, ensuring lightning-fast, responsive interfaces."
+						}),
+						/* @__PURE__ */ jsx("p", {
+							className: "text-foreground/80 leading-relaxed font-light",
+							children: "We implement strict Content Security Policies (CSP), sanitize all user inputs to prevent Cross-Site Scripting (XSS), and utilize secure authentication flows to protect client-side state."
+						})
+					] }), /* @__PURE__ */ jsxs("section", {
+						className: "bg-surface p-8 border-l-4 border-primary",
+						children: [/* @__PURE__ */ jsx("h2", {
+							className: "text-2xl font-medium mb-4",
+							children: "Featured Projects"
+						}), /* @__PURE__ */ jsxs("div", {
+							className: "space-y-6",
+							children: [/* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx("h3", {
+								className: "text-lg font-medium text-primary mb-2",
+								children: "Ref Atelier"
+							}), /* @__PURE__ */ jsx("p", {
+								className: "text-foreground/80 text-sm font-light",
+								children: "A modern corporate portfolio platform showcasing our ability to deliver highly polished, secure, and accessible user interfaces. Built with React and fortified against common web vulnerabilities."
+							})] }), /* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx("h3", {
+								className: "text-lg font-medium text-primary mb-2",
+								children: "Dershane Management"
+							}), /* @__PURE__ */ jsx("p", {
+								className: "text-foreground/80 text-sm font-light",
+								children: "A comprehensive SaaS platform requiring complex state management and secure role-based UI rendering to ensure students and administrators only see what they are authorized to access."
+							})] })]
+						})]
+					})]
+				})
+			]
+		})]
+	});
 }
-const SecureFrontend$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: SecureFrontend
-}, Symbol.toStringTag, { value: "Module" }));
+//#endregion
+//#region src/pages/HardenedBackend.tsx
+var HardenedBackend_exports = /* @__PURE__ */ __exportAll({ default: () => HardenedBackend });
 function HardenedBackend() {
-  const { t, language } = useLanguage();
-  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-24", children: [
-    /* @__PURE__ */ jsx(
-      SEO,
-      {
-        title: `${t.home.features.backend.title} - Kernel Guard`,
-        description: t.home.features.backend.desc,
-        path: "/services/hardened-backend/",
-        schema: buildServiceSchema({
-          name: t.home.features.backend.title,
-          description: t.home.features.backend.desc,
-          path: "/services/hardened-backend/",
-          language,
-          serviceType: "Hardened Backend Architecture"
-        })
-      }
-    ),
-    /* @__PURE__ */ jsxs("div", { className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8", children: [
-      /* @__PURE__ */ jsxs(distExports.Link, { to: "/", className: "inline-flex items-center text-sm font-medium text-primary hover:underline mb-8", children: [
-        /* @__PURE__ */ jsx(ArrowLeft, { className: "w-4 h-4 mr-2" }),
-        "Back to Home"
-      ] }),
-      /* @__PURE__ */ jsx("h1", { className: "text-4xl md:text-5xl font-light mb-6 text-foreground", children: t.home.features.backend.title }),
-      /* @__PURE__ */ jsx("p", { className: "text-xl text-foreground/80 font-light leading-relaxed mb-12", children: t.home.features.backend.desc }),
-      /* @__PURE__ */ jsxs("div", { className: "space-y-12", children: [
-        /* @__PURE__ */ jsxs("section", { children: [
-          /* @__PURE__ */ jsx("h2", { className: "text-2xl font-medium mb-4", children: "Our Approach" }),
-          /* @__PURE__ */ jsx("p", { className: "text-foreground/80 leading-relaxed font-light mb-4", children: "A secure application requires a fortress-like backend. We design scalable server architectures and APIs strictly adhering to zero-trust principles. Every request is authenticated, authorized, and validated." }),
-          /* @__PURE__ */ jsx("p", { className: "text-foreground/80 leading-relaxed font-light", children: "From implementing rate limiting and DDoS protection to utilizing memory-safe languages like Rust and C++ for critical infrastructure, our backends are engineered to withstand sophisticated attacks." })
-        ] }),
-        /* @__PURE__ */ jsxs("section", { className: "bg-surface p-8 border-l-4 border-primary", children: [
-          /* @__PURE__ */ jsx("h2", { className: "text-2xl font-medium mb-4", children: "Featured Projects" }),
-          /* @__PURE__ */ jsxs("div", { className: "space-y-6", children: [
-            /* @__PURE__ */ jsxs("div", { children: [
-              /* @__PURE__ */ jsx("h3", { className: "text-lg font-medium text-primary mb-2", children: "Aegis BPF CO-RE Enforcement" }),
-              /* @__PURE__ */ jsx("p", { className: "text-foreground/80 text-sm font-light", children: "A cutting-edge prototype developed in C++ using eBPF technology. It provides low-overhead, kernel-level security enforcement, demonstrating our capability to secure systems at the lowest possible level." })
-            ] }),
-            /* @__PURE__ */ jsxs("div", { children: [
-              /* @__PURE__ */ jsx("h3", { className: "text-lg font-medium text-primary mb-2", children: "TechNova HR Portal" }),
-              /* @__PURE__ */ jsx("p", { className: "text-foreground/80 text-sm font-light", children: "An enterprise human resources management system featuring a hardened backend API with multi-role employee access, ensuring strict data isolation and secure authentication flows." })
-            ] })
-          ] })
-        ] })
-      ] })
-    ] })
-  ] });
+	const { t, language } = useLanguage();
+	return /* @__PURE__ */ jsxs("div", {
+		className: "min-h-screen bg-background pt-32 pb-24",
+		children: [/* @__PURE__ */ jsx(SEO, {
+			title: `${t.home.features.backend.title} - Kernel Guard`,
+			description: t.home.features.backend.desc,
+			path: "/services/hardened-backend/",
+			schema: buildServiceSchema({
+				name: t.home.features.backend.title,
+				description: t.home.features.backend.desc,
+				path: "/services/hardened-backend/",
+				language,
+				serviceType: "Hardened Backend Architecture"
+			})
+		}), /* @__PURE__ */ jsxs("div", {
+			className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8",
+			children: [
+				/* @__PURE__ */ jsxs(import_dist.Link, {
+					to: "/",
+					className: "inline-flex items-center text-sm font-medium text-primary hover:underline mb-8",
+					children: [/* @__PURE__ */ jsx(ArrowLeft, { className: "w-4 h-4 mr-2" }), "Back to Home"]
+				}),
+				/* @__PURE__ */ jsx("h1", {
+					className: "text-4xl md:text-5xl font-light mb-6 text-foreground",
+					children: t.home.features.backend.title
+				}),
+				/* @__PURE__ */ jsx("p", {
+					className: "text-xl text-foreground/80 font-light leading-relaxed mb-12",
+					children: t.home.features.backend.desc
+				}),
+				/* @__PURE__ */ jsxs("div", {
+					className: "space-y-12",
+					children: [/* @__PURE__ */ jsxs("section", { children: [
+						/* @__PURE__ */ jsx("h2", {
+							className: "text-2xl font-medium mb-4",
+							children: "Our Approach"
+						}),
+						/* @__PURE__ */ jsx("p", {
+							className: "text-foreground/80 leading-relaxed font-light mb-4",
+							children: "A secure application requires a fortress-like backend. We design scalable server architectures and APIs strictly adhering to zero-trust principles. Every request is authenticated, authorized, and validated."
+						}),
+						/* @__PURE__ */ jsx("p", {
+							className: "text-foreground/80 leading-relaxed font-light",
+							children: "From implementing rate limiting and DDoS protection to utilizing memory-safe languages like Rust and C++ for critical infrastructure, our backends are engineered to withstand sophisticated attacks."
+						})
+					] }), /* @__PURE__ */ jsxs("section", {
+						className: "bg-surface p-8 border-l-4 border-primary",
+						children: [/* @__PURE__ */ jsx("h2", {
+							className: "text-2xl font-medium mb-4",
+							children: "Featured Projects"
+						}), /* @__PURE__ */ jsxs("div", {
+							className: "space-y-6",
+							children: [/* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx("h3", {
+								className: "text-lg font-medium text-primary mb-2",
+								children: "Aegis BPF CO-RE Enforcement"
+							}), /* @__PURE__ */ jsx("p", {
+								className: "text-foreground/80 text-sm font-light",
+								children: "A cutting-edge prototype developed in C++ using eBPF technology. It provides low-overhead, kernel-level security enforcement, demonstrating our capability to secure systems at the lowest possible level."
+							})] }), /* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx("h3", {
+								className: "text-lg font-medium text-primary mb-2",
+								children: "TechNova HR Portal"
+							}), /* @__PURE__ */ jsx("p", {
+								className: "text-foreground/80 text-sm font-light",
+								children: "An enterprise human resources management system featuring a hardened backend API with multi-role employee access, ensuring strict data isolation and secure authentication flows."
+							})] })]
+						})]
+					})]
+				})
+			]
+		})]
+	});
 }
-const HardenedBackend$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: HardenedBackend
-}, Symbol.toStringTag, { value: "Module" }));
+//#endregion
+//#region src/pages/DataProtection.tsx
+var DataProtection_exports = /* @__PURE__ */ __exportAll({ default: () => DataProtection });
 function DataProtection() {
-  const { t, language } = useLanguage();
-  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-24", children: [
-    /* @__PURE__ */ jsx(
-      SEO,
-      {
-        title: `${t.home.features.data.title} - Kernel Guard`,
-        description: t.home.features.data.desc,
-        path: "/services/data-protection/",
-        schema: buildServiceSchema({
-          name: t.home.features.data.title,
-          description: t.home.features.data.desc,
-          path: "/services/data-protection/",
-          language,
-          serviceType: "Data Protection & Cryptography"
-        })
-      }
-    ),
-    /* @__PURE__ */ jsxs("div", { className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8", children: [
-      /* @__PURE__ */ jsxs(distExports.Link, { to: "/", className: "inline-flex items-center text-sm font-medium text-primary hover:underline mb-8", children: [
-        /* @__PURE__ */ jsx(ArrowLeft, { className: "w-4 h-4 mr-2" }),
-        "Back to Home"
-      ] }),
-      /* @__PURE__ */ jsx("h1", { className: "text-4xl md:text-5xl font-light mb-6 text-foreground", children: t.home.features.data.title }),
-      /* @__PURE__ */ jsx("p", { className: "text-xl text-foreground/80 font-light leading-relaxed mb-12", children: t.home.features.data.desc }),
-      /* @__PURE__ */ jsxs("div", { className: "space-y-12", children: [
-        /* @__PURE__ */ jsxs("section", { children: [
-          /* @__PURE__ */ jsx("h2", { className: "text-2xl font-medium mb-4", children: "Our Approach" }),
-          /* @__PURE__ */ jsx("p", { className: "text-foreground/80 leading-relaxed font-light mb-4", children: "Data is your most valuable asset. We implement state-of-the-art encryption both at rest and in transit. Our database practices ensure that sensitive user information remains confidential and tamper-proof." }),
-          /* @__PURE__ */ jsx("p", { className: "text-foreground/80 leading-relaxed font-light", children: "We go beyond standard encryption by exploring and implementing advanced cryptographic techniques, ensuring that the systems we build today remain secure against the computational threats of tomorrow." })
-        ] }),
-        /* @__PURE__ */ jsxs("section", { className: "bg-surface p-8 border-l-4 border-primary", children: [
-          /* @__PURE__ */ jsx("h2", { className: "text-2xl font-medium mb-4", children: "Featured Projects" }),
-          /* @__PURE__ */ jsx("div", { className: "space-y-6", children: /* @__PURE__ */ jsxs("div", { children: [
-            /* @__PURE__ */ jsx("h3", { className: "text-lg font-medium text-primary mb-2", children: "Post-Quantum Messaging App" }),
-            /* @__PURE__ */ jsx("p", { className: "text-foreground/80 text-sm font-light", children: "A secure messaging application implemented in Rust. It utilizes NIST-approved post-quantum cryptographic algorithms (like CRYSTALS-Kyber) to secure message exchanges against future attacks from quantum computers." })
-          ] }) })
-        ] })
-      ] })
-    ] })
-  ] });
+	const { t, language } = useLanguage();
+	return /* @__PURE__ */ jsxs("div", {
+		className: "min-h-screen bg-background pt-32 pb-24",
+		children: [/* @__PURE__ */ jsx(SEO, {
+			title: `${t.home.features.data.title} - Kernel Guard`,
+			description: t.home.features.data.desc,
+			path: "/services/data-protection/",
+			schema: buildServiceSchema({
+				name: t.home.features.data.title,
+				description: t.home.features.data.desc,
+				path: "/services/data-protection/",
+				language,
+				serviceType: "Data Protection & Cryptography"
+			})
+		}), /* @__PURE__ */ jsxs("div", {
+			className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8",
+			children: [
+				/* @__PURE__ */ jsxs(import_dist.Link, {
+					to: "/",
+					className: "inline-flex items-center text-sm font-medium text-primary hover:underline mb-8",
+					children: [/* @__PURE__ */ jsx(ArrowLeft, { className: "w-4 h-4 mr-2" }), "Back to Home"]
+				}),
+				/* @__PURE__ */ jsx("h1", {
+					className: "text-4xl md:text-5xl font-light mb-6 text-foreground",
+					children: t.home.features.data.title
+				}),
+				/* @__PURE__ */ jsx("p", {
+					className: "text-xl text-foreground/80 font-light leading-relaxed mb-12",
+					children: t.home.features.data.desc
+				}),
+				/* @__PURE__ */ jsxs("div", {
+					className: "space-y-12",
+					children: [/* @__PURE__ */ jsxs("section", { children: [
+						/* @__PURE__ */ jsx("h2", {
+							className: "text-2xl font-medium mb-4",
+							children: "Our Approach"
+						}),
+						/* @__PURE__ */ jsx("p", {
+							className: "text-foreground/80 leading-relaxed font-light mb-4",
+							children: "Data is your most valuable asset. We implement state-of-the-art encryption both at rest and in transit. Our database practices ensure that sensitive user information remains confidential and tamper-proof."
+						}),
+						/* @__PURE__ */ jsx("p", {
+							className: "text-foreground/80 leading-relaxed font-light",
+							children: "We go beyond standard encryption by exploring and implementing advanced cryptographic techniques, ensuring that the systems we build today remain secure against the computational threats of tomorrow."
+						})
+					] }), /* @__PURE__ */ jsxs("section", {
+						className: "bg-surface p-8 border-l-4 border-primary",
+						children: [/* @__PURE__ */ jsx("h2", {
+							className: "text-2xl font-medium mb-4",
+							children: "Featured Projects"
+						}), /* @__PURE__ */ jsx("div", {
+							className: "space-y-6",
+							children: /* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx("h3", {
+								className: "text-lg font-medium text-primary mb-2",
+								children: "Post-Quantum Messaging App"
+							}), /* @__PURE__ */ jsx("p", {
+								className: "text-foreground/80 text-sm font-light",
+								children: "A secure messaging application implemented in Rust. It utilizes NIST-approved post-quantum cryptographic algorithms (like CRYSTALS-Kyber) to secure message exchanges against future attacks from quantum computers."
+							})] })
+						})]
+					})]
+				})
+			]
+		})]
+	});
 }
-const DataProtection$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: DataProtection
-}, Symbol.toStringTag, { value: "Module" }));
+//#endregion
+//#region src/pages/HighPerformance.tsx
+var HighPerformance_exports = /* @__PURE__ */ __exportAll({ default: () => HighPerformance });
 function HighPerformance() {
-  const { t, language } = useLanguage();
-  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-24", children: [
-    /* @__PURE__ */ jsx(
-      SEO,
-      {
-        title: `${t.home.features.performance.title} - Kernel Guard`,
-        description: t.home.features.performance.desc,
-        path: "/services/high-performance/",
-        schema: buildServiceSchema({
-          name: t.home.features.performance.title,
-          description: t.home.features.performance.desc,
-          path: "/services/high-performance/",
-          language,
-          serviceType: "High Performance Web Applications"
-        })
-      }
-    ),
-    /* @__PURE__ */ jsxs("div", { className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8", children: [
-      /* @__PURE__ */ jsxs(distExports.Link, { to: "/", className: "inline-flex items-center text-sm font-medium text-primary hover:underline mb-8", children: [
-        /* @__PURE__ */ jsx(ArrowLeft, { className: "w-4 h-4 mr-2" }),
-        "Back to Home"
-      ] }),
-      /* @__PURE__ */ jsx("h1", { className: "text-4xl md:text-5xl font-light mb-6 text-foreground", children: t.home.features.performance.title }),
-      /* @__PURE__ */ jsx("p", { className: "text-xl text-foreground/80 font-light leading-relaxed mb-12", children: t.home.features.performance.desc }),
-      /* @__PURE__ */ jsxs("div", { className: "space-y-12", children: [
-        /* @__PURE__ */ jsxs("section", { children: [
-          /* @__PURE__ */ jsx("h2", { className: "text-2xl font-medium mb-4", children: "Our Approach" }),
-          /* @__PURE__ */ jsx("p", { className: "text-foreground/80 leading-relaxed font-light mb-4", children: "Security should not come at the cost of speed. We optimize web applications to deliver lightning-fast load times while maintaining rigorous security checks." }),
-          /* @__PURE__ */ jsx("p", { className: "text-foreground/80 leading-relaxed font-light", children: "By leveraging efficient algorithms, edge computing, and optimized asset delivery, we ensure that our platforms can handle high-throughput workloads—from complex AI calculations to real-time data processing—without breaking a sweat." })
-        ] }),
-        /* @__PURE__ */ jsxs("section", { className: "bg-surface p-8 border-l-4 border-primary", children: [
-          /* @__PURE__ */ jsx("h2", { className: "text-2xl font-medium mb-4", children: "Featured Projects" }),
-          /* @__PURE__ */ jsxs("div", { className: "space-y-6", children: [
-            /* @__PURE__ */ jsxs("div", { children: [
-              /* @__PURE__ */ jsx("h3", { className: "text-lg font-medium text-primary mb-2", children: "CathodeX" }),
-              /* @__PURE__ */ jsx("p", { className: "text-foreground/80 text-sm font-light", children: "An AI-powered material screening platform. It leverages high-throughput screening algorithms and Graph Neural Networks (GNNs) in PyTorch to rapidly predict battery material properties, drastically reducing discovery time." })
-            ] }),
-            /* @__PURE__ */ jsxs("div", { children: [
-              /* @__PURE__ */ jsx("h3", { className: "text-lg font-medium text-primary mb-2", children: "Algo Eğitim" }),
-              /* @__PURE__ */ jsx("p", { className: "text-foreground/80 text-sm font-light", children: "An advanced algorithmic education platform featuring a high-performance student learning dashboard that processes and visualizes complex educational metrics in real-time." })
-            ] })
-          ] })
-        ] })
-      ] })
-    ] })
-  ] });
+	const { t, language } = useLanguage();
+	return /* @__PURE__ */ jsxs("div", {
+		className: "min-h-screen bg-background pt-32 pb-24",
+		children: [/* @__PURE__ */ jsx(SEO, {
+			title: `${t.home.features.performance.title} - Kernel Guard`,
+			description: t.home.features.performance.desc,
+			path: "/services/high-performance/",
+			schema: buildServiceSchema({
+				name: t.home.features.performance.title,
+				description: t.home.features.performance.desc,
+				path: "/services/high-performance/",
+				language,
+				serviceType: "High Performance Web Applications"
+			})
+		}), /* @__PURE__ */ jsxs("div", {
+			className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8",
+			children: [
+				/* @__PURE__ */ jsxs(import_dist.Link, {
+					to: "/",
+					className: "inline-flex items-center text-sm font-medium text-primary hover:underline mb-8",
+					children: [/* @__PURE__ */ jsx(ArrowLeft, { className: "w-4 h-4 mr-2" }), "Back to Home"]
+				}),
+				/* @__PURE__ */ jsx("h1", {
+					className: "text-4xl md:text-5xl font-light mb-6 text-foreground",
+					children: t.home.features.performance.title
+				}),
+				/* @__PURE__ */ jsx("p", {
+					className: "text-xl text-foreground/80 font-light leading-relaxed mb-12",
+					children: t.home.features.performance.desc
+				}),
+				/* @__PURE__ */ jsxs("div", {
+					className: "space-y-12",
+					children: [/* @__PURE__ */ jsxs("section", { children: [
+						/* @__PURE__ */ jsx("h2", {
+							className: "text-2xl font-medium mb-4",
+							children: "Our Approach"
+						}),
+						/* @__PURE__ */ jsx("p", {
+							className: "text-foreground/80 leading-relaxed font-light mb-4",
+							children: "Security should not come at the cost of speed. We optimize web applications to deliver lightning-fast load times while maintaining rigorous security checks."
+						}),
+						/* @__PURE__ */ jsx("p", {
+							className: "text-foreground/80 leading-relaxed font-light",
+							children: "By leveraging efficient algorithms, edge computing, and optimized asset delivery, we ensure that our platforms can handle high-throughput workloads—from complex AI calculations to real-time data processing—without breaking a sweat."
+						})
+					] }), /* @__PURE__ */ jsxs("section", {
+						className: "bg-surface p-8 border-l-4 border-primary",
+						children: [/* @__PURE__ */ jsx("h2", {
+							className: "text-2xl font-medium mb-4",
+							children: "Featured Projects"
+						}), /* @__PURE__ */ jsxs("div", {
+							className: "space-y-6",
+							children: [/* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx("h3", {
+								className: "text-lg font-medium text-primary mb-2",
+								children: "CathodeX"
+							}), /* @__PURE__ */ jsx("p", {
+								className: "text-foreground/80 text-sm font-light",
+								children: "An AI-powered material screening platform. It leverages high-throughput screening algorithms and Graph Neural Networks (GNNs) in PyTorch to rapidly predict battery material properties, drastically reducing discovery time."
+							})] }), /* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx("h3", {
+								className: "text-lg font-medium text-primary mb-2",
+								children: "Algo Eğitim"
+							}), /* @__PURE__ */ jsx("p", {
+								className: "text-foreground/80 text-sm font-light",
+								children: "An advanced algorithmic education platform featuring a high-performance student learning dashboard that processes and visualizes complex educational metrics in real-time."
+							})] })]
+						})]
+					})]
+				})
+			]
+		})]
+	});
 }
-const HighPerformance$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: HighPerformance
-}, Symbol.toStringTag, { value: "Module" }));
-const iconMap = {
-  layout: /* @__PURE__ */ jsx(PanelsTopLeft, { className: "w-8 h-8" }),
-  shield: /* @__PURE__ */ jsx(Shield, { className: "w-8 h-8" }),
-  code: /* @__PURE__ */ jsx(Code, { className: "w-8 h-8" }),
-  globe: /* @__PURE__ */ jsx(Globe, { className: "w-8 h-8" }),
-  box: /* @__PURE__ */ jsx(Box, { className: "w-8 h-8" }),
-  lock: /* @__PURE__ */ jsx(Lock, { className: "w-8 h-8" }),
-  cloud: /* @__PURE__ */ jsx(Cloud, { className: "w-8 h-8" }),
-  server: /* @__PURE__ */ jsx(Server, { className: "w-8 h-8" }),
-  database: /* @__PURE__ */ jsx(Database, { className: "w-8 h-8" })
+//#endregion
+//#region src/pages/Services.tsx
+var Services_exports = /* @__PURE__ */ __exportAll({ default: () => Services });
+var iconMap = {
+	layout: /* @__PURE__ */ jsx(PanelsTopLeft, { className: "w-8 h-8" }),
+	shield: /* @__PURE__ */ jsx(Shield, { className: "w-8 h-8" }),
+	code: /* @__PURE__ */ jsx(Code, { className: "w-8 h-8" }),
+	globe: /* @__PURE__ */ jsx(Globe, { className: "w-8 h-8" }),
+	box: /* @__PURE__ */ jsx(Box, { className: "w-8 h-8" }),
+	lock: /* @__PURE__ */ jsx(Lock, { className: "w-8 h-8" }),
+	cloud: /* @__PURE__ */ jsx(Cloud, { className: "w-8 h-8" }),
+	server: /* @__PURE__ */ jsx(Server, { className: "w-8 h-8" }),
+	database: /* @__PURE__ */ jsx(Database, { className: "w-8 h-8" })
 };
 function Services() {
-  const { t } = useLanguage();
-  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-20", children: [
-    /* @__PURE__ */ jsx(
-      SEO,
-      {
-        title: t.seo.services.title,
-        description: t.seo.services.description,
-        keywords: t.seo.services.keywords
-      }
-    ),
-    /* @__PURE__ */ jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: [
-      /* @__PURE__ */ jsxs("div", { className: "text-center max-w-3xl mx-auto mb-20", children: [
-        /* @__PURE__ */ jsx("h1", { className: "text-4xl md:text-5xl font-light text-foreground mb-6", children: t.servicesPage.title }),
-        /* @__PURE__ */ jsx("p", { className: "text-lg md:text-xl text-foreground/70 font-light leading-relaxed", children: t.servicesPage.subtitle })
-      ] }),
-      /* @__PURE__ */ jsx("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-32", children: t.servicesPage.services.map((service, index) => /* @__PURE__ */ jsxs(
-        "div",
-        {
-          className: "group relative block h-full p-8 bg-surface border border-border hover:border-primary/50 transition-colors overflow-hidden rounded-sm",
-          children: [
-            /* @__PURE__ */ jsx("div", { className: "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none", children: /* @__PURE__ */ jsx("div", { className: "absolute -inset-[100%] bg-gradient-to-r from-transparent via-primary/5 to-transparent rotate-45 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" }) }),
-            /* @__PURE__ */ jsxs("div", { className: "relative z-10 flex flex-col h-full", children: [
-              /* @__PURE__ */ jsx("div", { className: "mb-8 text-primary", children: iconMap[service.icon] }),
-              /* @__PURE__ */ jsx("h3", { className: "text-2xl font-medium mb-4 text-foreground", children: service.title }),
-              /* @__PURE__ */ jsx("p", { className: "text-foreground/70 text-base leading-relaxed font-light flex-grow", children: service.desc })
-            ] })
-          ]
-        },
-        index
-      )) }),
-      /* @__PURE__ */ jsxs("div", { className: "relative overflow-hidden border border-border bg-surface p-12 md:p-20 text-center", children: [
-        /* @__PURE__ */ jsx("div", { className: "absolute inset-0 opacity-[0.03] pointer-events-none", style: { backgroundImage: "radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)", backgroundSize: "32px 32px" } }),
-        /* @__PURE__ */ jsxs("div", { className: "relative z-10 max-w-2xl mx-auto", children: [
-          /* @__PURE__ */ jsx("h2", { className: "text-3xl md:text-4xl font-light mb-6", children: t.servicesPage.ctaTitle }),
-          /* @__PURE__ */ jsx("p", { className: "text-lg text-foreground/70 font-light mb-10", children: t.servicesPage.ctaDesc }),
-          /* @__PURE__ */ jsxs(
-            "a",
-            {
-              href: "mailto:iletisim@kernelguard.net",
-              className: "inline-flex items-center justify-between px-8 py-4 kg-action-primary transition-colors w-full sm:w-auto min-w-[200px]",
-              children: [
-                /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.servicesPage.ctaButton }),
-                /* @__PURE__ */ jsx(ArrowRight, { className: "w-5 h-5 ml-4" })
-              ]
-            }
-          )
-        ] })
-      ] })
-    ] })
-  ] });
+	const { t } = useLanguage();
+	return /* @__PURE__ */ jsxs("div", {
+		className: "min-h-screen bg-background pt-32 pb-20",
+		children: [/* @__PURE__ */ jsx(SEO, {
+			title: t.seo.services.title,
+			description: t.seo.services.description,
+			keywords: t.seo.services.keywords
+		}), /* @__PURE__ */ jsxs("div", {
+			className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+			children: [
+				/* @__PURE__ */ jsxs("div", {
+					className: "text-center max-w-3xl mx-auto mb-20",
+					children: [/* @__PURE__ */ jsx("h1", {
+						className: "text-4xl md:text-5xl font-light text-foreground mb-6",
+						children: t.servicesPage.title
+					}), /* @__PURE__ */ jsx("p", {
+						className: "text-lg md:text-xl text-foreground/70 font-light leading-relaxed",
+						children: t.servicesPage.subtitle
+					})]
+				}),
+				/* @__PURE__ */ jsx("div", {
+					className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-32",
+					children: t.servicesPage.services.map((service, index) => /* @__PURE__ */ jsxs("div", {
+						className: "group relative block h-full p-8 bg-surface border border-border hover:border-primary/50 transition-colors overflow-hidden rounded-sm",
+						children: [/* @__PURE__ */ jsx("div", {
+							className: "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none",
+							children: /* @__PURE__ */ jsx("div", { className: "absolute -inset-[100%] bg-gradient-to-r from-transparent via-primary/5 to-transparent rotate-45 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" })
+						}), /* @__PURE__ */ jsxs("div", {
+							className: "relative z-10 flex flex-col h-full",
+							children: [
+								/* @__PURE__ */ jsx("div", {
+									className: "mb-8 text-primary",
+									children: iconMap[service.icon]
+								}),
+								/* @__PURE__ */ jsx("h3", {
+									className: "text-2xl font-medium mb-4 text-foreground",
+									children: service.title
+								}),
+								/* @__PURE__ */ jsx("p", {
+									className: "text-foreground/70 text-base leading-relaxed font-light flex-grow",
+									children: service.desc
+								})
+							]
+						})]
+					}, index))
+				}),
+				/* @__PURE__ */ jsxs("div", {
+					className: "relative overflow-hidden border border-border bg-surface p-12 md:p-20 text-center",
+					children: [/* @__PURE__ */ jsx("div", {
+						className: "absolute inset-0 opacity-[0.03] pointer-events-none",
+						style: {
+							backgroundImage: "radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)",
+							backgroundSize: "32px 32px"
+						}
+					}), /* @__PURE__ */ jsxs("div", {
+						className: "relative z-10 max-w-2xl mx-auto",
+						children: [
+							/* @__PURE__ */ jsx("h2", {
+								className: "text-3xl md:text-4xl font-light mb-6",
+								children: t.servicesPage.ctaTitle
+							}),
+							/* @__PURE__ */ jsx("p", {
+								className: "text-lg text-foreground/70 font-light mb-10",
+								children: t.servicesPage.ctaDesc
+							}),
+							/* @__PURE__ */ jsxs("a", {
+								href: mailto(SITE_EMAILS.sales),
+								className: "inline-flex items-center justify-between px-8 py-4 kg-action-primary transition-colors w-full sm:w-auto min-w-[200px]",
+								children: [/* @__PURE__ */ jsx("span", {
+									className: "font-medium",
+									children: t.servicesPage.ctaButton
+								}), /* @__PURE__ */ jsx(ArrowRight, { className: "w-5 h-5 ml-4" })]
+							})
+						]
+					})]
+				})
+			]
+		})]
+	});
 }
-const Services$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: Services
-}, Symbol.toStringTag, { value: "Module" }));
+//#endregion
+//#region src/pages/EnterprisePage.tsx
+function renderSectionItem(item) {
+	if (item.startsWith("Email: ")) {
+		const email = item.replace("Email: ", "");
+		return /* @__PURE__ */ jsxs(Fragment, { children: [
+			"Email:",
+			" ",
+			/* @__PURE__ */ jsx("a", {
+				className: "text-primary hover:underline",
+				href: mailto(email),
+				children: email
+			})
+		] });
+	}
+	return item;
+}
 function EnterprisePage({ pageKey }) {
-  const { language } = useLanguage();
-  const page = enterprisePages[language].pages[pageKey];
-  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-24", children: [
-    /* @__PURE__ */ jsx(SEO, { title: page.seoTitle, description: page.seoDescription }),
-    /* @__PURE__ */ jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: [
-      /* @__PURE__ */ jsxs("header", { className: "max-w-3xl mb-16", children: [
-        /* @__PURE__ */ jsx("div", { className: "inline-block px-3 py-1 mb-6 border border-border text-xs font-mono tracking-widest text-foreground/70 uppercase", children: page.badge }),
-        /* @__PURE__ */ jsx("h1", { className: "text-4xl md:text-5xl font-light text-foreground mb-6", children: page.title }),
-        /* @__PURE__ */ jsx("p", { className: "text-lg md:text-xl text-foreground/70 font-light leading-relaxed", children: page.description })
-      ] }),
-      /* @__PURE__ */ jsx("section", { className: "grid grid-cols-1 md:grid-cols-3 gap-4 mb-16", children: page.facts.map((fact) => /* @__PURE__ */ jsxs("div", { className: "border border-border bg-surface p-6", children: [
-        /* @__PURE__ */ jsx("div", { className: "font-mono text-xs uppercase text-foreground/50 mb-6", children: fact.label }),
-        /* @__PURE__ */ jsx("div", { className: "text-3xl font-mono text-foreground mb-3", children: fact.value }),
-        /* @__PURE__ */ jsx("p", { className: "text-sm text-foreground/70 leading-relaxed", children: fact.detail })
-      ] }, fact.label)) }),
-      /* @__PURE__ */ jsx("section", { className: "grid grid-cols-1 lg:grid-cols-3 gap-6", children: page.sections.map((section) => /* @__PURE__ */ jsxs("article", { className: "border border-border bg-surface p-8", children: [
-        /* @__PURE__ */ jsx("h2", { className: "text-2xl font-light text-foreground mb-4", children: section.title }),
-        /* @__PURE__ */ jsx("p", { className: "text-foreground/70 leading-relaxed font-light mb-8", children: section.body }),
-        /* @__PURE__ */ jsx("ul", { className: "space-y-4", children: section.items.map((item) => /* @__PURE__ */ jsxs("li", { className: "flex items-start gap-3 text-sm text-foreground/80", children: [
-          /* @__PURE__ */ jsx(CircleCheck, { className: "mt-0.5 h-4 w-4 shrink-0 text-primary" }),
-          /* @__PURE__ */ jsx("span", { children: item })
-        ] }, item)) })
-      ] }, section.title)) })
-    ] })
-  ] });
+	const { language } = useLanguage();
+	const page = enterprisePages[language].pages[pageKey];
+	return /* @__PURE__ */ jsxs("div", {
+		className: "min-h-screen bg-background pt-32 pb-24",
+		children: [/* @__PURE__ */ jsx(SEO, {
+			title: page.seoTitle,
+			description: page.seoDescription
+		}), /* @__PURE__ */ jsxs("div", {
+			className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+			children: [
+				/* @__PURE__ */ jsxs("header", {
+					className: "max-w-3xl mb-16",
+					children: [
+						/* @__PURE__ */ jsx("div", {
+							className: "inline-block px-3 py-1 mb-6 border border-border text-xs font-mono tracking-widest text-foreground/70 uppercase",
+							children: page.badge
+						}),
+						/* @__PURE__ */ jsx("h1", {
+							className: "text-4xl md:text-5xl font-light text-foreground mb-6",
+							children: page.title
+						}),
+						/* @__PURE__ */ jsx("p", {
+							className: "text-lg md:text-xl text-foreground/70 font-light leading-relaxed",
+							children: page.description
+						})
+					]
+				}),
+				/* @__PURE__ */ jsx("section", {
+					className: "grid grid-cols-1 md:grid-cols-3 gap-4 mb-16",
+					children: page.facts.map((fact) => /* @__PURE__ */ jsxs("div", {
+						className: "border border-border bg-surface p-6",
+						children: [
+							/* @__PURE__ */ jsx("div", {
+								className: "font-mono text-xs uppercase text-foreground/50 mb-6",
+								children: fact.label
+							}),
+							/* @__PURE__ */ jsx("div", {
+								className: "text-3xl font-mono text-foreground mb-3",
+								children: fact.value
+							}),
+							/* @__PURE__ */ jsx("p", {
+								className: "text-sm text-foreground/70 leading-relaxed",
+								children: fact.detail
+							})
+						]
+					}, fact.label))
+				}),
+				/* @__PURE__ */ jsx("section", {
+					className: "grid grid-cols-1 lg:grid-cols-3 gap-6",
+					children: page.sections.map((section) => /* @__PURE__ */ jsxs("article", {
+						className: "border border-border bg-surface p-8",
+						children: [
+							/* @__PURE__ */ jsx("h2", {
+								className: "text-2xl font-light text-foreground mb-4",
+								children: section.title
+							}),
+							/* @__PURE__ */ jsx("p", {
+								className: "text-foreground/70 leading-relaxed font-light mb-8",
+								children: section.body
+							}),
+							/* @__PURE__ */ jsx("ul", {
+								className: "space-y-4",
+								children: section.items.map((item) => /* @__PURE__ */ jsxs("li", {
+									className: "flex items-start gap-3 text-sm text-foreground/80",
+									children: [/* @__PURE__ */ jsx(CircleCheck, { className: "mt-0.5 h-4 w-4 shrink-0 text-primary" }), /* @__PURE__ */ jsx("span", { children: renderSectionItem(item) })]
+								}, item))
+							})
+						]
+					}, section.title))
+				})
+			]
+		})]
+	});
 }
+//#endregion
+//#region src/pages/Security.tsx
+var Security_exports = /* @__PURE__ */ __exportAll({ default: () => Security });
 function Security() {
-  return /* @__PURE__ */ jsx(EnterprisePage, { pageKey: "security" });
+	return /* @__PURE__ */ jsx(EnterprisePage, { pageKey: "security" });
 }
-const Security$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: Security
-}, Symbol.toStringTag, { value: "Module" }));
+//#endregion
+//#region src/components/SecurityEvidence.tsx
+/**
+* @license
+* SPDX-License-Identifier: Apache-2.0
+*
+* Measured security evidence: the actual security headers enforced at the edge
+* (Cloudflare), plus a link for visitors to verify the grade themselves.
+* "Evidence over claims" — we show the live policy, not a promise.
+*/
+var VERIFY_URL = "https://securityheaders.com/?q=https%3A%2F%2Fwww.kernelguard.net&followRedirects=on";
+var POLICY_TOKENS = [
+	"HSTS · 1y · includeSubDomains · preload",
+	"CSP · script-src 'self' (no inline) · object-src 'none' · frame-ancestors 'none'",
+	"X-Frame-Options: DENY",
+	"X-Content-Type-Options: nosniff",
+	"Referrer-Policy: strict-origin-when-cross-origin",
+	"Permissions-Policy · ~20 features denied"
+];
+var CONTENT = {
+	en: {
+		eyebrow: "Security",
+		heading: "Hardened at the edge.",
+		subline: "Every response ships strict security headers — enforced by Cloudflare on the production domain, not just promised in a policy.",
+		labels: [
+			"Transport security",
+			"Content Security Policy",
+			"Clickjacking",
+			"MIME sniffing",
+			"Referrer",
+			"Browser features"
+		],
+		verify: "Verify it yourself",
+		note: "Live response headers, measured on the production domain."
+	},
+	tr: {
+		eyebrow: "Güvenlik",
+		heading: "Uçta sertleştirildi.",
+		subline: "Her yanıt katı güvenlik başlıkları gönderir — bir politikada vaat edilmekle kalmaz, üretim alanında Cloudflare tarafından uygulanır.",
+		labels: [
+			"Taşıma güvenliği",
+			"İçerik Güvenlik Politikası",
+			"Tıklama hırsızlığı",
+			"MIME koklama",
+			"Yönlendiren",
+			"Tarayıcı özellikleri"
+		],
+		verify: "Kendiniz doğrulayın",
+		note: "Üretim alanında ölçülen canlı yanıt başlıkları."
+	},
+	de: {
+		eyebrow: "Sicherheit",
+		heading: "Am Edge gehärtet.",
+		subline: "Jede Antwort liefert strenge Security-Header — von Cloudflare auf der Produktionsdomain durchgesetzt, nicht nur in einer Richtlinie versprochen.",
+		labels: [
+			"Transportsicherheit",
+			"Content-Security-Policy",
+			"Clickjacking",
+			"MIME-Sniffing",
+			"Referrer",
+			"Browser-Funktionen"
+		],
+		verify: "Selbst überprüfen",
+		note: "Live-Response-Header, auf der Produktionsdomain gemessen."
+	},
+	es: {
+		eyebrow: "Seguridad",
+		heading: "Reforzado en el edge.",
+		subline: "Cada respuesta envía cabeceras de seguridad estrictas — aplicadas por Cloudflare en el dominio de producción, no solo prometidas en una política.",
+		labels: [
+			"Seguridad de transporte",
+			"Política de seguridad de contenido",
+			"Clickjacking",
+			"Sniffing de MIME",
+			"Referente",
+			"Funciones del navegador"
+		],
+		verify: "Verifícalo tú mismo",
+		note: "Cabeceras de respuesta en vivo, medidas en el dominio de producción."
+	},
+	fr: {
+		eyebrow: "Sécurité",
+		heading: "Renforcé en périphérie.",
+		subline: "Chaque réponse envoie des en-têtes de sécurité stricts — appliqués par Cloudflare sur le domaine de production, pas seulement promis dans une politique.",
+		labels: [
+			"Sécurité du transport",
+			"Politique de sécurité du contenu",
+			"Détournement de clic",
+			"Sniffing MIME",
+			"Référent",
+			"Fonctions du navigateur"
+		],
+		verify: "Vérifiez par vous-même",
+		note: "En-têtes de réponse en direct, mesurés sur le domaine de production."
+	},
+	ja: {
+		eyebrow: "セキュリティ",
+		heading: "エッジで堅牢化。",
+		subline: "すべてのレスポンスは厳格なセキュリティヘッダーを送出します — ポリシー文書での約束ではなく、本番ドメインで Cloudflare により強制されます。",
+		labels: [
+			"転送のセキュリティ",
+			"コンテンツセキュリティポリシー",
+			"クリックジャッキング",
+			"MIME スニッフィング",
+			"リファラー",
+			"ブラウザ機能"
+		],
+		verify: "自分で検証する",
+		note: "本番ドメインで測定した実際のレスポンスヘッダー。"
+	},
+	"zh-CN": {
+		eyebrow: "安全",
+		heading: "在边缘加固。",
+		subline: "每个响应都发送严格的安全标头——由 Cloudflare 在生产域上强制执行，而不仅仅是写在策略里。",
+		labels: [
+			"传输安全",
+			"内容安全策略",
+			"点击劫持",
+			"MIME 嗅探",
+			"来源引用",
+			"浏览器功能"
+		],
+		verify: "自行验证",
+		note: "在生产域上测量的实时响应标头。"
+	},
+	ko: {
+		eyebrow: "보안",
+		heading: "엣지에서 강화.",
+		subline: "모든 응답은 엄격한 보안 헤더를 전송합니다 — 정책 문서의 약속이 아니라, 운영 도메인에서 Cloudflare가 실제로 적용합니다.",
+		labels: [
+			"전송 보안",
+			"콘텐츠 보안 정책",
+			"클릭재킹",
+			"MIME 스니핑",
+			"리퍼러",
+			"브라우저 기능"
+		],
+		verify: "직접 확인하기",
+		note: "운영 도메인에서 측정한 실시간 응답 헤더."
+	}
+};
+function SecurityEvidence() {
+	const { language } = useLanguage();
+	const t = CONTENT[language] ?? CONTENT.en;
+	return /* @__PURE__ */ jsx("section", {
+		className: "border-t border-border bg-surface py-24",
+		children: /* @__PURE__ */ jsxs("div", {
+			className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+			children: [
+				/* @__PURE__ */ jsxs("div", {
+					className: "flex items-center gap-3 mb-4",
+					children: [/* @__PURE__ */ jsx(ShieldCheck, { className: "w-5 h-5 text-primary" }), /* @__PURE__ */ jsxs("span", {
+						className: "text-xs font-mono uppercase tracking-[0.25em] text-foreground/55",
+						children: [/* @__PURE__ */ jsx("span", {
+							className: "text-signature",
+							children: "// "
+						}), t.eyebrow]
+					})]
+				}),
+				/* @__PURE__ */ jsx("h2", {
+					className: "text-3xl md:text-4xl font-light text-foreground tracking-tight mb-5",
+					children: t.heading
+				}),
+				/* @__PURE__ */ jsx("p", {
+					className: "text-lg font-light text-foreground/70 max-w-2xl mb-10 leading-relaxed",
+					children: t.subline
+				}),
+				/* @__PURE__ */ jsx("div", {
+					className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border",
+					children: POLICY_TOKENS.map((token, i) => /* @__PURE__ */ jsxs("div", {
+						className: "bg-background p-5",
+						children: [/* @__PURE__ */ jsx("div", {
+							className: "text-xs font-mono uppercase tracking-wider text-foreground/50 mb-2",
+							children: t.labels[i]
+						}), /* @__PURE__ */ jsx("div", {
+							className: "text-sm font-mono text-foreground break-words",
+							children: token
+						})]
+					}, token))
+				}),
+				/* @__PURE__ */ jsx("div", {
+					className: "mt-8 flex flex-col sm:flex-row gap-4 items-start",
+					children: /* @__PURE__ */ jsxs("a", {
+						href: VERIFY_URL,
+						target: "_blank",
+						rel: "noopener noreferrer",
+						className: "inline-flex items-center justify-between px-6 py-4 kg-action-primary w-full sm:w-72",
+						children: [/* @__PURE__ */ jsx("span", {
+							className: "font-medium",
+							children: t.verify
+						}), /* @__PURE__ */ jsx(ExternalLink, { className: "w-5 h-5" })]
+					})
+				}),
+				/* @__PURE__ */ jsx("p", {
+					className: "mt-4 text-xs font-mono text-foreground/50 normal-case",
+					children: t.note
+				})
+			]
+		})
+	});
+}
+//#endregion
+//#region src/pages/Engineering.tsx
+var Engineering_exports = /* @__PURE__ */ __exportAll({ default: () => Engineering });
 function Engineering() {
-  return /* @__PURE__ */ jsx(EnterprisePage, { pageKey: "engineering" });
+	return /* @__PURE__ */ jsxs(Fragment, { children: [/* @__PURE__ */ jsx(EnterprisePage, { pageKey: "engineering" }), /* @__PURE__ */ jsx(SecurityEvidence, {})] });
 }
-const Engineering$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: Engineering
-}, Symbol.toStringTag, { value: "Module" }));
+//#endregion
+//#region src/pages/Status.tsx
+var Status_exports = /* @__PURE__ */ __exportAll({ default: () => Status });
 function Status() {
-  return /* @__PURE__ */ jsx(EnterprisePage, { pageKey: "status" });
+	return /* @__PURE__ */ jsx(EnterprisePage, { pageKey: "status" });
 }
-const Status$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: Status
-}, Symbol.toStringTag, { value: "Module" }));
+//#endregion
+//#region src/pages/Changelog.tsx
+var Changelog_exports = /* @__PURE__ */ __exportAll({ default: () => Changelog });
 function Changelog() {
-  return /* @__PURE__ */ jsx(EnterprisePage, { pageKey: "changelog" });
+	return /* @__PURE__ */ jsx(EnterprisePage, { pageKey: "changelog" });
 }
-const Changelog$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: Changelog
-}, Symbol.toStringTag, { value: "Module" }));
+//#endregion
+//#region src/pages/Terms.tsx
+var Terms_exports = /* @__PURE__ */ __exportAll({ default: () => Terms });
 function Terms() {
-  const { t } = useLanguage();
-  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-24", children: [
-    /* @__PURE__ */ jsx(
-      SEO,
-      {
-        title: `${t.terms.title} | Kernel-Guard`,
-        description: t.terms.section1.content
-      }
-    ),
-    /* @__PURE__ */ jsxs("div", { className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8", children: [
-      /* @__PURE__ */ jsx("h1", { className: "text-4xl md:text-5xl font-light mb-4 text-foreground", children: t.terms.title }),
-      /* @__PURE__ */ jsx("p", { className: "text-foreground/60 text-sm mb-12 font-mono", children: t.terms.lastUpdated }),
-      /* @__PURE__ */ jsxs("div", { className: "space-y-12 text-foreground/80 leading-relaxed font-light", children: [
-        /* @__PURE__ */ jsxs("section", { children: [
-          /* @__PURE__ */ jsx("h2", { className: "text-2xl font-medium text-foreground mb-4", children: t.terms.section1.title }),
-          /* @__PURE__ */ jsx("p", { children: t.terms.section1.content })
-        ] }),
-        /* @__PURE__ */ jsxs("section", { children: [
-          /* @__PURE__ */ jsx("h2", { className: "text-2xl font-medium text-foreground mb-4", children: t.terms.section2.title }),
-          /* @__PURE__ */ jsx("p", { children: t.terms.section2.content })
-        ] }),
-        /* @__PURE__ */ jsxs("section", { children: [
-          /* @__PURE__ */ jsx("h2", { className: "text-2xl font-medium text-foreground mb-4", children: t.terms.section3.title }),
-          /* @__PURE__ */ jsx("p", { children: t.terms.section3.content })
-        ] })
-      ] })
-    ] })
-  ] });
+	const { t } = useLanguage();
+	return /* @__PURE__ */ jsxs("div", {
+		className: "min-h-screen bg-background pt-32 pb-24",
+		children: [/* @__PURE__ */ jsx(SEO, {
+			title: `${t.terms.title} | Kernel-Guard`,
+			description: t.terms.section1.content
+		}), /* @__PURE__ */ jsxs("div", {
+			className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8",
+			children: [
+				/* @__PURE__ */ jsx("h1", {
+					className: "text-4xl md:text-5xl font-light mb-4 text-foreground",
+					children: t.terms.title
+				}),
+				/* @__PURE__ */ jsx("p", {
+					className: "text-foreground/60 text-sm mb-12 font-mono",
+					children: t.terms.lastUpdated
+				}),
+				/* @__PURE__ */ jsxs("div", {
+					className: "space-y-12 text-foreground/80 leading-relaxed font-light",
+					children: [
+						/* @__PURE__ */ jsxs("section", { children: [/* @__PURE__ */ jsx("h2", {
+							className: "text-2xl font-medium text-foreground mb-4",
+							children: t.terms.section1.title
+						}), /* @__PURE__ */ jsx("p", { children: t.terms.section1.content })] }),
+						/* @__PURE__ */ jsxs("section", { children: [/* @__PURE__ */ jsx("h2", {
+							className: "text-2xl font-medium text-foreground mb-4",
+							children: t.terms.section2.title
+						}), /* @__PURE__ */ jsx("p", { children: t.terms.section2.content })] }),
+						/* @__PURE__ */ jsxs("section", { children: [/* @__PURE__ */ jsx("h2", {
+							className: "text-2xl font-medium text-foreground mb-4",
+							children: t.terms.section3.title
+						}), /* @__PURE__ */ jsx("p", { children: t.terms.section3.content })] }),
+						/* @__PURE__ */ jsxs("section", { children: [/* @__PURE__ */ jsx("h2", {
+							className: "text-2xl font-medium text-foreground mb-4",
+							children: "Legal contact"
+						}), /* @__PURE__ */ jsxs("p", { children: [
+							"For legal notices or terms-related requests, email",
+							" ",
+							/* @__PURE__ */ jsx("a", {
+								className: "text-primary hover:underline",
+								href: mailto(SITE_EMAILS.legal),
+								children: SITE_EMAILS.legal
+							}),
+							"."
+						] })] })
+					]
+				})
+			]
+		})]
+	});
 }
-const Terms$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: Terms
-}, Symbol.toStringTag, { value: "Module" }));
+//#endregion
+//#region src/pages/Privacy.tsx
+var Privacy_exports = /* @__PURE__ */ __exportAll({ default: () => Privacy });
 function Privacy() {
-  const { t } = useLanguage();
-  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-24", children: [
-    /* @__PURE__ */ jsx(
-      SEO,
-      {
-        title: `${t.privacy.title} | Kernel-Guard`,
-        description: t.privacy.section1.content
-      }
-    ),
-    /* @__PURE__ */ jsxs("div", { className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8", children: [
-      /* @__PURE__ */ jsx("h1", { className: "text-4xl md:text-5xl font-light mb-4 text-foreground", children: t.privacy.title }),
-      /* @__PURE__ */ jsx("p", { className: "text-foreground/60 text-sm mb-12 font-mono", children: t.privacy.lastUpdated }),
-      /* @__PURE__ */ jsxs("div", { className: "space-y-12 text-foreground/80 leading-relaxed font-light", children: [
-        /* @__PURE__ */ jsxs("section", { children: [
-          /* @__PURE__ */ jsx("h2", { className: "text-2xl font-medium text-foreground mb-4", children: t.privacy.section1.title }),
-          /* @__PURE__ */ jsx("p", { children: t.privacy.section1.content })
-        ] }),
-        /* @__PURE__ */ jsxs("section", { children: [
-          /* @__PURE__ */ jsx("h2", { className: "text-2xl font-medium text-foreground mb-4", children: t.privacy.section2.title }),
-          /* @__PURE__ */ jsx("p", { children: t.privacy.section2.content })
-        ] }),
-        /* @__PURE__ */ jsxs("section", { children: [
-          /* @__PURE__ */ jsx("h2", { className: "text-2xl font-medium text-foreground mb-4", children: t.privacy.section3.title }),
-          /* @__PURE__ */ jsx("p", { children: t.privacy.section3.content })
-        ] })
-      ] })
-    ] })
-  ] });
+	const { t } = useLanguage();
+	return /* @__PURE__ */ jsxs("div", {
+		className: "min-h-screen bg-background pt-32 pb-24",
+		children: [/* @__PURE__ */ jsx(SEO, {
+			title: `${t.privacy.title} | Kernel-Guard`,
+			description: t.privacy.section1.content
+		}), /* @__PURE__ */ jsxs("div", {
+			className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8",
+			children: [
+				/* @__PURE__ */ jsx("h1", {
+					className: "text-4xl md:text-5xl font-light mb-4 text-foreground",
+					children: t.privacy.title
+				}),
+				/* @__PURE__ */ jsx("p", {
+					className: "text-foreground/60 text-sm mb-12 font-mono",
+					children: t.privacy.lastUpdated
+				}),
+				/* @__PURE__ */ jsxs("div", {
+					className: "space-y-12 text-foreground/80 leading-relaxed font-light",
+					children: [
+						/* @__PURE__ */ jsxs("section", { children: [/* @__PURE__ */ jsx("h2", {
+							className: "text-2xl font-medium text-foreground mb-4",
+							children: t.privacy.section1.title
+						}), /* @__PURE__ */ jsx("p", { children: t.privacy.section1.content })] }),
+						/* @__PURE__ */ jsxs("section", { children: [/* @__PURE__ */ jsx("h2", {
+							className: "text-2xl font-medium text-foreground mb-4",
+							children: t.privacy.section2.title
+						}), /* @__PURE__ */ jsx("p", { children: t.privacy.section2.content })] }),
+						/* @__PURE__ */ jsxs("section", { children: [/* @__PURE__ */ jsx("h2", {
+							className: "text-2xl font-medium text-foreground mb-4",
+							children: t.privacy.section3.title
+						}), /* @__PURE__ */ jsx("p", { children: t.privacy.section3.content })] }),
+						/* @__PURE__ */ jsxs("section", { children: [/* @__PURE__ */ jsx("h2", {
+							className: "text-2xl font-medium text-foreground mb-4",
+							children: "Privacy contact"
+						}), /* @__PURE__ */ jsxs("p", { children: [
+							"For privacy requests or data protection questions, email",
+							" ",
+							/* @__PURE__ */ jsx("a", {
+								className: "text-primary hover:underline",
+								href: mailto(SITE_EMAILS.privacy),
+								children: SITE_EMAILS.privacy
+							}),
+							"."
+						] })] })
+					]
+				})
+			]
+		})]
+	});
 }
-const Privacy$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: Privacy
-}, Symbol.toStringTag, { value: "Module" }));
+//#endregion
+//#region src/pages/Cookies.tsx
+var Cookies_exports = /* @__PURE__ */ __exportAll({ default: () => Cookies });
 function Cookies() {
-  const { t } = useLanguage();
-  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-24", children: [
-    /* @__PURE__ */ jsx(
-      SEO,
-      {
-        title: `${t.cookies.title} | Kernel-Guard`,
-        description: t.cookies.desc
-      }
-    ),
-    /* @__PURE__ */ jsxs("div", { className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8", children: [
-      /* @__PURE__ */ jsx("h1", { className: "text-4xl md:text-5xl font-light mb-4 text-foreground", children: t.cookies.title }),
-      /* @__PURE__ */ jsx("p", { className: "text-foreground/60 text-sm mb-12 font-mono", children: t.cookies.lastUpdated }),
-      /* @__PURE__ */ jsxs("div", { className: "space-y-12 text-foreground/80 leading-relaxed font-light", children: [
-        /* @__PURE__ */ jsx("p", { className: "text-lg", children: t.cookies.desc }),
-        /* @__PURE__ */ jsx("section", { className: "p-6 border border-border bg-surface rounded-lg", children: /* @__PURE__ */ jsxs("div", { className: "flex flex-col md:flex-row md:items-center justify-between gap-4", children: [
-          /* @__PURE__ */ jsxs("div", { children: [
-            /* @__PURE__ */ jsx("h2", { className: "text-xl font-medium text-foreground mb-1", children: t.cookies.essential.title }),
-            /* @__PURE__ */ jsx("p", { className: "text-sm text-foreground/70", children: t.cookies.essential.desc })
-          ] }),
-          /* @__PURE__ */ jsxs("div", { className: "flex items-center", children: [
-            /* @__PURE__ */ jsx("div", { className: "w-12 h-6 bg-primary rounded-full relative", children: /* @__PURE__ */ jsx("div", { className: "absolute right-1 top-1 w-4 h-4 bg-white rounded-full" }) }),
-            /* @__PURE__ */ jsx("span", { className: "ml-3 text-sm font-medium", children: "Always Active" })
-          ] })
-        ] }) }),
-        /* @__PURE__ */ jsx("section", { className: "p-6 border border-border bg-surface rounded-lg", children: /* @__PURE__ */ jsxs("div", { className: "flex flex-col md:flex-row md:items-center justify-between gap-4", children: [
-          /* @__PURE__ */ jsxs("div", { children: [
-            /* @__PURE__ */ jsx("h2", { className: "text-xl font-medium text-foreground mb-1", children: t.cookies.analytics.title }),
-            /* @__PURE__ */ jsx("p", { className: "text-sm text-foreground/70", children: t.cookies.analytics.desc })
-          ] }),
-          /* @__PURE__ */ jsx("div", { className: "flex items-center", children: /* @__PURE__ */ jsx("button", { className: "w-12 h-6 bg-border rounded-full relative transition-colors hover:bg-gray-400", children: /* @__PURE__ */ jsx("div", { className: "absolute left-1 top-1 w-4 h-4 bg-white rounded-full" }) }) })
-        ] }) }),
-        /* @__PURE__ */ jsx("button", { className: "px-8 py-4 kg-action-primary transition-colors font-medium", children: t.cookies.save })
-      ] })
-    ] })
-  ] });
+	const { t } = useLanguage();
+	return /* @__PURE__ */ jsxs("div", {
+		className: "min-h-screen bg-background pt-32 pb-24",
+		children: [/* @__PURE__ */ jsx(SEO, {
+			title: `${t.cookies.title} | Kernel-Guard`,
+			description: t.cookies.desc
+		}), /* @__PURE__ */ jsxs("div", {
+			className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8",
+			children: [
+				/* @__PURE__ */ jsx("h1", {
+					className: "text-4xl md:text-5xl font-light mb-4 text-foreground",
+					children: t.cookies.title
+				}),
+				/* @__PURE__ */ jsx("p", {
+					className: "text-foreground/60 text-sm mb-12 font-mono",
+					children: t.cookies.lastUpdated
+				}),
+				/* @__PURE__ */ jsxs("div", {
+					className: "space-y-12 text-foreground/80 leading-relaxed font-light",
+					children: [
+						/* @__PURE__ */ jsx("p", {
+							className: "text-lg",
+							children: t.cookies.desc
+						}),
+						/* @__PURE__ */ jsx("section", {
+							className: "p-6 border border-border bg-surface rounded-lg",
+							children: /* @__PURE__ */ jsxs("div", {
+								className: "flex flex-col md:flex-row md:items-center justify-between gap-4",
+								children: [/* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx("h2", {
+									className: "text-xl font-medium text-foreground mb-1",
+									children: t.cookies.essential.title
+								}), /* @__PURE__ */ jsx("p", {
+									className: "text-sm text-foreground/70",
+									children: t.cookies.essential.desc
+								})] }), /* @__PURE__ */ jsxs("div", {
+									className: "flex items-center",
+									children: [/* @__PURE__ */ jsx("div", {
+										className: "w-12 h-6 bg-primary rounded-full relative",
+										children: /* @__PURE__ */ jsx("div", { className: "absolute right-1 top-1 w-4 h-4 bg-white rounded-full" })
+									}), /* @__PURE__ */ jsx("span", {
+										className: "ml-3 text-sm font-medium",
+										children: "Always Active"
+									})]
+								})]
+							})
+						}),
+						/* @__PURE__ */ jsx("section", {
+							className: "p-6 border border-border bg-surface rounded-lg",
+							children: /* @__PURE__ */ jsxs("div", {
+								className: "flex flex-col md:flex-row md:items-center justify-between gap-4",
+								children: [/* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx("h2", {
+									className: "text-xl font-medium text-foreground mb-1",
+									children: t.cookies.analytics.title
+								}), /* @__PURE__ */ jsx("p", {
+									className: "text-sm text-foreground/70",
+									children: t.cookies.analytics.desc
+								})] }), /* @__PURE__ */ jsx("div", {
+									className: "flex items-center",
+									children: /* @__PURE__ */ jsx("button", {
+										className: "w-12 h-6 bg-border rounded-full relative transition-colors hover:bg-gray-400",
+										children: /* @__PURE__ */ jsx("div", { className: "absolute left-1 top-1 w-4 h-4 bg-white rounded-full" })
+									})
+								})]
+							})
+						}),
+						/* @__PURE__ */ jsx("button", {
+							className: "px-8 py-4 kg-action-primary transition-colors font-medium",
+							children: t.cookies.save
+						})
+					]
+				})
+			]
+		})]
+	});
 }
-const Cookies$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: Cookies
-}, Symbol.toStringTag, { value: "Module" }));
+//#endregion
+//#region src/config/forms.ts
+var WEB3FORMS_ACCESS_KEY = "7c8be6f4-ff09-49f5-b754-60878bc0c970";
+//#endregion
+//#region src/pages/Contact.tsx
+var Contact_exports = /* @__PURE__ */ __exportAll({ default: () => Contact });
+var contactChannels = [
+	{
+		label: "Sales",
+		email: SITE_EMAILS.sales,
+		Icon: BriefcaseBusiness
+	},
+	{
+		label: "Support",
+		email: SITE_EMAILS.support,
+		Icon: LifeBuoy
+	},
+	{
+		label: "Security",
+		email: SITE_EMAILS.security,
+		Icon: ShieldCheck
+	},
+	{
+		label: "Privacy",
+		email: SITE_EMAILS.privacy,
+		Icon: LockKeyhole
+	},
+	{
+		label: "Legal",
+		email: SITE_EMAILS.legal,
+		Icon: FileText
+	}
+];
 function Contact() {
-  const { t } = useLanguage();
-  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-20", children: [
-    /* @__PURE__ */ jsx(
-      SEO,
-      {
-        title: t.contact.seo.title,
-        description: t.contact.seo.description,
-        keywords: t.contact.seo.keywords
-      }
-    ),
-    /* @__PURE__ */ jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: [
-      /* @__PURE__ */ jsxs("div", { className: "max-w-3xl mb-16", children: [
-        /* @__PURE__ */ jsx("h1", { className: "text-4xl md:text-5xl font-light text-foreground mb-6", children: t.contact.title }),
-        /* @__PURE__ */ jsx("p", { className: "text-lg md:text-xl text-foreground/70 font-light leading-relaxed", children: t.contact.subtitle })
-      ] }),
-      /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-12", children: [
-        /* @__PURE__ */ jsxs("aside", { className: "border border-border bg-surface p-8 h-fit", children: [
-          /* @__PURE__ */ jsx("h2", { className: "text-2xl font-medium text-foreground mb-4", children: t.contact.info.title }),
-          /* @__PURE__ */ jsx("p", { className: "text-foreground/70 font-light leading-relaxed mb-10", children: t.contact.info.desc }),
-          /* @__PURE__ */ jsxs("div", { className: "space-y-6", children: [
-            /* @__PURE__ */ jsxs(
-              "a",
-              {
-                href: "mailto:iletisim@kernelguard.net",
-                className: "flex items-center gap-4 text-foreground/80 hover:text-primary transition-colors",
-                children: [
-                  /* @__PURE__ */ jsx("span", { className: "flex h-11 w-11 items-center justify-center border border-border text-primary", children: /* @__PURE__ */ jsx(Mail, { className: "h-5 w-5" }) }),
-                  /* @__PURE__ */ jsxs("span", { children: [
-                    /* @__PURE__ */ jsx("span", { className: "block text-sm text-foreground/50", children: t.contact.info.email }),
-                    /* @__PURE__ */ jsx("span", { className: "font-medium", children: "iletisim@kernelguard.net" })
-                  ] })
-                ]
-              }
-            ),
-            /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-4 text-foreground/80", children: [
-              /* @__PURE__ */ jsx("span", { className: "flex h-11 w-11 items-center justify-center border border-border text-primary", children: /* @__PURE__ */ jsx(MapPin, { className: "h-5 w-5" }) }),
-              /* @__PURE__ */ jsxs("span", { children: [
-                /* @__PURE__ */ jsx("span", { className: "block text-sm text-foreground/50", children: t.contact.info.location }),
-                /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.contact.info.locationValue })
-              ] })
-            ] }),
-            /* @__PURE__ */ jsxs(
-              "a",
-              {
-                href: "https://github.com/Kernel-Guard",
-                target: "_blank",
-                rel: "noreferrer",
-                className: "flex items-center gap-4 text-foreground/80 hover:text-primary transition-colors",
-                children: [
-                  /* @__PURE__ */ jsx("span", { className: "flex h-11 w-11 items-center justify-center border border-border text-primary", children: /* @__PURE__ */ jsx(Github, { className: "h-5 w-5" }) }),
-                  /* @__PURE__ */ jsxs("span", { children: [
-                    /* @__PURE__ */ jsx("span", { className: "block text-sm text-foreground/50", children: t.contact.info.social }),
-                    /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.contact.info.github })
-                  ] })
-                ]
-              }
-            )
-          ] })
-        ] }),
-        /* @__PURE__ */ jsxs(
-          "form",
-          {
-            action: "https://api.web3forms.com/submit",
-            method: "POST",
-            className: "border border-border bg-surface p-8 space-y-6",
-            children: [
-              /* @__PURE__ */ jsx("input", { type: "hidden", name: "access_key", value: "" }),
-              /* @__PURE__ */ jsx("input", { type: "hidden", name: "subject", value: "Kernel Guard contact form" }),
-              /* @__PURE__ */ jsx("input", { type: "checkbox", name: "botcheck", className: "hidden", tabIndex: -1 }),
-              /* @__PURE__ */ jsxs("div", { children: [
-                /* @__PURE__ */ jsx("label", { htmlFor: "name", className: "block text-sm font-medium text-foreground mb-2", children: t.contact.form.name }),
-                /* @__PURE__ */ jsx(
-                  "input",
-                  {
-                    id: "name",
-                    name: "name",
-                    type: "text",
-                    required: true,
-                    autoComplete: "name",
-                    placeholder: t.contact.form.namePlaceholder,
-                    className: "w-full border border-border bg-background px-4 py-3 text-foreground outline-none transition-colors focus:border-primary"
-                  }
-                )
-              ] }),
-              /* @__PURE__ */ jsxs("div", { children: [
-                /* @__PURE__ */ jsx("label", { htmlFor: "email", className: "block text-sm font-medium text-foreground mb-2", children: t.contact.form.email }),
-                /* @__PURE__ */ jsx(
-                  "input",
-                  {
-                    id: "email",
-                    name: "email",
-                    type: "email",
-                    required: true,
-                    autoComplete: "email",
-                    placeholder: t.contact.form.emailPlaceholder,
-                    className: "w-full border border-border bg-background px-4 py-3 text-foreground outline-none transition-colors focus:border-primary"
-                  }
-                )
-              ] }),
-              /* @__PURE__ */ jsxs("div", { children: [
-                /* @__PURE__ */ jsx("label", { htmlFor: "message", className: "block text-sm font-medium text-foreground mb-2", children: t.contact.form.message }),
-                /* @__PURE__ */ jsx(
-                  "textarea",
-                  {
-                    id: "message",
-                    name: "message",
-                    required: true,
-                    rows: 7,
-                    placeholder: t.contact.form.messagePlaceholder,
-                    className: "w-full resize-none border border-border bg-background px-4 py-3 text-foreground outline-none transition-colors focus:border-primary"
-                  }
-                )
-              ] }),
-              /* @__PURE__ */ jsxs(
-                "button",
-                {
-                  type: "submit",
-                  disabled: true,
-                  className: "inline-flex w-full sm:w-auto items-center justify-center gap-3 kg-action-primary px-8 py-4 font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50",
-                  children: [
-                    /* @__PURE__ */ jsx("span", { children: t.contact.form.submit }),
-                    /* @__PURE__ */ jsx(Send, { className: "h-5 w-5" })
-                  ]
-                }
-              )
-            ]
-          }
-        )
-      ] })
-    ] })
-  ] });
+	const { t } = useLanguage();
+	return /* @__PURE__ */ jsxs("div", {
+		className: "min-h-screen bg-background pt-32 pb-20",
+		children: [/* @__PURE__ */ jsx(SEO, {
+			title: t.contact.seo.title,
+			description: t.contact.seo.description,
+			keywords: t.contact.seo.keywords
+		}), /* @__PURE__ */ jsxs("div", {
+			className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+			children: [/* @__PURE__ */ jsxs("div", {
+				className: "max-w-3xl mb-16",
+				children: [/* @__PURE__ */ jsx("h1", {
+					className: "text-4xl md:text-5xl font-light text-foreground mb-6",
+					children: t.contact.title
+				}), /* @__PURE__ */ jsx("p", {
+					className: "text-lg md:text-xl text-foreground/70 font-light leading-relaxed",
+					children: t.contact.subtitle
+				})]
+			}), /* @__PURE__ */ jsxs("div", {
+				className: "grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-12",
+				children: [/* @__PURE__ */ jsxs("aside", {
+					className: "border border-border bg-surface p-8 h-fit",
+					children: [
+						/* @__PURE__ */ jsx("h2", {
+							className: "text-2xl font-medium text-foreground mb-4",
+							children: t.contact.info.title
+						}),
+						/* @__PURE__ */ jsx("p", {
+							className: "text-foreground/70 font-light leading-relaxed mb-10",
+							children: t.contact.info.desc
+						}),
+						/* @__PURE__ */ jsxs("div", {
+							className: "space-y-6",
+							children: [
+								/* @__PURE__ */ jsxs("a", {
+									href: mailto(SITE_EMAILS.contact),
+									className: "flex items-center gap-4 text-foreground/80 hover:text-primary transition-colors",
+									children: [/* @__PURE__ */ jsx("span", {
+										className: "flex h-11 w-11 items-center justify-center border border-border text-primary",
+										children: /* @__PURE__ */ jsx(Mail, { className: "h-5 w-5" })
+									}), /* @__PURE__ */ jsxs("span", { children: [/* @__PURE__ */ jsx("span", {
+										className: "block text-sm text-foreground/50",
+										children: t.contact.info.email
+									}), /* @__PURE__ */ jsx("span", {
+										className: "font-medium",
+										children: SITE_EMAILS.contact
+									})] })]
+								}),
+								/* @__PURE__ */ jsxs("div", {
+									className: "flex items-center gap-4 text-foreground/80",
+									children: [/* @__PURE__ */ jsx("span", {
+										className: "flex h-11 w-11 items-center justify-center border border-border text-primary",
+										children: /* @__PURE__ */ jsx(MapPin, { className: "h-5 w-5" })
+									}), /* @__PURE__ */ jsxs("span", { children: [/* @__PURE__ */ jsx("span", {
+										className: "block text-sm text-foreground/50",
+										children: t.contact.info.location
+									}), /* @__PURE__ */ jsx("span", {
+										className: "font-medium",
+										children: t.contact.info.locationValue
+									})] })]
+								}),
+								/* @__PURE__ */ jsxs("a", {
+									href: "https://github.com/Kernel-Guard",
+									target: "_blank",
+									rel: "noreferrer",
+									className: "flex items-center gap-4 text-foreground/80 hover:text-primary transition-colors",
+									children: [/* @__PURE__ */ jsx("span", {
+										className: "flex h-11 w-11 items-center justify-center border border-border text-primary",
+										children: /* @__PURE__ */ jsx(Github, { className: "h-5 w-5" })
+									}), /* @__PURE__ */ jsxs("span", { children: [/* @__PURE__ */ jsx("span", {
+										className: "block text-sm text-foreground/50",
+										children: t.contact.info.social
+									}), /* @__PURE__ */ jsx("span", {
+										className: "font-medium",
+										children: t.contact.info.github
+									})] })]
+								})
+							]
+						}),
+						/* @__PURE__ */ jsxs("div", {
+							className: "mt-8 border-t border-border pt-8",
+							children: [/* @__PURE__ */ jsx("h3", {
+								className: "mb-4 text-sm font-medium uppercase tracking-wide text-foreground/60",
+								children: "Direct channels"
+							}), /* @__PURE__ */ jsx("div", {
+								className: "space-y-3",
+								children: contactChannels.map(({ label, email, Icon }) => /* @__PURE__ */ jsxs("a", {
+									href: mailto(email),
+									className: "flex items-center justify-between gap-4 border border-border bg-background px-4 py-3 text-sm text-foreground/80 transition-colors hover:border-primary/50 hover:text-primary",
+									children: [/* @__PURE__ */ jsxs("span", {
+										className: "flex min-w-0 items-center gap-3",
+										children: [/* @__PURE__ */ jsx(Icon, { className: "h-4 w-4 shrink-0" }), /* @__PURE__ */ jsx("span", {
+											className: "font-medium",
+											children: label
+										})]
+									}), /* @__PURE__ */ jsx("span", {
+										className: "truncate font-mono text-xs text-foreground/55",
+										children: email
+									})]
+								}, email))
+							})]
+						})
+					]
+				}), /* @__PURE__ */ jsxs("form", {
+					action: "https://api.web3forms.com/submit",
+					method: "POST",
+					className: "border border-border bg-surface p-8 space-y-6",
+					children: [
+						/* @__PURE__ */ jsx("input", {
+							type: "hidden",
+							name: "access_key",
+							value: WEB3FORMS_ACCESS_KEY
+						}),
+						/* @__PURE__ */ jsx("input", {
+							type: "hidden",
+							name: "subject",
+							value: "Kernel Guard contact form"
+						}),
+						/* @__PURE__ */ jsx("input", {
+							type: "checkbox",
+							name: "botcheck",
+							className: "hidden",
+							tabIndex: -1
+						}),
+						/* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx("label", {
+							htmlFor: "name",
+							className: "block text-sm font-medium text-foreground mb-2",
+							children: t.contact.form.name
+						}), /* @__PURE__ */ jsx("input", {
+							id: "name",
+							name: "name",
+							type: "text",
+							required: true,
+							autoComplete: "name",
+							placeholder: t.contact.form.namePlaceholder,
+							className: "w-full border border-border bg-background px-4 py-3 text-foreground outline-none transition-colors focus:border-primary"
+						})] }),
+						/* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx("label", {
+							htmlFor: "email",
+							className: "block text-sm font-medium text-foreground mb-2",
+							children: t.contact.form.email
+						}), /* @__PURE__ */ jsx("input", {
+							id: "email",
+							name: "email",
+							type: "email",
+							required: true,
+							autoComplete: "email",
+							placeholder: t.contact.form.emailPlaceholder,
+							className: "w-full border border-border bg-background px-4 py-3 text-foreground outline-none transition-colors focus:border-primary"
+						})] }),
+						/* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx("label", {
+							htmlFor: "message",
+							className: "block text-sm font-medium text-foreground mb-2",
+							children: t.contact.form.message
+						}), /* @__PURE__ */ jsx("textarea", {
+							id: "message",
+							name: "message",
+							required: true,
+							rows: 7,
+							placeholder: t.contact.form.messagePlaceholder,
+							className: "w-full resize-none border border-border bg-background px-4 py-3 text-foreground outline-none transition-colors focus:border-primary"
+						})] }),
+						/* @__PURE__ */ jsxs("button", {
+							type: "submit",
+							className: "inline-flex w-full sm:w-auto items-center justify-center gap-3 kg-action-primary px-8 py-4 font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50",
+							children: [/* @__PURE__ */ jsx("span", { children: t.contact.form.submit }), /* @__PURE__ */ jsx(Send, { className: "h-5 w-5" })]
+						})
+					]
+				})]
+			})]
+		})]
+	});
 }
-const Contact$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: Contact
-}, Symbol.toStringTag, { value: "Module" }));
+//#endregion
+//#region src/pages/NotFound.tsx
+var NotFound_exports = /* @__PURE__ */ __exportAll({ default: () => NotFound });
 function NotFound() {
-  const { language } = useLanguage();
-  const copy = language === "tr" ? {
-    title: "Sayfa Bulunamadi | Kernel Guard",
-    description: "Istediginiz sayfa mevcut degil veya tasinmis olabilir.",
-    headline: "404_SAYFA_BULUNAMADI",
-    body: "Aradiginiz sayfa mevcut degil veya URL degismis olabilir.",
-    backLabel: "Ana Sayfaya Don"
-  } : {
-    title: "Page Not Found | Kernel Guard",
-    description: "The requested page does not exist or may have moved.",
-    headline: "404_PAGE_NOT_FOUND",
-    body: "The requested page does not exist or the URL may have changed.",
-    backLabel: "Back to Home"
-  };
-  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-20 flex items-center justify-center", children: [
-    /* @__PURE__ */ jsx(
-      SEO,
-      {
-        title: copy.title,
-        description: copy.description,
-        path: "/not-found/",
-        noIndex: true
-      }
-    ),
-    /* @__PURE__ */ jsxs("div", { className: "text-center max-w-xl px-6", children: [
-      /* @__PURE__ */ jsx("h1", { className: "text-2xl md:text-3xl font-mono text-foreground mb-4", children: copy.headline }),
-      /* @__PURE__ */ jsx("p", { className: "text-foreground/70 mb-8 leading-relaxed", children: copy.body }),
-      /* @__PURE__ */ jsxs(
-        distExports.Link,
-        {
-          to: "/",
-          className: "inline-flex items-center gap-2 px-5 py-3 border border-border text-foreground hover:bg-surface transition-colors",
-          children: [
-            /* @__PURE__ */ jsx(ArrowLeft, { className: "w-4 h-4" }),
-            copy.backLabel
-          ]
-        }
-      )
-    ] })
-  ] });
+	const { language } = useLanguage();
+	const copy = language === "tr" ? {
+		title: "Sayfa Bulunamadi | Kernel Guard",
+		description: "Istediginiz sayfa mevcut degil veya tasinmis olabilir.",
+		headline: "404_SAYFA_BULUNAMADI",
+		body: "Aradiginiz sayfa mevcut degil veya URL degismis olabilir.",
+		backLabel: "Ana Sayfaya Don"
+	} : {
+		title: "Page Not Found | Kernel Guard",
+		description: "The requested page does not exist or may have moved.",
+		headline: "404_PAGE_NOT_FOUND",
+		body: "The requested page does not exist or the URL may have changed.",
+		backLabel: "Back to Home"
+	};
+	return /* @__PURE__ */ jsxs("div", {
+		className: "min-h-screen bg-background pt-32 pb-20 flex items-center justify-center",
+		children: [/* @__PURE__ */ jsx(SEO, {
+			title: copy.title,
+			description: copy.description,
+			path: "/not-found/",
+			noIndex: true
+		}), /* @__PURE__ */ jsxs("div", {
+			className: "text-center max-w-xl px-6",
+			children: [
+				/* @__PURE__ */ jsx("h1", {
+					className: "text-2xl md:text-3xl font-mono text-foreground mb-4",
+					children: copy.headline
+				}),
+				/* @__PURE__ */ jsx("p", {
+					className: "text-foreground/70 mb-8 leading-relaxed",
+					children: copy.body
+				}),
+				/* @__PURE__ */ jsxs(import_dist.Link, {
+					to: "/",
+					className: "inline-flex items-center gap-2 px-5 py-3 border border-border text-foreground hover:bg-surface transition-colors",
+					children: [/* @__PURE__ */ jsx(ArrowLeft, { className: "w-4 h-4" }), copy.backLabel]
+				})
+			]
+		})]
+	});
 }
-const NotFound$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: NotFound
-}, Symbol.toStringTag, { value: "Module" }));
+//#endregion
+//#region src/entry-server.tsx
 function LocalizedRoutes() {
-  return /* @__PURE__ */ jsx(distExports.Routes, { children: /* @__PURE__ */ jsxs(distExports.Route, { path: "/", element: /* @__PURE__ */ jsx(Layout, {}), children: [
-    /* @__PURE__ */ jsx(distExports.Route, { index: true, element: /* @__PURE__ */ jsx(Home, {}) }),
-    /* @__PURE__ */ jsx(distExports.Route, { path: "projects", element: /* @__PURE__ */ jsx(Projects, {}) }),
-    /* @__PURE__ */ jsx(distExports.Route, { path: "projects/:id", element: /* @__PURE__ */ jsx(ProjectDetails, {}) }),
-    /* @__PURE__ */ jsx(distExports.Route, { path: "completed-projects", element: /* @__PURE__ */ jsx(CompletedProjects, {}) }),
-    /* @__PURE__ */ jsx(distExports.Route, { path: "completed-projects/:id", element: /* @__PURE__ */ jsx(CompletedProjectDetails, {}) }),
-    /* @__PURE__ */ jsx(distExports.Route, { path: "services", element: /* @__PURE__ */ jsx(Services, {}) }),
-    /* @__PURE__ */ jsx(distExports.Route, { path: "services/secure-frontend", element: /* @__PURE__ */ jsx(SecureFrontend, {}) }),
-    /* @__PURE__ */ jsx(distExports.Route, { path: "services/hardened-backend", element: /* @__PURE__ */ jsx(HardenedBackend, {}) }),
-    /* @__PURE__ */ jsx(distExports.Route, { path: "services/data-protection", element: /* @__PURE__ */ jsx(DataProtection, {}) }),
-    /* @__PURE__ */ jsx(distExports.Route, { path: "services/high-performance", element: /* @__PURE__ */ jsx(HighPerformance, {}) }),
-    /* @__PURE__ */ jsx(distExports.Route, { path: "security", element: /* @__PURE__ */ jsx(Security, {}) }),
-    /* @__PURE__ */ jsx(distExports.Route, { path: "engineering", element: /* @__PURE__ */ jsx(Engineering, {}) }),
-    /* @__PURE__ */ jsx(distExports.Route, { path: "status", element: /* @__PURE__ */ jsx(Status, {}) }),
-    /* @__PURE__ */ jsx(distExports.Route, { path: "changelog", element: /* @__PURE__ */ jsx(Changelog, {}) }),
-    /* @__PURE__ */ jsx(distExports.Route, { path: "terms", element: /* @__PURE__ */ jsx(Terms, {}) }),
-    /* @__PURE__ */ jsx(distExports.Route, { path: "privacy", element: /* @__PURE__ */ jsx(Privacy, {}) }),
-    /* @__PURE__ */ jsx(distExports.Route, { path: "cookies", element: /* @__PURE__ */ jsx(Cookies, {}) }),
-    /* @__PURE__ */ jsx(distExports.Route, { path: "contact", element: /* @__PURE__ */ jsx(Contact, {}) }),
-    /* @__PURE__ */ jsx(distExports.Route, { path: "not-found", element: /* @__PURE__ */ jsx(NotFound, {}) }),
-    /* @__PURE__ */ jsx(distExports.Route, { path: "*", element: /* @__PURE__ */ jsx(NotFound, {}) })
-  ] }) });
+	return /* @__PURE__ */ jsx(import_dist.Routes, { children: /* @__PURE__ */ jsxs(import_dist.Route, {
+		path: "/",
+		element: /* @__PURE__ */ jsx(Layout, {}),
+		children: [
+			/* @__PURE__ */ jsx(import_dist.Route, {
+				index: true,
+				element: /* @__PURE__ */ jsx(Home, {})
+			}),
+			/* @__PURE__ */ jsx(import_dist.Route, {
+				path: "projects",
+				element: /* @__PURE__ */ jsx(Projects, {})
+			}),
+			/* @__PURE__ */ jsx(import_dist.Route, {
+				path: "projects/:id",
+				element: /* @__PURE__ */ jsx(ProjectDetails, {})
+			}),
+			/* @__PURE__ */ jsx(import_dist.Route, {
+				path: "completed-projects",
+				element: /* @__PURE__ */ jsx(CompletedProjects, {})
+			}),
+			/* @__PURE__ */ jsx(import_dist.Route, {
+				path: "completed-projects/:id",
+				element: /* @__PURE__ */ jsx(CompletedProjectDetails, {})
+			}),
+			/* @__PURE__ */ jsx(import_dist.Route, {
+				path: "services",
+				element: /* @__PURE__ */ jsx(Services, {})
+			}),
+			/* @__PURE__ */ jsx(import_dist.Route, {
+				path: "services/secure-frontend",
+				element: /* @__PURE__ */ jsx(SecureFrontend, {})
+			}),
+			/* @__PURE__ */ jsx(import_dist.Route, {
+				path: "services/hardened-backend",
+				element: /* @__PURE__ */ jsx(HardenedBackend, {})
+			}),
+			/* @__PURE__ */ jsx(import_dist.Route, {
+				path: "services/data-protection",
+				element: /* @__PURE__ */ jsx(DataProtection, {})
+			}),
+			/* @__PURE__ */ jsx(import_dist.Route, {
+				path: "services/high-performance",
+				element: /* @__PURE__ */ jsx(HighPerformance, {})
+			}),
+			/* @__PURE__ */ jsx(import_dist.Route, {
+				path: "security",
+				element: /* @__PURE__ */ jsx(Security, {})
+			}),
+			/* @__PURE__ */ jsx(import_dist.Route, {
+				path: "engineering",
+				element: /* @__PURE__ */ jsx(Engineering, {})
+			}),
+			/* @__PURE__ */ jsx(import_dist.Route, {
+				path: "status",
+				element: /* @__PURE__ */ jsx(Status, {})
+			}),
+			/* @__PURE__ */ jsx(import_dist.Route, {
+				path: "changelog",
+				element: /* @__PURE__ */ jsx(Changelog, {})
+			}),
+			/* @__PURE__ */ jsx(import_dist.Route, {
+				path: "terms",
+				element: /* @__PURE__ */ jsx(Terms, {})
+			}),
+			/* @__PURE__ */ jsx(import_dist.Route, {
+				path: "privacy",
+				element: /* @__PURE__ */ jsx(Privacy, {})
+			}),
+			/* @__PURE__ */ jsx(import_dist.Route, {
+				path: "cookies",
+				element: /* @__PURE__ */ jsx(Cookies, {})
+			}),
+			/* @__PURE__ */ jsx(import_dist.Route, {
+				path: "contact",
+				element: /* @__PURE__ */ jsx(Contact, {})
+			}),
+			/* @__PURE__ */ jsx(import_dist.Route, {
+				path: "not-found",
+				element: /* @__PURE__ */ jsx(NotFound, {})
+			}),
+			/* @__PURE__ */ jsx(import_dist.Route, {
+				path: "*",
+				element: /* @__PURE__ */ jsx(NotFound, {})
+			})
+		]
+	}) });
 }
 function renderRoute(url, language) {
-  const helmetContext = {};
-  const html = renderToString(
-    /* @__PURE__ */ jsx(HelmetProvider, { context: helmetContext, children: /* @__PURE__ */ jsx(ThemeProvider, { children: /* @__PURE__ */ jsx(distExports.StaticRouter, { location: url, children: /* @__PURE__ */ jsxs(distExports.Routes, { children: [
-      /* @__PURE__ */ jsx(
-        distExports.Route,
-        {
-          path: "/en/*",
-          element: /* @__PURE__ */ jsxs(LanguageProvider, { initialLanguage: "en", children: [
-            /* @__PURE__ */ jsx(CanonicalPathRedirect, {}),
-            /* @__PURE__ */ jsx(ScrollToTop, {}),
-            /* @__PURE__ */ jsx(LocalizedRoutes, {})
-          ] }, "en")
-        }
-      ),
-      /* @__PURE__ */ jsx(
-        distExports.Route,
-        {
-          path: "/de/*",
-          element: /* @__PURE__ */ jsxs(LanguageProvider, { initialLanguage: "de", children: [
-            /* @__PURE__ */ jsx(CanonicalPathRedirect, {}),
-            /* @__PURE__ */ jsx(ScrollToTop, {}),
-            /* @__PURE__ */ jsx(LocalizedRoutes, {})
-          ] }, "de")
-        }
-      ),
-      /* @__PURE__ */ jsx(
-        distExports.Route,
-        {
-          path: "/ja/*",
-          element: /* @__PURE__ */ jsxs(LanguageProvider, { initialLanguage: "ja", children: [
-            /* @__PURE__ */ jsx(CanonicalPathRedirect, {}),
-            /* @__PURE__ */ jsx(ScrollToTop, {}),
-            /* @__PURE__ */ jsx(LocalizedRoutes, {})
-          ] }, "ja")
-        }
-      ),
-      /* @__PURE__ */ jsx(
-        distExports.Route,
-        {
-          path: "/zh-cn/*",
-          element: /* @__PURE__ */ jsxs(LanguageProvider, { initialLanguage: "zh-CN", children: [
-            /* @__PURE__ */ jsx(CanonicalPathRedirect, {}),
-            /* @__PURE__ */ jsx(ScrollToTop, {}),
-            /* @__PURE__ */ jsx(LocalizedRoutes, {})
-          ] }, "zh-CN")
-        }
-      ),
-      /* @__PURE__ */ jsx(
-        distExports.Route,
-        {
-          path: "/es/*",
-          element: /* @__PURE__ */ jsxs(LanguageProvider, { initialLanguage: "es", children: [
-            /* @__PURE__ */ jsx(CanonicalPathRedirect, {}),
-            /* @__PURE__ */ jsx(ScrollToTop, {}),
-            /* @__PURE__ */ jsx(LocalizedRoutes, {})
-          ] }, "es")
-        }
-      ),
-      /* @__PURE__ */ jsx(
-        distExports.Route,
-        {
-          path: "/fr/*",
-          element: /* @__PURE__ */ jsxs(LanguageProvider, { initialLanguage: "fr", children: [
-            /* @__PURE__ */ jsx(CanonicalPathRedirect, {}),
-            /* @__PURE__ */ jsx(ScrollToTop, {}),
-            /* @__PURE__ */ jsx(LocalizedRoutes, {})
-          ] }, "fr")
-        }
-      ),
-      /* @__PURE__ */ jsx(
-        distExports.Route,
-        {
-          path: "/ko/*",
-          element: /* @__PURE__ */ jsxs(LanguageProvider, { initialLanguage: "ko", children: [
-            /* @__PURE__ */ jsx(CanonicalPathRedirect, {}),
-            /* @__PURE__ */ jsx(ScrollToTop, {}),
-            /* @__PURE__ */ jsx(LocalizedRoutes, {})
-          ] }, "ko")
-        }
-      ),
-      /* @__PURE__ */ jsx(
-        distExports.Route,
-        {
-          path: "/*",
-          element: /* @__PURE__ */ jsxs(LanguageProvider, { initialLanguage: language, children: [
-            /* @__PURE__ */ jsx(CanonicalPathRedirect, {}),
-            /* @__PURE__ */ jsx(ScrollToTop, {}),
-            /* @__PURE__ */ jsx(LocalizedRoutes, {})
-          ] }, "tr")
-        }
-      )
-    ] }) }) }) })
-  );
-  return {
-    html,
-    helmet: helmetContext.helmet ?? {}
-  };
+	const helmetContext = {};
+	return {
+		html: renderToString(/* @__PURE__ */ jsx(HelmetProvider, {
+			context: helmetContext,
+			children: /* @__PURE__ */ jsx(ThemeProvider, { children: /* @__PURE__ */ jsx(import_dist.StaticRouter, {
+				location: url,
+				children: /* @__PURE__ */ jsxs(import_dist.Routes, { children: [
+					/* @__PURE__ */ jsx(import_dist.Route, {
+						path: "/en/*",
+						element: /* @__PURE__ */ jsxs(LanguageProvider, {
+							initialLanguage: "en",
+							children: [
+								/* @__PURE__ */ jsx(CanonicalPathRedirect, {}),
+								/* @__PURE__ */ jsx(ScrollToTop, {}),
+								/* @__PURE__ */ jsx(LocalizedRoutes, {})
+							]
+						}, "en")
+					}),
+					/* @__PURE__ */ jsx(import_dist.Route, {
+						path: "/de/*",
+						element: /* @__PURE__ */ jsxs(LanguageProvider, {
+							initialLanguage: "de",
+							children: [
+								/* @__PURE__ */ jsx(CanonicalPathRedirect, {}),
+								/* @__PURE__ */ jsx(ScrollToTop, {}),
+								/* @__PURE__ */ jsx(LocalizedRoutes, {})
+							]
+						}, "de")
+					}),
+					/* @__PURE__ */ jsx(import_dist.Route, {
+						path: "/ja/*",
+						element: /* @__PURE__ */ jsxs(LanguageProvider, {
+							initialLanguage: "ja",
+							children: [
+								/* @__PURE__ */ jsx(CanonicalPathRedirect, {}),
+								/* @__PURE__ */ jsx(ScrollToTop, {}),
+								/* @__PURE__ */ jsx(LocalizedRoutes, {})
+							]
+						}, "ja")
+					}),
+					/* @__PURE__ */ jsx(import_dist.Route, {
+						path: "/zh-cn/*",
+						element: /* @__PURE__ */ jsxs(LanguageProvider, {
+							initialLanguage: "zh-CN",
+							children: [
+								/* @__PURE__ */ jsx(CanonicalPathRedirect, {}),
+								/* @__PURE__ */ jsx(ScrollToTop, {}),
+								/* @__PURE__ */ jsx(LocalizedRoutes, {})
+							]
+						}, "zh-CN")
+					}),
+					/* @__PURE__ */ jsx(import_dist.Route, {
+						path: "/es/*",
+						element: /* @__PURE__ */ jsxs(LanguageProvider, {
+							initialLanguage: "es",
+							children: [
+								/* @__PURE__ */ jsx(CanonicalPathRedirect, {}),
+								/* @__PURE__ */ jsx(ScrollToTop, {}),
+								/* @__PURE__ */ jsx(LocalizedRoutes, {})
+							]
+						}, "es")
+					}),
+					/* @__PURE__ */ jsx(import_dist.Route, {
+						path: "/fr/*",
+						element: /* @__PURE__ */ jsxs(LanguageProvider, {
+							initialLanguage: "fr",
+							children: [
+								/* @__PURE__ */ jsx(CanonicalPathRedirect, {}),
+								/* @__PURE__ */ jsx(ScrollToTop, {}),
+								/* @__PURE__ */ jsx(LocalizedRoutes, {})
+							]
+						}, "fr")
+					}),
+					/* @__PURE__ */ jsx(import_dist.Route, {
+						path: "/ko/*",
+						element: /* @__PURE__ */ jsxs(LanguageProvider, {
+							initialLanguage: "ko",
+							children: [
+								/* @__PURE__ */ jsx(CanonicalPathRedirect, {}),
+								/* @__PURE__ */ jsx(ScrollToTop, {}),
+								/* @__PURE__ */ jsx(LocalizedRoutes, {})
+							]
+						}, "ko")
+					}),
+					/* @__PURE__ */ jsx(import_dist.Route, {
+						path: "/*",
+						element: /* @__PURE__ */ jsxs(LanguageProvider, {
+							initialLanguage: language,
+							children: [
+								/* @__PURE__ */ jsx(CanonicalPathRedirect, {}),
+								/* @__PURE__ */ jsx(ScrollToTop, {}),
+								/* @__PURE__ */ jsx(LocalizedRoutes, {})
+							]
+						}, "tr")
+					})
+				] })
+			}) })
+		})),
+		helmet: helmetContext.helmet ?? {}
+	};
 }
-export {
-  renderRoute
-};
+//#endregion
+export { ArrowLeft as i, ExternalLink as n, ArrowRight as r, renderRoute, Lock as t };

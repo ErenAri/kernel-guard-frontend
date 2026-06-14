@@ -4,6 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { localizePath } from '../i18n/route';
 import { prefetchRoute, prefetchRoutes } from '../routes/pageLoaders';
 import { enterprisePages, type EnterprisePageKey } from '../data/enterprisePages';
+import { SITE_EMAILS, mailto } from '../config/site';
 import Logo from './Logo';
 
 export default function Footer() {
@@ -69,11 +70,11 @@ export default function Footer() {
             <ul className="space-y-4">
               <li>
                 <a
-                  href="mailto:iletisim@kernelguard.net"
+                  href={mailto(SITE_EMAILS.contact)}
                   className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2"
                 >
                   <Mail className="w-4 h-4" />
-                  iletisim@kernelguard.net
+                  {SITE_EMAILS.contact}
                 </a>
               </li>
               <li>
