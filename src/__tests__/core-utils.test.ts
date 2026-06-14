@@ -3,6 +3,9 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { localizedText } from '../i18n/text';
 import { normalizeCanonicalPath } from '../config/site';
+import { articleSlugs } from '../data/articles';
+import { growthServiceSlugs } from '../data/growthServices';
+import { prerenderRoutes, sitemapRoutes } from '../data/seoRoutes';
 
 describe('localizedText', () => {
   it('returns the requested language when present', () => {
@@ -44,5 +47,27 @@ describe('public trust files', () => {
     const headers = readFileSync(resolve('public/_headers'), 'utf8');
 
     expect(headers).not.toMatch(/Access-Control-Allow-Origin:\s*\*/i);
+  });
+});
+
+describe('growth SEO routes', () => {
+  it('keeps article and service slugs unique', () => {
+    expect(new Set(articleSlugs).size).toBe(articleSlugs.length);
+    expect(new Set(growthServiceSlugs).size).toBe(growthServiceSlugs.length);
+  });
+
+  it('indexes English-first growth pages without default-language duplicates', () => {
+    expect(sitemapRoutes).toContain('/en/articles');
+    expect(prerenderRoutes).not.toContain('/articles');
+
+    for (const slug of articleSlugs) {
+      expect(sitemapRoutes).toContain(`/en/articles/${slug}`);
+      expect(prerenderRoutes).not.toContain(`/articles/${slug}`);
+    }
+
+    for (const slug of growthServiceSlugs) {
+      expect(sitemapRoutes).toContain(`/en/services/${slug}`);
+      expect(prerenderRoutes).not.toContain(`/services/${slug}`);
+    }
   });
 });

@@ -1,6 +1,8 @@
 import type { Language } from '../context/LanguageContext';
 import { DEFAULT_SITE_URL, normalizeCanonicalPath, normalizeSiteUrl } from '../config/site';
 import { localizePath, stripLanguagePrefix } from '../i18n/route';
+import { getArticle } from '../data/articles';
+import { getGrowthServicePage } from '../data/growthServices';
 
 const SITE_URL = normalizeSiteUrl(DEFAULT_SITE_URL);
 const ORGANIZATION_ID = `${SITE_URL}/#organization`;
@@ -24,12 +26,14 @@ interface BreadcrumbLabels {
   engineering: string;
   status: string;
   changelog: string;
+  articles: string;
   notFound: string;
   serviceDetails: {
     'secure-frontend': string;
     'hardened-backend': string;
     'data-protection': string;
     'high-performance': string;
+    [slug: string]: string;
   };
 }
 
@@ -46,6 +50,7 @@ const englishLabels: BreadcrumbLabels = {
   engineering: 'Engineering',
   status: 'Status',
   changelog: 'Changelog',
+  articles: 'Articles',
   notFound: 'Not Found',
   serviceDetails: {
     'secure-frontend': 'Secure Frontend',
@@ -69,6 +74,7 @@ const LABELS: Record<Language, BreadcrumbLabels> = {
     engineering: 'Muhendislik',
     status: 'Durum',
     changelog: 'Degisiklikler',
+    articles: 'Makaleler',
     notFound: 'Sayfa Bulunamadi',
     serviceDetails: {
       'secure-frontend': 'Guvenli Frontend',
@@ -91,6 +97,7 @@ const LABELS: Record<Language, BreadcrumbLabels> = {
     engineering: 'Engineering',
     status: 'Status',
     changelog: 'Changelog',
+    articles: 'Artikel',
     notFound: 'Nicht gefunden',
     serviceDetails: {
       'secure-frontend': 'Sicheres Frontend',
@@ -125,8 +132,8 @@ function buildBreadcrumbItems(pathname: string, language: Language): BreadcrumbI
 
   const serviceMatch = logical.match(/^\/services\/([^/]+)$/);
   if (serviceMatch) {
-    const slug = serviceMatch[1] as keyof BreadcrumbLabels['serviceDetails'];
-    const detailLabel = labels.serviceDetails[slug];
+    const slug = serviceMatch[1];
+    const detailLabel = labels.serviceDetails[slug] ?? getGrowthServicePage(slug)?.shortTitle;
     if (!detailLabel) return null;
     return [
       home,
@@ -145,6 +152,21 @@ function buildBreadcrumbItems(pathname: string, language: Language): BreadcrumbI
       home,
       { name: labels.projects, path: '/projects/' },
       { name: projectMatch[1], path: `/projects/${projectMatch[1]}/` },
+    ];
+  }
+
+  if (logical === '/articles') {
+    return [home, { name: labels.articles, path: '/articles/' }];
+  }
+
+  const articleMatch = logical.match(/^\/articles\/([^/]+)$/);
+  if (articleMatch) {
+    const article = getArticle(articleMatch[1]);
+    if (!article) return null;
+    return [
+      home,
+      { name: labels.articles, path: '/articles/' },
+      { name: article.title, path: `/articles/${article.slug}/` },
     ];
   }
 
@@ -218,6 +240,40 @@ export function buildServiceSchema({
     provider: { '@id': ORGANIZATION_ID },
     areaServed: 'Worldwide',
     inLanguage: language,
+  };
+}
+
+interface ArticleInput {
+  title: string;
+  description: string;
+  path: string;
+  language: Language;
+  publishedAt: string;
+  updatedAt: string;
+  keywords?: string[];
+}
+
+export function buildArticleSchema({
+  title,
+  description,
+  path,
+  language,
+  publishedAt,
+  updatedAt,
+  keywords,
+}: ArticleInput): JsonLdNode {
+  return {
+    '@type': 'Article',
+    headline: title,
+    description,
+    url: absoluteUrl(path, language),
+    mainEntityOfPage: absoluteUrl(path, language),
+    datePublished: publishedAt,
+    dateModified: updatedAt,
+    author: { '@id': ORGANIZATION_ID },
+    publisher: { '@id': ORGANIZATION_ID },
+    inLanguage: language,
+    ...(keywords && keywords.length > 0 ? { keywords: keywords.join(', ') } : {}),
   };
 }
 

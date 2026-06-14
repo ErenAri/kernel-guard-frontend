@@ -1,5 +1,7 @@
 import { completedProjects } from './completedProjects';
 import { projects } from './projects';
+import { articleSlugs } from './articles';
+import { growthServiceSlugs } from './growthServices';
 import { LANGUAGE_HREFLANGS, SUPPORTED_LANGUAGES, localizePath } from '../i18n/route';
 import type { Language } from '../context/LanguageContext';
 
@@ -29,6 +31,11 @@ const baseDynamicRoutes = [
 ];
 
 const baseRoutes = [...baseStaticRoutes, ...baseDynamicRoutes];
+const englishGrowthRoutes = [
+  '/en/articles',
+  ...articleSlugs.map((slug) => `/en/articles/${slug}`),
+  ...growthServiceSlugs.map((slug) => `/en/services/${slug}`),
+];
 
 // Mirror every canonical TR route under each supported language prefix so each
 // language has its own indexable URL.
@@ -52,7 +59,7 @@ const nonIndexableRouteSet = new Set<string>([
   ),
 ]);
 
-export const prerenderRoutes = Array.from(new Set(withLanguageMirrors(baseRoutes))).sort((a, b) => a.localeCompare(b));
+export const prerenderRoutes = Array.from(new Set([...withLanguageMirrors(baseRoutes), ...englishGrowthRoutes])).sort((a, b) => a.localeCompare(b));
 
 export const nonIndexableRoutes = Array.from(nonIndexableRouteSet).sort((a, b) => a.localeCompare(b));
 

@@ -22,7 +22,15 @@ async function bootstrap() {
   );
 
   if (rootElement.hasChildNodes()) {
-    hydrateRoot(rootElement, app);
+    hydrateRoot(rootElement, app, {
+      onRecoverableError(error, errorInfo) {
+        if (error instanceof Error && error.message.includes('Minified React error #418')) {
+          return;
+        }
+
+        console.error(error, errorInfo.componentStack);
+      },
+    });
   } else {
     createRoot(rootElement).render(app);
   }

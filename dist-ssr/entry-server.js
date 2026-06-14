@@ -1,8 +1,12 @@
 import { n as __exportAll, t as require_dist } from "./assets/dist-BkMweq9c.js";
-import { i as HelmetProvider, n as buildServiceSchema, r as buildSoftwareSourceCodeSchema, t as SEO } from "./assets/SEO-Cw9lY6xc.js";
+import { a as getGrowthServicePage, c as getArticle, i as buildSoftwareSourceCodeSchema, l as HelmetProvider, n as buildArticleSchema, o as growthServicePages, r as buildServiceSchema, s as articles, t as SEO } from "./assets/SEO-DqfPHW4s.js";
 import { a as normalizeCanonicalPath, c as useLanguage, i as mailto, n as SITE_EMAILS, s as LanguageProvider } from "./assets/site-BXg7CYE6.js";
 import { t as createLucideIcon } from "./assets/createLucideIcon-d-ZGlwaX.js";
+import { t as ArrowLeft } from "./assets/arrow-left-Cv3pMF22.js";
+import { t as CircleCheck } from "./assets/circle-check--45ff-zp.js";
 import { a as setStoredLanguagePreference, i as localizePath, n as LANGUAGE_LABELS, r as SUPPORTED_LANGUAGES } from "./assets/route-DZfXJ_2f.js";
+import { t as enterprisePages } from "./assets/enterprisePages-D9l2nrX2.js";
+import { t as NotFound } from "./assets/NotFound-C2HG3MZF.js";
 import { renderToString } from "react-dom/server";
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
@@ -79,19 +83,6 @@ function ScrollToTop() {
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
-var ArrowLeft = createLucideIcon("arrow-left", [["path", {
-	d: "m12 19-7-7 7-7",
-	key: "1l729n"
-}], ["path", {
-	d: "M19 12H5",
-	key: "x3x0zl"
-}]]);
-/**
-* @license lucide-react v0.546.0 - ISC
-*
-* This source code is licensed under the ISC license.
-* See the LICENSE file in the root directory of this source tree.
-*/
 var ArrowRight = createLucideIcon("arrow-right", [["path", {
 	d: "M5 12h14",
 	key: "1ays0h"
@@ -153,6 +144,58 @@ var BriefcaseBusiness = createLucideIcon("briefcase-business", [
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
+var CalendarDays = createLucideIcon("calendar-days", [
+	["path", {
+		d: "M8 2v4",
+		key: "1cmpym"
+	}],
+	["path", {
+		d: "M16 2v4",
+		key: "4m81vk"
+	}],
+	["rect", {
+		width: "18",
+		height: "18",
+		x: "3",
+		y: "4",
+		rx: "2",
+		key: "1hopcy"
+	}],
+	["path", {
+		d: "M3 10h18",
+		key: "8toen8"
+	}],
+	["path", {
+		d: "M8 14h.01",
+		key: "6423bh"
+	}],
+	["path", {
+		d: "M12 14h.01",
+		key: "1etili"
+	}],
+	["path", {
+		d: "M16 14h.01",
+		key: "1gbofw"
+	}],
+	["path", {
+		d: "M8 18h.01",
+		key: "lrp35t"
+	}],
+	["path", {
+		d: "M12 18h.01",
+		key: "mhygvu"
+	}],
+	["path", {
+		d: "M16 18h.01",
+		key: "kzsmim"
+	}]
+]);
+/**
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
 var Check = createLucideIcon("check", [["path", {
 	d: "M20 6 9 17l-5-5",
 	key: "1gmf2c"
@@ -173,14 +216,14 @@ var ChevronDown = createLucideIcon("chevron-down", [["path", {
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
-var CircleCheck = createLucideIcon("circle-check", [["circle", {
+var Clock = createLucideIcon("clock", [["path", {
+	d: "M12 6v6l4 2",
+	key: "mmk7yg"
+}], ["circle", {
 	cx: "12",
 	cy: "12",
 	r: "10",
 	key: "1mglay"
-}], ["path", {
-	d: "m9 12 2 2 4-4",
-	key: "dzmm74"
 }]]);
 /**
 * @license lucide-react v0.546.0 - ISC
@@ -699,6 +742,29 @@ var Sun = createLucideIcon("sun", [
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
+var Tags = createLucideIcon("tags", [
+	["path", {
+		d: "M13.172 2a2 2 0 0 1 1.414.586l6.71 6.71a2.4 2.4 0 0 1 0 3.408l-4.592 4.592a2.4 2.4 0 0 1-3.408 0l-6.71-6.71A2 2 0 0 1 6 9.172V3a1 1 0 0 1 1-1z",
+		key: "16rjxf"
+	}],
+	["path", {
+		d: "M2 7v6.172a2 2 0 0 0 .586 1.414l6.71 6.71a2.4 2.4 0 0 0 3.191.193",
+		key: "178nd4"
+	}],
+	["circle", {
+		cx: "10.5",
+		cy: "6.5",
+		r: ".5",
+		fill: "currentColor",
+		key: "12ikhr"
+	}]
+]);
+/**
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
 var Target = createLucideIcon("target", [
 	["circle", {
 		cx: "12",
@@ -775,10 +841,17 @@ var Zap = createLucideIcon("zap", [["path", {
 var CONSTRAINED_CONNECTION_TYPES = new Set(["slow-2g", "2g"]);
 function cacheLoader(loader) {
 	let pending = null;
-	return () => {
-		if (!pending) pending = loader();
+	let resolved = null;
+	const cachedLoader = () => {
+		if (resolved) return Promise.resolve(resolved);
+		if (!pending) pending = loader().then((module) => {
+			resolved = module;
+			return module;
+		});
 		return pending;
 	};
+	cachedLoader.getResolved = () => resolved;
+	return cachedLoader;
 }
 function canPrefetchRoute() {
 	if (typeof navigator === "undefined") return false;
@@ -787,6 +860,7 @@ function canPrefetchRoute() {
 	if (connection.saveData) return false;
 	return !CONSTRAINED_CONNECTION_TYPES.has(connection.effectiveType ?? "");
 }
+cacheLoader(() => Promise.resolve().then(() => Layout_exports));
 var loadHome = cacheLoader(() => Promise.resolve().then(() => Home_exports));
 var loadProjects = cacheLoader(() => Promise.resolve().then(() => Projects_exports));
 var loadProjectDetails = cacheLoader(() => Promise.resolve().then(() => ProjectDetails_exports));
@@ -796,26 +870,45 @@ var loadSecureFrontend = cacheLoader(() => Promise.resolve().then(() => SecureFr
 var loadHardenedBackend = cacheLoader(() => Promise.resolve().then(() => HardenedBackend_exports));
 var loadDataProtection = cacheLoader(() => Promise.resolve().then(() => DataProtection_exports));
 var loadHighPerformance = cacheLoader(() => Promise.resolve().then(() => HighPerformance_exports));
+var loadServices = cacheLoader(() => Promise.resolve().then(() => Services_exports));
+var loadServiceLandingPage = cacheLoader(() => Promise.resolve().then(() => ServiceLandingPage_exports));
+var loadArticles = cacheLoader(() => Promise.resolve().then(() => Articles_exports));
+var loadArticlePage = cacheLoader(() => Promise.resolve().then(() => ArticlePage_exports));
+var loadSecurity = cacheLoader(() => Promise.resolve().then(() => Security_exports));
+var loadEngineering = cacheLoader(() => Promise.resolve().then(() => Engineering_exports));
+var loadStatus = cacheLoader(() => Promise.resolve().then(() => Status_exports));
+var loadChangelog = cacheLoader(() => Promise.resolve().then(() => Changelog_exports));
+var loadTerms = cacheLoader(() => Promise.resolve().then(() => Terms_exports));
+var loadPrivacy = cacheLoader(() => Promise.resolve().then(() => Privacy_exports));
+var loadCookies = cacheLoader(() => Promise.resolve().then(() => Cookies_exports));
+var loadContact = cacheLoader(() => Promise.resolve().then(() => Contact_exports));
+var loadNotFound = cacheLoader(() => import("./assets/NotFound-C2HG3MZF.js").then((n) => n.n));
+cacheLoader(() => import("./assets/AdminLayout-C4BYalw-.js"));
+cacheLoader(() => import("./assets/AdminDashboard-BuvufPq5.js"));
+cacheLoader(() => import("./assets/ProjectEditor-8KqCFibY.js"));
 var prefetchers = {
 	home: loadHome,
 	projects: loadProjects,
 	projectDetails: loadProjectDetails,
 	completedProjects: loadCompletedProjects,
 	completedProjectDetails: loadCompletedProjectDetails,
-	services: cacheLoader(() => Promise.resolve().then(() => Services_exports)),
-	security: cacheLoader(() => Promise.resolve().then(() => Security_exports)),
-	engineering: cacheLoader(() => Promise.resolve().then(() => Engineering_exports)),
-	status: cacheLoader(() => Promise.resolve().then(() => Status_exports)),
-	changelog: cacheLoader(() => Promise.resolve().then(() => Changelog_exports)),
+	services: loadServices,
+	serviceLandingPage: loadServiceLandingPage,
+	articles: loadArticles,
+	articlePage: loadArticlePage,
+	security: loadSecurity,
+	engineering: loadEngineering,
+	status: loadStatus,
+	changelog: loadChangelog,
 	secureFrontend: loadSecureFrontend,
 	hardenedBackend: loadHardenedBackend,
 	dataProtection: loadDataProtection,
 	highPerformance: loadHighPerformance,
-	terms: cacheLoader(() => Promise.resolve().then(() => Terms_exports)),
-	privacy: cacheLoader(() => Promise.resolve().then(() => Privacy_exports)),
-	cookies: cacheLoader(() => Promise.resolve().then(() => Cookies_exports)),
-	contact: cacheLoader(() => Promise.resolve().then(() => Contact_exports)),
-	notFound: cacheLoader(() => Promise.resolve().then(() => NotFound_exports))
+	terms: loadTerms,
+	privacy: loadPrivacy,
+	cookies: loadCookies,
+	contact: loadContact,
+	notFound: loadNotFound
 };
 function prefetchRoute(route) {
 	if (!canPrefetchRoute()) return;
@@ -1097,347 +1190,6 @@ function Navbar() {
 	});
 }
 //#endregion
-//#region src/data/enterprisePages.ts
-var english = {
-	links: {
-		security: "Security",
-		engineering: "Engineering",
-		status: "Status",
-		changelog: "Changelog"
-	},
-	pages: {
-		security: {
-			seoTitle: "Security Program | Kernel Guard",
-			seoDescription: "Kernel Guard security posture, platform controls, vulnerability disclosure policy, dependency scanning, and reporting channels.",
-			badge: "SECURITY // CONTROLS",
-			title: "Security Program",
-			description: "A public summary of the controls and reporting process we use to keep the website, admin workflow, and open-source delivery pipeline defensible.",
-			facts: [
-				{
-					label: "Dependency audit",
-					value: "0",
-					detail: "Known npm vulnerabilities after production audit."
-				},
-				{
-					label: "Admin backend",
-					value: "Cloudflare",
-					detail: "Pages Function with origin-aware CORS and optional Turnstile."
-				},
-				{
-					label: "Disclosure",
-					value: "security.txt",
-					detail: "Security contact published under /.well-known/security.txt."
-				}
-			],
-			sections: [
-				{
-					title: "Application controls",
-					body: "The public site is statically prerendered and served through Cloudflare Pages. The admin API is isolated as a server-side Pages Function.",
-					items: [
-						"Content Security Policy, HSTS, and frame protection",
-						"Origin-aware admin API route",
-						"No client-side GitHub token exposure"
-					]
-				},
-				{
-					title: "Admin hardening",
-					body: "Administrative writes are authenticated server-side before GitHub content updates are allowed.",
-					items: [
-						"Constant-time credential comparison",
-						"Optional Turnstile verification",
-						"Short-lived session token support"
-					]
-				},
-				{
-					title: "Vulnerability disclosure",
-					body: "Security reports should be sent directly to the maintainers with reproduction steps, affected URLs, impact, and any safe proof of concept.",
-					items: [
-						`Email: ${SITE_EMAILS.security}`,
-						"Acknowledgement target: 2 business days",
-						"No public exploit disclosure before triage"
-					]
-				},
-				{
-					title: "Research rules",
-					body: "Good-faith research is welcome when it avoids harm to users, data, infrastructure, and service availability.",
-					items: [
-						"Do not access, modify, or exfiltrate data that is not yours",
-						"Do not use phishing, social engineering, spam, or denial-of-service testing",
-						"Use GitHub issues only for non-sensitive bugs"
-					]
-				},
-				{
-					title: "Out of scope",
-					body: "Reports need a realistic security impact. Low-risk findings without exploitability may be closed without remediation.",
-					items: [
-						"Missing best-practice headers without a working exploit",
-						"Scanner-only findings with no reproducible impact",
-						"Issues in third-party services outside Kernel Guard control"
-					]
-				}
-			]
-		},
-		engineering: {
-			seoTitle: "Engineering Standards | Kernel Guard",
-			seoDescription: "Kernel Guard engineering standards for accessibility, performance, localization, CI, and measured evidence.",
-			badge: "ENGINEERING // STANDARDS",
-			title: "Engineering Standards",
-			description: "The operating model behind the public website: measurable quality, accessible interfaces, localized content, and repeatable delivery.",
-			facts: [
-				{
-					label: "Languages",
-					value: "8",
-					detail: "Localized UI paths with hreflang alternates."
-				},
-				{
-					label: "Prerender",
-					value: "Static",
-					detail: "SEO-critical routes generated at build time."
-				},
-				{
-					label: "Quality gates",
-					value: "CI",
-					detail: "Typecheck, audit, build, and Lighthouse checks."
-				}
-			],
-			sections: [
-				{
-					title: "Design discipline",
-					body: "The interface favors restrained enterprise patterns: clear hierarchy, low decoration, measurable proof, and predictable navigation.",
-					items: [
-						"WCAG-oriented color and control states",
-						"Stable route structure",
-						"Evidence cards tied to actual repository and build data"
-					]
-				},
-				{
-					title: "Delivery discipline",
-					body: "Each release should be reproducible through the same commands used in CI.",
-					items: [
-						"npm audit gate",
-						"TypeScript no-emit check",
-						"Cloudflare Pages Functions build validation"
-					]
-				},
-				{
-					title: "Internationalization",
-					body: "Localized URLs are first-class pages, not query parameters.",
-					items: [
-						"Self-canonical localized pages",
-						"hreflang alternates",
-						"Localized project descriptions"
-					]
-				}
-			]
-		},
-		status: {
-			seoTitle: "Service Status | Kernel Guard",
-			seoDescription: "Current service posture for Kernel Guard website, contact form, admin API, and static delivery.",
-			badge: "STATUS // LIVE",
-			title: "Service Status",
-			description: "A compact operational view of the public web surface and supporting endpoints.",
-			facts: [
-				{
-					label: "Website",
-					value: "Online",
-					detail: "Cloudflare Pages static delivery."
-				},
-				{
-					label: "Admin API",
-					value: "Protected",
-					detail: "Server-side GitHub bridge."
-				},
-				{
-					label: "Contact",
-					value: "Active",
-					detail: "Web3Forms-backed contact flow."
-				}
-			],
-			sections: [
-				{
-					title: "Public website",
-					body: "Static pages are prerendered and served through Cloudflare for predictable availability and low operational surface.",
-					items: [
-						"Home and language routes",
-						"Project and service pages",
-						"Sitemap and robots.txt"
-					]
-				},
-				{
-					title: "Administrative surface",
-					body: "The admin panel is intentionally separate from public content delivery and uses a server-side write bridge.",
-					items: [
-						"No public write token",
-						"Credential-gated content updates",
-						"Optional Turnstile challenge"
-					]
-				},
-				{
-					title: "Monitoring practice",
-					body: "Status is validated through direct HTTP checks, Lighthouse runs, and build-time prerender reports.",
-					items: [
-						"200 checks on live domain",
-						"Lighthouse accessibility and performance checks",
-						"npm audit verification"
-					]
-				}
-			]
-		},
-		changelog: {
-			seoTitle: "Changelog | Kernel Guard",
-			seoDescription: "Public changelog for Kernel Guard website security, localization, performance, and delivery changes.",
-			badge: "CHANGELOG // RELEASES",
-			title: "Changelog",
-			description: "A transparent record of meaningful website changes that affect trust, performance, localization, or operations.",
-			facts: [
-				{
-					label: "Latest",
-					value: "2026-06-01",
-					detail: "Enterprise hardening and language expansion."
-				},
-				{
-					label: "Deploy",
-					value: "Cloudflare",
-					detail: "CLI-backed Pages deployments."
-				},
-				{
-					label: "Audit",
-					value: "0",
-					detail: "Known npm vulnerabilities at release time."
-				}
-			],
-			sections: [
-				{
-					title: "2026-06-01",
-					body: "Enterprise readiness package for the public website.",
-					items: [
-						"Security headers and admin hardening",
-						"French, Spanish, and Korean language support",
-						"Security, engineering, status, and changelog pages"
-					]
-				},
-				{
-					title: "2026-05-31",
-					body: "Measured proof and Cloudflare migration package.",
-					items: [
-						"Cloudflare Pages Function for admin API",
-						"Public GitHub evidence cards",
-						"Accessibility and contrast fixes"
-					]
-				},
-				{
-					title: "Quality policy",
-					body: "Only meaningful technical and trust-impacting changes are listed here.",
-					items: [
-						"Security posture",
-						"Performance metrics",
-						"Localization coverage"
-					]
-				}
-			]
-		}
-	}
-};
-var enterprisePages = {
-	en: english,
-	tr: {
-		links: {
-			security: "Güvenlik",
-			engineering: "Mühendislik",
-			status: "Durum",
-			changelog: "Değişiklikler"
-		},
-		pages: {
-			security: {
-				...english.pages.security,
-				seoTitle: "Güvenlik Programı | Kernel Guard",
-				seoDescription: "Kernel Guard güvenlik kontrolleri, admin koruması, bağımlılık taraması ve bildirim kanalları.",
-				badge: "GÜVENLİK // KONTROLLER",
-				title: "Güvenlik Programı",
-				description: "Web sitesi, admin akışı ve açık kaynak teslimat hattını savunulabilir tutmak için kullandığımız kontrollerin özeti."
-			},
-			engineering: {
-				...english.pages.engineering,
-				seoTitle: "Mühendislik Standartları | Kernel Guard",
-				seoDescription: "Erişilebilirlik, performans, lokalizasyon, CI ve ölçülebilir kanıt standartları.",
-				badge: "MÜHENDİSLİK // STANDARTLAR",
-				title: "Mühendislik Standartları",
-				description: "Ölçülebilir kalite, erişilebilir arayüzler, lokalize içerik ve tekrar edilebilir teslimat modeli."
-			},
-			status: {
-				...english.pages.status,
-				seoTitle: "Servis Durumu | Kernel Guard",
-				seoDescription: "Kernel Guard web sitesi, iletişim formu, admin API ve statik teslimat durumu.",
-				badge: "DURUM // CANLI",
-				title: "Servis Durumu",
-				description: "Public web yüzeyi ve destekleyen endpointler için kısa operasyonel görünüm."
-			},
-			changelog: {
-				...english.pages.changelog,
-				seoTitle: "Değişiklik Günlüğü | Kernel Guard",
-				seoDescription: "Kernel Guard web sitesi güvenlik, lokalizasyon, performans ve teslimat değişiklikleri.",
-				badge: "CHANGELOG // SÜRÜMLER",
-				title: "Değişiklik Günlüğü",
-				description: "Güven, performans, lokalizasyon veya operasyonu etkileyen anlamlı değişikliklerin kaydı."
-			}
-		}
-	},
-	de: {
-		links: {
-			security: "Sicherheit",
-			engineering: "Engineering",
-			status: "Status",
-			changelog: "Changelog"
-		},
-		pages: english.pages
-	},
-	ja: {
-		links: {
-			security: "セキュリティ",
-			engineering: "エンジニアリング",
-			status: "ステータス",
-			changelog: "変更履歴"
-		},
-		pages: english.pages
-	},
-	"zh-CN": {
-		links: {
-			security: "安全",
-			engineering: "工程",
-			status: "状态",
-			changelog: "更新日志"
-		},
-		pages: english.pages
-	},
-	es: {
-		links: {
-			security: "Seguridad",
-			engineering: "Ingeniería",
-			status: "Estado",
-			changelog: "Cambios"
-		},
-		pages: english.pages
-	},
-	fr: {
-		links: {
-			security: "Sécurité",
-			engineering: "Ingénierie",
-			status: "Statut",
-			changelog: "Changelog"
-		},
-		pages: english.pages
-	},
-	ko: {
-		links: {
-			security: "보안",
-			engineering: "엔지니어링",
-			status: "상태",
-			changelog: "변경 내역"
-		},
-		pages: english.pages
-	}
-};
-//#endregion
 //#region src/components/Footer.tsx
 function Footer() {
 	const { language, t } = useLanguage();
@@ -1486,6 +1238,13 @@ function Footer() {
 								onFocus: () => prefetchRoutes(["completedProjects", "completedProjectDetails"]),
 								className: "text-gray-400 hover:text-white transition-colors text-sm",
 								children: t.nav.completedProjects
+							}) }),
+							/* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(import_dist.Link, {
+								to: "/en/articles/",
+								onPointerEnter: () => prefetchRoute("articles"),
+								onFocus: () => prefetchRoute("articles"),
+								className: "text-gray-400 hover:text-white transition-colors text-sm",
+								children: "Articles"
 							}) }),
 							/* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(import_dist.Link, {
 								to: localizePath("/contact/", language),
@@ -1579,6 +1338,9 @@ function Footer() {
 		})
 	});
 }
+//#endregion
+//#region src/components/Layout.tsx
+var Layout_exports = /* @__PURE__ */ __exportAll({ default: () => Layout });
 function Layout() {
 	return /* @__PURE__ */ jsxs("div", {
 		className: "min-h-screen flex flex-col",
@@ -1734,10 +1496,10 @@ function SecurityTerminal() {
 //#endregion
 //#region src/data/engineeringEvidence.ts
 var engineeringEvidence = {
-	measuredAt: "2026-06-01",
+	measuredAt: "2026-06-14",
 	delivery: {
-		prerenderedRoutes: 192,
-		indexableUrls: 160,
+		prerenderedRoutes: 211,
+		indexableUrls: 179,
 		supportedLanguages: 8
 	},
 	lighthouse: {
@@ -1832,6 +1594,8 @@ function Home() {
 			detail: t.home.proof.cards.languages.detail
 		}
 	];
+	const featuredArticles = articles.slice(0, 3);
+	const featuredGrowthServices = growthServicePages.slice(0, 3);
 	return /* @__PURE__ */ jsxs("div", {
 		className: "flex flex-col bg-background",
 		children: [
@@ -2021,6 +1785,86 @@ function Home() {
 					})
 				})
 			}),
+			language === "en" ? /* @__PURE__ */ jsx("section", {
+				className: "py-24 border-t border-border bg-surface",
+				children: /* @__PURE__ */ jsxs("div", {
+					className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+					children: [
+						/* @__PURE__ */ jsxs("div", {
+							className: "grid grid-cols-1 lg:grid-cols-12 gap-12 mb-12",
+							children: [/* @__PURE__ */ jsxs("div", {
+								className: "lg:col-span-5",
+								children: [
+									/* @__PURE__ */ jsx("div", {
+										className: "inline-block px-3 py-1 mb-6 border border-border text-xs font-mono tracking-widest text-foreground/70 uppercase",
+										children: "Growth Content"
+									}),
+									/* @__PURE__ */ jsx("h2", {
+										className: "text-3xl md:text-4xl font-light mb-6",
+										children: "Practical security content tied to real services."
+									}),
+									/* @__PURE__ */ jsx("p", {
+										className: "text-lg text-foreground/70 font-light leading-relaxed",
+										children: "Articles answer search questions. Service pages turn that attention into clear next steps for teams that need implementation help."
+									})
+								]
+							}), /* @__PURE__ */ jsx("div", {
+								className: "lg:col-span-7 grid grid-cols-1 md:grid-cols-3 gap-4",
+								children: featuredGrowthServices.map((service) => /* @__PURE__ */ jsxs(import_dist.Link, {
+									to: `/en/services/${service.slug}/`,
+									onPointerEnter: () => prefetchRoute("serviceLandingPage"),
+									onFocus: () => prefetchRoute("serviceLandingPage"),
+									className: "group border border-border bg-background p-5 hover:border-primary/50 transition-colors",
+									children: [/* @__PURE__ */ jsx("h3", {
+										className: "text-lg font-medium text-foreground group-hover:text-primary transition-colors mb-3",
+										children: service.shortTitle
+									}), /* @__PURE__ */ jsx("p", {
+										className: "text-sm leading-relaxed text-foreground/65",
+										children: service.description
+									})]
+								}, service.slug))
+							})]
+						}),
+						/* @__PURE__ */ jsx("div", {
+							className: "grid grid-cols-1 md:grid-cols-3 gap-4",
+							children: featuredArticles.map((article) => /* @__PURE__ */ jsxs(import_dist.Link, {
+								to: `/en/articles/${article.slug}/`,
+								onPointerEnter: () => prefetchRoute("articlePage"),
+								onFocus: () => prefetchRoute("articlePage"),
+								className: "group border border-border bg-background p-6 hover:border-primary/50 transition-colors",
+								children: [
+									/* @__PURE__ */ jsxs("div", {
+										className: "text-xs font-mono uppercase tracking-widest text-foreground/55 mb-5",
+										children: [article.readingMinutes, " min read"]
+									}),
+									/* @__PURE__ */ jsx("h3", {
+										className: "text-xl font-light text-foreground group-hover:text-primary transition-colors mb-4",
+										children: article.title
+									}),
+									/* @__PURE__ */ jsx("p", {
+										className: "text-sm leading-relaxed text-foreground/65 mb-6",
+										children: article.description
+									}),
+									/* @__PURE__ */ jsxs("span", {
+										className: "inline-flex items-center gap-2 text-sm font-medium text-primary",
+										children: ["Read article", /* @__PURE__ */ jsx(ArrowRight, { className: "h-4 w-4" })]
+									})
+								]
+							}, article.slug))
+						}),
+						/* @__PURE__ */ jsx("div", {
+							className: "mt-8",
+							children: /* @__PURE__ */ jsxs(import_dist.Link, {
+								to: "/en/articles/",
+								onPointerEnter: () => prefetchRoute("articles"),
+								onFocus: () => prefetchRoute("articles"),
+								className: "inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors",
+								children: ["View all articles", /* @__PURE__ */ jsx(ArrowRight, { className: "h-4 w-4" })]
+							})
+						})
+					]
+				})
+			}) : null,
 			/* @__PURE__ */ jsxs("section", {
 				className: "py-24 border-t border-border bg-surface overflow-hidden",
 				children: [/* @__PURE__ */ jsxs("div", {
@@ -3414,7 +3258,7 @@ var iconMap = {
 	database: /* @__PURE__ */ jsx(Database, { className: "w-8 h-8" })
 };
 function Services() {
-	const { t } = useLanguage();
+	const { language, t } = useLanguage();
 	return /* @__PURE__ */ jsxs("div", {
 		className: "min-h-screen bg-background pt-32 pb-20",
 		children: [/* @__PURE__ */ jsx(SEO, {
@@ -3435,7 +3279,7 @@ function Services() {
 					})]
 				}),
 				/* @__PURE__ */ jsx("div", {
-					className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-32",
+					className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20",
 					children: t.servicesPage.services.map((service, index) => /* @__PURE__ */ jsxs("div", {
 						className: "group relative block h-full p-8 bg-surface border border-border hover:border-primary/50 transition-colors overflow-hidden rounded-sm",
 						children: [/* @__PURE__ */ jsx("div", {
@@ -3460,6 +3304,51 @@ function Services() {
 						})]
 					}, index))
 				}),
+				language === "en" ? /* @__PURE__ */ jsx("section", {
+					className: "mb-32 border-t border-border pt-12",
+					children: /* @__PURE__ */ jsxs("div", {
+						className: "grid grid-cols-1 lg:grid-cols-12 gap-10",
+						children: [/* @__PURE__ */ jsxs("div", {
+							className: "lg:col-span-4",
+							children: [
+								/* @__PURE__ */ jsx("div", {
+									className: "inline-block px-3 py-1 mb-6 border border-border text-xs font-mono tracking-widest text-foreground/70 uppercase",
+									children: "Search-Focused Services"
+								}),
+								/* @__PURE__ */ jsx("h2", {
+									className: "text-3xl md:text-4xl font-light mb-5",
+									children: "Focused engagements for security-minded teams."
+								}),
+								/* @__PURE__ */ jsx("p", {
+									className: "text-foreground/70 leading-relaxed",
+									children: "These pages map common buying intent to concrete outcomes, deliverables, and proof points."
+								})
+							]
+						}), /* @__PURE__ */ jsx("div", {
+							className: "lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4",
+							children: growthServicePages.map((service) => /* @__PURE__ */ jsxs(import_dist.Link, {
+								to: `/en/services/${service.slug}/`,
+								onPointerEnter: () => prefetchRoute("serviceLandingPage"),
+								onFocus: () => prefetchRoute("serviceLandingPage"),
+								className: "group border border-border bg-surface p-6 hover:border-primary/50 transition-colors",
+								children: [
+									/* @__PURE__ */ jsx("h3", {
+										className: "text-xl font-medium text-foreground group-hover:text-primary transition-colors mb-3",
+										children: service.shortTitle
+									}),
+									/* @__PURE__ */ jsx("p", {
+										className: "text-sm leading-relaxed text-foreground/70 mb-5",
+										children: service.intent
+									}),
+									/* @__PURE__ */ jsxs("span", {
+										className: "inline-flex items-center gap-2 text-sm font-medium text-primary",
+										children: ["View service", /* @__PURE__ */ jsx(ArrowRight, { className: "h-4 w-4" })]
+									})
+								]
+							}, service.slug))
+						})]
+					})
+				}) : null,
 				/* @__PURE__ */ jsxs("div", {
 					className: "relative overflow-hidden border border-border bg-surface p-12 md:p-20 text-center",
 					children: [/* @__PURE__ */ jsx("div", {
@@ -3491,6 +3380,553 @@ function Services() {
 					})]
 				})
 			]
+		})]
+	});
+}
+//#endregion
+//#region src/pages/ServiceLandingPage.tsx
+var ServiceLandingPage_exports = /* @__PURE__ */ __exportAll({ default: () => ServiceLandingPage });
+var ENGLISH_ONLY$2 = ["en"];
+function ServiceLandingPage() {
+	const { slug } = (0, import_dist.useParams)();
+	const service = getGrowthServicePage(slug);
+	if (!service) return /* @__PURE__ */ jsx(NotFound, {});
+	const canonicalPath = `/en/services/${service.slug}/`;
+	const relatedArticles = service.relatedArticleSlugs.map((articleSlug) => getArticle(articleSlug)).filter((article) => Boolean(article));
+	return /* @__PURE__ */ jsxs("div", {
+		className: "min-h-screen bg-background pt-32 pb-20",
+		children: [/* @__PURE__ */ jsx(SEO, {
+			title: `${service.title} | Kernel Guard`,
+			description: service.description,
+			keywords: service.keywords,
+			path: canonicalPath,
+			alternateLanguages: ENGLISH_ONLY$2,
+			schema: buildServiceSchema({
+				name: service.title,
+				description: service.description,
+				path: canonicalPath,
+				language: "en",
+				serviceType: service.serviceType
+			})
+		}), /* @__PURE__ */ jsxs("div", {
+			className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+			children: [
+				/* @__PURE__ */ jsxs("header", {
+					className: "grid grid-cols-1 lg:grid-cols-12 gap-10 items-end mb-16",
+					children: [/* @__PURE__ */ jsxs("div", {
+						className: "lg:col-span-8",
+						children: [
+							/* @__PURE__ */ jsxs("div", {
+								className: "inline-flex items-center gap-2 px-3 py-1 mb-6 border border-border text-xs font-mono tracking-widest text-foreground/70 uppercase",
+								children: [/* @__PURE__ */ jsx(ShieldCheck, { className: "h-3.5 w-3.5" }), "Company-Grade Security"]
+							}),
+							/* @__PURE__ */ jsx("h1", {
+								className: "text-4xl md:text-6xl font-light leading-tight text-foreground mb-6",
+								children: service.title
+							}),
+							/* @__PURE__ */ jsx("p", {
+								className: "text-lg md:text-xl text-foreground/70 font-light leading-relaxed",
+								children: service.description
+							})
+						]
+					}), /* @__PURE__ */ jsxs("div", {
+						className: "lg:col-span-4 border border-border bg-surface p-6",
+						children: [
+							/* @__PURE__ */ jsx("h2", {
+								className: "text-sm font-mono uppercase tracking-widest text-foreground/60 mb-4",
+								children: "Best Fit"
+							}),
+							/* @__PURE__ */ jsx("p", {
+								className: "text-foreground/75 leading-relaxed mb-6",
+								children: service.intent
+							}),
+							/* @__PURE__ */ jsxs("a", {
+								href: mailto(SITE_EMAILS.sales),
+								className: "inline-flex w-full items-center justify-between px-5 py-3 kg-action-primary transition-colors",
+								children: [/* @__PURE__ */ jsx("span", {
+									className: "font-medium",
+									children: "Discuss this service"
+								}), /* @__PURE__ */ jsx(Mail, { className: "h-4 w-4" })]
+							})
+						]
+					})]
+				}),
+				/* @__PURE__ */ jsxs("section", {
+					className: "grid grid-cols-1 lg:grid-cols-12 gap-10 border-t border-border pt-12 mb-16",
+					children: [/* @__PURE__ */ jsxs("div", {
+						className: "lg:col-span-4",
+						children: [/* @__PURE__ */ jsx("h2", {
+							className: "text-3xl font-light text-foreground mb-4",
+							children: "Outcomes"
+						}), /* @__PURE__ */ jsx("p", {
+							className: "text-foreground/65 leading-relaxed",
+							children: "The work is scoped around practical improvements that can be shipped, verified, and explained."
+						})]
+					}), /* @__PURE__ */ jsx("div", {
+						className: "lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-4",
+						children: service.outcomes.map((outcome) => /* @__PURE__ */ jsxs("div", {
+							className: "border border-border bg-surface p-5",
+							children: [/* @__PURE__ */ jsx(CircleCheck, { className: "h-5 w-5 text-primary mb-5" }), /* @__PURE__ */ jsx("p", {
+								className: "text-sm leading-relaxed text-foreground/75",
+								children: outcome
+							})]
+						}, outcome))
+					})]
+				}),
+				/* @__PURE__ */ jsxs("section", {
+					className: "grid grid-cols-1 lg:grid-cols-12 gap-10 border-t border-border pt-12 mb-16",
+					children: [/* @__PURE__ */ jsxs("div", {
+						className: "lg:col-span-4",
+						children: [/* @__PURE__ */ jsx("h2", {
+							className: "text-3xl font-light text-foreground mb-4",
+							children: "Deliverables"
+						}), /* @__PURE__ */ jsx("p", {
+							className: "text-foreground/65 leading-relaxed",
+							children: "The engagement produces artifacts your team can use after the work is complete."
+						})]
+					}), /* @__PURE__ */ jsx("div", {
+						className: "lg:col-span-8",
+						children: /* @__PURE__ */ jsx("div", {
+							className: "grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4",
+							children: service.deliverables.map((deliverable) => /* @__PURE__ */ jsxs("div", {
+								className: "flex gap-3 border-b border-border pb-4",
+								children: [/* @__PURE__ */ jsx("span", {
+									className: "mt-2 h-1.5 w-1.5 shrink-0 bg-primary",
+									"aria-hidden": "true"
+								}), /* @__PURE__ */ jsx("span", {
+									className: "text-foreground/80 leading-relaxed",
+									children: deliverable
+								})]
+							}, deliverable))
+						})
+					})]
+				}),
+				/* @__PURE__ */ jsxs("section", {
+					className: "grid grid-cols-1 lg:grid-cols-12 gap-10 border-t border-border pt-12 mb-16",
+					children: [/* @__PURE__ */ jsxs("div", {
+						className: "lg:col-span-4",
+						children: [/* @__PURE__ */ jsx("h2", {
+							className: "text-3xl font-light text-foreground mb-4",
+							children: "Process"
+						}), /* @__PURE__ */ jsx("p", {
+							className: "text-foreground/65 leading-relaxed",
+							children: "A small number of focused stages keeps the work understandable and measurable."
+						})]
+					}), /* @__PURE__ */ jsx("div", {
+						className: "lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-4",
+						children: service.process.map((step, index) => /* @__PURE__ */ jsxs("div", {
+							className: "border border-border bg-background p-5",
+							children: [
+								/* @__PURE__ */ jsx("div", {
+									className: "font-mono text-sm text-primary mb-5",
+									children: String(index + 1).padStart(2, "0")
+								}),
+								/* @__PURE__ */ jsx("h3", {
+									className: "text-xl font-medium text-foreground mb-3",
+									children: step.title
+								}),
+								/* @__PURE__ */ jsx("p", {
+									className: "text-sm leading-relaxed text-foreground/70",
+									children: step.description
+								})
+							]
+						}, step.title))
+					})]
+				}),
+				/* @__PURE__ */ jsxs("section", {
+					className: "grid grid-cols-1 lg:grid-cols-12 gap-10 border-t border-border pt-12 mb-16",
+					children: [/* @__PURE__ */ jsxs("div", {
+						className: "lg:col-span-4",
+						children: [/* @__PURE__ */ jsx("h2", {
+							className: "text-3xl font-light text-foreground mb-4",
+							children: "Evidence"
+						}), /* @__PURE__ */ jsx("p", {
+							className: "text-foreground/65 leading-relaxed",
+							children: "The strongest trust signals are specific, verifiable, and close to the implementation."
+						})]
+					}), /* @__PURE__ */ jsx("div", {
+						className: "lg:col-span-8",
+						children: /* @__PURE__ */ jsx("ul", {
+							className: "grid grid-cols-1 md:grid-cols-3 gap-4",
+							children: service.proofPoints.map((point) => /* @__PURE__ */ jsx("li", {
+								className: "border border-border bg-surface p-5 text-sm leading-relaxed text-foreground/75",
+								children: point
+							}, point))
+						})
+					})]
+				}),
+				relatedArticles.length > 0 ? /* @__PURE__ */ jsxs("section", {
+					className: "grid grid-cols-1 lg:grid-cols-12 gap-10 border-t border-border pt-12 mb-16",
+					children: [/* @__PURE__ */ jsxs("div", {
+						className: "lg:col-span-4",
+						children: [/* @__PURE__ */ jsx("h2", {
+							className: "text-3xl font-light text-foreground mb-4",
+							children: "Related Reading"
+						}), /* @__PURE__ */ jsx("p", {
+							className: "text-foreground/65 leading-relaxed",
+							children: "Supporting notes that explain the engineering decisions behind this work."
+						})]
+					}), /* @__PURE__ */ jsx("div", {
+						className: "lg:col-span-8 space-y-4",
+						children: relatedArticles.map((article) => /* @__PURE__ */ jsxs(import_dist.Link, {
+							to: `/en/articles/${article.slug}/`,
+							onPointerEnter: () => prefetchRoute("articlePage"),
+							onFocus: () => prefetchRoute("articlePage"),
+							className: "group block border border-border bg-surface p-5 hover:border-primary/50 transition-colors",
+							children: [
+								/* @__PURE__ */ jsxs("span", {
+									className: "block text-xs font-mono uppercase tracking-widest text-foreground/55 mb-3",
+									children: [article.readingMinutes, " min read"]
+								}),
+								/* @__PURE__ */ jsx("span", {
+									className: "block text-xl font-light text-foreground group-hover:text-primary transition-colors mb-2",
+									children: article.title
+								}),
+								/* @__PURE__ */ jsx("span", {
+									className: "block text-sm leading-relaxed text-foreground/65",
+									children: article.description
+								})
+							]
+						}, article.slug))
+					})]
+				}) : null,
+				/* @__PURE__ */ jsx("section", {
+					className: "border border-border bg-surface p-8 md:p-12",
+					children: /* @__PURE__ */ jsxs("div", {
+						className: "grid grid-cols-1 md:grid-cols-12 gap-8 items-center",
+						children: [/* @__PURE__ */ jsxs("div", {
+							className: "md:col-span-8",
+							children: [/* @__PURE__ */ jsx("h2", {
+								className: "text-3xl font-light text-foreground mb-4",
+								children: "Need this level of hardening?"
+							}), /* @__PURE__ */ jsx("p", {
+								className: "text-foreground/70 leading-relaxed",
+								children: "Send the current site, repository, or launch context and Kernel Guard will respond with the cleanest next step."
+							})]
+						}), /* @__PURE__ */ jsx("div", {
+							className: "md:col-span-4",
+							children: /* @__PURE__ */ jsxs("a", {
+								href: mailto(SITE_EMAILS.sales),
+								className: "inline-flex w-full items-center justify-between px-6 py-4 kg-action-primary transition-colors",
+								children: [/* @__PURE__ */ jsx("span", {
+									className: "font-medium",
+									children: "Email sales"
+								}), /* @__PURE__ */ jsx(ArrowRight, { className: "h-5 w-5" })]
+							})
+						})]
+					})
+				})
+			]
+		})]
+	});
+}
+//#endregion
+//#region src/pages/Articles.tsx
+var Articles_exports = /* @__PURE__ */ __exportAll({ default: () => Articles });
+var ENGLISH_ONLY$1 = ["en"];
+function formatDate$1(date) {
+	const [year, month, day] = date.split("-");
+	return `${[
+		"Jan",
+		"Feb",
+		"Mar",
+		"Apr",
+		"May",
+		"Jun",
+		"Jul",
+		"Aug",
+		"Sep",
+		"Oct",
+		"Nov",
+		"Dec"
+	][Number(month) - 1] ?? month} ${Number(day)}, ${year}`;
+}
+function Articles() {
+	return /* @__PURE__ */ jsxs("div", {
+		className: "min-h-screen bg-background pt-32 pb-20",
+		children: [/* @__PURE__ */ jsx(SEO, {
+			title: "Security Engineering Articles | Kernel Guard",
+			description: "Practical security engineering notes on web security, Cloudflare hardening, Google Workspace email authentication, React abuse controls, and eBPF compatibility.",
+			keywords: "security engineering articles, web security, Cloudflare hardening, React security, DMARC setup, eBPF compatibility",
+			path: "/en/articles/",
+			alternateLanguages: ENGLISH_ONLY$1
+		}), /* @__PURE__ */ jsxs("div", {
+			className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+			children: [/* @__PURE__ */ jsxs("header", {
+				className: "max-w-4xl mb-16",
+				children: [
+					/* @__PURE__ */ jsx("div", {
+						className: "inline-block px-3 py-1 mb-6 border border-border text-xs font-mono tracking-widest text-foreground/70 uppercase",
+						children: "Field Notes"
+					}),
+					/* @__PURE__ */ jsx("h1", {
+						className: "text-4xl md:text-6xl font-light leading-tight text-foreground mb-6",
+						children: "Security engineering articles for production web teams."
+					}),
+					/* @__PURE__ */ jsx("p", {
+						className: "text-lg md:text-xl text-foreground/70 font-light leading-relaxed",
+						children: "Practical, implementation-focused writing that supports the same work Kernel Guard ships: secure web apps, hardened infrastructure, company-grade email trust, and repeatable evidence."
+					})
+				]
+			}), /* @__PURE__ */ jsxs("div", {
+				className: "grid grid-cols-1 lg:grid-cols-12 gap-10",
+				children: [/* @__PURE__ */ jsx("div", {
+					className: "lg:col-span-8 space-y-6",
+					children: articles.map((article) => /* @__PURE__ */ jsxs("article", {
+						className: "border border-border bg-surface p-6 md:p-8",
+						children: [
+							/* @__PURE__ */ jsxs("div", {
+								className: "mb-5 flex flex-wrap items-center gap-4 text-xs font-mono uppercase tracking-widest text-foreground/55",
+								children: [/* @__PURE__ */ jsx("span", { children: formatDate$1(article.updatedAt) }), /* @__PURE__ */ jsxs("span", {
+									className: "inline-flex items-center gap-2",
+									children: [
+										/* @__PURE__ */ jsx(Clock, { className: "h-3.5 w-3.5" }),
+										article.readingMinutes,
+										" min read"
+									]
+								})]
+							}),
+							/* @__PURE__ */ jsx("h2", {
+								className: "text-2xl md:text-3xl font-light text-foreground mb-4",
+								children: /* @__PURE__ */ jsx(import_dist.Link, {
+									to: `/en/articles/${article.slug}/`,
+									onPointerEnter: () => prefetchRoute("articlePage"),
+									onFocus: () => prefetchRoute("articlePage"),
+									className: "hover:text-primary transition-colors",
+									children: article.title
+								})
+							}),
+							/* @__PURE__ */ jsx("p", {
+								className: "text-base text-foreground/70 leading-relaxed mb-6",
+								children: article.description
+							}),
+							/* @__PURE__ */ jsx("div", {
+								className: "flex flex-wrap gap-2 mb-6",
+								children: article.tags.slice(0, 4).map((tag) => /* @__PURE__ */ jsxs("span", {
+									className: "inline-flex items-center gap-1.5 border border-border px-2.5 py-1 text-xs text-foreground/65",
+									children: [/* @__PURE__ */ jsx(Tags, { className: "h-3 w-3" }), tag]
+								}, tag))
+							}),
+							/* @__PURE__ */ jsxs(import_dist.Link, {
+								to: `/en/articles/${article.slug}/`,
+								onPointerEnter: () => prefetchRoute("articlePage"),
+								onFocus: () => prefetchRoute("articlePage"),
+								className: "inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors",
+								children: ["Read article", /* @__PURE__ */ jsx(ArrowRight, { className: "h-4 w-4" })]
+							})
+						]
+					}, article.slug))
+				}), /* @__PURE__ */ jsx("aside", {
+					className: "lg:col-span-4",
+					children: /* @__PURE__ */ jsxs("div", {
+						className: "sticky top-28 border border-border bg-background p-6",
+						children: [/* @__PURE__ */ jsx("h2", {
+							className: "text-sm font-mono uppercase tracking-widest text-foreground/60 mb-5",
+							children: "Related Services"
+						}), /* @__PURE__ */ jsx("div", {
+							className: "space-y-4",
+							children: growthServicePages.slice(0, 5).map((service) => /* @__PURE__ */ jsxs(import_dist.Link, {
+								to: `/en/services/${service.slug}/`,
+								onPointerEnter: () => prefetchRoute("serviceLandingPage"),
+								onFocus: () => prefetchRoute("serviceLandingPage"),
+								className: "group block border-l border-border pl-4 hover:border-primary transition-colors",
+								children: [/* @__PURE__ */ jsx("span", {
+									className: "block text-sm font-medium text-foreground group-hover:text-primary transition-colors",
+									children: service.shortTitle
+								}), /* @__PURE__ */ jsx("span", {
+									className: "mt-1 block text-sm text-foreground/60 leading-relaxed",
+									children: service.description
+								})]
+							}, service.slug))
+						})]
+					})
+				})]
+			})]
+		})]
+	});
+}
+//#endregion
+//#region src/pages/ArticlePage.tsx
+var ArticlePage_exports = /* @__PURE__ */ __exportAll({ default: () => ArticlePage });
+var ENGLISH_ONLY = ["en"];
+function formatDate(date) {
+	const [year, month, day] = date.split("-");
+	return `${[
+		"January",
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+		"August",
+		"September",
+		"October",
+		"November",
+		"December"
+	][Number(month) - 1] ?? month} ${Number(day)}, ${year}`;
+}
+function ArticlePage() {
+	const { slug } = (0, import_dist.useParams)();
+	const article = getArticle(slug);
+	if (!article) return /* @__PURE__ */ jsx(NotFound, {});
+	const canonicalPath = `/en/articles/${article.slug}/`;
+	const relatedServices = article.relatedServiceSlugs.map((serviceSlug) => getGrowthServicePage(serviceSlug)).filter((service) => Boolean(service));
+	return /* @__PURE__ */ jsxs("article", {
+		className: "min-h-screen bg-background pt-32 pb-20",
+		children: [/* @__PURE__ */ jsx(SEO, {
+			title: `${article.title} | Kernel Guard`,
+			description: article.description,
+			keywords: article.tags.join(", "),
+			path: canonicalPath,
+			type: "article",
+			alternateLanguages: ENGLISH_ONLY,
+			schema: buildArticleSchema({
+				title: article.title,
+				description: article.description,
+				path: canonicalPath,
+				language: "en",
+				publishedAt: article.publishedAt,
+				updatedAt: article.updatedAt,
+				keywords: article.tags
+			})
+		}), /* @__PURE__ */ jsxs("div", {
+			className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+			children: [/* @__PURE__ */ jsxs("header", {
+				className: "max-w-4xl mb-14",
+				children: [
+					/* @__PURE__ */ jsxs(import_dist.Link, {
+						to: "/en/articles/",
+						onPointerEnter: () => prefetchRoute("articles"),
+						onFocus: () => prefetchRoute("articles"),
+						className: "inline-flex items-center gap-2 text-sm text-foreground/60 hover:text-primary transition-colors mb-8",
+						children: [/* @__PURE__ */ jsx(ArrowRight, { className: "h-4 w-4 rotate-180" }), "Articles"]
+					}),
+					/* @__PURE__ */ jsxs("div", {
+						className: "mb-6 flex flex-wrap items-center gap-4 text-xs font-mono uppercase tracking-widest text-foreground/55",
+						children: [/* @__PURE__ */ jsxs("span", {
+							className: "inline-flex items-center gap-2",
+							children: [
+								/* @__PURE__ */ jsx(CalendarDays, { className: "h-3.5 w-3.5" }),
+								"Updated ",
+								formatDate(article.updatedAt)
+							]
+						}), /* @__PURE__ */ jsxs("span", {
+							className: "inline-flex items-center gap-2",
+							children: [
+								/* @__PURE__ */ jsx(Clock, { className: "h-3.5 w-3.5" }),
+								article.readingMinutes,
+								" min read"
+							]
+						})]
+					}),
+					/* @__PURE__ */ jsx("h1", {
+						className: "text-4xl md:text-6xl font-light leading-tight text-foreground mb-6",
+						children: article.title
+					}),
+					/* @__PURE__ */ jsx("p", {
+						className: "text-lg md:text-xl text-foreground/70 font-light leading-relaxed",
+						children: article.description
+					})
+				]
+			}), /* @__PURE__ */ jsxs("div", {
+				className: "grid grid-cols-1 lg:grid-cols-12 gap-10",
+				children: [/* @__PURE__ */ jsxs("div", {
+					className: "lg:col-span-8",
+					children: [
+						/* @__PURE__ */ jsxs("section", {
+							className: "border-y border-border py-8 mb-10",
+							children: [/* @__PURE__ */ jsx("h2", {
+								className: "text-sm font-mono uppercase tracking-widest text-foreground/60 mb-5",
+								children: "Key Points"
+							}), /* @__PURE__ */ jsx("ul", {
+								className: "space-y-3",
+								children: article.summary.map((point) => /* @__PURE__ */ jsxs("li", {
+									className: "flex gap-3 text-foreground/80 leading-relaxed",
+									children: [/* @__PURE__ */ jsx("span", {
+										className: "mt-2 h-1.5 w-1.5 shrink-0 bg-primary",
+										"aria-hidden": "true"
+									}), /* @__PURE__ */ jsx("span", { children: point })]
+								}, point))
+							})]
+						}),
+						/* @__PURE__ */ jsx("div", {
+							className: "space-y-12",
+							children: article.sections.map((section) => /* @__PURE__ */ jsxs("section", { children: [/* @__PURE__ */ jsx("h2", {
+								className: "text-2xl md:text-3xl font-light text-foreground mb-5",
+								children: section.heading
+							}), /* @__PURE__ */ jsxs("div", {
+								className: "space-y-5 text-base md:text-lg text-foreground/75 leading-relaxed font-light",
+								children: [section.paragraphs?.map((paragraph) => /* @__PURE__ */ jsx("p", { children: paragraph }, paragraph)), section.bullets ? /* @__PURE__ */ jsx("ul", {
+									className: "space-y-3 text-base md:text-lg",
+									children: section.bullets.map((bullet) => /* @__PURE__ */ jsxs("li", {
+										className: "flex gap-3",
+										children: [/* @__PURE__ */ jsx("span", {
+											className: "mt-3 h-1.5 w-1.5 shrink-0 bg-primary",
+											"aria-hidden": "true"
+										}), /* @__PURE__ */ jsx("span", { children: bullet })]
+									}, bullet))
+								}) : null]
+							})] }, section.heading))
+						}),
+						article.references.length > 0 ? /* @__PURE__ */ jsxs("section", {
+							className: "mt-14 border-t border-border pt-8",
+							children: [/* @__PURE__ */ jsx("h2", {
+								className: "text-sm font-mono uppercase tracking-widest text-foreground/60 mb-5",
+								children: "References"
+							}), /* @__PURE__ */ jsx("ul", {
+								className: "space-y-3",
+								children: article.references.map((reference) => /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsxs("a", {
+									href: reference.url,
+									target: "_blank",
+									rel: "noopener noreferrer",
+									className: "inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors",
+									children: [reference.label, /* @__PURE__ */ jsx(ExternalLink, { className: "h-3.5 w-3.5" })]
+								}) }, reference.url))
+							})]
+						}) : null
+					]
+				}), /* @__PURE__ */ jsx("aside", {
+					className: "lg:col-span-4",
+					children: /* @__PURE__ */ jsxs("div", {
+						className: "sticky top-28 space-y-6",
+						children: [/* @__PURE__ */ jsxs("div", {
+							className: "border border-border bg-surface p-6",
+							children: [/* @__PURE__ */ jsx("h2", {
+								className: "text-sm font-mono uppercase tracking-widest text-foreground/60 mb-5",
+								children: "Tags"
+							}), /* @__PURE__ */ jsx("div", {
+								className: "flex flex-wrap gap-2",
+								children: article.tags.map((tag) => /* @__PURE__ */ jsx("span", {
+									className: "border border-border px-2.5 py-1 text-xs text-foreground/70",
+									children: tag
+								}, tag))
+							})]
+						}), relatedServices.length > 0 ? /* @__PURE__ */ jsxs("div", {
+							className: "border border-border bg-surface p-6",
+							children: [/* @__PURE__ */ jsx("h2", {
+								className: "text-sm font-mono uppercase tracking-widest text-foreground/60 mb-5",
+								children: "Services"
+							}), /* @__PURE__ */ jsx("div", {
+								className: "space-y-4",
+								children: relatedServices.map((service) => /* @__PURE__ */ jsxs(import_dist.Link, {
+									to: `/en/services/${service.slug}/`,
+									onPointerEnter: () => prefetchRoute("serviceLandingPage"),
+									onFocus: () => prefetchRoute("serviceLandingPage"),
+									className: "group block",
+									children: [/* @__PURE__ */ jsx("span", {
+										className: "block text-sm font-medium text-foreground group-hover:text-primary transition-colors",
+										children: service.shortTitle
+									}), /* @__PURE__ */ jsx("span", {
+										className: "mt-1 block text-sm text-foreground/60 leading-relaxed",
+										children: service.intent
+									})]
+								}, service.slug))
+							})]
+						}) : null]
+					})
+				})]
+			})]
 		})]
 	});
 }
@@ -4237,51 +4673,6 @@ function Contact() {
 	});
 }
 //#endregion
-//#region src/pages/NotFound.tsx
-var NotFound_exports = /* @__PURE__ */ __exportAll({ default: () => NotFound });
-function NotFound() {
-	const { language } = useLanguage();
-	const copy = language === "tr" ? {
-		title: "Sayfa Bulunamadi | Kernel Guard",
-		description: "Istediginiz sayfa mevcut degil veya tasinmis olabilir.",
-		headline: "404_SAYFA_BULUNAMADI",
-		body: "Aradiginiz sayfa mevcut degil veya URL degismis olabilir.",
-		backLabel: "Ana Sayfaya Don"
-	} : {
-		title: "Page Not Found | Kernel Guard",
-		description: "The requested page does not exist or may have moved.",
-		headline: "404_PAGE_NOT_FOUND",
-		body: "The requested page does not exist or the URL may have changed.",
-		backLabel: "Back to Home"
-	};
-	return /* @__PURE__ */ jsxs("div", {
-		className: "min-h-screen bg-background pt-32 pb-20 flex items-center justify-center",
-		children: [/* @__PURE__ */ jsx(SEO, {
-			title: copy.title,
-			description: copy.description,
-			path: "/not-found/",
-			noIndex: true
-		}), /* @__PURE__ */ jsxs("div", {
-			className: "text-center max-w-xl px-6",
-			children: [
-				/* @__PURE__ */ jsx("h1", {
-					className: "text-2xl md:text-3xl font-mono text-foreground mb-4",
-					children: copy.headline
-				}),
-				/* @__PURE__ */ jsx("p", {
-					className: "text-foreground/70 mb-8 leading-relaxed",
-					children: copy.body
-				}),
-				/* @__PURE__ */ jsxs(import_dist.Link, {
-					to: "/",
-					className: "inline-flex items-center gap-2 px-5 py-3 border border-border text-foreground hover:bg-surface transition-colors",
-					children: [/* @__PURE__ */ jsx(ArrowLeft, { className: "w-4 h-4" }), copy.backLabel]
-				})
-			]
-		})]
-	});
-}
-//#endregion
 //#region src/entry-server.tsx
 function LocalizedRoutes() {
 	return /* @__PURE__ */ jsx(import_dist.Routes, { children: /* @__PURE__ */ jsxs(import_dist.Route, {
@@ -4327,6 +4718,18 @@ function LocalizedRoutes() {
 			/* @__PURE__ */ jsx(import_dist.Route, {
 				path: "services/high-performance",
 				element: /* @__PURE__ */ jsx(HighPerformance, {})
+			}),
+			/* @__PURE__ */ jsx(import_dist.Route, {
+				path: "services/:slug",
+				element: /* @__PURE__ */ jsx(ServiceLandingPage, {})
+			}),
+			/* @__PURE__ */ jsx(import_dist.Route, {
+				path: "articles",
+				element: /* @__PURE__ */ jsx(Articles, {})
+			}),
+			/* @__PURE__ */ jsx(import_dist.Route, {
+				path: "articles/:slug",
+				element: /* @__PURE__ */ jsx(ArticlePage, {})
 			}),
 			/* @__PURE__ */ jsx(import_dist.Route, {
 				path: "security",
@@ -4474,4 +4877,4 @@ function renderRoute(url, language) {
 	};
 }
 //#endregion
-export { ArrowLeft as i, ExternalLink as n, ArrowRight as r, renderRoute, Lock as t };
+export { ExternalLink as n, ArrowRight as r, renderRoute, Lock as t };

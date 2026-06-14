@@ -366,6 +366,30 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/en/articles/</loc>
+    <lastmod>2026-06-14</lastmod>
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/en/articles/ebpf-compatibility-testing-ci/</loc>
+    <lastmod>2026-06-14</lastmod>
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/en/articles/react-contact-form-spam-abuse-hardening/</loc>
+    <lastmod>2026-06-14</lastmod>
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/en/articles/security-headers-cloudflare-pages-react/</loc>
+    <lastmod>2026-06-14</lastmod>
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/en/articles/spf-dkim-dmarc-google-workspace-security-domain/</loc>
+    <lastmod>2026-06-14</lastmod>
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/en/articles/vulnerability-disclosure-security-txt-website/</loc>
+    <lastmod>2026-06-14</lastmod>
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/en/changelog/</loc>
     <lastmod>2026-06-14</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/changelog/" />
@@ -548,6 +572,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/en/services/backend-api-hardening/</loc>
+    <lastmod>2026-06-14</lastmod>
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/en/services/cloudflare-security-hardening/</loc>
+    <lastmod>2026-06-14</lastmod>
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/en/services/cybersecurity-consulting/</loc>
+    <lastmod>2026-06-14</lastmod>
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/en/services/data-protection/</loc>
     <lastmod>2026-06-14</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/data-protection/" />
@@ -587,6 +623,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/high-performance/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/en/services/react-security-audit/</loc>
+    <lastmod>2026-06-14</lastmod>
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/en/services/secure-frontend/</loc>
     <lastmod>2026-06-14</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/secure-frontend/" />
@@ -598,6 +638,10 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/secure-frontend/" />
     <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/secure-frontend/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/secure-frontend/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/en/services/secure-web-development/</loc>
+    <lastmod>2026-06-14</lastmod>
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/status/</loc>

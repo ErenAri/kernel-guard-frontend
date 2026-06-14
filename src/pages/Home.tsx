@@ -7,6 +7,8 @@ import SEO from '../components/SEO';
 import { prefetchRoute, prefetchRoutes, type PrefetchRoute } from '../routes/pageLoaders';
 import { engineeringEvidence } from '../data/engineeringEvidence';
 import { localizePath } from '../i18n/route';
+import { articles } from '../data/articles';
+import { growthServicePages } from '../data/growthServices';
 
 export default function Home() {
   const { language, t } = useLanguage();
@@ -79,6 +81,8 @@ export default function Home() {
       detail: t.home.proof.cards.languages.detail,
     },
   ];
+  const featuredArticles = articles.slice(0, 3);
+  const featuredGrowthServices = growthServicePages.slice(0, 3);
 
   return (
     <div className="flex flex-col bg-background">
@@ -207,6 +211,78 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {language === 'en' ? (
+        <section className="py-24 border-t border-border bg-surface">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-12">
+              <div className="lg:col-span-5">
+                <div className="inline-block px-3 py-1 mb-6 border border-border text-xs font-mono tracking-widest text-foreground/70 uppercase">
+                  Growth Content
+                </div>
+                <h2 className="text-3xl md:text-4xl font-light mb-6">
+                  Practical security content tied to real services.
+                </h2>
+                <p className="text-lg text-foreground/70 font-light leading-relaxed">
+                  Articles answer search questions. Service pages turn that attention into clear next steps for teams that need implementation help.
+                </p>
+              </div>
+              <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-3 gap-4">
+                {featuredGrowthServices.map((service) => (
+                  <Link
+                    key={service.slug}
+                    to={`/en/services/${service.slug}/`}
+                    onPointerEnter={() => prefetchRoute('serviceLandingPage')}
+                    onFocus={() => prefetchRoute('serviceLandingPage')}
+                    className="group border border-border bg-background p-5 hover:border-primary/50 transition-colors"
+                  >
+                    <h3 className="text-lg font-medium text-foreground group-hover:text-primary transition-colors mb-3">
+                      {service.shortTitle}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-foreground/65">{service.description}</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {featuredArticles.map((article) => (
+                <Link
+                  key={article.slug}
+                  to={`/en/articles/${article.slug}/`}
+                  onPointerEnter={() => prefetchRoute('articlePage')}
+                  onFocus={() => prefetchRoute('articlePage')}
+                  className="group border border-border bg-background p-6 hover:border-primary/50 transition-colors"
+                >
+                  <div className="text-xs font-mono uppercase tracking-widest text-foreground/55 mb-5">
+                    {article.readingMinutes} min read
+                  </div>
+                  <h3 className="text-xl font-light text-foreground group-hover:text-primary transition-colors mb-4">
+                    {article.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-foreground/65 mb-6">{article.description}</p>
+                  <span className="inline-flex items-center gap-2 text-sm font-medium text-primary">
+                    Read article
+                    <ArrowRight className="h-4 w-4" />
+                  </span>
+                </Link>
+              ))}
+            </div>
+
+            <div className="mt-8">
+              <Link
+                to="/en/articles/"
+                onPointerEnter={() => prefetchRoute('articles')}
+                onFocus={() => prefetchRoute('articles')}
+                className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+              >
+                View all articles
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       {/* Tech Stack Marquee Section */}
       <section className="py-24 border-t border-border bg-surface overflow-hidden">

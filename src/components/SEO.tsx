@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage, type Language } from '../context/LanguageContext';
 import { useLocation } from 'react-router-dom';
 import {
   buildCanonicalUrl,
@@ -23,6 +23,7 @@ interface SEOProps {
   noIndex?: boolean;
   noFollow?: boolean;
   schema?: JsonLdNode | JsonLdNode[];
+  alternateLanguages?: readonly Language[];
 }
 
 function normalizeSchemaItems(schema?: JsonLdNode | JsonLdNode[]): JsonLdNode[] {
@@ -45,6 +46,7 @@ export default function SEO({
   noIndex = false,
   noFollow = false,
   schema,
+  alternateLanguages = SUPPORTED_LANGUAGES,
 }: SEOProps) {
   const { language } = useLanguage();
   const location = useLocation();
@@ -65,7 +67,8 @@ export default function SEO({
     ko: 'ko_KR',
   } as const;
   const locale = ogLocales[language];
-  const alternateLocales = SUPPORTED_LANGUAGES
+  const activeAlternateLanguages = alternateLanguages.length > 0 ? alternateLanguages : [language];
+  const alternateLocales = activeAlternateLanguages
     .filter((lang) => lang !== language)
     .map((lang) => ogLocales[lang]);
 
@@ -73,16 +76,18 @@ export default function SEO({
   // of the same logical page. Strip any language prefix first so we always
   // start from the canonical TR path before re-localizing per language.
   const logicalPath = stripLanguagePrefix(currentPath);
-  const alternateUrls = SUPPORTED_LANGUAGES.map((lang) => ({
+  const alternateUrls = activeAlternateLanguages.map((lang) => ({
     language: lang,
     hrefLang: LANGUAGE_HREFLANGS[lang],
     url: buildCanonicalUrl(siteUrl, normalizeCanonicalPath(localizePath(logicalPath, lang))),
   }));
-  const defaultUrl = alternateUrls.find((alternate) => alternate.language === 'tr')?.url ?? canonicalUrl;
+  const defaultLanguage = activeAlternateLanguages.includes('tr') ? 'tr' : activeAlternateLanguages[0];
+  const defaultUrl = alternateUrls.find((alternate) => alternate.language === defaultLanguage)?.url ?? canonicalUrl;
 
   // Resolve a relative image path to an absolute URL so social platforms can fetch it.
   const absoluteImage = image.startsWith('http') ? image : `${siteUrl}${image.startsWith('/') ? '' : '/'}${image}`;
   const schemaItems = normalizeSchemaItems(schema);
+  const shouldRenderStructuredData = typeof window === 'undefined';
   const organizationId = `${siteUrl}/#organization`;
   const websiteId = `${siteUrl}/#website`;
   const googleSiteVerification = import.meta.env.VITE_GOOGLE_SITE_VERIFICATION;
@@ -209,9 +214,11 @@ export default function SEO({
       <meta name="twitter:image:alt" content={imageAlt} />
 
       {/* JSON-LD Structured Data */}
-      <script type="application/ld+json">
-        {JSON.stringify(structuredData)}
-      </script>
+      {shouldRenderStructuredData ? (
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      ) : null}
     </Helmet>
   );
 }
