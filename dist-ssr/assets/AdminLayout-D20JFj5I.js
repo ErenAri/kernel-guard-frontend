@@ -1,5 +1,5 @@
 import { t as require_dist } from "./dist-BkMweq9c.js";
-import { t as SEO } from "./SEO-BVnmXOtG.js";
+import { t as SEO } from "./SEO-Cw9lY6xc.js";
 import { t as createLucideIcon } from "./createLucideIcon-d-ZGlwaX.js";
 import { a as CircleAlert, i as LoaderCircle, n as useAdmin, r as GithubService, t as AdminProvider } from "./AdminContext-bpcRMjZm.js";
 import { t as LogOut } from "./log-out-ifISwOAG.js";

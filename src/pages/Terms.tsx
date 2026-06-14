@@ -36,6 +36,26 @@ export default function Terms() {
           </section>
 
           <section>
+            <h2 className="text-2xl font-medium text-foreground mb-4">Acceptable use</h2>
+            <p>
+              Do not use the website, contact form, admin endpoints, or public repositories for abuse, spam,
+              unauthorized access, service disruption, credential harvesting, or attempts to access data that is not
+              yours.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-medium text-foreground mb-4">Security research</h2>
+            <p>
+              Good-faith vulnerability reports should follow the public security policy and be sent to{' '}
+              <a className="text-primary hover:underline" href={mailto(SITE_EMAILS.security)}>
+                {SITE_EMAILS.security}
+              </a>
+              . Do not publicly disclose a vulnerability before triage and remediation coordination.
+            </p>
+          </section>
+
+          <section>
             <h2 className="text-2xl font-medium text-foreground mb-4">Legal contact</h2>
             <p>
               For legal notices or terms-related requests, email{' '}

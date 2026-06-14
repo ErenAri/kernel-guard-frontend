@@ -1,5 +1,5 @@
 import { t as require_dist } from "./dist-BkMweq9c.js";
-import { a as normalizeCanonicalPath, c as useLanguage, o as normalizeSiteUrl, r as buildCanonicalUrl, t as DEFAULT_SITE_URL } from "./site-BXg7CYE6.js";
+import { a as normalizeCanonicalPath, c as useLanguage, n as SITE_EMAILS, o as normalizeSiteUrl, r as buildCanonicalUrl, t as DEFAULT_SITE_URL } from "./site-BXg7CYE6.js";
 import { i as localizePath, o as stripLanguagePrefix, r as SUPPORTED_LANGUAGES, t as LANGUAGE_HREFLANGS } from "./route-DZfXJ_2f.js";
 import React5, { Component } from "react";
 import fastCompare from "react-fast-compare";
@@ -996,6 +996,37 @@ function SEO({ title = "Kernel Guard | Secure Web Development & Cybersecurity", 
 				name,
 				url: `${siteUrl}/`,
 				logo: absoluteImage,
+				email: SITE_EMAILS.contact,
+				contactPoint: [
+					{
+						"@type": "ContactPoint",
+						contactType: "customer support",
+						email: SITE_EMAILS.support,
+						areaServed: "Worldwide",
+						availableLanguage: ["English", "Turkish"]
+					},
+					{
+						"@type": "ContactPoint",
+						contactType: "sales",
+						email: SITE_EMAILS.sales,
+						areaServed: "Worldwide",
+						availableLanguage: ["English", "Turkish"]
+					},
+					{
+						"@type": "ContactPoint",
+						contactType: "security",
+						email: SITE_EMAILS.security,
+						areaServed: "Worldwide",
+						availableLanguage: ["English", "Turkish"]
+					},
+					{
+						"@type": "ContactPoint",
+						contactType: "privacy",
+						email: SITE_EMAILS.privacy,
+						areaServed: "Worldwide",
+						availableLanguage: ["English", "Turkish"]
+					}
+				],
 				sameAs: ["https://github.com/Kernel-Guard"]
 			},
 			{
@@ -1039,6 +1070,7 @@ function SEO({ title = "Kernel Guard | Secure Web Development & Cybersecurity", 
 				name: "googlebot",
 				content: robotsContent
 			}),
+			null,
 			/* @__PURE__ */ jsx("link", {
 				rel: "canonical",
 				href: canonicalUrl

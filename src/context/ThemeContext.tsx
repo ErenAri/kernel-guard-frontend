@@ -31,9 +31,19 @@ function readInitialTheme(): Theme {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(readInitialTheme);
+  const [theme, setTheme] = useState<Theme>('dark');
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
+    setTheme(readInitialTheme());
+    setHasMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!hasMounted) {
+      return;
+    }
+
     if (typeof window === 'undefined') {
       return;
     }
@@ -47,7 +57,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     } catch {
       // Ignore storage errors.
     }
-  }, [theme]);
+  }, [hasMounted, theme]);
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
