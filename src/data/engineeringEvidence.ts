@@ -1,8 +1,8 @@
 export const engineeringEvidence = {
-  measuredAt: '2026-06-01',
+  measuredAt: '2026-06-14',
   delivery: {
-    prerenderedRoutes: 192,
-    indexableUrls: 160,
+    prerenderedRoutes: 211,
+    indexableUrls: 179,
     supportedLanguages: 8,
   },
   lighthouse: {

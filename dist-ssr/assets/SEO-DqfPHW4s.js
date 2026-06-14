@@ -734,8 +734,506 @@ var Helmet = class extends Component {
 	}
 };
 //#endregion
-//#region src/lib/schema.ts
+//#region src/data/articles.ts
 var import_dist = require_dist();
+var articles = [
+	{
+		slug: "spf-dkim-dmarc-google-workspace-security-domain",
+		title: "SPF, DKIM, and DMARC Setup for a Google Workspace Security Domain",
+		description: "A practical guide to Google Workspace email authentication for company domains that need stronger trust and lower spoofing risk.",
+		publishedAt: "2026-06-14",
+		updatedAt: "2026-06-14",
+		readingMinutes: 6,
+		tags: [
+			"Email Security",
+			"Google Workspace",
+			"DMARC",
+			"DNS"
+		],
+		summary: [
+			"SPF authorizes the mail servers that can send for the domain.",
+			"DKIM signs messages so receivers can verify that content was not changed in transit.",
+			"DMARC tells receivers what to do when SPF or DKIM alignment fails and where to send reports."
+		],
+		sections: [
+			{
+				heading: "Why this matters for a young company domain",
+				paragraphs: ["A company website can look professional while its email domain is still easy to impersonate. SPF, DKIM, and DMARC close that gap by giving receivers evidence about who is allowed to send mail and how failures should be handled.", "For a security-focused company, this is not optional polish. It is part of the public trust surface, especially when the site publishes contact, support, security, privacy, legal, and sales mailboxes."]
+			},
+			{
+				heading: "Recommended rollout order",
+				bullets: [
+					"Create the operational mailboxes first, including a DMARC reporting mailbox such as dmarc@example.com.",
+					"Publish SPF for the active sender, for example Google Workspace.",
+					"Enable Google Workspace DKIM signing and publish the DKIM TXT record.",
+					"Start DMARC with p=none and reporting enabled so failures can be observed before enforcement.",
+					"Move to quarantine or reject only after legitimate senders are aligned."
+				]
+			},
+			{
+				heading: "What to verify",
+				paragraphs: ["Verification should happen from both DNS and real message headers. DNS confirms that the records exist. Message headers confirm that mail sent through the production path is actually passing SPF, DKIM, and DMARC alignment."],
+				bullets: [
+					"SPF includes only services that actually send mail for the domain.",
+					"DKIM uses a current selector and shows pass in received messages.",
+					"DMARC reports are delivered to a monitored mailbox.",
+					"The policy is documented so future mail tools do not break deliverability."
+				]
+			},
+			{
+				heading: "Company-grade next step",
+				paragraphs: ["After reports look clean, tighten DMARC gradually. The strongest end state is reject, but the right timeline depends on whether newsletters, transactional mail, CRM tools, or support tools also send from the domain."]
+			}
+		],
+		references: [{
+			label: "Google Workspace email authentication help",
+			url: "https://support.google.com/a/topic/2759254"
+		}, {
+			label: "DMARC specification overview",
+			url: "https://dmarc.org/"
+		}],
+		relatedServiceSlugs: ["cybersecurity-consulting", "cloudflare-security-hardening"]
+	},
+	{
+		slug: "security-headers-cloudflare-pages-react",
+		title: "Security Headers for Cloudflare Pages and React Sites",
+		description: "How to use security headers, canonical metadata, and response verification to reduce common browser-side risks on static React deployments.",
+		publishedAt: "2026-06-14",
+		updatedAt: "2026-06-14",
+		readingMinutes: 7,
+		tags: [
+			"Cloudflare",
+			"React",
+			"Security Headers",
+			"Frontend Security"
+		],
+		summary: [
+			"Security headers should be treated as deployment configuration, not just code comments.",
+			"Cloudflare Pages supports static header rules that can be tested before release.",
+			"Wildcard CORS is usually too broad for public static responses unless there is a specific cross-origin use case."
+		],
+		sections: [
+			{
+				heading: "The baseline header set",
+				paragraphs: ["A hardened React site should set browser behavior explicitly. The exact policy depends on the app, but the baseline usually includes content type protection, clickjacking protection, referrer control, permissions policy, and a carefully chosen content security policy.", "Static hosts make this easy to forget because the app still renders without headers. The security work has to be verified at the HTTP response layer."]
+			},
+			{
+				heading: "Cloudflare Pages considerations",
+				bullets: [
+					"Keep header rules close to the repository when possible so changes are reviewed with code.",
+					"Avoid dashboard-only changes unless they are documented, because they are harder for future maintainers to audit.",
+					"Verify both www and apex domains if both are served.",
+					"Check that redirects do not strip important headers from the final response."
+				]
+			},
+			{
+				heading: "CORS should be intentional",
+				paragraphs: ["Access-Control-Allow-Origin: * is often copied into sites without a reason. For normal web pages, broad CORS usually does not help visitors and can make accidental data exposure easier if future endpoints are added under the same policy."]
+			},
+			{
+				heading: "What to automate",
+				bullets: [
+					"A test that rejects wildcard CORS in static header configuration.",
+					"A build step that publishes sitemap and robots files.",
+					"A preview check that confirms critical pages render and metadata is present.",
+					"A live-response check after deployment for production domains."
+				]
+			}
+		],
+		references: [{
+			label: "Cloudflare Pages headers documentation",
+			url: "https://developers.cloudflare.com/pages/configuration/headers/"
+		}, {
+			label: "MDN HTTP security headers overview",
+			url: "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers"
+		}],
+		relatedServiceSlugs: [
+			"cloudflare-security-hardening",
+			"react-security-audit",
+			"cybersecurity-consulting"
+		]
+	},
+	{
+		slug: "vulnerability-disclosure-security-txt-website",
+		title: "Vulnerability Disclosure and security.txt for Company Websites",
+		description: "A practical security.txt and vulnerability disclosure workflow for small companies that want a credible security contact path.",
+		publishedAt: "2026-06-14",
+		updatedAt: "2026-06-14",
+		readingMinutes: 5,
+		tags: [
+			"Vulnerability Disclosure",
+			"security.txt",
+			"Trust"
+		],
+		summary: [
+			"security.txt gives researchers a predictable place to find a security contact.",
+			"The mailbox behind that contact must be monitored and routed internally.",
+			"A public policy reduces confusion before an incident happens."
+		],
+		sections: [
+			{
+				heading: "What security.txt solves",
+				paragraphs: ["Researchers and customers should not have to guess whether security issues belong in a contact form, a support inbox, or a social media message. A security.txt file creates a standard path for reporting vulnerabilities.", "The file is small, but it signals operational maturity when it includes a real contact, canonical URL, policy URL, and preferred language."]
+			},
+			{
+				heading: "Minimum practical setup",
+				bullets: [
+					"Publish /.well-known/security.txt on the canonical domain.",
+					"Use a monitored security mailbox, such as security@example.com.",
+					"Link to a vulnerability disclosure policy or security page.",
+					"Make sure support and contact teams know where to forward security reports."
+				]
+			},
+			{
+				heading: "Response workflow",
+				paragraphs: ["The website is only the entry point. A company-grade setup also needs a response owner, severity triage, evidence capture, fix tracking, and a short communication template for acknowledging valid reports."]
+			},
+			{
+				heading: "Common mistakes",
+				bullets: [
+					"Publishing a security mailbox that nobody monitors.",
+					"Using a personal email address instead of a company alias.",
+					"Forgetting to update the canonical URL after a domain migration.",
+					"Treating disclosure handling as a legal page only instead of an operational workflow."
+				]
+			}
+		],
+		references: [{
+			label: "RFC 9116 security.txt",
+			url: "https://www.rfc-editor.org/rfc/rfc9116"
+		}],
+		relatedServiceSlugs: ["cybersecurity-consulting", "backend-api-hardening"]
+	},
+	{
+		slug: "react-contact-form-spam-abuse-hardening",
+		title: "Hardening React Contact Forms Against Spam and Abuse",
+		description: "How to protect a React contact page with validation, bot controls, routing discipline, and safer email handling.",
+		publishedAt: "2026-06-14",
+		updatedAt: "2026-06-14",
+		readingMinutes: 6,
+		tags: [
+			"React",
+			"Contact Forms",
+			"Abuse Controls",
+			"Email"
+		],
+		summary: [
+			"Contact forms are public write endpoints and should be treated as abuse targets.",
+			"Bot controls help, but validation, rate limits, and destination routing still matter.",
+			"Operational mailboxes make it easier to separate sales, support, privacy, legal, and security messages."
+		],
+		sections: [
+			{
+				heading: "The risk surface",
+				paragraphs: ["A contact page looks simple, but it often becomes the first public endpoint attackers can write to. Spam, phishing payloads, oversized submissions, and automated probes can all target the same workflow.", "The frontend can improve quality and reduce noise, but server-side validation and rate limiting remain necessary for any real mail-sending endpoint."]
+			},
+			{
+				heading: "Frontend controls",
+				bullets: [
+					"Validate required fields and expected lengths before submission.",
+					"Avoid exposing provider secrets or private API keys in client-side code.",
+					"Use clear success and failure states so users do not submit repeatedly.",
+					"Load bot protection only where needed to reduce page weight."
+				]
+			},
+			{
+				heading: "Backend and email controls",
+				bullets: [
+					"Rate limit by IP, fingerprint, or session where your platform allows it.",
+					"Normalize and validate payloads before composing email.",
+					"Route messages to role-based mailboxes instead of personal addresses.",
+					"Log enough context to investigate abuse without collecting unnecessary personal data."
+				]
+			},
+			{
+				heading: "Professional routing",
+				paragraphs: ["Company aliases make the workflow easier to operate. Support questions can go to support, vulnerability reports to security, privacy requests to privacy, legal requests to legal, and sales leads to sales. That separation also looks more credible on the public site."]
+			}
+		],
+		references: [{
+			label: "OWASP automated threats overview",
+			url: "https://owasp.org/www-project-automated-threats-to-web-applications/"
+		}],
+		relatedServiceSlugs: [
+			"secure-web-development",
+			"react-security-audit",
+			"backend-api-hardening"
+		]
+	},
+	{
+		slug: "ebpf-compatibility-testing-ci",
+		title: "eBPF Compatibility Testing in CI for Kernel-Sensitive Projects",
+		description: "How compatibility reports, repeatable checks, and CI evidence help teams ship kernel-sensitive eBPF work with more confidence.",
+		publishedAt: "2026-06-14",
+		updatedAt: "2026-06-14",
+		readingMinutes: 7,
+		tags: [
+			"eBPF",
+			"CI",
+			"Kernel Security",
+			"Open Source"
+		],
+		summary: [
+			"Kernel-sensitive tools need compatibility evidence, not only a successful local build.",
+			"CI reports make verifier, helper, and kernel-version assumptions easier to review.",
+			"Publishing the evidence improves trust for open-source security projects."
+		],
+		sections: [
+			{
+				heading: "Why compatibility evidence matters",
+				paragraphs: ["eBPF programs depend on kernel behavior, helper availability, verifier constraints, and runtime environment details. A tool can work on one developer machine and still fail for users on another kernel line.", "Compatibility testing makes those assumptions visible. It also gives maintainers a way to catch regressions before a release."]
+			},
+			{
+				heading: "What a useful report should include",
+				bullets: [
+					"Kernel version and architecture under test.",
+					"Program load status and verifier output when relevant.",
+					"Helper, map, and feature assumptions.",
+					"A clear pass, fail, or partial-support verdict.",
+					"Links to the code and CI run that produced the result."
+				]
+			},
+			{
+				heading: "CI integration pattern",
+				paragraphs: ["The CI job should generate a human-readable report and a machine-readable artifact. The website can then publish a summarized version so users and contributors can inspect the project without digging through raw workflow logs."]
+			},
+			{
+				heading: "Trust benefit",
+				paragraphs: ["For a security engineering company, open compatibility evidence does two jobs. It helps users decide whether a tool fits their environment, and it demonstrates that engineering claims are backed by repeatable checks."]
+			}
+		],
+		references: [{
+			label: "Kernel eBPF documentation",
+			url: "https://docs.kernel.org/bpf/"
+		}],
+		relatedServiceSlugs: ["cybersecurity-consulting"]
+	}
+];
+articles.map((article) => article.slug);
+function getArticle(slug) {
+	if (!slug) return;
+	return articles.find((article) => article.slug === slug);
+}
+//#endregion
+//#region src/data/growthServices.ts
+var growthServicePages = [
+	{
+		slug: "cybersecurity-consulting",
+		title: "Cybersecurity Consulting for Web Platforms",
+		shortTitle: "Cybersecurity Consulting",
+		description: "Practical cybersecurity consulting for web applications, APIs, cloud edges, and public-facing business systems.",
+		keywords: "cybersecurity consulting, web application security consulting, API security consulting, cloud security consultant",
+		serviceType: "Cybersecurity consulting",
+		intent: "For teams that need a clear security plan before launching, scaling, or exposing a new web system.",
+		outcomes: [
+			"A prioritized security roadmap tied to business risk and implementation cost.",
+			"Concrete fixes for authentication, authorization, data exposure, headers, and abuse controls.",
+			"A sharper security posture that can be explained to customers, partners, and auditors."
+		],
+		deliverables: [
+			"Architecture and threat-model review",
+			"Risk-ranked findings with remediation notes",
+			"Security header, DNS, and email authentication review",
+			"Launch readiness checklist for production systems",
+			"Follow-up implementation support for critical fixes"
+		],
+		process: [
+			{
+				title: "Assess",
+				description: "Review the live surface, repository structure, authentication flows, API boundaries, DNS, and deployment platform."
+			},
+			{
+				title: "Prioritize",
+				description: "Separate urgent exposure from hardening work so engineering time is spent where it changes risk."
+			},
+			{
+				title: "Harden",
+				description: "Implement or guide fixes, then verify them with repeatable checks that can stay in CI."
+			}
+		],
+		proofPoints: [
+			"Security.txt disclosure workflow",
+			"SPF, DKIM, and DMARC alignment",
+			"Strict security headers and no wildcard CORS policy in static headers"
+		],
+		relatedArticleSlugs: [
+			"security-headers-cloudflare-pages-react",
+			"spf-dkim-dmarc-google-workspace-security-domain",
+			"vulnerability-disclosure-security-txt-website"
+		]
+	},
+	{
+		slug: "secure-web-development",
+		title: "Secure Web Development Services",
+		shortTitle: "Secure Web Development",
+		description: "Secure React, TypeScript, and API development for teams that need production-grade web applications.",
+		keywords: "secure web development, secure React development, secure TypeScript development, production web application security",
+		serviceType: "Secure web development",
+		intent: "For founders and teams that need a web product built with security, performance, and maintainability from the start.",
+		outcomes: [
+			"A fast web application with clear trust signals, strong metadata, and production deployment discipline.",
+			"Frontend and backend boundaries that reduce common injection, abuse, and data-leak risks.",
+			"A codebase that future engineers can understand, test, and extend."
+		],
+		deliverables: [
+			"React and TypeScript application development",
+			"Security-aware contact, lead, and account workflows",
+			"SEO, accessibility, and structured data implementation",
+			"CI checks for type safety, tests, build, and dependency risk",
+			"Deployment support for Cloudflare Pages, Vercel, or similar platforms"
+		],
+		process: [
+			{
+				title: "Shape",
+				description: "Define the product surface, critical conversion paths, trust requirements, and launch constraints."
+			},
+			{
+				title: "Build",
+				description: "Ship the application in small, reviewable changes with security and accessibility checks included."
+			},
+			{
+				title: "Verify",
+				description: "Run build, route, metadata, and browser checks before public release."
+			}
+		],
+		proofPoints: [
+			"Server-side prerendered pages",
+			"Canonical and hreflang metadata",
+			"Contact workflows routed to company email aliases"
+		],
+		relatedArticleSlugs: ["react-contact-form-spam-abuse-hardening", "security-headers-cloudflare-pages-react"]
+	},
+	{
+		slug: "cloudflare-security-hardening",
+		title: "Cloudflare Security Hardening",
+		shortTitle: "Cloudflare Hardening",
+		description: "Cloudflare security hardening for websites, DNS, email authentication, headers, and edge configuration.",
+		keywords: "Cloudflare security hardening, Cloudflare Pages security, Cloudflare DNS security, website security headers",
+		serviceType: "Cloudflare security hardening",
+		intent: "For sites already using Cloudflare that need tighter headers, cleaner DNS, safer edge rules, and better launch hygiene.",
+		outcomes: [
+			"A more defensible Cloudflare configuration with fewer accidental exposure paths.",
+			"DNS and email records that reduce spoofing and brand-abuse risk.",
+			"Headers and cache behavior that match the application instead of relying on broad defaults."
+		],
+		deliverables: [
+			"DNS and proxy configuration review",
+			"Security header policy for static and dynamic responses",
+			"SPF, DKIM, DMARC, and reporting mailbox verification",
+			"Redirect and canonical URL review",
+			"Deployment and rollback checklist"
+		],
+		process: [
+			{
+				title: "Inventory",
+				description: "Map active DNS records, proxied routes, redirects, headers, and deployment outputs."
+			},
+			{
+				title: "Tighten",
+				description: "Adjust records, headers, and edge rules with the smallest changes required to reduce risk."
+			},
+			{
+				title: "Confirm",
+				description: "Verify live responses and capture a short operational record for future changes."
+			}
+		],
+		proofPoints: [
+			"Cloudflare Pages header policy",
+			"Robots and sitemap publication",
+			"DMARC reporting mailbox support"
+		],
+		relatedArticleSlugs: ["security-headers-cloudflare-pages-react", "spf-dkim-dmarc-google-workspace-security-domain"]
+	},
+	{
+		slug: "react-security-audit",
+		title: "React Security Audit",
+		shortTitle: "React Security Audit",
+		description: "React security audits for frontend codebases, contact forms, routing, metadata, dependency risk, and client-side exposure.",
+		keywords: "React security audit, frontend security audit, TypeScript security review, web application security audit",
+		serviceType: "React security audit",
+		intent: "For teams that already have a React application and need a focused review before launch or investor/customer review.",
+		outcomes: [
+			"A short, actionable audit report that engineering can turn into tickets.",
+			"Reduced risk from exposed secrets, unsafe rendering, weak form controls, and routing mistakes.",
+			"Improved credibility through tested metadata, accessibility, and visible trust pages."
+		],
+		deliverables: [
+			"Client-side code and route review",
+			"Dependency and build configuration review",
+			"Form abuse and bot-control review",
+			"SEO and structured data sanity check",
+			"Risk-ranked remediation plan"
+		],
+		process: [
+			{
+				title: "Review",
+				description: "Read the codebase, deployment configuration, and live behavior with attention to user-controlled data."
+			},
+			{
+				title: "Test",
+				description: "Run the existing checks and add focused assertions where a failure would be costly."
+			},
+			{
+				title: "Report",
+				description: "Document the fixes in priority order, including exact files, URLs, and verification steps."
+			}
+		],
+		proofPoints: [
+			"TypeScript no-emit checks",
+			"Vitest route and utility tests",
+			"Browser verification for key pages"
+		],
+		relatedArticleSlugs: ["react-contact-form-spam-abuse-hardening", "security-headers-cloudflare-pages-react"]
+	},
+	{
+		slug: "backend-api-hardening",
+		title: "Backend API Hardening",
+		shortTitle: "Backend API Hardening",
+		description: "Backend and API hardening for authentication, authorization, validation, rate limits, logging, and deployment readiness.",
+		keywords: "backend API hardening, API security, backend security review, Node API security, cloud API hardening",
+		serviceType: "Backend API hardening",
+		intent: "For teams exposing APIs to customers, partner integrations, dashboards, or public contact workflows.",
+		outcomes: [
+			"API routes with clearer authorization boundaries and safer input handling.",
+			"Abuse controls that protect contact, lead, login, and operational endpoints.",
+			"Operational checks that make future regressions easier to catch."
+		],
+		deliverables: [
+			"API route and data-flow review",
+			"Authentication and authorization boundary review",
+			"Validation, rate limiting, and abuse-control guidance",
+			"Logging and incident-readiness checklist",
+			"CI-friendly regression checks for critical routes"
+		],
+		process: [
+			{
+				title: "Map",
+				description: "Identify public routes, privileged routes, external integrations, and data paths."
+			},
+			{
+				title: "Reduce",
+				description: "Remove avoidable exposure and add controls around the routes most likely to be abused."
+			},
+			{
+				title: "Monitor",
+				description: "Add practical logging and verification so issues are visible after launch."
+			}
+		],
+		proofPoints: [
+			"Contact endpoint verification",
+			"Email alias routing for support and security",
+			"Security-focused launch checklist"
+		],
+		relatedArticleSlugs: ["react-contact-form-spam-abuse-hardening", "vulnerability-disclosure-security-txt-website"]
+	}
+];
+growthServicePages.map((service) => service.slug);
+function getGrowthServicePage(slug) {
+	if (!slug) return;
+	return growthServicePages.find((service) => service.slug === slug);
+}
+//#endregion
+//#region src/lib/schema.ts
 var SITE_URL = normalizeSiteUrl(DEFAULT_SITE_URL);
 var ORGANIZATION_ID = `${SITE_URL}/#organization`;
 function absoluteUrl(path, language) {
@@ -754,6 +1252,7 @@ var englishLabels = {
 	engineering: "Engineering",
 	status: "Status",
 	changelog: "Changelog",
+	articles: "Articles",
 	notFound: "Not Found",
 	serviceDetails: {
 		"secure-frontend": "Secure Frontend",
@@ -776,6 +1275,7 @@ var LABELS = {
 		engineering: "Muhendislik",
 		status: "Durum",
 		changelog: "Degisiklikler",
+		articles: "Makaleler",
 		notFound: "Sayfa Bulunamadi",
 		serviceDetails: {
 			"secure-frontend": "Guvenli Frontend",
@@ -798,6 +1298,7 @@ var LABELS = {
 		engineering: "Engineering",
 		status: "Status",
 		changelog: "Changelog",
+		articles: "Artikel",
 		notFound: "Nicht gefunden",
 		serviceDetails: {
 			"secure-frontend": "Sicheres Frontend",
@@ -827,7 +1328,7 @@ function buildBreadcrumbItems(pathname, language) {
 	const serviceMatch = logical.match(/^\/services\/([^/]+)$/);
 	if (serviceMatch) {
 		const slug = serviceMatch[1];
-		const detailLabel = labels.serviceDetails[slug];
+		const detailLabel = labels.serviceDetails[slug] ?? getGrowthServicePage(slug)?.shortTitle;
 		if (!detailLabel) return null;
 		return [
 			home,
@@ -857,6 +1358,26 @@ function buildBreadcrumbItems(pathname, language) {
 			path: `/projects/${projectMatch[1]}/`
 		}
 	];
+	if (logical === "/articles") return [home, {
+		name: labels.articles,
+		path: "/articles/"
+	}];
+	const articleMatch = logical.match(/^\/articles\/([^/]+)$/);
+	if (articleMatch) {
+		const article = getArticle(articleMatch[1]);
+		if (!article) return null;
+		return [
+			home,
+			{
+				name: labels.articles,
+				path: "/articles/"
+			},
+			{
+				name: article.title,
+				path: `/articles/${article.slug}/`
+			}
+		];
+	}
 	if (logical === "/completed-projects") return [home, {
 		name: labels.completedProjects,
 		path: "/completed-projects/"
@@ -936,6 +1457,21 @@ function buildServiceSchema({ name, description, path, language, serviceType }) 
 		inLanguage: language
 	};
 }
+function buildArticleSchema({ title, description, path, language, publishedAt, updatedAt, keywords }) {
+	return {
+		"@type": "Article",
+		headline: title,
+		description,
+		url: absoluteUrl(path, language),
+		mainEntityOfPage: absoluteUrl(path, language),
+		datePublished: publishedAt,
+		dateModified: updatedAt,
+		author: { "@id": ORGANIZATION_ID },
+		publisher: { "@id": ORGANIZATION_ID },
+		inLanguage: language,
+		...keywords && keywords.length > 0 ? { keywords: keywords.join(", ") } : {}
+	};
+}
 function buildSoftwareSourceCodeSchema({ name, description, path, language, codeRepository, programmingLanguage }) {
 	const node = {
 		"@type": "SoftwareSourceCode",
@@ -956,7 +1492,7 @@ function normalizeSchemaItems(schema) {
 	if (!schema) return [];
 	return Array.isArray(schema) ? schema : [schema];
 }
-function SEO({ title = "Kernel Guard | Secure Web Development & Cybersecurity", description = "Kernel Guard specializes in building high-performance, secure web applications, hardened backend architectures, and post-quantum cryptography solutions.", keywords, type = "website", name = "Kernel Guard", image = "/og/default.svg", imageAlt = "Kernel Guard - Secure & Scalable Web Engineering", path, noIndex = false, noFollow = false, schema }) {
+function SEO({ title = "Kernel Guard | Secure Web Development & Cybersecurity", description = "Kernel Guard specializes in building high-performance, secure web applications, hardened backend architectures, and post-quantum cryptography solutions.", keywords, type = "website", name = "Kernel Guard", image = "/og/default.svg", imageAlt = "Kernel Guard - Secure & Scalable Web Engineering", path, noIndex = false, noFollow = false, schema, alternateLanguages = SUPPORTED_LANGUAGES }) {
 	const { language } = useLanguage();
 	const location = (0, import_dist.useLocation)();
 	const currentPath = normalizeCanonicalPath(path || location.pathname);
@@ -974,16 +1510,19 @@ function SEO({ title = "Kernel Guard | Secure Web Development & Cybersecurity", 
 		ko: "ko_KR"
 	};
 	const locale = ogLocales[language];
-	const alternateLocales = SUPPORTED_LANGUAGES.filter((lang) => lang !== language).map((lang) => ogLocales[lang]);
+	const activeAlternateLanguages = alternateLanguages.length > 0 ? alternateLanguages : [language];
+	const alternateLocales = activeAlternateLanguages.filter((lang) => lang !== language).map((lang) => ogLocales[lang]);
 	const logicalPath = stripLanguagePrefix(currentPath);
-	const alternateUrls = SUPPORTED_LANGUAGES.map((lang) => ({
+	const alternateUrls = activeAlternateLanguages.map((lang) => ({
 		language: lang,
 		hrefLang: LANGUAGE_HREFLANGS[lang],
 		url: buildCanonicalUrl(siteUrl, normalizeCanonicalPath(localizePath(logicalPath, lang)))
 	}));
-	const defaultUrl = alternateUrls.find((alternate) => alternate.language === "tr")?.url ?? canonicalUrl;
+	const defaultLanguage = activeAlternateLanguages.includes("tr") ? "tr" : activeAlternateLanguages[0];
+	const defaultUrl = alternateUrls.find((alternate) => alternate.language === defaultLanguage)?.url ?? canonicalUrl;
 	const absoluteImage = image.startsWith("http") ? image : `${siteUrl}${image.startsWith("/") ? "" : "/"}${image}`;
 	const schemaItems = normalizeSchemaItems(schema);
+	const shouldRenderStructuredData = typeof window === "undefined";
 	const organizationId = `${siteUrl}/#organization`;
 	const websiteId = `${siteUrl}/#website`;
 	const breadcrumb = buildBreadcrumbSchema(currentPath, language, siteUrl, (p) => normalizeCanonicalPath(localizePath(p, language)));
@@ -1157,12 +1696,12 @@ function SEO({ title = "Kernel Guard | Secure Web Development & Cybersecurity", 
 				name: "twitter:image:alt",
 				content: imageAlt
 			}),
-			/* @__PURE__ */ jsx("script", {
+			shouldRenderStructuredData ? /* @__PURE__ */ jsx("script", {
 				type: "application/ld+json",
 				children: JSON.stringify(structuredData)
-			})
+			}) : null
 		]
 	});
 }
 //#endregion
-export { HelmetProvider as i, buildServiceSchema as n, buildSoftwareSourceCodeSchema as r, SEO as t };
+export { getGrowthServicePage as a, getArticle as c, buildSoftwareSourceCodeSchema as i, HelmetProvider as l, buildArticleSchema as n, growthServicePages as o, buildServiceSchema as r, articles as s, SEO as t };

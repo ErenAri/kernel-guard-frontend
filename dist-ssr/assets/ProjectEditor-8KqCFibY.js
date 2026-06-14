@@ -1,9 +1,9 @@
 import { t as require_dist } from "./dist-BkMweq9c.js";
 import { t as createLucideIcon } from "./createLucideIcon-d-ZGlwaX.js";
+import { t as ArrowLeft } from "./arrow-left-Cv3pMF22.js";
 import { a as CircleAlert, i as LoaderCircle, n as useAdmin } from "./AdminContext-bpcRMjZm.js";
 import { n as Plus, t as Trash2 } from "./trash-2-CDha8inF.js";
 import { n as LANGUAGE_LABELS, r as SUPPORTED_LANGUAGES } from "./route-DZfXJ_2f.js";
-import { i as ArrowLeft } from "../entry-server.js";
 import { useEffect, useRef, useState } from "react";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
 import { v4 } from "uuid";

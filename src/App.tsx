@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, type ComponentType } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import BrowserLanguageRedirect from './components/BrowserLanguageRedirect';
@@ -23,6 +23,9 @@ import {
   loadDataProtection,
   loadHighPerformance,
   loadServices,
+  loadServiceLandingPage,
+  loadArticles,
+  loadArticlePage,
   loadSecurity,
   loadEngineering,
   loadStatus,
@@ -35,32 +38,53 @@ import {
   loadAdminLayout,
   loadAdminDashboard,
   loadProjectEditor,
+  type CachedModuleLoader,
 } from './routes/pageLoaders';
 
-const Layout = lazy(loadLayout);
-const Home = lazy(loadHome);
-const Projects = lazy(loadProjects);
-const ProjectDetails = lazy(loadProjectDetails);
+function lazyRoute<TModule extends { default: ComponentType<Record<string, never>> }>(
+  loader: CachedModuleLoader<TModule>,
+) {
+  const LazyComponent = lazy(loader);
+
+  return function PreloadedRoute() {
+    const module = loader.getResolved();
+
+    if (module) {
+      const Component = module.default;
+      return <Component />;
+    }
+
+    return <LazyComponent />;
+  };
+}
+
+const Layout = lazyRoute(loadLayout);
+const Home = lazyRoute(loadHome);
+const Projects = lazyRoute(loadProjects);
+const ProjectDetails = lazyRoute(loadProjectDetails);
 const BpfcompatPage = lazy(() => import('./pages/bpfcompat/BpfcompatPage'));
-const CompletedProjects = lazy(loadCompletedProjects);
-const CompletedProjectDetails = lazy(loadCompletedProjectDetails);
-const SecureFrontend = lazy(loadSecureFrontend);
-const HardenedBackend = lazy(loadHardenedBackend);
-const DataProtection = lazy(loadDataProtection);
-const HighPerformance = lazy(loadHighPerformance);
-const Services = lazy(loadServices);
-const Security = lazy(loadSecurity);
-const Engineering = lazy(loadEngineering);
-const Status = lazy(loadStatus);
-const Changelog = lazy(loadChangelog);
-const Terms = lazy(loadTerms);
-const Privacy = lazy(loadPrivacy);
-const Cookies = lazy(loadCookies);
-const Contact = lazy(loadContact);
-const NotFound = lazy(loadNotFound);
-const AdminLayout = lazy(loadAdminLayout);
-const AdminDashboard = lazy(loadAdminDashboard);
-const ProjectEditor = lazy(loadProjectEditor);
+const CompletedProjects = lazyRoute(loadCompletedProjects);
+const CompletedProjectDetails = lazyRoute(loadCompletedProjectDetails);
+const SecureFrontend = lazyRoute(loadSecureFrontend);
+const HardenedBackend = lazyRoute(loadHardenedBackend);
+const DataProtection = lazyRoute(loadDataProtection);
+const HighPerformance = lazyRoute(loadHighPerformance);
+const Services = lazyRoute(loadServices);
+const ServiceLandingPage = lazyRoute(loadServiceLandingPage);
+const Articles = lazyRoute(loadArticles);
+const ArticlePage = lazyRoute(loadArticlePage);
+const Security = lazyRoute(loadSecurity);
+const Engineering = lazyRoute(loadEngineering);
+const Status = lazyRoute(loadStatus);
+const Changelog = lazyRoute(loadChangelog);
+const Terms = lazyRoute(loadTerms);
+const Privacy = lazyRoute(loadPrivacy);
+const Cookies = lazyRoute(loadCookies);
+const Contact = lazyRoute(loadContact);
+const NotFound = lazyRoute(loadNotFound);
+const AdminLayout = lazyRoute(loadAdminLayout);
+const AdminDashboard = lazyRoute(loadAdminDashboard);
+const ProjectEditor = lazyRoute(loadProjectEditor);
 
 // Design previews (not linked from production nav)
 const BpfcompatPreviewIndex = lazy(() => import('./pages/preview/BpfcompatPreviewIndex'));
@@ -99,6 +123,9 @@ function LocalizedRoutes() {
         <Route path="services/hardened-backend" element={<HardenedBackend />} />
         <Route path="services/data-protection" element={<DataProtection />} />
         <Route path="services/high-performance" element={<HighPerformance />} />
+        <Route path="services/:slug" element={<ServiceLandingPage />} />
+        <Route path="articles" element={<Articles />} />
+        <Route path="articles/:slug" element={<ArticlePage />} />
         <Route path="security" element={<Security />} />
         <Route path="engineering" element={<Engineering />} />
         <Route path="status" element={<Status />} />

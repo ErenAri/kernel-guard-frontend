@@ -16,6 +16,9 @@ import HardenedBackend from './pages/HardenedBackend';
 import DataProtection from './pages/DataProtection';
 import HighPerformance from './pages/HighPerformance';
 import Services from './pages/Services';
+import ServiceLandingPage from './pages/ServiceLandingPage';
+import Articles from './pages/Articles';
+import ArticlePage from './pages/ArticlePage';
 import Security from './pages/Security';
 import Engineering from './pages/Engineering';
 import Status from './pages/Status';
@@ -61,6 +64,9 @@ function LocalizedRoutes() {
         <Route path="services/hardened-backend" element={<HardenedBackend />} />
         <Route path="services/data-protection" element={<DataProtection />} />
         <Route path="services/high-performance" element={<HighPerformance />} />
+        <Route path="services/:slug" element={<ServiceLandingPage />} />
+        <Route path="articles" element={<Articles />} />
+        <Route path="articles/:slug" element={<ArticlePage />} />
         <Route path="security" element={<Security />} />
         <Route path="engineering" element={<Engineering />} />
         <Route path="status" element={<Status />} />

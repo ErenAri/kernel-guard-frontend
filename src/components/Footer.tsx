@@ -54,6 +54,16 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  to="/en/articles/"
+                  onPointerEnter={() => prefetchRoute('articles')}
+                  onFocus={() => prefetchRoute('articles')}
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                >
+                  Articles
+                </Link>
+              </li>
+              <li>
+                <Link
                   to={localizePath('/contact/', language)}
                   onPointerEnter={() => prefetchRoute('contact')}
                   onFocus={() => prefetchRoute('contact')}

@@ -1,6 +1,9 @@
 import { stripLanguagePrefix } from '../i18n/route';
 
 type ModuleLoader<TModule = unknown> = () => Promise<TModule>;
+export type CachedModuleLoader<TModule = unknown> = ModuleLoader<TModule> & {
+  getResolved: () => TModule | null;
+};
 
 type PrefetchConnection = {
   saveData?: boolean;
@@ -13,16 +16,28 @@ type PrefetchNavigator = Navigator & {
 
 const CONSTRAINED_CONNECTION_TYPES = new Set(['slow-2g', '2g']);
 
-function cacheLoader<TModule>(loader: ModuleLoader<TModule>): ModuleLoader<TModule> {
+function cacheLoader<TModule>(loader: ModuleLoader<TModule>): CachedModuleLoader<TModule> {
   let pending: Promise<TModule> | null = null;
+  let resolved: TModule | null = null;
 
-  return () => {
+  const cachedLoader = () => {
+    if (resolved) {
+      return Promise.resolve(resolved);
+    }
+
     if (!pending) {
-      pending = loader();
+      pending = loader().then((module) => {
+        resolved = module;
+        return module;
+      });
     }
 
     return pending;
   };
+
+  cachedLoader.getResolved = () => resolved;
+
+  return cachedLoader;
 }
 
 function canPrefetchRoute(): boolean {
@@ -54,6 +69,9 @@ export const loadHardenedBackend = cacheLoader(() => import('../pages/HardenedBa
 export const loadDataProtection = cacheLoader(() => import('../pages/DataProtection'));
 export const loadHighPerformance = cacheLoader(() => import('../pages/HighPerformance'));
 export const loadServices = cacheLoader(() => import('../pages/Services'));
+export const loadServiceLandingPage = cacheLoader(() => import('../pages/ServiceLandingPage'));
+export const loadArticles = cacheLoader(() => import('../pages/Articles'));
+export const loadArticlePage = cacheLoader(() => import('../pages/ArticlePage'));
 export const loadSecurity = cacheLoader(() => import('../pages/Security'));
 export const loadEngineering = cacheLoader(() => import('../pages/Engineering'));
 export const loadStatus = cacheLoader(() => import('../pages/Status'));
@@ -74,6 +92,9 @@ const prefetchers = {
   completedProjects: loadCompletedProjects,
   completedProjectDetails: loadCompletedProjectDetails,
   services: loadServices,
+  serviceLandingPage: loadServiceLandingPage,
+  articles: loadArticles,
+  articlePage: loadArticlePage,
   security: loadSecurity,
   engineering: loadEngineering,
   status: loadStatus,
@@ -117,6 +138,9 @@ export function resolveLoadersForPath(pathname: string): PrefetchRoute[] {
   if (path === '/services/hardened-backend') return ['hardenedBackend'];
   if (path === '/services/data-protection') return ['dataProtection'];
   if (path === '/services/high-performance') return ['highPerformance'];
+  if (path.startsWith('/services/')) return ['serviceLandingPage'];
+  if (path === '/articles') return ['articles'];
+  if (path.startsWith('/articles/')) return ['articlePage'];
   if (path === '/security') return ['security'];
   if (path === '/engineering') return ['engineering'];
   if (path === '/status') return ['status'];
