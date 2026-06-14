@@ -6,5 +6,6 @@ coverage/
 *.log
 .env*
 !.env.example
+reports/
 public/generated/
 .wrangler/

@@ -1,5 +1,5 @@
 import { StrictMode } from 'react';
-import { hydrateRoot } from 'react-dom/client';
+import { createRoot, hydrateRoot } from 'react-dom/client';
 import App from './App.tsx';
 import { loadLayout, preloadRoutes, resolveLoadersForPath } from './routes/pageLoaders';
 import './index.css';
@@ -15,12 +15,17 @@ async function bootstrap() {
     preloadRoutes(resolveLoadersForPath(window.location.pathname)),
   ]);
 
-  hydrateRoot(
-    rootElement,
+  const app = (
     <StrictMode>
       <App />
-    </StrictMode>,
+    </StrictMode>
   );
+
+  if (rootElement.hasChildNodes()) {
+    hydrateRoot(rootElement, app);
+  } else {
+    createRoot(rootElement).render(app);
+  }
 }
 
 void bootstrap();

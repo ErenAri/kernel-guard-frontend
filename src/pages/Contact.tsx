@@ -1,10 +1,30 @@
-import { Mail, MapPin, Github, Send } from 'lucide-react';
+import {
+  BriefcaseBusiness,
+  FileText,
+  Github,
+  LifeBuoy,
+  LockKeyhole,
+  Mail,
+  MapPin,
+  Send,
+  ShieldCheck,
+  type LucideIcon,
+} from 'lucide-react';
 import SEO from '../components/SEO';
+import { WEB3FORMS_ACCESS_KEY } from '../config/forms';
+import { SITE_EMAILS, mailto } from '../config/site';
 import { useLanguage } from '../context/LanguageContext';
+
+const contactChannels: Array<{ label: string; email: string; Icon: LucideIcon }> = [
+  { label: 'Sales', email: SITE_EMAILS.sales, Icon: BriefcaseBusiness },
+  { label: 'Support', email: SITE_EMAILS.support, Icon: LifeBuoy },
+  { label: 'Security', email: SITE_EMAILS.security, Icon: ShieldCheck },
+  { label: 'Privacy', email: SITE_EMAILS.privacy, Icon: LockKeyhole },
+  { label: 'Legal', email: SITE_EMAILS.legal, Icon: FileText },
+];
 
 export default function Contact() {
   const { t } = useLanguage();
-  const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
 
   return (
     <div className="min-h-screen bg-background pt-32 pb-20">
@@ -33,7 +53,7 @@ export default function Contact() {
 
             <div className="space-y-6">
               <a
-                href="mailto:iletisim@kernelguard.net"
+                href={mailto(SITE_EMAILS.contact)}
                 className="flex items-center gap-4 text-foreground/80 hover:text-primary transition-colors"
               >
                 <span className="flex h-11 w-11 items-center justify-center border border-border text-primary">
@@ -41,7 +61,7 @@ export default function Contact() {
                 </span>
                 <span>
                   <span className="block text-sm text-foreground/50">{t.contact.info.email}</span>
-                  <span className="font-medium">iletisim@kernelguard.net</span>
+                  <span className="font-medium">{SITE_EMAILS.contact}</span>
                 </span>
               </a>
 
@@ -70,6 +90,27 @@ export default function Contact() {
                 </span>
               </a>
             </div>
+
+            <div className="mt-8 border-t border-border pt-8">
+              <h3 className="mb-4 text-sm font-medium uppercase tracking-wide text-foreground/60">
+                Direct channels
+              </h3>
+              <div className="space-y-3">
+                {contactChannels.map(({ label, email, Icon }) => (
+                  <a
+                    key={email}
+                    href={mailto(email)}
+                    className="flex items-center justify-between gap-4 border border-border bg-background px-4 py-3 text-sm text-foreground/80 transition-colors hover:border-primary/50 hover:text-primary"
+                  >
+                    <span className="flex min-w-0 items-center gap-3">
+                      <Icon className="h-4 w-4 shrink-0" />
+                      <span className="font-medium">{label}</span>
+                    </span>
+                    <span className="truncate font-mono text-xs text-foreground/55">{email}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
           </aside>
 
           <form
@@ -77,7 +118,7 @@ export default function Contact() {
             method="POST"
             className="border border-border bg-surface p-8 space-y-6"
           >
-            <input type="hidden" name="access_key" value={accessKey || ''} />
+            <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
             <input type="hidden" name="subject" value="Kernel Guard contact form" />
             <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} />
 
@@ -127,7 +168,6 @@ export default function Contact() {
 
             <button
               type="submit"
-              disabled={!accessKey}
               className="inline-flex w-full sm:w-auto items-center justify-center gap-3 kg-action-primary px-8 py-4 font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50"
             >
               <span>{t.contact.form.submit}</span>

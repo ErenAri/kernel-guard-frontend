@@ -1,4 +1,5 @@
 import type { Language } from '../context/LanguageContext';
+import { SITE_EMAILS } from '../config/site';
 
 export type EnterprisePageKey = 'security' | 'engineering' | 'status' | 'changelog';
 
@@ -50,7 +51,7 @@ const english: EnterpriseLanguageContent = {
         {
           title: 'Disclosure',
           body: 'Security reports should be sent directly to the maintainers with reproduction steps and affected URLs.',
-          items: ['Email: iletisim@kernelguard.net', 'No public exploit disclosure before triage', 'GitHub issues for non-sensitive bugs'],
+          items: [`Email: ${SITE_EMAILS.security}`, 'No public exploit disclosure before triage', 'GitHub issues for non-sensitive bugs'],
         },
       ],
     },

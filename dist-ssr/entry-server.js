@@ -2,7 +2,7 @@ var __defProp = Object.defineProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 var _a, _b;
-import { jsx, jsxs } from "react/jsx-runtime";
+import { jsx, jsxs, Fragment } from "react/jsx-runtime";
 import { renderToString } from "react-dom/server";
 import * as React3 from "react";
 import React3__default, { Component, createContext as createContext$1, useState, useContext, useEffect, forwardRef, createElement, useRef } from "react";
@@ -17485,6 +17485,17 @@ function useTheme() {
   return context;
 }
 const DEFAULT_SITE_URL = "https://www.kernelguard.net";
+const SITE_EMAILS = {
+  contact: "contact@kernelguard.net",
+  support: "support@kernelguard.net",
+  security: "security@kernelguard.net",
+  legal: "legal@kernelguard.net",
+  privacy: "privacy@kernelguard.net",
+  sales: "sales@kernelguard.net"
+};
+function mailto(email) {
+  return `mailto:${email}`;
+}
 function normalizeSiteUrl(value) {
   return value.trim().replace(/\/$/, "");
 }
@@ -17626,29 +17637,29 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$v = [
+const __iconNode$z = [
   ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
   ["path", { d: "M19 12H5", key: "x3x0zl" }]
 ];
-const ArrowLeft = createLucideIcon("arrow-left", __iconNode$v);
+const ArrowLeft = createLucideIcon("arrow-left", __iconNode$z);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$u = [
+const __iconNode$y = [
   ["path", { d: "M5 12h14", key: "1ays0h" }],
   ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
 ];
-const ArrowRight = createLucideIcon("arrow-right", __iconNode$u);
+const ArrowRight = createLucideIcon("arrow-right", __iconNode$y);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$t = [
+const __iconNode$x = [
   [
     "path",
     {
@@ -17659,23 +17670,68 @@ const __iconNode$t = [
   ["path", { d: "m3.3 7 8.7 5 8.7-5", key: "g66t2b" }],
   ["path", { d: "M12 22V12", key: "d0xqtd" }]
 ];
-const Box = createLucideIcon("box", __iconNode$t);
+const Box = createLucideIcon("box", __iconNode$x);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$s = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
-const Check = createLucideIcon("check", __iconNode$s);
+const __iconNode$w = [
+  ["path", { d: "M12 12h.01", key: "1mp3jc" }],
+  ["path", { d: "M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2", key: "1ksdt3" }],
+  ["path", { d: "M22 13a18.15 18.15 0 0 1-20 0", key: "12hx5q" }],
+  ["rect", { width: "20", height: "14", x: "2", y: "6", rx: "2", key: "i6l2r4" }]
+];
+const BriefcaseBusiness = createLucideIcon("briefcase-business", __iconNode$w);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$r = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
-const ChevronDown = createLucideIcon("chevron-down", __iconNode$r);
+const __iconNode$v = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
+const Check = createLucideIcon("check", __iconNode$v);
+/**
+ * @license lucide-react v0.546.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$u = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
+const ChevronDown = createLucideIcon("chevron-down", __iconNode$u);
+/**
+ * @license lucide-react v0.546.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$t = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
+];
+const CircleCheck = createLucideIcon("circle-check", __iconNode$t);
+/**
+ * @license lucide-react v0.546.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$s = [
+  ["path", { d: "M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z", key: "p7xjir" }]
+];
+const Cloud = createLucideIcon("cloud", __iconNode$s);
+/**
+ * @license lucide-react v0.546.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$r = [
+  ["path", { d: "m16 18 6-6-6-6", key: "eg8j8" }],
+  ["path", { d: "m8 6-6 6 6 6", key: "ppft3o" }]
+];
+const Code = createLucideIcon("code", __iconNode$r);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -17683,10 +17739,11 @@ const ChevronDown = createLucideIcon("chevron-down", __iconNode$r);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$q = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
+  ["ellipse", { cx: "12", cy: "5", rx: "9", ry: "3", key: "msslwz" }],
+  ["path", { d: "M3 5V19A9 3 0 0 0 21 19V5", key: "1wlel7" }],
+  ["path", { d: "M3 12A9 3 0 0 0 21 12", key: "mv7ke4" }]
 ];
-const CircleCheck = createLucideIcon("circle-check", __iconNode$q);
+const Database = createLucideIcon("database", __iconNode$q);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -17694,39 +17751,6 @@ const CircleCheck = createLucideIcon("circle-check", __iconNode$q);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$p = [
-  ["path", { d: "M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z", key: "p7xjir" }]
-];
-const Cloud = createLucideIcon("cloud", __iconNode$p);
-/**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$o = [
-  ["path", { d: "m16 18 6-6-6-6", key: "eg8j8" }],
-  ["path", { d: "m8 6-6 6 6 6", key: "ppft3o" }]
-];
-const Code = createLucideIcon("code", __iconNode$o);
-/**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$n = [
-  ["ellipse", { cx: "12", cy: "5", rx: "9", ry: "3", key: "msslwz" }],
-  ["path", { d: "M3 5V19A9 3 0 0 0 21 19V5", key: "1wlel7" }],
-  ["path", { d: "M3 12A9 3 0 0 0 21 12", key: "mv7ke4" }]
-];
-const Database = createLucideIcon("database", __iconNode$n);
-/**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$m = [
   ["path", { d: "M21.54 15H17a2 2 0 0 0-2 2v4.54", key: "1djwo0" }],
   [
     "path",
@@ -17738,7 +17762,44 @@ const __iconNode$m = [
   ["path", { d: "M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05", key: "14pb5j" }],
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }]
 ];
-const Earth = createLucideIcon("earth", __iconNode$m);
+const Earth = createLucideIcon("earth", __iconNode$p);
+/**
+ * @license lucide-react v0.546.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$o = [
+  ["path", { d: "M15 3h6v6", key: "1q9fwt" }],
+  ["path", { d: "M10 14 21 3", key: "gplh6r" }],
+  ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6", key: "a6xqqp" }]
+];
+const ExternalLink = createLucideIcon("external-link", __iconNode$o);
+/**
+ * @license lucide-react v0.546.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$n = [
+  ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
+  ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
+  ["path", { d: "M10 9H8", key: "b1mrlr" }],
+  ["path", { d: "M16 13H8", key: "t4e002" }],
+  ["path", { d: "M16 17H8", key: "z1uh3a" }]
+];
+const FileText = createLucideIcon("file-text", __iconNode$n);
+/**
+ * @license lucide-react v0.546.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$m = [
+  ["path", { d: "m12 14 4-4", key: "9kzdfg" }],
+  ["path", { d: "M3.34 19a10 10 0 1 1 17.32 0", key: "19p75a" }]
+];
+const Gauge = createLucideIcon("gauge", __iconNode$m);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -17746,11 +17807,12 @@ const Earth = createLucideIcon("earth", __iconNode$m);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$l = [
-  ["path", { d: "M15 3h6v6", key: "1q9fwt" }],
-  ["path", { d: "M10 14 21 3", key: "gplh6r" }],
-  ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6", key: "a6xqqp" }]
+  ["line", { x1: "6", x2: "6", y1: "3", y2: "15", key: "17qcm7" }],
+  ["circle", { cx: "18", cy: "6", r: "3", key: "1h7g24" }],
+  ["circle", { cx: "6", cy: "18", r: "3", key: "fqmcym" }],
+  ["path", { d: "M18 9a9 9 0 0 1-9 9", key: "n2h4wq" }]
 ];
-const ExternalLink = createLucideIcon("external-link", __iconNode$l);
+const GitBranch = createLucideIcon("git-branch", __iconNode$l);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -17758,10 +17820,11 @@ const ExternalLink = createLucideIcon("external-link", __iconNode$l);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$k = [
-  ["path", { d: "m12 14 4-4", key: "9kzdfg" }],
-  ["path", { d: "M3.34 19a10 10 0 1 1 17.32 0", key: "19p75a" }]
+  ["circle", { cx: "18", cy: "18", r: "3", key: "1xkwt0" }],
+  ["circle", { cx: "6", cy: "6", r: "3", key: "1lh9wr" }],
+  ["path", { d: "M6 21V9a9 9 0 0 0 9 9", key: "7kw0sc" }]
 ];
-const Gauge = createLucideIcon("gauge", __iconNode$k);
+const GitMerge = createLucideIcon("git-merge", __iconNode$k);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -17769,31 +17832,6 @@ const Gauge = createLucideIcon("gauge", __iconNode$k);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$j = [
-  ["line", { x1: "6", x2: "6", y1: "3", y2: "15", key: "17qcm7" }],
-  ["circle", { cx: "18", cy: "6", r: "3", key: "1h7g24" }],
-  ["circle", { cx: "6", cy: "18", r: "3", key: "fqmcym" }],
-  ["path", { d: "M18 9a9 9 0 0 1-9 9", key: "n2h4wq" }]
-];
-const GitBranch = createLucideIcon("git-branch", __iconNode$j);
-/**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$i = [
-  ["circle", { cx: "18", cy: "18", r: "3", key: "1xkwt0" }],
-  ["circle", { cx: "6", cy: "6", r: "3", key: "1lh9wr" }],
-  ["path", { d: "M6 21V9a9 9 0 0 0 9 9", key: "7kw0sc" }]
-];
-const GitMerge = createLucideIcon("git-merge", __iconNode$i);
-/**
- * @license lucide-react v0.546.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$h = [
   [
     "path",
     {
@@ -17803,7 +17841,34 @@ const __iconNode$h = [
   ],
   ["path", { d: "M9 18c-4.51 2-5-2-7-2", key: "9comsn" }]
 ];
-const Github = createLucideIcon("github", __iconNode$h);
+const Github = createLucideIcon("github", __iconNode$j);
+/**
+ * @license lucide-react v0.546.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$i = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20", key: "13o1zl" }],
+  ["path", { d: "M2 12h20", key: "9i4pu4" }]
+];
+const Globe = createLucideIcon("globe", __iconNode$i);
+/**
+ * @license lucide-react v0.546.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$h = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "m4.93 4.93 4.24 4.24", key: "1ymg45" }],
+  ["path", { d: "m14.83 9.17 4.24-4.24", key: "1cb5xl" }],
+  ["path", { d: "m14.83 14.83 4.24 4.24", key: "q42g0n" }],
+  ["path", { d: "m9.17 14.83-4.24 4.24", key: "bqpfvv" }],
+  ["circle", { cx: "12", cy: "12", r: "4", key: "4exip2" }]
+];
+const LifeBuoy = createLucideIcon("life-buoy", __iconNode$h);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -17811,11 +17876,11 @@ const Github = createLucideIcon("github", __iconNode$h);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$g = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20", key: "13o1zl" }],
-  ["path", { d: "M2 12h20", key: "9i4pu4" }]
+  ["circle", { cx: "12", cy: "16", r: "1", key: "1au0dj" }],
+  ["rect", { x: "3", y: "10", width: "18", height: "12", rx: "2", key: "6s8ecr" }],
+  ["path", { d: "M7 10V7a5 5 0 0 1 10 0v3", key: "1pqi11" }]
 ];
-const Globe = createLucideIcon("globe", __iconNode$g);
+const LockKeyhole = createLucideIcon("lock-keyhole", __iconNode$g);
 /**
  * @license lucide-react v0.546.0 - ISC
  *
@@ -18482,7 +18547,7 @@ const english = {
         {
           title: "Disclosure",
           body: "Security reports should be sent directly to the maintainers with reproduction steps and affected URLs.",
-          items: ["Email: iletisim@kernelguard.net", "No public exploit disclosure before triage", "GitHub issues for non-sensitive bugs"]
+          items: [`Email: ${SITE_EMAILS.security}`, "No public exploit disclosure before triage", "GitHub issues for non-sensitive bugs"]
         }
       ]
     },
@@ -18690,11 +18755,11 @@ function Footer() {
           /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsxs(
             "a",
             {
-              href: "mailto:iletisim@kernelguard.net",
+              href: mailto(SITE_EMAILS.contact),
               className: "text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2",
               children: [
                 /* @__PURE__ */ jsx(Mail, { className: "w-4 h-4" }),
-                "iletisim@kernelguard.net"
+                SITE_EMAILS.contact
               ]
             }
           ) }),
@@ -19254,13 +19319,14 @@ function Home() {
         keywords: t.seo.home.keywords
       }
     ),
-    /* @__PURE__ */ jsx("section", { className: "pt-32 pb-20 md:pt-48 md:pb-32 border-b border-border overflow-hidden", children: /* @__PURE__ */ jsx("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-1 lg:grid-cols-2 gap-12 items-center", children: [
+    /* @__PURE__ */ jsx("section", { className: "kg-dot-grid pt-32 pb-20 md:pt-48 md:pb-32 border-b border-border overflow-hidden", children: /* @__PURE__ */ jsx("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-1 lg:grid-cols-2 gap-12 items-center", children: [
       /* @__PURE__ */ jsxs("div", { className: "max-w-4xl relative z-10", children: [
         /* @__PURE__ */ jsxs("h1", { className: "text-5xl md:text-7xl font-light text-foreground leading-[1.1] mb-8", children: [
           t.home.heroTitle1,
           " ",
           /* @__PURE__ */ jsx("br", {}),
-          /* @__PURE__ */ jsx("span", { className: "font-semibold", children: t.home.heroTitle2 })
+          /* @__PURE__ */ jsx("span", { className: "font-semibold", children: t.home.heroTitle2 }),
+          /* @__PURE__ */ jsx("span", { "aria-hidden": "true", className: "kg-caret" })
         ] }),
         /* @__PURE__ */ jsx("p", { className: "text-xl md:text-2xl text-foreground mb-12 max-w-2xl leading-relaxed font-light", children: t.home.heroDesc }),
         /* @__PURE__ */ jsxs("div", { className: "flex flex-col sm:flex-row flex-wrap gap-4", children: [
@@ -19408,7 +19474,7 @@ function Home() {
           href: "https://github.com/Kernel-Guard",
           target: "_blank",
           rel: "noopener noreferrer",
-          className: "inline-flex items-center justify-center px-8 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-white transition-colors",
+          className: "inline-flex items-center justify-center px-8 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors",
           children: [
             /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.nav.github }),
             /* @__PURE__ */ jsx(ArrowRight, { className: "w-5 h-5 ml-3" })
@@ -19422,7 +19488,7 @@ const Home$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProper
   __proto__: null,
   default: Home
 }, Symbol.toStringTag, { value: "Module" }));
-const items$1 = /* @__PURE__ */ JSON.parse(`[{"id":"cathodex","title":"CathodeX","description":{"en":"AI-powered cathode material screening platform using graph neural networks for predicting battery material properties.","tr":"Pil malzemesi özelliklerini tahmin etmek için çizge sinir ağlarını kullanan yapay zeka destekli katot malzemesi tarama platformu.","de":"KI-gestuetzte Plattform zur Pruefung von Kathodenmaterialien, die Graph Neural Networks zur Vorhersage von Batterieeigenschaften nutzt.","ja":"グラフニューラルネットワークを用いて電池材料の特性を予測する、AI搭載のカソード材料スクリーニングプラットフォームです。","zh-CN":"一个由 AI 驱动的正极材料筛选平台，使用图神经网络预测电池材料属性。","es":"Plataforma de cribado de materiales de cátodo impulsada por IA que usa redes neuronales de grafos para predecir propiedades de materiales de baterías.","fr":"Plateforme de criblage de matériaux de cathode assistée par IA, utilisant des réseaux neuronaux de graphes pour prédire les propriétés des matériaux de batteries.","ko":"배터리 소재 특성을 예측하기 위해 그래프 신경망을 사용하는 AI 기반 양극재 스크리닝 플랫폼입니다."},"technicalDetails":{"en":"Built using PyTorch and Graph Neural Networks (GNNs) to model the atomic structure of cathode materials. It leverages high-throughput screening algorithms to predict key battery properties such as energy density and stability.","tr":"Katot malzemelerinin atomik yapısını modellemek için PyTorch ve Çizge Sinir Ağları (GNN'ler) kullanılarak oluşturulmuştur. Enerji yoğunluğu ve kararlılık gibi temel pil özelliklerini tahmin etmek için yüksek verimli tarama algoritmalarından yararlanır.","de":"Entwickelt mit PyTorch und Graph Neural Networks (GNNs), um die atomare Struktur von Kathodenmaterialien zu modellieren. Hochdurchsatz-Screening-Algorithmen prognostizieren zentrale Batterieeigenschaften wie Energiedichte und Stabilitaet.","ja":"PyTorch とグラフニューラルネットワーク（GNN）を用いて、カソード材料の原子構造をモデル化しています。高スループットスクリーニングにより、エネルギー密度や安定性などの主要な電池特性を予測します。","zh-CN":"该平台基于 PyTorch 和图神经网络（GNN）构建，用于建模正极材料的原子结构。它利用高通量筛选算法预测能量密度、稳定性等关键电池属性。","es":"Construida con PyTorch y redes neuronales de grafos (GNN) para modelar la estructura atómica de materiales de cátodo. Usa algoritmos de cribado de alto rendimiento para predecir propiedades clave de baterías como densidad energética y estabilidad.","fr":"Construite avec PyTorch et des réseaux neuronaux de graphes (GNN) pour modéliser la structure atomique des matériaux de cathode. Elle s’appuie sur des algorithmes de criblage à haut débit pour prédire des propriétés clés comme la densité énergétique et la stabilité.","ko":"PyTorch와 그래프 신경망(GNN)을 사용해 양극재의 원자 구조를 모델링합니다. 고처리량 스크리닝 알고리즘으로 에너지 밀도와 안정성 같은 핵심 배터리 특성을 예측합니다."},"marketingDetails":{"en":"Accelerating the future of energy storage. CathodeX reduces the time and cost of battery material discovery by orders of magnitude, empowering researchers to find the next generation of sustainable energy solutions.","tr":"Enerji depolamanın geleceğini hızlandırıyoruz. CathodeX, pil malzemesi keşfinin zamanını ve maliyetini büyük ölçüde azaltarak araştırmacıların yeni nesil sürdürülebilir enerji çözümlerini bulmalarını sağlar.","de":"Beschleunigt die Zukunft der Energiespeicherung. CathodeX senkt Zeit und Kosten der Batteriematerialforschung drastisch und hilft Forschenden, nachhaltige Energieloesungen der naechsten Generation zu finden.","ja":"エネルギー貯蔵の未来を加速します。CathodeX は電池材料探索にかかる時間とコストを大幅に削減し、研究者が次世代の持続可能なエネルギーソリューションを発見できるよう支援します。","zh-CN":"加速储能技术的未来。CathodeX 大幅降低电池材料发现的时间和成本，帮助研究人员寻找下一代可持续能源解决方案。","es":"Acelera el futuro del almacenamiento energético. CathodeX reduce drásticamente el tiempo y el coste del descubrimiento de materiales de batería, ayudando a los investigadores a encontrar soluciones energéticas sostenibles de nueva generación.","fr":"Accélérer l’avenir du stockage d’énergie. CathodeX réduit fortement le temps et le coût de découverte des matériaux de batteries, afin d’aider les chercheurs à identifier les prochaines solutions énergétiques durables.","ko":"에너지 저장의 미래를 앞당깁니다. CathodeX는 배터리 소재 탐색에 드는 시간과 비용을 크게 줄여 연구자가 차세대 지속 가능한 에너지 솔루션을 찾도록 돕습니다."},"tags":["Python","AI","Graph Neural Networks"],"github":"https://github.com/Kernel-Guard/CathodeX","link":"https://cathode-screening.vercel.app/","diagram":"graph LR\\n    User[User / Chemist] -->|HTTPS| FE(Next.js on Vercel)\\n    FE -->|JSON| API(FastAPI on Render)\\n    subgraph \\"Inference Engine\\"\\n        API -->|Parse| Pymatgen(Structure Parser)\\n        Pymatgen -->|Graph| M1(MACE Member 1)\\n        Pymatgen -->|Graph| M2(MACE Member 2)\\n        Pymatgen -->|Graph| M3(MACE Member 3)\\n        Pymatgen -->|Graph| M4(MACE Member 4)\\n        Pymatgen -->|Graph| M5(MACE Member 5)\\n    end\\n    M1 & M2 & M3 & M4 & M5 -->|Aggregate| Stats[q10 / q50 / q90 + Conformal]\\n    Stats -->|Policy| Result[KEEP / MAYBE / KILL]"},{"id":"post-quantum-messaging-app","title":"post-quantum-messaging-app","description":{"en":"A secure messaging application implementing post-quantum cryptographic algorithms to ensure future-proof communication.","tr":"Geleceğe dönük iletişimi sağlamak için kuantum sonrası kriptografik algoritmalar uygulayan güvenli bir mesajlaşma uygulaması.","de":"Eine sichere Messaging-Anwendung mit Post-Quantum-Kryptografie, die Kommunikation langfristig schuetzen soll.","ja":"将来にわたって安全な通信を実現するため、ポスト量子暗号アルゴリズムを実装したセキュアメッセージングアプリケーションです。","zh-CN":"一款实现后量子密码算法的安全消息应用，用于保障面向未来的通信安全。","es":"Aplicación de mensajería segura que implementa algoritmos criptográficos poscuánticos para proteger la comunicación a futuro.","fr":"Application de messagerie sécurisée qui implémente des algorithmes cryptographiques post-quantiques pour protéger les communications à long terme.","ko":"미래의 통신 보안을 보장하기 위해 포스트 양자 암호 알고리즘을 구현한 보안 메시징 애플리케이션입니다."},"technicalDetails":{"en":"Implemented in Rust for memory safety and performance. Utilizes NIST-approved post-quantum cryptographic algorithms (like CRYSTALS-Kyber and CRYSTALS-Dilithium) to secure message exchange against attacks from quantum computers.","tr":"Bellek güvenliği ve performans için Rust ile uygulanmıştır. Mesaj alışverişini kuantum bilgisayarlardan gelebilecek saldırılara karşı güvence altına almak için NIST onaylı kuantum sonrası kriptografik algoritmaları (CRYSTALS-Kyber ve CRYSTALS-Dilithium gibi) kullanır.","de":"In Rust umgesetzt, um Speichersicherheit und Performance zu verbinden. Die Anwendung nutzt NIST-standardisierte Post-Quantum-Algorithmen wie CRYSTALS-Kyber und CRYSTALS-Dilithium, um Nachrichtenaustausch gegen Angriffe durch Quantencomputer abzusichern.","ja":"メモリ安全性と性能を重視して Rust で実装されています。CRYSTALS-Kyber や CRYSTALS-Dilithium など、NIST 標準のポスト量子暗号アルゴリズムを用いて、量子コンピュータによる攻撃からメッセージ交換を保護します。","zh-CN":"该应用使用 Rust 实现，以兼顾内存安全与性能。它采用 NIST 标准化的后量子密码算法（如 CRYSTALS-Kyber 和 CRYSTALS-Dilithium），保护消息交换免受量子计算机攻击。","es":"Implementada en Rust para seguridad de memoria y rendimiento. Utiliza algoritmos poscuánticos aprobados por NIST, como CRYSTALS-Kyber y CRYSTALS-Dilithium, para proteger el intercambio de mensajes frente a ataques de computadores cuánticos.","fr":"Implémentée en Rust pour la sûreté mémoire et la performance. Elle utilise des algorithmes post-quantiques approuvés par le NIST, comme CRYSTALS-Kyber et CRYSTALS-Dilithium, afin de protéger l’échange de messages contre les attaques d’ordinateurs quantiques.","ko":"메모리 안전성과 성능을 위해 Rust로 구현되었습니다. CRYSTALS-Kyber와 CRYSTALS-Dilithium 같은 NIST 승인 포스트 양자 암호 알고리즘을 사용해 양자 컴퓨터 공격으로부터 메시지 교환을 보호합니다."},"marketingDetails":{"en":"Future-proof your communications. As quantum computing advances, traditional encryption will become obsolete. Our post-quantum messaging app ensures your sensitive data remains secure against tomorrow's threats, today.","tr":"İletişiminizi geleceğe hazırlayın. Kuantum hesaplama geliştikçe geleneksel şifreleme geçersiz hale gelecektir. Kuantum sonrası mesajlaşma uygulamamız, hassas verilerinizin bugünden yarının tehditlerine karşı güvende kalmasını sağlar.","de":"Machen Sie Ihre Kommunikation zukunftssicher. Mit dem Fortschritt des Quantencomputings wird klassische Verschluesselung unter Druck geraten. Diese Post-Quantum-Messaging-App schuetzt sensible Daten schon heute vor den Risiken von morgen.","ja":"通信を未来に備えます。量子コンピューティングが進化すると、従来の暗号化は通用しなくなる可能性があります。このポスト量子メッセージングアプリは、明日の脅威に対して今日から機密データを保護します。","zh-CN":"让通信面向未来。随着量子计算的发展，传统加密将面临失效风险。我们的后量子消息应用从今天开始保护敏感数据，应对未来威胁。","es":"Prepara tus comunicaciones para el futuro. A medida que avanza la computación cuántica, el cifrado tradicional perderá eficacia. Esta aplicación mantiene los datos sensibles protegidos frente a las amenazas de mañana desde hoy.","fr":"Préparez vos communications pour l’avenir. À mesure que l’informatique quantique progresse, le chiffrement traditionnel sera mis sous pression. Cette application protège dès aujourd’hui les données sensibles contre les menaces de demain.","ko":"커뮤니케이션을 미래에 대비하세요. 양자 컴퓨팅이 발전하면 기존 암호화는 한계에 직면할 수 있습니다. 이 앱은 오늘부터 민감한 데이터를 내일의 위협에 대비해 보호합니다."},"tags":["Rust","Cryptography","Post-Quantum"],"github":"https://github.com/Kernel-Guard/post-quantum-messaging-app","diagram":"flowchart LR\\n    C[\\"CLI / Android / iOS / Web / Desktop\\"] -->|HTTP JSON + TLS| S[\\"pqmsg-server\\"]\\n    S -->|Sealed inbox sync / realtime relay| C\\n    A[\\"Android bridge\\"] --> CORE[\\"pqmsg-core\\"]\\n    I[\\"iOS bridge\\"] --> CORE\\n    W[\\"Web WASM bridge\\"] --> CORE\\n    D[\\"Desktop wrapper\\"] --> W\\n    S --> DB[\\"PostgreSQL / SQLite\\"]\\n    S --> RD[\\"Redis rate limiter\\"]\\n    PV[\\"ProVerif model\\"] -.- V[\\"CI verification gate\\"]\\n    TM[\\"Tamarin model\\"] -.- V"},{"id":"aegis-bpf","title":"Aegis-BPF","description":{"en":"A prototype for enforcing security policies using eBPF (Extended Berkeley Packet Filter) with CO-RE (Compile Once - Run Everywhere) support.","tr":"CO-RE (Bir Kere Derle - Her Yerde Çalıştır) desteğiyle eBPF (Genişletilmiş Berkeley Paket Filtresi) kullanarak güvenlik politikalarını uygulamak için bir prototip.","de":"Ein Prototyp zur Durchsetzung von Sicherheitsrichtlinien mit eBPF und CO-RE-Unterstuetzung (Compile Once - Run Everywhere).","ja":"CO-RE（Compile Once - Run Everywhere）対応の eBPF（Extended Berkeley Packet Filter）を用いて、セキュリティポリシーを適用するためのプロトタイプです。","zh-CN":"一个使用 eBPF（扩展伯克利包过滤器）并支持 CO-RE（一次编译，到处运行）的安全策略执行原型。","es":"Prototipo para aplicar políticas de seguridad con eBPF (Extended Berkeley Packet Filter) y soporte CO-RE (Compile Once - Run Everywhere).","fr":"Prototype d’application de politiques de sécurité avec eBPF (Extended Berkeley Packet Filter) et prise en charge CO-RE (Compile Once - Run Everywhere).","ko":"CO-RE(Compile Once - Run Everywhere)를 지원하는 eBPF(Extended Berkeley Packet Filter) 기반 보안 정책 적용 프로토타입입니다."},"technicalDetails":{"en":"Developed using C++ and eBPF technology. It utilizes CO-RE (Compile Once - Run Everywhere) to ensure portability across different Linux kernel versions without recompilation, providing low-overhead, kernel-level security enforcement.","tr":"C++ ve eBPF teknolojisi kullanılarak geliştirilmiştir. Yeniden derlemeye gerek kalmadan farklı Linux çekirdek sürümlerinde taşınabilirliği sağlamak için CO-RE (Bir Kere Derle - Her Yerde Çalıştır) kullanır ve düşük ek yüklü, çekirdek düzeyinde güvenlik uygulaması sağlar.","de":"Entwickelt mit C++ und eBPF-Technologie. CO-RE sorgt fuer Portabilitaet ueber verschiedene Linux-Kernelversionen hinweg, ohne erneutes Kompilieren zu erfordern, und ermoeglicht Sicherheitsdurchsetzung auf Kernel-Ebene mit geringer Laufzeitbelastung.","ja":"C++ と eBPF 技術で開発されています。CO-RE（Compile Once - Run Everywhere）により、再コンパイルなしで異なる Linux カーネルバージョン間の移植性を確保し、低オーバーヘッドなカーネルレベルのセキュリティ制御を実現します。","zh-CN":"该项目使用 C++ 和 eBPF 技术开发。它通过 CO-RE 在不同 Linux 内核版本之间实现无需重新编译的可移植性，并提供低开销的内核级安全策略执行能力。","es":"Desarrollado con C++ y tecnología eBPF. Utiliza CO-RE para mantener portabilidad entre distintas versiones del kernel Linux sin recompilar, ofreciendo aplicación de políticas de seguridad a nivel de kernel con bajo overhead.","fr":"Développé avec C++ et la technologie eBPF. CO-RE assure la portabilité entre différentes versions du noyau Linux sans recompilation, avec une application des politiques de sécurité au niveau noyau et une faible surcharge.","ko":"C++와 eBPF 기술로 개발되었습니다. CO-RE를 사용해 재컴파일 없이 다양한 Linux 커널 버전에서 이식성을 확보하고, 낮은 오버헤드로 커널 수준 보안 정책을 적용합니다."},"marketingDetails":{"en":"Enterprise-grade security at the kernel level. Aegis provides deep visibility and control over system behavior with zero overhead. Protect your infrastructure from advanced persistent threats with our cutting-edge eBPF technology.","tr":"Çekirdek düzeyinde kurumsal düzeyde güvenlik. Aegis, sıfır ek yük ile sistem davranışı üzerinde derin görünürlük ve kontrol sağlar. En son eBPF teknolojimizle altyapınızı gelişmiş kalıcı tehditlerden koruyun.","de":"Unternehmenssicherheit direkt auf Kernel-Ebene. Aegis bietet tiefe Einblicke und Kontrolle ueber Systemverhalten bei minimaler Belastung. Schuetzen Sie Ihre Infrastruktur mit moderner eBPF-Technologie vor fortgeschrittenen Bedrohungen.","ja":"カーネルレベルでのエンタープライズグレードのセキュリティ。Aegis はシステム挙動に対する深い可視性と制御を、最小限のオーバーヘッドで提供します。先進的な eBPF 技術により、高度な持続的脅威からインフラを保護します。","zh-CN":"内核级企业安全能力。Aegis 以极低开销提供对系统行为的深度可见性与控制，帮助您利用先进的 eBPF 技术保护基础设施免受高级持续性威胁。","es":"Seguridad empresarial en el nivel del kernel. Aegis ofrece visibilidad profunda y control sobre el comportamiento del sistema con una carga mínima. Protege la infraestructura frente a amenazas persistentes avanzadas con tecnología eBPF moderna.","fr":"Sécurité d’entreprise au niveau du noyau. Aegis fournit une visibilité profonde et un contrôle du comportement système avec une surcharge minimale. Protégez l’infrastructure contre les menaces persistantes avancées grâce à eBPF.","ko":"커널 수준의 엔터프라이즈 보안입니다. Aegis는 최소한의 오버헤드로 시스템 동작에 대한 깊은 가시성과 제어를 제공합니다. 최신 eBPF 기술로 고도화된 지속 위협으로부터 인프라를 보호합니다."},"tags":["C++","eBPF","Security","Linux Kernel"],"github":"https://github.com/Kernel-Guard/Aegis-BPF","diagram":"graph TD\\n    subgraph \\"AegisBPF User Space\\"\\n        A[File/Net Deny Rules] --> Z\\n        B[Allow Allowlist] --> Z\\n        C[Policy + Signing] --> Z\\n        D[Metrics + Health] --> Z\\n        E[Plugins + Rules] --> Z\\n        Z[(Pinned BPF Maps & Ring Buffer)]\\n    end\\n    subgraph \\"Linux Kernel\\"\\n        Z --- F\\n        F[LSM Hooks Enforce/Audit]\\n        F --> G[file_open / inode_permission]\\n        F --> H[inode_copy_up overlayfs]\\n        F --> I[bprm_check + IMA hash]\\n        F --> J[socket connect/bind/listen/accept]\\n        F --> K[socket sendmsg/recvmsg]\\n        L[Tracepoint Fallback]\\n        L --> M[openat/exec/fork/exit]\\n    end"}]`);
+const items$1 = /* @__PURE__ */ JSON.parse(`[{"id":"bpfcompat","title":"bpfcompat","description":{"en":"An open-source eBPF compatibility validator: it boots real Linux kernels in disposable VMs, loads your compiled BPF programs inside each one, and gates your CI on an artifact-by-kernel pass/fail matrix.","tr":"Açık kaynaklı bir eBPF uyumluluk doğrulayıcısı: gerçek Linux çekirdeklerini tek kullanımlık sanal makinelerde başlatır, derlenmiş BPF programlarınızı her birinin içinde yükler ve CI'nızı yapıt-çekirdek geçti/kaldı matrisi üzerinden denetler."},"technicalDetails":{"en":"Written in Go with a C/libbpf validator that runs inside each guest. For every kernel profile, bpfcompat boots a disposable QEMU/KVM overlay VM from a cloud image (Ubuntu and Fedora, 5.x–6.x, x86_64 and ARM64), then actually loads and attaches each program — recording BTF status, CO-RE relocations, and capability checks. Results aggregate into a pass/fail matrix, and exit code 2 marks a compatibility regression for CI gating.","tr":"Her konuğun içinde çalışan bir C/libbpf doğrulayıcısıyla birlikte Go ile yazılmıştır. bpfcompat her çekirdek profili için bir bulut imajından tek kullanımlık bir QEMU/KVM örtüşme VM'i başlatır (Ubuntu ve Fedora, 5.x–6.x, x86_64 ve ARM64), ardından her programı gerçekten yükleyip bağlar — BTF durumunu, CO-RE yer değiştirmelerini ve yetenek kontrollerini kaydeder. Sonuçlar bir geçti/kaldı matrisine toplanır ve çıkış kodu 2, CI denetimi için bir uyumluluk gerilemesini işaretler."},"marketingDetails":{"en":"Stop discovering kernel incompatibilities in production. bpfcompat proves your eBPF programs load on every kernel you ship to — in CI, before your users do — with verifiable evidence instead of guesswork.","tr":"Çekirdek uyumsuzluklarını üretimde keşfetmeyi bırakın. bpfcompat, eBPF programlarınızın gönderim yaptığınız her çekirdekte yüklendiğini — kullanıcılarınızdan önce, CI içinde — tahmin yerine doğrulanabilir kanıtlarla kanıtlar."},"tags":["Go","eBPF","CI/CD","Apache-2.0"],"github":"https://github.com/Kernel-Guard/bpfcompat","link":"https://bpfcompat-se24-8008b8.swedencentral.cloudapp.azure.com/"},{"id":"cathodex","title":"CathodeX","description":{"en":"AI-powered cathode material screening platform using graph neural networks for predicting battery material properties.","tr":"Pil malzemesi özelliklerini tahmin etmek için çizge sinir ağlarını kullanan yapay zeka destekli katot malzemesi tarama platformu.","de":"KI-gestuetzte Plattform zur Pruefung von Kathodenmaterialien, die Graph Neural Networks zur Vorhersage von Batterieeigenschaften nutzt.","ja":"グラフニューラルネットワークを用いて電池材料の特性を予測する、AI搭載のカソード材料スクリーニングプラットフォームです。","zh-CN":"一个由 AI 驱动的正极材料筛选平台，使用图神经网络预测电池材料属性。","es":"Plataforma de cribado de materiales de cátodo impulsada por IA que usa redes neuronales de grafos para predecir propiedades de materiales de baterías.","fr":"Plateforme de criblage de matériaux de cathode assistée par IA, utilisant des réseaux neuronaux de graphes pour prédire les propriétés des matériaux de batteries.","ko":"배터리 소재 특성을 예측하기 위해 그래프 신경망을 사용하는 AI 기반 양극재 스크리닝 플랫폼입니다."},"technicalDetails":{"en":"Built using PyTorch and Graph Neural Networks (GNNs) to model the atomic structure of cathode materials. It leverages high-throughput screening algorithms to predict key battery properties such as energy density and stability.","tr":"Katot malzemelerinin atomik yapısını modellemek için PyTorch ve Çizge Sinir Ağları (GNN'ler) kullanılarak oluşturulmuştur. Enerji yoğunluğu ve kararlılık gibi temel pil özelliklerini tahmin etmek için yüksek verimli tarama algoritmalarından yararlanır.","de":"Entwickelt mit PyTorch und Graph Neural Networks (GNNs), um die atomare Struktur von Kathodenmaterialien zu modellieren. Hochdurchsatz-Screening-Algorithmen prognostizieren zentrale Batterieeigenschaften wie Energiedichte und Stabilitaet.","ja":"PyTorch とグラフニューラルネットワーク（GNN）を用いて、カソード材料の原子構造をモデル化しています。高スループットスクリーニングにより、エネルギー密度や安定性などの主要な電池特性を予測します。","zh-CN":"该平台基于 PyTorch 和图神经网络（GNN）构建，用于建模正极材料的原子结构。它利用高通量筛选算法预测能量密度、稳定性等关键电池属性。","es":"Construida con PyTorch y redes neuronales de grafos (GNN) para modelar la estructura atómica de materiales de cátodo. Usa algoritmos de cribado de alto rendimiento para predecir propiedades clave de baterías como densidad energética y estabilidad.","fr":"Construite avec PyTorch et des réseaux neuronaux de graphes (GNN) pour modéliser la structure atomique des matériaux de cathode. Elle s’appuie sur des algorithmes de criblage à haut débit pour prédire des propriétés clés comme la densité énergétique et la stabilité.","ko":"PyTorch와 그래프 신경망(GNN)을 사용해 양극재의 원자 구조를 모델링합니다. 고처리량 스크리닝 알고리즘으로 에너지 밀도와 안정성 같은 핵심 배터리 특성을 예측합니다."},"marketingDetails":{"en":"Accelerating the future of energy storage. CathodeX reduces the time and cost of battery material discovery by orders of magnitude, empowering researchers to find the next generation of sustainable energy solutions.","tr":"Enerji depolamanın geleceğini hızlandırıyoruz. CathodeX, pil malzemesi keşfinin zamanını ve maliyetini büyük ölçüde azaltarak araştırmacıların yeni nesil sürdürülebilir enerji çözümlerini bulmalarını sağlar.","de":"Beschleunigt die Zukunft der Energiespeicherung. CathodeX senkt Zeit und Kosten der Batteriematerialforschung drastisch und hilft Forschenden, nachhaltige Energieloesungen der naechsten Generation zu finden.","ja":"エネルギー貯蔵の未来を加速します。CathodeX は電池材料探索にかかる時間とコストを大幅に削減し、研究者が次世代の持続可能なエネルギーソリューションを発見できるよう支援します。","zh-CN":"加速储能技术的未来。CathodeX 大幅降低电池材料发现的时间和成本，帮助研究人员寻找下一代可持续能源解决方案。","es":"Acelera el futuro del almacenamiento energético. CathodeX reduce drásticamente el tiempo y el coste del descubrimiento de materiales de batería, ayudando a los investigadores a encontrar soluciones energéticas sostenibles de nueva generación.","fr":"Accélérer l’avenir du stockage d’énergie. CathodeX réduit fortement le temps et le coût de découverte des matériaux de batteries, afin d’aider les chercheurs à identifier les prochaines solutions énergétiques durables.","ko":"에너지 저장의 미래를 앞당깁니다. CathodeX는 배터리 소재 탐색에 드는 시간과 비용을 크게 줄여 연구자가 차세대 지속 가능한 에너지 솔루션을 찾도록 돕습니다."},"tags":["Python","AI","Graph Neural Networks"],"github":"https://github.com/Kernel-Guard/CathodeX","link":"https://cathode-screening.vercel.app/","diagram":"graph LR\\n    User[User / Chemist] -->|HTTPS| FE(Next.js on Vercel)\\n    FE -->|JSON| API(FastAPI on Render)\\n    subgraph \\"Inference Engine\\"\\n        API -->|Parse| Pymatgen(Structure Parser)\\n        Pymatgen -->|Graph| M1(MACE Member 1)\\n        Pymatgen -->|Graph| M2(MACE Member 2)\\n        Pymatgen -->|Graph| M3(MACE Member 3)\\n        Pymatgen -->|Graph| M4(MACE Member 4)\\n        Pymatgen -->|Graph| M5(MACE Member 5)\\n    end\\n    M1 & M2 & M3 & M4 & M5 -->|Aggregate| Stats[q10 / q50 / q90 + Conformal]\\n    Stats -->|Policy| Result[KEEP / MAYBE / KILL]"},{"id":"post-quantum-messaging-app","title":"post-quantum-messaging-app","description":{"en":"A secure messaging application implementing post-quantum cryptographic algorithms to ensure future-proof communication.","tr":"Geleceğe dönük iletişimi sağlamak için kuantum sonrası kriptografik algoritmalar uygulayan güvenli bir mesajlaşma uygulaması.","de":"Eine sichere Messaging-Anwendung mit Post-Quantum-Kryptografie, die Kommunikation langfristig schuetzen soll.","ja":"将来にわたって安全な通信を実現するため、ポスト量子暗号アルゴリズムを実装したセキュアメッセージングアプリケーションです。","zh-CN":"一款实现后量子密码算法的安全消息应用，用于保障面向未来的通信安全。","es":"Aplicación de mensajería segura que implementa algoritmos criptográficos poscuánticos para proteger la comunicación a futuro.","fr":"Application de messagerie sécurisée qui implémente des algorithmes cryptographiques post-quantiques pour protéger les communications à long terme.","ko":"미래의 통신 보안을 보장하기 위해 포스트 양자 암호 알고리즘을 구현한 보안 메시징 애플리케이션입니다."},"technicalDetails":{"en":"Implemented in Rust for memory safety and performance. Utilizes NIST-approved post-quantum cryptographic algorithms (like CRYSTALS-Kyber and CRYSTALS-Dilithium) to secure message exchange against attacks from quantum computers.","tr":"Bellek güvenliği ve performans için Rust ile uygulanmıştır. Mesaj alışverişini kuantum bilgisayarlardan gelebilecek saldırılara karşı güvence altına almak için NIST onaylı kuantum sonrası kriptografik algoritmaları (CRYSTALS-Kyber ve CRYSTALS-Dilithium gibi) kullanır.","de":"In Rust umgesetzt, um Speichersicherheit und Performance zu verbinden. Die Anwendung nutzt NIST-standardisierte Post-Quantum-Algorithmen wie CRYSTALS-Kyber und CRYSTALS-Dilithium, um Nachrichtenaustausch gegen Angriffe durch Quantencomputer abzusichern.","ja":"メモリ安全性と性能を重視して Rust で実装されています。CRYSTALS-Kyber や CRYSTALS-Dilithium など、NIST 標準のポスト量子暗号アルゴリズムを用いて、量子コンピュータによる攻撃からメッセージ交換を保護します。","zh-CN":"该应用使用 Rust 实现，以兼顾内存安全与性能。它采用 NIST 标准化的后量子密码算法（如 CRYSTALS-Kyber 和 CRYSTALS-Dilithium），保护消息交换免受量子计算机攻击。","es":"Implementada en Rust para seguridad de memoria y rendimiento. Utiliza algoritmos poscuánticos aprobados por NIST, como CRYSTALS-Kyber y CRYSTALS-Dilithium, para proteger el intercambio de mensajes frente a ataques de computadores cuánticos.","fr":"Implémentée en Rust pour la sûreté mémoire et la performance. Elle utilise des algorithmes post-quantiques approuvés par le NIST, comme CRYSTALS-Kyber et CRYSTALS-Dilithium, afin de protéger l’échange de messages contre les attaques d’ordinateurs quantiques.","ko":"메모리 안전성과 성능을 위해 Rust로 구현되었습니다. CRYSTALS-Kyber와 CRYSTALS-Dilithium 같은 NIST 승인 포스트 양자 암호 알고리즘을 사용해 양자 컴퓨터 공격으로부터 메시지 교환을 보호합니다."},"marketingDetails":{"en":"Future-proof your communications. As quantum computing advances, traditional encryption will become obsolete. Our post-quantum messaging app ensures your sensitive data remains secure against tomorrow's threats, today.","tr":"İletişiminizi geleceğe hazırlayın. Kuantum hesaplama geliştikçe geleneksel şifreleme geçersiz hale gelecektir. Kuantum sonrası mesajlaşma uygulamamız, hassas verilerinizin bugünden yarının tehditlerine karşı güvende kalmasını sağlar.","de":"Machen Sie Ihre Kommunikation zukunftssicher. Mit dem Fortschritt des Quantencomputings wird klassische Verschluesselung unter Druck geraten. Diese Post-Quantum-Messaging-App schuetzt sensible Daten schon heute vor den Risiken von morgen.","ja":"通信を未来に備えます。量子コンピューティングが進化すると、従来の暗号化は通用しなくなる可能性があります。このポスト量子メッセージングアプリは、明日の脅威に対して今日から機密データを保護します。","zh-CN":"让通信面向未来。随着量子计算的发展，传统加密将面临失效风险。我们的后量子消息应用从今天开始保护敏感数据，应对未来威胁。","es":"Prepara tus comunicaciones para el futuro. A medida que avanza la computación cuántica, el cifrado tradicional perderá eficacia. Esta aplicación mantiene los datos sensibles protegidos frente a las amenazas de mañana desde hoy.","fr":"Préparez vos communications pour l’avenir. À mesure que l’informatique quantique progresse, le chiffrement traditionnel sera mis sous pression. Cette application protège dès aujourd’hui les données sensibles contre les menaces de demain.","ko":"커뮤니케이션을 미래에 대비하세요. 양자 컴퓨팅이 발전하면 기존 암호화는 한계에 직면할 수 있습니다. 이 앱은 오늘부터 민감한 데이터를 내일의 위협에 대비해 보호합니다."},"tags":["Rust","Cryptography","Post-Quantum"],"github":"https://github.com/Kernel-Guard/post-quantum-messaging-app","diagram":"flowchart LR\\n    C[\\"CLI / Android / iOS / Web / Desktop\\"] -->|HTTP JSON + TLS| S[\\"pqmsg-server\\"]\\n    S -->|Sealed inbox sync / realtime relay| C\\n    A[\\"Android bridge\\"] --> CORE[\\"pqmsg-core\\"]\\n    I[\\"iOS bridge\\"] --> CORE\\n    W[\\"Web WASM bridge\\"] --> CORE\\n    D[\\"Desktop wrapper\\"] --> W\\n    S --> DB[\\"PostgreSQL / SQLite\\"]\\n    S --> RD[\\"Redis rate limiter\\"]\\n    PV[\\"ProVerif model\\"] -.- V[\\"CI verification gate\\"]\\n    TM[\\"Tamarin model\\"] -.- V"},{"id":"aegis-bpf","title":"Aegis-BPF","description":{"en":"A prototype for enforcing security policies using eBPF (Extended Berkeley Packet Filter) with CO-RE (Compile Once - Run Everywhere) support.","tr":"CO-RE (Bir Kere Derle - Her Yerde Çalıştır) desteğiyle eBPF (Genişletilmiş Berkeley Paket Filtresi) kullanarak güvenlik politikalarını uygulamak için bir prototip.","de":"Ein Prototyp zur Durchsetzung von Sicherheitsrichtlinien mit eBPF und CO-RE-Unterstuetzung (Compile Once - Run Everywhere).","ja":"CO-RE（Compile Once - Run Everywhere）対応の eBPF（Extended Berkeley Packet Filter）を用いて、セキュリティポリシーを適用するためのプロトタイプです。","zh-CN":"一个使用 eBPF（扩展伯克利包过滤器）并支持 CO-RE（一次编译，到处运行）的安全策略执行原型。","es":"Prototipo para aplicar políticas de seguridad con eBPF (Extended Berkeley Packet Filter) y soporte CO-RE (Compile Once - Run Everywhere).","fr":"Prototype d’application de politiques de sécurité avec eBPF (Extended Berkeley Packet Filter) et prise en charge CO-RE (Compile Once - Run Everywhere).","ko":"CO-RE(Compile Once - Run Everywhere)를 지원하는 eBPF(Extended Berkeley Packet Filter) 기반 보안 정책 적용 프로토타입입니다."},"technicalDetails":{"en":"Developed using C++ and eBPF technology. It utilizes CO-RE (Compile Once - Run Everywhere) to ensure portability across different Linux kernel versions without recompilation, providing low-overhead, kernel-level security enforcement.","tr":"C++ ve eBPF teknolojisi kullanılarak geliştirilmiştir. Yeniden derlemeye gerek kalmadan farklı Linux çekirdek sürümlerinde taşınabilirliği sağlamak için CO-RE (Bir Kere Derle - Her Yerde Çalıştır) kullanır ve düşük ek yüklü, çekirdek düzeyinde güvenlik uygulaması sağlar.","de":"Entwickelt mit C++ und eBPF-Technologie. CO-RE sorgt fuer Portabilitaet ueber verschiedene Linux-Kernelversionen hinweg, ohne erneutes Kompilieren zu erfordern, und ermoeglicht Sicherheitsdurchsetzung auf Kernel-Ebene mit geringer Laufzeitbelastung.","ja":"C++ と eBPF 技術で開発されています。CO-RE（Compile Once - Run Everywhere）により、再コンパイルなしで異なる Linux カーネルバージョン間の移植性を確保し、低オーバーヘッドなカーネルレベルのセキュリティ制御を実現します。","zh-CN":"该项目使用 C++ 和 eBPF 技术开发。它通过 CO-RE 在不同 Linux 内核版本之间实现无需重新编译的可移植性，并提供低开销的内核级安全策略执行能力。","es":"Desarrollado con C++ y tecnología eBPF. Utiliza CO-RE para mantener portabilidad entre distintas versiones del kernel Linux sin recompilar, ofreciendo aplicación de políticas de seguridad a nivel de kernel con bajo overhead.","fr":"Développé avec C++ et la technologie eBPF. CO-RE assure la portabilité entre différentes versions du noyau Linux sans recompilation, avec une application des politiques de sécurité au niveau noyau et une faible surcharge.","ko":"C++와 eBPF 기술로 개발되었습니다. CO-RE를 사용해 재컴파일 없이 다양한 Linux 커널 버전에서 이식성을 확보하고, 낮은 오버헤드로 커널 수준 보안 정책을 적용합니다."},"marketingDetails":{"en":"Enterprise-grade security at the kernel level. Aegis provides deep visibility and control over system behavior with zero overhead. Protect your infrastructure from advanced persistent threats with our cutting-edge eBPF technology.","tr":"Çekirdek düzeyinde kurumsal düzeyde güvenlik. Aegis, sıfır ek yük ile sistem davranışı üzerinde derin görünürlük ve kontrol sağlar. En son eBPF teknolojimizle altyapınızı gelişmiş kalıcı tehditlerden koruyun.","de":"Unternehmenssicherheit direkt auf Kernel-Ebene. Aegis bietet tiefe Einblicke und Kontrolle ueber Systemverhalten bei minimaler Belastung. Schuetzen Sie Ihre Infrastruktur mit moderner eBPF-Technologie vor fortgeschrittenen Bedrohungen.","ja":"カーネルレベルでのエンタープライズグレードのセキュリティ。Aegis はシステム挙動に対する深い可視性と制御を、最小限のオーバーヘッドで提供します。先進的な eBPF 技術により、高度な持続的脅威からインフラを保護します。","zh-CN":"内核级企业安全能力。Aegis 以极低开销提供对系统行为的深度可见性与控制，帮助您利用先进的 eBPF 技术保护基础设施免受高级持续性威胁。","es":"Seguridad empresarial en el nivel del kernel. Aegis ofrece visibilidad profunda y control sobre el comportamiento del sistema con una carga mínima. Protege la infraestructura frente a amenazas persistentes avanzadas con tecnología eBPF moderna.","fr":"Sécurité d’entreprise au niveau du noyau. Aegis fournit une visibilité profonde et un contrôle du comportement système avec une surcharge minimale. Protégez l’infrastructure contre les menaces persistantes avancées grâce à eBPF.","ko":"커널 수준의 엔터프라이즈 보안입니다. Aegis는 최소한의 오버헤드로 시스템 동작에 대한 깊은 가시성과 제어를 제공합니다. 최신 eBPF 기술로 고도화된 지속 위협으로부터 인프라를 보호합니다."},"tags":["C++","C","eBPF","Security","Linux Kernel"],"github":"https://github.com/Kernel-Guard/Aegis-BPF","diagram":"graph TD\\n    subgraph \\"AegisBPF User Space\\"\\n        A[File/Net Deny Rules] --> Z\\n        B[Allow Allowlist] --> Z\\n        C[Policy + Signing] --> Z\\n        D[Metrics + Health] --> Z\\n        E[Plugins + Rules] --> Z\\n        Z[(Pinned BPF Maps & Ring Buffer)]\\n    end\\n    subgraph \\"Linux Kernel\\"\\n        Z --- F\\n        F[LSM Hooks Enforce/Audit]\\n        F --> G[file_open / inode_permission]\\n        F --> H[inode_copy_up overlayfs]\\n        F --> I[bprm_check + IMA hash]\\n        F --> J[socket connect/bind/listen/accept]\\n        F --> K[socket sendmsg/recvmsg]\\n        L[Tracepoint Fallback]\\n        L --> M[openat/exec/fork/exit]\\n    end"}]`);
 const projectsData = {
   items: items$1
 };
@@ -20189,7 +20255,7 @@ function Services() {
           /* @__PURE__ */ jsxs(
             "a",
             {
-              href: "mailto:iletisim@kernelguard.net",
+              href: mailto(SITE_EMAILS.sales),
               className: "inline-flex items-center justify-between px-8 py-4 kg-action-primary transition-colors w-full sm:w-auto min-w-[200px]",
               children: [
                 /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.servicesPage.ctaButton }),
@@ -20206,6 +20272,17 @@ const Services$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.definePr
   __proto__: null,
   default: Services
 }, Symbol.toStringTag, { value: "Module" }));
+function renderSectionItem(item) {
+  if (item.startsWith("Email: ")) {
+    const email = item.replace("Email: ", "");
+    return /* @__PURE__ */ jsxs(Fragment, { children: [
+      "Email:",
+      " ",
+      /* @__PURE__ */ jsx("a", { className: "text-primary hover:underline", href: mailto(email), children: email })
+    ] });
+  }
+  return item;
+}
 function EnterprisePage({ pageKey }) {
   const { language } = useLanguage();
   const page = enterprisePages[language].pages[pageKey];
@@ -20227,7 +20304,7 @@ function EnterprisePage({ pageKey }) {
         /* @__PURE__ */ jsx("p", { className: "text-foreground/70 leading-relaxed font-light mb-8", children: section.body }),
         /* @__PURE__ */ jsx("ul", { className: "space-y-4", children: section.items.map((item) => /* @__PURE__ */ jsxs("li", { className: "flex items-start gap-3 text-sm text-foreground/80", children: [
           /* @__PURE__ */ jsx(CircleCheck, { className: "mt-0.5 h-4 w-4 shrink-0 text-primary" }),
-          /* @__PURE__ */ jsx("span", { children: item })
+          /* @__PURE__ */ jsx("span", { children: renderSectionItem(item) })
         ] }, item)) })
       ] }, section.title)) })
     ] })
@@ -20240,8 +20317,119 @@ const Security$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.definePr
   __proto__: null,
   default: Security
 }, Symbol.toStringTag, { value: "Module" }));
+const VERIFY_URL = "https://securityheaders.com/?q=https%3A%2F%2Fwww.kernelguard.net&followRedirects=on";
+const POLICY_TOKENS = [
+  "HSTS · 1y · includeSubDomains · preload",
+  "CSP · script-src 'self' (no inline) · object-src 'none' · frame-ancestors 'none'",
+  "X-Frame-Options: DENY",
+  "X-Content-Type-Options: nosniff",
+  "Referrer-Policy: strict-origin-when-cross-origin",
+  "Permissions-Policy · ~20 features denied"
+];
+const CONTENT = {
+  en: {
+    eyebrow: "Security",
+    heading: "Hardened at the edge.",
+    subline: "Every response ships strict security headers — enforced by Cloudflare on the production domain, not just promised in a policy.",
+    labels: ["Transport security", "Content Security Policy", "Clickjacking", "MIME sniffing", "Referrer", "Browser features"],
+    verify: "Verify it yourself",
+    note: "Live response headers, measured on the production domain."
+  },
+  tr: {
+    eyebrow: "Güvenlik",
+    heading: "Uçta sertleştirildi.",
+    subline: "Her yanıt katı güvenlik başlıkları gönderir — bir politikada vaat edilmekle kalmaz, üretim alanında Cloudflare tarafından uygulanır.",
+    labels: ["Taşıma güvenliği", "İçerik Güvenlik Politikası", "Tıklama hırsızlığı", "MIME koklama", "Yönlendiren", "Tarayıcı özellikleri"],
+    verify: "Kendiniz doğrulayın",
+    note: "Üretim alanında ölçülen canlı yanıt başlıkları."
+  },
+  de: {
+    eyebrow: "Sicherheit",
+    heading: "Am Edge gehärtet.",
+    subline: "Jede Antwort liefert strenge Security-Header — von Cloudflare auf der Produktionsdomain durchgesetzt, nicht nur in einer Richtlinie versprochen.",
+    labels: ["Transportsicherheit", "Content-Security-Policy", "Clickjacking", "MIME-Sniffing", "Referrer", "Browser-Funktionen"],
+    verify: "Selbst überprüfen",
+    note: "Live-Response-Header, auf der Produktionsdomain gemessen."
+  },
+  es: {
+    eyebrow: "Seguridad",
+    heading: "Reforzado en el edge.",
+    subline: "Cada respuesta envía cabeceras de seguridad estrictas — aplicadas por Cloudflare en el dominio de producción, no solo prometidas en una política.",
+    labels: ["Seguridad de transporte", "Política de seguridad de contenido", "Clickjacking", "Sniffing de MIME", "Referente", "Funciones del navegador"],
+    verify: "Verifícalo tú mismo",
+    note: "Cabeceras de respuesta en vivo, medidas en el dominio de producción."
+  },
+  fr: {
+    eyebrow: "Sécurité",
+    heading: "Renforcé en périphérie.",
+    subline: "Chaque réponse envoie des en-têtes de sécurité stricts — appliqués par Cloudflare sur le domaine de production, pas seulement promis dans une politique.",
+    labels: ["Sécurité du transport", "Politique de sécurité du contenu", "Détournement de clic", "Sniffing MIME", "Référent", "Fonctions du navigateur"],
+    verify: "Vérifiez par vous-même",
+    note: "En-têtes de réponse en direct, mesurés sur le domaine de production."
+  },
+  ja: {
+    eyebrow: "セキュリティ",
+    heading: "エッジで堅牢化。",
+    subline: "すべてのレスポンスは厳格なセキュリティヘッダーを送出します — ポリシー文書での約束ではなく、本番ドメインで Cloudflare により強制されます。",
+    labels: ["転送のセキュリティ", "コンテンツセキュリティポリシー", "クリックジャッキング", "MIME スニッフィング", "リファラー", "ブラウザ機能"],
+    verify: "自分で検証する",
+    note: "本番ドメインで測定した実際のレスポンスヘッダー。"
+  },
+  "zh-CN": {
+    eyebrow: "安全",
+    heading: "在边缘加固。",
+    subline: "每个响应都发送严格的安全标头——由 Cloudflare 在生产域上强制执行，而不仅仅是写在策略里。",
+    labels: ["传输安全", "内容安全策略", "点击劫持", "MIME 嗅探", "来源引用", "浏览器功能"],
+    verify: "自行验证",
+    note: "在生产域上测量的实时响应标头。"
+  },
+  ko: {
+    eyebrow: "보안",
+    heading: "엣지에서 강화.",
+    subline: "모든 응답은 엄격한 보안 헤더를 전송합니다 — 정책 문서의 약속이 아니라, 운영 도메인에서 Cloudflare가 실제로 적용합니다.",
+    labels: ["전송 보안", "콘텐츠 보안 정책", "클릭재킹", "MIME 스니핑", "리퍼러", "브라우저 기능"],
+    verify: "직접 확인하기",
+    note: "운영 도메인에서 측정한 실시간 응답 헤더."
+  }
+};
+function SecurityEvidence() {
+  const { language } = useLanguage();
+  const t = CONTENT[language] ?? CONTENT.en;
+  return /* @__PURE__ */ jsx("section", { className: "border-t border-border bg-surface py-24", children: /* @__PURE__ */ jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: [
+    /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-3 mb-4", children: [
+      /* @__PURE__ */ jsx(ShieldCheck, { className: "w-5 h-5 text-primary" }),
+      /* @__PURE__ */ jsxs("span", { className: "text-xs font-mono uppercase tracking-[0.25em] text-foreground/55", children: [
+        /* @__PURE__ */ jsx("span", { className: "text-signature", children: "// " }),
+        t.eyebrow
+      ] })
+    ] }),
+    /* @__PURE__ */ jsx("h2", { className: "text-3xl md:text-4xl font-light text-foreground tracking-tight mb-5", children: t.heading }),
+    /* @__PURE__ */ jsx("p", { className: "text-lg font-light text-foreground/70 max-w-2xl mb-10 leading-relaxed", children: t.subline }),
+    /* @__PURE__ */ jsx("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border", children: POLICY_TOKENS.map((token, i) => /* @__PURE__ */ jsxs("div", { className: "bg-background p-5", children: [
+      /* @__PURE__ */ jsx("div", { className: "text-xs font-mono uppercase tracking-wider text-foreground/50 mb-2", children: t.labels[i] }),
+      /* @__PURE__ */ jsx("div", { className: "text-sm font-mono text-foreground break-words", children: token })
+    ] }, token)) }),
+    /* @__PURE__ */ jsx("div", { className: "mt-8 flex flex-col sm:flex-row gap-4 items-start", children: /* @__PURE__ */ jsxs(
+      "a",
+      {
+        href: VERIFY_URL,
+        target: "_blank",
+        rel: "noopener noreferrer",
+        className: "inline-flex items-center justify-between px-6 py-4 kg-action-primary w-full sm:w-72",
+        children: [
+          /* @__PURE__ */ jsx("span", { className: "font-medium", children: t.verify }),
+          /* @__PURE__ */ jsx(ExternalLink, { className: "w-5 h-5" })
+        ]
+      }
+    ) }),
+    /* @__PURE__ */ jsx("p", { className: "mt-4 text-xs font-mono text-foreground/50 normal-case", children: t.note })
+  ] }) });
+}
 function Engineering() {
-  return /* @__PURE__ */ jsx(EnterprisePage, { pageKey: "engineering" });
+  return /* @__PURE__ */ jsxs(Fragment, { children: [
+    /* @__PURE__ */ jsx(EnterprisePage, { pageKey: "engineering" }),
+    /* @__PURE__ */ jsx(SecurityEvidence, {})
+  ] });
 }
 const Engineering$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
@@ -20286,6 +20474,15 @@ function Terms() {
         /* @__PURE__ */ jsxs("section", { children: [
           /* @__PURE__ */ jsx("h2", { className: "text-2xl font-medium text-foreground mb-4", children: t.terms.section3.title }),
           /* @__PURE__ */ jsx("p", { children: t.terms.section3.content })
+        ] }),
+        /* @__PURE__ */ jsxs("section", { children: [
+          /* @__PURE__ */ jsx("h2", { className: "text-2xl font-medium text-foreground mb-4", children: "Legal contact" }),
+          /* @__PURE__ */ jsxs("p", { children: [
+            "For legal notices or terms-related requests, email",
+            " ",
+            /* @__PURE__ */ jsx("a", { className: "text-primary hover:underline", href: mailto(SITE_EMAILS.legal), children: SITE_EMAILS.legal }),
+            "."
+          ] })
         ] })
       ] })
     ] })
@@ -20320,6 +20517,15 @@ function Privacy() {
         /* @__PURE__ */ jsxs("section", { children: [
           /* @__PURE__ */ jsx("h2", { className: "text-2xl font-medium text-foreground mb-4", children: t.privacy.section3.title }),
           /* @__PURE__ */ jsx("p", { children: t.privacy.section3.content })
+        ] }),
+        /* @__PURE__ */ jsxs("section", { children: [
+          /* @__PURE__ */ jsx("h2", { className: "text-2xl font-medium text-foreground mb-4", children: "Privacy contact" }),
+          /* @__PURE__ */ jsxs("p", { children: [
+            "For privacy requests or data protection questions, email",
+            " ",
+            /* @__PURE__ */ jsx("a", { className: "text-primary hover:underline", href: mailto(SITE_EMAILS.privacy), children: SITE_EMAILS.privacy }),
+            "."
+          ] })
         ] })
       ] })
     ] })
@@ -20370,6 +20576,14 @@ const Cookies$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.definePro
   __proto__: null,
   default: Cookies
 }, Symbol.toStringTag, { value: "Module" }));
+const WEB3FORMS_ACCESS_KEY = "7c8be6f4-ff09-49f5-b754-60878bc0c970";
+const contactChannels = [
+  { label: "Sales", email: SITE_EMAILS.sales, Icon: BriefcaseBusiness },
+  { label: "Support", email: SITE_EMAILS.support, Icon: LifeBuoy },
+  { label: "Security", email: SITE_EMAILS.security, Icon: ShieldCheck },
+  { label: "Privacy", email: SITE_EMAILS.privacy, Icon: LockKeyhole },
+  { label: "Legal", email: SITE_EMAILS.legal, Icon: FileText }
+];
 function Contact() {
   const { t } = useLanguage();
   return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-background pt-32 pb-20", children: [
@@ -20394,13 +20608,13 @@ function Contact() {
             /* @__PURE__ */ jsxs(
               "a",
               {
-                href: "mailto:iletisim@kernelguard.net",
+                href: mailto(SITE_EMAILS.contact),
                 className: "flex items-center gap-4 text-foreground/80 hover:text-primary transition-colors",
                 children: [
                   /* @__PURE__ */ jsx("span", { className: "flex h-11 w-11 items-center justify-center border border-border text-primary", children: /* @__PURE__ */ jsx(Mail, { className: "h-5 w-5" }) }),
                   /* @__PURE__ */ jsxs("span", { children: [
                     /* @__PURE__ */ jsx("span", { className: "block text-sm text-foreground/50", children: t.contact.info.email }),
-                    /* @__PURE__ */ jsx("span", { className: "font-medium", children: "iletisim@kernelguard.net" })
+                    /* @__PURE__ */ jsx("span", { className: "font-medium", children: SITE_EMAILS.contact })
                   ] })
                 ]
               }
@@ -20428,6 +20642,24 @@ function Contact() {
                 ]
               }
             )
+          ] }),
+          /* @__PURE__ */ jsxs("div", { className: "mt-8 border-t border-border pt-8", children: [
+            /* @__PURE__ */ jsx("h3", { className: "mb-4 text-sm font-medium uppercase tracking-wide text-foreground/60", children: "Direct channels" }),
+            /* @__PURE__ */ jsx("div", { className: "space-y-3", children: contactChannels.map(({ label, email, Icon: Icon2 }) => /* @__PURE__ */ jsxs(
+              "a",
+              {
+                href: mailto(email),
+                className: "flex items-center justify-between gap-4 border border-border bg-background px-4 py-3 text-sm text-foreground/80 transition-colors hover:border-primary/50 hover:text-primary",
+                children: [
+                  /* @__PURE__ */ jsxs("span", { className: "flex min-w-0 items-center gap-3", children: [
+                    /* @__PURE__ */ jsx(Icon2, { className: "h-4 w-4 shrink-0" }),
+                    /* @__PURE__ */ jsx("span", { className: "font-medium", children: label })
+                  ] }),
+                  /* @__PURE__ */ jsx("span", { className: "truncate font-mono text-xs text-foreground/55", children: email })
+                ]
+              },
+              email
+            )) })
           ] })
         ] }),
         /* @__PURE__ */ jsxs(
@@ -20437,7 +20669,7 @@ function Contact() {
             method: "POST",
             className: "border border-border bg-surface p-8 space-y-6",
             children: [
-              /* @__PURE__ */ jsx("input", { type: "hidden", name: "access_key", value: "" }),
+              /* @__PURE__ */ jsx("input", { type: "hidden", name: "access_key", value: WEB3FORMS_ACCESS_KEY }),
               /* @__PURE__ */ jsx("input", { type: "hidden", name: "subject", value: "Kernel Guard contact form" }),
               /* @__PURE__ */ jsx("input", { type: "checkbox", name: "botcheck", className: "hidden", tabIndex: -1 }),
               /* @__PURE__ */ jsxs("div", { children: [
@@ -20488,7 +20720,6 @@ function Contact() {
                 "button",
                 {
                   type: "submit",
-                  disabled: true,
                   className: "inline-flex w-full sm:w-auto items-center justify-center gap-3 kg-action-primary px-8 py-4 font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50",
                   children: [
                     /* @__PURE__ */ jsx("span", { children: t.contact.form.submit }),

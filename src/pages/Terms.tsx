@@ -1,5 +1,6 @@
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/SEO';
+import { SITE_EMAILS, mailto } from '../config/site';
 
 export default function Terms() {
   const { t } = useLanguage();
@@ -32,6 +33,17 @@ export default function Terms() {
           <section>
             <h2 className="text-2xl font-medium text-foreground mb-4">{t.terms.section3.title}</h2>
             <p>{t.terms.section3.content}</p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-medium text-foreground mb-4">Legal contact</h2>
+            <p>
+              For legal notices or terms-related requests, email{' '}
+              <a className="text-primary hover:underline" href={mailto(SITE_EMAILS.legal)}>
+                {SITE_EMAILS.legal}
+              </a>
+              .
+            </p>
           </section>
         </div>
       </div>

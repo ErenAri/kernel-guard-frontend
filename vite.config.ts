@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => {
     build: {
       // No inline module-preload polyfill script — keeps the CSP free of
       // 'unsafe-inline' in script-src (modern browsers support modulepreload).
-      modulepreload: { polyfill: false },
+      modulePreload: { polyfill: false },
     },
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
