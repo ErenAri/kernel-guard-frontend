@@ -1,7 +1,13 @@
 import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '../context/LanguageContext';
 import { useLocation } from 'react-router-dom';
-import { buildCanonicalUrl, DEFAULT_SITE_URL, normalizeCanonicalPath, normalizeSiteUrl } from '../config/site';
+import {
+  buildCanonicalUrl,
+  DEFAULT_SITE_URL,
+  normalizeCanonicalPath,
+  normalizeSiteUrl,
+  SITE_EMAILS,
+} from '../config/site';
 import { LANGUAGE_HREFLANGS, SUPPORTED_LANGUAGES, localizePath, stripLanguagePrefix } from '../i18n/route';
 import { buildBreadcrumbSchema, type JsonLdNode } from '../lib/schema';
 
@@ -79,6 +85,7 @@ export default function SEO({
   const schemaItems = normalizeSchemaItems(schema);
   const organizationId = `${siteUrl}/#organization`;
   const websiteId = `${siteUrl}/#website`;
+  const googleSiteVerification = import.meta.env.VITE_GOOGLE_SITE_VERIFICATION;
 
   const breadcrumb = buildBreadcrumbSchema(
     currentPath,
@@ -97,6 +104,37 @@ export default function SEO({
         name,
         url: `${siteUrl}/`,
         logo: absoluteImage,
+        email: SITE_EMAILS.contact,
+        contactPoint: [
+          {
+            '@type': 'ContactPoint',
+            contactType: 'customer support',
+            email: SITE_EMAILS.support,
+            areaServed: 'Worldwide',
+            availableLanguage: ['English', 'Turkish'],
+          },
+          {
+            '@type': 'ContactPoint',
+            contactType: 'sales',
+            email: SITE_EMAILS.sales,
+            areaServed: 'Worldwide',
+            availableLanguage: ['English', 'Turkish'],
+          },
+          {
+            '@type': 'ContactPoint',
+            contactType: 'security',
+            email: SITE_EMAILS.security,
+            areaServed: 'Worldwide',
+            availableLanguage: ['English', 'Turkish'],
+          },
+          {
+            '@type': 'ContactPoint',
+            contactType: 'privacy',
+            email: SITE_EMAILS.privacy,
+            areaServed: 'Worldwide',
+            availableLanguage: ['English', 'Turkish'],
+          },
+        ],
         sameAs: [
           'https://github.com/Kernel-Guard',
         ],
@@ -135,6 +173,9 @@ export default function SEO({
       <meta name='description' content={description} />
       <meta name='robots' content={robotsContent} />
       <meta name='googlebot' content={robotsContent} />
+      {googleSiteVerification ? (
+        <meta name="google-site-verification" content={googleSiteVerification} />
+      ) : null}
       <link rel="canonical" href={canonicalUrl} />
 
       {/* hreflang alternates for international SEO. */}

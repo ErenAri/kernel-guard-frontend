@@ -28,20 +28,20 @@ const english: EnterpriseLanguageContent = {
   pages: {
     security: {
       seoTitle: 'Security Program | Kernel Guard',
-      seoDescription: 'Kernel Guard security posture, platform controls, admin protection, dependency scanning, and disclosure channels.',
+      seoDescription: 'Kernel Guard security posture, platform controls, vulnerability disclosure policy, dependency scanning, and reporting channels.',
       badge: 'SECURITY // CONTROLS',
       title: 'Security Program',
-      description: 'A public summary of the controls we use to keep the website, admin workflow, and open-source delivery pipeline defensible.',
+      description: 'A public summary of the controls and reporting process we use to keep the website, admin workflow, and open-source delivery pipeline defensible.',
       facts: [
         { label: 'Dependency audit', value: '0', detail: 'Known npm vulnerabilities after production audit.' },
         { label: 'Admin backend', value: 'Cloudflare', detail: 'Pages Function with origin-aware CORS and optional Turnstile.' },
-        { label: 'Headers', value: 'CSP/HSTS', detail: 'Security headers managed through Cloudflare Pages.' },
+        { label: 'Disclosure', value: 'security.txt', detail: 'Security contact published under /.well-known/security.txt.' },
       ],
       sections: [
         {
           title: 'Application controls',
           body: 'The public site is statically prerendered and served through Cloudflare Pages. The admin API is isolated as a server-side Pages Function.',
-          items: ['Content Security Policy and frame protection', 'Same-origin admin API route', 'No client-side GitHub token exposure'],
+          items: ['Content Security Policy, HSTS, and frame protection', 'Origin-aware admin API route', 'No client-side GitHub token exposure'],
         },
         {
           title: 'Admin hardening',
@@ -49,9 +49,19 @@ const english: EnterpriseLanguageContent = {
           items: ['Constant-time credential comparison', 'Optional Turnstile verification', 'Short-lived session token support'],
         },
         {
-          title: 'Disclosure',
-          body: 'Security reports should be sent directly to the maintainers with reproduction steps and affected URLs.',
-          items: [`Email: ${SITE_EMAILS.security}`, 'No public exploit disclosure before triage', 'GitHub issues for non-sensitive bugs'],
+          title: 'Vulnerability disclosure',
+          body: 'Security reports should be sent directly to the maintainers with reproduction steps, affected URLs, impact, and any safe proof of concept.',
+          items: [`Email: ${SITE_EMAILS.security}`, 'Acknowledgement target: 2 business days', 'No public exploit disclosure before triage'],
+        },
+        {
+          title: 'Research rules',
+          body: 'Good-faith research is welcome when it avoids harm to users, data, infrastructure, and service availability.',
+          items: ['Do not access, modify, or exfiltrate data that is not yours', 'Do not use phishing, social engineering, spam, or denial-of-service testing', 'Use GitHub issues only for non-sensitive bugs'],
+        },
+        {
+          title: 'Out of scope',
+          body: 'Reports need a realistic security impact. Low-risk findings without exploitability may be closed without remediation.',
+          items: ['Missing best-practice headers without a working exploit', 'Scanner-only findings with no reproducible impact', 'Issues in third-party services outside Kernel Guard control'],
         },
       ],
     },

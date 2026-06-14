@@ -40,6 +40,7 @@ Important variables:
 - `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET`: admin authentication.
 - `TURNSTILE_SECRET_KEY`, `VITE_TURNSTILE_SITE_KEY`: optional Cloudflare Turnstile protection.
 - `SITE_URL`: canonical site URL for sitemap and prerender output.
+- `VITE_GOOGLE_SITE_VERIFICATION`: optional Google Search Console HTML tag verification token.
 
 ## Contact Routing
 
@@ -55,6 +56,16 @@ The website uses the role inboxes defined in `src/config/site.ts`:
 The old `iletisim@kernelguard.net` address has been replaced by `contact@kernelguard.net`. Update any external automation, email forwarding, and third-party form notifications to use the new role inboxes.
 
 For Google Workspace email delivery, keep SPF and DKIM enabled and publish a DMARC TXT record for `kernelguard.net`.
+
+Starter DMARC record:
+
+```txt
+Type: TXT
+Name: _dmarc
+Value: v=DMARC1; p=none; rua=mailto:dmarc@kernelguard.net; pct=100
+```
+
+After report monitoring confirms legitimate mail passes alignment, move the policy from `p=none` to `p=quarantine`, then `p=reject`.
 
 ## Scripts
 

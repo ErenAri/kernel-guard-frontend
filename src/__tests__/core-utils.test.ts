@@ -1,4 +1,6 @@
 import { describe, it, expect } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { localizedText } from '../i18n/text';
 import { normalizeCanonicalPath } from '../config/site';
 
@@ -26,5 +28,21 @@ describe('normalizeCanonicalPath', () => {
   });
   it('collapses duplicate slashes', () => {
     expect(normalizeCanonicalPath('/projects//bpfcompat')).toBe('/projects/bpfcompat/');
+  });
+});
+
+describe('public trust files', () => {
+  it('publishes a security.txt disclosure contact', () => {
+    const securityTxt = readFileSync(resolve('public/.well-known/security.txt'), 'utf8');
+
+    expect(securityTxt).toContain('Contact: mailto:security@kernelguard.net');
+    expect(securityTxt).toContain('Canonical: https://www.kernelguard.net/.well-known/security.txt');
+    expect(securityTxt).toContain('Policy: https://www.kernelguard.net/security/');
+  });
+
+  it('does not configure wildcard CORS for static responses', () => {
+    const headers = readFileSync(resolve('public/_headers'), 'utf8');
+
+    expect(headers).not.toMatch(/Access-Control-Allow-Origin:\s*\*/i);
   });
 });

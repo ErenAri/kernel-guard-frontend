@@ -36,6 +36,32 @@ export default function Privacy() {
           </section>
 
           <section>
+            <h2 className="text-2xl font-medium text-foreground mb-4">Service providers</h2>
+            <p>
+              Kernel Guard uses infrastructure and workflow providers to operate the website, process contact
+              requests, protect the admin workflow, and host source code. These may include Cloudflare, Web3Forms,
+              GitHub, and Google Workspace, depending on the feature being used.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-medium text-foreground mb-4">Retention</h2>
+            <p>
+              Contact form submissions and business correspondence are kept only as long as needed to answer the
+              request, maintain business records, protect the service, or comply with legal obligations.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-medium text-foreground mb-4">Your requests</h2>
+            <p>
+              You can request access, correction, deletion, or restriction of personal information associated with
+              your inquiry. We may need to retain limited records where required for security, fraud prevention, or
+              legal compliance.
+            </p>
+          </section>
+
+          <section>
             <h2 className="text-2xl font-medium text-foreground mb-4">Privacy contact</h2>
             <p>
               For privacy requests or data protection questions, email{' '}
