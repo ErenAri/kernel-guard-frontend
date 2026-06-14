@@ -67,6 +67,20 @@ Value: v=DMARC1; p=none; rua=mailto:dmarc@kernelguard.net; pct=100
 
 After report monitoring confirms legitimate mail passes alignment, move the policy from `p=none` to `p=quarantine`, then `p=reject`.
 
+MTA-STS and TLS-RPT hardening records:
+
+```txt
+Type: TXT
+Name: _smtp._tls
+Value: v=TLSRPTv1; rua=mailto:dmarc@kernelguard.net
+
+Type: TXT
+Name: _mta-sts
+Value: v=STSv1; id=20260614191500
+```
+
+The MTA-STS policy is published from `public/.well-known/mta-sts.txt` and starts in `testing` mode for Google Workspace MX host `smtp.google.com`. Configure `mta-sts.kernelguard.net` in Cloudflare so `https://mta-sts.kernelguard.net/.well-known/mta-sts.txt` serves that file over HTTPS. After at least two weeks of clean TLS reports, change `mode: testing` to `mode: enforce`, update the `_mta-sts` DNS `id`, and redeploy.
+
 ## Scripts
 
 ```bash

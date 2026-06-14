@@ -6,6 +6,7 @@ import { normalizeCanonicalPath } from '../config/site';
 import { articleSlugs } from '../data/articles';
 import { growthServiceSlugs } from '../data/growthServices';
 import { prerenderRoutes, sitemapRoutes } from '../data/seoRoutes';
+import { onRequest } from '../../functions/_middleware.js';
 
 describe('localizedText', () => {
   it('returns the requested language when present', () => {
@@ -47,6 +48,37 @@ describe('public trust files', () => {
     const headers = readFileSync(resolve('public/_headers'), 'utf8');
 
     expect(headers).not.toMatch(/Access-Control-Allow-Origin:\s*\*/i);
+  });
+
+  it('publishes an MTA-STS testing policy for Google Workspace mail', () => {
+    const mtaSts = readFileSync(resolve('public/.well-known/mta-sts.txt'), 'utf8');
+
+    expect(mtaSts).toContain('version: STSv1');
+    expect(mtaSts).toContain('mode: testing');
+    expect(mtaSts).toContain('mx: smtp.google.com');
+    expect(mtaSts).toContain('max_age: 604800');
+  });
+});
+
+describe('edge middleware', () => {
+  it('redirects the apex host to the canonical www host', () => {
+    const response = onRequest({
+      request: new Request('http://kernelguard.net/en/articles/?ref=test'),
+      next: () => new Response('next'),
+    });
+
+    expect(response.status).toBe(301);
+    expect(response.headers.get('Location')).toBe('https://www.kernelguard.net/en/articles/?ref=test');
+  });
+
+  it('passes canonical host traffic through unchanged', async () => {
+    const response = await onRequest({
+      request: new Request('https://www.kernelguard.net/en/articles/'),
+      next: () => new Response('next'),
+    });
+
+    expect(response.status).toBe(200);
+    expect(await response.text()).toBe('next');
   });
 });
 
