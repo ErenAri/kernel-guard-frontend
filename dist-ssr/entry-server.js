@@ -1,12 +1,11 @@
 import { n as __exportAll, t as require_dist } from "./assets/dist-BkMweq9c.js";
-import { a as getLocalizedGrowthServicePage, c as articles, d as HelmetProvider, i as buildSoftwareSourceCodeSchema, l as getLocalizedArticle, n as buildArticleSchema, o as growthServicePages, r as buildServiceSchema, s as localizeGrowthServicePage, t as SEO, u as localizeArticle } from "./assets/SEO-C7FngH91.js";
+import { a as getLocalizedGrowthServicePage, c as articles, d as HelmetProvider, i as buildSoftwareSourceCodeSchema, l as getLocalizedArticle, n as buildArticleSchema, o as growthServicePages, r as buildServiceSchema, s as localizeGrowthServicePage, t as SEO, u as localizeArticle } from "./assets/SEO-DDskxAF5.js";
 import { a as normalizeCanonicalPath, c as useLanguage, i as mailto, n as SITE_EMAILS, s as LanguageProvider } from "./assets/site-BXg7CYE6.js";
 import { t as createLucideIcon } from "./assets/createLucideIcon-d-ZGlwaX.js";
-import { t as ArrowLeft } from "./assets/arrow-left-Cv3pMF22.js";
 import { t as CircleCheck } from "./assets/circle-check--45ff-zp.js";
+import { t as FileText } from "./assets/file-text-B0JG-1Mv.js";
 import { a as setStoredLanguagePreference, i as localizePath, n as LANGUAGE_LABELS, r as SUPPORTED_LANGUAGES } from "./assets/route-DZfXJ_2f.js";
-import { t as enterprisePages } from "./assets/enterprisePages-D9l2nrX2.js";
-import { t as NotFound } from "./assets/NotFound-6_2-_4MJ.js";
+import { t as enterprisePages } from "./assets/enterprisePages-C6kHeymr.js";
 import { renderToString } from "react-dom/server";
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
@@ -77,6 +76,19 @@ function ScrollToTop() {
 	}, [pathname]);
 	return null;
 }
+/**
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var ArrowLeft = createLucideIcon("arrow-left", [["path", {
+	d: "m12 19-7-7 7-7",
+	key: "1l729n"
+}], ["path", {
+	d: "M19 12H5",
+	key: "x3x0zl"
+}]]);
 /**
 * @license lucide-react v0.546.0 - ISC
 *
@@ -216,6 +228,31 @@ var ChevronDown = createLucideIcon("chevron-down", [["path", {
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
+var ClipboardCheck = createLucideIcon("clipboard-check", [
+	["rect", {
+		width: "8",
+		height: "4",
+		x: "8",
+		y: "2",
+		rx: "1",
+		ry: "1",
+		key: "tgr4d6"
+	}],
+	["path", {
+		d: "M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2",
+		key: "116196"
+	}],
+	["path", {
+		d: "m9 14 2 2 4-4",
+		key: "df797q"
+	}]
+]);
+/**
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
 var Clock = createLucideIcon("clock", [["path", {
 	d: "M12 6v6l4 2",
 	key: "mmk7yg"
@@ -315,34 +352,6 @@ var ExternalLink = createLucideIcon("external-link", [
 	["path", {
 		d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6",
 		key: "a6xqqp"
-	}]
-]);
-/**
-* @license lucide-react v0.546.0 - ISC
-*
-* This source code is licensed under the ISC license.
-* See the LICENSE file in the root directory of this source tree.
-*/
-var FileText = createLucideIcon("file-text", [
-	["path", {
-		d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z",
-		key: "1rqfz7"
-	}],
-	["path", {
-		d: "M14 2v4a2 2 0 0 0 2 2h4",
-		key: "tnqrlb"
-	}],
-	["path", {
-		d: "M10 9H8",
-		key: "b1mrlr"
-	}],
-	["path", {
-		d: "M16 13H8",
-		key: "t4e002"
-	}],
-	["path", {
-		d: "M16 17H8",
-		key: "z1uh3a"
 	}]
 ]);
 /**
@@ -454,6 +463,26 @@ var Globe = createLucideIcon("globe", [
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
+var Layers = createLucideIcon("layers", [
+	["path", {
+		d: "M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z",
+		key: "zw3jo"
+	}],
+	["path", {
+		d: "M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12",
+		key: "1wduqc"
+	}],
+	["path", {
+		d: "M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17",
+		key: "kqbvx6"
+	}]
+]);
+/**
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
 var LifeBuoy = createLucideIcon("life-buoy", [
 	["circle", {
 		cx: "12",
@@ -482,6 +511,34 @@ var LifeBuoy = createLucideIcon("life-buoy", [
 		cy: "12",
 		r: "4",
 		key: "4exip2"
+	}]
+]);
+/**
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var ListChecks = createLucideIcon("list-checks", [
+	["path", {
+		d: "M13 5h8",
+		key: "a7qcls"
+	}],
+	["path", {
+		d: "M13 12h8",
+		key: "h98zly"
+	}],
+	["path", {
+		d: "M13 19h8",
+		key: "c3s6r1"
+	}],
+	["path", {
+		d: "m3 17 2 2 4-4",
+		key: "1jhpwq"
+	}],
+	["path", {
+		d: "m3 7 2 2 4-4",
+		key: "1obspn"
 	}]
 ]);
 /**
@@ -804,6 +861,19 @@ var Terminal = createLucideIcon("terminal", [["path", {
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
+var TrendingUp = createLucideIcon("trending-up", [["path", {
+	d: "M16 7h6v6",
+	key: "box55l"
+}], ["path", {
+	d: "m22 7-8.5 8.5-5-5L2 17",
+	key: "1t1m79"
+}]]);
+/**
+* @license lucide-react v0.546.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
 var User = createLucideIcon("user", [["path", {
 	d: "M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2",
 	key: "975kel"
@@ -882,10 +952,10 @@ var loadTerms = cacheLoader(() => Promise.resolve().then(() => Terms_exports));
 var loadPrivacy = cacheLoader(() => Promise.resolve().then(() => Privacy_exports));
 var loadCookies = cacheLoader(() => Promise.resolve().then(() => Cookies_exports));
 var loadContact = cacheLoader(() => Promise.resolve().then(() => Contact_exports));
-var loadNotFound = cacheLoader(() => import("./assets/NotFound-6_2-_4MJ.js").then((n) => n.n));
-cacheLoader(() => import("./assets/AdminLayout-BJbG05wc.js"));
-cacheLoader(() => import("./assets/AdminDashboard-BuvufPq5.js"));
-cacheLoader(() => import("./assets/ProjectEditor-8KqCFibY.js"));
+var loadNotFound = cacheLoader(() => Promise.resolve().then(() => NotFound_exports));
+cacheLoader(() => import("./assets/AdminLayout-DKG2-Skd.js"));
+cacheLoader(() => import("./assets/AdminDashboard-B_H4fOIE.js"));
+cacheLoader(() => import("./assets/ProjectEditor-CihYtPLQ.js"));
 var prefetchers = {
 	home: loadHome,
 	projects: loadProjects,
@@ -2951,6 +3021,419 @@ var repositoryEvidence = {
 	}
 };
 //#endregion
+//#region src/data/projectCaseStudies.ts
+var caseStudyLabels = {
+	en: {
+		title: "Case Study",
+		problem: "Problem",
+		architecture: "Architecture",
+		securityApproach: "Security Approach",
+		outcome: "Outcome",
+		metrics: "Evidence",
+		lessons: "Lessons Learned"
+	},
+	tr: {
+		title: "Vaka Calismasi",
+		problem: "Problem",
+		architecture: "Mimari",
+		securityApproach: "Guvenlik Yaklasimi",
+		outcome: "Sonuc",
+		metrics: "Kanit",
+		lessons: "Cikarimlar"
+	},
+	de: {
+		title: "Fallstudie",
+		problem: "Problem",
+		architecture: "Architektur",
+		securityApproach: "Security-Ansatz",
+		outcome: "Ergebnis",
+		metrics: "Nachweise",
+		lessons: "Lessons Learned"
+	},
+	ja: {
+		title: "Case Study",
+		problem: "Problem",
+		architecture: "Architecture",
+		securityApproach: "Security Approach",
+		outcome: "Outcome",
+		metrics: "Evidence",
+		lessons: "Lessons Learned"
+	},
+	"zh-CN": {
+		title: "Case Study",
+		problem: "Problem",
+		architecture: "Architecture",
+		securityApproach: "Security Approach",
+		outcome: "Outcome",
+		metrics: "Evidence",
+		lessons: "Lessons Learned"
+	},
+	es: {
+		title: "Caso de estudio",
+		problem: "Problema",
+		architecture: "Arquitectura",
+		securityApproach: "Enfoque de seguridad",
+		outcome: "Resultado",
+		metrics: "Evidencia",
+		lessons: "Aprendizajes"
+	},
+	fr: {
+		title: "Etude de cas",
+		problem: "Probleme",
+		architecture: "Architecture",
+		securityApproach: "Approche securite",
+		outcome: "Resultat",
+		metrics: "Preuves",
+		lessons: "Lecons"
+	},
+	ko: {
+		title: "Case Study",
+		problem: "Problem",
+		architecture: "Architecture",
+		securityApproach: "Security Approach",
+		outcome: "Outcome",
+		metrics: "Evidence",
+		lessons: "Lessons Learned"
+	}
+};
+var projectCaseStudies = {
+	bpfcompat: {
+		problem: {
+			en: "eBPF teams often discover verifier, BTF, or CO-RE compatibility failures only after deploying to a customer kernel.",
+			tr: "eBPF ekipleri dogrulayici, BTF veya CO-RE uyumluluk hatalarini cogu zaman ancak musteri cekirdegine dagitimdan sonra gorur."
+		},
+		architecture: {
+			en: "A Go orchestrator boots disposable QEMU/KVM Linux guests, loads compiled BPF artifacts through a C/libbpf validator, and aggregates results by kernel profile.",
+			tr: "Go orkestrator tek kullanimlik QEMU/KVM Linux konuklari baslatir, derlenmis BPF yapitlarini C/libbpf dogrulayici ile yukler ve sonuclari cekirdek profiline gore toplar."
+		},
+		securityApproach: {
+			en: "Compatibility checks run in disposable overlays instead of production hosts. The kernel verifier is treated as the authority, and CI fails on regression evidence.",
+			tr: "Uyumluluk kontrolleri uretim sunuculari yerine tek kullanimlik katmanlarda calisir. Cekirdek dogrulayici otorite kabul edilir ve CI gerileme kanitinda durur."
+		},
+		outcome: {
+			en: "The project turns kernel compatibility into a repeatable CI gate with an artifact-by-kernel pass/fail matrix.",
+			tr: "Proje cekirdek uyumlulugunu yapit-cekirdek bazli gecis/kalma matrisiyle tekrar edilebilir bir CI kapisina donusturur."
+		},
+		metrics: [
+			"Kernel-by-artifact matrix",
+			"Disposable VM execution",
+			"CI regression exit code"
+		],
+		lessons: [{
+			en: "Compatibility claims need live-kernel evidence, not only compile-time checks.",
+			tr: "Uyumluluk iddialari yalniz derleme kontroluyle degil canli cekirdek kanitiyla desteklenmelidir."
+		}, {
+			en: "A small, deterministic failure code makes CI adoption easier.",
+			tr: "Kucuk ve deterministik hata kodu CI benimsemesini kolaylastirir."
+		}]
+	},
+	cathodex: {
+		problem: {
+			en: "Battery material screening is expensive when candidates are evaluated manually or without uncertainty-aware ranking.",
+			tr: "Pil malzemesi taramasi, adaylar manuel veya belirsizlik hesaba katilmadan degerlendirildiginde pahali hale gelir."
+		},
+		architecture: {
+			en: "A web UI submits material structures to a FastAPI inference layer backed by PyTorch graph models and ensemble-style scoring.",
+			tr: "Web arayuzu malzeme yapilarini PyTorch cizge modelleri ve topluluk skorlama kullanan FastAPI cikarim katmanina gonderir."
+		},
+		securityApproach: {
+			en: "Parsing, inference, and presentation are separated so untrusted input can be validated before reaching model execution and user-facing results.",
+			tr: "Ayrisma, cikarim ve sunum ayrilir; boylece guvenilmeyen girdi model calismasina ve kullanici sonucuna ulasmadan dogrulanabilir."
+		},
+		outcome: {
+			en: "Researchers get a faster candidate-screening workflow with ranked outputs and clearer confidence signals.",
+			tr: "Arastirmacilar sirali ciktilar ve daha net guven sinyalleriyle daha hizli aday tarama is akisi elde eder."
+		},
+		metrics: [
+			"GNN-based ranking",
+			"q10/q50/q90 output bands",
+			"Separate API inference layer"
+		],
+		lessons: [{
+			en: "Scientific AI tools need uncertainty presentation as much as prediction.",
+			tr: "Bilimsel AI araclari tahmin kadar belirsizlik sunumuna da ihtiyac duyar."
+		}, {
+			en: "Keeping model execution behind an API boundary simplifies future hardening.",
+			tr: "Model calistirmayi API siniri arkasinda tutmak ileride guclendirmeyi kolaylastirir."
+		}]
+	},
+	"post-quantum-messaging-app": {
+		problem: {
+			en: "Sensitive communication systems face harvest-now-decrypt-later risk as quantum-capable attackers become more realistic.",
+			tr: "Hassas iletisim sistemleri, kuantum kapasiteli saldirganlar gercekci hale geldikce simdi-topla-sonra-coz riskine maruz kalir."
+		},
+		architecture: {
+			en: "A Rust core provides cryptographic operations for CLI, mobile, web, and desktop bridges, while the server handles sealed inbox synchronization and relay duties.",
+			tr: "Rust cekirdek CLI, mobil, web ve masaustu kopruleri icin kriptografik islemleri saglar; sunucu kapali gelen kutusu senkronizasyonu ve aktarimi yapar."
+		},
+		securityApproach: {
+			en: "The design favors memory-safe implementation, post-quantum primitives, sealed message handling, and protocol-model verification gates.",
+			tr: "Tasarim bellek-guvenli uygulama, kuantum sonrasi ilkeller, kapali mesaj isleme ve protokol model dogrulama kapilarini onceler."
+		},
+		outcome: {
+			en: "The application demonstrates how a modern messaging stack can isolate cryptography from clients while preparing for post-quantum migration.",
+			tr: "Uygulama modern bir mesajlasma yigininin kriptografiyi istemcilerden nasil ayirabilecegini ve kuantum sonrasi gecise nasil hazirlanabilecegini gosterir."
+		},
+		metrics: [
+			"Rust cryptographic core",
+			"Cross-platform bridge model",
+			"Protocol verification artifacts"
+		],
+		lessons: [{
+			en: "Cryptographic products need protocol evidence, not only algorithm names.",
+			tr: "Kriptografik urunler sadece algoritma adi degil protokol kaniti gerektirir."
+		}, {
+			en: "A shared core reduces drift across platform clients.",
+			tr: "Ortak cekirdek platform istemcileri arasinda sapmayi azaltir."
+		}]
+	},
+	"aegis-bpf": {
+		problem: {
+			en: "Host security policies are difficult to enforce consistently when user-space agents can miss kernel-level behavior.",
+			tr: "Kullanici-alani ajanlari cekirdek seviyesindeki davranisi kacirabildiginde host guvenlik politikalarini tutarli uygulamak zordur."
+		},
+		architecture: {
+			en: "A user-space policy controller feeds pinned BPF maps and ring buffers while eBPF LSM hooks enforce or audit file, process, and socket activity.",
+			tr: "Kullanici-alani politika denetleyicisi sabitlenmis BPF mapleri ve ring bufferlari besler; eBPF LSM hooklari dosya, surec ve soket etkinligini uygular veya denetler."
+		},
+		securityApproach: {
+			en: "CO-RE portability, kernel verifier checks, policy signing, and audit-first rollout reduce the risk of unsafe kernel instrumentation.",
+			tr: "CO-RE tasinabilirligi, cekirdek dogrulayici kontrolleri, politika imzalama ve once-denetim dagitimi guvensiz cekirdek enstrumantasyon riskini azaltir."
+		},
+		outcome: {
+			en: "The prototype shows a path to low-overhead kernel-level policy enforcement with observable audit output.",
+			tr: "Prototip, gozlemlenebilir denetim ciktisiyla dusuk ek-yuklu cekirdek seviyesinde politika uygulama yolunu gosterir."
+		},
+		metrics: [
+			"eBPF LSM hooks",
+			"Pinned BPF maps",
+			"Audit and deny modes"
+		],
+		lessons: [{
+			en: "Kernel controls should start in audit mode before enforcement.",
+			tr: "Cekirdek kontrolleri uygulamadan once denetim modunda baslamalidir."
+		}, {
+			en: "CO-RE support is essential for deployable eBPF security tooling.",
+			tr: "Dagitilabilir eBPF guvenlik araci icin CO-RE destegi esastir."
+		}]
+	},
+	"ref-atelier": {
+		problem: {
+			en: "The business needed a polished reference showcase that could present completed work without a heavy CMS or fragile media handling.",
+			tr: "Isletmenin agir CMS veya kirilgan medya yonetimi olmadan tamamlanan isleri gosterecek rafine bir referans vitrinine ihtiyaci vardi."
+		},
+		architecture: {
+			en: "A responsive static portfolio structure organizes projects, media, and conversion paths around fast page loads and simple maintenance.",
+			tr: "Duyarli statik portfolyo yapisi projeleri, medyayi ve donusum yollarini hizli sayfa yukleme ve basit bakim etrafinda duzenler."
+		},
+		securityApproach: {
+			en: "A static public surface keeps the attack area small, while external links and contact paths are explicit and easy to audit.",
+			tr: "Statik public yuzey saldiri alanini kucuk tutar; dis baglantilar ve iletisim yollari acik ve denetlenebilir kalir."
+		},
+		outcome: {
+			en: "The result is a professional portfolio experience focused on clarity, media performance, and direct business inquiry paths.",
+			tr: "Sonuc; netlik, medya performansi ve dogrudan is talebi yollarina odaklanan profesyonel portfolyo deneyimidir."
+		},
+		metrics: [
+			"Static portfolio surface",
+			"Responsive media presentation",
+			"Direct inquiry path"
+		],
+		lessons: [{
+			en: "Portfolio credibility depends on clear project framing, not decorative complexity.",
+			tr: "Portfolyo guveni dekoratif karmasikliktan cok net proje cercevesine baglidir."
+		}, {
+			en: "Static delivery is often the strongest default for showcase sites.",
+			tr: "Vitrin siteleri icin statik teslimat cogu zaman en guclu varsayilandir."
+		}]
+	},
+	"dershane-management": {
+		problem: {
+			en: "Education operators needed student tracking, attendance, grades, and reporting in one operational interface.",
+			tr: "Egitim operatorleri ogrenci takibi, yoklama, notlar ve raporlamayi tek operasyonel arayuzde toplamaya ihtiyac duydu."
+		},
+		architecture: {
+			en: "The system groups enrollment, attendance, grade management, reporting, and admin workflows into a role-aware dashboard.",
+			tr: "Sistem kayit, yoklama, not yonetimi, raporlama ve admin akislarini rol-bilincli bir panelde toplar."
+		},
+		securityApproach: {
+			en: "Administrative access is separated from public presentation, and demo credentials are treated as non-indexed evaluation material.",
+			tr: "Yonetim erisimi public sunumdan ayrilir ve demo kimlikleri noindex degerlendirme materyali olarak ele alinir."
+		},
+		outcome: {
+			en: "Daily institution operations become easier to scan, update, and explain to staff.",
+			tr: "Gunluk kurum operasyonlari personel icin taranmasi, guncellenmesi ve aciklanmasi daha kolay hale gelir."
+		},
+		metrics: [
+			"Student lifecycle modules",
+			"Administrative reporting",
+			"Demo account noindex handling"
+		],
+		lessons: [{
+			en: "Operational dashboards need dense but predictable information architecture.",
+			tr: "Operasyonel paneller yogun ama ongorulebilir bilgi mimarisi ister."
+		}, {
+			en: "Demo access should not create indexable credential pages.",
+			tr: "Demo erisimi indekslenebilir kimlik bilgisi sayfalari olusturmamalidir."
+		}]
+	},
+	"technova-hr": {
+		problem: {
+			en: "HR teams needed a single portal for employee records, leave requests, and performance workflows across multiple roles.",
+			tr: "IK ekipleri calisan kayitlari, izin talepleri ve performans akislarini coklu roller arasinda tek portala toplamak istedi."
+		},
+		architecture: {
+			en: "The portal separates administrator and employee experiences while keeping records, requests, and review flows in one interface.",
+			tr: "Portal yonetici ve calisan deneyimlerini ayirir; kayitlari, talepleri ve inceleme akislarini tek arayuzde tutar."
+		},
+		securityApproach: {
+			en: "Role-specific access patterns reduce accidental exposure, and public case-study pages avoid indexing demo credentials.",
+			tr: "Role ozgu erisim desenleri kazara ifsayi azaltir; public vaka sayfalari demo kimliklerinin indekslenmesini engeller."
+		},
+		outcome: {
+			en: "The result is an enterprise-style HR portal with self-service paths for employees and operational control for administrators.",
+			tr: "Sonuc, calisanlar icin self-servis yollar ve yoneticiler icin operasyonel kontrol saglayan kurumsal tarzda IK portalidir."
+		},
+		metrics: [
+			"Multi-role access model",
+			"Employee self-service flow",
+			"Administrative review workflow"
+		],
+		lessons: [{
+			en: "HR portals must make role boundaries visible in the interface.",
+			tr: "IK portallari rol sinirlarini arayuzde gorunur kilmalidir."
+		}, {
+			en: "Case-study demos need a clear separation from production identity data.",
+			tr: "Vaka demo sayfalari uretim kimlik verisinden net sekilde ayrilmalidir."
+		}]
+	},
+	"algo-egitim": {
+		problem: {
+			en: "Algorithm learning programs needed a dashboard that could make progress, modules, and practice work visible to students and admins.",
+			tr: "Algoritma egitim programlari ilerlemeyi, modulleri ve pratik calismayi ogrenciler ve adminler icin gorunur kilacak panele ihtiyac duydu."
+		},
+		architecture: {
+			en: "A learning dashboard organizes modules, progress tracking, and student-facing views around repeated practice workflows.",
+			tr: "Ogrenme paneli modulleri, ilerleme takibini ve ogrenci gorunumlerini tekrarli pratik akislar etrafinda duzenler."
+		},
+		securityApproach: {
+			en: "Admin-only paths and demo credential handling are separated from the public case-study surface.",
+			tr: "Admin-only yollar ve demo kimlik yonetimi public vaka yuzeyinden ayrilir."
+		},
+		outcome: {
+			en: "Students get a clearer view of learning progress while administrators can inspect program activity from one place.",
+			tr: "Ogrenciler ogrenme ilerlemesini daha net gorur; yoneticiler program etkinligini tek yerden izleyebilir."
+		},
+		metrics: [
+			"Progress tracking dashboard",
+			"Interactive learning modules",
+			"Admin evaluation path"
+		],
+		lessons: [{
+			en: "Learning dashboards should optimize for repeated use, not a one-time presentation.",
+			tr: "Ogrenme panelleri tek seferlik sunum degil tekrarli kullanim icin optimize edilmelidir."
+		}, {
+			en: "Education demos should expose workflow shape without exposing real learner data.",
+			tr: "Egitim demolari gercek ogrenci verisi acmadan is akisi yapisini gostermelidir."
+		}]
+	}
+};
+//#endregion
+//#region src/components/ProjectCaseStudySection.tsx
+function ProjectCaseStudySection({ caseStudy, className = "" }) {
+	const { language } = useLanguage();
+	const labels = caseStudyLabels[language] ?? caseStudyLabels.en;
+	if (!labels) return null;
+	const cards = [
+		{
+			label: labels.problem,
+			value: localizedText(caseStudy.problem, language),
+			Icon: FileText
+		},
+		{
+			label: labels.architecture,
+			value: localizedText(caseStudy.architecture, language),
+			Icon: Layers
+		},
+		{
+			label: labels.securityApproach,
+			value: localizedText(caseStudy.securityApproach, language),
+			Icon: ShieldCheck
+		},
+		{
+			label: labels.outcome,
+			value: localizedText(caseStudy.outcome, language),
+			Icon: TrendingUp
+		}
+	];
+	return /* @__PURE__ */ jsxs("section", {
+		className: `border-t border-border pt-12 ${className}`,
+		children: [
+			/* @__PURE__ */ jsxs("div", {
+				className: "mb-8 flex items-center gap-3",
+				children: [/* @__PURE__ */ jsx(ListChecks, { className: "h-6 w-6 text-primary" }), /* @__PURE__ */ jsx("h2", {
+					className: "text-3xl font-light text-foreground",
+					children: labels.title
+				})]
+			}),
+			/* @__PURE__ */ jsx("div", {
+				className: "grid grid-cols-1 md:grid-cols-2 gap-4",
+				children: cards.map(({ label, value, Icon }) => /* @__PURE__ */ jsxs("article", {
+					className: "border border-border bg-surface p-5",
+					children: [
+						/* @__PURE__ */ jsx("div", {
+							className: "mb-5 flex h-10 w-10 items-center justify-center border border-primary/30 bg-primary/10 text-primary",
+							children: /* @__PURE__ */ jsx(Icon, { className: "h-4 w-4" })
+						}),
+						/* @__PURE__ */ jsx("h3", {
+							className: "mb-3 text-xs font-mono uppercase tracking-widest text-foreground/55",
+							children: label
+						}),
+						/* @__PURE__ */ jsx("p", {
+							className: "text-sm leading-relaxed text-foreground/75",
+							children: value
+						})
+					]
+				}, label))
+			}),
+			/* @__PURE__ */ jsxs("div", {
+				className: "mt-4 grid grid-cols-1 md:grid-cols-2 gap-4",
+				children: [/* @__PURE__ */ jsxs("article", {
+					className: "border border-border bg-background p-5",
+					children: [/* @__PURE__ */ jsx("h3", {
+						className: "mb-4 text-xs font-mono uppercase tracking-widest text-foreground/55",
+						children: labels.metrics
+					}), /* @__PURE__ */ jsx("div", {
+						className: "flex flex-wrap gap-2",
+						children: caseStudy.metrics.map((metric) => /* @__PURE__ */ jsx("span", {
+							className: "border border-border bg-surface px-3 py-1 text-xs text-foreground/75",
+							children: metric
+						}, metric))
+					})]
+				}), /* @__PURE__ */ jsxs("article", {
+					className: "border border-border bg-background p-5",
+					children: [/* @__PURE__ */ jsx("h3", {
+						className: "mb-4 text-xs font-mono uppercase tracking-widest text-foreground/55",
+						children: labels.lessons
+					}), /* @__PURE__ */ jsx("ul", {
+						className: "space-y-3",
+						children: caseStudy.lessons.map((lesson) => {
+							const lessonText = localizedText(lesson, language);
+							return /* @__PURE__ */ jsxs("li", {
+								className: "flex gap-3 text-sm leading-relaxed text-foreground/75",
+								children: [/* @__PURE__ */ jsx("span", {
+									className: "mt-2 h-1.5 w-1.5 shrink-0 bg-primary",
+									"aria-hidden": "true"
+								}), /* @__PURE__ */ jsx("span", { children: lessonText })]
+							}, lessonText);
+						})
+					})]
+				})]
+			})
+		]
+	});
+}
+//#endregion
 //#region src/pages/ProjectDetails.tsx
 var ProjectDetails_exports = /* @__PURE__ */ __exportAll({ default: () => ProjectDetails });
 var KNOWN_PROGRAMMING_LANGUAGES = new Set([
@@ -2978,6 +3461,7 @@ function ProjectDetails() {
 	const technicalDetails = localizedText(project.technicalDetails, language);
 	const marketingDetails = localizedText(project.marketingDetails, language);
 	const repoEvidence = repositoryEvidence[project.id];
+	const caseStudy = projectCaseStudies[project.id];
 	const repositorySize = repoEvidence ? `${(repoEvidence.repositorySizeKb / 1024).toFixed(1)} MB` : null;
 	return /* @__PURE__ */ jsxs("div", {
 		className: "min-h-screen bg-background pt-32 pb-24",
@@ -3128,6 +3612,10 @@ function ProjectDetails() {
 						})
 					]
 				}),
+				caseStudy ? /* @__PURE__ */ jsx(ProjectCaseStudySection, {
+					caseStudy,
+					className: "mb-16"
+				}) : null,
 				/* @__PURE__ */ jsxs("div", {
 					className: "grid grid-cols-1 md:grid-cols-2 gap-12 mb-16",
 					children: [/* @__PURE__ */ jsxs("div", {
@@ -3460,6 +3948,7 @@ function CompletedProjectDetails() {
 	});
 	const description = localizedText(project.description, language);
 	const longDescription = localizedText(project.longDescription, language);
+	const caseStudy = projectCaseStudies[project.id];
 	return /* @__PURE__ */ jsxs("div", {
 		className: "min-h-screen bg-background pt-32 pb-24",
 		children: [/* @__PURE__ */ jsx(SEO, {
@@ -3470,94 +3959,101 @@ function CompletedProjectDetails() {
 			noIndex: project.accounts.length > 0
 		}), /* @__PURE__ */ jsxs("div", {
 			className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
-			children: [/* @__PURE__ */ jsxs(import_dist.Link, {
-				to: localizePath("/completed-projects/", language),
-				className: "inline-flex items-center gap-2 text-foreground/60 hover:text-primary transition-colors mb-12 font-mono text-sm uppercase tracking-wider",
-				children: [/* @__PURE__ */ jsx(ArrowLeft, { className: "w-4 h-4" }), t.nav.completedProjects]
-			}), /* @__PURE__ */ jsxs("div", {
-				className: "grid grid-cols-1 lg:grid-cols-3 gap-12",
-				children: [/* @__PURE__ */ jsxs("div", {
-					className: "lg:col-span-2 space-y-12",
-					children: [/* @__PURE__ */ jsxs("div", { children: [
-						/* @__PURE__ */ jsx("h1", {
-							className: "text-4xl md:text-5xl font-light text-foreground mb-6",
-							children: project.title
-						}),
-						/* @__PURE__ */ jsx("div", {
-							className: "flex flex-wrap gap-3 mb-8",
-							children: project.tags.map((tag) => /* @__PURE__ */ jsx("span", {
-								className: "px-3 py-1 text-xs font-mono bg-surface border border-border text-foreground",
-								children: tag
-							}, tag))
-						}),
-						/* @__PURE__ */ jsx("p", {
-							className: "text-xl text-foreground/80 font-light leading-relaxed",
-							children: longDescription
-						})
-					] }), project.image && /* @__PURE__ */ jsx("div", {
-						className: "w-full overflow-hidden border border-border",
-						children: /* @__PURE__ */ jsx("img", {
-							src: project.image,
-							alt: project.title,
-							className: "w-full h-auto object-cover max-h-[600px]"
-						})
-					})]
-				}), /* @__PURE__ */ jsxs("div", {
-					className: "space-y-8",
+			children: [
+				/* @__PURE__ */ jsxs(import_dist.Link, {
+					to: localizePath("/completed-projects/", language),
+					className: "inline-flex items-center gap-2 text-foreground/60 hover:text-primary transition-colors mb-12 font-mono text-sm uppercase tracking-wider",
+					children: [/* @__PURE__ */ jsx(ArrowLeft, { className: "w-4 h-4" }), t.nav.completedProjects]
+				}),
+				/* @__PURE__ */ jsxs("div", {
+					className: "grid grid-cols-1 lg:grid-cols-3 gap-12",
 					children: [/* @__PURE__ */ jsxs("div", {
-						className: "bg-surface border border-border p-6",
-						children: [/* @__PURE__ */ jsx("h3", {
-							className: "text-sm font-mono text-foreground/50 uppercase tracking-wider mb-6",
-							children: t.completedProjects.links
-						}), /* @__PURE__ */ jsxs("div", {
-							className: "space-y-4",
-							children: [project.url && /* @__PURE__ */ jsxs("a", {
-								href: project.url,
-								target: "_blank",
-								rel: "noopener noreferrer",
-								className: "flex items-center justify-between p-4 kg-action-primary transition-colors group",
-								children: [/* @__PURE__ */ jsx("span", {
-									className: "font-medium",
-									children: t.completedProjects.visit
-								}), /* @__PURE__ */ jsx(ExternalLink, { className: "w-5 h-5 group-hover:scale-110 transition-transform" })]
-							}), project.github && /* @__PURE__ */ jsxs("a", {
-								href: project.github,
-								target: "_blank",
-								rel: "noopener noreferrer",
-								className: "flex items-center justify-between p-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-white transition-colors group",
-								children: [/* @__PURE__ */ jsx("span", {
-									className: "font-medium",
-									children: t.projectDetails.viewSource
-								}), /* @__PURE__ */ jsx(ExternalLink, { className: "w-5 h-5 group-hover:scale-110 transition-transform" })]
-							})]
+						className: "lg:col-span-2 space-y-12",
+						children: [/* @__PURE__ */ jsxs("div", { children: [
+							/* @__PURE__ */ jsx("h1", {
+								className: "text-4xl md:text-5xl font-light text-foreground mb-6",
+								children: project.title
+							}),
+							/* @__PURE__ */ jsx("div", {
+								className: "flex flex-wrap gap-3 mb-8",
+								children: project.tags.map((tag) => /* @__PURE__ */ jsx("span", {
+									className: "px-3 py-1 text-xs font-mono bg-surface border border-border text-foreground",
+									children: tag
+								}, tag))
+							}),
+							/* @__PURE__ */ jsx("p", {
+								className: "text-xl text-foreground/80 font-light leading-relaxed",
+								children: longDescription
+							})
+						] }), project.image && /* @__PURE__ */ jsx("div", {
+							className: "w-full overflow-hidden border border-border",
+							children: /* @__PURE__ */ jsx("img", {
+								src: project.image,
+								alt: project.title,
+								className: "w-full h-auto object-cover max-h-[600px]"
+							})
 						})]
 					}), /* @__PURE__ */ jsxs("div", {
-						className: "bg-surface border border-border p-6 text-sm",
+						className: "space-y-8",
 						children: [/* @__PURE__ */ jsxs("div", {
-							className: "flex items-center gap-2 text-foreground/50 mb-6 uppercase tracking-wider text-xs font-mono",
-							children: [/* @__PURE__ */ jsx(ShieldCheck, { className: "w-4 h-4" }), /* @__PURE__ */ jsx("span", { children: t.completedProjects.credentials })]
-						}), project.accounts.length === 0 ? /* @__PURE__ */ jsxs("div", {
-							className: "flex items-center gap-2 text-foreground/70 italic",
-							children: [/* @__PURE__ */ jsx(ShieldCheck, { className: "w-4 h-4" }), /* @__PURE__ */ jsx("span", { children: t.completedProjects.noAccount })]
-						}) : /* @__PURE__ */ jsx("div", {
-							className: "space-y-4",
-							children: project.accounts.map((acc, accIdx) => /* @__PURE__ */ jsxs("div", {
-								className: "bg-background border border-border p-4 flex flex-col gap-3 hover:border-primary/50 transition-colors",
-								children: [acc.role && /* @__PURE__ */ jsxs("div", {
-									className: "flex items-center gap-1.5 text-xs text-primary uppercase tracking-wider font-mono",
-									children: [/* @__PURE__ */ jsx(ShieldCheck, { className: "w-3.5 h-3.5" }), acc.role]
-								}), /* @__PURE__ */ jsxs("div", {
-									className: "flex items-start gap-3",
-									children: [/* @__PURE__ */ jsx(User, { className: "w-4 h-4 text-foreground/40 shrink-0 mt-0.5" }), /* @__PURE__ */ jsx("span", {
-										className: "text-foreground font-mono break-all",
-										children: acc.email
-									})]
+							className: "bg-surface border border-border p-6",
+							children: [/* @__PURE__ */ jsx("h3", {
+								className: "text-sm font-mono text-foreground/50 uppercase tracking-wider mb-6",
+								children: t.completedProjects.links
+							}), /* @__PURE__ */ jsxs("div", {
+								className: "space-y-4",
+								children: [project.url && /* @__PURE__ */ jsxs("a", {
+									href: project.url,
+									target: "_blank",
+									rel: "noopener noreferrer",
+									className: "flex items-center justify-between p-4 kg-action-primary transition-colors group",
+									children: [/* @__PURE__ */ jsx("span", {
+										className: "font-medium",
+										children: t.completedProjects.visit
+									}), /* @__PURE__ */ jsx(ExternalLink, { className: "w-5 h-5 group-hover:scale-110 transition-transform" })]
+								}), project.github && /* @__PURE__ */ jsxs("a", {
+									href: project.github,
+									target: "_blank",
+									rel: "noopener noreferrer",
+									className: "flex items-center justify-between p-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-white transition-colors group",
+									children: [/* @__PURE__ */ jsx("span", {
+										className: "font-medium",
+										children: t.projectDetails.viewSource
+									}), /* @__PURE__ */ jsx(ExternalLink, { className: "w-5 h-5 group-hover:scale-110 transition-transform" })]
 								})]
-							}, accIdx))
+							})]
+						}), /* @__PURE__ */ jsxs("div", {
+							className: "bg-surface border border-border p-6 text-sm",
+							children: [/* @__PURE__ */ jsxs("div", {
+								className: "flex items-center gap-2 text-foreground/50 mb-6 uppercase tracking-wider text-xs font-mono",
+								children: [/* @__PURE__ */ jsx(ShieldCheck, { className: "w-4 h-4" }), /* @__PURE__ */ jsx("span", { children: t.completedProjects.credentials })]
+							}), project.accounts.length === 0 ? /* @__PURE__ */ jsxs("div", {
+								className: "flex items-center gap-2 text-foreground/70 italic",
+								children: [/* @__PURE__ */ jsx(ShieldCheck, { className: "w-4 h-4" }), /* @__PURE__ */ jsx("span", { children: t.completedProjects.noAccount })]
+							}) : /* @__PURE__ */ jsx("div", {
+								className: "space-y-4",
+								children: project.accounts.map((acc, accIdx) => /* @__PURE__ */ jsxs("div", {
+									className: "bg-background border border-border p-4 flex flex-col gap-3 hover:border-primary/50 transition-colors",
+									children: [acc.role && /* @__PURE__ */ jsxs("div", {
+										className: "flex items-center gap-1.5 text-xs text-primary uppercase tracking-wider font-mono",
+										children: [/* @__PURE__ */ jsx(ShieldCheck, { className: "w-3.5 h-3.5" }), acc.role]
+									}), /* @__PURE__ */ jsxs("div", {
+										className: "flex items-start gap-3",
+										children: [/* @__PURE__ */ jsx(User, { className: "w-4 h-4 text-foreground/40 shrink-0 mt-0.5" }), /* @__PURE__ */ jsx("span", {
+											className: "text-foreground font-mono break-all",
+											children: acc.email
+										})]
+									})]
+								}, accIdx))
+							})]
 						})]
 					})]
-				})]
-			})]
+				}),
+				caseStudy ? /* @__PURE__ */ jsx(ProjectCaseStudySection, {
+					caseStudy,
+					className: "mt-16"
+				}) : null
+			]
 		})]
 	});
 }
@@ -4002,6 +4498,51 @@ function Services() {
 	});
 }
 //#endregion
+//#region src/pages/NotFound.tsx
+var NotFound_exports = /* @__PURE__ */ __exportAll({ default: () => NotFound });
+function NotFound() {
+	const { language } = useLanguage();
+	const copy = language === "tr" ? {
+		title: "Sayfa Bulunamadi | Kernel Guard",
+		description: "Istediginiz sayfa mevcut degil veya tasinmis olabilir.",
+		headline: "404_SAYFA_BULUNAMADI",
+		body: "Aradiginiz sayfa mevcut degil veya URL degismis olabilir.",
+		backLabel: "Ana Sayfaya Don"
+	} : {
+		title: "Page Not Found | Kernel Guard",
+		description: "The requested page does not exist or may have moved.",
+		headline: "404_PAGE_NOT_FOUND",
+		body: "The requested page does not exist or the URL may have changed.",
+		backLabel: "Back to Home"
+	};
+	return /* @__PURE__ */ jsxs("div", {
+		className: "min-h-screen bg-background pt-32 pb-20 flex items-center justify-center",
+		children: [/* @__PURE__ */ jsx(SEO, {
+			title: copy.title,
+			description: copy.description,
+			path: "/not-found/",
+			noIndex: true
+		}), /* @__PURE__ */ jsxs("div", {
+			className: "text-center max-w-xl px-6",
+			children: [
+				/* @__PURE__ */ jsx("h1", {
+					className: "text-2xl md:text-3xl font-mono text-foreground mb-4",
+					children: copy.headline
+				}),
+				/* @__PURE__ */ jsx("p", {
+					className: "text-foreground/70 mb-8 leading-relaxed",
+					children: copy.body
+				}),
+				/* @__PURE__ */ jsxs(import_dist.Link, {
+					to: "/",
+					className: "inline-flex items-center gap-2 px-5 py-3 border border-border text-foreground hover:bg-surface transition-colors",
+					children: [/* @__PURE__ */ jsx(ArrowLeft, { className: "w-4 h-4" }), copy.backLabel]
+				})
+			]
+		})]
+	});
+}
+//#endregion
 //#region src/pages/ServiceLandingPage.tsx
 var ServiceLandingPage_exports = /* @__PURE__ */ __exportAll({ default: () => ServiceLandingPage });
 function ServiceLandingPage() {
@@ -4151,6 +4692,48 @@ function ServiceLandingPage() {
 						}, step.title))
 					})]
 				}),
+				service.detailTitle && service.assuranceSections?.length ? /* @__PURE__ */ jsxs("section", {
+					className: "grid grid-cols-1 lg:grid-cols-12 gap-10 border-t border-border pt-12 mb-16",
+					children: [/* @__PURE__ */ jsxs("div", {
+						className: "lg:col-span-4",
+						children: [/* @__PURE__ */ jsx("h2", {
+							className: "text-3xl font-light text-foreground mb-4",
+							children: service.detailTitle
+						}), /* @__PURE__ */ jsx("p", {
+							className: "text-foreground/65 leading-relaxed",
+							children: service.detailDescription
+						})]
+					}), /* @__PURE__ */ jsx("div", {
+						className: "lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4",
+						children: service.assuranceSections.map((section) => /* @__PURE__ */ jsxs("article", {
+							className: "border border-border bg-surface p-5",
+							children: [
+								/* @__PURE__ */ jsx("div", {
+									className: "mb-5 flex h-10 w-10 items-center justify-center border border-primary/30 bg-primary/10 text-primary",
+									children: /* @__PURE__ */ jsx(ClipboardCheck, { className: "h-4 w-4" })
+								}),
+								/* @__PURE__ */ jsx("h3", {
+									className: "mb-3 text-xl font-medium text-foreground",
+									children: section.title
+								}),
+								/* @__PURE__ */ jsx("p", {
+									className: "mb-5 text-sm leading-relaxed text-foreground/65",
+									children: section.description
+								}),
+								/* @__PURE__ */ jsx("ul", {
+									className: "space-y-3",
+									children: section.items.map((item) => /* @__PURE__ */ jsxs("li", {
+										className: "flex gap-3 text-sm leading-relaxed text-foreground/75",
+										children: [/* @__PURE__ */ jsx("span", {
+											className: "mt-2 h-1.5 w-1.5 shrink-0 bg-primary",
+											"aria-hidden": "true"
+										}), /* @__PURE__ */ jsx("span", { children: item })]
+									}, item))
+								})
+							]
+						}, section.title))
+					})]
+				}) : null,
 				/* @__PURE__ */ jsxs("section", {
 					className: "grid grid-cols-1 lg:grid-cols-12 gap-10 border-t border-border pt-12 mb-16",
 					children: [/* @__PURE__ */ jsxs("div", {
@@ -5059,9 +5642,6 @@ function Cookies() {
 	});
 }
 //#endregion
-//#region src/config/forms.ts
-var WEB3FORMS_ACCESS_KEY = "7c8be6f4-ff09-49f5-b754-60878bc0c970";
-//#endregion
 //#region src/pages/Contact.tsx
 var Contact_exports = /* @__PURE__ */ __exportAll({ default: () => Contact });
 var contactChannels = [
@@ -5195,69 +5775,25 @@ function Contact() {
 							})]
 						})
 					]
-				}), /* @__PURE__ */ jsxs("form", {
-					action: "https://api.web3forms.com/submit",
-					method: "POST",
-					className: "border border-border bg-surface p-8 space-y-6",
+				}), /* @__PURE__ */ jsxs("section", {
+					className: "border border-border bg-surface p-8",
 					children: [
-						/* @__PURE__ */ jsx("input", {
-							type: "hidden",
-							name: "access_key",
-							value: WEB3FORMS_ACCESS_KEY
+						/* @__PURE__ */ jsx("div", {
+							className: "mb-6 flex h-12 w-12 items-center justify-center border border-primary/40 bg-primary/10 text-primary",
+							children: /* @__PURE__ */ jsx(Mail, { className: "h-5 w-5" })
 						}),
-						/* @__PURE__ */ jsx("input", {
-							type: "hidden",
-							name: "subject",
-							value: "Kernel Guard contact form"
+						/* @__PURE__ */ jsx("h2", {
+							className: "mb-3 text-2xl font-medium text-foreground",
+							children: "Secure form unavailable"
 						}),
-						/* @__PURE__ */ jsx("input", {
-							type: "checkbox",
-							name: "botcheck",
-							className: "hidden",
-							tabIndex: -1
+						/* @__PURE__ */ jsx("p", {
+							className: "mb-8 max-w-xl text-foreground/70 font-light leading-relaxed",
+							children: "The contact form is disabled because the deployment is missing its Web3Forms environment key. Send requests directly to the monitored company inbox."
 						}),
-						/* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx("label", {
-							htmlFor: "name",
-							className: "block text-sm font-medium text-foreground mb-2",
-							children: t.contact.form.name
-						}), /* @__PURE__ */ jsx("input", {
-							id: "name",
-							name: "name",
-							type: "text",
-							required: true,
-							autoComplete: "name",
-							placeholder: t.contact.form.namePlaceholder,
-							className: "w-full border border-border bg-background px-4 py-3 text-foreground outline-none transition-colors focus:border-primary"
-						})] }),
-						/* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx("label", {
-							htmlFor: "email",
-							className: "block text-sm font-medium text-foreground mb-2",
-							children: t.contact.form.email
-						}), /* @__PURE__ */ jsx("input", {
-							id: "email",
-							name: "email",
-							type: "email",
-							required: true,
-							autoComplete: "email",
-							placeholder: t.contact.form.emailPlaceholder,
-							className: "w-full border border-border bg-background px-4 py-3 text-foreground outline-none transition-colors focus:border-primary"
-						})] }),
-						/* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx("label", {
-							htmlFor: "message",
-							className: "block text-sm font-medium text-foreground mb-2",
-							children: t.contact.form.message
-						}), /* @__PURE__ */ jsx("textarea", {
-							id: "message",
-							name: "message",
-							required: true,
-							rows: 7,
-							placeholder: t.contact.form.messagePlaceholder,
-							className: "w-full resize-none border border-border bg-background px-4 py-3 text-foreground outline-none transition-colors focus:border-primary"
-						})] }),
-						/* @__PURE__ */ jsxs("button", {
-							type: "submit",
-							className: "inline-flex w-full sm:w-auto items-center justify-center gap-3 kg-action-primary px-8 py-4 font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50",
-							children: [/* @__PURE__ */ jsx("span", { children: t.contact.form.submit }), /* @__PURE__ */ jsx(Send, { className: "h-5 w-5" })]
+						/* @__PURE__ */ jsxs("a", {
+							href: mailto(SITE_EMAILS.contact),
+							className: "inline-flex w-full items-center justify-center gap-3 kg-action-primary px-8 py-4 font-medium transition-colors sm:w-auto",
+							children: [/* @__PURE__ */ jsx("span", { children: SITE_EMAILS.contact }), /* @__PURE__ */ jsx(Send, { className: "h-5 w-5" })]
 						})
 					]
 				})]
@@ -5470,4 +6006,4 @@ function renderRoute(url, language) {
 	};
 }
 //#endregion
-export { ExternalLink as n, ArrowRight as r, renderRoute, Lock as t };
+export { ArrowLeft as i, ExternalLink as n, ArrowRight as r, renderRoute, Lock as t };

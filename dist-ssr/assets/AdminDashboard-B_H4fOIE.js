@@ -1,6 +1,6 @@
 import { t as require_dist } from "./dist-BkMweq9c.js";
 import { t as createLucideIcon } from "./createLucideIcon-d-ZGlwaX.js";
-import { a as CircleAlert, i as LoaderCircle, n as useAdmin } from "./AdminContext-bpcRMjZm.js";
+import { a as CircleAlert, i as LoaderCircle, n as useAdmin } from "./AdminContext-Cqb3MmQE.js";
 import { t as LogOut } from "./log-out-ifISwOAG.js";
 import { n as Plus, t as Trash2 } from "./trash-2-CDha8inF.js";
 import { n as ExternalLink } from "../entry-server.js";
@@ -99,8 +99,8 @@ function AdminDashboard() {
 				setCompletedProjects(compRes.content.items || []);
 			}
 		} catch (err) {
-			const message = err.message || "Failed to fetch data from GitHub.";
-			if (message.toLowerCase().includes("invalid credentials")) {
+			const message = err instanceof Error ? err.message : "Failed to fetch data from GitHub.";
+			if (message.toLowerCase().includes("invalid credentials") || message.toLowerCase().includes("unauthorized")) {
 				sessionStorage.setItem(LOGIN_ERROR_KEY, "Email or password is incorrect.");
 				logout();
 				return;
@@ -113,8 +113,8 @@ function AdminDashboard() {
 	useEffect(() => {
 		loadData();
 	}, [service]);
-	const handleLogout = () => {
-		logout();
+	const handleLogout = async () => {
+		await logout();
 		navigate("/");
 	};
 	const handleDelete = async (item) => {
@@ -132,7 +132,7 @@ function AdminDashboard() {
 			await service.updateJsonFile(filePath, { items: updatedItems }, `Delete ${tab} project: ${item.id}`, latest.sha);
 			setItemsForTab(tab, updatedItems);
 		} catch (err) {
-			setError(err.message || "Failed to delete project.");
+			setError(err instanceof Error ? err.message : "Failed to delete project.");
 		} finally {
 			setDeletingId("");
 		}
@@ -216,9 +216,9 @@ function AdminDashboard() {
 						children: [item.tags?.slice(0, 3).map((t) => /* @__PURE__ */ jsx("span", {
 							className: "text-xs bg-background border border-border px-2 py-0.5 text-foreground/70",
 							children: t
-						}, t)), (item.tags?.length || 0) > 3 && /* @__PURE__ */ jsxs("span", {
+						}, t)), (item.tags?.length ?? 0) > 3 && /* @__PURE__ */ jsxs("span", {
 							className: "text-xs text-foreground/50 px-1 py-0.5",
-							children: ["+", item.tags.length - 3]
+							children: ["+", (item.tags?.length ?? 0) - 3]
 						})]
 					})] })]
 				}), /* @__PURE__ */ jsxs("div", {

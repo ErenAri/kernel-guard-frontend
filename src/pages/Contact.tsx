@@ -11,7 +11,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import SEO from '../components/SEO';
-import { WEB3FORMS_ACCESS_KEY } from '../config/forms';
+import { WEB3FORMS_ACCESS_KEY, WEB3FORMS_IS_CONFIGURED } from '../config/forms';
 import { SITE_EMAILS, mailto } from '../config/site';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -113,67 +113,87 @@ export default function Contact() {
             </div>
           </aside>
 
-          <form
-            action="https://api.web3forms.com/submit"
-            method="POST"
-            className="border border-border bg-surface p-8 space-y-6"
-          >
-            <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
-            <input type="hidden" name="subject" value="Kernel Guard contact form" />
-            <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} />
-
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                {t.contact.form.name}
-              </label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                required
-                autoComplete="name"
-                placeholder={t.contact.form.namePlaceholder}
-                className="w-full border border-border bg-background px-4 py-3 text-foreground outline-none transition-colors focus:border-primary"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                {t.contact.form.email}
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                autoComplete="email"
-                placeholder={t.contact.form.emailPlaceholder}
-                className="w-full border border-border bg-background px-4 py-3 text-foreground outline-none transition-colors focus:border-primary"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                {t.contact.form.message}
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                required
-                rows={7}
-                placeholder={t.contact.form.messagePlaceholder}
-                className="w-full resize-none border border-border bg-background px-4 py-3 text-foreground outline-none transition-colors focus:border-primary"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="inline-flex w-full sm:w-auto items-center justify-center gap-3 kg-action-primary px-8 py-4 font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50"
+          {WEB3FORMS_IS_CONFIGURED ? (
+            <form
+              action="https://api.web3forms.com/submit"
+              method="POST"
+              className="border border-border bg-surface p-8 space-y-6"
             >
-              <span>{t.contact.form.submit}</span>
-              <Send className="h-5 w-5" />
-            </button>
-          </form>
+              <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+              <input type="hidden" name="subject" value="Kernel Guard contact form" />
+              <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} />
+
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                  {t.contact.form.name}
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  autoComplete="name"
+                  placeholder={t.contact.form.namePlaceholder}
+                  className="w-full border border-border bg-background px-4 py-3 text-foreground outline-none transition-colors focus:border-primary"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                  {t.contact.form.email}
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  placeholder={t.contact.form.emailPlaceholder}
+                  className="w-full border border-border bg-background px-4 py-3 text-foreground outline-none transition-colors focus:border-primary"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                  {t.contact.form.message}
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  rows={7}
+                  placeholder={t.contact.form.messagePlaceholder}
+                  className="w-full resize-none border border-border bg-background px-4 py-3 text-foreground outline-none transition-colors focus:border-primary"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="inline-flex w-full sm:w-auto items-center justify-center gap-3 kg-action-primary px-8 py-4 font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                <span>{t.contact.form.submit}</span>
+                <Send className="h-5 w-5" />
+              </button>
+            </form>
+          ) : (
+            <section className="border border-border bg-surface p-8">
+              <div className="mb-6 flex h-12 w-12 items-center justify-center border border-primary/40 bg-primary/10 text-primary">
+                <Mail className="h-5 w-5" />
+              </div>
+              <h2 className="mb-3 text-2xl font-medium text-foreground">Secure form unavailable</h2>
+              <p className="mb-8 max-w-xl text-foreground/70 font-light leading-relaxed">
+                The contact form is disabled because the deployment is missing its Web3Forms
+                environment key. Send requests directly to the monitored company inbox.
+              </p>
+              <a
+                href={mailto(SITE_EMAILS.contact)}
+                className="inline-flex w-full items-center justify-center gap-3 kg-action-primary px-8 py-4 font-medium transition-colors sm:w-auto"
+              >
+                <span>{SITE_EMAILS.contact}</span>
+                <Send className="h-5 w-5" />
+              </a>
+            </section>
+          )}
         </div>
       </div>
     </div>

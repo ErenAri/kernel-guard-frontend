@@ -1,6 +1,20 @@
 # Kernel Guard Frontend
 
-React/Vite frontend for the Kernel Guard website, including prerendered public pages, the admin content workflow, and the Web3Forms contact form.
+[![Quality](https://github.com/ErenAri/kernel-guard-frontend/actions/workflows/quality.yml/badge.svg)](https://github.com/ErenAri/kernel-guard-frontend/actions/workflows/quality.yml)
+![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue)
+![npm audit](https://img.shields.io/badge/npm_audit-CI_gated-brightgreen)
+![security.txt](https://img.shields.io/badge/security.txt-published-brightgreen)
+
+React/Vite frontend for the Kernel Guard website, including prerendered public pages, localized service and project content, the admin content workflow, and the Web3Forms contact form.
+
+## Trust Artifacts
+
+- [Security policy](./SECURITY.md): responsible disclosure, scope, safe harbor, and operational controls.
+- [Threat model](./docs/security-threat-model.md): assets, trust boundaries, threats, controls, and residual risks.
+- [Release process](./docs/release-process.md): CI gates, release checklist, rollback, and dependency review.
+- [`public/.well-known/security.txt`](./public/.well-known/security.txt): machine-readable security contact.
+- [`public/_headers`](./public/_headers): browser security headers and cache policy.
+- [Quality workflow](./.github/workflows/quality.yml): typecheck, tests, dependency audit, build, Cloudflare Functions build, preview startup, and Lighthouse gate.
 
 ## Prerequisites
 
@@ -35,12 +49,24 @@ Keep real secrets in `.env` locally and in the hosting provider's environment va
 
 Important variables:
 
-- `VITE_WEB3FORMS_ACCESS_KEY`: contact form access key used by the browser client.
+- `VITE_WEB3FORMS_ACCESS_KEY`: required contact form access key used by the browser client. The form fails closed when this is missing.
 - `GITHUB_PAT`, `GITHUB_OWNER`, `GITHUB_REPO`: admin content editing integration.
-- `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET`: admin authentication.
+- `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET`: admin authentication. `ADMIN_SESSION_SECRET` is required for the HttpOnly admin session cookie.
+- `ALLOWED_ORIGINS`: exact origin allowlist for the admin API. Preview domains must be listed explicitly.
 - `TURNSTILE_SECRET_KEY`, `VITE_TURNSTILE_SITE_KEY`: optional Cloudflare Turnstile protection.
 - `SITE_URL`: canonical site URL for sitemap and prerender output.
 - `VITE_GOOGLE_SITE_VERIFICATION`: optional Google Search Console HTML tag verification token.
+
+## Admin Security Model
+
+The admin panel uses a same-origin Cloudflare Pages Function as the only GitHub write bridge.
+
+- GitHub PAT is server-side only and is never exposed to the browser.
+- Login sends the admin password only to `createSession`.
+- The API returns an HttpOnly, Secure, SameSite=Strict cookie and does not return a JSON session token.
+- Browser storage keeps only the admin email identity, not the password or session material.
+- Write/read actions authenticate with the cookie and use explicit CORS origins.
+- Logout clears local identity and expires the session cookie.
 
 ## Contact Routing
 
@@ -96,4 +122,4 @@ npm run audit:prod   # Audit production dependencies
 
 The production build output is `dist`. The repository includes `wrangler.jsonc` so Cloudflare Workers can upload static assets from `./dist`.
 
-GitHub Actions runs typecheck, tests, dependency audit, production build, Cloudflare Functions build, preview startup, and Lighthouse checks on pull requests and pushes to `main`.
+GitHub Actions runs strict TypeScript, tests, dependency audit, production build, Cloudflare Functions build, preview startup, and Lighthouse checks on pull requests and pushes to `main`.

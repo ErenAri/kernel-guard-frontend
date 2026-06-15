@@ -1,9 +1,9 @@
 import { t as require_dist } from "./dist-BkMweq9c.js";
 import { t as createLucideIcon } from "./createLucideIcon-d-ZGlwaX.js";
-import { t as ArrowLeft } from "./arrow-left-Cv3pMF22.js";
-import { a as CircleAlert, i as LoaderCircle, n as useAdmin } from "./AdminContext-bpcRMjZm.js";
+import { a as CircleAlert, i as LoaderCircle, n as useAdmin } from "./AdminContext-Cqb3MmQE.js";
 import { n as Plus, t as Trash2 } from "./trash-2-CDha8inF.js";
 import { n as LANGUAGE_LABELS, r as SUPPORTED_LANGUAGES } from "./route-DZfXJ_2f.js";
+import { i as ArrowLeft } from "../entry-server.js";
 import { useEffect, useRef, useState } from "react";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
 import { v4 } from "uuid";
@@ -68,6 +68,9 @@ var LANGUAGE_EDITOR_LABELS = {
 	ko: "Korean"
 };
 var emptyLocalizedText = () => Object.fromEntries(SUPPORTED_LANGUAGES.map((language) => [language, ""]));
+function errorMessage(error, fallback) {
+	return error instanceof Error ? error.message : fallback;
+}
 function ProjectEditor() {
 	const { type, id } = (0, import_dist.useParams)();
 	const isNew = id === "new";
@@ -121,12 +124,12 @@ function ProjectEditor() {
 						accounts: []
 					});
 				} else {
-					const item = res.content.items?.find((i) => i.id === id);
+					const item = res.content.items?.find((project) => project.id === id);
 					if (!item) throw new Error("Project not found");
-					setFormData(sanitizeProject(JSON.parse(JSON.stringify(item))));
+					setFormData(sanitizeProject(structuredClone(item)));
 				}
 			} catch (err) {
-				setError(err.message || "Failed to fetch data");
+				setError(errorMessage(err, "Failed to fetch data"));
 			} finally {
 				setLoading(false);
 			}
@@ -142,26 +145,30 @@ function ProjectEditor() {
 		const file = e.target.files?.[0];
 		if (!file || !service) return;
 		setSaving(true);
-		try {
-			const reader = new FileReader();
-			reader.onloadend = async () => {
+		const reader = new FileReader();
+		reader.onerror = () => {
+			setError("Image upload failed.");
+			setSaving(false);
+		};
+		reader.onloadend = async () => {
+			try {
 				const base64 = reader.result;
 				const filename = `${v4()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, "_")}`;
 				const urlPath = await service.uploadImage(filename, base64);
-				setFormData((prev) => ({
+				setFormData((prev) => prev ? {
 					...prev,
 					image: urlPath
-				}));
+				} : prev);
 				setSaving(false);
-			};
-			reader.readAsDataURL(file);
-		} catch (err) {
-			setError("Image upload failed: " + err.message);
-			setSaving(false);
-		}
+			} catch (err) {
+				setError(`Image upload failed: ${errorMessage(err, "Unable to upload image.")}`);
+				setSaving(false);
+			}
+		};
+		reader.readAsDataURL(file);
 	};
 	const handleSave = async () => {
-		if (!service) return;
+		if (!service || !formData) return;
 		setSaving(true);
 		setError("");
 		try {
@@ -177,7 +184,7 @@ function ProjectEditor() {
 			await service.updateJsonFile(getFilePath(), { items: updatedData }, `Update ${type} project: ${formData.id}`, fileSha);
 			navigate("/admin");
 		} catch (err) {
-			setError(err.message || "Failed to save");
+			setError(errorMessage(err, "Failed to save"));
 			setSaving(false);
 		}
 	};
@@ -223,19 +230,57 @@ function ProjectEditor() {
 		})]
 	});
 	const setLocalizedField = (field, language, value) => {
-		setFormData({
-			...formData,
+		setFormData((current) => current ? {
+			...current,
 			[field]: {
-				...formData[field] || {},
+				...current[field] || {},
 				[language]: value
 			}
+		} : current);
+	};
+	const addAccount = () => {
+		setFormData((current) => current ? {
+			...current,
+			accounts: [...current.accounts || [], {
+				email: "",
+				role: ""
+			}]
+		} : current);
+	};
+	const removeAccount = (index) => {
+		setFormData((current) => {
+			if (!current) return current;
+			const accounts = [...current.accounts || []];
+			accounts.splice(index, 1);
+			return {
+				...current,
+				accounts
+			};
 		});
 	};
+	const updateAccount = (index, field, value) => {
+		setFormData((current) => {
+			if (!current) return current;
+			const accounts = [...current.accounts || []];
+			accounts[index] = {
+				...accounts[index] || {
+					email: "",
+					role: ""
+				},
+				[field]: value
+			};
+			return {
+				...current,
+				accounts
+			};
+		});
+	};
+	const getLocalizedFieldValue = (field, language) => formData[field]?.[language] ?? "";
 	const LocalizedTextAreas = ({ field, markdown = false }) => /* @__PURE__ */ jsx("div", {
 		className: "grid grid-cols-1 md:grid-cols-2 gap-4",
 		children: SUPPORTED_LANGUAGES.map((language) => /* @__PURE__ */ jsx(TextArea, {
 			label: `${LANGUAGE_EDITOR_LABELS[language]} (${LANGUAGE_LABELS[language]})${markdown ? " Markdown" : ""}`,
-			value: formData[field]?.[language],
+			value: getLocalizedFieldValue(field, language),
 			onChange: (e) => setLocalizedField(field, language, e.target.value)
 		}, `${field}-${language}`))
 	});
@@ -377,7 +422,7 @@ function ProjectEditor() {
 							value: formData.tags?.join(", "),
 							onChange: (e) => setFormData({
 								...formData,
-								tags: e.target.value.split(",").map((t) => t.trim()).filter(Boolean)
+								tags: e.target.value.split(",").map((tag) => tag.trim()).filter(Boolean)
 							})
 						}),
 						/* @__PURE__ */ jsx(Input, {
@@ -419,13 +464,7 @@ function ProjectEditor() {
 							className: "text-lg font-light uppercase tracking-widest",
 							children: "Test Accounts"
 						}), /* @__PURE__ */ jsx("button", {
-							onClick: () => setFormData({
-								...formData,
-								accounts: [...formData.accounts || [], {
-									email: "",
-									role: ""
-								}]
-							}),
+							onClick: addAccount,
 							className: "p-1 hover:bg-border transition-colors",
 							children: /* @__PURE__ */ jsx(Plus, { className: "w-4 h-4" })
 						})]
@@ -435,14 +474,7 @@ function ProjectEditor() {
 							className: "p-4 border border-border bg-background relative",
 							children: [
 								/* @__PURE__ */ jsx("button", {
-									onClick: () => {
-										const newAcc = [...formData.accounts];
-										newAcc.splice(idx, 1);
-										setFormData({
-											...formData,
-											accounts: newAcc
-										});
-									},
+									onClick: () => removeAccount(idx),
 									className: "absolute top-2 right-2 text-red-500 hover:text-red-400",
 									children: /* @__PURE__ */ jsx(Trash2, { className: "w-4 h-4" })
 								}),
@@ -451,12 +483,7 @@ function ProjectEditor() {
 									placeholder: "Email / Username",
 									value: acc.email,
 									onChange: (e) => {
-										const newAcc = [...formData.accounts];
-										newAcc[idx].email = e.target.value;
-										setFormData({
-											...formData,
-											accounts: newAcc
-										});
+										updateAccount(idx, "email", e.target.value);
 									},
 									className: "w-full bg-transparent border-b border-border p-2 outline-none mb-2 text-sm"
 								}),
@@ -465,12 +492,7 @@ function ProjectEditor() {
 									placeholder: "Role (e.g. Admin)",
 									value: acc.role,
 									onChange: (e) => {
-										const newAcc = [...formData.accounts];
-										newAcc[idx].role = e.target.value;
-										setFormData({
-											...formData,
-											accounts: newAcc
-										});
+										updateAccount(idx, "role", e.target.value);
 									},
 									className: "w-full bg-transparent border-b border-border p-2 outline-none text-sm"
 								})

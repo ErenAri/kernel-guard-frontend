@@ -7,6 +7,8 @@ import { buildSoftwareSourceCodeSchema } from '../lib/schema';
 import { localizePath } from '../i18n/route';
 import { localizedText } from '../i18n/text';
 import { repositoryEvidence } from '../data/repositoryEvidence';
+import ProjectCaseStudySection from '../components/ProjectCaseStudySection';
+import { projectCaseStudies } from '../data/projectCaseStudies';
 
 const KNOWN_PROGRAMMING_LANGUAGES = new Set([
   'Python', 'Rust', 'C++', 'C', 'Go', 'TypeScript', 'JavaScript', 'Java', 'Kotlin', 'Swift',
@@ -27,6 +29,7 @@ export default function ProjectDetails() {
   const technicalDetails = localizedText(project.technicalDetails, language);
   const marketingDetails = localizedText(project.marketingDetails, language);
   const repoEvidence = repositoryEvidence[project.id];
+  const caseStudy = projectCaseStudies[project.id];
   const repositorySize = repoEvidence ? `${(repoEvidence.repositorySizeKb / 1024).toFixed(1)} MB` : null;
 
   return (
@@ -164,6 +167,10 @@ export default function ProjectDetails() {
             </div>
           </section>
         )}
+
+        {caseStudy ? (
+          <ProjectCaseStudySection caseStudy={caseStudy} className="mb-16" />
+        ) : null}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
           {/* Technical Section */}

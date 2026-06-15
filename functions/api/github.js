@@ -10,6 +10,7 @@ const DEFAULT_ALLOWED_ORIGINS = [
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX_REQUESTS = 40;
 const SESSION_TTL_SECONDS = 60 * 60 * 2;
+const ADMIN_SESSION_COOKIE = 'kg_admin_session';
 const rateLimitBuckets = new Map();
 
 function parseAllowedOrigins(env) {
@@ -23,7 +24,6 @@ function parseAllowedOrigins(env) {
 
 function isAllowedOrigin(origin, env) {
   if (!origin) return true;
-  if (origin.endsWith('.pages.dev')) return true;
   return parseAllowedOrigins(env).has(origin);
 }
 
@@ -37,20 +37,27 @@ function buildCorsHeaders(request, env) {
 
   if (origin && isAllowedOrigin(origin, env)) {
     headers['Access-Control-Allow-Origin'] = origin;
+    headers['Access-Control-Allow-Credentials'] = 'true';
   }
 
   return headers;
 }
 
-function jsonResponse(request, env, body, status = 200) {
+function jsonResponse(request, env, body, status = 200, extraHeaders = {}) {
+  const headers = new Headers({
+    ...buildCorsHeaders(request, env),
+    'Content-Type': 'application/json; charset=utf-8',
+    'Cache-Control': 'no-store',
+    'X-Content-Type-Options': 'nosniff',
+  });
+
+  Object.entries(extraHeaders).forEach(([name, value]) => {
+    headers.set(name, value);
+  });
+
   return new Response(JSON.stringify(body), {
     status,
-    headers: {
-      ...buildCorsHeaders(request, env),
-      'Content-Type': 'application/json; charset=utf-8',
-      'Cache-Control': 'no-store',
-      'X-Content-Type-Options': 'nosniff',
-    },
+    headers,
   });
 }
 
@@ -68,6 +75,59 @@ function safeEquals(actual, expected) {
   }
 
   return mismatch === 0;
+}
+
+function getCookie(request, name) {
+  const cookieHeader = request.headers.get('Cookie') || '';
+  const cookies = cookieHeader
+    .split(';')
+    .map((cookie) => cookie.trim())
+    .filter(Boolean);
+
+  for (const cookie of cookies) {
+    const separatorIndex = cookie.indexOf('=');
+    if (separatorIndex === -1) continue;
+
+    const cookieName = cookie.slice(0, separatorIndex);
+    const cookieValue = cookie.slice(separatorIndex + 1);
+    if (cookieName === name) {
+      try {
+        return decodeURIComponent(cookieValue);
+      } catch {
+        return '';
+      }
+    }
+  }
+
+  return '';
+}
+
+function isLocalDevelopmentRequest(request) {
+  const hostname = new URL(request.url).hostname;
+  return hostname === 'localhost' || hostname === '127.0.0.1';
+}
+
+function sessionCookieAttributes(request, maxAge) {
+  const attributes = [
+    'HttpOnly',
+    'SameSite=Strict',
+    'Path=/api/github',
+    `Max-Age=${maxAge}`,
+  ];
+
+  if (!isLocalDevelopmentRequest(request)) {
+    attributes.push('Secure');
+  }
+
+  return attributes.join('; ');
+}
+
+function buildSessionCookie(request, token) {
+  return `${ADMIN_SESSION_COOKIE}=${encodeURIComponent(token)}; ${sessionCookieAttributes(request, SESSION_TTL_SECONDS)}`;
+}
+
+function clearSessionCookie(request) {
+  return `${ADMIN_SESSION_COOKIE}=; ${sessionCookieAttributes(request, 0)}`;
 }
 
 function getClientIp(request) {
@@ -197,7 +257,7 @@ async function createSessionToken(secret, email) {
   const payload = base64UrlEncode(JSON.stringify({ email, expiresAt }));
   const signature = await hmacHex(secret, payload);
   return {
-    sessionToken: `${payload}.${signature}`,
+    token: `${payload}.${signature}`,
     expiresAt,
   };
 }
@@ -246,14 +306,8 @@ function hasValidCredentials(payload, adminEmail, adminPassword) {
   return safeEquals(payload.email, adminEmail) && safeEquals(payload.password, adminPassword);
 }
 
-async function isAuthenticated(payload, env) {
-  const sessionSecret = env.ADMIN_SESSION_SECRET;
-
-  if (sessionSecret) {
-    return verifySessionToken(sessionSecret, env.ADMIN_EMAIL, payload.sessionToken);
-  }
-
-  return hasValidCredentials(payload, env.ADMIN_EMAIL, env.ADMIN_PASSWORD);
+async function isAuthenticated(request, env) {
+  return verifySessionToken(env.ADMIN_SESSION_SECRET, env.ADMIN_EMAIL, getCookie(request, ADMIN_SESSION_COOKIE));
 }
 
 export async function onRequest(context) {
@@ -292,8 +346,14 @@ export async function onRequest(context) {
     return jsonResponse(request, env, { error: 'Server misconfiguration: ADMIN_EMAIL or ADMIN_PASSWORD is missing.' }, 500);
   }
 
-  if (!token) {
-    return jsonResponse(request, env, { error: 'Server misconfiguration: GITHUB_PAT is missing.' }, 500);
+  if (!env.ADMIN_SESSION_SECRET) {
+    return jsonResponse(request, env, { error: 'Server misconfiguration: ADMIN_SESSION_SECRET is missing.' }, 500);
+  }
+
+  if (payload.action === 'logout') {
+    return jsonResponse(request, env, { success: true }, 200, {
+      'Set-Cookie': clearSessionCookie(request),
+    });
   }
 
   if (payload.action === 'createSession') {
@@ -306,17 +366,21 @@ export async function onRequest(context) {
       return jsonResponse(request, env, { error: 'Turnstile verification failed.' }, 401);
     }
 
-    if (!env.ADMIN_SESSION_SECRET) {
-      return jsonResponse(request, env, { success: true });
-    }
+    const session = await createSessionToken(env.ADMIN_SESSION_SECRET, adminEmail);
 
     return jsonResponse(request, env, {
       success: true,
-      ...(await createSessionToken(env.ADMIN_SESSION_SECRET, adminEmail)),
+      expiresAt: session.expiresAt,
+    }, 200, {
+      'Set-Cookie': buildSessionCookie(request, session.token),
     });
   }
 
-  if (!(await isAuthenticated(payload, env))) {
+  if (!token) {
+    return jsonResponse(request, env, { error: 'Server misconfiguration: GITHUB_PAT is missing.' }, 500);
+  }
+
+  if (!(await isAuthenticated(request, env))) {
     return jsonResponse(request, env, { error: 'Invalid credentials. Unauthorized access attempt.' }, 401);
   }
 

@@ -2,24 +2,39 @@ import { useState, useEffect } from 'react';
 import { useAdmin } from '../../context/AdminContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { FolderGit2, FolderCheck, Plus, ExternalLink, RefreshCw, AlertCircle, LogOut, Trash2, Loader2 } from 'lucide-react';
+import type { JsonValue } from '../../services/githubApi';
 
 const LOGIN_ERROR_KEY = 'kg_admin_login_error';
+type ProjectTab = 'open_source' | 'completed';
+
+interface AdminProjectItem {
+  id: string;
+  title?: string;
+  image?: string;
+  github?: string;
+  tags?: string[];
+  [key: string]: JsonValue | undefined;
+}
+
+interface ProjectFile {
+  items: AdminProjectItem[];
+}
 
 export default function AdminDashboard() {
   const { service, logout } = useAdmin();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<'open_source' | 'completed'>('open_source');
+  const [activeTab, setActiveTab] = useState<ProjectTab>('open_source');
   
-  const [projects, setProjects] = useState<any[]>([]);
-  const [completedProjects, setCompletedProjects] = useState<any[]>([]);
+  const [projects, setProjects] = useState<AdminProjectItem[]>([]);
+  const [completedProjects, setCompletedProjects] = useState<AdminProjectItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState('');
   const [error, setError] = useState('');
 
-  const getFilePath = (tab: 'open_source' | 'completed') =>
+  const getFilePath = (tab: ProjectTab) =>
     tab === 'open_source' ? 'src/data/projects.json' : 'src/data/completedProjects.json';
 
-  const setItemsForTab = (tab: 'open_source' | 'completed', items: any[]) => {
+  const setItemsForTab = (tab: ProjectTab, items: AdminProjectItem[]) => {
     if (tab === 'open_source') {
       setProjects(items);
     } else {
@@ -33,17 +48,17 @@ export default function AdminDashboard() {
     try {
       if (service) {
         const [projRes, compRes] = await Promise.all([
-          service.getJsonFile<{items: any[]}>('src/data/projects.json'),
-          service.getJsonFile<{items: any[]}>('src/data/completedProjects.json'),
+          service.getJsonFile<ProjectFile>('src/data/projects.json'),
+          service.getJsonFile<ProjectFile>('src/data/completedProjects.json'),
         ]);
         setProjects(projRes.content.items || []);
         setCompletedProjects(compRes.content.items || []);
       }
-    } catch (err: any) {
-      const message = err.message || 'Failed to fetch data from GitHub.';
-      if (message.toLowerCase().includes('invalid credentials')) {
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Failed to fetch data from GitHub.';
+      if (message.toLowerCase().includes('invalid credentials') || message.toLowerCase().includes('unauthorized')) {
         sessionStorage.setItem(LOGIN_ERROR_KEY, 'Email or password is incorrect.');
-        logout();
+        void logout();
         return;
       }
 
@@ -57,12 +72,12 @@ export default function AdminDashboard() {
     loadData();
   }, [service]);
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
     navigate('/');
   };
 
-  const handleDelete = async (item: any) => {
+  const handleDelete = async (item: AdminProjectItem) => {
     if (!service || deletingId) return;
 
     const confirmed = window.confirm(`Delete "${item.title || item.id}" from ${activeTab === 'open_source' ? 'Open Source' : 'Completed'} projects?`);
@@ -74,25 +89,25 @@ export default function AdminDashboard() {
 
     try {
       const filePath = getFilePath(tab);
-      const latest = await service.getJsonFile<{items: any[]}>(filePath);
+      const latest = await service.getJsonFile<ProjectFile>(filePath);
       const latestItems = latest.content.items || [];
 
-      if (!latestItems.some((project: any) => project.id === item.id)) {
+      if (!latestItems.some((project) => project.id === item.id)) {
         throw new Error('Project was not found in the latest remote data.');
       }
 
-      const updatedItems = latestItems.filter((project: any) => project.id !== item.id);
+      const updatedItems = latestItems.filter((project) => project.id !== item.id);
 
       await service.updateJsonFile(
         filePath,
-        { items: updatedItems },
+        { items: updatedItems } as unknown as JsonValue,
         `Delete ${tab} project: ${item.id}`,
         latest.sha
       );
 
       setItemsForTab(tab, updatedItems);
-    } catch (err: any) {
-      setError(err.message || 'Failed to delete project.');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Failed to delete project.');
     } finally {
       setDeletingId('');
     }
@@ -196,13 +211,13 @@ export default function AdminDashboard() {
                 <div>
                   <h3 className="text-lg font-medium text-foreground mb-1">{item.title}</h3>
                   <div className="flex gap-2">
-                    {item.tags?.slice(0, 3).map((t: string) => (
+                    {item.tags?.slice(0, 3).map((t) => (
                       <span key={t} className="text-xs bg-background border border-border px-2 py-0.5 text-foreground/70">
                         {t}
                       </span>
                     ))}
-                    {(item.tags?.length || 0) > 3 && (
-                      <span className="text-xs text-foreground/50 px-1 py-0.5">+{item.tags.length - 3}</span>
+                    {(item.tags?.length ?? 0) > 3 && (
+                      <span className="text-xs text-foreground/50 px-1 py-0.5">+{(item.tags?.length ?? 0) - 3}</span>
                     )}
                   </div>
                 </div>

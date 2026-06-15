@@ -5,6 +5,50 @@ import { ArrowLeft, Save, Image as ImageIcon, Trash2, Plus, AlertCircle, Loader2
 import { v4 as uuidv4 } from 'uuid';
 import { LANGUAGE_LABELS, SUPPORTED_LANGUAGES } from '../../i18n/route';
 import type { Language } from '../../context/LanguageContext';
+import type { JsonValue } from '../../services/githubApi';
+
+type LocalizedTextEditor = Partial<Record<Language, string>>;
+
+interface EditorAccount {
+  email: string;
+  role: string;
+  password?: string;
+}
+
+interface EditableProject {
+  id: string;
+  title: string;
+  description: LocalizedTextEditor;
+  tags: string[];
+  image?: string;
+  technicalDetails?: LocalizedTextEditor;
+  marketingDetails?: LocalizedTextEditor;
+  github?: string;
+  link?: string;
+  diagram?: string;
+  longDescription?: LocalizedTextEditor;
+  url?: string;
+  accounts?: EditorAccount[];
+  [key: string]: string | string[] | LocalizedTextEditor | EditorAccount[] | undefined;
+}
+
+interface ProjectFile {
+  items: EditableProject[];
+}
+
+interface TextInputProps {
+  label: string;
+  value?: string;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
+  disabled?: boolean;
+}
+
+interface TextAreaProps {
+  label: string;
+  value?: string;
+  onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+}
 
 const LANGUAGE_EDITOR_LABELS: Record<Language, string> = {
   tr: 'Turkish',
@@ -18,7 +62,11 @@ const LANGUAGE_EDITOR_LABELS: Record<Language, string> = {
 };
 
 const emptyLocalizedText = () =>
-  Object.fromEntries(SUPPORTED_LANGUAGES.map((language) => [language, '']));
+  Object.fromEntries(SUPPORTED_LANGUAGES.map((language) => [language, ''])) as LocalizedTextEditor;
+
+function errorMessage(error: unknown, fallback: string) {
+  return error instanceof Error ? error.message : fallback;
+}
 
 export default function ProjectEditor() {
   const { type, id } = useParams<{ type: string; id: string }>();
@@ -30,19 +78,19 @@ export default function ProjectEditor() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
   
-  const [formData, setFormData] = useState<any>(null);
+  const [formData, setFormData] = useState<EditableProject | null>(null);
   const [fileSha, setFileSha] = useState('');
-  const [allData, setAllData] = useState<any[]>([]);
+  const [allData, setAllData] = useState<EditableProject[]>([]);
   
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const getFilePath = () => type === 'open_source' ? 'src/data/projects.json' : 'src/data/completedProjects.json';
-  const sanitizeAccounts = (accounts: any[] = []) =>
+  const sanitizeAccounts = (accounts: EditorAccount[] = []) =>
     accounts.map(({ password, ...account }) => ({
       email: account.email || '',
       role: account.role || ''
     }));
-  const sanitizeProject = (project: any) =>
+  const sanitizeProject = (project: EditableProject) =>
     type === 'completed'
       ? { ...project, accounts: sanitizeAccounts(project.accounts || []) }
       : project;
@@ -52,7 +100,7 @@ export default function ProjectEditor() {
       setLoading(true);
       try {
         if (!service) return;
-        const res = await service.getJsonFile<{items: any[]}>(getFilePath());
+        const res = await service.getJsonFile<ProjectFile>(getFilePath());
         setAllData(res.content.items || []);
         setFileSha(res.sha);
 
@@ -79,12 +127,12 @@ export default function ProjectEditor() {
             });
           }
         } else {
-          const item = res.content.items?.find((i: any) => i.id === id);
+          const item = res.content.items?.find((project) => project.id === id);
           if (!item) throw new Error('Project not found');
-          setFormData(sanitizeProject(JSON.parse(JSON.stringify(item))));
+          setFormData(sanitizeProject(structuredClone(item)));
         }
-      } catch (err: any) {
-        setError(err.message || 'Failed to fetch data');
+      } catch (err: unknown) {
+        setError(errorMessage(err, 'Failed to fetch data'));
       } finally {
         setLoading(false);
       }
@@ -97,26 +145,30 @@ export default function ProjectEditor() {
     if (!file || !service) return;
 
     setSaving(true);
-    try {
-      const reader = new FileReader();
-      reader.onloadend = async () => {
+    const reader = new FileReader();
+    reader.onerror = () => {
+      setError('Image upload failed.');
+      setSaving(false);
+    };
+    reader.onloadend = async () => {
+      try {
         const base64 = reader.result as string;
         const filename = `${uuidv4()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
         
         // Upload image directly to GitHub
         const urlPath = await service.uploadImage(filename, base64);
-        setFormData((prev: any) => ({ ...prev, image: urlPath }));
+        setFormData((prev) => prev ? ({ ...prev, image: urlPath }) : prev);
         setSaving(false);
-      };
-      reader.readAsDataURL(file);
-    } catch (err: any) {
-      setError('Image upload failed: ' + err.message);
-      setSaving(false);
-    }
+      } catch (err: unknown) {
+        setError(`Image upload failed: ${errorMessage(err, 'Unable to upload image.')}`);
+        setSaving(false);
+      }
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleSave = async () => {
-    if (!service) return;
+    if (!service || !formData) return;
     setSaving(true);
     setError('');
     
@@ -141,14 +193,14 @@ export default function ProjectEditor() {
 
       await service.updateJsonFile(
         getFilePath(), 
-        { items: updatedData }, 
+        { items: updatedData } as unknown as JsonValue,
         `Update ${type} project: ${formData.id}`, 
         fileSha
       );
       
       navigate('/admin');
-    } catch (err: any) {
-      setError(err.message || 'Failed to save');
+    } catch (err: unknown) {
+      setError(errorMessage(err, 'Failed to save'));
       setSaving(false);
     }
   };
@@ -171,7 +223,7 @@ export default function ProjectEditor() {
 
   if (!formData) return null;
 
-  const Input = ({ label, value, onChange, placeholder = '', disabled = false }: any) => (
+  const Input = ({ label, value, onChange, placeholder = '', disabled = false }: TextInputProps) => (
     <div className="mb-6">
       <label className="block text-xs uppercase tracking-widest text-foreground/70 mb-2">{label}</label>
       <input
@@ -185,7 +237,7 @@ export default function ProjectEditor() {
     </div>
   );
 
-  const TextArea = ({ label, value, onChange }: any) => (
+  const TextArea = ({ label, value, onChange }: TextAreaProps) => (
     <div className="mb-6">
       <label className="block text-xs uppercase tracking-widest text-foreground/70 mb-2">{label}</label>
       <textarea value={value || ''} onChange={onChange} className="w-full bg-background border border-border focus:border-primary text-foreground p-3 outline-none min-h-[100px] font-mono text-sm" />
@@ -193,14 +245,43 @@ export default function ProjectEditor() {
   );
 
   const setLocalizedField = (field: string, language: Language, value: string) => {
-    setFormData({
-      ...formData,
+    setFormData((current) => current ? ({
+      ...current,
       [field]: {
-        ...(formData[field] || {}),
+        ...((current[field] as LocalizedTextEditor | undefined) || {}),
         [language]: value,
       },
+    }) : current);
+  };
+
+  const addAccount = () => {
+    setFormData((current) => current ? ({
+      ...current,
+      accounts: [...(current.accounts || []), { email: '', role: '' }],
+    }) : current);
+  };
+
+  const removeAccount = (index: number) => {
+    setFormData((current) => {
+      if (!current) return current;
+      const accounts = [...(current.accounts || [])];
+      accounts.splice(index, 1);
+      return { ...current, accounts };
     });
   };
+
+  const updateAccount = (index: number, field: keyof EditorAccount, value: string) => {
+    setFormData((current) => {
+      if (!current) return current;
+      const accounts = [...(current.accounts || [])];
+      const account = accounts[index] || { email: '', role: '' };
+      accounts[index] = { ...account, [field]: value };
+      return { ...current, accounts };
+    });
+  };
+
+  const getLocalizedFieldValue = (field: string, language: Language) =>
+    ((formData[field] as LocalizedTextEditor | undefined)?.[language] ?? '');
 
   const LocalizedTextAreas = ({ field, markdown = false }: { field: string; markdown?: boolean }) => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -208,8 +289,8 @@ export default function ProjectEditor() {
         <TextArea
           key={`${field}-${language}`}
           label={`${LANGUAGE_EDITOR_LABELS[language]} (${LANGUAGE_LABELS[language]})${markdown ? ' Markdown' : ''}`}
-          value={formData[field]?.[language]}
-          onChange={(e: any) => setLocalizedField(field, language, e.target.value)}
+          value={getLocalizedFieldValue(field, language)}
+          onChange={(e) => setLocalizedField(field, language, e.target.value)}
         />
       ))}
     </div>
@@ -244,8 +325,8 @@ export default function ProjectEditor() {
           <div className="bg-surface border border-border p-6">
             <h2 className="text-lg font-light mb-6 uppercase tracking-widest border-b border-border pb-2">Core Identity</h2>
             <div className="grid grid-cols-2 gap-4">
-              <Input label="ID (Unique, no spaces)" value={formData.id} onChange={(e: any) => setFormData({...formData, id: e.target.value})} disabled={!isNew} />
-              <Input label="Project Title" value={formData.title} onChange={(e: any) => setFormData({...formData, title: e.target.value})} />
+              <Input label="ID (Unique, no spaces)" value={formData.id} onChange={(e) => setFormData({...formData, id: e.target.value})} disabled={!isNew} />
+              <Input label="Project Title" value={formData.title} onChange={(e) => setFormData({...formData, title: e.target.value})} />
             </div>
             
             <h3 className="text-xs uppercase tracking-widest text-foreground/70 mb-2 mt-4">Short Description</h3>
@@ -291,17 +372,17 @@ export default function ProjectEditor() {
               </button>
             </div>
 
-            <Input label="Tags (Comma separated)" value={formData.tags?.join(', ')} onChange={(e: any) => setFormData({...formData, tags: e.target.value.split(',').map((t: string) => t.trim()).filter(Boolean)})} />
+            <Input label="Tags (Comma separated)" value={formData.tags?.join(', ')} onChange={(e) => setFormData({...formData, tags: e.target.value.split(',').map((tag) => tag.trim()).filter(Boolean)})} />
             
-            <Input label="GitHub Link" value={formData.github} onChange={(e: any) => setFormData({...formData, github: e.target.value})} />
+            <Input label="GitHub Link" value={formData.github} onChange={(e) => setFormData({...formData, github: e.target.value})} />
             
             {type === 'open_source' ? (
               <>
-                <Input label="Live Preview Link" value={formData.link} onChange={(e: any) => setFormData({...formData, link: e.target.value})} />
-                <TextArea label="Mermaid Diagram" value={formData.diagram} onChange={(e: any) => setFormData({...formData, diagram: e.target.value})} />
+                <Input label="Live Preview Link" value={formData.link} onChange={(e) => setFormData({...formData, link: e.target.value})} />
+                <TextArea label="Mermaid Diagram" value={formData.diagram} onChange={(e) => setFormData({...formData, diagram: e.target.value})} />
               </>
             ) : (
-              <Input label="Project URL" value={formData.url} onChange={(e: any) => setFormData({...formData, url: e.target.value})} />
+              <Input label="Project URL" value={formData.url} onChange={(e) => setFormData({...formData, url: e.target.value})} />
             )}
           </div>
 
@@ -311,7 +392,7 @@ export default function ProjectEditor() {
               <div className="flex items-center justify-between mb-6 border-b border-border pb-2">
                 <h2 className="text-lg font-light uppercase tracking-widest">Test Accounts</h2>
                 <button 
-                  onClick={() => setFormData({...formData, accounts: [...(formData.accounts||[]), {email:'', role:''}]})}
+                  onClick={addAccount}
                   className="p-1 hover:bg-border transition-colors"
                 >
                   <Plus className="w-4 h-4" />
@@ -319,23 +400,19 @@ export default function ProjectEditor() {
               </div>
               
               <div className="space-y-4">
-                {formData.accounts?.map((acc: any, idx: number) => (
+                {formData.accounts?.map((acc, idx) => (
                   <div key={idx} className="p-4 border border-border bg-background relative">
                     <button 
-                      onClick={() => {
-                        const newAcc = [...formData.accounts];
-                        newAcc.splice(idx, 1);
-                        setFormData({...formData, accounts: newAcc});
-                      }}
+                      onClick={() => removeAccount(idx)}
                       className="absolute top-2 right-2 text-red-500 hover:text-red-400"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
                     <input type="text" placeholder="Email / Username" value={acc.email} onChange={e => {
-                      const newAcc = [...formData.accounts]; newAcc[idx].email = e.target.value; setFormData({...formData, accounts: newAcc});
+                      updateAccount(idx, 'email', e.target.value);
                     }} className="w-full bg-transparent border-b border-border p-2 outline-none mb-2 text-sm" />
                     <input type="text" placeholder="Role (e.g. Admin)" value={acc.role} onChange={e => {
-                      const newAcc = [...formData.accounts]; newAcc[idx].role = e.target.value; setFormData({...formData, accounts: newAcc});
+                      updateAccount(idx, 'role', e.target.value);
                     }} className="w-full bg-transparent border-b border-border p-2 outline-none text-sm" />
                   </div>
                 ))}

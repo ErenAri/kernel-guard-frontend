@@ -34,7 +34,7 @@ export default function AdminLogin() {
 
     const config: GithubConfig = {
       email: email.trim(),
-      password: password.trim()
+      password
     };
 
     if (!config.email || !config.password) {
@@ -51,21 +51,20 @@ export default function AdminLogin() {
 
     try {
       const service = new GithubService(config);
-      const session = await service.createSession(turnstileToken || undefined);
-      const sessionConfig: GithubConfig = session.sessionToken
-        ? { email: config.email, password: '', sessionToken: session.sessionToken }
-        : config;
+      await service.createSession(turnstileToken || undefined);
 
-      await new GithubService(sessionConfig).getJsonFile('src/data/projects.json');
-      login(sessionConfig);
-    } catch (err: any) {
-      const message = err?.message || '';
+      const sessionService = new GithubService({ email: config.email });
+      await sessionService.getJsonFile('src/data/projects.json');
+      login({ email: config.email });
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : '';
       setError(
         message.toLowerCase().includes('invalid credentials')
           ? 'Email or password is incorrect.'
           : `Authentication failed: ${message || 'Unable to verify credentials.'}`
       );
     } finally {
+      setPassword('');
       setAuthenticating(false);
     }
   };

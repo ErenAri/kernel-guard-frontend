@@ -34,19 +34,20 @@ const english: EnterpriseLanguageContent = {
       description: 'A public summary of the controls and reporting process we use to keep the website, admin workflow, and open-source delivery pipeline defensible.',
       facts: [
         { label: 'Dependency audit', value: '0', detail: 'Known npm vulnerabilities after production audit.' },
-        { label: 'Admin backend', value: 'Cloudflare', detail: 'Pages Function with origin-aware CORS and optional Turnstile.' },
-        { label: 'Disclosure', value: 'security.txt', detail: 'Security contact published under /.well-known/security.txt.' },
+        { label: 'Admin session', value: 'HttpOnly', detail: 'Secure SameSite cookie with no JSON session token returned.' },
+        { label: 'Admin backend', value: 'Cloudflare', detail: 'Pages Function with explicit origin allowlist and optional Turnstile.' },
+        { label: 'Disclosure', value: 'security.txt', detail: 'Security contact and policy published for researchers.' },
       ],
       sections: [
         {
           title: 'Application controls',
           body: 'The public site is statically prerendered and served through Cloudflare Pages. The admin API is isolated as a server-side Pages Function.',
-          items: ['Content Security Policy, HSTS, and frame protection', 'Origin-aware admin API route', 'No client-side GitHub token exposure'],
+          items: ['Content Security Policy, HSTS, and frame protection', 'Exact-origin admin API allowlist', 'No client-side GitHub token exposure'],
         },
         {
           title: 'Admin hardening',
-          body: 'Administrative writes are authenticated server-side before GitHub content updates are allowed.',
-          items: ['Constant-time credential comparison', 'Optional Turnstile verification', 'Short-lived session token support'],
+          body: 'Administrative writes are authenticated server-side before GitHub content updates are allowed. The browser stores only non-secret identity metadata.',
+          items: ['HttpOnly Secure SameSite=Strict session cookie', 'No password or session token in browser storage', 'Constant-time credential comparison', 'Optional Turnstile verification'],
         },
         {
           title: 'Vulnerability disclosure',
@@ -74,7 +75,7 @@ const english: EnterpriseLanguageContent = {
       facts: [
         { label: 'Languages', value: '8', detail: 'Localized UI paths with hreflang alternates.' },
         { label: 'Prerender', value: 'Static', detail: 'SEO-critical routes generated at build time.' },
-        { label: 'Quality gates', value: 'CI', detail: 'Typecheck, audit, build, and Lighthouse checks.' },
+        { label: 'Quality gates', value: 'CI', detail: 'Strict TypeScript, tests, audit, build, and Lighthouse checks.' },
       ],
       sections: [
         {
@@ -85,7 +86,7 @@ const english: EnterpriseLanguageContent = {
         {
           title: 'Delivery discipline',
           body: 'Each release should be reproducible through the same commands used in CI.',
-          items: ['npm audit gate', 'TypeScript no-emit check', 'Cloudflare Pages Functions build validation'],
+          items: ['npm audit gate', 'Strict TypeScript no-emit check', 'Cloudflare Pages Functions build validation', 'Documented release and rollback process'],
         },
         {
           title: 'Internationalization',
@@ -102,8 +103,8 @@ const english: EnterpriseLanguageContent = {
       description: 'A compact operational view of the public web surface and supporting endpoints.',
       facts: [
         { label: 'Website', value: 'Online', detail: 'Cloudflare Pages static delivery.' },
-        { label: 'Admin API', value: 'Protected', detail: 'Server-side GitHub bridge.' },
-        { label: 'Contact', value: 'Active', detail: 'Web3Forms-backed contact flow.' },
+        { label: 'Admin API', value: 'Protected', detail: 'Server-side GitHub bridge with cookie sessions.' },
+        { label: 'Contact', value: 'Active', detail: 'Web3Forms-backed contact flow with env-only key.' },
       ],
       sections: [
         {
@@ -114,7 +115,7 @@ const english: EnterpriseLanguageContent = {
         {
           title: 'Administrative surface',
           body: 'The admin panel is intentionally separate from public content delivery and uses a server-side write bridge.',
-          items: ['No public write token', 'Credential-gated content updates', 'Optional Turnstile challenge'],
+          items: ['No public write token', 'HttpOnly cookie-gated content updates', 'Optional Turnstile challenge'],
         },
         {
           title: 'Monitoring practice',
@@ -130,11 +131,16 @@ const english: EnterpriseLanguageContent = {
       title: 'Changelog',
       description: 'A transparent record of meaningful website changes that affect trust, performance, localization, or operations.',
       facts: [
-        { label: 'Latest', value: '2026-06-01', detail: 'Enterprise hardening and language expansion.' },
+        { label: 'Latest', value: '2026-06-15', detail: 'Trust layer, admin cookie hardening, and evidence content.' },
         { label: 'Deploy', value: 'Cloudflare', detail: 'CLI-backed Pages deployments.' },
         { label: 'Audit', value: '0', detail: 'Known npm vulnerabilities at release time.' },
       ],
       sections: [
+        {
+          title: '2026-06-15',
+          body: 'Company-grade trust and security hardening package.',
+          items: ['Responsible disclosure policy, threat model, and release process', 'HttpOnly SameSite admin sessions with exact CORS allowlist', 'Service methodology and project case-study evidence'],
+        },
         {
           title: '2026-06-01',
           body: 'Enterprise readiness package for the public website.',

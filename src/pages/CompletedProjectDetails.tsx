@@ -5,6 +5,8 @@ import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/SEO';
 import { localizePath } from '../i18n/route';
 import { localizedText } from '../i18n/text';
+import ProjectCaseStudySection from '../components/ProjectCaseStudySection';
+import { projectCaseStudies } from '../data/projectCaseStudies';
 
 export default function CompletedProjectDetails() {
   const { id } = useParams();
@@ -17,6 +19,7 @@ export default function CompletedProjectDetails() {
   }
   const description = localizedText(project.description, language);
   const longDescription = localizedText(project.longDescription, language);
+  const caseStudy = projectCaseStudies[project.id];
 
   return (
     <div className="min-h-screen bg-background pt-32 pb-24">
@@ -131,6 +134,10 @@ export default function CompletedProjectDetails() {
             </div>
           </div>
         </div>
+
+        {caseStudy ? (
+          <ProjectCaseStudySection caseStudy={caseStudy} className="mt-16" />
+        ) : null}
       </div>
     </div>
   );

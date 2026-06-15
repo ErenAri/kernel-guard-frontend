@@ -11,6 +11,10 @@ import { growthServiceTranslations } from '../data/growthServiceTranslations';
 import { SUPPORTED_LANGUAGES, localizePath } from '../i18n/route';
 import { prerenderRoutes, sitemapRoutes } from '../data/seoRoutes';
 import { onRequest } from '../../functions/_middleware.js';
+import { onRequest as githubApiOnRequest } from '../../functions/api/github.js';
+import { projects } from '../data/projects';
+import { completedProjects } from '../data/completedProjects';
+import { projectCaseStudies } from '../data/projectCaseStudies';
 
 const nonEnglishLanguages = SUPPORTED_LANGUAGES.filter(
   (language): language is Exclude<Language, 'en'> => language !== 'en',
@@ -44,6 +48,13 @@ describe('normalizeCanonicalPath', () => {
 });
 
 describe('public trust files', () => {
+  it('does not ship a committed Web3Forms fallback key', () => {
+    const formsConfig = readFileSync(resolve('src/config/forms.ts'), 'utf8');
+
+    expect(formsConfig).not.toMatch(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i);
+    expect(formsConfig).not.toMatch(/VITE_WEB3FORMS_ACCESS_KEY\s*\|\|\s*['"][^'"]+['"]/);
+  });
+
   it('publishes a security.txt disclosure contact', () => {
     const securityTxt = readFileSync(resolve('public/.well-known/security.txt'), 'utf8');
 
@@ -66,11 +77,79 @@ describe('public trust files', () => {
     expect(mtaSts).toContain('mx: smtp.google.com');
     expect(mtaSts).toContain('max_age: 604800');
   });
+
+  it('documents responsible disclosure, threat model, and release process', () => {
+    const securityPolicy = readFileSync(resolve('SECURITY.md'), 'utf8');
+    const threatModel = readFileSync(resolve('docs/security-threat-model.md'), 'utf8');
+    const releaseProcess = readFileSync(resolve('docs/release-process.md'), 'utf8');
+
+    expect(securityPolicy).toContain('security@kernelguard.net');
+    expect(securityPolicy).toContain('HttpOnly, Secure, SameSite=Strict');
+    expect(threatModel).toContain('Trust Boundaries');
+    expect(threatModel).toContain('Residual Risks');
+    expect(releaseProcess).toContain('Release Checklist');
+    expect(releaseProcess).toContain('Rollback');
+  });
+});
+
+describe('GitHub admin API security', () => {
+  const env = {
+    ADMIN_EMAIL: 'admin@example.com',
+    ADMIN_PASSWORD: 'correct-password',
+    ADMIN_SESSION_SECRET: 'test-session-secret',
+    GITHUB_PAT: 'ghp_test',
+  };
+
+  it('rejects broad Cloudflare Pages preview origins', async () => {
+    const response = await githubApiOnRequest({
+      request: new Request('https://www.kernelguard.net/api/github', {
+        method: 'OPTIONS',
+        headers: {
+          Origin: 'https://temporary-preview.pages.dev',
+        },
+      }),
+      env,
+    });
+
+    expect(response.status).toBe(403);
+    expect(response.headers.get('Access-Control-Allow-Origin')).toBeNull();
+  });
+
+  it('creates admin sessions with an HttpOnly cookie instead of a JSON token', async () => {
+    const response = await githubApiOnRequest({
+      request: new Request('https://www.kernelguard.net/api/github', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Origin: 'https://www.kernelguard.net',
+        },
+        body: JSON.stringify({
+          action: 'createSession',
+          email: env.ADMIN_EMAIL,
+          password: env.ADMIN_PASSWORD,
+        }),
+      }),
+      env,
+    });
+
+    const body = await response.json() as { success?: boolean; sessionToken?: string };
+    const setCookie = response.headers.get('Set-Cookie') || '';
+
+    expect(response.status).toBe(200);
+    expect(body.success).toBe(true);
+    expect(body.sessionToken).toBeUndefined();
+    expect(setCookie).toContain('kg_admin_session=');
+    expect(setCookie).toContain('HttpOnly');
+    expect(setCookie).toContain('Secure');
+    expect(setCookie).toContain('SameSite=Strict');
+    expect(setCookie).toContain('Path=/api/github');
+    expect(response.headers.get('Access-Control-Allow-Credentials')).toBe('true');
+  });
 });
 
 describe('edge middleware', () => {
-  it('redirects the apex host to the canonical www host', () => {
-    const response = onRequest({
+  it('redirects the apex host to the canonical www host', async () => {
+    const response = await onRequest({
       request: new Request('http://kernelguard.net/en/articles/?ref=test'),
       next: () => new Response('next'),
     });
@@ -163,6 +242,38 @@ describe('growth SEO routes', () => {
         expect(translation.process).toHaveLength(english.process.length);
         expect(translation.proofPoints).toHaveLength(english.proofPoints.length);
       }
+    }
+  });
+
+  it('keeps English service pages evidence-rich', () => {
+    for (const service of growthServicePages) {
+      const english = getEnglishGrowthServiceContent(service.slug);
+
+      expect(english?.detailTitle).toBeTruthy();
+      expect(english?.detailDescription).toBeTruthy();
+      expect(english?.assuranceSections).toHaveLength(4);
+
+      english?.assuranceSections?.forEach((section) => {
+        expect(section.title).toBeTruthy();
+        expect(section.description).toBeTruthy();
+        expect(section.items.length).toBeGreaterThanOrEqual(3);
+      });
+    }
+  });
+
+  it('turns every project into a structured case study', () => {
+    const allProjects = [...projects, ...completedProjects];
+
+    for (const project of allProjects) {
+      const caseStudy = projectCaseStudies[project.id];
+
+      expect(caseStudy, `Missing case study for ${project.id}`).toBeTruthy();
+      expect(caseStudy.problem.en).toBeTruthy();
+      expect(caseStudy.architecture.en).toBeTruthy();
+      expect(caseStudy.securityApproach.en).toBeTruthy();
+      expect(caseStudy.outcome.en).toBeTruthy();
+      expect(caseStudy.metrics.length).toBeGreaterThanOrEqual(3);
+      expect(caseStudy.lessons.length).toBeGreaterThanOrEqual(2);
     }
   });
 });

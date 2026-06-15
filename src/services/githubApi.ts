@@ -1,7 +1,22 @@
 export interface GithubConfig {
   email: string;
-  password: string;
-  sessionToken?: string;
+  password?: string;
+}
+
+type GithubAction = 'createSession' | 'readFile' | 'updateFile' | 'uploadImage' | 'logout';
+
+export type JsonValue = string | number | boolean | null | JsonValue[] | { [key: string]: JsonValue };
+
+interface GithubApiPayload {
+  path?: string;
+  content?: JsonValue | string;
+  message?: string;
+  sha?: string;
+  turnstileToken?: string;
+}
+
+interface GithubApiError {
+  error?: string;
 }
 
 export class GithubService {
@@ -13,23 +28,32 @@ export class GithubService {
     this.config = config;
   }
 
-  private async fetchApi(action: string, payload: any = {}) {
+  private async fetchApi<T>(action: GithubAction, payload: GithubApiPayload = {}): Promise<T> {
+    if (action === 'createSession' && !this.config.password) {
+      throw new Error('Password is required to create an admin session.');
+    }
+
+    const body: Record<string, unknown> = {
+      action,
+      email: this.config.email,
+      ...payload,
+    };
+
+    if (action === 'createSession') {
+      body.password = this.config.password;
+    }
+
     const response = await fetch(this.apiUrl, {
       method: 'POST',
+      credentials: 'same-origin',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        email: this.config.email,
-        password: this.config.password,
-        sessionToken: this.config.sessionToken,
-        action,
-        ...payload,
-      }),
+      body: JSON.stringify(body),
     });
 
     const rawBody = await response.text();
-    let data: any = {};
+    let data: (T & GithubApiError) | GithubApiError = {};
 
     try {
       data = rawBody ? JSON.parse(rawBody) : {};
@@ -41,11 +65,15 @@ export class GithubService {
       throw new Error(data.error || 'API Request Failed');
     }
 
-    return data;
+    return data as T;
   }
 
-  async createSession(turnstileToken?: string): Promise<{ sessionToken?: string; expiresAt?: number }> {
+  async createSession(turnstileToken?: string): Promise<{ success: boolean; expiresAt?: number }> {
     return this.fetchApi('createSession', { turnstileToken });
+  }
+
+  async logout(): Promise<void> {
+    await this.fetchApi('logout');
   }
 
   /**
@@ -58,7 +86,7 @@ export class GithubService {
   /**
    * Updates a JSON file in the repository.
    */
-  async updateJsonFile(path: string, content: any, message: string, sha: string): Promise<{ sha?: string }> {
+  async updateJsonFile(path: string, content: JsonValue, message: string, sha: string): Promise<{ sha?: string }> {
     return this.fetchApi('updateFile', { path, content, message, sha });
   }
 

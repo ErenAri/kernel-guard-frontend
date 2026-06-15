@@ -1,5 +1,5 @@
 import { renderToString } from 'react-dom/server';
-import { HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider, type HelmetServerState } from 'react-helmet-async';
 import { Routes, Route, StaticRouter } from 'react-router-dom';
 import { LanguageProvider, type Language } from './context/LanguageContext';
 import { ThemeProvider } from './context/ThemeContext';
@@ -29,25 +29,13 @@ import Cookies from './pages/Cookies';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 
-interface HelmetDataAttributes {
-  toString(): string;
-}
-
-interface HelmetState {
-  title?: HelmetDataAttributes;
-  meta?: HelmetDataAttributes;
-  link?: HelmetDataAttributes;
-  script?: HelmetDataAttributes;
-  htmlAttributes?: HelmetDataAttributes;
-}
-
 interface HelmetContextShape {
-  helmet?: HelmetState;
+  helmet?: HelmetServerState;
 }
 
 export interface RenderResult {
   html: string;
-  helmet: HelmetState;
+  helmet: Partial<HelmetServerState>;
 }
 
 function LocalizedRoutes() {

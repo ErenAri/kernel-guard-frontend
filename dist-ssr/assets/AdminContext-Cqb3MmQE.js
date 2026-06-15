@@ -47,16 +47,18 @@ var GithubService = class {
 		this.config = config;
 	}
 	async fetchApi(action, payload = {}) {
+		if (action === "createSession" && !this.config.password) throw new Error("Password is required to create an admin session.");
+		const body = {
+			action,
+			email: this.config.email,
+			...payload
+		};
+		if (action === "createSession") body.password = this.config.password;
 		const response = await fetch(this.apiUrl, {
 			method: "POST",
+			credentials: "same-origin",
 			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({
-				email: this.config.email,
-				password: this.config.password,
-				sessionToken: this.config.sessionToken,
-				action,
-				...payload
-			})
+			body: JSON.stringify(body)
 		});
 		const rawBody = await response.text();
 		let data = {};
@@ -70,6 +72,9 @@ var GithubService = class {
 	}
 	async createSession(turnstileToken) {
 		return this.fetchApi("createSession", { turnstileToken });
+	}
+	async logout() {
+		await this.fetchApi("logout");
 	}
 	/**
 	* Reads a JSON file from the repository.
@@ -104,37 +109,47 @@ var GithubService = class {
 //#endregion
 //#region src/context/AdminContext.tsx
 var AdminContext = createContext(void 0);
-var ADMIN_CONFIG_STORAGE_KEY = "kg_admin_config";
+var ADMIN_IDENTITY_STORAGE_KEY = "kg_admin_identity";
+var LEGACY_ADMIN_CONFIG_STORAGE_KEY = "kg_admin_config";
 function AdminProvider({ children }) {
-	const [config, setConfig] = useState(null);
+	const [identity, setIdentity] = useState(null);
 	const [service, setService] = useState(null);
+	const config = identity ? { email: identity.email } : null;
 	useEffect(() => {
-		const saved = sessionStorage.getItem(ADMIN_CONFIG_STORAGE_KEY) || localStorage.getItem(ADMIN_CONFIG_STORAGE_KEY);
+		const saved = sessionStorage.getItem(ADMIN_IDENTITY_STORAGE_KEY);
 		if (saved) try {
 			const parsed = JSON.parse(saved);
-			setConfig(parsed);
-			setService(new GithubService(parsed));
-			sessionStorage.setItem(ADMIN_CONFIG_STORAGE_KEY, saved);
-			localStorage.removeItem(ADMIN_CONFIG_STORAGE_KEY);
+			if (parsed.email) {
+				setIdentity({ email: parsed.email });
+				setService(new GithubService({ email: parsed.email }));
+			}
 		} catch (e) {
-			sessionStorage.removeItem(ADMIN_CONFIG_STORAGE_KEY);
-			localStorage.removeItem(ADMIN_CONFIG_STORAGE_KEY);
+			sessionStorage.removeItem(ADMIN_IDENTITY_STORAGE_KEY);
 		}
+		sessionStorage.removeItem(LEGACY_ADMIN_CONFIG_STORAGE_KEY);
+		localStorage.removeItem(LEGACY_ADMIN_CONFIG_STORAGE_KEY);
 	}, []);
-	const login = (newConfig) => {
-		sessionStorage.setItem(ADMIN_CONFIG_STORAGE_KEY, JSON.stringify(newConfig));
-		localStorage.removeItem(ADMIN_CONFIG_STORAGE_KEY);
-		setConfig(newConfig);
-		setService(new GithubService(newConfig));
+	const login = (newIdentity) => {
+		const nextIdentity = { email: newIdentity.email };
+		sessionStorage.setItem(ADMIN_IDENTITY_STORAGE_KEY, JSON.stringify(nextIdentity));
+		localStorage.removeItem(LEGACY_ADMIN_CONFIG_STORAGE_KEY);
+		setIdentity(nextIdentity);
+		setService(new GithubService(nextIdentity));
 	};
-	const logout = () => {
-		sessionStorage.removeItem(ADMIN_CONFIG_STORAGE_KEY);
-		localStorage.removeItem(ADMIN_CONFIG_STORAGE_KEY);
-		setConfig(null);
+	const logout = async () => {
+		const activeService = service;
+		sessionStorage.removeItem(ADMIN_IDENTITY_STORAGE_KEY);
+		sessionStorage.removeItem(LEGACY_ADMIN_CONFIG_STORAGE_KEY);
+		localStorage.removeItem(LEGACY_ADMIN_CONFIG_STORAGE_KEY);
+		setIdentity(null);
 		setService(null);
+		if (activeService) try {
+			await activeService.logout();
+		} catch {}
 	};
 	return /* @__PURE__ */ jsx(AdminContext.Provider, {
 		value: {
+			identity,
 			config,
 			service,
 			login,

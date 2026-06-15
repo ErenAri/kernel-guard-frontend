@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle2, Mail, ShieldCheck } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ClipboardCheck, Mail, ShieldCheck } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import SEO from '../components/SEO';
 import { SITE_EMAILS, mailto } from '../config/site';
@@ -127,6 +127,36 @@ export default function ServiceLandingPage() {
             ))}
           </div>
         </section>
+
+        {service.detailTitle && service.assuranceSections?.length ? (
+          <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 border-t border-border pt-12 mb-16">
+            <div className="lg:col-span-4">
+              <h2 className="text-3xl font-light text-foreground mb-4">{service.detailTitle}</h2>
+              <p className="text-foreground/65 leading-relaxed">
+                {service.detailDescription}
+              </p>
+            </div>
+            <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+              {service.assuranceSections.map((section) => (
+                <article key={section.title} className="border border-border bg-surface p-5">
+                  <div className="mb-5 flex h-10 w-10 items-center justify-center border border-primary/30 bg-primary/10 text-primary">
+                    <ClipboardCheck className="h-4 w-4" />
+                  </div>
+                  <h3 className="mb-3 text-xl font-medium text-foreground">{section.title}</h3>
+                  <p className="mb-5 text-sm leading-relaxed text-foreground/65">{section.description}</p>
+                  <ul className="space-y-3">
+                    {section.items.map((item) => (
+                      <li key={item} className="flex gap-3 text-sm leading-relaxed text-foreground/75">
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-primary" aria-hidden="true" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 border-t border-border pt-12 mb-16">
           <div className="lg:col-span-4">

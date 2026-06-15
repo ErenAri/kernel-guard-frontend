@@ -21,14 +21,19 @@ var english = {
 					detail: "Known npm vulnerabilities after production audit."
 				},
 				{
+					label: "Admin session",
+					value: "HttpOnly",
+					detail: "Secure SameSite cookie with no JSON session token returned."
+				},
+				{
 					label: "Admin backend",
 					value: "Cloudflare",
-					detail: "Pages Function with origin-aware CORS and optional Turnstile."
+					detail: "Pages Function with explicit origin allowlist and optional Turnstile."
 				},
 				{
 					label: "Disclosure",
 					value: "security.txt",
-					detail: "Security contact published under /.well-known/security.txt."
+					detail: "Security contact and policy published for researchers."
 				}
 			],
 			sections: [
@@ -37,17 +42,18 @@ var english = {
 					body: "The public site is statically prerendered and served through Cloudflare Pages. The admin API is isolated as a server-side Pages Function.",
 					items: [
 						"Content Security Policy, HSTS, and frame protection",
-						"Origin-aware admin API route",
+						"Exact-origin admin API allowlist",
 						"No client-side GitHub token exposure"
 					]
 				},
 				{
 					title: "Admin hardening",
-					body: "Administrative writes are authenticated server-side before GitHub content updates are allowed.",
+					body: "Administrative writes are authenticated server-side before GitHub content updates are allowed. The browser stores only non-secret identity metadata.",
 					items: [
+						"HttpOnly Secure SameSite=Strict session cookie",
+						"No password or session token in browser storage",
 						"Constant-time credential comparison",
-						"Optional Turnstile verification",
-						"Short-lived session token support"
+						"Optional Turnstile verification"
 					]
 				},
 				{
@@ -99,7 +105,7 @@ var english = {
 				{
 					label: "Quality gates",
 					value: "CI",
-					detail: "Typecheck, audit, build, and Lighthouse checks."
+					detail: "Strict TypeScript, tests, audit, build, and Lighthouse checks."
 				}
 			],
 			sections: [
@@ -117,8 +123,9 @@ var english = {
 					body: "Each release should be reproducible through the same commands used in CI.",
 					items: [
 						"npm audit gate",
-						"TypeScript no-emit check",
-						"Cloudflare Pages Functions build validation"
+						"Strict TypeScript no-emit check",
+						"Cloudflare Pages Functions build validation",
+						"Documented release and rollback process"
 					]
 				},
 				{
@@ -147,12 +154,12 @@ var english = {
 				{
 					label: "Admin API",
 					value: "Protected",
-					detail: "Server-side GitHub bridge."
+					detail: "Server-side GitHub bridge with cookie sessions."
 				},
 				{
 					label: "Contact",
 					value: "Active",
-					detail: "Web3Forms-backed contact flow."
+					detail: "Web3Forms-backed contact flow with env-only key."
 				}
 			],
 			sections: [
@@ -170,7 +177,7 @@ var english = {
 					body: "The admin panel is intentionally separate from public content delivery and uses a server-side write bridge.",
 					items: [
 						"No public write token",
-						"Credential-gated content updates",
+						"HttpOnly cookie-gated content updates",
 						"Optional Turnstile challenge"
 					]
 				},
@@ -194,8 +201,8 @@ var english = {
 			facts: [
 				{
 					label: "Latest",
-					value: "2026-06-01",
-					detail: "Enterprise hardening and language expansion."
+					value: "2026-06-15",
+					detail: "Trust layer, admin cookie hardening, and evidence content."
 				},
 				{
 					label: "Deploy",
@@ -209,6 +216,15 @@ var english = {
 				}
 			],
 			sections: [
+				{
+					title: "2026-06-15",
+					body: "Company-grade trust and security hardening package.",
+					items: [
+						"Responsible disclosure policy, threat model, and release process",
+						"HttpOnly SameSite admin sessions with exact CORS allowlist",
+						"Service methodology and project case-study evidence"
+					]
+				},
 				{
 					title: "2026-06-01",
 					body: "Enterprise readiness package for the public website.",

@@ -4138,6 +4138,46 @@ var englishGrowthServiceContent = {
 			"Security.txt disclosure workflow",
 			"SPF, DKIM, and DMARC alignment",
 			"Strict security headers and no wildcard CORS policy in static headers"
+		],
+		detailTitle: "Methodology, scope, and evidence",
+		detailDescription: "A consulting engagement is useful only when the scope, standards, and output are clear before work starts.",
+		assuranceSections: [
+			{
+				title: "Scope",
+				description: "Security review across the web application, APIs, cloud edge, DNS, email trust, and launch workflow.",
+				items: [
+					"Threat model and architecture review",
+					"Authentication and authorization boundary review",
+					"Public exposure and abuse-control review"
+				]
+			},
+			{
+				title: "Standards",
+				description: "Findings are mapped to practical controls instead of vague best-practice language.",
+				items: [
+					"OWASP ASVS and OWASP Top 10",
+					"CIS Controls and NIST CSF alignment",
+					"Cloudflare and Google Workspace hardening guidance"
+				]
+			},
+			{
+				title: "Sample report",
+				description: "The report is structured so engineering can turn it into tickets without translation.",
+				items: [
+					"Executive risk summary",
+					"Severity-ranked findings with evidence and reproduction",
+					"30/60/90 remediation roadmap"
+				]
+			},
+			{
+				title: "Service level",
+				description: "Response targets are explicit so urgent risk is not buried in normal project cadence.",
+				items: [
+					"Critical exposure notification as soon as verified",
+					"Initial engagement summary within 2 business days",
+					"Final report inside the agreed review window"
+				]
+			}
 		]
 	},
 	"secure-web-development": {
@@ -4177,6 +4217,46 @@ var englishGrowthServiceContent = {
 			"Server-side prerendered pages",
 			"Canonical and hreflang metadata",
 			"Contact workflows routed to company email aliases"
+		],
+		detailTitle: "Build scope and acceptance criteria",
+		detailDescription: "Secure web development work is defined by the controls, handoff artifacts, and launch evidence needed for production.",
+		assuranceSections: [
+			{
+				title: "Scope",
+				description: "Product implementation for public pages, contact flows, admin boundaries, metadata, and deployment readiness.",
+				items: [
+					"React and TypeScript application surface",
+					"Secure form and role-inbox routing",
+					"SEO, accessibility, and localization support"
+				]
+			},
+			{
+				title: "Standards",
+				description: "Implementation choices are held to maintainability and security standards that survive launch pressure.",
+				items: [
+					"Strict TypeScript and CI checks",
+					"WCAG-oriented interface states",
+					"Security headers, canonical URLs, and structured data"
+				]
+			},
+			{
+				title: "Sample handoff",
+				description: "The handoff includes enough evidence for another engineer to operate the site confidently.",
+				items: [
+					"Deployment and rollback notes",
+					"Environment variable inventory",
+					"Route, metadata, and form verification checklist"
+				]
+			},
+			{
+				title: "Service level",
+				description: "Delivery cadence is based on small, reviewable releases with visible verification.",
+				items: [
+					"Weekly implementation checkpoint for active builds",
+					"Same-day escalation for launch blockers where feasible",
+					"Post-launch defect triage window by agreement"
+				]
+			}
 		]
 	},
 	"cloudflare-security-hardening": {
@@ -4216,6 +4296,46 @@ var englishGrowthServiceContent = {
 			"Cloudflare Pages header policy",
 			"Robots and sitemap publication",
 			"DMARC reporting mailbox support"
+		],
+		detailTitle: "Cloudflare hardening record",
+		detailDescription: "The work produces a concise operational record of what changed, why it changed, and how to roll it back.",
+		assuranceSections: [
+			{
+				title: "Scope",
+				description: "Cloudflare DNS, proxy behavior, redirects, headers, caching, and mail-authentication records.",
+				items: [
+					"DNS and proxy inventory",
+					"Security headers and cache behavior",
+					"SPF, DKIM, DMARC, MTA-STS, and TLS-RPT review"
+				]
+			},
+			{
+				title: "Standards",
+				description: "Configuration is checked against Cloudflare deployment behavior and public web trust expectations.",
+				items: [
+					"HSTS and CSP rollout discipline",
+					"Explicit CORS and preview-origin control",
+					"DMARC monitoring before enforcement"
+				]
+			},
+			{
+				title: "Sample report",
+				description: "Outputs are useful for future operators, not only the person making the change.",
+				items: [
+					"Before/after DNS and header table",
+					"Risk notes for changed records",
+					"Rollback checklist and verification commands"
+				]
+			},
+			{
+				title: "Service level",
+				description: "DNS and edge changes are sequenced to reduce downtime and avoid mail-delivery surprises.",
+				items: [
+					"Propagation-aware change windows",
+					"Rollback-ready changes for proxied records",
+					"Report review after DMARC or TLS-RPT changes"
+				]
+			}
 		]
 	},
 	"react-security-audit": {
@@ -4255,6 +4375,46 @@ var englishGrowthServiceContent = {
 			"TypeScript no-emit checks",
 			"Vitest route and utility tests",
 			"Browser verification for key pages"
+		],
+		detailTitle: "Audit evidence package",
+		detailDescription: "The audit is written for engineering action: each issue includes impact, location, and verification steps.",
+		assuranceSections: [
+			{
+				title: "Scope",
+				description: "Frontend routes, forms, client storage, dependency risk, metadata, and deployment configuration.",
+				items: [
+					"Secret and token exposure review",
+					"Unsafe rendering and user-controlled data review",
+					"Routing, SEO, and trust-page review"
+				]
+			},
+			{
+				title: "Standards",
+				description: "Findings are mapped to widely understood frontend and web application risk categories.",
+				items: [
+					"OWASP Top 10 and ASVS-relevant controls",
+					"React and TypeScript safety patterns",
+					"Accessibility and browser security expectations"
+				]
+			},
+			{
+				title: "Sample report",
+				description: "The output is concise enough to execute but detailed enough to verify.",
+				items: [
+					"Finding title, severity, and affected file or URL",
+					"Reproduction and remediation steps",
+					"Suggested regression test or CI gate"
+				]
+			},
+			{
+				title: "Service level",
+				description: "Audit timing is scoped around the risk of the release being reviewed.",
+				items: [
+					"Initial risk readout after review completion",
+					"Critical issue escalation before final report",
+					"Retest support for remediated high-impact findings"
+				]
+			}
 		]
 	},
 	"backend-api-hardening": {
@@ -4294,6 +4454,46 @@ var englishGrowthServiceContent = {
 			"Contact endpoint verification",
 			"Email alias routing for support and security",
 			"Security-focused launch checklist"
+		],
+		detailTitle: "API hardening blueprint",
+		detailDescription: "Backend work is scoped around trust boundaries, abuse cases, and operational evidence for privileged routes.",
+		assuranceSections: [
+			{
+				title: "Scope",
+				description: "Authentication, authorization, validation, rate limiting, logging, and external-service integrations.",
+				items: [
+					"Public and privileged route inventory",
+					"Data-flow and trust-boundary review",
+					"Error handling and observability review"
+				]
+			},
+			{
+				title: "Standards",
+				description: "Controls are mapped to practical API security requirements and deployment constraints.",
+				items: [
+					"OWASP API Security Top 10",
+					"Least-privilege service credentials",
+					"Secure cookie and CORS patterns"
+				]
+			},
+			{
+				title: "Sample report",
+				description: "The report gives backend engineers exact controls to implement and verify.",
+				items: [
+					"Endpoint risk table",
+					"Authentication and authorization gap analysis",
+					"Rate-limit, logging, and incident-readiness checklist"
+				]
+			},
+			{
+				title: "Service level",
+				description: "Hardening support prioritizes routes where abuse or data exposure would be most costly.",
+				items: [
+					"Critical route triage first",
+					"Verification notes for each accepted fix",
+					"Follow-up review for auth or session changes"
+				]
+			}
 		]
 	}
 };
@@ -4334,6 +4534,7 @@ function localizeGrowthServicePage(service, language) {
 	const content = (language === "en" ? fallbackContent : growthServiceTranslations[service.slug]?.[language]) ?? fallbackContent;
 	return {
 		...service,
+		...fallbackContent,
 		...content
 	};
 }

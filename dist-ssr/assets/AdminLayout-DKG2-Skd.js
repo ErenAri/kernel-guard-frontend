@@ -1,10 +1,9 @@
 import { t as require_dist } from "./dist-BkMweq9c.js";
-import { t as SEO } from "./SEO-C7FngH91.js";
+import { t as SEO } from "./SEO-DDskxAF5.js";
 import { t as createLucideIcon } from "./createLucideIcon-d-ZGlwaX.js";
-import { t as ArrowLeft } from "./arrow-left-Cv3pMF22.js";
-import { a as CircleAlert, i as LoaderCircle, n as useAdmin, r as GithubService, t as AdminProvider } from "./AdminContext-bpcRMjZm.js";
+import { a as CircleAlert, i as LoaderCircle, n as useAdmin, r as GithubService, t as AdminProvider } from "./AdminContext-Cqb3MmQE.js";
 import { t as LogOut } from "./log-out-ifISwOAG.js";
-import { r as ArrowRight, t as Lock } from "../entry-server.js";
+import { i as ArrowLeft, r as ArrowRight, t as Lock } from "../entry-server.js";
 import { useCallback, useState } from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 /**
@@ -48,7 +47,7 @@ function AdminLogin() {
 		setError("");
 		const config = {
 			email: email.trim(),
-			password: password.trim()
+			password
 		};
 		if (!config.email || !config.password) {
 			setError("Credentials are required.");
@@ -56,18 +55,14 @@ function AdminLogin() {
 		}
 		setAuthenticating(true);
 		try {
-			const session = await new GithubService(config).createSession(turnstileToken || void 0);
-			const sessionConfig = session.sessionToken ? {
-				email: config.email,
-				password: "",
-				sessionToken: session.sessionToken
-			} : config;
-			await new GithubService(sessionConfig).getJsonFile("src/data/projects.json");
-			login(sessionConfig);
+			await new GithubService(config).createSession(turnstileToken || void 0);
+			await new GithubService({ email: config.email }).getJsonFile("src/data/projects.json");
+			login({ email: config.email });
 		} catch (err) {
-			const message = err?.message || "";
+			const message = err instanceof Error ? err.message : "";
 			setError(message.toLowerCase().includes("invalid credentials") ? "Email or password is incorrect." : `Authentication failed: ${message || "Unable to verify credentials."}`);
 		} finally {
+			setPassword("");
 			setAuthenticating(false);
 		}
 	};
@@ -169,8 +164,8 @@ function AdminLogin() {
 function AdminContent() {
 	const { config, logout } = useAdmin();
 	const navigate = (0, import_dist.useNavigate)();
-	const handleLogout = () => {
-		logout();
+	const handleLogout = async () => {
+		await logout();
 		navigate("/");
 	};
 	if (!config) return /* @__PURE__ */ jsx(AdminLogin, {});
