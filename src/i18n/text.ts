@@ -1,6 +1,6 @@
 import type { Language } from '../context/LanguageContext';
 
-type LocalizedText = Partial<Record<Language, string>> & {
+export type LocalizedText = Partial<Record<Language, string>> & {
   en?: string;
   tr?: string;
 };

@@ -1,59 +1,55 @@
 import { ArrowRight, Clock, Tags } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
-import { articles } from '../data/articles';
-import { growthServicePages } from '../data/growthServices';
+import { useLanguage } from '../context/LanguageContext';
+import { articles, localizeArticle } from '../data/articles';
+import { growthServicePages, localizeGrowthServicePage } from '../data/growthServices';
+import { articleIndexCopy, formatLocalizedDate } from '../i18n/growthContent';
+import { localizePath } from '../i18n/route';
 import { prefetchRoute } from '../routes/pageLoaders';
 
-const ENGLISH_ONLY = ['en'] as const;
-
-function formatDate(date: string): string {
-  const [year, month, day] = date.split('-');
-  const shortMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  const monthName = shortMonths[Number(month) - 1] ?? month;
-
-  return `${monthName} ${Number(day)}, ${year}`;
-}
-
 export default function Articles() {
+  const { language } = useLanguage();
+  const copy = articleIndexCopy[language];
+  const localizedArticles = articles.map((article) => localizeArticle(article, language));
+  const localizedServices = growthServicePages.map((service) => localizeGrowthServicePage(service, language));
+
   return (
     <div className="min-h-screen bg-background pt-32 pb-20">
       <SEO
-        title="Security Engineering Articles | Kernel Guard"
-        description="Practical security engineering notes on web security, Cloudflare hardening, Google Workspace email authentication, React abuse controls, and eBPF compatibility."
-        keywords="security engineering articles, web security, Cloudflare hardening, React security, DMARC setup, eBPF compatibility"
-        path="/en/articles/"
-        alternateLanguages={ENGLISH_ONLY}
+        title={copy.seoTitle}
+        description={copy.seoDescription}
+        keywords={copy.seoKeywords}
+        path={localizePath('/articles/', language)}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <header className="max-w-4xl mb-16">
           <div className="inline-block px-3 py-1 mb-6 border border-border text-xs font-mono tracking-widest text-foreground/70 uppercase">
-            Field Notes
+            {copy.badge}
           </div>
           <h1 className="text-4xl md:text-6xl font-light leading-tight text-foreground mb-6">
-            Security engineering articles for production web teams.
+            {copy.title}
           </h1>
           <p className="text-lg md:text-xl text-foreground/70 font-light leading-relaxed">
-            Practical, implementation-focused writing that supports the same work Kernel Guard ships:
-            secure web apps, hardened infrastructure, company-grade email trust, and repeatable evidence.
+            {copy.description}
           </p>
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           <div className="lg:col-span-8 space-y-6">
-            {articles.map((article) => (
+            {localizedArticles.map((article) => (
               <article key={article.slug} className="border border-border bg-surface p-6 md:p-8">
                 <div className="mb-5 flex flex-wrap items-center gap-4 text-xs font-mono uppercase tracking-widest text-foreground/55">
-                  <span>{formatDate(article.updatedAt)}</span>
+                  <span>{formatLocalizedDate(article.updatedAt, language, 'short')}</span>
                   <span className="inline-flex items-center gap-2">
                     <Clock className="h-3.5 w-3.5" />
-                    {article.readingMinutes} min read
+                    {article.readingMinutes} {copy.minRead}
                   </span>
                 </div>
                 <h2 className="text-2xl md:text-3xl font-light text-foreground mb-4">
                   <Link
-                    to={`/en/articles/${article.slug}/`}
+                    to={localizePath(`/articles/${article.slug}/`, language)}
                     onPointerEnter={() => prefetchRoute('articlePage')}
                     onFocus={() => prefetchRoute('articlePage')}
                     className="hover:text-primary transition-colors"
@@ -71,12 +67,12 @@ export default function Articles() {
                   ))}
                 </div>
                 <Link
-                  to={`/en/articles/${article.slug}/`}
+                  to={localizePath(`/articles/${article.slug}/`, language)}
                   onPointerEnter={() => prefetchRoute('articlePage')}
                   onFocus={() => prefetchRoute('articlePage')}
                   className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
                 >
-                  Read article
+                  {copy.readArticle}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </article>
@@ -86,13 +82,13 @@ export default function Articles() {
           <aside className="lg:col-span-4">
             <div className="sticky top-28 border border-border bg-background p-6">
               <h2 className="text-sm font-mono uppercase tracking-widest text-foreground/60 mb-5">
-                Related Services
+                {copy.relatedServices}
               </h2>
               <div className="space-y-4">
-                {growthServicePages.slice(0, 5).map((service) => (
+                {localizedServices.slice(0, 5).map((service) => (
                   <Link
                     key={service.slug}
-                    to={`/en/services/${service.slug}/`}
+                    to={localizePath(`/services/${service.slug}/`, language)}
                     onPointerEnter={() => prefetchRoute('serviceLandingPage')}
                     onFocus={() => prefetchRoute('serviceLandingPage')}
                     className="group block border-l border-border pl-4 hover:border-primary transition-colors"

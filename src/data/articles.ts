@@ -1,3 +1,6 @@
+import type { Language } from '../context/LanguageContext';
+import { articleTranslations, type NonEnglishLanguage } from './articleTranslations';
+
 export interface ArticleSection {
   heading: string;
   paragraphs?: string[];
@@ -11,27 +14,28 @@ export interface ArticleReference {
 
 export interface Article {
   slug: string;
-  title: string;
-  description: string;
   publishedAt: string;
   updatedAt: string;
   readingMinutes: number;
+  relatedServiceSlugs: string[];
+}
+
+export interface ArticleContent {
+  title: string;
+  description: string;
   tags: string[];
   summary: string[];
   sections: ArticleSection[];
   references: ArticleReference[];
-  relatedServiceSlugs: string[];
 }
 
-export const articles: Article[] = [
-  {
-    slug: 'spf-dkim-dmarc-google-workspace-security-domain',
+export type LocalizedArticle = Article & ArticleContent;
+
+const englishArticleContent: Record<string, ArticleContent> = {
+  'spf-dkim-dmarc-google-workspace-security-domain': {
     title: 'SPF, DKIM, and DMARC Setup for a Google Workspace Security Domain',
     description:
       'A practical guide to Google Workspace email authentication for company domains that need stronger trust and lower spoofing risk.',
-    publishedAt: '2026-06-14',
-    updatedAt: '2026-06-14',
-    readingMinutes: 6,
     tags: ['Email Security', 'Google Workspace', 'DMARC', 'DNS'],
     summary: [
       'SPF authorizes the mail servers that can send for the domain.',
@@ -85,16 +89,11 @@ export const articles: Article[] = [
         url: 'https://dmarc.org/',
       },
     ],
-    relatedServiceSlugs: ['cybersecurity-consulting', 'cloudflare-security-hardening'],
   },
-  {
-    slug: 'security-headers-cloudflare-pages-react',
+  'security-headers-cloudflare-pages-react': {
     title: 'Security Headers for Cloudflare Pages and React Sites',
     description:
       'How to use security headers, canonical metadata, and response verification to reduce common browser-side risks on static React deployments.',
-    publishedAt: '2026-06-14',
-    updatedAt: '2026-06-14',
-    readingMinutes: 7,
     tags: ['Cloudflare', 'React', 'Security Headers', 'Frontend Security'],
     summary: [
       'Security headers should be treated as deployment configuration, not just code comments.',
@@ -144,20 +143,11 @@ export const articles: Article[] = [
         url: 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers',
       },
     ],
-    relatedServiceSlugs: [
-      'cloudflare-security-hardening',
-      'react-security-audit',
-      'cybersecurity-consulting',
-    ],
   },
-  {
-    slug: 'vulnerability-disclosure-security-txt-website',
+  'vulnerability-disclosure-security-txt-website': {
     title: 'Vulnerability Disclosure and security.txt for Company Websites',
     description:
       'A practical security.txt and vulnerability disclosure workflow for small companies that want a credible security contact path.',
-    publishedAt: '2026-06-14',
-    updatedAt: '2026-06-14',
-    readingMinutes: 5,
     tags: ['Vulnerability Disclosure', 'security.txt', 'Trust'],
     summary: [
       'security.txt gives researchers a predictable place to find a security contact.',
@@ -203,16 +193,11 @@ export const articles: Article[] = [
         url: 'https://www.rfc-editor.org/rfc/rfc9116',
       },
     ],
-    relatedServiceSlugs: ['cybersecurity-consulting', 'backend-api-hardening'],
   },
-  {
-    slug: 'react-contact-form-spam-abuse-hardening',
+  'react-contact-form-spam-abuse-hardening': {
     title: 'Hardening React Contact Forms Against Spam and Abuse',
     description:
       'How to protect a React contact page with validation, bot controls, routing discipline, and safer email handling.',
-    publishedAt: '2026-06-14',
-    updatedAt: '2026-06-14',
-    readingMinutes: 6,
     tags: ['React', 'Contact Forms', 'Abuse Controls', 'Email'],
     summary: [
       'Contact forms are public write endpoints and should be treated as abuse targets.',
@@ -258,16 +243,11 @@ export const articles: Article[] = [
         url: 'https://owasp.org/www-project-automated-threats-to-web-applications/',
       },
     ],
-    relatedServiceSlugs: ['secure-web-development', 'react-security-audit', 'backend-api-hardening'],
   },
-  {
-    slug: 'ebpf-compatibility-testing-ci',
+  'ebpf-compatibility-testing-ci': {
     title: 'eBPF Compatibility Testing in CI for Kernel-Sensitive Projects',
     description:
       'How compatibility reports, repeatable checks, and CI evidence help teams ship kernel-sensitive eBPF work with more confidence.',
-    publishedAt: '2026-06-14',
-    updatedAt: '2026-06-14',
-    readingMinutes: 7,
     tags: ['eBPF', 'CI', 'Kernel Security', 'Open Source'],
     summary: [
       'Kernel-sensitive tools need compatibility evidence, not only a successful local build.',
@@ -311,6 +291,47 @@ export const articles: Article[] = [
         url: 'https://docs.kernel.org/bpf/',
       },
     ],
+  },
+};
+
+export const articles: Article[] = [
+  {
+    slug: 'spf-dkim-dmarc-google-workspace-security-domain',
+    publishedAt: '2026-06-14',
+    updatedAt: '2026-06-14',
+    readingMinutes: 6,
+    relatedServiceSlugs: ['cybersecurity-consulting', 'cloudflare-security-hardening'],
+  },
+  {
+    slug: 'security-headers-cloudflare-pages-react',
+    publishedAt: '2026-06-14',
+    updatedAt: '2026-06-14',
+    readingMinutes: 7,
+    relatedServiceSlugs: [
+      'cloudflare-security-hardening',
+      'react-security-audit',
+      'cybersecurity-consulting',
+    ],
+  },
+  {
+    slug: 'vulnerability-disclosure-security-txt-website',
+    publishedAt: '2026-06-14',
+    updatedAt: '2026-06-14',
+    readingMinutes: 5,
+    relatedServiceSlugs: ['cybersecurity-consulting', 'backend-api-hardening'],
+  },
+  {
+    slug: 'react-contact-form-spam-abuse-hardening',
+    publishedAt: '2026-06-14',
+    updatedAt: '2026-06-14',
+    readingMinutes: 6,
+    relatedServiceSlugs: ['secure-web-development', 'react-security-audit', 'backend-api-hardening'],
+  },
+  {
+    slug: 'ebpf-compatibility-testing-ci',
+    publishedAt: '2026-06-14',
+    updatedAt: '2026-06-14',
+    readingMinutes: 7,
     relatedServiceSlugs: ['cybersecurity-consulting'],
   },
 ];
@@ -323,4 +344,31 @@ export function getArticle(slug: string | undefined): Article | undefined {
   }
 
   return articles.find((article) => article.slug === slug);
+}
+
+export function localizeArticle(article: Article, language: Language): LocalizedArticle {
+  const fallbackContent = englishArticleContent[article.slug];
+  if (!fallbackContent) {
+    throw new Error(`Missing English article content for slug: ${article.slug}`);
+  }
+
+  const translatedContent =
+    language === 'en'
+      ? fallbackContent
+      : articleTranslations[article.slug]?.[language as NonEnglishLanguage];
+  const content = translatedContent ?? fallbackContent;
+
+  return {
+    ...article,
+    ...content,
+  };
+}
+
+export function getLocalizedArticle(slug: string | undefined, language: Language): LocalizedArticle | undefined {
+  const article = getArticle(slug);
+  return article ? localizeArticle(article, language) : undefined;
+}
+
+export function getEnglishArticleContent(slug: string): ArticleContent | undefined {
+  return englishArticleContent[slug];
 }

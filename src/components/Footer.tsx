@@ -5,11 +5,13 @@ import { localizePath } from '../i18n/route';
 import { prefetchRoute, prefetchRoutes } from '../routes/pageLoaders';
 import { enterprisePages, type EnterprisePageKey } from '../data/enterprisePages';
 import { SITE_EMAILS, mailto } from '../config/site';
+import { footerGrowthCopy } from '../i18n/growthContent';
 import Logo from './Logo';
 
 export default function Footer() {
   const { language, t } = useLanguage();
   const enterpriseLinks: EnterprisePageKey[] = ['security', 'engineering', 'status', 'changelog'];
+  const growthCopy = footerGrowthCopy[language];
 
   return (
     <footer className="bg-[var(--color-dark-bg)] text-[var(--color-dark-fg)] mt-auto">
@@ -54,12 +56,12 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  to="/en/articles/"
+                  to={localizePath('/articles/', language)}
                   onPointerEnter={() => prefetchRoute('articles')}
                   onFocus={() => prefetchRoute('articles')}
                   className="text-gray-400 hover:text-white transition-colors text-sm"
                 >
-                  Articles
+                  {growthCopy.articles}
                 </Link>
               </li>
               <li>

@@ -1,8 +1,8 @@
 import type { Language } from '../context/LanguageContext';
 import { DEFAULT_SITE_URL, normalizeCanonicalPath, normalizeSiteUrl } from '../config/site';
 import { localizePath, stripLanguagePrefix } from '../i18n/route';
-import { getArticle } from '../data/articles';
-import { getGrowthServicePage } from '../data/growthServices';
+import { getLocalizedArticle } from '../data/articles';
+import { getLocalizedGrowthServicePage } from '../data/growthServices';
 
 const SITE_URL = normalizeSiteUrl(DEFAULT_SITE_URL);
 const ORGANIZATION_ID = `${SITE_URL}/#organization`;
@@ -106,11 +106,116 @@ const LABELS: Record<Language, BreadcrumbLabels> = {
       'high-performance': 'Hohe Performance',
     },
   },
-  ja: englishLabels,
-  'zh-CN': englishLabels,
-  es: englishLabels,
-  fr: englishLabels,
-  ko: englishLabels,
+  ja: {
+    home: 'ホーム',
+    services: 'サービス',
+    projects: 'オープンソースプロジェクト',
+    completedProjects: '完了プロジェクト',
+    terms: '利用規約',
+    privacy: 'プライバシーポリシー',
+    cookies: 'Cookie設定',
+    contact: 'お問い合わせ',
+    security: 'セキュリティ',
+    engineering: 'エンジニアリング',
+    status: 'ステータス',
+    changelog: '変更履歴',
+    articles: '記事',
+    notFound: '見つかりません',
+    serviceDetails: {
+      'secure-frontend': 'セキュアフロントエンド',
+      'hardened-backend': '強化バックエンド',
+      'data-protection': 'データ保護',
+      'high-performance': '高性能',
+    },
+  },
+  'zh-CN': {
+    home: '首页',
+    services: '服务',
+    projects: '开源项目',
+    completedProjects: '已完成项目',
+    terms: '服务条款',
+    privacy: '隐私政策',
+    cookies: 'Cookie 偏好',
+    contact: '联系',
+    security: '安全',
+    engineering: '工程',
+    status: '状态',
+    changelog: '更新日志',
+    articles: '文章',
+    notFound: '未找到',
+    serviceDetails: {
+      'secure-frontend': '安全前端',
+      'hardened-backend': '加固后端',
+      'data-protection': '数据保护',
+      'high-performance': '高性能',
+    },
+  },
+  es: {
+    home: 'Inicio',
+    services: 'Servicios',
+    projects: 'Proyectos open source',
+    completedProjects: 'Proyectos completados',
+    terms: 'Términos del servicio',
+    privacy: 'Política de privacidad',
+    cookies: 'Preferencias de cookies',
+    contact: 'Contacto',
+    security: 'Seguridad',
+    engineering: 'Ingeniería',
+    status: 'Estado',
+    changelog: 'Cambios',
+    articles: 'Artículos',
+    notFound: 'No encontrado',
+    serviceDetails: {
+      'secure-frontend': 'Frontend seguro',
+      'hardened-backend': 'Backend endurecido',
+      'data-protection': 'Protección de datos',
+      'high-performance': 'Alto rendimiento',
+    },
+  },
+  fr: {
+    home: 'Accueil',
+    services: 'Services',
+    projects: 'Projets open source',
+    completedProjects: 'Projets terminés',
+    terms: 'Conditions d’utilisation',
+    privacy: 'Politique de confidentialité',
+    cookies: 'Préférences cookies',
+    contact: 'Contact',
+    security: 'Sécurité',
+    engineering: 'Ingénierie',
+    status: 'Statut',
+    changelog: 'Journal des changements',
+    articles: 'Articles',
+    notFound: 'Introuvable',
+    serviceDetails: {
+      'secure-frontend': 'Frontend sécurisé',
+      'hardened-backend': 'Backend durci',
+      'data-protection': 'Protection des données',
+      'high-performance': 'Haute performance',
+    },
+  },
+  ko: {
+    home: '홈',
+    services: '서비스',
+    projects: '오픈소스 프로젝트',
+    completedProjects: '완료 프로젝트',
+    terms: '서비스 약관',
+    privacy: '개인정보 처리방침',
+    cookies: '쿠키 설정',
+    contact: '문의',
+    security: '보안',
+    engineering: '엔지니어링',
+    status: '상태',
+    changelog: '변경 내역',
+    articles: '아티클',
+    notFound: '찾을 수 없음',
+    serviceDetails: {
+      'secure-frontend': '안전한 프론트엔드',
+      'hardened-backend': '하드닝된 백엔드',
+      'data-protection': '데이터 보호',
+      'high-performance': '고성능',
+    },
+  },
 };
 
 interface BreadcrumbItem {
@@ -133,7 +238,7 @@ function buildBreadcrumbItems(pathname: string, language: Language): BreadcrumbI
   const serviceMatch = logical.match(/^\/services\/([^/]+)$/);
   if (serviceMatch) {
     const slug = serviceMatch[1];
-    const detailLabel = labels.serviceDetails[slug] ?? getGrowthServicePage(slug)?.shortTitle;
+    const detailLabel = labels.serviceDetails[slug] ?? getLocalizedGrowthServicePage(slug, language)?.shortTitle;
     if (!detailLabel) return null;
     return [
       home,
@@ -161,7 +266,7 @@ function buildBreadcrumbItems(pathname: string, language: Language): BreadcrumbI
 
   const articleMatch = logical.match(/^\/articles\/([^/]+)$/);
   if (articleMatch) {
-    const article = getArticle(articleMatch[1]);
+    const article = getLocalizedArticle(articleMatch[1], language);
     if (!article) return null;
     return [
       home,

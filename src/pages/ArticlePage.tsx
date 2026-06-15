@@ -1,46 +1,28 @@
 import { ArrowRight, CalendarDays, Clock, ExternalLink } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import SEO from '../components/SEO';
-import { getArticle } from '../data/articles';
-import { getGrowthServicePage } from '../data/growthServices';
+import { useLanguage } from '../context/LanguageContext';
+import { getLocalizedArticle } from '../data/articles';
+import { getLocalizedGrowthServicePage } from '../data/growthServices';
+import { articleDetailCopy, formatLocalizedDate } from '../i18n/growthContent';
+import { localizePath } from '../i18n/route';
 import { buildArticleSchema } from '../lib/schema';
 import { prefetchRoute } from '../routes/pageLoaders';
 import NotFound from './NotFound';
 
-const ENGLISH_ONLY = ['en'] as const;
-
-function formatDate(date: string): string {
-  const [year, month, day] = date.split('-');
-  const longMonths = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-  const monthName = longMonths[Number(month) - 1] ?? month;
-
-  return `${monthName} ${Number(day)}, ${year}`;
-}
-
 export default function ArticlePage() {
   const { slug } = useParams();
-  const article = getArticle(slug);
+  const { language } = useLanguage();
+  const copy = articleDetailCopy[language];
+  const article = getLocalizedArticle(slug, language);
 
   if (!article) {
     return <NotFound />;
   }
 
-  const canonicalPath = `/en/articles/${article.slug}/`;
+  const canonicalPath = localizePath(`/articles/${article.slug}/`, language);
   const relatedServices = article.relatedServiceSlugs
-    .map((serviceSlug) => getGrowthServicePage(serviceSlug))
+    .map((serviceSlug) => getLocalizedGrowthServicePage(serviceSlug, language))
     .filter((service): service is NonNullable<typeof service> => Boolean(service));
 
   return (
@@ -51,12 +33,11 @@ export default function ArticlePage() {
         keywords={article.tags.join(', ')}
         path={canonicalPath}
         type="article"
-        alternateLanguages={ENGLISH_ONLY}
         schema={buildArticleSchema({
           title: article.title,
           description: article.description,
           path: canonicalPath,
-          language: 'en',
+          language,
           publishedAt: article.publishedAt,
           updatedAt: article.updatedAt,
           keywords: article.tags,
@@ -66,23 +47,23 @@ export default function ArticlePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <header className="max-w-4xl mb-14">
           <Link
-            to="/en/articles/"
+            to={localizePath('/articles/', language)}
             onPointerEnter={() => prefetchRoute('articles')}
             onFocus={() => prefetchRoute('articles')}
             className="inline-flex items-center gap-2 text-sm text-foreground/60 hover:text-primary transition-colors mb-8"
           >
             <ArrowRight className="h-4 w-4 rotate-180" />
-            Articles
+            {copy.articles}
           </Link>
 
           <div className="mb-6 flex flex-wrap items-center gap-4 text-xs font-mono uppercase tracking-widest text-foreground/55">
             <span className="inline-flex items-center gap-2">
               <CalendarDays className="h-3.5 w-3.5" />
-              Updated {formatDate(article.updatedAt)}
+              {copy.updated} {formatLocalizedDate(article.updatedAt, language)}
             </span>
             <span className="inline-flex items-center gap-2">
               <Clock className="h-3.5 w-3.5" />
-              {article.readingMinutes} min read
+              {article.readingMinutes} {copy.minRead}
             </span>
           </div>
 
@@ -98,7 +79,7 @@ export default function ArticlePage() {
           <div className="lg:col-span-8">
             <section className="border-y border-border py-8 mb-10">
               <h2 className="text-sm font-mono uppercase tracking-widest text-foreground/60 mb-5">
-                Key Points
+                {copy.keyPoints}
               </h2>
               <ul className="space-y-3">
                 {article.summary.map((point) => (
@@ -138,7 +119,7 @@ export default function ArticlePage() {
             {article.references.length > 0 ? (
               <section className="mt-14 border-t border-border pt-8">
                 <h2 className="text-sm font-mono uppercase tracking-widest text-foreground/60 mb-5">
-                  References
+                  {copy.references}
                 </h2>
                 <ul className="space-y-3">
                   {article.references.map((reference) => (
@@ -163,7 +144,7 @@ export default function ArticlePage() {
             <div className="sticky top-28 space-y-6">
               <div className="border border-border bg-surface p-6">
                 <h2 className="text-sm font-mono uppercase tracking-widest text-foreground/60 mb-5">
-                  Tags
+                  {copy.tags}
                 </h2>
                 <div className="flex flex-wrap gap-2">
                   {article.tags.map((tag) => (
@@ -177,13 +158,13 @@ export default function ArticlePage() {
               {relatedServices.length > 0 ? (
                 <div className="border border-border bg-surface p-6">
                   <h2 className="text-sm font-mono uppercase tracking-widest text-foreground/60 mb-5">
-                    Services
+                    {copy.services}
                   </h2>
                   <div className="space-y-4">
                     {relatedServices.map((service) => (
                       <Link
                         key={service.slug}
-                        to={`/en/services/${service.slug}/`}
+                        to={localizePath(`/services/${service.slug}/`, language)}
                         onPointerEnter={() => prefetchRoute('serviceLandingPage')}
                         onFocus={() => prefetchRoute('serviceLandingPage')}
                         className="group block"

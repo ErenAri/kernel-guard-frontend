@@ -2,25 +2,28 @@ import { ArrowRight, CheckCircle2, Mail, ShieldCheck } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import SEO from '../components/SEO';
 import { SITE_EMAILS, mailto } from '../config/site';
-import { getArticle } from '../data/articles';
-import { getGrowthServicePage } from '../data/growthServices';
+import { useLanguage } from '../context/LanguageContext';
+import { getLocalizedArticle } from '../data/articles';
+import { getLocalizedGrowthServicePage } from '../data/growthServices';
+import { serviceLandingCopy } from '../i18n/growthContent';
+import { localizePath } from '../i18n/route';
 import { buildServiceSchema } from '../lib/schema';
 import { prefetchRoute } from '../routes/pageLoaders';
 import NotFound from './NotFound';
 
-const ENGLISH_ONLY = ['en'] as const;
-
 export default function ServiceLandingPage() {
   const { slug } = useParams();
-  const service = getGrowthServicePage(slug);
+  const { language } = useLanguage();
+  const copy = serviceLandingCopy[language];
+  const service = getLocalizedGrowthServicePage(slug, language);
 
   if (!service) {
     return <NotFound />;
   }
 
-  const canonicalPath = `/en/services/${service.slug}/`;
+  const canonicalPath = localizePath(`/services/${service.slug}/`, language);
   const relatedArticles = service.relatedArticleSlugs
-    .map((articleSlug) => getArticle(articleSlug))
+    .map((articleSlug) => getLocalizedArticle(articleSlug, language))
     .filter((article): article is NonNullable<typeof article> => Boolean(article));
 
   return (
@@ -30,12 +33,11 @@ export default function ServiceLandingPage() {
         description={service.description}
         keywords={service.keywords}
         path={canonicalPath}
-        alternateLanguages={ENGLISH_ONLY}
         schema={buildServiceSchema({
           name: service.title,
           description: service.description,
           path: canonicalPath,
-          language: 'en',
+          language,
           serviceType: service.serviceType,
         })}
       />
@@ -45,7 +47,7 @@ export default function ServiceLandingPage() {
           <div className="lg:col-span-8">
             <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-border text-xs font-mono tracking-widest text-foreground/70 uppercase">
               <ShieldCheck className="h-3.5 w-3.5" />
-              Company-Grade Security
+              {copy.badge}
             </div>
             <h1 className="text-4xl md:text-6xl font-light leading-tight text-foreground mb-6">
               {service.title}
@@ -57,14 +59,14 @@ export default function ServiceLandingPage() {
 
           <div className="lg:col-span-4 border border-border bg-surface p-6">
             <h2 className="text-sm font-mono uppercase tracking-widest text-foreground/60 mb-4">
-              Best Fit
+              {copy.bestFit}
             </h2>
             <p className="text-foreground/75 leading-relaxed mb-6">{service.intent}</p>
             <a
               href={mailto(SITE_EMAILS.sales)}
               className="inline-flex w-full items-center justify-between px-5 py-3 kg-action-primary transition-colors"
             >
-              <span className="font-medium">Discuss this service</span>
+              <span className="font-medium">{copy.discussService}</span>
               <Mail className="h-4 w-4" />
             </a>
           </div>
@@ -72,9 +74,9 @@ export default function ServiceLandingPage() {
 
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 border-t border-border pt-12 mb-16">
           <div className="lg:col-span-4">
-            <h2 className="text-3xl font-light text-foreground mb-4">Outcomes</h2>
+            <h2 className="text-3xl font-light text-foreground mb-4">{copy.outcomes}</h2>
             <p className="text-foreground/65 leading-relaxed">
-              The work is scoped around practical improvements that can be shipped, verified, and explained.
+              {copy.outcomesDescription}
             </p>
           </div>
           <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -89,9 +91,9 @@ export default function ServiceLandingPage() {
 
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 border-t border-border pt-12 mb-16">
           <div className="lg:col-span-4">
-            <h2 className="text-3xl font-light text-foreground mb-4">Deliverables</h2>
+            <h2 className="text-3xl font-light text-foreground mb-4">{copy.deliverables}</h2>
             <p className="text-foreground/65 leading-relaxed">
-              The engagement produces artifacts your team can use after the work is complete.
+              {copy.deliverablesDescription}
             </p>
           </div>
           <div className="lg:col-span-8">
@@ -108,9 +110,9 @@ export default function ServiceLandingPage() {
 
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 border-t border-border pt-12 mb-16">
           <div className="lg:col-span-4">
-            <h2 className="text-3xl font-light text-foreground mb-4">Process</h2>
+            <h2 className="text-3xl font-light text-foreground mb-4">{copy.process}</h2>
             <p className="text-foreground/65 leading-relaxed">
-              A small number of focused stages keeps the work understandable and measurable.
+              {copy.processDescription}
             </p>
           </div>
           <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -128,9 +130,9 @@ export default function ServiceLandingPage() {
 
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 border-t border-border pt-12 mb-16">
           <div className="lg:col-span-4">
-            <h2 className="text-3xl font-light text-foreground mb-4">Evidence</h2>
+            <h2 className="text-3xl font-light text-foreground mb-4">{copy.evidence}</h2>
             <p className="text-foreground/65 leading-relaxed">
-              The strongest trust signals are specific, verifiable, and close to the implementation.
+              {copy.evidenceDescription}
             </p>
           </div>
           <div className="lg:col-span-8">
@@ -147,22 +149,22 @@ export default function ServiceLandingPage() {
         {relatedArticles.length > 0 ? (
           <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 border-t border-border pt-12 mb-16">
             <div className="lg:col-span-4">
-              <h2 className="text-3xl font-light text-foreground mb-4">Related Reading</h2>
+              <h2 className="text-3xl font-light text-foreground mb-4">{copy.relatedReading}</h2>
               <p className="text-foreground/65 leading-relaxed">
-                Supporting notes that explain the engineering decisions behind this work.
+                {copy.relatedReadingDescription}
               </p>
             </div>
             <div className="lg:col-span-8 space-y-4">
               {relatedArticles.map((article) => (
                 <Link
                   key={article.slug}
-                  to={`/en/articles/${article.slug}/`}
+                  to={localizePath(`/articles/${article.slug}/`, language)}
                   onPointerEnter={() => prefetchRoute('articlePage')}
                   onFocus={() => prefetchRoute('articlePage')}
                   className="group block border border-border bg-surface p-5 hover:border-primary/50 transition-colors"
                 >
                   <span className="block text-xs font-mono uppercase tracking-widest text-foreground/55 mb-3">
-                    {article.readingMinutes} min read
+                    {article.readingMinutes} {copy.minRead}
                   </span>
                   <span className="block text-xl font-light text-foreground group-hover:text-primary transition-colors mb-2">
                     {article.title}
@@ -179,9 +181,9 @@ export default function ServiceLandingPage() {
         <section className="border border-border bg-surface p-8 md:p-12">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
             <div className="md:col-span-8">
-              <h2 className="text-3xl font-light text-foreground mb-4">Need this level of hardening?</h2>
+              <h2 className="text-3xl font-light text-foreground mb-4">{copy.ctaTitle}</h2>
               <p className="text-foreground/70 leading-relaxed">
-                Send the current site, repository, or launch context and Kernel Guard will respond with the cleanest next step.
+                {copy.ctaDescription}
               </p>
             </div>
             <div className="md:col-span-4">
@@ -189,7 +191,7 @@ export default function ServiceLandingPage() {
                 href={mailto(SITE_EMAILS.sales)}
                 className="inline-flex w-full items-center justify-between px-6 py-4 kg-action-primary transition-colors"
               >
-                <span className="font-medium">Email sales</span>
+                <span className="font-medium">{copy.emailSales}</span>
                 <ArrowRight className="h-5 w-5" />
               </a>
             </div>

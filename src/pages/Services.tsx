@@ -4,7 +4,9 @@ import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/SEO';
 import { SITE_EMAILS, mailto } from '../config/site';
 import { Layout, Shield, Code, Globe, Box, Lock, Cloud, Server, Database, ArrowRight } from 'lucide-react';
-import { growthServicePages } from '../data/growthServices';
+import { growthServicePages, localizeGrowthServicePage } from '../data/growthServices';
+import { servicesGrowthCopy } from '../i18n/growthContent';
+import { localizePath } from '../i18n/route';
 import { prefetchRoute } from '../routes/pageLoaders';
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -21,6 +23,8 @@ const iconMap: Record<string, React.ReactNode> = {
 
 export default function Services() {
   const { language, t } = useLanguage();
+  const growthCopy = servicesGrowthCopy[language];
+  const localizedGrowthServices = growthServicePages.map((service) => localizeGrowthServicePage(service, language));
 
   return (
     <div className="min-h-screen bg-background pt-32 pb-20">
@@ -66,44 +70,42 @@ export default function Services() {
           ))}
         </div>
 
-        {language === 'en' ? (
-          <section className="mb-32 border-t border-border pt-12">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-              <div className="lg:col-span-4">
-                <div className="inline-block px-3 py-1 mb-6 border border-border text-xs font-mono tracking-widest text-foreground/70 uppercase">
-                  Search-Focused Services
-                </div>
-                <h2 className="text-3xl md:text-4xl font-light mb-5">
-                  Focused engagements for security-minded teams.
-                </h2>
-                <p className="text-foreground/70 leading-relaxed">
-                  These pages map common buying intent to concrete outcomes, deliverables, and proof points.
-                </p>
+        <section className="mb-32 border-t border-border pt-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            <div className="lg:col-span-4">
+              <div className="inline-block px-3 py-1 mb-6 border border-border text-xs font-mono tracking-widest text-foreground/70 uppercase">
+                {growthCopy.badge}
               </div>
-
-              <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-                {growthServicePages.map((service) => (
-                  <Link
-                    key={service.slug}
-                    to={`/en/services/${service.slug}/`}
-                    onPointerEnter={() => prefetchRoute('serviceLandingPage')}
-                    onFocus={() => prefetchRoute('serviceLandingPage')}
-                    className="group border border-border bg-surface p-6 hover:border-primary/50 transition-colors"
-                  >
-                    <h3 className="text-xl font-medium text-foreground group-hover:text-primary transition-colors mb-3">
-                      {service.shortTitle}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-foreground/70 mb-5">{service.intent}</p>
-                    <span className="inline-flex items-center gap-2 text-sm font-medium text-primary">
-                      View service
-                      <ArrowRight className="h-4 w-4" />
-                    </span>
-                  </Link>
-                ))}
-              </div>
+              <h2 className="text-3xl md:text-4xl font-light mb-5">
+                {growthCopy.title}
+              </h2>
+              <p className="text-foreground/70 leading-relaxed">
+                {growthCopy.description}
+              </p>
             </div>
-          </section>
-        ) : null}
+
+            <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+              {localizedGrowthServices.map((service) => (
+                <Link
+                  key={service.slug}
+                  to={localizePath(`/services/${service.slug}/`, language)}
+                  onPointerEnter={() => prefetchRoute('serviceLandingPage')}
+                  onFocus={() => prefetchRoute('serviceLandingPage')}
+                  className="group border border-border bg-surface p-6 hover:border-primary/50 transition-colors"
+                >
+                  <h3 className="text-xl font-medium text-foreground group-hover:text-primary transition-colors mb-3">
+                    {service.shortTitle}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-foreground/70 mb-5">{service.intent}</p>
+                  <span className="inline-flex items-center gap-2 text-sm font-medium text-primary">
+                    {growthCopy.viewService}
+                    <ArrowRight className="h-4 w-4" />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* CTA Section */}
         <div className="relative overflow-hidden border border-border bg-surface p-12 md:p-20 text-center">

@@ -1,5 +1,12 @@
+import type { Language } from '../context/LanguageContext';
+import { growthServiceTranslations, type NonEnglishLanguage } from './growthServiceTranslations';
+
 export interface GrowthServicePage {
   slug: string;
+  relatedArticleSlugs: string[];
+}
+
+export interface GrowthServiceContent {
   title: string;
   shortTitle: string;
   description: string;
@@ -13,12 +20,12 @@ export interface GrowthServicePage {
     description: string;
   }>;
   proofPoints: string[];
-  relatedArticleSlugs: string[];
 }
 
-export const growthServicePages: GrowthServicePage[] = [
-  {
-    slug: 'cybersecurity-consulting',
+export type LocalizedGrowthServicePage = GrowthServicePage & GrowthServiceContent;
+
+const englishGrowthServiceContent: Record<string, GrowthServiceContent> = {
+  'cybersecurity-consulting': {
     title: 'Cybersecurity Consulting for Web Platforms',
     shortTitle: 'Cybersecurity Consulting',
     description:
@@ -62,14 +69,8 @@ export const growthServicePages: GrowthServicePage[] = [
       'SPF, DKIM, and DMARC alignment',
       'Strict security headers and no wildcard CORS policy in static headers',
     ],
-    relatedArticleSlugs: [
-      'security-headers-cloudflare-pages-react',
-      'spf-dkim-dmarc-google-workspace-security-domain',
-      'vulnerability-disclosure-security-txt-website',
-    ],
   },
-  {
-    slug: 'secure-web-development',
+  'secure-web-development': {
     title: 'Secure Web Development Services',
     shortTitle: 'Secure Web Development',
     description:
@@ -113,13 +114,8 @@ export const growthServicePages: GrowthServicePage[] = [
       'Canonical and hreflang metadata',
       'Contact workflows routed to company email aliases',
     ],
-    relatedArticleSlugs: [
-      'react-contact-form-spam-abuse-hardening',
-      'security-headers-cloudflare-pages-react',
-    ],
   },
-  {
-    slug: 'cloudflare-security-hardening',
+  'cloudflare-security-hardening': {
     title: 'Cloudflare Security Hardening',
     shortTitle: 'Cloudflare Hardening',
     description:
@@ -163,13 +159,8 @@ export const growthServicePages: GrowthServicePage[] = [
       'Robots and sitemap publication',
       'DMARC reporting mailbox support',
     ],
-    relatedArticleSlugs: [
-      'security-headers-cloudflare-pages-react',
-      'spf-dkim-dmarc-google-workspace-security-domain',
-    ],
   },
-  {
-    slug: 'react-security-audit',
+  'react-security-audit': {
     title: 'React Security Audit',
     shortTitle: 'React Security Audit',
     description:
@@ -213,13 +204,8 @@ export const growthServicePages: GrowthServicePage[] = [
       'Vitest route and utility tests',
       'Browser verification for key pages',
     ],
-    relatedArticleSlugs: [
-      'react-contact-form-spam-abuse-hardening',
-      'security-headers-cloudflare-pages-react',
-    ],
   },
-  {
-    slug: 'backend-api-hardening',
+  'backend-api-hardening': {
     title: 'Backend API Hardening',
     shortTitle: 'Backend API Hardening',
     description:
@@ -263,6 +249,41 @@ export const growthServicePages: GrowthServicePage[] = [
       'Email alias routing for support and security',
       'Security-focused launch checklist',
     ],
+  },
+};
+
+export const growthServicePages: GrowthServicePage[] = [
+  {
+    slug: 'cybersecurity-consulting',
+    relatedArticleSlugs: [
+      'security-headers-cloudflare-pages-react',
+      'spf-dkim-dmarc-google-workspace-security-domain',
+      'vulnerability-disclosure-security-txt-website',
+    ],
+  },
+  {
+    slug: 'secure-web-development',
+    relatedArticleSlugs: [
+      'react-contact-form-spam-abuse-hardening',
+      'security-headers-cloudflare-pages-react',
+    ],
+  },
+  {
+    slug: 'cloudflare-security-hardening',
+    relatedArticleSlugs: [
+      'security-headers-cloudflare-pages-react',
+      'spf-dkim-dmarc-google-workspace-security-domain',
+    ],
+  },
+  {
+    slug: 'react-security-audit',
+    relatedArticleSlugs: [
+      'react-contact-form-spam-abuse-hardening',
+      'security-headers-cloudflare-pages-react',
+    ],
+  },
+  {
+    slug: 'backend-api-hardening',
     relatedArticleSlugs: [
       'react-contact-form-spam-abuse-hardening',
       'vulnerability-disclosure-security-txt-website',
@@ -278,4 +299,37 @@ export function getGrowthServicePage(slug: string | undefined): GrowthServicePag
   }
 
   return growthServicePages.find((service) => service.slug === slug);
+}
+
+export function localizeGrowthServicePage(
+  service: GrowthServicePage,
+  language: Language,
+): LocalizedGrowthServicePage {
+  const fallbackContent = englishGrowthServiceContent[service.slug];
+  if (!fallbackContent) {
+    throw new Error(`Missing English growth service content for slug: ${service.slug}`);
+  }
+
+  const translatedContent =
+    language === 'en'
+      ? fallbackContent
+      : growthServiceTranslations[service.slug]?.[language as NonEnglishLanguage];
+  const content = translatedContent ?? fallbackContent;
+
+  return {
+    ...service,
+    ...content,
+  };
+}
+
+export function getLocalizedGrowthServicePage(
+  slug: string | undefined,
+  language: Language,
+): LocalizedGrowthServicePage | undefined {
+  const service = getGrowthServicePage(slug);
+  return service ? localizeGrowthServicePage(service, language) : undefined;
+}
+
+export function getEnglishGrowthServiceContent(slug: string): GrowthServiceContent | undefined {
+  return englishGrowthServiceContent[slug];
 }

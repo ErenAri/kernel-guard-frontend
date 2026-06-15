@@ -1,5 +1,5 @@
 import { n as __exportAll, t as require_dist } from "./dist-BkMweq9c.js";
-import { t as SEO } from "./SEO-DqfPHW4s.js";
+import { t as SEO } from "./SEO-C7FngH91.js";
 import { c as useLanguage } from "./site-BXg7CYE6.js";
 import { t as ArrowLeft } from "./arrow-left-Cv3pMF22.js";
 import { jsx, jsxs } from "react/jsx-runtime";

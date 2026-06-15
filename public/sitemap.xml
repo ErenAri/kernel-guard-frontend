@@ -3,7 +3,7 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.kernelguard.net/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/" />
@@ -15,8 +15,86 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/articles/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/articles/ebpf-compatibility-testing-ci/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/ebpf-compatibility-testing-ci/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/articles/react-contact-form-spam-abuse-hardening/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/react-contact-form-spam-abuse-hardening/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/articles/security-headers-cloudflare-pages-react/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/security-headers-cloudflare-pages-react/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/articles/spf-dkim-dmarc-google-workspace-security-domain/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/articles/vulnerability-disclosure-security-txt-website/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/vulnerability-disclosure-security-txt-website/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/changelog/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/changelog/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/changelog/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/changelog/" />
@@ -29,7 +107,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/completed-projects/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/completed-projects/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/completed-projects/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/completed-projects/" />
@@ -42,7 +120,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/completed-projects/ref-atelier/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/completed-projects/ref-atelier/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/completed-projects/ref-atelier/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/completed-projects/ref-atelier/" />
@@ -55,7 +133,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/contact/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/contact/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/contact/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/contact/" />
@@ -68,7 +146,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/cookies/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/cookies/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/cookies/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/cookies/" />
@@ -81,7 +159,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/de/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/" />
@@ -93,8 +171,86 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/de/articles/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/de/articles/ebpf-compatibility-testing-ci/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/ebpf-compatibility-testing-ci/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/de/articles/react-contact-form-spam-abuse-hardening/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/react-contact-form-spam-abuse-hardening/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/de/articles/security-headers-cloudflare-pages-react/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/security-headers-cloudflare-pages-react/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/de/articles/spf-dkim-dmarc-google-workspace-security-domain/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/de/articles/vulnerability-disclosure-security-txt-website/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/vulnerability-disclosure-security-txt-website/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/de/changelog/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/changelog/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/changelog/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/changelog/" />
@@ -107,7 +263,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/de/completed-projects/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/completed-projects/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/completed-projects/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/completed-projects/" />
@@ -120,7 +276,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/de/completed-projects/ref-atelier/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/completed-projects/ref-atelier/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/completed-projects/ref-atelier/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/completed-projects/ref-atelier/" />
@@ -133,7 +289,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/de/contact/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/contact/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/contact/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/contact/" />
@@ -146,7 +302,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/de/cookies/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/cookies/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/cookies/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/cookies/" />
@@ -159,7 +315,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/de/engineering/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/engineering/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/engineering/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/engineering/" />
@@ -172,7 +328,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/de/privacy/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/privacy/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/privacy/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/privacy/" />
@@ -185,7 +341,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/de/projects/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/" />
@@ -198,7 +354,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/de/projects/aegis-bpf/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/aegis-bpf/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/aegis-bpf/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/aegis-bpf/" />
@@ -211,7 +367,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/de/projects/bpfcompat/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/bpfcompat/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/bpfcompat/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/bpfcompat/" />
@@ -224,7 +380,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/de/projects/cathodex/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/cathodex/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/cathodex/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/cathodex/" />
@@ -237,7 +393,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/de/projects/post-quantum-messaging-app/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/post-quantum-messaging-app/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/post-quantum-messaging-app/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/post-quantum-messaging-app/" />
@@ -250,7 +406,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/de/security/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/security/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/security/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/security/" />
@@ -263,7 +419,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/de/services/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/" />
@@ -275,8 +431,47 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/de/services/backend-api-hardening/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/backend-api-hardening/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/de/services/cloudflare-security-hardening/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/cloudflare-security-hardening/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/de/services/cybersecurity-consulting/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/cybersecurity-consulting/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/de/services/data-protection/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/data-protection/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/data-protection/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/data-protection/" />
@@ -289,7 +484,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/de/services/hardened-backend/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/hardened-backend/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/hardened-backend/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/hardened-backend/" />
@@ -302,7 +497,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/de/services/high-performance/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/high-performance/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/high-performance/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/high-performance/" />
@@ -314,8 +509,21 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/high-performance/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/de/services/react-security-audit/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/react-security-audit/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/de/services/secure-frontend/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/secure-frontend/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/secure-frontend/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/secure-frontend/" />
@@ -327,8 +535,21 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/secure-frontend/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/de/services/secure-web-development/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/secure-web-development/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/de/status/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/status/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/status/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/status/" />
@@ -341,7 +562,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/de/terms/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/terms/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/terms/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/terms/" />
@@ -354,7 +575,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/" />
@@ -367,31 +588,85 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/articles/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/" />
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/articles/ebpf-compatibility-testing-ci/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/ebpf-compatibility-testing-ci/" />
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/articles/react-contact-form-spam-abuse-hardening/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/react-contact-form-spam-abuse-hardening/" />
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/articles/security-headers-cloudflare-pages-react/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/security-headers-cloudflare-pages-react/" />
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/articles/spf-dkim-dmarc-google-workspace-security-domain/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/articles/vulnerability-disclosure-security-txt-website/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/vulnerability-disclosure-security-txt-website/" />
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/changelog/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/changelog/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/changelog/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/changelog/" />
@@ -404,7 +679,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/completed-projects/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/completed-projects/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/completed-projects/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/completed-projects/" />
@@ -417,7 +692,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/completed-projects/ref-atelier/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/completed-projects/ref-atelier/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/completed-projects/ref-atelier/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/completed-projects/ref-atelier/" />
@@ -430,7 +705,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/contact/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/contact/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/contact/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/contact/" />
@@ -443,7 +718,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/cookies/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/cookies/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/cookies/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/cookies/" />
@@ -456,7 +731,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/engineering/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/engineering/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/engineering/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/engineering/" />
@@ -469,7 +744,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/privacy/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/privacy/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/privacy/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/privacy/" />
@@ -482,7 +757,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/projects/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/" />
@@ -495,7 +770,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/projects/aegis-bpf/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/aegis-bpf/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/aegis-bpf/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/aegis-bpf/" />
@@ -508,7 +783,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/projects/bpfcompat/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/bpfcompat/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/bpfcompat/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/bpfcompat/" />
@@ -521,7 +796,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/projects/cathodex/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/cathodex/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/cathodex/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/cathodex/" />
@@ -534,7 +809,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/projects/post-quantum-messaging-app/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/post-quantum-messaging-app/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/post-quantum-messaging-app/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/post-quantum-messaging-app/" />
@@ -547,7 +822,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/security/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/security/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/security/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/security/" />
@@ -560,7 +835,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/services/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/" />
@@ -573,19 +848,46 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/services/backend-api-hardening/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/backend-api-hardening/" />
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/services/cloudflare-security-hardening/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/cloudflare-security-hardening/" />
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/services/cybersecurity-consulting/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/cybersecurity-consulting/" />
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/services/data-protection/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/data-protection/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/data-protection/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/data-protection/" />
@@ -598,7 +900,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/services/hardened-backend/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/hardened-backend/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/hardened-backend/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/hardened-backend/" />
@@ -611,7 +913,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/services/high-performance/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/high-performance/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/high-performance/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/high-performance/" />
@@ -624,11 +926,20 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/services/react-security-audit/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/react-security-audit/" />
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/services/secure-frontend/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/secure-frontend/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/secure-frontend/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/secure-frontend/" />
@@ -641,11 +952,20 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/services/secure-web-development/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/secure-web-development/" />
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/status/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/status/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/status/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/status/" />
@@ -658,7 +978,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/en/terms/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/terms/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/terms/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/terms/" />
@@ -671,7 +991,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/engineering/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/engineering/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/engineering/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/engineering/" />
@@ -684,7 +1004,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/es/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/" />
@@ -696,8 +1016,86 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/es/articles/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/es/articles/ebpf-compatibility-testing-ci/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/ebpf-compatibility-testing-ci/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/es/articles/react-contact-form-spam-abuse-hardening/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/react-contact-form-spam-abuse-hardening/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/es/articles/security-headers-cloudflare-pages-react/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/security-headers-cloudflare-pages-react/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/es/articles/spf-dkim-dmarc-google-workspace-security-domain/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/es/articles/vulnerability-disclosure-security-txt-website/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/vulnerability-disclosure-security-txt-website/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/es/changelog/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/changelog/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/changelog/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/changelog/" />
@@ -710,7 +1108,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/es/completed-projects/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/completed-projects/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/completed-projects/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/completed-projects/" />
@@ -723,7 +1121,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/es/completed-projects/ref-atelier/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/completed-projects/ref-atelier/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/completed-projects/ref-atelier/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/completed-projects/ref-atelier/" />
@@ -736,7 +1134,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/es/contact/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/contact/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/contact/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/contact/" />
@@ -749,7 +1147,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/es/cookies/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/cookies/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/cookies/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/cookies/" />
@@ -762,7 +1160,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/es/engineering/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/engineering/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/engineering/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/engineering/" />
@@ -775,7 +1173,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/es/privacy/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/privacy/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/privacy/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/privacy/" />
@@ -788,7 +1186,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/es/projects/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/" />
@@ -801,7 +1199,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/es/projects/aegis-bpf/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/aegis-bpf/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/aegis-bpf/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/aegis-bpf/" />
@@ -814,7 +1212,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/es/projects/bpfcompat/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/bpfcompat/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/bpfcompat/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/bpfcompat/" />
@@ -827,7 +1225,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/es/projects/cathodex/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/cathodex/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/cathodex/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/cathodex/" />
@@ -840,7 +1238,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/es/projects/post-quantum-messaging-app/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/post-quantum-messaging-app/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/post-quantum-messaging-app/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/post-quantum-messaging-app/" />
@@ -853,7 +1251,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/es/security/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/security/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/security/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/security/" />
@@ -866,7 +1264,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/es/services/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/" />
@@ -878,8 +1276,47 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/es/services/backend-api-hardening/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/backend-api-hardening/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/es/services/cloudflare-security-hardening/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/cloudflare-security-hardening/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/es/services/cybersecurity-consulting/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/cybersecurity-consulting/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/es/services/data-protection/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/data-protection/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/data-protection/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/data-protection/" />
@@ -892,7 +1329,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/es/services/hardened-backend/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/hardened-backend/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/hardened-backend/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/hardened-backend/" />
@@ -905,7 +1342,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/es/services/high-performance/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/high-performance/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/high-performance/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/high-performance/" />
@@ -917,8 +1354,21 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/high-performance/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/es/services/react-security-audit/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/react-security-audit/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/es/services/secure-frontend/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/secure-frontend/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/secure-frontend/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/secure-frontend/" />
@@ -930,8 +1380,21 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/secure-frontend/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/es/services/secure-web-development/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/secure-web-development/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/es/status/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/status/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/status/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/status/" />
@@ -944,7 +1407,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/es/terms/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/terms/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/terms/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/terms/" />
@@ -957,7 +1420,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/fr/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/" />
@@ -969,8 +1432,86 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/fr/articles/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/fr/articles/ebpf-compatibility-testing-ci/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/ebpf-compatibility-testing-ci/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/fr/articles/react-contact-form-spam-abuse-hardening/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/react-contact-form-spam-abuse-hardening/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/fr/articles/security-headers-cloudflare-pages-react/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/security-headers-cloudflare-pages-react/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/fr/articles/spf-dkim-dmarc-google-workspace-security-domain/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/fr/articles/vulnerability-disclosure-security-txt-website/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/vulnerability-disclosure-security-txt-website/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/fr/changelog/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/changelog/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/changelog/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/changelog/" />
@@ -983,7 +1524,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/fr/completed-projects/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/completed-projects/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/completed-projects/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/completed-projects/" />
@@ -996,7 +1537,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/fr/completed-projects/ref-atelier/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/completed-projects/ref-atelier/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/completed-projects/ref-atelier/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/completed-projects/ref-atelier/" />
@@ -1009,7 +1550,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/fr/contact/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/contact/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/contact/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/contact/" />
@@ -1022,7 +1563,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/fr/cookies/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/cookies/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/cookies/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/cookies/" />
@@ -1035,7 +1576,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/fr/engineering/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/engineering/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/engineering/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/engineering/" />
@@ -1048,7 +1589,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/fr/privacy/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/privacy/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/privacy/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/privacy/" />
@@ -1061,7 +1602,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/fr/projects/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/" />
@@ -1074,7 +1615,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/fr/projects/aegis-bpf/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/aegis-bpf/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/aegis-bpf/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/aegis-bpf/" />
@@ -1087,7 +1628,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/fr/projects/bpfcompat/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/bpfcompat/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/bpfcompat/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/bpfcompat/" />
@@ -1100,7 +1641,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/fr/projects/cathodex/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/cathodex/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/cathodex/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/cathodex/" />
@@ -1113,7 +1654,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/fr/projects/post-quantum-messaging-app/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/post-quantum-messaging-app/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/post-quantum-messaging-app/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/post-quantum-messaging-app/" />
@@ -1126,7 +1667,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/fr/security/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/security/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/security/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/security/" />
@@ -1139,7 +1680,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/fr/services/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/" />
@@ -1151,8 +1692,47 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/fr/services/backend-api-hardening/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/backend-api-hardening/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/fr/services/cloudflare-security-hardening/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/cloudflare-security-hardening/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/fr/services/cybersecurity-consulting/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/cybersecurity-consulting/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/fr/services/data-protection/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/data-protection/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/data-protection/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/data-protection/" />
@@ -1165,7 +1745,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/fr/services/hardened-backend/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/hardened-backend/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/hardened-backend/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/hardened-backend/" />
@@ -1178,7 +1758,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/fr/services/high-performance/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/high-performance/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/high-performance/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/high-performance/" />
@@ -1190,8 +1770,21 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/high-performance/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/fr/services/react-security-audit/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/react-security-audit/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/fr/services/secure-frontend/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/secure-frontend/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/secure-frontend/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/secure-frontend/" />
@@ -1203,8 +1796,21 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/secure-frontend/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/fr/services/secure-web-development/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/secure-web-development/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/fr/status/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/status/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/status/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/status/" />
@@ -1217,7 +1823,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/fr/terms/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/terms/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/terms/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/terms/" />
@@ -1230,7 +1836,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ja/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/" />
@@ -1242,8 +1848,86 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/ja/articles/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/ja/articles/ebpf-compatibility-testing-ci/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/ebpf-compatibility-testing-ci/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/ja/articles/react-contact-form-spam-abuse-hardening/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/react-contact-form-spam-abuse-hardening/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/ja/articles/security-headers-cloudflare-pages-react/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/security-headers-cloudflare-pages-react/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/ja/articles/spf-dkim-dmarc-google-workspace-security-domain/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/ja/articles/vulnerability-disclosure-security-txt-website/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/vulnerability-disclosure-security-txt-website/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/ja/changelog/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/changelog/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/changelog/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/changelog/" />
@@ -1256,7 +1940,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ja/completed-projects/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/completed-projects/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/completed-projects/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/completed-projects/" />
@@ -1269,7 +1953,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ja/completed-projects/ref-atelier/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/completed-projects/ref-atelier/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/completed-projects/ref-atelier/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/completed-projects/ref-atelier/" />
@@ -1282,7 +1966,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ja/contact/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/contact/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/contact/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/contact/" />
@@ -1295,7 +1979,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ja/cookies/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/cookies/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/cookies/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/cookies/" />
@@ -1308,7 +1992,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ja/engineering/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/engineering/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/engineering/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/engineering/" />
@@ -1321,7 +2005,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ja/privacy/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/privacy/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/privacy/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/privacy/" />
@@ -1334,7 +2018,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ja/projects/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/" />
@@ -1347,7 +2031,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ja/projects/aegis-bpf/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/aegis-bpf/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/aegis-bpf/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/aegis-bpf/" />
@@ -1360,7 +2044,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ja/projects/bpfcompat/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/bpfcompat/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/bpfcompat/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/bpfcompat/" />
@@ -1373,7 +2057,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ja/projects/cathodex/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/cathodex/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/cathodex/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/cathodex/" />
@@ -1386,7 +2070,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ja/projects/post-quantum-messaging-app/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/post-quantum-messaging-app/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/post-quantum-messaging-app/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/post-quantum-messaging-app/" />
@@ -1399,7 +2083,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ja/security/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/security/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/security/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/security/" />
@@ -1412,7 +2096,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ja/services/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/" />
@@ -1424,8 +2108,47 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/ja/services/backend-api-hardening/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/backend-api-hardening/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/ja/services/cloudflare-security-hardening/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/cloudflare-security-hardening/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/ja/services/cybersecurity-consulting/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/cybersecurity-consulting/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/ja/services/data-protection/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/data-protection/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/data-protection/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/data-protection/" />
@@ -1438,7 +2161,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ja/services/hardened-backend/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/hardened-backend/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/hardened-backend/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/hardened-backend/" />
@@ -1451,7 +2174,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ja/services/high-performance/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/high-performance/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/high-performance/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/high-performance/" />
@@ -1463,8 +2186,21 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/high-performance/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/ja/services/react-security-audit/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/react-security-audit/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/ja/services/secure-frontend/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/secure-frontend/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/secure-frontend/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/secure-frontend/" />
@@ -1476,8 +2212,21 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/secure-frontend/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/ja/services/secure-web-development/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/secure-web-development/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/ja/status/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/status/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/status/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/status/" />
@@ -1490,7 +2239,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ja/terms/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/terms/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/terms/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/terms/" />
@@ -1503,7 +2252,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ko/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/" />
@@ -1515,8 +2264,86 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/ko/articles/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/ko/articles/ebpf-compatibility-testing-ci/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/ebpf-compatibility-testing-ci/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/ko/articles/react-contact-form-spam-abuse-hardening/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/react-contact-form-spam-abuse-hardening/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/ko/articles/security-headers-cloudflare-pages-react/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/security-headers-cloudflare-pages-react/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/ko/articles/spf-dkim-dmarc-google-workspace-security-domain/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/ko/articles/vulnerability-disclosure-security-txt-website/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/vulnerability-disclosure-security-txt-website/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/ko/changelog/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/changelog/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/changelog/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/changelog/" />
@@ -1529,7 +2356,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ko/completed-projects/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/completed-projects/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/completed-projects/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/completed-projects/" />
@@ -1542,7 +2369,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ko/completed-projects/ref-atelier/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/completed-projects/ref-atelier/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/completed-projects/ref-atelier/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/completed-projects/ref-atelier/" />
@@ -1555,7 +2382,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ko/contact/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/contact/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/contact/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/contact/" />
@@ -1568,7 +2395,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ko/cookies/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/cookies/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/cookies/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/cookies/" />
@@ -1581,7 +2408,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ko/engineering/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/engineering/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/engineering/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/engineering/" />
@@ -1594,7 +2421,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ko/privacy/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/privacy/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/privacy/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/privacy/" />
@@ -1607,7 +2434,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ko/projects/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/" />
@@ -1620,7 +2447,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ko/projects/aegis-bpf/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/aegis-bpf/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/aegis-bpf/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/aegis-bpf/" />
@@ -1633,7 +2460,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ko/projects/bpfcompat/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/bpfcompat/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/bpfcompat/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/bpfcompat/" />
@@ -1646,7 +2473,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ko/projects/cathodex/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/cathodex/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/cathodex/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/cathodex/" />
@@ -1659,7 +2486,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ko/projects/post-quantum-messaging-app/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/post-quantum-messaging-app/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/post-quantum-messaging-app/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/post-quantum-messaging-app/" />
@@ -1672,7 +2499,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ko/security/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/security/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/security/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/security/" />
@@ -1685,7 +2512,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ko/services/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/" />
@@ -1697,8 +2524,47 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/ko/services/backend-api-hardening/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/backend-api-hardening/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/ko/services/cloudflare-security-hardening/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/cloudflare-security-hardening/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/ko/services/cybersecurity-consulting/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/cybersecurity-consulting/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/ko/services/data-protection/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/data-protection/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/data-protection/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/data-protection/" />
@@ -1711,7 +2577,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ko/services/hardened-backend/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/hardened-backend/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/hardened-backend/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/hardened-backend/" />
@@ -1724,7 +2590,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ko/services/high-performance/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/high-performance/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/high-performance/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/high-performance/" />
@@ -1736,8 +2602,21 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/high-performance/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/ko/services/react-security-audit/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/react-security-audit/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/ko/services/secure-frontend/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/secure-frontend/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/secure-frontend/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/secure-frontend/" />
@@ -1749,8 +2628,21 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/secure-frontend/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/ko/services/secure-web-development/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/secure-web-development/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/ko/status/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/status/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/status/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/status/" />
@@ -1763,7 +2655,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/ko/terms/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/terms/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/terms/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/terms/" />
@@ -1776,7 +2668,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/privacy/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/privacy/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/privacy/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/privacy/" />
@@ -1789,7 +2681,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/projects/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/" />
@@ -1802,7 +2694,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/projects/aegis-bpf/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/aegis-bpf/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/aegis-bpf/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/aegis-bpf/" />
@@ -1815,7 +2707,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/projects/bpfcompat/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/bpfcompat/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/bpfcompat/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/bpfcompat/" />
@@ -1828,7 +2720,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/projects/cathodex/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/cathodex/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/cathodex/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/cathodex/" />
@@ -1841,7 +2733,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/projects/post-quantum-messaging-app/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/post-quantum-messaging-app/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/post-quantum-messaging-app/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/post-quantum-messaging-app/" />
@@ -1854,7 +2746,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/security/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/security/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/security/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/security/" />
@@ -1867,7 +2759,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/services/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/" />
@@ -1879,8 +2771,47 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/services/backend-api-hardening/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/backend-api-hardening/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/services/cloudflare-security-hardening/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/cloudflare-security-hardening/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/services/cybersecurity-consulting/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/cybersecurity-consulting/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/services/data-protection/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/data-protection/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/data-protection/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/data-protection/" />
@@ -1893,7 +2824,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/services/hardened-backend/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/hardened-backend/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/hardened-backend/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/hardened-backend/" />
@@ -1906,7 +2837,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/services/high-performance/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/high-performance/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/high-performance/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/high-performance/" />
@@ -1918,8 +2849,21 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/high-performance/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/services/react-security-audit/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/react-security-audit/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/services/secure-frontend/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/secure-frontend/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/secure-frontend/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/secure-frontend/" />
@@ -1931,8 +2875,21 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/secure-frontend/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/services/secure-web-development/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/secure-web-development/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/status/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/status/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/status/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/status/" />
@@ -1945,7 +2902,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/terms/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/terms/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/terms/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/terms/" />
@@ -1958,7 +2915,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/zh-cn/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/" />
@@ -1970,8 +2927,86 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/zh-cn/articles/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/zh-cn/articles/ebpf-compatibility-testing-ci/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/ebpf-compatibility-testing-ci/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/ebpf-compatibility-testing-ci/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/zh-cn/articles/react-contact-form-spam-abuse-hardening/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/react-contact-form-spam-abuse-hardening/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/react-contact-form-spam-abuse-hardening/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/zh-cn/articles/security-headers-cloudflare-pages-react/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/security-headers-cloudflare-pages-react/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/security-headers-cloudflare-pages-react/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/zh-cn/articles/spf-dkim-dmarc-google-workspace-security-domain/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/spf-dkim-dmarc-google-workspace-security-domain/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/zh-cn/articles/vulnerability-disclosure-security-txt-website/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/articles/vulnerability-disclosure-security-txt-website/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/articles/vulnerability-disclosure-security-txt-website/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/zh-cn/changelog/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/changelog/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/changelog/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/changelog/" />
@@ -1984,7 +3019,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/zh-cn/completed-projects/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/completed-projects/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/completed-projects/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/completed-projects/" />
@@ -1997,7 +3032,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/zh-cn/completed-projects/ref-atelier/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/completed-projects/ref-atelier/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/completed-projects/ref-atelier/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/completed-projects/ref-atelier/" />
@@ -2010,7 +3045,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/zh-cn/contact/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/contact/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/contact/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/contact/" />
@@ -2023,7 +3058,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/zh-cn/cookies/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/cookies/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/cookies/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/cookies/" />
@@ -2036,7 +3071,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/zh-cn/engineering/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/engineering/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/engineering/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/engineering/" />
@@ -2049,7 +3084,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/zh-cn/privacy/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/privacy/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/privacy/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/privacy/" />
@@ -2062,7 +3097,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/zh-cn/projects/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/" />
@@ -2075,7 +3110,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/zh-cn/projects/aegis-bpf/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/aegis-bpf/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/aegis-bpf/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/aegis-bpf/" />
@@ -2088,7 +3123,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/zh-cn/projects/bpfcompat/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/bpfcompat/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/bpfcompat/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/bpfcompat/" />
@@ -2101,7 +3136,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/zh-cn/projects/cathodex/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/cathodex/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/cathodex/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/cathodex/" />
@@ -2114,7 +3149,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/zh-cn/projects/post-quantum-messaging-app/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/projects/post-quantum-messaging-app/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/projects/post-quantum-messaging-app/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/projects/post-quantum-messaging-app/" />
@@ -2127,7 +3162,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/zh-cn/security/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/security/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/security/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/security/" />
@@ -2140,7 +3175,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/zh-cn/services/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/" />
@@ -2152,8 +3187,47 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/zh-cn/services/backend-api-hardening/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/backend-api-hardening/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/backend-api-hardening/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/zh-cn/services/cloudflare-security-hardening/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/cloudflare-security-hardening/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/cloudflare-security-hardening/" />
+  </url>
+  <url>
+    <loc>https://www.kernelguard.net/zh-cn/services/cybersecurity-consulting/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/cybersecurity-consulting/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/cybersecurity-consulting/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/zh-cn/services/data-protection/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/data-protection/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/data-protection/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/data-protection/" />
@@ -2166,7 +3240,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/zh-cn/services/hardened-backend/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/hardened-backend/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/hardened-backend/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/hardened-backend/" />
@@ -2179,7 +3253,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/zh-cn/services/high-performance/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/high-performance/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/high-performance/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/high-performance/" />
@@ -2191,8 +3265,21 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/high-performance/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/zh-cn/services/react-security-audit/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/react-security-audit/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/react-security-audit/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/zh-cn/services/secure-frontend/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/secure-frontend/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/secure-frontend/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/secure-frontend/" />
@@ -2204,8 +3291,21 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/secure-frontend/" />
   </url>
   <url>
+    <loc>https://www.kernelguard.net/zh-cn/services/secure-web-development/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.kernelguard.net/ja/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.kernelguard.net/zh-cn/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.kernelguard.net/es/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.kernelguard.net/fr/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.kernelguard.net/ko/services/secure-web-development/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.kernelguard.net/services/secure-web-development/" />
+  </url>
+  <url>
     <loc>https://www.kernelguard.net/zh-cn/status/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/status/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/status/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/status/" />
@@ -2218,7 +3318,7 @@
   </url>
   <url>
     <loc>https://www.kernelguard.net/zh-cn/terms/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-15</lastmod>
     <xhtml:link rel="alternate" hreflang="tr" href="https://www.kernelguard.net/terms/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.kernelguard.net/en/terms/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://www.kernelguard.net/de/terms/" />

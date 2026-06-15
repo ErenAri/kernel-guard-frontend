@@ -14,6 +14,7 @@ const baseStaticRoutes = [
   '/services/hardened-backend',
   '/services/data-protection',
   '/services/high-performance',
+  '/articles',
   '/security',
   '/engineering',
   '/status',
@@ -28,14 +29,11 @@ const baseStaticRoutes = [
 const baseDynamicRoutes = [
   ...projects.map((project) => `/projects/${project.id}`),
   ...completedProjects.map((project) => `/completed-projects/${project.id}`),
+  ...articleSlugs.map((slug) => `/articles/${slug}`),
+  ...growthServiceSlugs.map((slug) => `/services/${slug}`),
 ];
 
 const baseRoutes = [...baseStaticRoutes, ...baseDynamicRoutes];
-const englishGrowthRoutes = [
-  '/en/articles',
-  ...articleSlugs.map((slug) => `/en/articles/${slug}`),
-  ...growthServiceSlugs.map((slug) => `/en/services/${slug}`),
-];
 
 // Mirror every canonical TR route under each supported language prefix so each
 // language has its own indexable URL.
@@ -59,7 +57,7 @@ const nonIndexableRouteSet = new Set<string>([
   ),
 ]);
 
-export const prerenderRoutes = Array.from(new Set([...withLanguageMirrors(baseRoutes), ...englishGrowthRoutes])).sort((a, b) => a.localeCompare(b));
+export const prerenderRoutes = Array.from(new Set(withLanguageMirrors(baseRoutes))).sort((a, b) => a.localeCompare(b));
 
 export const nonIndexableRoutes = Array.from(nonIndexableRouteSet).sort((a, b) => a.localeCompare(b));
 
