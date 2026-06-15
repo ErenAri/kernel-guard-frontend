@@ -45,7 +45,7 @@ Restraint, real data, and honest framing are the cool factor. No decoration.
 
 | Decision | Choice |
 |---|---|
-| **URL** | `/projects/bpfcompat/` (localized automatically via `localizePath`: `/en/...`, `/de/...`, `/zh-cn/...`, etc.) |
+| **URL** | `/projects/bpfcompat/` (English is the default, unprefixed locale; other locales are localized automatically via `localizePath`: `/tr/...`, `/de/...`, `/zh-cn/...`, etc.) |
 | **Routing** | A dedicated `BpfcompatPage` component registered **before** the generic `projects/:id` route, so bpfcompat gets the bespoke page while every other project keeps the shared `ProjectDetails` template. |
 | **Nav** | **Unchanged.** No new top-level item. "Open Source" (`/projects/`) stays the entry point — keeps all 8 nav locales stable. |
 | **Projects directory** | bpfcompat is pinned as the **first row** of the existing IBM-style table. No "FLAGSHIP" chip. The row links to the bespoke page. |

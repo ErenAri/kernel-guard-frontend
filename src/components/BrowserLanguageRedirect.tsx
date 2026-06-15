@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
+  DEFAULT_LANGUAGE,
   detectBrowserLanguage,
   detectLanguageFromPath,
   getStoredLanguagePreference,
@@ -15,14 +16,14 @@ export default function BrowserLanguageRedirect() {
   useEffect(() => {
     const pathLanguage = detectLanguageFromPath(location.pathname);
 
-    if (pathLanguage !== 'tr') {
+    if (pathLanguage !== DEFAULT_LANGUAGE) {
       setStoredLanguagePreference(pathLanguage);
       return;
     }
 
     const preferredLanguage = getStoredLanguagePreference() ?? detectBrowserLanguage();
 
-    if (preferredLanguage === 'tr') {
+    if (preferredLanguage === DEFAULT_LANGUAGE) {
       return;
     }
 

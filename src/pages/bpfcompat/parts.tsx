@@ -812,9 +812,9 @@ export function HeroCtas({ onActionScroll }: { onActionScroll?: () => void }) {
  * Preview concept switcher (sticky bar so the founder can compare)
  * ------------------------------------------------------------------------ */
 
-const LANG_PREFIX = /^\/(en|de|ja|zh-cn|es|fr|ko)(?=\/)/;
+const LANG_PREFIX = /^\/(tr|de|ja|zh-cn|es|fr|ko)(?=\/)/;
 
-/** Returns the active language prefix from the URL (e.g. "/en"), or "" for the default. */
+/** Returns the active language prefix from the URL (e.g. "/tr"), or "" for the default (English). */
 export function useLangPrefix(): string {
   const { pathname } = useLocation();
   const m = pathname.match(LANG_PREFIX);

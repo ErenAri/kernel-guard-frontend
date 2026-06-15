@@ -56,9 +56,9 @@ describe('compatibility matrix accessibility', () => {
 
 describe('trust page accessibility', () => {
   it.each([
-    ['/en/security/', <Security />],
-    ['/en/privacy/', <Privacy />],
-    ['/en/terms/', <Terms />],
+    ['/security/', <Security />],
+    ['/privacy/', <Privacy />],
+    ['/terms/', <Terms />],
   ])('%s has no serious or critical axe violations', async (route, page) => {
     const { container } = renderPage(route, page);
     const violations = await seriousViolations(container);

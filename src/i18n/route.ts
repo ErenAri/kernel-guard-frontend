@@ -2,10 +2,10 @@ import type { Language } from '../context/LanguageContext';
 
 export const SUPPORTED_LANGUAGES: readonly Language[] = ['tr', 'en', 'de', 'ja', 'zh-CN', 'es', 'fr', 'ko'] as const;
 export const LANGUAGE_PREFERENCE_STORAGE_KEY = 'kg_language_preference';
-export const DEFAULT_LANGUAGE: Language = 'tr';
+export const DEFAULT_LANGUAGE: Language = 'en';
 export const LANGUAGE_PREFIXES: Record<Language, string> = {
-  tr: '',
-  en: '/en',
+  tr: '/tr',
+  en: '',
   de: '/de',
   ja: '/ja',
   'zh-CN': '/zh-cn',
@@ -106,7 +106,7 @@ export function setStoredLanguagePreference(language: Language): void {
 
 export function detectBrowserLanguage(): Language {
   if (typeof navigator === 'undefined') {
-    return 'tr';
+    return DEFAULT_LANGUAGE;
   }
 
   const candidates = [

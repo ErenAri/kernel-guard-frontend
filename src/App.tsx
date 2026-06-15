@@ -172,14 +172,14 @@ export default function App() {
       <ThemeProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/en/*" element={<LangShell lang="en" />} />
+            <Route path="/tr/*" element={<LangShell lang="tr" />} />
             <Route path="/de/*" element={<LangShell lang="de" />} />
             <Route path="/ja/*" element={<LangShell lang="ja" />} />
             <Route path="/zh-cn/*" element={<LangShell lang="zh-CN" />} />
             <Route path="/es/*" element={<LangShell lang="es" />} />
             <Route path="/fr/*" element={<LangShell lang="fr" />} />
             <Route path="/ko/*" element={<LangShell lang="ko" />} />
-            <Route path="/*" element={<LangShell lang="tr" />} />
+            <Route path="/*" element={<LangShell lang="en" />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

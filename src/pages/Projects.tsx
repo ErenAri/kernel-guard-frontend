@@ -4,11 +4,12 @@ import { projects } from '../data/projects';
 import { useLanguage } from '../context/LanguageContext';
 import SEO from '../components/SEO';
 import { localizedText } from '../i18n/text';
+import { localizePath } from '../i18n/route';
 
 export default function Projects() {
   const { language, t } = useLanguage();
   const navigate = useNavigate();
-  const projectPath = (id: string) => `${language === 'tr' ? '' : language === 'zh-CN' ? '/zh-cn' : `/${language}`}/projects/${id}/`;
+  const projectPath = (id: string) => localizePath(`/projects/${id}/`, language);
 
   return (
     <div className="min-h-screen bg-background pt-32 pb-24">

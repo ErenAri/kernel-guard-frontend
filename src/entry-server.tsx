@@ -79,9 +79,9 @@ export function renderRoute(url: string, language: Language): RenderResult {
         <StaticRouter location={url}>
           <Routes>
             <Route
-              path="/en/*"
+              path="/tr/*"
               element={
-                <LanguageProvider key="en" initialLanguage="en">
+                <LanguageProvider key="tr" initialLanguage="tr">
                   <CanonicalPathRedirect />
                   <ScrollToTop />
                   <LocalizedRoutes />
@@ -151,7 +151,7 @@ export function renderRoute(url: string, language: Language): RenderResult {
             <Route
               path="/*"
               element={
-                <LanguageProvider key="tr" initialLanguage={language}>
+                <LanguageProvider key="en" initialLanguage={language}>
                   <CanonicalPathRedirect />
                   <ScrollToTop />
                   <LocalizedRoutes />

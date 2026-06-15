@@ -74,14 +74,15 @@ export default function SEO({
 
   // hreflang requires absolute URLs that resolve to each language's variant
   // of the same logical page. Strip any language prefix first so we always
-  // start from the canonical TR path before re-localizing per language.
+  // start from the canonical (unprefixed English) path before re-localizing
+  // per language.
   const logicalPath = stripLanguagePrefix(currentPath);
   const alternateUrls = activeAlternateLanguages.map((lang) => ({
     language: lang,
     hrefLang: LANGUAGE_HREFLANGS[lang],
     url: buildCanonicalUrl(siteUrl, normalizeCanonicalPath(localizePath(logicalPath, lang))),
   }));
-  const defaultLanguage = activeAlternateLanguages.includes('tr') ? 'tr' : activeAlternateLanguages[0];
+  const defaultLanguage = activeAlternateLanguages.includes('en') ? 'en' : activeAlternateLanguages[0];
   const defaultUrl = alternateUrls.find((alternate) => alternate.language === defaultLanguage)?.url ?? canonicalUrl;
 
   // Resolve a relative image path to an absolute URL so social platforms can fetch it.

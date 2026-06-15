@@ -38,8 +38,8 @@ ${sitemapRoutes
               ? `    <xhtml:link rel="alternate" hreflang="${escapeXml(pair.hreflangs[language as keyof typeof pair.hreflangs])}" href="${escapeXml(toAbsoluteUrl(path))}" />`
               : '',
           ),
-          indexableRouteSet.has(pair.routes.tr)
-            ? `    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(toAbsoluteUrl(pair.routes.tr))}" />`
+          indexableRouteSet.has(pair.routes.en)
+            ? `    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(toAbsoluteUrl(pair.routes.en))}" />`
             : '',
         ]
           .filter(Boolean)

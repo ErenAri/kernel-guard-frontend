@@ -150,17 +150,17 @@ describe('GitHub admin API security', () => {
 describe('edge middleware', () => {
   it('redirects the apex host to the canonical www host', async () => {
     const response = await onRequest({
-      request: new Request('http://kernelguard.net/en/articles/?ref=test'),
+      request: new Request('http://kernelguard.net/articles/?ref=test'),
       next: () => new Response('next'),
     });
 
     expect(response.status).toBe(301);
-    expect(response.headers.get('Location')).toBe('https://www.kernelguard.net/en/articles/?ref=test');
+    expect(response.headers.get('Location')).toBe('https://www.kernelguard.net/articles/?ref=test');
   });
 
   it('passes canonical host traffic through unchanged', async () => {
     const response = await onRequest({
-      request: new Request('https://www.kernelguard.net/en/articles/'),
+      request: new Request('https://www.kernelguard.net/articles/'),
       next: () => new Response('next'),
     });
 

@@ -1,5 +1,9 @@
+# Legacy /en/* URLs now live at the root (English is the default locale).
+/en/open-source/ /projects/ 301
+/en/* /:splat 301
+
 /open-source/ /projects/ 301
-/en/open-source/ /en/projects/ 301
+/tr/open-source/ /tr/projects/ 301
 /de/open-source/ /de/projects/ 301
 /ja/open-source/ /ja/projects/ 301
 /zh-cn/open-source/ /zh-cn/projects/ 301

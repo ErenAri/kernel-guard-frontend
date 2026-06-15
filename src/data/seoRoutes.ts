@@ -52,7 +52,7 @@ const nonIndexableRouteSet = new Set<string>([
   ...baseNonIndexableRouteSet,
   ...Array.from(baseNonIndexableRouteSet).flatMap((route) =>
     SUPPORTED_LANGUAGES
-      .filter((language) => language !== 'tr')
+      .filter((language) => language !== 'en')
       .map((language) => localizePath(route, language)),
   ),
 ]);
