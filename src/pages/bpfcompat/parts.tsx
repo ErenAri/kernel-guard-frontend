@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 
 export const GITHUB_URL = 'https://github.com/Kernel-Guard/bpfcompat';
-export const DEMO_URL = 'https://demo.kernelguard.net/';
+export const DEMO_URL = 'https://bpfcompat.kernelguard.net/';
 export const DOCS_URL = 'https://github.com/Kernel-Guard/bpfcompat/tree/main/docs';
 const DOC_BASE = 'https://github.com/Kernel-Guard/bpfcompat/blob/main';
 
