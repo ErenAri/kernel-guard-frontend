@@ -706,6 +706,85 @@ export function ScopePanel() {
   );
 }
 
+export function WhyBuilt() {
+  const t = useBp();
+  const refs = [
+    { label: 'little-vm-helper (Cilium)', href: 'https://github.com/cilium/little-vm-helper' },
+    { label: 'falcosecurity/kernel-testing', href: 'https://github.com/falcosecurity/kernel-testing' },
+    { label: 'bpfvalidator', href: 'https://github.com/Andreagit97/bpfvalidator' },
+  ];
+  return (
+    <div className="max-w-3xl mx-auto text-center">
+      <Kicker className="mb-5">{t.why.eyebrow}</Kicker>
+      <h2 className="text-3xl md:text-5xl font-light text-foreground tracking-tight">{t.why.heading}</h2>
+      <p className="mt-6 text-lg font-light text-foreground/70 leading-relaxed">{t.why.body}</p>
+      <div className="mt-8 flex flex-wrap justify-center items-center gap-x-4 gap-y-2">
+        <span className="text-xs font-mono uppercase tracking-wider text-foreground/40">{t.why.sources}:</span>
+        {refs.map((r) => (
+          <a
+            key={r.href}
+            href={r.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs font-mono text-primary hover:underline normal-case"
+          >
+            {r.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export function ComparisonTable() {
+  const t = useBp();
+  const cols = ['bpfcompat', 'LVH (Cilium)', 'bpfvalidator', t.compare.colDiy];
+  const glyph = (c: string) => {
+    if (c === '✓') return <span className="text-primary" aria-label="yes">✓</span>;
+    if (c === '–') return <span className="text-foreground/25" aria-label="no">–</span>;
+    if (c === '~') return <span className="text-foreground/50" aria-label="partial">~</span>;
+    return <span className="text-foreground/80 font-light">{c}</span>;
+  };
+  return (
+    <div>
+      <div className="text-center max-w-2xl mx-auto mb-10">
+        <Kicker className="mb-5">{t.compare.eyebrow}</Kicker>
+        <h2 className="text-3xl md:text-5xl font-light text-foreground tracking-tight">{t.compare.heading}</h2>
+      </div>
+      <div className="overflow-x-auto border border-border">
+        <table className="w-full min-w-[720px] text-sm border-collapse">
+          <thead>
+            <tr className="bg-surface">
+              <th className="text-left p-4 font-mono text-xs uppercase tracking-wider text-foreground/50 font-normal" />
+              {cols.map((c, i) => (
+                <th
+                  key={c}
+                  className={`text-left p-4 font-mono text-xs uppercase tracking-wider font-normal ${i === 0 ? 'text-primary' : 'text-foreground/50'}`}
+                >
+                  {c}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {t.compare.rows.map((row) => (
+              <tr key={row.label} className="border-t border-border">
+                <td className="p-4 text-foreground/80 font-light">{row.label}</td>
+                {row.cells.map((cell, i) => (
+                  <td key={`${row.label}-${i}`} className={`p-4 ${i === 0 ? 'bg-primary/5' : ''}`}>
+                    {glyph(cell)}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="mt-4 text-sm font-mono text-foreground/50 normal-case">{t.compare.note}</p>
+    </div>
+  );
+}
+
 export function ToolchainBand() {
   const t = useBp();
   const prefix = useLangPrefix();
