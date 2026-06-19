@@ -54,6 +54,11 @@ export interface BpStrings {
     heading: string; isLabel: string; isNotLabel: string;
     isList: string[]; isNotList: string[]; footer: string;
   };
+  why: { eyebrow: string; heading: string; body: string; sources: string };
+  compare: {
+    eyebrow: string; heading: string; note: string; colDiy: string;
+    rows: Array<{ label: string; cells: [string, string, string, string] }>;
+  };
   toolchain: {
     eyebrow: string; heading: string;
     beforeShip: string; atRuntime: string; youAreHere: string; viewProject: string;
@@ -159,6 +164,26 @@ const en: BpStrings = {
       'Runtime decisioning — available as an experimental, operator-gated preview',
     ],
     footer: 'Version 0.1.5 is deliberately scoped: a dependable compatibility gate first, with runtime delivery layered on as it hardens. Not just a label — the evidence and docs are in the repo.',
+  },
+  why: {
+    eyebrow: 'Why this exists',
+    heading: 'Every serious eBPF team ends up building this.',
+    body: 'Cilium and Tetragon boot their probes across kernels with little-vm-helper. Falco maintains a Firecracker-based kernel-testing framework. There is no off-the-shelf way to prove a compiled BPF object loads across the kernels you ship to — so teams build their own VM harness, or find out in production. bpfcompat packages that capability as a drop-in CI gate.',
+    sources: 'Public references',
+  },
+  compare: {
+    eyebrow: 'How it compares',
+    heading: 'Where bpfcompat fits.',
+    note: 'These are excellent tools. bpfcompat does not replace the lower-level building blocks — it packages the compatibility-gate use case so you do not assemble it yourself.',
+    colDiy: 'Roll your own (vmtest)',
+    rows: [
+      { label: 'What it is', cells: ['Drop-in compat gate + report', 'VM building block', 'Falco driver validator', 'DIY VM harness'] },
+      { label: 'Boots real kernels in VMs', cells: ['✓', '✓', '✓', '✓'] },
+      { label: 'Curated multi-distro matrix included', cells: ['✓', '~', '~', '–'] },
+      { label: 'Per-kernel verifier · BTF · classification in report', cells: ['✓', '–', '~', '–'] },
+      { label: 'One-line GitHub Action + job summary', cells: ['✓', '✓', '~', '–'] },
+      { label: 'Best when', cells: ['you want a drop-in gate + shareable evidence', 'you already live in Cilium tooling', 'you validate Falco drivers', 'you need full control / custom kernels'] },
+    ],
   },
   toolchain: {
     eyebrow: 'Kernel Guard eBPF toolchain',
@@ -272,6 +297,26 @@ const tr: BpStrings = {
     ],
     footer: '0.1.5 sürümü bilinçli olarak kapsamlandı: önce güvenilir bir uyumluluk kapısı, olgunlaştıkça eklenen çalışma zamanı teslimi. Yalnızca bir etiket değil — kanıt ve belgeler depoda.',
   },
+  why: {
+    eyebrow: 'Bu neden var',
+    heading: 'Ciddi her eBPF ekibi eninde sonunda bunu kendi kuruyor.',
+    body: 'Cilium ve Tetragon, probe’larını little-vm-helper ile birçok çekirdekte başlatır. Falco, Firecracker tabanlı bir kernel-testing çerçevesi sürdürür. Derlenmiş bir BPF nesnesinin gönderim yaptığınız çekirdeklerde yüklendiğini kanıtlamanın hazır bir yolu yoktur — bu yüzden ekipler kendi VM düzeneklerini kurar ya da bunu üretimde öğrenir. bpfcompat, bu yeteneği hazır bir CI kapısı olarak paketler.',
+    sources: 'Herkese açık kaynaklar',
+  },
+  compare: {
+    eyebrow: 'Nasıl karşılaştırılır',
+    heading: 'bpfcompat nereye oturur.',
+    note: 'Bunlar mükemmel araçlar. bpfcompat, alt seviye yapı taşlarının yerini almaz — uyumluluk kapısı senaryosunu, kendiniz kurmayasınız diye paketler.',
+    colDiy: 'Kendin kur (vmtest)',
+    rows: [
+      { label: 'Ne olduğu', cells: ['Hazır uyumluluk kapısı + rapor', 'VM yapı taşı', 'Falco sürücü doğrulayıcı', 'El yapımı VM düzeneği'] },
+      { label: 'Gerçek çekirdekleri VM’lerde başlatır', cells: ['✓', '✓', '✓', '✓'] },
+      { label: 'Hazır çok dağıtımlı çekirdek matrisi', cells: ['✓', '~', '~', '–'] },
+      { label: 'Rapor başına doğrulayıcı · BTF · sınıflandırma', cells: ['✓', '–', '~', '–'] },
+      { label: 'Tek satırlık GitHub Action + iş özeti', cells: ['✓', '✓', '~', '–'] },
+      { label: 'En uygun olduğu durum', cells: ['hazır bir kapı + paylaşılabilir kanıt istiyorsanız', 'zaten Cilium araçlarının içindeyseniz', 'Falco sürücülerini doğruluyorsanız', 'tam kontrol / özel çekirdekler istiyorsanız'] },
+    ],
+  },
   toolchain: {
     eyebrow: 'Kernel Guard eBPF araç zinciri',
     heading: 'Çekirdek sınırı için tek bir araç zinciri.',
@@ -383,6 +428,26 @@ const de: BpStrings = {
       'Laufzeit-Entscheidung — als experimentelle, operator-geschützte Vorschau verfügbar',
     ],
     footer: 'Version 0.1.5 ist bewusst abgegrenzt: zuerst ein verlässliches Kompatibilitäts-Gate, danach schrittweise Laufzeit-Auslieferung, sobald sie reift. Kein bloßes Label — Nachweise und Doku liegen im Repo.',
+  },
+  why: {
+    eyebrow: 'Warum es das gibt',
+    heading: 'Jedes ernsthafte eBPF-Team baut das irgendwann selbst.',
+    body: 'Cilium und Tetragon starten ihre Probes mit little-vm-helper über viele Kernel. Falco pflegt ein Firecracker-basiertes kernel-testing-Framework. Es gibt keinen fertigen Weg zu beweisen, dass ein kompiliertes BPF-Objekt auf den Kerneln lädt, für die du auslieferst — also bauen Teams ihr eigenes VM-Harness oder erfahren es in der Produktion. bpfcompat verpackt diese Fähigkeit als sofort einsetzbares CI-Gate.',
+    sources: 'Öffentliche Referenzen',
+  },
+  compare: {
+    eyebrow: 'Im Vergleich',
+    heading: 'Wo bpfcompat hineinpasst.',
+    note: 'Das sind hervorragende Werkzeuge. bpfcompat ersetzt die Low-Level-Bausteine nicht — es verpackt den Kompatibilitäts-Gate-Anwendungsfall, damit du ihn nicht selbst zusammenbaust.',
+    colDiy: 'Selbst gebaut (vmtest)',
+    rows: [
+      { label: 'Was es ist', cells: ['Sofort einsetzbares Gate + Report', 'VM-Baustein', 'Falco-Treiber-Validator', 'DIY-VM-Harness'] },
+      { label: 'Startet echte Kernel in VMs', cells: ['✓', '✓', '✓', '✓'] },
+      { label: 'Kuratierte Multi-Distro-Matrix enthalten', cells: ['✓', '~', '~', '–'] },
+      { label: 'Verifier · BTF · Klassifizierung im Report', cells: ['✓', '–', '~', '–'] },
+      { label: 'Ein-Zeilen-GitHub-Action + Job-Summary', cells: ['✓', '✓', '~', '–'] },
+      { label: 'Am besten, wenn', cells: ['du ein sofort einsetzbares Gate + teilbare Nachweise willst', 'du bereits in Cilium-Tooling lebst', 'du Falco-Treiber validierst', 'du volle Kontrolle / eigene Kernel brauchst'] },
+    ],
   },
   toolchain: {
     eyebrow: 'Kernel Guard eBPF-Toolchain',
@@ -496,6 +561,26 @@ const es: BpStrings = {
     ],
     footer: 'La versión 0.1.5 tiene un alcance deliberado: primero una compuerta de compatibilidad fiable y, después, la entrega en ejecución a medida que madura. No es solo una etiqueta — la evidencia y la documentación están en el repositorio.',
   },
+  why: {
+    eyebrow: 'Por qué existe',
+    heading: 'Todo equipo de eBPF serio acaba construyendo esto.',
+    body: 'Cilium y Tetragon arrancan sus probes en muchos kernels con little-vm-helper. Falco mantiene un framework de kernel-testing basado en Firecracker. No existe una forma lista para usar de demostrar que un objeto BPF compilado carga en los kernels a los que despliegas — así que los equipos construyen su propio arnés de VM, o lo descubren en producción. bpfcompat empaqueta esa capacidad como una compuerta de CI lista para usar.',
+    sources: 'Referencias públicas',
+  },
+  compare: {
+    eyebrow: 'Cómo se compara',
+    heading: 'Dónde encaja bpfcompat.',
+    note: 'Son herramientas excelentes. bpfcompat no reemplaza los bloques de bajo nivel — empaqueta el caso de uso de la compuerta de compatibilidad para que no lo montes tú mismo.',
+    colDiy: 'Hazlo tú mismo (vmtest)',
+    rows: [
+      { label: 'Qué es', cells: ['Compuerta lista + informe', 'Bloque de VM', 'Validador de drivers de Falco', 'Arnés de VM casero'] },
+      { label: 'Arranca kernels reales en VMs', cells: ['✓', '✓', '✓', '✓'] },
+      { label: 'Matriz multi-distro curada incluida', cells: ['✓', '~', '~', '–'] },
+      { label: 'Verificador · BTF · clasificación en el informe', cells: ['✓', '–', '~', '–'] },
+      { label: 'GitHub Action de una línea + resumen del job', cells: ['✓', '✓', '~', '–'] },
+      { label: 'Mejor cuando', cells: ['quieres una compuerta lista + evidencia compartible', 'ya vives en el tooling de Cilium', 'validas drivers de Falco', 'necesitas control total / kernels propios'] },
+    ],
+  },
   toolchain: {
     eyebrow: 'Cadena de herramientas eBPF de Kernel Guard',
     heading: 'Una cadena de herramientas para la frontera del kernel.',
@@ -607,6 +692,26 @@ const fr: BpStrings = {
       'La décision à l’exécution — disponible en aperçu expérimental, réservé aux opérateurs',
     ],
     footer: 'La version 0.1.5 a un périmètre délibéré : d’abord une barrière de compatibilité fiable, puis la livraison à l’exécution à mesure qu’elle mûrit. Pas qu’une étiquette — les preuves et la documentation sont dans le dépôt.',
+  },
+  why: {
+    eyebrow: 'Pourquoi ça existe',
+    heading: 'Toute équipe eBPF sérieuse finit par construire ça.',
+    body: 'Cilium et Tetragon démarrent leurs probes sur de nombreux noyaux avec little-vm-helper. Falco maintient un framework kernel-testing basé sur Firecracker. Il n’existe pas de moyen prêt à l’emploi de prouver qu’un objet BPF compilé se charge sur les noyaux que vous ciblez — alors les équipes construisent leur propre harnais de VM, ou le découvrent en production. bpfcompat empaquette cette capacité sous forme de barrière CI prête à l’emploi.',
+    sources: 'Références publiques',
+  },
+  compare: {
+    eyebrow: 'Comparaison',
+    heading: 'Où se situe bpfcompat.',
+    note: 'Ce sont d’excellents outils. bpfcompat ne remplace pas les briques de bas niveau — il empaquette le cas d’usage de la barrière de compatibilité pour que vous n’ayez pas à l’assembler.',
+    colDiy: 'Fait maison (vmtest)',
+    rows: [
+      { label: 'Ce que c’est', cells: ['Barrière prête + rapport', 'Brique de VM', 'Validateur de drivers Falco', 'Harnais de VM maison'] },
+      { label: 'Démarre de vrais noyaux en VM', cells: ['✓', '✓', '✓', '✓'] },
+      { label: 'Matrice multi-distros curée incluse', cells: ['✓', '~', '~', '–'] },
+      { label: 'Vérificateur · BTF · classification dans le rapport', cells: ['✓', '–', '~', '–'] },
+      { label: 'GitHub Action en une ligne + résumé du job', cells: ['✓', '✓', '~', '–'] },
+      { label: 'Idéal quand', cells: ['vous voulez une barrière prête + des preuves partageables', 'vous vivez déjà dans l’outillage Cilium', 'vous validez des drivers Falco', 'vous voulez un contrôle total / des noyaux sur mesure'] },
+    ],
   },
   toolchain: {
     eyebrow: 'Chaîne d’outils eBPF de Kernel Guard',
@@ -720,6 +825,26 @@ const ja: BpStrings = {
     ],
     footer: 'バージョン 0.1.5 は意図的に範囲を絞っています。まず信頼できる互換性ゲート、成熟に応じてランタイム配信を重ねます。単なるラベルではなく、証拠とドキュメントはリポジトリにあります。',
   },
+  why: {
+    eyebrow: 'なぜ存在するのか',
+    heading: '本気の eBPF チームは、結局これを自前で作る。',
+    body: 'Cilium と Tetragon は little-vm-helper で多数のカーネル上にプローブを起動します。Falco は Firecracker ベースの kernel-testing フレームワークを維持しています。コンパイル済みの BPF オブジェクトが、出荷先のカーネルで読み込めることを証明する既製の方法はありません — だからチームは自前の VM ハーネスを作るか、本番で気づくことになります。bpfcompat は、その機能をそのまま使える CI ゲートとしてパッケージ化します。',
+    sources: '公開リファレンス',
+  },
+  compare: {
+    eyebrow: '比較',
+    heading: 'bpfcompat の立ち位置。',
+    note: 'これらは優れたツールです。bpfcompat は低レベルの構成要素を置き換えるものではなく、互換性ゲートのユースケースを、自分で組み立てなくて済むようにパッケージ化します。',
+    colDiy: '自作（vmtest）',
+    rows: [
+      { label: '何であるか', cells: ['そのまま使える互換性ゲート + レポート', 'VM の構成要素', 'Falco ドライバ検証ツール', '自作の VM ハーネス'] },
+      { label: '実カーネルを VM で起動', cells: ['✓', '✓', '✓', '✓'] },
+      { label: 'キュレーション済みマルチディストロ・マトリクス同梱', cells: ['✓', '~', '~', '–'] },
+      { label: 'レポートにベリファイア・BTF・分類', cells: ['✓', '–', '~', '–'] },
+      { label: '1 行の GitHub Action + ジョブサマリ', cells: ['✓', '✓', '~', '–'] },
+      { label: '最適なケース', cells: ['そのまま使えるゲート + 共有可能な証拠が欲しい', 'すでに Cilium のツール群を使っている', 'Falco ドライバを検証する', '完全な制御 / 独自カーネルが必要'] },
+    ],
+  },
   toolchain: {
     eyebrow: 'Kernel Guard eBPF ツールチェーン',
     heading: 'カーネル境界のための、ひとつのツールチェーン。',
@@ -832,6 +957,26 @@ const zhCN: BpStrings = {
     ],
     footer: '0.1.5 版本是有意限定范围的：先做可靠的兼容性闸门，再随着成熟逐步叠加运行时交付。这不仅是一个标注——证据与文档都在仓库中。',
   },
+  why: {
+    eyebrow: '为什么会有它',
+    heading: '认真做 eBPF 的团队，最终都会自己造这个。',
+    body: 'Cilium 和 Tetragon 用 little-vm-helper 在众多内核上启动它们的探针。Falco 维护着一个基于 Firecracker 的 kernel-testing 框架。没有现成的方法可以证明一个已编译的 BPF 对象能在你要发布的内核上加载——于是团队要么自建 VM 测试台，要么在生产中才发现问题。bpfcompat 把这一能力打包成一个开箱即用的 CI 闸门。',
+    sources: '公开参考',
+  },
+  compare: {
+    eyebrow: '如何比较',
+    heading: 'bpfcompat 的定位。',
+    note: '这些都是优秀的工具。bpfcompat 并不替代底层构件——它把“兼容性闸门”这一用例打包好，省去你自己拼装。',
+    colDiy: '自行搭建（vmtest）',
+    rows: [
+      { label: '它是什么', cells: ['开箱即用的兼容性闸门 + 报告', 'VM 构件', 'Falco 驱动验证器', '自制 VM 测试台'] },
+      { label: '在 VM 中启动真实内核', cells: ['✓', '✓', '✓', '✓'] },
+      { label: '内置精选的多发行版矩阵', cells: ['✓', '~', '~', '–'] },
+      { label: '报告含校验器 · BTF · 分类', cells: ['✓', '–', '~', '–'] },
+      { label: '一行 GitHub Action + 作业摘要', cells: ['✓', '✓', '~', '–'] },
+      { label: '何时最适合', cells: ['想要开箱即用的闸门 + 可分享的证据', '已经在使用 Cilium 工具链', '要验证 Falco 驱动', '需要完全掌控 / 自定义内核'] },
+    ],
+  },
   toolchain: {
     eyebrow: 'Kernel Guard eBPF 工具链',
     heading: '面向内核边界的一套工具链。',
@@ -943,6 +1088,26 @@ const ko: BpStrings = {
       '런타임 결정 — 실험적이며 운영자 전용 미리보기로 제공',
     ],
     footer: '버전 0.1.5는 의도적으로 범위를 좁혔습니다: 먼저 신뢰할 수 있는 호환성 게이트, 이후 성숙해짐에 따라 런타임 전달을 더합니다. 단순한 라벨이 아니라 증거와 문서가 저장소에 있습니다.',
+  },
+  why: {
+    eyebrow: '왜 존재하는가',
+    heading: '진지한 eBPF 팀은 결국 이것을 직접 만든다.',
+    body: 'Cilium과 Tetragon은 little-vm-helper로 여러 커널에서 프로브를 부팅합니다. Falco는 Firecracker 기반 kernel-testing 프레임워크를 유지합니다. 컴파일된 BPF 오브젝트가 배포 대상 커널에서 로드되는지 증명하는 기성 방법은 없습니다 — 그래서 팀들은 자체 VM 하니스를 만들거나, 프로덕션에서 알게 됩니다. bpfcompat은 그 기능을 바로 쓸 수 있는 CI 게이트로 패키징합니다.',
+    sources: '공개 참고자료',
+  },
+  compare: {
+    eyebrow: '비교',
+    heading: 'bpfcompat의 위치.',
+    note: '모두 훌륭한 도구입니다. bpfcompat은 저수준 구성요소를 대체하지 않습니다 — 호환성 게이트 사용 사례를 직접 조립하지 않아도 되도록 패키징합니다.',
+    colDiy: '직접 구축 (vmtest)',
+    rows: [
+      { label: '무엇인가', cells: ['바로 쓰는 호환성 게이트 + 리포트', 'VM 구성요소', 'Falco 드라이버 검증기', '자체 VM 하니스'] },
+      { label: '실제 커널을 VM에서 부팅', cells: ['✓', '✓', '✓', '✓'] },
+      { label: '큐레이션된 다중 배포판 매트릭스 포함', cells: ['✓', '~', '~', '–'] },
+      { label: '리포트에 검증기 · BTF · 분류', cells: ['✓', '–', '~', '–'] },
+      { label: '한 줄 GitHub Action + 잡 요약', cells: ['✓', '✓', '~', '–'] },
+      { label: '가장 적합할 때', cells: ['바로 쓰는 게이트 + 공유 가능한 증거가 필요할 때', '이미 Cilium 도구를 쓰고 있을 때', 'Falco 드라이버를 검증할 때', '완전한 제어 / 커스텀 커널이 필요할 때'] },
+    ],
   },
   toolchain: {
     eyebrow: 'Kernel Guard eBPF 툴체인',

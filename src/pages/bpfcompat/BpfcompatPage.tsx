@@ -16,6 +16,7 @@ import {
   Chip, HeroCtas, MatrixTerminal, CompatibilityMatrix, Legend, HowItWorks,
   ProblemCards, AdoptionTabs, RepoEvidence, ScopePanel, ToolchainBand,
   Reveal, BigStat, DocsSection, ProjectBreadcrumb, FinalCtaWithDocs,
+  WhyBuilt, ComparisonTable,
   Kicker, Caret, GITHUB_URL, DEMO_URL, REPORT,
 } from './parts';
 
@@ -119,6 +120,13 @@ export default function BpfcompatPage() {
           </div>
         </section>
 
+        {/* 3b — why this exists */}
+        <section className="py-24 md:py-28 border-b border-border">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Reveal><WhyBuilt /></Reveal>
+          </div>
+        </section>
+
         {/* 4 — by the numbers */}
         <section className="py-24 md:py-28 border-b border-border">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -190,6 +198,13 @@ export default function BpfcompatPage() {
         <section className="py-24 bg-surface border-b border-border">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <Reveal><RepoEvidence /></Reveal>
+          </div>
+        </section>
+
+        {/* 9b — how it compares */}
+        <section className="py-24 md:py-28 border-b border-border">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Reveal><ComparisonTable /></Reveal>
           </div>
         </section>
 
