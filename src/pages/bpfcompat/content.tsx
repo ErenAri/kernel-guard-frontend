@@ -95,7 +95,7 @@ const en: BpStrings = {
   stats: [
     { value: '5.x–6.x', label: 'Kernel range tested' },
     { value: 'x86_64 · ARM64', label: 'Architectures' },
-    { value: '4', label: 'Output formats' },
+    { value: '14', label: 'Enterprise kernels proven' },
     { value: 'exit 2', label: 'The CI gate' },
   ],
   how: {
@@ -227,7 +227,7 @@ const tr: BpStrings = {
   stats: [
     { value: '5.x–6.x', label: 'Test edilen çekirdek aralığı' },
     { value: 'x86_64 · ARM64', label: 'Mimariler' },
-    { value: '4', label: 'Çıktı biçimi' },
+    { value: '14', label: 'Kanıtlanan kurumsal çekirdek' },
     { value: 'exit 2', label: 'CI kapısı' },
   ],
   how: {
@@ -359,7 +359,7 @@ const de: BpStrings = {
   stats: [
     { value: '5.x–6.x', label: 'Getesteter Kernel-Bereich' },
     { value: 'x86_64 · ARM64', label: 'Architekturen' },
-    { value: '4', label: 'Ausgabeformate' },
+    { value: '14', label: 'Geprüfte Enterprise-Kernel' },
     { value: 'exit 2', label: 'Das CI-Gate' },
   ],
   how: {
@@ -491,7 +491,7 @@ const es: BpStrings = {
   stats: [
     { value: '5.x–6.x', label: 'Rango de kernels probado' },
     { value: 'x86_64 · ARM64', label: 'Arquitecturas' },
-    { value: '4', label: 'Formatos de salida' },
+    { value: '14', label: 'Kernels enterprise probados' },
     { value: 'exit 2', label: 'La compuerta de CI' },
   ],
   how: {
@@ -623,7 +623,7 @@ const fr: BpStrings = {
   stats: [
     { value: '5.x–6.x', label: 'Plage de noyaux testée' },
     { value: 'x86_64 · ARM64', label: 'Architectures' },
-    { value: '4', label: 'Formats de sortie' },
+    { value: '14', label: 'Noyaux enterprise validés' },
     { value: 'exit 2', label: 'La barrière CI' },
   ],
   how: {
@@ -755,7 +755,7 @@ const ja: BpStrings = {
   stats: [
     { value: '5.x–6.x', label: 'テスト済みカーネル範囲' },
     { value: 'x86_64 · ARM64', label: 'アーキテクチャ' },
-    { value: '4', label: '出力形式' },
+    { value: '14', label: '検証済みエンタープライズカーネル' },
     { value: 'exit 2', label: 'CI ゲート' },
   ],
   how: {
@@ -887,7 +887,7 @@ const zhCN: BpStrings = {
   stats: [
     { value: '5.x–6.x', label: '已测试内核范围' },
     { value: 'x86_64 · ARM64', label: '架构' },
-    { value: '4', label: '输出格式' },
+    { value: '14', label: '已验证的企业内核' },
     { value: 'exit 2', label: 'CI 闸门' },
   ],
   how: {
@@ -1019,7 +1019,7 @@ const ko: BpStrings = {
   stats: [
     { value: '5.x–6.x', label: '테스트된 커널 범위' },
     { value: 'x86_64 · ARM64', label: '아키텍처' },
-    { value: '4', label: '출력 형식' },
+    { value: '14', label: '검증된 엔터프라이즈 커널' },
     { value: 'exit 2', label: 'CI 게이트' },
   ],
   how: {
