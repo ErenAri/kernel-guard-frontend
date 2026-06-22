@@ -153,8 +153,8 @@ const en: BpStrings = {
     heading: 'What it is — and what comes next.',
     isLabel: 'Available today', isNotLabel: 'On the roadmap',
     isList: [
-      'Real load-and-attach evidence from inside real kernels',
-      'A CI gate with deterministic exit codes — ships as a GitHub Action',
+      'Real load-and-attach evidence from inside real kernels — a local .bpf.o or a published gadget by OCI reference',
+      'Run it locally or as a CI gate — deterministic exit codes, ships as a GitHub Action',
       'A multi-distro, multi-arch kernel matrix (5.x–6.x, x86_64 + ARM64)',
       'Apache-2.0, fully open source',
     ],
@@ -168,7 +168,7 @@ const en: BpStrings = {
   why: {
     eyebrow: 'Why this exists',
     heading: 'Every serious eBPF team ends up building this.',
-    body: 'Cilium and Tetragon boot their probes across kernels with little-vm-helper. Falco maintains a Firecracker-based kernel-testing framework. There is no off-the-shelf way to prove a compiled BPF object loads across the kernels you ship to — so teams build their own VM harness, or find out in production. bpfcompat packages that capability as a drop-in CI gate.',
+    body: 'Cilium and Tetragon boot their probes across kernels with little-vm-helper. Falco maintains a Firecracker-based kernel-testing framework. There is no off-the-shelf way to prove a compiled BPF object loads across the kernels you ship to — so teams build their own VM harness, or find out in production. bpfcompat packages that capability so you can run it locally or as a drop-in CI gate.',
     sources: 'Public references',
   },
   compare: {
