@@ -163,7 +163,7 @@ const en: BpStrings = {
       'A multi-tenant SaaS — the hosted UI is a single-tenant Technical Preview',
       'Runtime decisioning — available as an experimental, operator-gated preview',
     ],
-    footer: 'Version 0.1.5 is deliberately scoped: a dependable compatibility gate first, with runtime delivery layered on as it hardens. Not just a label — the evidence and docs are in the repo.',
+    footer: 'This release is deliberately scoped: a dependable compatibility gate first, with runtime delivery layered on as it hardens. Not just a label — the evidence and docs are in the repo.',
   },
   why: {
     eyebrow: 'Why this exists',
@@ -285,8 +285,8 @@ const tr: BpStrings = {
     heading: 'Ne olduğu — ve sırada ne olduğu.',
     isLabel: 'Bugün mevcut', isNotLabel: 'Yol haritasında',
     isList: [
-      'Gerçek çekirdeklerin içinden gerçek yükleme-ve-bağlama kanıtı',
-      'Belirlenimci çıkış kodlarına sahip bir CI kapısı — GitHub Action olarak gelir',
+      'Gerçek çekirdeklerin içinden gerçek yükleme-ve-bağlama kanıtı — yerel bir .bpf.o veya OCI referansıyla yayımlanmış bir gadget',
+      'İster yerelde ister CI kapısı olarak çalıştırın — belirlenimci çıkış kodları, GitHub Action olarak gelir',
       'Çok dağıtımlı, çok mimarili bir çekirdek matrisi (5.x–6.x, x86_64 + ARM64)',
       'Apache-2.0, tümüyle açık kaynak',
     ],
@@ -295,7 +295,7 @@ const tr: BpStrings = {
       'Çok kiracılı bir SaaS değil — barındırılan arayüz tek kiracılı bir Teknik Önizleme',
       'Çalışma zamanı kararı — deneysel, operatör korumalı bir önizleme olarak mevcut',
     ],
-    footer: '0.1.5 sürümü bilinçli olarak kapsamlandı: önce güvenilir bir uyumluluk kapısı, olgunlaştıkça eklenen çalışma zamanı teslimi. Yalnızca bir etiket değil — kanıt ve belgeler depoda.',
+    footer: 'Bu sürüm bilinçli olarak kapsamlandı: önce güvenilir bir uyumluluk kapısı, olgunlaştıkça eklenen çalışma zamanı teslimi. Yalnızca bir etiket değil — kanıt ve belgeler depoda.',
   },
   why: {
     eyebrow: 'Bu neden var',
@@ -417,8 +417,8 @@ const de: BpStrings = {
     heading: 'Was es ist — und was als Nächstes kommt.',
     isLabel: 'Heute verfügbar', isNotLabel: 'Auf der Roadmap',
     isList: [
-      'Echter Lade- und Attach-Nachweis aus echten Kerneln',
-      'Ein CI-Gate mit deterministischen Exit-Codes — als GitHub Action verfügbar',
+      'Echter Lade- und Attach-Nachweis aus echten Kerneln — eine lokale .bpf.o oder ein per OCI-Referenz veröffentlichtes Gadget',
+      'Lokal oder als CI-Gate ausführen — deterministische Exit-Codes, als GitHub Action verfügbar',
       'Eine Multi-Distro-, Multi-Arch-Kernel-Matrix (5.x–6.x, x86_64 + ARM64)',
       'Apache-2.0, vollständig Open Source',
     ],
@@ -427,7 +427,7 @@ const de: BpStrings = {
       'Ein mandantenfähiges SaaS — die gehostete UI ist eine Single-Tenant-Vorschau',
       'Laufzeit-Entscheidung — als experimentelle, operator-geschützte Vorschau verfügbar',
     ],
-    footer: 'Version 0.1.5 ist bewusst abgegrenzt: zuerst ein verlässliches Kompatibilitäts-Gate, danach schrittweise Laufzeit-Auslieferung, sobald sie reift. Kein bloßes Label — Nachweise und Doku liegen im Repo.',
+    footer: 'Diese Version ist bewusst abgegrenzt: zuerst ein verlässliches Kompatibilitäts-Gate, danach schrittweise Laufzeit-Auslieferung, sobald sie reift. Kein bloßes Label — Nachweise und Doku liegen im Repo.',
   },
   why: {
     eyebrow: 'Warum es das gibt',
@@ -549,8 +549,8 @@ const es: BpStrings = {
     heading: 'Lo que es — y lo que viene después.',
     isLabel: 'Disponible hoy', isNotLabel: 'En la hoja de ruta',
     isList: [
-      'Evidencia real de carga y attach desde dentro de kernels reales',
-      'Una compuerta de CI con códigos de salida deterministas — se entrega como GitHub Action',
+      'Evidencia real de carga y attach desde dentro de kernels reales — un .bpf.o local o un gadget publicado por referencia OCI',
+      'Ejecútalo en local o como compuerta de CI — códigos de salida deterministas, se entrega como GitHub Action',
       'Una matriz de kernels multi-distro y multi-arquitectura (5.x–6.x, x86_64 + ARM64)',
       'Apache-2.0, totalmente de código abierto',
     ],
@@ -559,7 +559,7 @@ const es: BpStrings = {
       'Un SaaS multiinquilino — la interfaz alojada es una Vista previa técnica de un solo inquilino',
       'Decisión en tiempo de ejecución — disponible como vista previa experimental, con control de operador',
     ],
-    footer: 'La versión 0.1.5 tiene un alcance deliberado: primero una compuerta de compatibilidad fiable y, después, la entrega en ejecución a medida que madura. No es solo una etiqueta — la evidencia y la documentación están en el repositorio.',
+    footer: 'Esta versión tiene un alcance deliberado: primero una compuerta de compatibilidad fiable y, después, la entrega en ejecución a medida que madura. No es solo una etiqueta — la evidencia y la documentación están en el repositorio.',
   },
   why: {
     eyebrow: 'Por qué existe',
@@ -681,8 +681,8 @@ const fr: BpStrings = {
     heading: 'Ce que c’est — et ce qui vient ensuite.',
     isLabel: 'Disponible aujourd’hui', isNotLabel: 'Sur la feuille de route',
     isList: [
-      'De vraies preuves de chargement et d’attach depuis de vrais noyaux',
-      'Une barrière CI avec des codes de sortie déterministes — livrée comme GitHub Action',
+      'De vraies preuves de chargement et d’attach depuis de vrais noyaux — un .bpf.o local ou un gadget publié via une référence OCI',
+      'À exécuter en local ou comme barrière CI — codes de sortie déterministes, livrée comme GitHub Action',
       'Une matrice de noyaux multi-distros et multi-architectures (5.x–6.x, x86_64 + ARM64)',
       'Apache-2.0, entièrement open source',
     ],
@@ -691,7 +691,7 @@ const fr: BpStrings = {
       'Un SaaS multi-locataire — l’interface hébergée est un Aperçu technique mono-locataire',
       'La décision à l’exécution — disponible en aperçu expérimental, réservé aux opérateurs',
     ],
-    footer: 'La version 0.1.5 a un périmètre délibéré : d’abord une barrière de compatibilité fiable, puis la livraison à l’exécution à mesure qu’elle mûrit. Pas qu’une étiquette — les preuves et la documentation sont dans le dépôt.',
+    footer: 'Cette version a un périmètre délibéré : d’abord une barrière de compatibilité fiable, puis la livraison à l’exécution à mesure qu’elle mûrit. Pas qu’une étiquette — les preuves et la documentation sont dans le dépôt.',
   },
   why: {
     eyebrow: 'Pourquoi ça existe',
@@ -813,8 +813,8 @@ const ja: BpStrings = {
     heading: '何であるか — そして次に来るもの。',
     isLabel: '現在利用可能', isNotLabel: 'ロードマップ',
     isList: [
-      '本物のカーネル内部からの、実際の読み込み・アタッチの証拠',
-      '決定的な終了コードを持つ CI ゲート — GitHub Action として提供',
+      '本物のカーネル内部からの、実際の読み込み・アタッチの証拠 — ローカルの .bpf.o または OCI 参照で公開された gadget',
+      'ローカルでも CI ゲートとしても実行可能 — 決定的な終了コード、GitHub Action として提供',
       'マルチディストロ・マルチアーキテクチャのカーネルマトリクス（5.x–6.x、x86_64 + ARM64）',
       'Apache-2.0、完全なオープンソース',
     ],
@@ -823,7 +823,7 @@ const ja: BpStrings = {
       'マルチテナント SaaS — ホスト型 UI はシングルテナントのテクニカルプレビュー',
       'ランタイム判定 — 実験的な、オペレーター限定のプレビューとして提供',
     ],
-    footer: 'バージョン 0.1.5 は意図的に範囲を絞っています。まず信頼できる互換性ゲート、成熟に応じてランタイム配信を重ねます。単なるラベルではなく、証拠とドキュメントはリポジトリにあります。',
+    footer: 'このバージョンは意図的に範囲を絞っています。まず信頼できる互換性ゲート、成熟に応じてランタイム配信を重ねます。単なるラベルではなく、証拠とドキュメントはリポジトリにあります。',
   },
   why: {
     eyebrow: 'なぜ存在するのか',
@@ -945,8 +945,8 @@ const zhCN: BpStrings = {
     heading: '它是什么——以及接下来是什么。',
     isLabel: '现已提供', isNotLabel: '路线图',
     isList: [
-      '来自真实内核内部的真实加载与挂载证据',
-      '具有确定性退出码的 CI 闸门——以 GitHub Action 形式提供',
+      '来自真实内核内部的真实加载与挂载证据——本地 .bpf.o 或通过 OCI 引用发布的 gadget',
+      '可在本地或作为 CI 闸门运行——确定性退出码，以 GitHub Action 形式提供',
       '多发行版、多架构的内核矩阵（5.x–6.x，x86_64 + ARM64）',
       'Apache-2.0，完全开源',
     ],
@@ -955,7 +955,7 @@ const zhCN: BpStrings = {
       '多租户 SaaS——托管界面是单租户的技术预览',
       '运行时决策——以实验性、需操作员授权的预览形式提供',
     ],
-    footer: '0.1.5 版本是有意限定范围的：先做可靠的兼容性闸门，再随着成熟逐步叠加运行时交付。这不仅是一个标注——证据与文档都在仓库中。',
+    footer: '此版本是有意限定范围的：先做可靠的兼容性闸门，再随着成熟逐步叠加运行时交付。这不仅是一个标注——证据与文档都在仓库中。',
   },
   why: {
     eyebrow: '为什么会有它',
@@ -1077,8 +1077,8 @@ const ko: BpStrings = {
     heading: '무엇인지 — 그리고 다음에 무엇이 오는지.',
     isLabel: '현재 제공', isNotLabel: '로드맵',
     isList: [
-      '진짜 커널 내부에서 나온 실제 로드 및 attach 증거',
-      '결정적 종료 코드를 갖는 CI 게이트 — GitHub Action으로 제공',
+      '진짜 커널 내부에서 나온 실제 로드 및 attach 증거 — 로컬 .bpf.o 또는 OCI 참조로 게시된 gadget',
+      '로컬에서도 CI 게이트로도 실행 — 결정적 종료 코드, GitHub Action으로 제공',
       '다중 배포판·다중 아키텍처 커널 매트릭스(5.x–6.x, x86_64 + ARM64)',
       'Apache-2.0, 완전한 오픈소스',
     ],
@@ -1087,7 +1087,7 @@ const ko: BpStrings = {
       '멀티테넌트 SaaS — 호스팅 UI는 단일 테넌트 기술 미리보기',
       '런타임 결정 — 실험적이며 운영자 전용 미리보기로 제공',
     ],
-    footer: '버전 0.1.5는 의도적으로 범위를 좁혔습니다: 먼저 신뢰할 수 있는 호환성 게이트, 이후 성숙해짐에 따라 런타임 전달을 더합니다. 단순한 라벨이 아니라 증거와 문서가 저장소에 있습니다.',
+    footer: '이 버전은 의도적으로 범위를 좁혔습니다: 먼저 신뢰할 수 있는 호환성 게이트, 이후 성숙해짐에 따라 런타임 전달을 더합니다. 단순한 라벨이 아니라 증거와 문서가 저장소에 있습니다.',
   },
   why: {
     eyebrow: '왜 존재하는가',
