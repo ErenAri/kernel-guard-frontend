@@ -7,6 +7,7 @@
  */
 
 import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { BPFCOMPAT_VERSION } from '../../data/version';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useBp } from './content';
 import {
@@ -426,7 +427,7 @@ export function MatrixTerminal({ compact = false }: { compact?: boolean }) {
       <div className="flex items-center gap-2 px-4 py-2.5 border-b border-[#393939] bg-[#262626]">
         <span className="w-2 h-2 bg-[#fa4d56]" />
         <span className="text-[11px] font-mono uppercase tracking-wider text-gray-400">simulated run</span>
-        <span className="text-[11px] font-mono text-gray-500">bpfcompat v0.1.6</span>
+        <span className="text-[11px] font-mono text-gray-500">bpfcompat {BPFCOMPAT_VERSION}</span>
         <button
           type="button"
           onClick={() => setPaused((p) => !p)}
@@ -509,11 +510,11 @@ function CopyButton({ text }: { text: string }) {
   );
 }
 
-const CLI_SNIPPET = `$ go install github.com/Kernel-Guard/bpfcompat@v0.1.6
+const CLI_SNIPPET = `$ go install github.com/Kernel-Guard/bpfcompat@${BPFCOMPAT_VERSION}
 $ bpfcompat test ./build/probe.bpf.o --kernel ubuntu-24.04
 $ bpfcompat suite run suite.yaml --kernels kernels.yaml`;
 
-const ACTION_SNIPPET = `- uses: Kernel-Guard/bpfcompat@v0.1.6
+const ACTION_SNIPPET = `- uses: Kernel-Guard/bpfcompat@${BPFCOMPAT_VERSION}
   with:
     suite: ./bpf/suite.yaml
     kernels: ubuntu-lts, rhel-9
@@ -827,7 +828,7 @@ export function RepoEvidence() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <MetricCard label={t.repo.labels.primaryLanguage} value="Go (84%)" />
         <MetricCard label={t.repo.labels.license} value="Apache-2.0" />
-        <MetricCard label={t.repo.labels.latestRelease} value="v0.1.6" />
+        <MetricCard label={t.repo.labels.latestRelease} value={BPFCOMPAT_VERSION} />
         <MetricCard label={t.repo.labels.kernelRange} value="5.x – 6.x · x86_64 + ARM64" />
       </div>
       <div className="mt-6">
@@ -856,7 +857,7 @@ export function FinalCta({ headline }: { headline: string }) {
           <Github className="w-5 h-5" />
         </a>
       </div>
-      <p className="mt-8 text-xs font-mono uppercase tracking-wider text-foreground/50">Apache-2.0 · v0.1.6 · Technical Preview</p>
+      <p className="mt-8 text-xs font-mono uppercase tracking-wider text-foreground/50">Apache-2.0 · {BPFCOMPAT_VERSION} · Technical Preview</p>
     </div>
   );
 }
@@ -1099,7 +1100,7 @@ export function FinalCtaWithDocs({ headline }: { headline: string }) {
           <FileText className="w-5 h-5" />
         </a>
       </div>
-      <p className="mt-8 text-xs font-mono uppercase tracking-wider text-foreground/50">Apache-2.0 · v0.1.6 · Technical Preview</p>
+      <p className="mt-8 text-xs font-mono uppercase tracking-wider text-foreground/50">Apache-2.0 · {BPFCOMPAT_VERSION} · Technical Preview</p>
     </div>
   );
 }

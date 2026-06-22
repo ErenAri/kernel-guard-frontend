@@ -8,6 +8,7 @@
  */
 
 import { useRef } from 'react';
+import { BPFCOMPAT_VERSION } from '../../data/version';
 import { useLanguage } from '../../context/LanguageContext';
 import SEO from '../../components/SEO';
 import { buildSoftwareSourceCodeSchema } from '../../lib/schema';
@@ -61,7 +62,7 @@ export default function BpfcompatPage() {
               <div className="flex flex-wrap justify-center gap-2 mb-10">
                 <Chip>Apache-2.0</Chip>
                 <Chip>Go</Chip>
-                <Chip>v0.1.6</Chip>
+                <Chip>{BPFCOMPAT_VERSION}</Chip>
                 <Chip accent>{t.hero.chipPreview}</Chip>
               </div>
             </Reveal>
@@ -163,7 +164,7 @@ export default function BpfcompatPage() {
             <Reveal delayMs={120}>
               <div className="flex justify-end mb-4">
                 <span className="text-xs font-mono uppercase text-foreground/50">
-                  {REPORT.source} · bpfcompat {REPORT.version} · gate: {REPORT.gate} · source: report.json
+                  {REPORT.source} · bpfcompat {BPFCOMPAT_VERSION} · gate: {REPORT.gate} · source: report.json
                 </span>
               </div>
               <CompatibilityMatrix animateOnView={false} />

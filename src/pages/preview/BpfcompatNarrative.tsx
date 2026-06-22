@@ -7,6 +7,7 @@
  */
 
 import { useRef } from 'react';
+import { BPFCOMPAT_VERSION } from '../../data/version';
 import {
   Chip, Eyebrow, HeroCtas, CompatibilityMatrix, Legend, HowItWorks, ProblemCards,
   AdoptionTabs, RepoEvidence, ScopePanel, ToolchainBand, FinalCta,
@@ -104,7 +105,7 @@ export default function BpfcompatNarrative() {
               </h2>
             </div>
             <span className="text-xs font-mono uppercase text-foreground/50">
-              sample run · v0.1.6 · source: report.json
+              sample run · {BPFCOMPAT_VERSION} · source: report.json
             </span>
           </div>
           <CompatibilityMatrix />

@@ -6,6 +6,7 @@
  */
 
 import { useRef } from 'react';
+import { BPFCOMPAT_VERSION } from '../../data/version';
 import {
   Chip, Eyebrow, HeroCtas, MatrixTerminal, CompatibilityMatrix, Legend,
   HowItWorks, ProblemCards, AdoptionTabs, RepoEvidence, ScopePanel,
@@ -29,7 +30,7 @@ export default function BpfcompatVerdict() {
               <div className="flex flex-wrap gap-2 mb-8">
                 <Chip>Apache-2.0</Chip>
                 <Chip>Go</Chip>
-                <Chip>v0.1.6</Chip>
+                <Chip>{BPFCOMPAT_VERSION}</Chip>
                 <Chip accent>Technical Preview</Chip>
               </div>
               <h1 className="text-5xl md:text-7xl font-light text-foreground leading-[1.05] mb-8">
@@ -115,7 +116,7 @@ export default function BpfcompatVerdict() {
               </h2>
             </div>
             <span className="text-xs font-mono uppercase text-foreground/50">
-              sample run · v0.1.6 · source: report.json
+              sample run · {BPFCOMPAT_VERSION} · source: report.json
             </span>
           </div>
           <CompatibilityMatrix />
