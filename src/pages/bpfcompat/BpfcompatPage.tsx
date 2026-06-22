@@ -61,7 +61,7 @@ export default function BpfcompatPage() {
               <div className="flex flex-wrap justify-center gap-2 mb-10">
                 <Chip>Apache-2.0</Chip>
                 <Chip>Go</Chip>
-                <Chip>v0.1.5</Chip>
+                <Chip>v0.1.6</Chip>
                 <Chip accent>{t.hero.chipPreview}</Chip>
               </div>
             </Reveal>

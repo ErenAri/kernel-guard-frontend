@@ -37,7 +37,7 @@ export default function BpfcompatLaunch() {
             <div className="flex flex-wrap justify-center gap-2 mb-10">
               <Chip>Apache-2.0</Chip>
               <Chip>Go</Chip>
-              <Chip>v0.1.5</Chip>
+              <Chip>v0.1.6</Chip>
               <Chip accent>Technical Preview</Chip>
             </div>
           </Reveal>
@@ -144,7 +144,7 @@ export default function BpfcompatLaunch() {
           </Reveal>
           <Reveal delayMs={120}>
             <div className="flex justify-end mb-4">
-              <span className="text-xs font-mono uppercase text-foreground/50">sample run · v0.1.5 · source: report.json</span>
+              <span className="text-xs font-mono uppercase text-foreground/50">sample run · v0.1.6 · source: report.json</span>
             </div>
             <CompatibilityMatrix />
             <div className="mt-8"><Legend /></div>

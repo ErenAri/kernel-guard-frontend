@@ -1,6 +1,6 @@
 {
   "tool": "bpfcompat",
-  "version": "v0.1.5",
+  "version": "v0.1.6",
   "generatedAt": "2026-06-02",
   "gate": "load-attach",
   "source": "examples/example-collection",
