@@ -46,6 +46,15 @@ export interface BpStrings {
     actionNote: string;
     webSteps: string[]; webButton: string; webNote: string;
   };
+  install: {
+    eyebrow: string;
+    heading: string;
+    subline: string;
+    methods: Array<{ title: string; note: string; alt: string }>;
+    runHeading: string;
+    runNote: string;
+    runAlt: string;
+  };
   repo: {
     title: string; measured: string; github: string; languageMix: string;
     labels: { primaryLanguage: string; license: string; latestRelease: string; kernelRange: string };
@@ -144,6 +153,19 @@ const en: BpStrings = {
     ],
     webButton: 'Open the Technical Preview',
     webNote: 'Runs on shared infrastructure and is rate-limited. No account required.',
+  },
+  install: {
+    eyebrow: 'Install',
+    heading: 'Install the CLI in one command.',
+    subline: 'Three verified ways to get bpfcompat — a prebuilt release binary, a source build, or go install. Every command below was run on a real KVM host.',
+    methods: [
+      { title: 'Prebuilt release binary', note: 'Recommended. Ships the CLI and the in-guest validator, checksum-verified. Linux x86_64.', alt: 'Terminal: downloading the bpfcompat release binary, verifying its checksum, and printing the version.' },
+      { title: 'From source', note: 'Builds the CLI and the validator, and stamps the binary with the real version.', alt: 'Terminal: cloning the repository and running make build and make validator-static.' },
+      { title: 'go install', note: 'CLI only. Use the lowercase module path and the cmd/bpfcompat subpackage — the bare module path does not install.', alt: 'Terminal: installing bpfcompat with go install and printing the version.' },
+    ],
+    runHeading: 'Then run it across real kernels.',
+    runNote: 'bpfcompat test boots each kernel in a disposable VM and returns a per-kernel pass/fail matrix — here failing on 5.4 (ring buffer support lands in 5.8) and passing on 6.1 and 6.8.',
+    runAlt: 'Terminal: a bpfcompat validation run showing ubuntu-20.04-5.4 fail, debian-12-6.1 pass, and ubuntu-24.04-6.8 pass.',
   },
   repo: {
     title: 'Repository evidence', measured: 'Measured from the public repository.', github: 'GitHub', languageMix: 'Language mix',
@@ -277,6 +299,19 @@ const tr: BpStrings = {
     webButton: 'Teknik Önizlemeyi aç',
     webNote: 'Paylaşılan altyapıda çalışır ve hız sınırlıdır. Hesap gerekmez.',
   },
+  install: {
+    eyebrow: 'Kurulum',
+    heading: "CLI'yi tek komutla kurun.",
+    subline: "bpfcompat'ı edinmenin üç doğrulanmış yolu — hazır sürüm ikilisi, kaynaktan derleme veya go install. Aşağıdaki her komut gerçek bir KVM ana makinesinde çalıştırıldı.",
+    methods: [
+      { title: 'Hazır sürüm ikilisi', note: 'Önerilen. CLI ile konuk içi doğrulayıcıyı, sağlama toplamı doğrulanmış olarak getirir. Linux x86_64.', alt: 'Terminal: bpfcompat sürüm ikilisini indirme, sağlama toplamını doğrulama ve sürümü yazdırma.' },
+      { title: 'Kaynaktan', note: "CLI ve doğrulayıcıyı derler, ikiliye gerçek sürümü işler.", alt: "Terminal: depoyu klonlama ve make build ile make validator-static çalıştırma." },
+      { title: 'go install', note: "Yalnızca CLI. Küçük harfli modül yolunu ve cmd/bpfcompat alt paketini kullanın — yalın modül yolu kurulmaz.", alt: 'Terminal: go install ile bpfcompat kurma ve sürümü yazdırma.' },
+    ],
+    runHeading: 'Sonra gerçek çekirdeklerde çalıştırın.',
+    runNote: 'bpfcompat test her çekirdeği tek kullanımlık bir VM içinde başlatır ve çekirdek başına geçti/kaldı matrisi döndürür — burada 5.4 üzerinde başarısız (ring buffer desteği 5.8 ile gelir), 6.1 ve 6.8 üzerinde geçer.',
+    runAlt: 'Terminal: ubuntu-20.04-5.4 kaldı, debian-12-6.1 geçti ve ubuntu-24.04-6.8 geçti gösteren bir bpfcompat doğrulama çalıştırması.',
+  },
   repo: {
     title: 'Depo kanıtı', measured: 'Herkese açık depodan ölçüldü.', github: 'GitHub', languageMix: 'Dil dağılımı',
     labels: { primaryLanguage: 'Birincil dil', license: 'Lisans', latestRelease: 'Son sürüm', kernelRange: 'Test edilen çekirdek aralığı' },
@@ -408,6 +443,19 @@ const de: BpStrings = {
     ],
     webButton: 'Technische Vorschau öffnen',
     webNote: 'Läuft auf geteilter Infrastruktur und ist ratenbegrenzt. Kein Konto erforderlich.',
+  },
+  install: {
+    eyebrow: 'Installation',
+    heading: 'Installiere die CLI mit einem Befehl.',
+    subline: 'Drei geprüfte Wege zu bpfcompat — ein vorgefertigtes Release-Binary, ein Quellcode-Build oder go install. Jeder Befehl unten wurde auf einem echten KVM-Host ausgeführt.',
+    methods: [
+      { title: 'Vorgefertigtes Release-Binary', note: 'Empfohlen. Liefert die CLI und den Gast-Validator, prüfsummenverifiziert. Linux x86_64.', alt: 'Terminal: Herunterladen des bpfcompat-Release-Binaries, Prüfsummen-Verifikation und Ausgabe der Version.' },
+      { title: 'Aus dem Quellcode', note: 'Baut die CLI und den Validator und versieht das Binary mit der echten Version.', alt: 'Terminal: Klonen des Repositorys und Ausführen von make build und make validator-static.' },
+      { title: 'go install', note: 'Nur die CLI. Nutze den kleingeschriebenen Modulpfad und das cmd/bpfcompat-Unterpaket — der bloße Modulpfad lässt sich nicht installieren.', alt: 'Terminal: Installation von bpfcompat mit go install und Ausgabe der Version.' },
+    ],
+    runHeading: 'Dann auf echten Kerneln ausführen.',
+    runNote: 'bpfcompat test startet jeden Kernel in einer wegwerfbaren VM und liefert eine Pass/Fail-Matrix pro Kernel — hier mit Fehler auf 5.4 (Ring-Buffer-Unterstützung kommt mit 5.8) und Erfolg auf 6.1 und 6.8.',
+    runAlt: 'Terminal: ein bpfcompat-Validierungslauf mit ubuntu-20.04-5.4 fehlgeschlagen, debian-12-6.1 bestanden und ubuntu-24.04-6.8 bestanden.',
   },
   repo: {
     title: 'Repository-Nachweis', measured: 'Gemessen aus dem öffentlichen Repository.', github: 'GitHub', languageMix: 'Sprachmix',
@@ -541,6 +589,19 @@ const es: BpStrings = {
     webButton: 'Abrir la Vista previa técnica',
     webNote: 'Se ejecuta en infraestructura compartida y con límite de uso. No requiere cuenta.',
   },
+  install: {
+    eyebrow: 'Instalación',
+    heading: 'Instala la CLI con un solo comando.',
+    subline: 'Tres formas verificadas de obtener bpfcompat — un binario de release precompilado, una compilación desde el código, o go install. Cada comando de abajo se ejecutó en un host KVM real.',
+    methods: [
+      { title: 'Binario de release precompilado', note: 'Recomendado. Incluye la CLI y el validador en el invitado, verificados por checksum. Linux x86_64.', alt: 'Terminal: descarga del binario de release de bpfcompat, verificación de su checksum e impresión de la versión.' },
+      { title: 'Desde el código', note: 'Compila la CLI y el validador, y marca el binario con la versión real.', alt: 'Terminal: clonación del repositorio y ejecución de make build y make validator-static.' },
+      { title: 'go install', note: 'Solo la CLI. Usa la ruta de módulo en minúsculas y el subpaquete cmd/bpfcompat — la ruta de módulo a secas no se instala.', alt: 'Terminal: instalación de bpfcompat con go install e impresión de la versión.' },
+    ],
+    runHeading: 'Luego ejecútalo en kernels reales.',
+    runNote: 'bpfcompat test arranca cada kernel en una VM desechable y devuelve una matriz de pasa/falla por kernel — aquí falla en 5.4 (el soporte de ring buffer llega en 5.8) y pasa en 6.1 y 6.8.',
+    runAlt: 'Terminal: una ejecución de validación de bpfcompat que muestra ubuntu-20.04-5.4 falla, debian-12-6.1 pasa y ubuntu-24.04-6.8 pasa.',
+  },
   repo: {
     title: 'Evidencia del repositorio', measured: 'Medido a partir del repositorio público.', github: 'GitHub', languageMix: 'Mezcla de lenguajes',
     labels: { primaryLanguage: 'Lenguaje principal', license: 'Licencia', latestRelease: 'Última versión', kernelRange: 'Rango de kernels probado' },
@@ -672,6 +733,19 @@ const fr: BpStrings = {
     ],
     webButton: 'Ouvrir l’Aperçu technique',
     webNote: 'S’exécute sur une infrastructure partagée et avec une limite de débit. Aucun compte requis.',
+  },
+  install: {
+    eyebrow: 'Installation',
+    heading: 'Installez la CLI en une commande.',
+    subline: 'Trois façons vérifiées d’obtenir bpfcompat — un binaire de release préfabriqué, une compilation depuis les sources, ou go install. Chaque commande ci-dessous a été exécutée sur un vrai hôte KVM.',
+    methods: [
+      { title: 'Binaire de release préfabriqué', note: 'Recommandé. Fournit la CLI et le validateur invité, vérifiés par somme de contrôle. Linux x86_64.', alt: 'Terminal : téléchargement du binaire de release de bpfcompat, vérification de sa somme de contrôle et affichage de la version.' },
+      { title: 'Depuis les sources', note: 'Compile la CLI et le validateur, et estampille le binaire avec la vraie version.', alt: 'Terminal : clonage du dépôt et exécution de make build et make validator-static.' },
+      { title: 'go install', note: 'CLI uniquement. Utilisez le chemin de module en minuscules et le sous-paquet cmd/bpfcompat — le chemin de module seul ne s’installe pas.', alt: 'Terminal : installation de bpfcompat avec go install et affichage de la version.' },
+    ],
+    runHeading: 'Puis lancez-le sur de vrais noyaux.',
+    runNote: 'bpfcompat test démarre chaque noyau dans une VM jetable et renvoie une matrice succès/échec par noyau — ici en échec sur 5.4 (la prise en charge du ring buffer arrive en 5.8) et en succès sur 6.1 et 6.8.',
+    runAlt: 'Terminal : une exécution de validation bpfcompat montrant ubuntu-20.04-5.4 en échec, debian-12-6.1 en succès et ubuntu-24.04-6.8 en succès.',
   },
   repo: {
     title: 'Preuves du dépôt', measured: 'Mesuré à partir du dépôt public.', github: 'GitHub', languageMix: 'Répartition des langages',
@@ -805,6 +879,19 @@ const ja: BpStrings = {
     webButton: 'テクニカルプレビューを開く',
     webNote: '共有インフラ上で動作し、レート制限があります。アカウントは不要です。',
   },
+  install: {
+    eyebrow: 'インストール',
+    heading: 'CLI をワンコマンドでインストール。',
+    subline: 'bpfcompat を入手する 3 つの検証済みの方法 — ビルド済みリリースバイナリ、ソースからのビルド、または go install。以下のコマンドはすべて実際の KVM ホストで実行しました。',
+    methods: [
+      { title: 'ビルド済みリリースバイナリ', note: '推奨。CLI とゲスト内バリデーターを、チェックサム検証済みで提供します。Linux x86_64。', alt: 'ターミナル: bpfcompat のリリースバイナリをダウンロードし、チェックサムを検証してバージョンを表示。' },
+      { title: 'ソースから', note: 'CLI とバリデーターをビルドし、バイナリに実際のバージョンを刻みます。', alt: 'ターミナル: リポジトリをクローンし、make build と make validator-static を実行。' },
+      { title: 'go install', note: 'CLI のみ。小文字のモジュールパスと cmd/bpfcompat サブパッケージを使います — モジュールパスだけではインストールされません。', alt: 'ターミナル: go install で bpfcompat をインストールしてバージョンを表示。' },
+    ],
+    runHeading: 'そして実際のカーネルで実行。',
+    runNote: 'bpfcompat test は各カーネルを使い捨ての VM で起動し、カーネルごとの合否マトリクスを返します — ここでは 5.4 で失敗（ring buffer 対応は 5.8 から）、6.1 と 6.8 で合格。',
+    runAlt: 'ターミナル: ubuntu-20.04-5.4 が fail、debian-12-6.1 が pass、ubuntu-24.04-6.8 が pass を示す bpfcompat の検証実行。',
+  },
   repo: {
     title: 'リポジトリの証拠', measured: '公開リポジトリから測定。', github: 'GitHub', languageMix: '言語構成',
     labels: { primaryLanguage: '主要言語', license: 'ライセンス', latestRelease: '最新リリース', kernelRange: 'テスト済みカーネル範囲' },
@@ -937,6 +1024,19 @@ const zhCN: BpStrings = {
     webButton: '打开技术预览',
     webNote: '运行在共享基础设施上并有速率限制。无需账户。',
   },
+  install: {
+    eyebrow: '安装',
+    heading: '一条命令安装 CLI。',
+    subline: '获取 bpfcompat 的三种已验证方式——预编译的发布二进制、从源码构建，或 go install。下面每条命令都在真实的 KVM 主机上运行过。',
+    methods: [
+      { title: '预编译发布二进制', note: '推荐。随附 CLI 与来宾内验证器，并经校验和验证。Linux x86_64。', alt: '终端：下载 bpfcompat 发布二进制、校验其校验和并打印版本。' },
+      { title: '从源码构建', note: '构建 CLI 与验证器，并把真实版本号写入二进制。', alt: '终端：克隆仓库并运行 make build 与 make validator-static。' },
+      { title: 'go install', note: '仅 CLI。请使用小写的模块路径与 cmd/bpfcompat 子包——裸模块路径无法安装。', alt: '终端：用 go install 安装 bpfcompat 并打印版本。' },
+    ],
+    runHeading: '然后在真实内核上运行。',
+    runNote: 'bpfcompat test 在一次性虚拟机中启动每个内核，并返回逐内核的通过/失败矩阵——这里在 5.4 上失败（ring buffer 支持自 5.8 起），在 6.1 和 6.8 上通过。',
+    runAlt: '终端：一次 bpfcompat 验证运行，显示 ubuntu-20.04-5.4 失败、debian-12-6.1 通过、ubuntu-24.04-6.8 通过。',
+  },
   repo: {
     title: '仓库证据', measured: '基于公开仓库测量。', github: 'GitHub', languageMix: '语言构成',
     labels: { primaryLanguage: '主要语言', license: '许可证', latestRelease: '最新版本', kernelRange: '已测试内核范围' },
@@ -1068,6 +1168,19 @@ const ko: BpStrings = {
     ],
     webButton: '기술 미리보기 열기',
     webNote: '공유 인프라에서 실행되며 속도 제한이 있습니다. 계정이 필요 없습니다.',
+  },
+  install: {
+    eyebrow: '설치',
+    heading: '명령 하나로 CLI를 설치하세요.',
+    subline: 'bpfcompat를 받는 검증된 세 가지 방법 — 사전 빌드된 릴리스 바이너리, 소스 빌드, 또는 go install. 아래의 모든 명령은 실제 KVM 호스트에서 실행했습니다.',
+    methods: [
+      { title: '사전 빌드된 릴리스 바이너리', note: '권장. CLI와 게스트 내 검증기를 체크섬 검증된 상태로 제공합니다. Linux x86_64.', alt: '터미널: bpfcompat 릴리스 바이너리를 내려받고 체크섬을 검증한 뒤 버전을 출력.' },
+      { title: '소스에서', note: 'CLI와 검증기를 빌드하고 바이너리에 실제 버전을 새깁니다.', alt: '터미널: 저장소를 클론하고 make build와 make validator-static을 실행.' },
+      { title: 'go install', note: 'CLI만 설치. 소문자 모듈 경로와 cmd/bpfcompat 하위 패키지를 사용하세요 — 모듈 경로만으로는 설치되지 않습니다.', alt: '터미널: go install로 bpfcompat를 설치하고 버전을 출력.' },
+    ],
+    runHeading: '그런 다음 실제 커널에서 실행하세요.',
+    runNote: 'bpfcompat test는 각 커널을 일회용 VM으로 부팅하고 커널별 합격/불합격 매트릭스를 반환합니다 — 여기서는 5.4에서 실패(ring buffer 지원은 5.8부터), 6.1과 6.8에서 합격.',
+    runAlt: '터미널: ubuntu-20.04-5.4 실패, debian-12-6.1 합격, ubuntu-24.04-6.8 합격을 보여주는 bpfcompat 검증 실행.',
   },
   repo: {
     title: '저장소 증거', measured: '공개 저장소에서 측정함.', github: 'GitHub', languageMix: '언어 구성',
