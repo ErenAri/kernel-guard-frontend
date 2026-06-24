@@ -15,7 +15,7 @@ import { buildSoftwareSourceCodeSchema } from '../../lib/schema';
 import { BpStringsProvider, getBpStrings } from './content';
 import {
   Chip, HeroCtas, MatrixTerminal, CompatibilityMatrix, Legend, HowItWorks,
-  ProblemCards, AdoptionTabs, RepoEvidence, ScopePanel, ToolchainBand,
+  ProblemCards, AdoptionTabs, InstallSection, RepoEvidence, ScopePanel, ToolchainBand,
   Reveal, BigStat, DocsSection, ProjectBreadcrumb, FinalCtaWithDocs,
   WhyBuilt, ComparisonTable,
   Kicker, Caret, GITHUB_URL, DEMO_URL, REPORT,
@@ -192,6 +192,18 @@ export default function BpfcompatPage() {
               <h2 className="text-3xl md:text-5xl font-light text-foreground tracking-tight">{t.adopt.heading}</h2>
             </Reveal>
             <Reveal delayMs={120}><AdoptionTabs /></Reveal>
+          </div>
+        </section>
+
+        {/* 8b — install the CLI */}
+        <section className="py-24 md:py-28 bg-surface border-b border-border">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Reveal className="text-center max-w-2xl mx-auto mb-14">
+              <Kicker className="mb-5">{t.install.eyebrow}</Kicker>
+              <h2 className="text-3xl md:text-5xl font-light text-foreground tracking-tight">{t.install.heading}</h2>
+              <p className="mt-5 text-lg font-light text-foreground/70 leading-relaxed">{t.install.subline}</p>
+            </Reveal>
+            <Reveal delayMs={120}><InstallSection /></Reveal>
           </div>
         </section>
 

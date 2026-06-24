@@ -510,15 +510,15 @@ function CopyButton({ text }: { text: string }) {
   );
 }
 
-const CLI_SNIPPET = `$ go install github.com/Kernel-Guard/bpfcompat@${BPFCOMPAT_VERSION}
-$ bpfcompat test ./build/probe.bpf.o --kernel ubuntu-24.04
-$ bpfcompat suite run suite.yaml --kernels kernels.yaml`;
+const CLI_SNIPPET = `$ go install github.com/kernel-guard/bpfcompat/cmd/bpfcompat@${BPFCOMPAT_VERSION}
+$ bpfcompat test --artifact build/probe.bpf.o --matrix matrices/mvp.yaml --out report.json
+$ bpfcompat suite --suite suite.yaml --out suite.json`;
 
 const ACTION_SNIPPET = `- uses: Kernel-Guard/bpfcompat@${BPFCOMPAT_VERSION}
   with:
     suite: ./bpf/suite.yaml
-    kernels: ubuntu-lts, rhel-9
-    gate: load-attach`;
+    suite-out: reports/suite.json
+    validation-mode: load_attach`;
 
 export function AdoptionTabs() {
   const s = useBp();
@@ -601,6 +601,79 @@ export function AdoptionTabs() {
             </div>
           </div>
         )}
+      </div>
+    </div>
+  );
+}
+
+/* --------------------------------------------------------------------------
+ * Install — three verified paths, each with a real terminal screenshot
+ * ------------------------------------------------------------------------ */
+
+const INSTALL_BASE = '/images/projects/bpfcompat/install';
+
+const INSTALL_METHODS = [
+  {
+    cmd: `VER=${BPFCOMPAT_VERSION}
+base=https://github.com/Kernel-Guard/bpfcompat/releases/download/$VER
+curl -fsSLO "$base/bpfcompat-linux-amd64"
+curl -fsSLO "$base/bpfcompat-validator-static-linux-amd64"
+curl -fsSLO "$base/SHA256SUMS"
+sha256sum -c SHA256SUMS --ignore-missing
+sudo install -m 0755 bpfcompat-linux-amd64 /usr/local/bin/bpfcompat`,
+    img: `${INSTALL_BASE}/install-release-binary.png`,
+  },
+  {
+    cmd: `git clone https://github.com/Kernel-Guard/bpfcompat
+cd bpfcompat
+make build && make validator-static`,
+    img: `${INSTALL_BASE}/install-from-source.png`,
+  },
+  {
+    cmd: `go install github.com/kernel-guard/bpfcompat/cmd/bpfcompat@${BPFCOMPAT_VERSION}`,
+    img: `${INSTALL_BASE}/install-go-install.png`,
+  },
+];
+
+export function InstallSection() {
+  const t = useBp();
+  return (
+    <div className="space-y-16">
+      {t.install.methods.map((m, i) => (
+        <div key={i} className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-start">
+          <div className="lg:col-span-5">
+            <div className="text-xs font-mono text-foreground/40 mb-2">{`0${i + 1}`}</div>
+            <h3 className="text-xl md:text-2xl font-semibold text-foreground tracking-tight">{m.title}</h3>
+            <p className="mt-3 text-sm font-light text-foreground/70 leading-relaxed">{m.note}</p>
+            <div className="relative mt-5 bg-[#161616] border border-[#393939] p-4 pr-24 font-mono text-[12px] leading-relaxed text-gray-200 overflow-x-auto whitespace-pre">
+              <CopyButton text={INSTALL_METHODS[i].cmd} />
+              {INSTALL_METHODS[i].cmd}
+            </div>
+          </div>
+          <div className="lg:col-span-7">
+            <img
+              src={INSTALL_METHODS[i].img}
+              alt={m.alt}
+              loading="lazy"
+              width={1108}
+              className="w-full rounded-lg border border-border shadow-sm"
+            />
+          </div>
+        </div>
+      ))}
+
+      <div className="pt-12 border-t border-border">
+        <div className="max-w-2xl">
+          <h3 className="text-xl md:text-2xl font-semibold text-foreground tracking-tight">{t.install.runHeading}</h3>
+          <p className="mt-3 text-sm font-light text-foreground/70 leading-relaxed">{t.install.runNote}</p>
+        </div>
+        <img
+          src={`${INSTALL_BASE}/live-validation.png`}
+          alt={t.install.runAlt}
+          loading="lazy"
+          width={1108}
+          className="mt-6 w-full max-w-4xl rounded-lg border border-border shadow-sm"
+        />
       </div>
     </div>
   );
