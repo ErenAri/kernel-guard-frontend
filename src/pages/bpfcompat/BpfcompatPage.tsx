@@ -15,7 +15,7 @@ import { buildSoftwareSourceCodeSchema } from '../../lib/schema';
 import { BpStringsProvider, getBpStrings } from './content';
 import {
   Chip, HeroCtas, MatrixTerminal, CompatibilityMatrix, Legend, HowItWorks,
-  ProblemCards, AdoptionTabs, InstallSection, RepoEvidence, ScopePanel, ToolchainBand,
+  ProblemCards, AdoptionTabs, InstallSection, CoverageSection, RepoEvidence, ScopePanel, ToolchainBand,
   Reveal, BigStat, DocsSection, ProjectBreadcrumb, FinalCtaWithDocs,
   WhyBuilt, ComparisonTable,
   Kicker, Caret, GITHUB_URL, DEMO_URL, REPORT,
@@ -150,6 +150,17 @@ export default function BpfcompatPage() {
               <h2 className="text-3xl md:text-5xl font-light text-foreground tracking-tight">{t.how.heading}</h2>
             </Reveal>
             <Reveal delayMs={120}><HowItWorks /></Reveal>
+          </div>
+        </section>
+
+        {/* 5b — coverage: full VM, distros, backports */}
+        <section className="py-24 md:py-28 border-b border-border">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Reveal className="text-center max-w-2xl mx-auto mb-14">
+              <Kicker className="mb-5">{t.coverage.eyebrow}</Kicker>
+              <h2 className="text-3xl md:text-5xl font-light text-foreground tracking-tight">{t.coverage.heading}</h2>
+            </Reveal>
+            <Reveal delayMs={120}><CoverageSection /></Reveal>
           </div>
         </section>
 

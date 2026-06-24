@@ -680,6 +680,56 @@ export function InstallSection() {
 }
 
 /* --------------------------------------------------------------------------
+ * Coverage — full-VM validation, distros covered, backports
+ * ------------------------------------------------------------------------ */
+
+const DISTROS = [
+  { name: 'Ubuntu', detail: '16.04 → 25.10' },
+  { name: 'Debian', detail: '11 · 12 · 13' },
+  { name: 'RHEL / AlmaLinux / Rocky', detail: '8 · 9 · 10' },
+  { name: 'CentOS Stream', detail: '9 · 10' },
+  { name: 'Oracle Linux (UEK)', detail: 'UEK 7 · UEK 8' },
+  { name: 'Amazon Linux', detail: '2 · 2023' },
+  { name: 'SUSE / openSUSE Leap', detail: '15.6' },
+  { name: 'Upstream mainline', detail: 'kernel.org 5.x–6.x' },
+];
+
+export function CoverageSection() {
+  const t = useBp();
+  return (
+    <div className="space-y-12">
+      {/* full-VM, not static */}
+      <div className="border border-border bg-surface p-6 md:p-8">
+        <h3 className="text-xl md:text-2xl font-semibold text-foreground tracking-tight">{t.coverage.vmHeading}</h3>
+        <p className="mt-3 text-sm md:text-base font-light text-foreground/70 leading-relaxed max-w-3xl">{t.coverage.vmBody}</p>
+      </div>
+
+      {/* distributions covered */}
+      <div>
+        <h3 className="text-xl md:text-2xl font-semibold text-foreground tracking-tight">{t.coverage.distrosHeading}</h3>
+        <p className="mt-3 text-sm font-light text-foreground/70 leading-relaxed max-w-3xl">{t.coverage.distrosBody}</p>
+        <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3">
+          {DISTROS.map((d) => (
+            <div key={d.name} className="border border-border bg-background p-4">
+              <div className="text-sm font-semibold text-foreground">{d.name}</div>
+              <div className="mt-1 text-xs font-mono text-foreground/50">{d.detail}</div>
+            </div>
+          ))}
+        </div>
+        <p className="mt-4 text-xs font-mono uppercase tracking-wider text-foreground/50">{t.coverage.archNote}</p>
+      </div>
+
+      {/* kernel version != feature support */}
+      <div className="border-l-2 border-primary pl-6">
+        <h3 className="text-xl md:text-2xl font-semibold text-foreground tracking-tight">{t.coverage.backportHeading}</h3>
+        <p className="mt-3 text-sm md:text-base font-light text-foreground/70 leading-relaxed max-w-3xl">{t.coverage.backportBody}</p>
+        <p className="mt-3 text-sm font-light text-foreground/60 leading-relaxed max-w-3xl">{t.coverage.backportExample}</p>
+      </div>
+    </div>
+  );
+}
+
+/* --------------------------------------------------------------------------
  * How-it-works four-stage frame
  * ------------------------------------------------------------------------ */
 

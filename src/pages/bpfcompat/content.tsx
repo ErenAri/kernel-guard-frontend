@@ -55,6 +55,18 @@ export interface BpStrings {
     runNote: string;
     runAlt: string;
   };
+  coverage: {
+    eyebrow: string;
+    heading: string;
+    vmHeading: string;
+    vmBody: string;
+    distrosHeading: string;
+    distrosBody: string;
+    archNote: string;
+    backportHeading: string;
+    backportBody: string;
+    backportExample: string;
+  };
   repo: {
     title: string; measured: string; github: string; languageMix: string;
     labels: { primaryLanguage: string; license: string; latestRelease: string; kernelRange: string };
@@ -166,6 +178,18 @@ const en: BpStrings = {
     runHeading: 'Then run it across real kernels.',
     runNote: 'bpfcompat test boots each kernel in a disposable VM and returns a per-kernel pass/fail matrix — here failing on 5.4 (ring buffer support lands in 5.8) and passing on 6.1 and 6.8.',
     runAlt: 'Terminal: a bpfcompat validation run showing ubuntu-20.04-5.4 fail, debian-12-6.1 pass, and ubuntu-24.04-6.8 pass.',
+  },
+  coverage: {
+    eyebrow: 'Coverage',
+    heading: 'Real distros. Real kernels. Inside a VM.',
+    vmHeading: 'Full VM validation — not static analysis.',
+    vmBody: 'bpfcompat does not parse your object and guess. For each target it boots the real distro cloud image and its actual kernel as a disposable QEMU/KVM virtual machine, copies a C/libbpf validator into the guest, and runs the real load and attach inside that kernel. The verdict is what the kernel itself accepted or rejected — verifier log, BTF, CO-RE relocation, map and program support — not a heuristic.',
+    distrosHeading: 'Distributions covered',
+    distrosBody: 'A curated, multi-distro, multi-architecture matrix — the kernels enterprises and cloud fleets actually run. RHEL itself is a bring-your-own subscription image; AlmaLinux, Rocky, and CentOS Stream are the public, ABI-compatible rebuilds used as the reproducible stand-in.',
+    archNote: 'x86_64 · ARM64 · upstream mainline',
+    backportHeading: 'Kernel version ≠ feature support.',
+    backportBody: 'Enterprise distros heavily backport eBPF features onto old kernel bases, so the version number alone predicts nothing. Because bpfcompat boots the real vendor kernel, this is tested directly instead of inferred.',
+    backportExample: 'A ring-buffer program fails on Ubuntu’s vanilla 5.4 (ring buffer lands upstream in 5.8) yet passes on AlmaLinux 8’s backported 4.18 — and Amazon Linux 2’s 4.14, with no embedded BTF, still loads and attaches.',
   },
   repo: {
     title: 'Repository evidence', measured: 'Measured from the public repository.', github: 'GitHub', languageMix: 'Language mix',
@@ -312,6 +336,18 @@ const tr: BpStrings = {
     runNote: 'bpfcompat test her çekirdeği tek kullanımlık bir VM içinde başlatır ve çekirdek başına geçti/kaldı matrisi döndürür — burada 5.4 üzerinde başarısız (ring buffer desteği 5.8 ile gelir), 6.1 ve 6.8 üzerinde geçer.',
     runAlt: 'Terminal: ubuntu-20.04-5.4 kaldı, debian-12-6.1 geçti ve ubuntu-24.04-6.8 geçti gösteren bir bpfcompat doğrulama çalıştırması.',
   },
+  coverage: {
+    eyebrow: 'Kapsam',
+    heading: 'Gerçek dağıtımlar. Gerçek çekirdekler. VM içinde.',
+    vmHeading: 'Tam VM doğrulaması — statik analiz değil.',
+    vmBody: 'bpfcompat nesnenizi ayrıştırıp tahmin yürütmez. Her hedef için gerçek dağıtımın bulut imajını ve gerçek çekirdeğini tek kullanımlık bir QEMU/KVM sanal makinesi olarak başlatır, konuğa bir C/libbpf doğrulayıcı kopyalar ve gerçek yükleme ile bağlamayı o çekirdeğin içinde çalıştırır. Karar, çekirdeğin kendisinin kabul ya da reddettiği şeydir — doğrulayıcı günlüğü, BTF, CO-RE yer değiştirmesi, map ve program desteği — bir sezgi değil.',
+    distrosHeading: 'Kapsanan dağıtımlar',
+    distrosBody: 'Özenle seçilmiş, çok dağıtımlı, çok mimarili bir matris — kurumların ve bulut filolarının gerçekten çalıştırdığı çekirdekler. RHEL’in kendisi abonelik gerektiren, kendi imajınızı getirdiğiniz bir imajdır; AlmaLinux, Rocky ve CentOS Stream, yeniden üretilebilir karşılık olarak kullanılan herkese açık, ABI uyumlu yeniden derlemelerdir.',
+    archNote: 'x86_64 · ARM64 · upstream mainline',
+    backportHeading: 'Çekirdek sürümü ≠ özellik desteği.',
+    backportBody: 'Kurumsal dağıtımlar eBPF özelliklerini eski çekirdek tabanlarına yoğun biçimde geri taşır (backport), bu yüzden sürüm numarası tek başına hiçbir şey söylemez. bpfcompat gerçek satıcı çekirdeğini başlattığı için bu, çıkarımla değil doğrudan test edilir.',
+    backportExample: 'Bir ring buffer programı Ubuntu’nun vanilla 5.4’ünde başarısız olur (ring buffer upstream’e 5.8’de gelir) ama AlmaLinux 8’in geri taşınmış 4.18’inde geçer — ve Amazon Linux 2’nin gömülü BTF’si olmayan 4.14’ü hâlâ yüklenip bağlanır.',
+  },
   repo: {
     title: 'Depo kanıtı', measured: 'Herkese açık depodan ölçüldü.', github: 'GitHub', languageMix: 'Dil dağılımı',
     labels: { primaryLanguage: 'Birincil dil', license: 'Lisans', latestRelease: 'Son sürüm', kernelRange: 'Test edilen çekirdek aralığı' },
@@ -456,6 +492,18 @@ const de: BpStrings = {
     runHeading: 'Dann auf echten Kerneln ausführen.',
     runNote: 'bpfcompat test startet jeden Kernel in einer wegwerfbaren VM und liefert eine Pass/Fail-Matrix pro Kernel — hier mit Fehler auf 5.4 (Ring-Buffer-Unterstützung kommt mit 5.8) und Erfolg auf 6.1 und 6.8.',
     runAlt: 'Terminal: ein bpfcompat-Validierungslauf mit ubuntu-20.04-5.4 fehlgeschlagen, debian-12-6.1 bestanden und ubuntu-24.04-6.8 bestanden.',
+  },
+  coverage: {
+    eyebrow: 'Abdeckung',
+    heading: 'Echte Distros. Echte Kernel. In einer VM.',
+    vmHeading: 'Vollständige VM-Validierung — keine statische Analyse.',
+    vmBody: 'bpfcompat parst dein Objekt nicht und rät. Für jedes Ziel startet es das echte Distro-Cloud-Image und dessen tatsächlichen Kernel als wegwerfbare QEMU/KVM-VM, kopiert einen C/libbpf-Validator in den Gast und führt das echte Laden und Attachen in diesem Kernel aus. Das Urteil ist, was der Kernel selbst akzeptiert oder abgelehnt hat — Verifier-Log, BTF, CO-RE-Relokation, Map- und Programmunterstützung — keine Heuristik.',
+    distrosHeading: 'Abgedeckte Distributionen',
+    distrosBody: 'Eine kuratierte Multi-Distro-, Multi-Arch-Matrix — die Kernel, die Unternehmen und Cloud-Flotten wirklich betreiben. RHEL selbst ist ein abonnementpflichtiges Bring-your-own-Image; AlmaLinux, Rocky und CentOS Stream sind die öffentlichen, ABI-kompatiblen Rebuilds, die als reproduzierbarer Ersatz dienen.',
+    archNote: 'x86_64 · ARM64 · upstream mainline',
+    backportHeading: 'Kernel-Version ≠ Feature-Unterstützung.',
+    backportBody: 'Enterprise-Distros backporten eBPF-Features stark auf alte Kernel-Basen, daher sagt die Versionsnummer allein nichts aus. Da bpfcompat den echten Hersteller-Kernel startet, wird dies direkt getestet statt abgeleitet.',
+    backportExample: 'Ein Ring-Buffer-Programm scheitert auf Ubuntus Vanilla-5.4 (Ring-Buffer kommt upstream mit 5.8), läuft aber auf AlmaLinux 8s backportetem 4.18 — und Amazon Linux 2s 4.14, ohne eingebettetes BTF, lädt und attacht weiterhin.',
   },
   repo: {
     title: 'Repository-Nachweis', measured: 'Gemessen aus dem öffentlichen Repository.', github: 'GitHub', languageMix: 'Sprachmix',
@@ -602,6 +650,18 @@ const es: BpStrings = {
     runNote: 'bpfcompat test arranca cada kernel en una VM desechable y devuelve una matriz de pasa/falla por kernel — aquí falla en 5.4 (el soporte de ring buffer llega en 5.8) y pasa en 6.1 y 6.8.',
     runAlt: 'Terminal: una ejecución de validación de bpfcompat que muestra ubuntu-20.04-5.4 falla, debian-12-6.1 pasa y ubuntu-24.04-6.8 pasa.',
   },
+  coverage: {
+    eyebrow: 'Cobertura',
+    heading: 'Distros reales. Kernels reales. Dentro de una VM.',
+    vmHeading: 'Validación completa en VM, no análisis estático.',
+    vmBody: 'bpfcompat no analiza tu objeto para adivinar. Para cada objetivo arranca la imagen de nube real de la distro y su kernel real como una VM QEMU/KVM desechable, copia un validador en C/libbpf dentro del invitado y ejecuta la carga y el attach reales dentro de ese kernel. El veredicto es lo que el propio kernel aceptó o rechazó — registro del verificador, BTF, reubicación CO-RE, soporte de map y programa — no una heurística.',
+    distrosHeading: 'Distribuciones cubiertas',
+    distrosBody: 'Una matriz curada, multi-distro y multiarquitectura — los kernels que de verdad ejecutan las empresas y las flotas en la nube. RHEL en sí es una imagen de suscripción que aportas tú; AlmaLinux, Rocky y CentOS Stream son las recompilaciones públicas y compatibles a nivel de ABI que se usan como sustituto reproducible.',
+    archNote: 'x86_64 · ARM64 · upstream mainline',
+    backportHeading: 'La versión del kernel ≠ soporte de funciones.',
+    backportBody: 'Las distros empresariales hacen muchos backports de funciones eBPF sobre bases de kernel antiguas, así que el número de versión por sí solo no predice nada. Como bpfcompat arranca el kernel real del proveedor, esto se prueba directamente en lugar de inferirse.',
+    backportExample: 'Un programa de ring buffer falla en el 5.4 vanilla de Ubuntu (el ring buffer llega upstream en 5.8) pero pasa en el 4.18 con backport de AlmaLinux 8 — y el 4.14 de Amazon Linux 2, sin BTF embebido, sigue cargando y haciendo attach.',
+  },
   repo: {
     title: 'Evidencia del repositorio', measured: 'Medido a partir del repositorio público.', github: 'GitHub', languageMix: 'Mezcla de lenguajes',
     labels: { primaryLanguage: 'Lenguaje principal', license: 'Licencia', latestRelease: 'Última versión', kernelRange: 'Rango de kernels probado' },
@@ -746,6 +806,18 @@ const fr: BpStrings = {
     runHeading: 'Puis lancez-le sur de vrais noyaux.',
     runNote: 'bpfcompat test démarre chaque noyau dans une VM jetable et renvoie une matrice succès/échec par noyau — ici en échec sur 5.4 (la prise en charge du ring buffer arrive en 5.8) et en succès sur 6.1 et 6.8.',
     runAlt: 'Terminal : une exécution de validation bpfcompat montrant ubuntu-20.04-5.4 en échec, debian-12-6.1 en succès et ubuntu-24.04-6.8 en succès.',
+  },
+  coverage: {
+    eyebrow: 'Couverture',
+    heading: 'De vraies distros. De vrais noyaux. Dans une VM.',
+    vmHeading: 'Validation complète en VM — pas d’analyse statique.',
+    vmBody: 'bpfcompat n’analyse pas votre objet pour deviner. Pour chaque cible, il démarre l’image cloud réelle de la distro et son vrai noyau comme une VM QEMU/KVM jetable, copie un validateur C/libbpf dans l’invité et exécute le chargement et l’attach réels dans ce noyau. Le verdict est ce que le noyau lui-même a accepté ou rejeté — journal du vérificateur, BTF, relocalisation CO-RE, prise en charge des map et des programmes — pas une heuristique.',
+    distrosHeading: 'Distributions couvertes',
+    distrosBody: 'Une matrice curée, multi-distros et multi-architectures — les noyaux que les entreprises et les flottes cloud font réellement tourner. RHEL lui-même est une image sur abonnement à fournir soi-même ; AlmaLinux, Rocky et CentOS Stream sont les recompilations publiques et compatibles ABI utilisées comme substitut reproductible.',
+    archNote: 'x86_64 · ARM64 · upstream mainline',
+    backportHeading: 'Version du noyau ≠ prise en charge des fonctionnalités.',
+    backportBody: 'Les distros d’entreprise rétroportent massivement les fonctionnalités eBPF sur d’anciennes bases de noyau, donc le numéro de version seul ne prédit rien. Comme bpfcompat démarre le vrai noyau du fournisseur, c’est testé directement plutôt que déduit.',
+    backportExample: 'Un programme à ring buffer échoue sur le 5.4 vanilla d’Ubuntu (le ring buffer arrive upstream en 5.8) mais réussit sur le 4.18 rétroporté d’AlmaLinux 8 — et le 4.14 d’Amazon Linux 2, sans BTF embarqué, se charge et s’attache toujours.',
   },
   repo: {
     title: 'Preuves du dépôt', measured: 'Mesuré à partir du dépôt public.', github: 'GitHub', languageMix: 'Répartition des langages',
@@ -892,6 +964,18 @@ const ja: BpStrings = {
     runNote: 'bpfcompat test は各カーネルを使い捨ての VM で起動し、カーネルごとの合否マトリクスを返します — ここでは 5.4 で失敗（ring buffer 対応は 5.8 から）、6.1 と 6.8 で合格。',
     runAlt: 'ターミナル: ubuntu-20.04-5.4 が fail、debian-12-6.1 が pass、ubuntu-24.04-6.8 が pass を示す bpfcompat の検証実行。',
   },
+  coverage: {
+    eyebrow: 'カバレッジ',
+    heading: '本物のディストロ。本物のカーネル。VM の中で。',
+    vmHeading: '完全な VM 検証 — 静的解析ではありません。',
+    vmBody: 'bpfcompat はオブジェクトを解析して推測したりしません。対象ごとに、実際のディストロのクラウドイメージとその実カーネルを使い捨ての QEMU/KVM 仮想マシンとして起動し、C/libbpf バリデーターをゲストにコピーして、そのカーネル内で実際の load と attach を実行します。判定はカーネル自身が受理または拒否した結果です — verifier ログ、BTF、CO-RE 再配置、map とプログラムのサポート — ヒューリスティックではありません。',
+    distrosHeading: 'カバーするディストリビューション',
+    distrosBody: '厳選されたマルチディストロ・マルチアーキテクチャのマトリクス — 企業やクラウド基盤が実際に動かしているカーネルです。RHEL 自体はサブスクリプションの持ち込みイメージで、AlmaLinux・Rocky・CentOS Stream が再現可能な代替として使われる公開・ABI 互換の再ビルドです。',
+    archNote: 'x86_64 · ARM64 · upstream mainline',
+    backportHeading: 'カーネルバージョン ≠ 機能サポート。',
+    backportBody: 'エンタープライズディストロは eBPF 機能を古いカーネルベースに大量にバックポートするため、バージョン番号だけでは何もわかりません。bpfcompat は実際のベンダーカーネルを起動するので、これは推測ではなく直接テストされます。',
+    backportExample: 'ring buffer プログラムは Ubuntu の vanilla 5.4 では失敗します（ring buffer の upstream 対応は 5.8 から）が、AlmaLinux 8 のバックポートされた 4.18 では合格します — そして埋め込み BTF を持たない Amazon Linux 2 の 4.14 でも load と attach に成功します。',
+  },
   repo: {
     title: 'リポジトリの証拠', measured: '公開リポジトリから測定。', github: 'GitHub', languageMix: '言語構成',
     labels: { primaryLanguage: '主要言語', license: 'ライセンス', latestRelease: '最新リリース', kernelRange: 'テスト済みカーネル範囲' },
@@ -1037,6 +1121,18 @@ const zhCN: BpStrings = {
     runNote: 'bpfcompat test 在一次性虚拟机中启动每个内核，并返回逐内核的通过/失败矩阵——这里在 5.4 上失败（ring buffer 支持自 5.8 起），在 6.1 和 6.8 上通过。',
     runAlt: '终端：一次 bpfcompat 验证运行，显示 ubuntu-20.04-5.4 失败、debian-12-6.1 通过、ubuntu-24.04-6.8 通过。',
   },
+  coverage: {
+    eyebrow: '覆盖范围',
+    heading: '真实发行版。真实内核。在虚拟机里。',
+    vmHeading: '完整的虚拟机验证——不是静态分析。',
+    vmBody: 'bpfcompat 不会解析你的对象再去猜测。对每个目标，它都会把真实发行版的云镜像及其真实内核作为一次性 QEMU/KVM 虚拟机启动，把 C/libbpf 验证器复制进来宾，并在该内核中执行真实的 load 与 attach。裁决就是内核本身接受或拒绝的结果——校验器日志、BTF、CO-RE 重定位、map 与程序支持——而不是某种启发式推断。',
+    distrosHeading: '覆盖的发行版',
+    distrosBody: '一个精选的、多发行版、多架构矩阵——企业与云机群真正运行的内核。RHEL 本身是需自带的订阅镜像；AlmaLinux、Rocky 和 CentOS Stream 是用作可复现替身的公开、ABI 兼容的重建版。',
+    archNote: 'x86_64 · ARM64 · upstream mainline',
+    backportHeading: '内核版本 ≠ 功能支持。',
+    backportBody: '企业发行版会把 eBPF 功能大量回移植（backport）到旧的内核基线上，所以仅凭版本号什么都说明不了。因为 bpfcompat 启动的是真实的厂商内核，这一点是直接测试出来的，而不是推断的。',
+    backportExample: '一个 ring buffer 程序在 Ubuntu 的原版 5.4 上会失败（ring buffer 自 5.8 才进入上游），但在 AlmaLinux 8 回移植的 4.18 上能通过——而没有内嵌 BTF 的 Amazon Linux 2 的 4.14 仍然能 load 和 attach。',
+  },
   repo: {
     title: '仓库证据', measured: '基于公开仓库测量。', github: 'GitHub', languageMix: '语言构成',
     labels: { primaryLanguage: '主要语言', license: '许可证', latestRelease: '最新版本', kernelRange: '已测试内核范围' },
@@ -1181,6 +1277,18 @@ const ko: BpStrings = {
     runHeading: '그런 다음 실제 커널에서 실행하세요.',
     runNote: 'bpfcompat test는 각 커널을 일회용 VM으로 부팅하고 커널별 합격/불합격 매트릭스를 반환합니다 — 여기서는 5.4에서 실패(ring buffer 지원은 5.8부터), 6.1과 6.8에서 합격.',
     runAlt: '터미널: ubuntu-20.04-5.4 실패, debian-12-6.1 합격, ubuntu-24.04-6.8 합격을 보여주는 bpfcompat 검증 실행.',
+  },
+  coverage: {
+    eyebrow: '커버리지',
+    heading: '진짜 배포판. 진짜 커널. VM 안에서.',
+    vmHeading: '완전한 VM 검증 — 정적 분석이 아닙니다.',
+    vmBody: 'bpfcompat는 객체를 파싱해 추측하지 않습니다. 각 대상마다 실제 배포판 클라우드 이미지와 그 실제 커널을 일회용 QEMU/KVM 가상 머신으로 부팅하고, C/libbpf 검증기를 게스트에 복사한 뒤 그 커널 안에서 실제 load와 attach를 실행합니다. 판정은 커널 자신이 수락했거나 거부한 결과입니다 — verifier 로그, BTF, CO-RE 재배치, map 및 프로그램 지원 — 휴리스틱이 아닙니다.',
+    distrosHeading: '커버하는 배포판',
+    distrosBody: '엄선된 다중 배포판·다중 아키텍처 매트릭스 — 기업과 클라우드 플릿이 실제로 운영하는 커널입니다. RHEL 자체는 구독형 BYO 이미지이며, AlmaLinux·Rocky·CentOS Stream이 재현 가능한 대체로 쓰이는 공개·ABI 호환 리빌드입니다.',
+    archNote: 'x86_64 · ARM64 · upstream mainline',
+    backportHeading: '커널 버전 ≠ 기능 지원.',
+    backportBody: '엔터프라이즈 배포판은 eBPF 기능을 오래된 커널 베이스에 대거 백포트하므로 버전 번호만으로는 아무것도 예측할 수 없습니다. bpfcompat는 실제 벤더 커널을 부팅하므로 이는 추론이 아니라 직접 테스트됩니다.',
+    backportExample: 'ring buffer 프로그램은 Ubuntu의 바닐라 5.4에서는 실패하지만(ring buffer는 업스트림 5.8부터) AlmaLinux 8의 백포트된 4.18에서는 합격합니다 — 그리고 내장 BTF가 없는 Amazon Linux 2의 4.14에서도 여전히 load와 attach가 됩니다.',
   },
   repo: {
     title: '저장소 증거', measured: '공개 저장소에서 측정함.', github: 'GitHub', languageMix: '언어 구성',
