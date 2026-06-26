@@ -67,6 +67,21 @@ export interface BpStrings {
     backportBody: string;
     backportExample: string;
   };
+  library: {
+    eyebrow: string;
+    heading: string;
+    subline: string;
+    apiHeading: string;
+    apiBody: string;
+    points: Array<{ title: string; body: string }>;
+    passHeading: string;
+    passBody: string;
+    passAlt: string;
+    failHeading: string;
+    failBody: string;
+    failAlt: string;
+    footnote: string;
+  };
   repo: {
     title: string; measured: string; github: string; languageMix: string;
     labels: { primaryLanguage: string; license: string; latestRelease: string; kernelRange: string };
@@ -190,6 +205,25 @@ const en: BpStrings = {
     backportHeading: 'Kernel version ≠ feature support.',
     backportBody: 'Enterprise distros heavily backport eBPF features onto old kernel bases, so the version number alone predicts nothing. Because bpfcompat boots the real vendor kernel, this is tested directly instead of inferred.',
     backportExample: 'A ring-buffer program fails on Ubuntu’s vanilla 5.4 (ring buffer lands upstream in 5.8) yet passes on AlmaLinux 8’s backported 4.18 — and Amazon Linux 2’s 4.14, with no embedded BTF, still loads and attaches.',
+  },
+  library: {
+    eyebrow: 'Library mode',
+    heading: 'Validate before you load.',
+    subline: 'The same engine, embeddable. ValidateBeforeLoad does a real load of a compiled eBPF object against the node’s own running kernel — no VM, no network — so a loader like bpfman can gate a program before it ever reaches the kernel.',
+    apiHeading: 'One call, before the load path.',
+    apiBody: 'Import the Go package and ask one question: will this object load on this kernel? The verdict comes from the real verifier, in milliseconds, with no QEMU and nothing fetched over the network.',
+    points: [
+      { title: 'In-process, no VM', body: 'A real bpf() load against the local running kernel — the node it runs on is the node the program will load on, so the running kernel is the target. Sub-millisecond, not a static guess.' },
+      { title: 'Air-gap safe', body: 'The static validator is embedded in the binary; nothing is downloaded at runtime. Host loading is opt-in behind a build tag, off by default.' },
+      { title: 'Machine-readable verdict', body: 'On rejection you get a stable classification code and the verifier log tail — branch on the code, surface the reason, fall back to another artifact.' },
+    ],
+    passHeading: 'Loads cleanly — in milliseconds.',
+    passBody: 'A compatible object returns OK=true with the kernel it was checked against. Fast enough to sit in front of every load.',
+    passAlt: 'Terminal: ValidateBeforeLoad returning OK=true for a compatible object in 3 milliseconds.',
+    failHeading: 'Caught before load — with the reason.',
+    failBody: 'An incompatible object returns OK=false with a classification code and the kernel’s own verifier message — caught at the gate, not at runtime.',
+    failAlt: 'Terminal: ValidateBeforeLoad returning OK=false with a CO-RE relocation failure classification and verifier log.',
+    footnote: 'Library mode is gated behind a build tag and intended for privileged pre-load callers such as bpfman. Pre-1.0 / experimental.',
   },
   repo: {
     title: 'Repository evidence', measured: 'Measured from the public repository.', github: 'GitHub', languageMix: 'Language mix',
@@ -348,6 +382,25 @@ const tr: BpStrings = {
     backportBody: 'Kurumsal dağıtımlar eBPF özelliklerini eski çekirdek tabanlarına yoğun biçimde geri taşır (backport), bu yüzden sürüm numarası tek başına hiçbir şey söylemez. bpfcompat gerçek satıcı çekirdeğini başlattığı için bu, çıkarımla değil doğrudan test edilir.',
     backportExample: 'Bir ring buffer programı Ubuntu’nun vanilla 5.4’ünde başarısız olur (ring buffer upstream’e 5.8’de gelir) ama AlmaLinux 8’in geri taşınmış 4.18’inde geçer — ve Amazon Linux 2’nin gömülü BTF’si olmayan 4.14’ü hâlâ yüklenip bağlanır.',
   },
+  library: {
+    eyebrow: 'Kütüphane modu',
+    heading: 'Yüklemeden önce doğrulayın.',
+    subline: 'Aynı motor, gömülebilir. ValidateBeforeLoad, derlenmiş bir eBPF nesnesini düğümün kendi çalışan çekirdeğine karşı gerçekten yükler — sanal makine yok, ağ yok — böylece bpfman gibi bir yükleyici, bir programı çekirdeğe ulaşmadan önce denetleyebilir.',
+    apiHeading: 'Yükleme yolundan önce tek bir çağrı.',
+    apiBody: 'Go paketini içe aktarın ve tek soruyu sorun: bu nesne bu çekirdekte yüklenecek mi? Karar, QEMU olmadan ve ağdan hiçbir şey indirilmeden, milisaniyeler içinde gerçek doğrulayıcıdan gelir.',
+    points: [
+      { title: 'Süreç içi, sanal makine yok', body: 'Yerel çalışan çekirdeğe karşı gerçek bir bpf() yüklemesi — çalıştığı düğüm, programın yükleneceği düğümdür, dolayısıyla çalışan çekirdek hedeftir. Statik bir tahmin değil, milisaniyenin altında.' },
+      { title: 'Hava boşluğuna uygun', body: 'Statik doğrulayıcı ikili dosyaya gömülüdür; çalışma zamanında hiçbir şey indirilmez. Ana makinede yükleme bir derleme etiketiyle isteğe bağlıdır, varsayılan olarak kapalıdır.' },
+      { title: 'Makinece okunabilir karar', body: 'Reddedildiğinde kararlı bir sınıflandırma kodu ve doğrulayıcı günlüğünün sonu gelir — koda göre dallanın, nedeni gösterin, başka bir yapıta geri dönün.' },
+    ],
+    passHeading: 'Temiz yüklenir — milisaniyeler içinde.',
+    passBody: 'Uyumlu bir nesne, kontrol edildiği çekirdekle birlikte OK=true döndürür. Her yüklemenin önünde durabilecek kadar hızlı.',
+    passAlt: 'Terminal: ValidateBeforeLoad, uyumlu bir nesne için 3 milisaniyede OK=true döndürüyor.',
+    failHeading: 'Yüklemeden önce yakalanır — nedeniyle birlikte.',
+    failBody: 'Uyumsuz bir nesne, bir sınıflandırma kodu ve çekirdeğin kendi doğrulayıcı mesajıyla OK=false döndürür — çalışma zamanında değil, kapıda yakalanır.',
+    failAlt: 'Terminal: ValidateBeforeLoad, CO-RE yeniden konumlandırma hatası sınıflandırması ve doğrulayıcı günlüğüyle OK=false döndürüyor.',
+    footnote: 'Kütüphane modu bir derleme etiketiyle sınırlandırılmıştır ve bpfman gibi ayrıcalıklı, yükleme öncesi çağıranlar için tasarlanmıştır. 1.0 öncesi / deneysel.',
+  },
   repo: {
     title: 'Depo kanıtı', measured: 'Herkese açık depodan ölçüldü.', github: 'GitHub', languageMix: 'Dil dağılımı',
     labels: { primaryLanguage: 'Birincil dil', license: 'Lisans', latestRelease: 'Son sürüm', kernelRange: 'Test edilen çekirdek aralığı' },
@@ -504,6 +557,25 @@ const de: BpStrings = {
     backportHeading: 'Kernel-Version ≠ Feature-Unterstützung.',
     backportBody: 'Enterprise-Distros backporten eBPF-Features stark auf alte Kernel-Basen, daher sagt die Versionsnummer allein nichts aus. Da bpfcompat den echten Hersteller-Kernel startet, wird dies direkt getestet statt abgeleitet.',
     backportExample: 'Ein Ring-Buffer-Programm scheitert auf Ubuntus Vanilla-5.4 (Ring-Buffer kommt upstream mit 5.8), läuft aber auf AlmaLinux 8s backportetem 4.18 — und Amazon Linux 2s 4.14, ohne eingebettetes BTF, lädt und attacht weiterhin.',
+  },
+  library: {
+    eyebrow: 'Bibliotheksmodus',
+    heading: 'Validieren, bevor Sie laden.',
+    subline: 'Dieselbe Engine, einbettbar. ValidateBeforeLoad lädt ein kompiliertes eBPF-Objekt tatsächlich gegen den laufenden Kernel des Knotens — ohne VM, ohne Netzwerk — sodass ein Loader wie bpfman ein Programm prüfen kann, bevor es überhaupt den Kernel erreicht.',
+    apiHeading: 'Ein Aufruf, vor dem Ladepfad.',
+    apiBody: 'Importieren Sie das Go-Paket und stellen Sie eine Frage: Lädt dieses Objekt auf diesem Kernel? Das Urteil kommt vom echten Verifier, in Millisekunden, ohne QEMU und ohne Netzwerk-Download.',
+    points: [
+      { title: 'Im Prozess, ohne VM', body: 'Ein echter bpf()-Ladevorgang gegen den lokal laufenden Kernel — der Knoten, auf dem er läuft, ist der Knoten, auf dem das Programm geladen wird, also ist der laufende Kernel das Ziel. Im Submillisekundenbereich, keine statische Vermutung.' },
+      { title: 'Air-Gap-tauglich', body: 'Der statische Verifier ist in die Binärdatei eingebettet; zur Laufzeit wird nichts heruntergeladen. Das Laden auf dem Host ist über ein Build-Tag optional und standardmäßig deaktiviert.' },
+      { title: 'Maschinenlesbares Urteil', body: 'Bei Ablehnung erhalten Sie einen stabilen Klassifizierungscode und das Ende des Verifier-Logs — verzweigen Sie nach dem Code, zeigen Sie den Grund, weichen Sie auf ein anderes Artefakt aus.' },
+    ],
+    passHeading: 'Lädt sauber — in Millisekunden.',
+    passBody: 'Ein kompatibles Objekt liefert OK=true mit dem geprüften Kernel zurück. Schnell genug, um vor jedem Ladevorgang zu stehen.',
+    passAlt: 'Terminal: ValidateBeforeLoad liefert OK=true für ein kompatibles Objekt in 3 Millisekunden.',
+    failHeading: 'Vor dem Laden abgefangen — mit dem Grund.',
+    failBody: 'Ein inkompatibles Objekt liefert OK=false mit einem Klassifizierungscode und der Verifier-Meldung des Kernels — am Tor abgefangen, nicht zur Laufzeit.',
+    failAlt: 'Terminal: ValidateBeforeLoad liefert OK=false mit einer CO-RE-Relokationsfehler-Klassifizierung und Verifier-Log.',
+    footnote: 'Der Bibliotheksmodus ist über ein Build-Tag abgesichert und für privilegierte Pre-Load-Aufrufer wie bpfman gedacht. Vor 1.0 / experimentell.',
   },
   repo: {
     title: 'Repository-Nachweis', measured: 'Gemessen aus dem öffentlichen Repository.', github: 'GitHub', languageMix: 'Sprachmix',
@@ -662,6 +734,25 @@ const es: BpStrings = {
     backportBody: 'Las distros empresariales hacen muchos backports de funciones eBPF sobre bases de kernel antiguas, así que el número de versión por sí solo no predice nada. Como bpfcompat arranca el kernel real del proveedor, esto se prueba directamente en lugar de inferirse.',
     backportExample: 'Un programa de ring buffer falla en el 5.4 vanilla de Ubuntu (el ring buffer llega upstream en 5.8) pero pasa en el 4.18 con backport de AlmaLinux 8 — y el 4.14 de Amazon Linux 2, sin BTF embebido, sigue cargando y haciendo attach.',
   },
+  library: {
+    eyebrow: 'Modo biblioteca',
+    heading: 'Valida antes de cargar.',
+    subline: 'El mismo motor, integrable. ValidateBeforeLoad carga de verdad un objeto eBPF compilado contra el propio kernel en ejecución del nodo — sin VM, sin red — para que un cargador como bpfman pueda validar un programa antes de que llegue al kernel.',
+    apiHeading: 'Una llamada, antes de la ruta de carga.',
+    apiBody: 'Importa el paquete de Go y haz una sola pregunta: ¿se cargará este objeto en este kernel? El veredicto viene del verificador real, en milisegundos, sin QEMU y sin descargar nada de la red.',
+    points: [
+      { title: 'En proceso, sin VM', body: 'Una carga bpf() real contra el kernel local en ejecución — el nodo donde se ejecuta es el nodo donde se cargará el programa, así que el kernel en ejecución es el objetivo. En menos de un milisegundo, no una suposición estática.' },
+      { title: 'Apto para entornos aislados', body: 'El verificador estático está incrustado en el binario; no se descarga nada en tiempo de ejecución. La carga en el host es opcional tras una etiqueta de compilación y está desactivada por defecto.' },
+      { title: 'Veredicto legible por máquina', body: 'Al rechazar obtienes un código de clasificación estable y el final del registro del verificador — ramifica según el código, muestra el motivo, recurre a otro artefacto.' },
+    ],
+    passHeading: 'Carga limpiamente — en milisegundos.',
+    passBody: 'Un objeto compatible devuelve OK=true con el kernel contra el que se comprobó. Lo bastante rápido para ir delante de cada carga.',
+    passAlt: 'Terminal: ValidateBeforeLoad devolviendo OK=true para un objeto compatible en 3 milisegundos.',
+    failHeading: 'Detectado antes de cargar — con el motivo.',
+    failBody: 'Un objeto incompatible devuelve OK=false con un código de clasificación y el propio mensaje del verificador del kernel — detectado en la puerta, no en tiempo de ejecución.',
+    failAlt: 'Terminal: ValidateBeforeLoad devolviendo OK=false con una clasificación de fallo de reubicación CO-RE y el registro del verificador.',
+    footnote: 'El modo biblioteca está protegido tras una etiqueta de compilación y pensado para llamadores privilegiados de pre-carga como bpfman. Anterior a 1.0 / experimental.',
+  },
   repo: {
     title: 'Evidencia del repositorio', measured: 'Medido a partir del repositorio público.', github: 'GitHub', languageMix: 'Mezcla de lenguajes',
     labels: { primaryLanguage: 'Lenguaje principal', license: 'Licencia', latestRelease: 'Última versión', kernelRange: 'Rango de kernels probado' },
@@ -818,6 +909,25 @@ const fr: BpStrings = {
     backportHeading: 'Version du noyau ≠ prise en charge des fonctionnalités.',
     backportBody: 'Les distros d’entreprise rétroportent massivement les fonctionnalités eBPF sur d’anciennes bases de noyau, donc le numéro de version seul ne prédit rien. Comme bpfcompat démarre le vrai noyau du fournisseur, c’est testé directement plutôt que déduit.',
     backportExample: 'Un programme à ring buffer échoue sur le 5.4 vanilla d’Ubuntu (le ring buffer arrive upstream en 5.8) mais réussit sur le 4.18 rétroporté d’AlmaLinux 8 — et le 4.14 d’Amazon Linux 2, sans BTF embarqué, se charge et s’attache toujours.',
+  },
+  library: {
+    eyebrow: 'Mode bibliothèque',
+    heading: 'Validez avant de charger.',
+    subline: 'Le même moteur, intégrable. ValidateBeforeLoad charge réellement un objet eBPF compilé sur le noyau en cours d’exécution du nœud — sans VM, sans réseau — afin qu’un chargeur comme bpfman puisse valider un programme avant qu’il n’atteigne le noyau.',
+    apiHeading: 'Un appel, avant le chemin de chargement.',
+    apiBody: 'Importez le paquet Go et posez une seule question : cet objet se chargera-t-il sur ce noyau ? Le verdict vient du vérificateur réel, en quelques millisecondes, sans QEMU et sans rien télécharger sur le réseau.',
+    points: [
+      { title: 'En processus, sans VM', body: 'Un véritable chargement bpf() sur le noyau local en cours d’exécution — le nœud où il s’exécute est le nœud où le programme sera chargé, donc le noyau en cours d’exécution est la cible. En moins d’une milliseconde, pas une supposition statique.' },
+      { title: 'Compatible air-gap', body: 'Le vérificateur statique est intégré au binaire ; rien n’est téléchargé à l’exécution. Le chargement sur l’hôte est optionnel derrière un tag de compilation et désactivé par défaut.' },
+      { title: 'Verdict lisible par machine', body: 'En cas de rejet, vous obtenez un code de classification stable et la fin du journal du vérificateur — branchez selon le code, affichez la raison, repliez-vous sur un autre artefact.' },
+    ],
+    passHeading: 'Se charge proprement — en quelques millisecondes.',
+    passBody: 'Un objet compatible renvoie OK=true avec le noyau testé. Assez rapide pour précéder chaque chargement.',
+    passAlt: 'Terminal : ValidateBeforeLoad renvoyant OK=true pour un objet compatible en 3 millisecondes.',
+    failHeading: 'Détecté avant le chargement — avec la raison.',
+    failBody: 'Un objet incompatible renvoie OK=false avec un code de classification et le message du vérificateur du noyau lui-même — détecté à la porte, pas à l’exécution.',
+    failAlt: 'Terminal : ValidateBeforeLoad renvoyant OK=false avec une classification d’échec de relocalisation CO-RE et le journal du vérificateur.',
+    footnote: 'Le mode bibliothèque est protégé par un tag de compilation et destiné aux appelants privilégiés de pré-chargement comme bpfman. Avant 1.0 / expérimental.',
   },
   repo: {
     title: 'Preuves du dépôt', measured: 'Mesuré à partir du dépôt public.', github: 'GitHub', languageMix: 'Répartition des langages',
@@ -976,6 +1086,25 @@ const ja: BpStrings = {
     backportBody: 'エンタープライズディストロは eBPF 機能を古いカーネルベースに大量にバックポートするため、バージョン番号だけでは何もわかりません。bpfcompat は実際のベンダーカーネルを起動するので、これは推測ではなく直接テストされます。',
     backportExample: 'ring buffer プログラムは Ubuntu の vanilla 5.4 では失敗します（ring buffer の upstream 対応は 5.8 から）が、AlmaLinux 8 のバックポートされた 4.18 では合格します — そして埋め込み BTF を持たない Amazon Linux 2 の 4.14 でも load と attach に成功します。',
   },
+  library: {
+    eyebrow: 'ライブラリモード',
+    heading: 'ロードする前に検証する。',
+    subline: '同じエンジンを組み込み可能に。ValidateBeforeLoad は、コンパイル済みの eBPF オブジェクトをノード自身の実行中カーネルに対して実際にロードします — VM なし、ネットワークなし — そのため bpfman のようなローダーは、プログラムがカーネルに到達する前に検証できます。',
+    apiHeading: 'ロードパスの前に、1 回の呼び出し。',
+    apiBody: 'Go パッケージをインポートして、1 つだけ問いかけます。このオブジェクトはこのカーネルでロードできるか? 判定は本物のベリファイアから、ミリ秒で、QEMU なし・ネットワークダウンロードなしで返ります。',
+    points: [
+      { title: 'プロセス内、VM なし', body: 'ローカルの実行中カーネルに対する本物の bpf() ロード — 実行されるノードがプログラムをロードするノードなので、実行中カーネルがそのまま対象です。静的な推測ではなく、サブミリ秒。' },
+      { title: 'エアギャップ対応', body: '静的ベリファイアはバイナリに埋め込まれており、実行時に何もダウンロードしません。ホストでのロードはビルドタグによるオプトインで、デフォルトでは無効です。' },
+      { title: '機械可読な判定', body: '拒否されると、安定した分類コードとベリファイアログの末尾が得られます — コードで分岐し、理由を提示し、別のアーティファクトにフォールバックできます。' },
+    ],
+    passHeading: 'きれいにロードされる — ミリ秒で。',
+    passBody: '互換性のあるオブジェクトは、検査したカーネルとともに OK=true を返します。すべてのロードの前段に置けるほど高速です。',
+    passAlt: 'ターミナル: ValidateBeforeLoad が互換オブジェクトに対して 3 ミリ秒で OK=true を返している。',
+    failHeading: 'ロード前に捕捉 — その理由とともに。',
+    failBody: '非互換のオブジェクトは、分類コードとカーネル自身のベリファイアメッセージとともに OK=false を返します — 実行時ではなく、ゲートで捕捉されます。',
+    failAlt: 'ターミナル: ValidateBeforeLoad が CO-RE 再配置失敗の分類とベリファイアログとともに OK=false を返している。',
+    footnote: 'ライブラリモードはビルドタグで制限されており、bpfman のような特権を持つロード前の呼び出し元を想定しています。1.0 以前 / 実験的。',
+  },
   repo: {
     title: 'リポジトリの証拠', measured: '公開リポジトリから測定。', github: 'GitHub', languageMix: '言語構成',
     labels: { primaryLanguage: '主要言語', license: 'ライセンス', latestRelease: '最新リリース', kernelRange: 'テスト済みカーネル範囲' },
@@ -1133,6 +1262,25 @@ const zhCN: BpStrings = {
     backportBody: '企业发行版会把 eBPF 功能大量回移植（backport）到旧的内核基线上，所以仅凭版本号什么都说明不了。因为 bpfcompat 启动的是真实的厂商内核，这一点是直接测试出来的，而不是推断的。',
     backportExample: '一个 ring buffer 程序在 Ubuntu 的原版 5.4 上会失败（ring buffer 自 5.8 才进入上游），但在 AlmaLinux 8 回移植的 4.18 上能通过——而没有内嵌 BTF 的 Amazon Linux 2 的 4.14 仍然能 load 和 attach。',
   },
+  library: {
+    eyebrow: '库模式',
+    heading: '在加载之前先验证。',
+    subline: '同一引擎，可嵌入。ValidateBeforeLoad 会将已编译的 eBPF 对象真正加载到节点自身正在运行的内核上 — 无虚拟机、无网络 — 因此像 bpfman 这样的加载器可以在程序到达内核之前对其进行把关。',
+    apiHeading: '在加载路径之前，一次调用。',
+    apiBody: '导入该 Go 包并只问一个问题：这个对象能在这个内核上加载吗？结论来自真实的验证器，在数毫秒内得出，无需 QEMU，也不从网络下载任何内容。',
+    points: [
+      { title: '进程内，无虚拟机', body: '针对本地正在运行的内核进行真实的 bpf() 加载 — 运行它的节点就是程序将要加载的节点，因此正在运行的内核就是目标。亚毫秒级，而非静态猜测。' },
+      { title: '适用于隔离网络', body: '静态验证器已嵌入二进制文件；运行时不下载任何内容。主机加载通过构建标签选择启用，默认关闭。' },
+      { title: '机器可读的结论', body: '被拒绝时，你会得到一个稳定的分类代码和验证器日志末尾 — 按代码分支、呈现原因、回退到另一个工件。' },
+    ],
+    passHeading: '干净加载 — 在数毫秒内。',
+    passBody: '兼容的对象会返回 OK=true，并附带所检测的内核。快到足以置于每次加载之前。',
+    passAlt: '终端：ValidateBeforeLoad 在 3 毫秒内为兼容对象返回 OK=true。',
+    failHeading: '在加载前被拦截 — 并附带原因。',
+    failBody: '不兼容的对象会返回 OK=false，并附带分类代码和内核自身的验证器消息 — 在入口处被拦截，而非在运行时。',
+    failAlt: '终端：ValidateBeforeLoad 返回 OK=false，附带 CO-RE 重定位失败分类和验证器日志。',
+    footnote: '库模式受构建标签限制，面向像 bpfman 这样的特权预加载调用方。1.0 之前 / 实验性。',
+  },
   repo: {
     title: '仓库证据', measured: '基于公开仓库测量。', github: 'GitHub', languageMix: '语言构成',
     labels: { primaryLanguage: '主要语言', license: '许可证', latestRelease: '最新版本', kernelRange: '已测试内核范围' },
@@ -1289,6 +1437,25 @@ const ko: BpStrings = {
     backportHeading: '커널 버전 ≠ 기능 지원.',
     backportBody: '엔터프라이즈 배포판은 eBPF 기능을 오래된 커널 베이스에 대거 백포트하므로 버전 번호만으로는 아무것도 예측할 수 없습니다. bpfcompat는 실제 벤더 커널을 부팅하므로 이는 추론이 아니라 직접 테스트됩니다.',
     backportExample: 'ring buffer 프로그램은 Ubuntu의 바닐라 5.4에서는 실패하지만(ring buffer는 업스트림 5.8부터) AlmaLinux 8의 백포트된 4.18에서는 합격합니다 — 그리고 내장 BTF가 없는 Amazon Linux 2의 4.14에서도 여전히 load와 attach가 됩니다.',
+  },
+  library: {
+    eyebrow: '라이브러리 모드',
+    heading: '로드하기 전에 검증하세요.',
+    subline: '동일한 엔진을 임베드 가능하게. ValidateBeforeLoad는 컴파일된 eBPF 객체를 노드 자체의 실행 중인 커널에 대해 실제로 로드합니다 — VM 없이, 네트워크 없이 — 따라서 bpfman 같은 로더가 프로그램이 커널에 도달하기 전에 검사할 수 있습니다.',
+    apiHeading: '로드 경로 이전에, 한 번의 호출.',
+    apiBody: 'Go 패키지를 가져와 한 가지만 물어보세요: 이 객체가 이 커널에서 로드될까요? 판정은 실제 검증기에서, 밀리초 단위로, QEMU 없이 그리고 네트워크 다운로드 없이 반환됩니다.',
+    points: [
+      { title: '프로세스 내, VM 없음', body: '로컬에서 실행 중인 커널에 대한 실제 bpf() 로드 — 실행되는 노드가 곧 프로그램이 로드될 노드이므로, 실행 중인 커널이 바로 대상입니다. 정적 추측이 아니라 1밀리초 미만.' },
+      { title: '에어갭 환경 지원', body: '정적 검증기가 바이너리에 임베드되어 있어 런타임에 아무것도 다운로드하지 않습니다. 호스트 로드는 빌드 태그를 통한 옵트인이며 기본적으로 꺼져 있습니다.' },
+      { title: '기계가 읽을 수 있는 판정', body: '거부되면 안정적인 분류 코드와 검증기 로그 끝부분을 얻습니다 — 코드로 분기하고, 이유를 표시하고, 다른 아티팩트로 폴백하세요.' },
+    ],
+    passHeading: '깔끔하게 로드됩니다 — 밀리초 단위로.',
+    passBody: '호환되는 객체는 검사한 커널과 함께 OK=true를 반환합니다. 모든 로드 앞단에 둘 수 있을 만큼 빠릅니다.',
+    passAlt: '터미널: ValidateBeforeLoad가 호환 객체에 대해 3밀리초 만에 OK=true를 반환.',
+    failHeading: '로드 전에 포착 — 이유와 함께.',
+    failBody: '호환되지 않는 객체는 분류 코드와 커널 자체의 검증기 메시지와 함께 OK=false를 반환합니다 — 런타임이 아니라 게이트에서 포착됩니다.',
+    failAlt: '터미널: ValidateBeforeLoad가 CO-RE 재배치 실패 분류와 검증기 로그와 함께 OK=false를 반환.',
+    footnote: '라이브러리 모드는 빌드 태그로 제한되며 bpfman 같은 권한 있는 사전 로드 호출자를 위한 것입니다. 1.0 이전 / 실험적.',
   },
   repo: {
     title: '저장소 증거', measured: '공개 저장소에서 측정함.', github: 'GitHub', languageMix: '언어 구성',

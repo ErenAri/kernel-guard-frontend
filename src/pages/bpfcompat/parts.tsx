@@ -730,6 +730,83 @@ export function CoverageSection() {
 }
 
 /* --------------------------------------------------------------------------
+ * Library mode — embeddable ValidateBeforeLoad pre-load gate
+ * ------------------------------------------------------------------------ */
+
+const LIBRARY_BASE = '/images/projects/bpfcompat/library';
+
+const LIBRARY_SNIPPET = `import "github.com/kernel-guard/bpfcompat/pkg/bpfcompat"
+
+res, err := bpfcompat.ValidateBeforeLoad(ctx, "probe.bpf.o")
+if err != nil {
+    return err
+}
+if !res.OK() {
+    return fmt.Errorf("won't load on %s: [%s] %s",
+        res.Kernel.Release, res.Classification.Code, res.Classification.Reason)
+}
+// safe to load`;
+
+export function LibrarySection() {
+  const t = useBp();
+  return (
+    <div className="space-y-12">
+      {/* embeddable API snippet */}
+      <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-start">
+        <div className="lg:col-span-5">
+          <h3 className="text-xl md:text-2xl font-semibold text-foreground tracking-tight">{t.library.apiHeading}</h3>
+          <p className="mt-3 text-sm font-light text-foreground/70 leading-relaxed">{t.library.apiBody}</p>
+        </div>
+        <div className="lg:col-span-7">
+          <div className="relative bg-[#161616] border border-[#393939] p-4 pr-24 font-mono text-[12px] leading-relaxed text-gray-200 overflow-x-auto whitespace-pre">
+            <CopyButton text={LIBRARY_SNIPPET} />
+            {LIBRARY_SNIPPET}
+          </div>
+        </div>
+      </div>
+
+      {/* three properties */}
+      <div className="grid md:grid-cols-3 gap-4">
+        {t.library.points.map((p) => (
+          <div key={p.title} className="border border-border bg-background p-6">
+            <h4 className="text-sm font-semibold text-foreground tracking-tight">{p.title}</h4>
+            <p className="mt-2 text-sm font-light text-foreground/70 leading-relaxed">{p.body}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* pass + fail screenshots */}
+      <div className="grid lg:grid-cols-2 gap-6">
+        <div>
+          <h4 className="text-base font-semibold text-foreground tracking-tight">{t.library.passHeading}</h4>
+          <p className="mt-2 text-sm font-light text-foreground/70 leading-relaxed">{t.library.passBody}</p>
+          <img
+            src={`${LIBRARY_BASE}/library-validate-pass.png`}
+            alt={t.library.passAlt}
+            loading="lazy"
+            width={1132}
+            className="mt-4 w-full rounded-lg border border-border shadow-sm"
+          />
+        </div>
+        <div>
+          <h4 className="text-base font-semibold text-foreground tracking-tight">{t.library.failHeading}</h4>
+          <p className="mt-2 text-sm font-light text-foreground/70 leading-relaxed">{t.library.failBody}</p>
+          <img
+            src={`${LIBRARY_BASE}/library-validate-fail.png`}
+            alt={t.library.failAlt}
+            loading="lazy"
+            width={1132}
+            className="mt-4 w-full rounded-lg border border-border shadow-sm"
+          />
+        </div>
+      </div>
+
+      <p className="text-xs font-mono text-foreground/50 normal-case">{t.library.footnote}</p>
+    </div>
+  );
+}
+
+/* --------------------------------------------------------------------------
  * How-it-works four-stage frame
  * ------------------------------------------------------------------------ */
 
