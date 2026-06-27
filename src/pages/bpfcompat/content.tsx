@@ -204,7 +204,7 @@ const en: BpStrings = {
     footnote: '20+ documents covering image pipeline, acceptance tests, CI proofs, Firecracker & upstream-kernel backends, and the runtime-decisioning roadmap.',
   },
   adopt: {
-    heading: 'Three ways in. Each under ten minutes.',
+    heading: 'Adopt it in your workflow.',
     copy: 'Copy', copied: 'Copied',
     exitCompatible: 'compatible', exitError: 'execution error', exitRegression: 'regression — fail the pipeline',
     actionNote: 'On a compatibility regression the job exits with code 2 and writes the matrix to the GitHub Actions job summary, so reviewers see exactly which kernel broke.',
@@ -402,7 +402,7 @@ const tr: BpStrings = {
     footnote: 'İmaj hattını, kabul testlerini, CI kanıtlarını, Firecracker ve üst akış çekirdek arka uçlarını ve çalışma zamanı karar yol haritasını kapsayan 20+ belge.',
   },
   adopt: {
-    heading: 'Üç giriş yolu. Her biri on dakikadan kısa.',
+    heading: 'İş akışınıza ekleyin.',
     copy: 'Kopyala', copied: 'Kopyalandı',
     exitCompatible: 'uyumlu', exitError: 'yürütme hatası', exitRegression: 'gerileme — hattı durdurun',
     actionNote: 'Uyumluluk gerilemesinde iş, çıkış kodu 2 ile sonlanır ve matrisi GitHub Actions iş özetine yazar; böylece inceleyenler hangi çekirdeğin bozulduğunu tam olarak görür.',
@@ -600,7 +600,7 @@ const de: BpStrings = {
     footnote: 'Über 20 Dokumente zu Image-Pipeline, Akzeptanztests, CI-Nachweisen, Firecracker- & Upstream-Kernel-Backends und der Roadmap zur Laufzeit-Entscheidung.',
   },
   adopt: {
-    heading: 'Drei Wege hinein. Jeder in unter zehn Minuten.',
+    heading: 'In Ihren Workflow übernehmen.',
     copy: 'Kopieren', copied: 'Kopiert',
     exitCompatible: 'kompatibel', exitError: 'Ausführungsfehler', exitRegression: 'Regression — Pipeline stoppen',
     actionNote: 'Bei einer Kompatibilitätsregression endet der Job mit Exit-Code 2 und schreibt die Matrix in die GitHub-Actions-Job-Zusammenfassung, sodass Prüfer genau sehen, welcher Kernel brach.',
@@ -798,7 +798,7 @@ const es: BpStrings = {
     footnote: 'Más de 20 documentos sobre el pipeline de imágenes, pruebas de aceptación, evidencias de CI, backends de Firecracker y kernel upstream, y la hoja de ruta de decisión en tiempo de ejecución.',
   },
   adopt: {
-    heading: 'Tres formas de empezar. Cada una en menos de diez minutos.',
+    heading: 'Adóptalo en tu flujo de trabajo.',
     copy: 'Copiar', copied: 'Copiado',
     exitCompatible: 'compatible', exitError: 'error de ejecución', exitRegression: 'regresión — detén la pipeline',
     actionNote: 'Ante una regresión de compatibilidad, el job termina con código de salida 2 y escribe la matriz en el resumen del job de GitHub Actions, para que los revisores vean exactamente qué kernel se rompió.',
@@ -996,7 +996,7 @@ const fr: BpStrings = {
     footnote: 'Plus de 20 documents couvrant le pipeline d’images, les tests d’acceptation, les preuves CI, les backends Firecracker et noyau upstream, et la feuille de route de décision à l’exécution.',
   },
   adopt: {
-    heading: 'Trois façons de commencer. Chacune en moins de dix minutes.',
+    heading: 'Adoptez-le dans votre workflow.',
     copy: 'Copier', copied: 'Copié',
     exitCompatible: 'compatible', exitError: 'erreur d’exécution', exitRegression: 'régression — arrêtez le pipeline',
     actionNote: 'En cas de régression de compatibilité, le job se termine avec le code de sortie 2 et écrit la matrice dans le résumé de job GitHub Actions, afin que les relecteurs voient exactement quel noyau a cassé.',
@@ -1194,7 +1194,7 @@ const ja: BpStrings = {
     footnote: 'イメージパイプライン、受け入れテスト、CI の証跡、Firecracker および upstream カーネルバックエンド、ランタイム判定のロードマップを網羅する 20 以上のドキュメント。',
   },
   adopt: {
-    heading: '3 つの始め方。どれも 10 分以内。',
+    heading: 'ワークフローに組み込む。',
     copy: 'コピー', copied: 'コピーしました',
     exitCompatible: '互換', exitError: '実行エラー', exitRegression: 'リグレッション — パイプラインを止める',
     actionNote: '互換性のリグレッションが発生すると、ジョブは終了コード 2 で終了し、マトリクスを GitHub Actions のジョブサマリーに書き込みます。これによりレビュアーはどのカーネルが壊れたかを正確に把握できます。',
@@ -1392,7 +1392,7 @@ const zhCN: BpStrings = {
     footnote: '20 多篇文档，涵盖镜像流水线、验收测试、CI 证据、Firecracker 与上游内核后端，以及运行时决策路线图。',
   },
   adopt: {
-    heading: '三种上手方式。每种都不到十分钟。',
+    heading: '将其纳入你的工作流。',
     copy: '复制', copied: '已复制',
     exitCompatible: '兼容', exitError: '执行错误', exitRegression: '回归——让流水线失败',
     actionNote: '发生兼容性回归时，作业会以退出码 2 结束，并把矩阵写入 GitHub Actions 作业摘要，让审阅者准确看到是哪个内核出了问题。',
@@ -1590,7 +1590,7 @@ const ko: BpStrings = {
     footnote: '이미지 파이프라인, 인수 테스트, CI 증적, Firecracker 및 업스트림 커널 백엔드, 런타임 결정 로드맵을 다루는 20여 개의 문서.',
   },
   adopt: {
-    heading: '시작하는 세 가지 방법. 각각 10분 이내.',
+    heading: '워크플로에 도입하세요.',
     copy: '복사', copied: '복사됨',
     exitCompatible: '호환', exitError: '실행 오류', exitRegression: '회귀 — 파이프라인 중단',
     actionNote: '호환성 회귀가 발생하면 작업은 종료 코드 2로 끝나고 매트릭스를 GitHub Actions 작업 요약에 기록하므로, 리뷰어가 어떤 커널이 깨졌는지 정확히 볼 수 있습니다.',
