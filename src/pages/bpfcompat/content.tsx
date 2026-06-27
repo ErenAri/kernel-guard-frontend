@@ -27,6 +27,12 @@ export interface BpStrings {
     items: Array<{ title: string; body: string }>;
     cta: string;
   };
+  ways: {
+    eyebrow: string;
+    heading: string;
+    subline: string;
+    items: Array<{ title: string; time: string; note: string }>;
+  };
   problem: {
     heading: string; subline: string;
     cards: Array<{ label: string; sentence: string }>;
@@ -137,6 +143,16 @@ const en: BpStrings = {
     eyebrow: 'In plain terms',
     pre: 'eBPF programs run inside the Linux kernel. Different kernels accept different programs — so software that runs on one server can ',
     emph: 'fail to start', post: ' on another.',
+  },
+  ways: {
+    eyebrow: 'Get started',
+    heading: 'Three ways to use it — each in under 10 minutes.',
+    subline: 'Run it locally, gate it in CI, or embed it in your loader. Same engine, real kernels.',
+    items: [
+      { title: 'Locally — CLI', time: '~5 min', note: 'Install and check a .bpf.o across kernels; --quick needs no matrix file.' },
+      { title: 'In CI — GitHub Action', time: '~10 min', note: 'Drop the action into a workflow and fail the build when an artifact regresses.' },
+      { title: 'Embedded — Go library', time: '~10 min', note: 'Import pkg/bpfcompat and gate a program before your loader ever loads it.' },
+    ],
   },
   problem: {
     heading: 'None of these show up at compile time.',
@@ -326,6 +342,16 @@ const tr: BpStrings = {
     pre: 'eBPF programları Linux çekirdeğinin içinde çalışır. Farklı çekirdekler farklı programları kabul eder — bu yüzden bir sunucuda çalışan yazılım başka birinde ',
     emph: 'başlatılamayabilir', post: '.',
   },
+  ways: {
+    eyebrow: 'Başlayın',
+    heading: 'Kullanmanın üç yolu — her biri 10 dakikadan kısa.',
+    subline: 'Yerelde çalıştırın, CI’da denetleyin veya yükleyicinize gömün. Aynı motor, gerçek çekirdekler.',
+    items: [
+      { title: 'Yerelde — CLI', time: '~5 dk', note: 'Bir .bpf.o’yu çekirdekler arasında kurun ve kontrol edin; --quick matris dosyası gerektirmez.' },
+      { title: 'CI’da — GitHub Action', time: '~10 dk', note: 'Action’ı bir iş akışına ekleyin ve bir yapı bozulduğunda derlemeyi başarısız kılın.' },
+      { title: 'Gömülü — Go kütüphanesi', time: '~10 dk', note: 'pkg/bpfcompat’i içe aktarın ve yükleyiciniz yüklemeden önce programı denetleyin.' },
+    ],
+  },
   problem: {
     heading: 'Bunların hiçbiri derleme zamanında ortaya çıkmaz.',
     subline: 'Bunlar müşterinizin çekirdeğinde ortaya çıkar — genellikle üretimde. İşte çekirdeğin gerçekte söyledikleri.',
@@ -513,6 +539,16 @@ const de: BpStrings = {
     eyebrow: 'Einfach gesagt',
     pre: 'eBPF-Programme laufen im Linux-Kernel. Verschiedene Kernel akzeptieren verschiedene Programme — Software, die auf einem Server läuft, kann auf einem anderen ',
     emph: 'nicht starten', post: '.',
+  },
+  ways: {
+    eyebrow: 'Loslegen',
+    heading: 'Drei Wege zur Nutzung — jeder in unter 10 Minuten.',
+    subline: 'Lokal ausführen, in CI absichern oder in den Loader einbetten. Dieselbe Engine, echte Kernel.',
+    items: [
+      { title: 'Lokal — CLI', time: '~5 Min', note: 'Ein .bpf.o installieren und über Kernel prüfen; --quick braucht keine Matrixdatei.' },
+      { title: 'In CI — GitHub Action', time: '~10 Min', note: 'Die Action in einen Workflow einfügen und den Build bei einer Regression scheitern lassen.' },
+      { title: 'Eingebettet — Go-Bibliothek', time: '~10 Min', note: 'pkg/bpfcompat importieren und ein Programm prüfen, bevor der Loader es lädt.' },
+    ],
   },
   problem: {
     heading: 'Nichts davon zeigt sich zur Kompilierzeit.',
@@ -702,6 +738,16 @@ const es: BpStrings = {
     pre: 'Los programas eBPF se ejecutan dentro del kernel de Linux. Cada kernel acepta programas distintos, así que el software que funciona en un servidor puede ',
     emph: 'no arrancar', post: ' en otro.',
   },
+  ways: {
+    eyebrow: 'Empezar',
+    heading: 'Tres formas de usarlo — cada una en menos de 10 minutos.',
+    subline: 'Ejecútalo localmente, contrólalo en CI o intégralo en tu cargador. Mismo motor, kernels reales.',
+    items: [
+      { title: 'Localmente — CLI', time: '~5 min', note: 'Instala y comprueba un .bpf.o en varios kernels; --quick no necesita archivo de matriz.' },
+      { title: 'En CI — GitHub Action', time: '~10 min', note: 'Añade la action a un workflow y haz fallar la build cuando un artefacto regrese.' },
+      { title: 'Integrado — biblioteca Go', time: '~10 min', note: 'Importa pkg/bpfcompat y valida un programa antes de que tu cargador lo cargue.' },
+    ],
+  },
   problem: {
     heading: 'Nada de esto aparece en tiempo de compilación.',
     subline: 'Aparece en el kernel de tu cliente — normalmente en producción. Esto es lo que dice el kernel realmente.',
@@ -889,6 +935,16 @@ const fr: BpStrings = {
     eyebrow: 'En clair',
     pre: 'Les programmes eBPF s’exécutent dans le noyau Linux. Chaque noyau accepte des programmes différents — un logiciel qui tourne sur un serveur peut donc ',
     emph: 'ne pas démarrer', post: ' sur un autre.',
+  },
+  ways: {
+    eyebrow: 'Démarrer',
+    heading: 'Trois façons de l’utiliser — chacune en moins de 10 minutes.',
+    subline: 'Exécutez-le en local, contrôlez-le en CI, ou intégrez-le à votre chargeur. Même moteur, vrais noyaux.',
+    items: [
+      { title: 'En local — CLI', time: '~5 min', note: 'Installez et vérifiez un .bpf.o sur plusieurs noyaux ; --quick ne nécessite aucun fichier de matrice.' },
+      { title: 'En CI — GitHub Action', time: '~10 min', note: 'Ajoutez l’action à un workflow et faites échouer le build en cas de régression d’un artefact.' },
+      { title: 'Intégré — bibliothèque Go', time: '~10 min', note: 'Importez pkg/bpfcompat et validez un programme avant que votre chargeur ne le charge.' },
+    ],
   },
   problem: {
     heading: 'Rien de tout cela n’apparaît à la compilation.',
@@ -1078,6 +1134,16 @@ const ja: BpStrings = {
     pre: 'eBPF プログラムは Linux カーネルの内部で動作します。カーネルごとに受け入れるプログラムが異なるため、あるサーバーで動くソフトウェアが別のサーバーでは',
     emph: '起動しない', post: 'ことがあります。',
   },
+  ways: {
+    eyebrow: 'はじめる',
+    heading: '3 つの使い方 — それぞれ 10 分以内。',
+    subline: 'ローカルで実行、CI でゲート、ローダーに組み込み。同じエンジン、実カーネル。',
+    items: [
+      { title: 'ローカル — CLI', time: '約5分', note: '.bpf.o をインストールしてカーネル横断で検査; --quick はマトリクスファイル不要。' },
+      { title: 'CI — GitHub Action', time: '約10分', note: 'アクションをワークフローに追加し、アーティファクトが退行したらビルドを失敗させる。' },
+      { title: '組み込み — Go ライブラリ', time: '約10分', note: 'pkg/bpfcompat をインポートし、ローダーが読み込む前にプログラムをゲートする。' },
+    ],
+  },
   problem: {
     heading: 'これらはどれもコンパイル時には現れません。',
     subline: '現れるのは顧客のカーネル上で、たいてい本番環境です。カーネルが実際に出力する内容がこちらです。',
@@ -1266,6 +1332,16 @@ const zhCN: BpStrings = {
     pre: 'eBPF 程序运行在 Linux 内核内部。不同内核接受不同的程序，因此在一台服务器上能运行的软件，在另一台上可能',
     emph: '无法启动', post: '。',
   },
+  ways: {
+    eyebrow: '开始使用',
+    heading: '三种使用方式 — 每种都在 10 分钟内。',
+    subline: '本地运行、在 CI 中把关，或嵌入到你的加载器。同一引擎，真实内核。',
+    items: [
+      { title: '本地 — CLI', time: '约 5 分钟', note: '安装并在多个内核上检查一个 .bpf.o；--quick 无需矩阵文件。' },
+      { title: 'CI — GitHub Action', time: '约 10 分钟', note: '将该 action 加入工作流，当工件回退时让构建失败。' },
+      { title: '嵌入 — Go 库', time: '约 10 分钟', note: '导入 pkg/bpfcompat，在加载器加载程序之前对其把关。' },
+    ],
+  },
   problem: {
     heading: '这些问题在编译时都不会出现。',
     subline: '它们出现在客户的内核上——通常是在生产环境。这是内核实际给出的信息。',
@@ -1453,6 +1529,16 @@ const ko: BpStrings = {
     eyebrow: '쉽게 말하면',
     pre: 'eBPF 프로그램은 Linux 커널 내부에서 실행됩니다. 커널마다 받아들이는 프로그램이 다르므로, 한 서버에서 동작하는 소프트웨어가 다른 서버에서는 ',
     emph: '시작되지 않을', post: ' 수 있습니다.',
+  },
+  ways: {
+    eyebrow: '시작하기',
+    heading: '사용하는 세 가지 방법 — 각각 10분 이내.',
+    subline: '로컬에서 실행하고, CI에서 게이트하고, 로더에 임베드하세요. 같은 엔진, 실제 커널.',
+    items: [
+      { title: '로컬 — CLI', time: '~5분', note: '.bpf.o를 설치하고 여러 커널에서 검사; --quick은 매트릭스 파일이 필요 없습니다.' },
+      { title: 'CI — GitHub Action', time: '~10분', note: '액션을 워크플로에 추가하고 아티팩트가 회귀하면 빌드를 실패시킵니다.' },
+      { title: '임베드 — Go 라이브러리', time: '~10분', note: 'pkg/bpfcompat를 가져와 로더가 로드하기 전에 프로그램을 게이트합니다.' },
+    ],
   },
   problem: {
     heading: '이 중 어느 것도 컴파일 시점에는 드러나지 않습니다.',

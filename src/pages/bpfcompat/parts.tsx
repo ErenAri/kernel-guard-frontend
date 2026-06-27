@@ -680,6 +680,39 @@ export function InstallSection() {
 }
 
 /* --------------------------------------------------------------------------
+ * Three ways to use it — each under 10 minutes (CLI / Action / Library)
+ * ------------------------------------------------------------------------ */
+
+export function UsageWays() {
+  const t = useBp();
+  // Built here (not module scope) so LIBRARY_SNIPPET, declared further down, is
+  // already initialized by render time.
+  const snippets = [
+    `go install github.com/kernel-guard/bpfcompat/cmd/bpfcompat@${BPFCOMPAT_VERSION}
+bpfcompat test --artifact ./probe.bpf.o --quick`,
+    ACTION_SNIPPET,
+    LIBRARY_SNIPPET,
+  ];
+  return (
+    <div className="grid lg:grid-cols-3 gap-4">
+      {t.ways.items.map((w, i) => (
+        <div key={w.title} className="flex flex-col border border-border bg-background p-6">
+          <div className="flex items-baseline justify-between mb-3">
+            <h3 className="text-base font-semibold text-foreground tracking-tight">{w.title}</h3>
+            <span className="text-xs font-mono uppercase tracking-wider text-primary">{w.time}</span>
+          </div>
+          <p className="text-sm font-light text-foreground/70 leading-relaxed mb-4">{w.note}</p>
+          <div className="relative mt-auto bg-[#161616] border border-[#393939] p-4 pr-16 font-mono text-[11px] leading-relaxed text-gray-200 overflow-x-auto whitespace-pre">
+            <CopyButton text={snippets[i]} />
+            {snippets[i]}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* --------------------------------------------------------------------------
  * What's new — release highlights
  * ------------------------------------------------------------------------ */
 
