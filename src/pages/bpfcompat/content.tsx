@@ -20,6 +20,13 @@ export interface BpStrings {
     termSimulated: string; termRunLink: string;
   };
   plain: { eyebrow: string; pre: string; emph: string; post: string };
+  whatsNew: {
+    eyebrow: string;
+    heading: string;
+    subline: string;
+    items: Array<{ title: string; body: string }>;
+    cta: string;
+  };
   problem: {
     heading: string; subline: string;
     cards: Array<{ label: string; sentence: string }>;
@@ -113,6 +120,18 @@ const en: BpStrings = {
     subline: 'Test your eBPF programs on every Linux kernel you ship to — before your users do.',
     ctaDemo: 'Run the live demo', ctaGithub: 'View on GitHub', ctaAction: 'Use the GitHub Action',
     termSimulated: 'Simulated output, looping.', termRunLink: 'Run it yourself in the demo →',
+  },
+  whatsNew: {
+    eyebrow: 'What’s new — v0.2.0',
+    heading: 'The biggest release since launch.',
+    subline: 'A new embeddable library API, a new OS family, and ARM64 — all proven on real kernels.',
+    items: [
+      { title: 'Library mode', body: 'Embed bpfcompat in Go: ValidateBeforeLoad does a real load on the node’s own kernel — no VM, no network — as a pre-load gate.' },
+      { title: 'OpenShift / RHCOS', body: 'CoreOS boots via Ignition now. A real RHCOS evidence matrix spans OpenShift 4.14 / 4.16 / 4.18, including a BPF-LSM backport boundary.' },
+      { title: 'ARM64 / aarch64', body: 'Real aarch64 VM boots: UEFI firmware plus cross-arch emulation, with RHCOS load+attach proven on ARM64.' },
+      { title: 'Zero-config gadgets', body: 'Validate a published OCI gadget directly, with --quick (no matrix file), auto-sized maps, and program auto-typing.' },
+    ],
+    cta: 'Read the v0.2.0 release',
   },
   plain: {
     eyebrow: 'In plain terms',
@@ -290,6 +309,18 @@ const tr: BpStrings = {
     ctaDemo: 'Canlı demoyu çalıştır', ctaGithub: "GitHub'da görüntüle", ctaAction: "GitHub Action'ı kullan",
     termSimulated: 'Benzetilmiş çıktı, döngüde.', termRunLink: 'Kendiniz demoda çalıştırın →',
   },
+  whatsNew: {
+    eyebrow: 'Yenilikler — v0.2.0',
+    heading: 'Lansmandan bu yana en büyük sürüm.',
+    subline: 'Yeni gömülebilir kütüphane API’si, yeni bir işletim sistemi ailesi ve ARM64 — hepsi gerçek çekirdeklerde kanıtlandı.',
+    items: [
+      { title: 'Kütüphane modu', body: 'bpfcompat’i Go içinde gömün: ValidateBeforeLoad, düğümün kendi çekirdeğinde gerçek bir yükleme yapar — sanal makine yok, ağ yok — yükleme öncesi denetim olarak.' },
+      { title: 'OpenShift / RHCOS', body: 'CoreOS artık Ignition ile açılıyor. Gerçek bir RHCOS kanıt matrisi OpenShift 4.14 / 4.16 / 4.18’i kapsıyor; bir BPF-LSM geriye-port sınırı dahil.' },
+      { title: 'ARM64 / aarch64', body: 'Gerçek aarch64 sanal makine açılışları: UEFI ürün yazılımı ve çapraz-mimari öykünme; RHCOS yükle+bağla ARM64’te kanıtlandı.' },
+      { title: 'Sıfır yapılandırmalı gadget’lar', body: 'Yayınlanmış bir OCI gadget’ını doğrudan doğrulayın; --quick (matris dosyası yok), otomatik boyutlanan haritalar ve program otomatik tiplemesi.' },
+    ],
+    cta: 'v0.2.0 sürümünü oku',
+  },
   plain: {
     eyebrow: 'Sade bir dille',
     pre: 'eBPF programları Linux çekirdeğinin içinde çalışır. Farklı çekirdekler farklı programları kabul eder — bu yüzden bir sunucuda çalışan yazılım başka birinde ',
@@ -465,6 +496,18 @@ const de: BpStrings = {
     subline: 'Teste deine eBPF-Programme auf jedem Linux-Kernel, an den du auslieferst — bevor es deine Nutzer tun.',
     ctaDemo: 'Live-Demo starten', ctaGithub: 'Auf GitHub ansehen', ctaAction: 'GitHub Action verwenden',
     termSimulated: 'Simulierte Ausgabe, in Schleife.', termRunLink: 'Selbst in der Demo ausführen →',
+  },
+  whatsNew: {
+    eyebrow: 'Neu — v0.2.0',
+    heading: 'Das größte Release seit dem Start.',
+    subline: 'Eine neue einbettbare Bibliotheks-API, eine neue OS-Familie und ARM64 — alles auf echten Kerneln bewiesen.',
+    items: [
+      { title: 'Bibliotheksmodus', body: 'bpfcompat in Go einbetten: ValidateBeforeLoad lädt echt auf dem Kernel des Knotens — ohne VM, ohne Netzwerk — als Pre-Load-Gate.' },
+      { title: 'OpenShift / RHCOS', body: 'CoreOS bootet jetzt via Ignition. Eine echte RHCOS-Evidenzmatrix umfasst OpenShift 4.14 / 4.16 / 4.18, inklusive einer BPF-LSM-Backport-Grenze.' },
+      { title: 'ARM64 / aarch64', body: 'Echte aarch64-VM-Boots: UEFI-Firmware plus Cross-Arch-Emulation, mit auf ARM64 bewiesenem RHCOS load+attach.' },
+      { title: 'Zero-Config-Gadgets', body: 'Ein veröffentlichtes OCI-Gadget direkt validieren, mit --quick (keine Matrixdatei), automatisch dimensionierten Maps und Programm-Auto-Typing.' },
+    ],
+    cta: 'Release v0.2.0 lesen',
   },
   plain: {
     eyebrow: 'Einfach gesagt',
@@ -642,6 +685,18 @@ const es: BpStrings = {
     ctaDemo: 'Ejecutar la demo en vivo', ctaGithub: 'Ver en GitHub', ctaAction: 'Usar la GitHub Action',
     termSimulated: 'Salida simulada, en bucle.', termRunLink: 'Ejecútalo tú mismo en la demo →',
   },
+  whatsNew: {
+    eyebrow: 'Novedades — v0.2.0',
+    heading: 'La mayor versión desde el lanzamiento.',
+    subline: 'Una nueva API de biblioteca integrable, una nueva familia de SO y ARM64 — todo probado en kernels reales.',
+    items: [
+      { title: 'Modo biblioteca', body: 'Integra bpfcompat en Go: ValidateBeforeLoad hace una carga real en el propio kernel del nodo — sin VM, sin red — como verificación previa a la carga.' },
+      { title: 'OpenShift / RHCOS', body: 'CoreOS ahora arranca vía Ignition. Una matriz de evidencia real de RHCOS abarca OpenShift 4.14 / 4.16 / 4.18, incluida una frontera de backport de BPF-LSM.' },
+      { title: 'ARM64 / aarch64', body: 'Arranques reales de VM aarch64: firmware UEFI más emulación entre arquitecturas, con load+attach de RHCOS probado en ARM64.' },
+      { title: 'Gadgets sin configuración', body: 'Valida un gadget OCI publicado directamente, con --quick (sin archivo de matriz), mapas autodimensionados y autotipado de programas.' },
+    ],
+    cta: 'Leer la versión v0.2.0',
+  },
   plain: {
     eyebrow: 'En pocas palabras',
     pre: 'Los programas eBPF se ejecutan dentro del kernel de Linux. Cada kernel acepta programas distintos, así que el software que funciona en un servidor puede ',
@@ -817,6 +872,18 @@ const fr: BpStrings = {
     subline: 'Testez vos programmes eBPF sur chaque noyau Linux auquel vous livrez — avant vos utilisateurs.',
     ctaDemo: 'Lancer la démo en direct', ctaGithub: 'Voir sur GitHub', ctaAction: 'Utiliser la GitHub Action',
     termSimulated: 'Sortie simulée, en boucle.', termRunLink: 'Essayez-le vous-même dans la démo →',
+  },
+  whatsNew: {
+    eyebrow: 'Nouveautés — v0.2.0',
+    heading: 'La plus grande version depuis le lancement.',
+    subline: 'Une nouvelle API de bibliothèque intégrable, une nouvelle famille d’OS et ARM64 — le tout prouvé sur de vrais noyaux.',
+    items: [
+      { title: 'Mode bibliothèque', body: 'Intégrez bpfcompat en Go : ValidateBeforeLoad effectue un vrai chargement sur le noyau du nœud — sans VM, sans réseau — comme contrôle avant chargement.' },
+      { title: 'OpenShift / RHCOS', body: 'CoreOS démarre désormais via Ignition. Une vraie matrice de preuves RHCOS couvre OpenShift 4.14 / 4.16 / 4.18, dont une frontière de rétroportage BPF-LSM.' },
+      { title: 'ARM64 / aarch64', body: 'De vrais démarrages de VM aarch64 : firmware UEFI plus émulation inter-architecture, avec load+attach RHCOS prouvé sur ARM64.' },
+      { title: 'Gadgets sans configuration', body: 'Validez directement un gadget OCI publié, avec --quick (sans fichier de matrice), des maps autodimensionnées et l’auto-typage des programmes.' },
+    ],
+    cta: 'Lire la version v0.2.0',
   },
   plain: {
     eyebrow: 'En clair',
@@ -994,6 +1061,18 @@ const ja: BpStrings = {
     ctaDemo: 'ライブデモを実行', ctaGithub: 'GitHub で見る', ctaAction: 'GitHub Action を使う',
     termSimulated: 'シミュレートされた出力（ループ）。', termRunLink: 'デモで自分で実行する →',
   },
+  whatsNew: {
+    eyebrow: '新着 — v0.2.0',
+    heading: '公開以来、最大のリリース。',
+    subline: '新しい組み込み可能なライブラリAPI、新しいOSファミリ、そしてARM64 — すべて実カーネルで実証。',
+    items: [
+      { title: 'ライブラリモード', body: 'bpfcompatをGoに組み込み: ValidateBeforeLoad はノード自身のカーネルで実際にロード — VMなし、ネットワークなし — ロード前ゲートとして。' },
+      { title: 'OpenShift / RHCOS', body: 'CoreOS が Ignition で起動するように。実際の RHCOS エビデンスマトリクスが OpenShift 4.14 / 4.16 / 4.18 を網羅し、BPF-LSM のバックポート境界も含む。' },
+      { title: 'ARM64 / aarch64', body: '実際の aarch64 VM 起動: UEFI ファームウェアとクロスアーキ эмулーション、ARM64 で RHCOS の load+attach を実証。' },
+      { title: 'ゼロ設定ガジェット', body: '公開済みの OCI ガジェットを直接検証: --quick(マトリクスファイル不要)、自動サイズ調整マップ、プログラムの自動型付け。' },
+    ],
+    cta: 'v0.2.0 リリースを読む',
+  },
   plain: {
     eyebrow: '簡単に言うと',
     pre: 'eBPF プログラムは Linux カーネルの内部で動作します。カーネルごとに受け入れるプログラムが異なるため、あるサーバーで動くソフトウェアが別のサーバーでは',
@@ -1170,6 +1249,18 @@ const zhCN: BpStrings = {
     ctaDemo: '运行在线演示', ctaGithub: '在 GitHub 上查看', ctaAction: '使用 GitHub Action',
     termSimulated: '模拟输出，循环播放。', termRunLink: '在演示中亲自运行 →',
   },
+  whatsNew: {
+    eyebrow: '新功能 — v0.2.0',
+    heading: '发布以来最大的一次更新。',
+    subline: '全新可嵌入库 API、新的操作系统家族，以及 ARM64 — 全部在真实内核上验证。',
+    items: [
+      { title: '库模式', body: '将 bpfcompat 嵌入 Go：ValidateBeforeLoad 在节点自身内核上执行真实加载 — 无虚拟机、无网络 — 作为加载前把关。' },
+      { title: 'OpenShift / RHCOS', body: 'CoreOS 现在通过 Ignition 启动。真实的 RHCOS 证据矩阵覆盖 OpenShift 4.14 / 4.16 / 4.18，包含一个 BPF-LSM 回移植边界。' },
+      { title: 'ARM64 / aarch64', body: '真实的 aarch64 虚拟机启动：UEFI 固件加上跨架构模拟，并在 ARM64 上验证了 RHCOS 的加载+挂载。' },
+      { title: '零配置 gadget', body: '直接验证已发布的 OCI gadget，支持 --quick（无需矩阵文件）、自动调整大小的 map 以及程序自动类型推断。' },
+    ],
+    cta: '阅读 v0.2.0 发布说明',
+  },
   plain: {
     eyebrow: '通俗地说',
     pre: 'eBPF 程序运行在 Linux 内核内部。不同内核接受不同的程序，因此在一台服务器上能运行的软件，在另一台上可能',
@@ -1345,6 +1436,18 @@ const ko: BpStrings = {
     subline: '배포하는 모든 Linux 커널에서 eBPF 프로그램을 테스트하세요 — 사용자보다 먼저.',
     ctaDemo: '라이브 데모 실행', ctaGithub: 'GitHub에서 보기', ctaAction: 'GitHub Action 사용',
     termSimulated: '시뮬레이션 출력, 반복 재생.', termRunLink: '데모에서 직접 실행하기 →',
+  },
+  whatsNew: {
+    eyebrow: '새로운 기능 — v0.2.0',
+    heading: '출시 이후 가장 큰 릴리스.',
+    subline: '새로운 임베드 가능 라이브러리 API, 새로운 OS 제품군, 그리고 ARM64 — 모두 실제 커널에서 검증.',
+    items: [
+      { title: '라이브러리 모드', body: 'bpfcompat를 Go에 임베드: ValidateBeforeLoad는 노드 자체 커널에서 실제 로드를 수행합니다 — VM 없이, 네트워크 없이 — 로드 전 게이트로.' },
+      { title: 'OpenShift / RHCOS', body: '이제 CoreOS는 Ignition으로 부팅됩니다. 실제 RHCOS 증거 매트릭스가 OpenShift 4.14 / 4.16 / 4.18을 아우르며 BPF-LSM 백포트 경계를 포함합니다.' },
+      { title: 'ARM64 / aarch64', body: '실제 aarch64 VM 부팅: UEFI 펌웨어와 교차 아키텍처 에뮬레이션, ARM64에서 RHCOS load+attach 검증.' },
+      { title: '제로 구성 가젯', body: '게시된 OCI 가젯을 직접 검증: --quick(매트릭스 파일 불필요), 자동 크기 조정 맵, 프로그램 자동 타입 지정.' },
+    ],
+    cta: 'v0.2.0 릴리스 읽기',
   },
   plain: {
     eyebrow: '쉽게 말하면',

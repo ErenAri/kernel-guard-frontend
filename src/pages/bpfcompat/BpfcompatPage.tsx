@@ -15,7 +15,7 @@ import { buildSoftwareSourceCodeSchema } from '../../lib/schema';
 import { BpStringsProvider, getBpStrings } from './content';
 import {
   Chip, HeroCtas, MatrixTerminal, CompatibilityMatrix, Legend, HowItWorks,
-  ProblemCards, AdoptionTabs, InstallSection, CoverageSection, LibrarySection, RepoEvidence, ScopePanel, ToolchainBand,
+  ProblemCards, AdoptionTabs, InstallSection, CoverageSection, LibrarySection, WhatsNewSection, RepoEvidence, ScopePanel, ToolchainBand,
   Reveal, BigStat, DocsSection, ProjectBreadcrumb, FinalCtaWithDocs,
   WhyBuilt, ComparisonTable,
   Kicker, Caret, GITHUB_URL, DEMO_URL, REPORT,
@@ -95,6 +95,18 @@ export default function BpfcompatPage() {
                 </p>
               </div>
             </Reveal>
+          </div>
+        </section>
+
+        {/* 1b — what's new in this release */}
+        <section className="py-20 md:py-24 border-b border-border bg-surface">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Reveal className="text-center max-w-2xl mx-auto mb-12">
+              <Kicker className="mb-5">{t.whatsNew.eyebrow}</Kicker>
+              <h2 className="text-3xl md:text-5xl font-light text-foreground tracking-tight">{t.whatsNew.heading}</h2>
+              <p className="mt-5 text-lg font-light text-foreground/70 leading-relaxed">{t.whatsNew.subline}</p>
+            </Reveal>
+            <Reveal delayMs={120}><WhatsNewSection /></Reveal>
           </div>
         </section>
 
