@@ -827,7 +827,28 @@ export function LibrarySection() {
             <CopyButton text={LIBRARY_SNIPPET} />
             {LIBRARY_SNIPPET}
           </div>
+          <a
+            href={`${GITHUB_URL}/tree/main/pkg/bpfcompat`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+          >
+            {t.library.viewPackage} <ExternalLink className="w-4 h-4" />
+          </a>
         </div>
+      </div>
+
+      {/* a real, runnable example (code screenshot) */}
+      <div>
+        <h3 className="text-xl md:text-2xl font-semibold text-foreground tracking-tight">{t.library.exampleHeading}</h3>
+        <p className="mt-2 text-sm font-light text-foreground/70 leading-relaxed max-w-3xl">{t.library.exampleBody}</p>
+        <img
+          src={`${LIBRARY_BASE}/library-code.png`}
+          alt={t.library.exampleAlt}
+          loading="lazy"
+          width={1140}
+          className="mt-4 w-full max-w-4xl rounded-lg border border-border shadow-sm"
+        />
       </div>
 
       {/* three properties */}

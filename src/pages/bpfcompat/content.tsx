@@ -86,6 +86,10 @@ export interface BpStrings {
     subline: string;
     apiHeading: string;
     apiBody: string;
+    exampleHeading: string;
+    exampleBody: string;
+    exampleAlt: string;
+    viewPackage: string;
     points: Array<{ title: string; body: string }>;
     passHeading: string;
     passBody: string;
@@ -247,6 +251,10 @@ const en: BpStrings = {
     subline: 'The same engine, embeddable. ValidateBeforeLoad does a real load of a compiled eBPF object against the node’s own running kernel — no VM, no network — so a loader like bpfman can gate a program before it ever reaches the kernel.',
     apiHeading: 'One call, before the load path.',
     apiBody: 'Import the Go package and ask one question: will this object load on this kernel? The verdict comes from the real verifier, in milliseconds, with no QEMU and nothing fetched over the network.',
+    exampleHeading: 'A complete, runnable example',
+    exampleBody: 'examples/preload-gate is a real program — a bpfman-style gate that refuses to load an object that won’t verify on this kernel.',
+    exampleAlt: 'Go code: a preloadGate function calling bpfcompat.ValidateBeforeLoad and returning an error when the object won’t load.',
+    viewPackage: 'View the package on GitHub',
     points: [
       { title: 'In-process, no VM', body: 'A real bpf() load against the local running kernel — the node it runs on is the node the program will load on, so the running kernel is the target. Sub-millisecond, not a static guess.' },
       { title: 'Air-gap safe', body: 'The static validator is embedded in the binary; nothing is downloaded at runtime. Host loading is opt-in behind a build tag, off by default.' },
@@ -445,6 +453,10 @@ const tr: BpStrings = {
     subline: 'Aynı motor, gömülebilir. ValidateBeforeLoad, derlenmiş bir eBPF nesnesini düğümün kendi çalışan çekirdeğine karşı gerçekten yükler — sanal makine yok, ağ yok — böylece bpfman gibi bir yükleyici, bir programı çekirdeğe ulaşmadan önce denetleyebilir.',
     apiHeading: 'Yükleme yolundan önce tek bir çağrı.',
     apiBody: 'Go paketini içe aktarın ve tek soruyu sorun: bu nesne bu çekirdekte yüklenecek mi? Karar, QEMU olmadan ve ağdan hiçbir şey indirilmeden, milisaniyeler içinde gerçek doğrulayıcıdan gelir.',
+    exampleHeading: 'Eksiksiz, çalıştırılabilir bir örnek',
+    exampleBody: 'examples/preload-gate gerçek bir programdır — bu çekirdekte doğrulanmayacak bir nesneyi yüklemeyi reddeden bpfman tarzı bir geçit.',
+    exampleAlt: 'Go kodu: bpfcompat.ValidateBeforeLoad çağıran ve nesne yüklenmeyecekse hata döndüren bir preloadGate fonksiyonu.',
+    viewPackage: 'Paketi GitHub’da görüntüle',
     points: [
       { title: 'Süreç içi, sanal makine yok', body: 'Yerel çalışan çekirdeğe karşı gerçek bir bpf() yüklemesi — çalıştığı düğüm, programın yükleneceği düğümdür, dolayısıyla çalışan çekirdek hedeftir. Statik bir tahmin değil, milisaniyenin altında.' },
       { title: 'Hava boşluğuna uygun', body: 'Statik doğrulayıcı ikili dosyaya gömülüdür; çalışma zamanında hiçbir şey indirilmez. Ana makinede yükleme bir derleme etiketiyle isteğe bağlıdır, varsayılan olarak kapalıdır.' },
@@ -643,6 +655,10 @@ const de: BpStrings = {
     subline: 'Dieselbe Engine, einbettbar. ValidateBeforeLoad lädt ein kompiliertes eBPF-Objekt tatsächlich gegen den laufenden Kernel des Knotens — ohne VM, ohne Netzwerk — sodass ein Loader wie bpfman ein Programm prüfen kann, bevor es überhaupt den Kernel erreicht.',
     apiHeading: 'Ein Aufruf, vor dem Ladepfad.',
     apiBody: 'Importieren Sie das Go-Paket und stellen Sie eine Frage: Lädt dieses Objekt auf diesem Kernel? Das Urteil kommt vom echten Verifier, in Millisekunden, ohne QEMU und ohne Netzwerk-Download.',
+    exampleHeading: 'Ein vollständiges, lauffähiges Beispiel',
+    exampleBody: 'examples/preload-gate ist ein echtes Programm — ein bpfman-artiges Gate, das ein Objekt ablehnt, das auf diesem Kernel nicht verifiziert.',
+    exampleAlt: 'Go-Code: eine preloadGate-Funktion, die bpfcompat.ValidateBeforeLoad aufruft und einen Fehler zurückgibt, wenn das Objekt nicht lädt.',
+    viewPackage: 'Paket auf GitHub ansehen',
     points: [
       { title: 'Im Prozess, ohne VM', body: 'Ein echter bpf()-Ladevorgang gegen den lokal laufenden Kernel — der Knoten, auf dem er läuft, ist der Knoten, auf dem das Programm geladen wird, also ist der laufende Kernel das Ziel. Im Submillisekundenbereich, keine statische Vermutung.' },
       { title: 'Air-Gap-tauglich', body: 'Der statische Verifier ist in die Binärdatei eingebettet; zur Laufzeit wird nichts heruntergeladen. Das Laden auf dem Host ist über ein Build-Tag optional und standardmäßig deaktiviert.' },
@@ -841,6 +857,10 @@ const es: BpStrings = {
     subline: 'El mismo motor, integrable. ValidateBeforeLoad carga de verdad un objeto eBPF compilado contra el propio kernel en ejecución del nodo — sin VM, sin red — para que un cargador como bpfman pueda validar un programa antes de que llegue al kernel.',
     apiHeading: 'Una llamada, antes de la ruta de carga.',
     apiBody: 'Importa el paquete de Go y haz una sola pregunta: ¿se cargará este objeto en este kernel? El veredicto viene del verificador real, en milisegundos, sin QEMU y sin descargar nada de la red.',
+    exampleHeading: 'Un ejemplo completo y ejecutable',
+    exampleBody: 'examples/preload-gate es un programa real — una verificación al estilo de bpfman que rechaza cargar un objeto que no verifique en este kernel.',
+    exampleAlt: 'Código Go: una función preloadGate que llama a bpfcompat.ValidateBeforeLoad y devuelve un error cuando el objeto no carga.',
+    viewPackage: 'Ver el paquete en GitHub',
     points: [
       { title: 'En proceso, sin VM', body: 'Una carga bpf() real contra el kernel local en ejecución — el nodo donde se ejecuta es el nodo donde se cargará el programa, así que el kernel en ejecución es el objetivo. En menos de un milisegundo, no una suposición estática.' },
       { title: 'Apto para entornos aislados', body: 'El verificador estático está incrustado en el binario; no se descarga nada en tiempo de ejecución. La carga en el host es opcional tras una etiqueta de compilación y está desactivada por defecto.' },
@@ -1039,6 +1059,10 @@ const fr: BpStrings = {
     subline: 'Le même moteur, intégrable. ValidateBeforeLoad charge réellement un objet eBPF compilé sur le noyau en cours d’exécution du nœud — sans VM, sans réseau — afin qu’un chargeur comme bpfman puisse valider un programme avant qu’il n’atteigne le noyau.',
     apiHeading: 'Un appel, avant le chemin de chargement.',
     apiBody: 'Importez le paquet Go et posez une seule question : cet objet se chargera-t-il sur ce noyau ? Le verdict vient du vérificateur réel, en quelques millisecondes, sans QEMU et sans rien télécharger sur le réseau.',
+    exampleHeading: 'Un exemple complet et exécutable',
+    exampleBody: 'examples/preload-gate est un vrai programme — un contrôle à la bpfman qui refuse de charger un objet qui ne se vérifie pas sur ce noyau.',
+    exampleAlt: 'Code Go : une fonction preloadGate qui appelle bpfcompat.ValidateBeforeLoad et renvoie une erreur quand l’objet ne se charge pas.',
+    viewPackage: 'Voir le paquet sur GitHub',
     points: [
       { title: 'En processus, sans VM', body: 'Un véritable chargement bpf() sur le noyau local en cours d’exécution — le nœud où il s’exécute est le nœud où le programme sera chargé, donc le noyau en cours d’exécution est la cible. En moins d’une milliseconde, pas une supposition statique.' },
       { title: 'Compatible air-gap', body: 'Le vérificateur statique est intégré au binaire ; rien n’est téléchargé à l’exécution. Le chargement sur l’hôte est optionnel derrière un tag de compilation et désactivé par défaut.' },
@@ -1237,6 +1261,10 @@ const ja: BpStrings = {
     subline: '同じエンジンを組み込み可能に。ValidateBeforeLoad は、コンパイル済みの eBPF オブジェクトをノード自身の実行中カーネルに対して実際にロードします — VM なし、ネットワークなし — そのため bpfman のようなローダーは、プログラムがカーネルに到達する前に検証できます。',
     apiHeading: 'ロードパスの前に、1 回の呼び出し。',
     apiBody: 'Go パッケージをインポートして、1 つだけ問いかけます。このオブジェクトはこのカーネルでロードできるか? 判定は本物のベリファイアから、ミリ秒で、QEMU なし・ネットワークダウンロードなしで返ります。',
+    exampleHeading: '完全に動作するサンプル',
+    exampleBody: 'examples/preload-gate は実際のプログラム — このカーネルで検証されないオブジェクトの読み込みを拒否する bpfman 風のゲート。',
+    exampleAlt: 'Go コード: bpfcompat.ValidateBeforeLoad を呼び出し、オブジェクトが読み込めない場合にエラーを返す preloadGate 関数。',
+    viewPackage: 'GitHub でパッケージを見る',
     points: [
       { title: 'プロセス内、VM なし', body: 'ローカルの実行中カーネルに対する本物の bpf() ロード — 実行されるノードがプログラムをロードするノードなので、実行中カーネルがそのまま対象です。静的な推測ではなく、サブミリ秒。' },
       { title: 'エアギャップ対応', body: '静的ベリファイアはバイナリに埋め込まれており、実行時に何もダウンロードしません。ホストでのロードはビルドタグによるオプトインで、デフォルトでは無効です。' },
@@ -1435,6 +1463,10 @@ const zhCN: BpStrings = {
     subline: '同一引擎，可嵌入。ValidateBeforeLoad 会将已编译的 eBPF 对象真正加载到节点自身正在运行的内核上 — 无虚拟机、无网络 — 因此像 bpfman 这样的加载器可以在程序到达内核之前对其进行把关。',
     apiHeading: '在加载路径之前，一次调用。',
     apiBody: '导入该 Go 包并只问一个问题：这个对象能在这个内核上加载吗？结论来自真实的验证器，在数毫秒内得出，无需 QEMU，也不从网络下载任何内容。',
+    exampleHeading: '一个完整、可运行的示例',
+    exampleBody: 'examples/preload-gate 是一个真实程序 —— 一个 bpfman 风格的把关器，拒绝加载在本内核上无法通过验证的对象。',
+    exampleAlt: 'Go 代码：一个 preloadGate 函数，调用 bpfcompat.ValidateBeforeLoad，当对象无法加载时返回错误。',
+    viewPackage: '在 GitHub 上查看该包',
     points: [
       { title: '进程内，无虚拟机', body: '针对本地正在运行的内核进行真实的 bpf() 加载 — 运行它的节点就是程序将要加载的节点，因此正在运行的内核就是目标。亚毫秒级，而非静态猜测。' },
       { title: '适用于隔离网络', body: '静态验证器已嵌入二进制文件；运行时不下载任何内容。主机加载通过构建标签选择启用，默认关闭。' },
@@ -1633,6 +1665,10 @@ const ko: BpStrings = {
     subline: '동일한 엔진을 임베드 가능하게. ValidateBeforeLoad는 컴파일된 eBPF 객체를 노드 자체의 실행 중인 커널에 대해 실제로 로드합니다 — VM 없이, 네트워크 없이 — 따라서 bpfman 같은 로더가 프로그램이 커널에 도달하기 전에 검사할 수 있습니다.',
     apiHeading: '로드 경로 이전에, 한 번의 호출.',
     apiBody: 'Go 패키지를 가져와 한 가지만 물어보세요: 이 객체가 이 커널에서 로드될까요? 판정은 실제 검증기에서, 밀리초 단위로, QEMU 없이 그리고 네트워크 다운로드 없이 반환됩니다.',
+    exampleHeading: '완전히 실행 가능한 예제',
+    exampleBody: 'examples/preload-gate는 실제 프로그램입니다 — 이 커널에서 검증되지 않는 객체의 로드를 거부하는 bpfman 스타일 게이트.',
+    exampleAlt: 'Go 코드: bpfcompat.ValidateBeforeLoad를 호출하고 객체가 로드되지 않으면 오류를 반환하는 preloadGate 함수.',
+    viewPackage: 'GitHub에서 패키지 보기',
     points: [
       { title: '프로세스 내, VM 없음', body: '로컬에서 실행 중인 커널에 대한 실제 bpf() 로드 — 실행되는 노드가 곧 프로그램이 로드될 노드이므로, 실행 중인 커널이 바로 대상입니다. 정적 추측이 아니라 1밀리초 미만.' },
       { title: '에어갭 환경 지원', body: '정적 검증기가 바이너리에 임베드되어 있어 런타임에 아무것도 다운로드하지 않습니다. 호스트 로드는 빌드 태그를 통한 옵트인이며 기본적으로 꺼져 있습니다.' },
