@@ -680,6 +680,38 @@ export function InstallSection() {
 }
 
 /* --------------------------------------------------------------------------
+ * What's new — release highlights
+ * ------------------------------------------------------------------------ */
+
+export function WhatsNewSection() {
+  const t = useBp();
+  const releaseUrl = `${GITHUB_URL}/releases/tag/${BPFCOMPAT_VERSION}`;
+  return (
+    <div>
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {t.whatsNew.items.map((item, i) => (
+          <div key={item.title} className="border border-border bg-background p-6 hover:border-primary transition-colors">
+            <div className="text-xs font-mono text-foreground/40 mb-3">{`0${i + 1}`}</div>
+            <h3 className="text-base font-semibold text-foreground tracking-tight">{item.title}</h3>
+            <p className="mt-2 text-sm font-light text-foreground/70 leading-relaxed">{item.body}</p>
+          </div>
+        ))}
+      </div>
+      <div className="mt-8 flex justify-center">
+        <a
+          href={releaseUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+        >
+          {t.whatsNew.cta} <ExternalLink className="w-4 h-4" />
+        </a>
+      </div>
+    </div>
+  );
+}
+
+/* --------------------------------------------------------------------------
  * Coverage — full-VM validation, distros covered, backports
  * ------------------------------------------------------------------------ */
 
