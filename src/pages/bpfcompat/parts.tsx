@@ -520,10 +520,58 @@ const ACTION_SNIPPET = `- uses: Kernel-Guard/bpfcompat@${BPFCOMPAT_VERSION}
     suite-out: reports/suite.json
     validation-mode: load_attach`;
 
+export const LIVE_MATRIX_URL = 'https://kernel-guard.github.io/bpfcompat/';
+
+/* Real output: shipping an ebpf-go loader across the version-lies trio via
+ * test-command (see docs/ebpf-go-validation.md in the repo). Not a mock. */
+const COMMAND_SNIPPET = `$ bpfcompat test-command \\
+    --bin ./build/my-loader \\
+    --cmd '$BPFCOMPAT_BIN $BPFCOMPAT_ARTIFACT' \\
+    --artifact ./probe.bpf.o \\
+    --matrix matrices/quirk-library.yaml
+
+ubuntu-20.04-5.4    FAIL  loader exit 1 — map events: map create: invalid argument
+almalinux-8-4.18    PASS  loader exit 0   (ring buffer backported onto 4.18)
+ubuntu-22.04-5.15   PASS  loader exit 0`;
+
+/* --------------------------------------------------------------------------
+ * Command mode — validate through the project's own loader binary
+ * ------------------------------------------------------------------------ */
+
+export function CommandModeSection() {
+  const t = useBp();
+  return (
+    <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+      <div className="lg:col-span-6">
+        <div className="relative bg-[#161616] border border-[#393939] p-5 pr-24 font-mono text-[12px] leading-relaxed text-gray-200 overflow-x-auto whitespace-pre">
+          <CopyButton text={COMMAND_SNIPPET} />
+          {COMMAND_SNIPPET}
+        </div>
+        <a
+          href={LIVE_MATRIX_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+        >
+          {t.command.liveCta} <ExternalLink className="w-4 h-4" />
+        </a>
+      </div>
+      <div className="lg:col-span-6 space-y-4">
+        {t.command.points.map((p) => (
+          <div key={p.title} className="border border-border bg-background p-6">
+            <h4 className="text-sm font-semibold text-foreground tracking-tight">{p.title}</h4>
+            <p className="mt-2 text-sm font-light text-foreground/70 leading-relaxed">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function AdoptionTabs() {
   const s = useBp();
-  const tabs = ['CLI', 'GitHub Action', 'Web UI'] as const;
-  const [active, setActive] = useState<(typeof tabs)[number]>('CLI');
+  const tabs = ['GitHub Action', 'CLI', 'Library', 'Install', 'Web UI'] as const;
+  const [active, setActive] = useState<(typeof tabs)[number]>('GitHub Action');
 
   return (
     <div>
@@ -577,6 +625,50 @@ export function AdoptionTabs() {
               {ACTION_SNIPPET}
             </div>
             <p className="mt-4 text-sm font-light text-foreground/70">{s.adopt.actionNote}</p>
+          </div>
+        )}
+
+        {active === 'Library' && (
+          <div>
+            <div className="relative bg-[#161616] border border-[#393939] p-5 pr-24 font-mono text-[13px] text-gray-200 overflow-x-auto whitespace-pre">
+              <CopyButton text={LIBRARY_SNIPPET} />
+              {LIBRARY_SNIPPET}
+            </div>
+            <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {s.library.points.map((p) => (
+                <div key={p.title} className="border border-border bg-background p-3">
+                  <span className="text-xs font-semibold text-foreground">{p.title}</span>
+                  <span className="block text-xs font-light text-foreground/60 mt-1 leading-relaxed">{p.body}</span>
+                </div>
+              ))}
+            </div>
+            <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2">
+              <a
+                href={`${GITHUB_URL}/tree/main/pkg/bpfcompat`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+              >
+                {s.library.viewPackage} <ExternalLink className="w-4 h-4" />
+              </a>
+              <span className="text-xs font-mono text-foreground/50 normal-case">{s.library.footnote}</span>
+            </div>
+          </div>
+        )}
+
+        {active === 'Install' && (
+          <div className="grid lg:grid-cols-3 gap-4">
+            {s.install.methods.map((m, i) => (
+              <div key={m.title} className="flex flex-col border border-border bg-background p-5">
+                <div className="text-xs font-mono text-foreground/40 mb-2">{`0${i + 1}`}</div>
+                <h4 className="text-sm font-semibold text-foreground tracking-tight">{m.title}</h4>
+                <p className="mt-2 text-xs font-light text-foreground/70 leading-relaxed mb-4">{m.note}</p>
+                <div className="relative mt-auto bg-[#161616] border border-[#393939] p-3 pr-14 font-mono text-[11px] leading-relaxed text-gray-200 overflow-x-auto whitespace-pre">
+                  <CopyButton text={INSTALL_METHODS[i].cmd} />
+                  {INSTALL_METHODS[i].cmd}
+                </div>
+              </div>
+            ))}
           </div>
         )}
 

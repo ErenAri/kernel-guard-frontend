@@ -15,11 +15,12 @@ import { buildSoftwareSourceCodeSchema } from '../../lib/schema';
 import { BpStringsProvider, getBpStrings } from './content';
 import {
   Chip, HeroCtas, MatrixTerminal, CompatibilityMatrix, Legend, HowItWorks,
-  ProblemCards, AdoptionTabs, InstallSection, CoverageSection, LibrarySection, WhatsNewSection, UsageWays, RepoEvidence, ScopePanel, ToolchainBand,
-  Reveal, BigStat, DocsSection, ProjectBreadcrumb, FinalCtaWithDocs,
+  ProblemCards, AdoptionTabs, CoverageSection, CommandModeSection, WhatsNewSection, ScopePanel,
+  Reveal, BigStat, ProjectBreadcrumb, FinalCtaWithDocs,
   WhyBuilt, ComparisonTable,
-  Kicker, Caret, GITHUB_URL, DEMO_URL, REPORT,
+  Kicker, Caret, GITHUB_URL, DEMO_URL, REPORT, LIVE_MATRIX_URL,
 } from './parts';
+import { ExternalLink } from 'lucide-react';
 
 const DESCRIPTION =
   'bpfcompat is an open-source tool that proves whether your compiled eBPF programs load and ' +
@@ -122,19 +123,7 @@ export default function BpfcompatPage() {
           </div>
         </section>
 
-        {/* 2b — get started: three ways, each under 10 minutes */}
-        <section className="py-24 md:py-28 border-b border-border">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Reveal className="text-center max-w-2xl mx-auto mb-14">
-              <Kicker className="mb-5">{t.ways.eyebrow}</Kicker>
-              <h2 className="text-3xl md:text-5xl font-light text-foreground tracking-tight">{t.ways.heading}</h2>
-              <p className="mt-5 text-lg font-light text-foreground/70 leading-relaxed">{t.ways.subline}</p>
-            </Reveal>
-            <Reveal delayMs={120}><UsageWays /></Reveal>
-          </div>
-        </section>
-
-        {/* 3 — the problem, real errors */}
+        {/* 3 — the problem, real errors + why this exists */}
         <section className="py-24 md:py-28 bg-surface border-b border-border">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <Reveal className="max-w-3xl mb-14 text-center mx-auto">
@@ -142,13 +131,7 @@ export default function BpfcompatPage() {
               <p className="mt-5 text-lg font-light text-foreground/70 leading-relaxed">{t.problem.subline}</p>
             </Reveal>
             <Reveal delayMs={120}><ProblemCards /></Reveal>
-          </div>
-        </section>
-
-        {/* 3b — why this exists */}
-        <section className="py-24 md:py-28 border-b border-border">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Reveal><WhyBuilt /></Reveal>
+            <Reveal delayMs={160} className="mt-20"><WhyBuilt /></Reveal>
           </div>
         </section>
 
@@ -188,15 +171,15 @@ export default function BpfcompatPage() {
           </div>
         </section>
 
-        {/* 5c — library mode: validate before you load */}
+        {/* 5c — command mode: validate through your own loader */}
         <section className="py-24 md:py-28 bg-surface border-b border-border">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Reveal className="text-center max-w-2xl mx-auto mb-14">
-              <Kicker className="mb-5">{t.library.eyebrow}</Kicker>
-              <h2 className="text-3xl md:text-5xl font-light text-foreground tracking-tight">{t.library.heading}</h2>
-              <p className="mt-5 text-lg font-light text-foreground/70 leading-relaxed">{t.library.subline}</p>
+            <Reveal className="text-center max-w-3xl mx-auto mb-14">
+              <Kicker className="mb-5">{t.command.eyebrow}</Kicker>
+              <h2 className="text-3xl md:text-5xl font-light text-foreground tracking-tight">{t.command.heading}</h2>
+              <p className="mt-5 text-lg font-light text-foreground/70 leading-relaxed">{t.command.subline}</p>
             </Reveal>
-            <Reveal delayMs={120}><LibrarySection /></Reveal>
+            <Reveal delayMs={120}><CommandModeSection /></Reveal>
           </div>
         </section>
 
@@ -216,19 +199,18 @@ export default function BpfcompatPage() {
               </div>
               <CompatibilityMatrix animateOnView={false} />
               <div className="mt-8"><Legend /></div>
+              <p className="mt-8 text-center text-sm font-light text-foreground/70">
+                {t.evidence.liveNote}{' '}
+                <a
+                  href={LIVE_MATRIX_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 font-medium text-primary hover:underline"
+                >
+                  {t.evidence.liveCta} <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </p>
             </Reveal>
-          </div>
-        </section>
-
-        {/* 7 — documentation */}
-        <section className="py-24 md:py-28 bg-surface border-b border-border">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Reveal className="text-center max-w-2xl mx-auto mb-14">
-              <Kicker className="mb-5">{t.docs.eyebrow}</Kicker>
-              <h2 className="text-3xl md:text-5xl font-light text-foreground tracking-tight">{t.docs.heading}</h2>
-              <p className="mt-5 text-lg font-light text-foreground/70 leading-relaxed">{t.docs.subline}</p>
-            </Reveal>
-            <Reveal delayMs={120}><DocsSection /></Reveal>
           </div>
         </section>
 
@@ -239,25 +221,6 @@ export default function BpfcompatPage() {
               <h2 className="text-3xl md:text-5xl font-light text-foreground tracking-tight">{t.adopt.heading}</h2>
             </Reveal>
             <Reveal delayMs={120}><AdoptionTabs /></Reveal>
-          </div>
-        </section>
-
-        {/* 8b — install the CLI */}
-        <section className="py-24 md:py-28 bg-surface border-b border-border">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Reveal className="text-center max-w-2xl mx-auto mb-14">
-              <Kicker className="mb-5">{t.install.eyebrow}</Kicker>
-              <h2 className="text-3xl md:text-5xl font-light text-foreground tracking-tight">{t.install.heading}</h2>
-              <p className="mt-5 text-lg font-light text-foreground/70 leading-relaxed">{t.install.subline}</p>
-            </Reveal>
-            <Reveal delayMs={120}><InstallSection /></Reveal>
-          </div>
-        </section>
-
-        {/* 9 — repository evidence */}
-        <section className="py-24 bg-surface border-b border-border">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Reveal><RepoEvidence /></Reveal>
           </div>
         </section>
 
@@ -275,17 +238,6 @@ export default function BpfcompatPage() {
               <h2 className="text-3xl md:text-5xl font-light text-foreground tracking-tight">{t.scope.heading}</h2>
             </Reveal>
             <Reveal delayMs={120}><ScopePanel /></Reveal>
-          </div>
-        </section>
-
-        {/* 11 — toolchain */}
-        <section className="py-24 md:py-28 bg-surface border-b border-border">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Reveal className="text-center max-w-2xl mx-auto mb-14">
-              <Kicker className="mb-5">{t.toolchain.eyebrow}</Kicker>
-              <h2 className="text-3xl md:text-5xl font-light text-foreground tracking-tight">{t.toolchain.heading}</h2>
-            </Reveal>
-            <Reveal delayMs={120}><ToolchainBand /></Reveal>
           </div>
         </section>
 
