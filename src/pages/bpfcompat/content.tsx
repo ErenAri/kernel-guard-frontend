@@ -45,6 +45,7 @@ export interface BpStrings {
     tallyRegression: string; tallyOk: string;
     selectHint: { pre: string; mid: string; post: string };
     drawerGate: string;
+    liveNote: string; liveCta: string;
   };
   docs: {
     eyebrow: string; heading: string; subline: string;
@@ -79,6 +80,11 @@ export interface BpStrings {
     backportHeading: string;
     backportBody: string;
     backportExample: string;
+  };
+  command: {
+    eyebrow: string; heading: string; subline: string;
+    points: Array<{ title: string; body: string }>;
+    liveCta: string;
   };
   library: {
     eyebrow: string;
@@ -132,16 +138,16 @@ const en: BpStrings = {
     termSimulated: 'Simulated output, looping.', termRunLink: 'Run it yourself in the demo →',
   },
   whatsNew: {
-    eyebrow: 'What’s new — v0.2.0',
-    heading: 'The biggest release since launch.',
-    subline: 'A new embeddable library API, a new OS family, and ARM64 — all proven on real kernels.',
+    eyebrow: 'What’s new — v0.3.0',
+    heading: 'Validate through your own loader.',
+    subline: 'Command mode, a library of known-tricky vendor kernels, and a public compatibility matrix that re-validates weekly — all proven on real kernels.',
     items: [
-      { title: 'Library mode', body: 'Embed bpfcompat in Go: ValidateBeforeLoad does a real load on the node’s own kernel — no VM, no network — as a pre-load gate.' },
-      { title: 'OpenShift / RHCOS', body: 'CoreOS boots via Ignition now. A real RHCOS evidence matrix spans OpenShift 4.14 / 4.16 / 4.18, including a BPF-LSM backport boundary.' },
-      { title: 'ARM64 / aarch64', body: 'Real aarch64 VM boots: UEFI firmware plus cross-arch emulation, with RHCOS load+attach proven on ARM64.' },
-      { title: 'Zero-config gadgets', body: 'Validate a published OCI gadget directly, with --quick (no matrix file), auto-sized maps, and program auto-typing.' },
+      { title: 'Command mode', body: 'Ship your own loader binary into every matrix kernel and take its exit code as the verdict — the real userspace load path, with no manifest to keep in sync.' },
+      { title: 'Known-tricky kernel library', body: '11 evidenced vendor kernels where version ≠ feature support: enterprise backports, no-BTF kernels, vendor rebases. Built in as quirk-library.' },
+      { title: 'Public compatibility matrix', body: 'The quirk library re-validates weekly on real VMs and publishes the results — every cell a load that actually happened.' },
+      { title: 'ebpf-go recipe', body: 'A libbpf pass doesn’t guarantee an ebpf-go pass. A ~50-line static cilium/ebpf loader turns command mode into a Go-native gate.' },
     ],
-    cta: 'Read the v0.2.0 release',
+    cta: 'Read the v0.3.0 release',
   },
   plain: {
     eyebrow: 'In plain terms',
@@ -191,6 +197,8 @@ const en: BpStrings = {
     tallyOk: 'all targets compatible',
     selectHint: { pre: 'Select a ', mid: ', or annotated ', post: ' cell to inspect its recorded evidence.' },
     drawerGate: 'gate',
+    liveNote: 'This matrix also runs in public: the known-tricky kernel library re-validates weekly on real VMs.',
+    liveCta: 'Open the live matrix',
   },
   docs: {
     eyebrow: 'Documentation',
@@ -244,6 +252,17 @@ const en: BpStrings = {
     backportHeading: 'Kernel version ≠ feature support.',
     backportBody: 'Enterprise distros heavily backport eBPF features onto old kernel bases, so the version number alone predicts nothing. Because bpfcompat boots the real vendor kernel, this is tested directly instead of inferred.',
     backportExample: 'A ring-buffer program fails on Ubuntu’s vanilla 5.4 (ring buffer lands upstream in 5.8) yet passes on AlmaLinux 8’s backported 4.18 — and Amazon Linux 2’s 4.14, with no embedded BTF, still loads and attaches.',
+  },
+  command: {
+    eyebrow: 'New — command mode',
+    heading: 'Your loader. Real kernels. Exit code = verdict.',
+    subline: 'The bundled validator answers “does this .bpf.o load?”. Command mode answers a sharper question: does your project’s actual loader come up on this kernel? bpfcompat ships your binary into each matrix VM and takes its exit code as the per-kernel verdict.',
+    points: [
+      { title: 'The real userspace path', body: 'Loader implementations differ — a libbpf pass doesn’t guarantee an ebpf-go pass. Command mode validates the loader your users actually run, with no manifest kept in sync.' },
+      { title: 'Known-tricky kernels included', body: 'Point it at the built-in quirk library: 11 evidenced vendor kernels where the version number lies — ring-buffer backports, no-BTF kernels, vendor rebases.' },
+      { title: 'Proven in public, weekly', body: 'The same library re-validates on real VMs every week and publishes its matrix. The run shown here is real output, not a mock.' },
+    ],
+    liveCta: 'See the live public matrix',
   },
   library: {
     eyebrow: 'Library mode',
@@ -334,16 +353,16 @@ const tr: BpStrings = {
     termSimulated: 'Benzetilmiş çıktı, döngüde.', termRunLink: 'Kendiniz demoda çalıştırın →',
   },
   whatsNew: {
-    eyebrow: 'Yenilikler — v0.2.0',
-    heading: 'Lansmandan bu yana en büyük sürüm.',
-    subline: 'Yeni gömülebilir kütüphane API’si, yeni bir işletim sistemi ailesi ve ARM64 — hepsi gerçek çekirdeklerde kanıtlandı.',
+    eyebrow: 'Yenilikler — v0.3.0',
+    heading: 'Kendi yükleyicinizle doğrulayın.',
+    subline: 'Komut modu, bilinen-zorlu dağıtım çekirdekleri kütüphanesi ve her hafta yeniden doğrulanan herkese açık uyumluluk matrisi — hepsi gerçek çekirdeklerde kanıtlandı.',
     items: [
-      { title: 'Kütüphane modu', body: 'bpfcompat’i Go içinde gömün: ValidateBeforeLoad, düğümün kendi çekirdeğinde gerçek bir yükleme yapar — sanal makine yok, ağ yok — yükleme öncesi denetim olarak.' },
-      { title: 'OpenShift / RHCOS', body: 'CoreOS artık Ignition ile açılıyor. Gerçek bir RHCOS kanıt matrisi OpenShift 4.14 / 4.16 / 4.18’i kapsıyor; bir BPF-LSM geriye-port sınırı dahil.' },
-      { title: 'ARM64 / aarch64', body: 'Gerçek aarch64 sanal makine açılışları: UEFI ürün yazılımı ve çapraz-mimari öykünme; RHCOS yükle+bağla ARM64’te kanıtlandı.' },
-      { title: 'Sıfır yapılandırmalı gadget’lar', body: 'Yayınlanmış bir OCI gadget’ını doğrudan doğrulayın; --quick (matris dosyası yok), otomatik boyutlanan haritalar ve program otomatik tiplemesi.' },
+      { title: 'Komut modu', body: 'Kendi yükleyici ikilinizi matristeki her çekirdeğe gönderin; çıkış kodu karar olsun — gerçek kullanıcı-alanı yükleme yolu, senkron tutulacak manifest yok.' },
+      { title: 'Bilinen-zorlu çekirdek kütüphanesi', body: 'Sürüm ≠ özellik desteği olan 11 kanıtlı dağıtım çekirdeği: kurumsal geriye-portlar, BTF’siz çekirdekler, üretici yeniden-tabanları. quirk-library olarak yerleşik.' },
+      { title: 'Herkese açık uyumluluk matrisi', body: 'Quirk kütüphanesi her hafta gerçek sanal makinelerde yeniden doğrulanır ve sonuçları yayımlar — her hücre gerçekten yaşanmış bir yüklemedir.' },
+      { title: 'ebpf-go tarifi', body: 'libbpf geçişi, ebpf-go geçişini garanti etmez. ~50 satırlık statik bir cilium/ebpf yükleyicisi komut modunu Go-yerlisi bir denetime çevirir.' },
     ],
-    cta: 'v0.2.0 sürümünü oku',
+    cta: 'v0.3.0 sürümünü oku',
   },
   plain: {
     eyebrow: 'Sade bir dille',
@@ -393,6 +412,8 @@ const tr: BpStrings = {
     tallyOk: 'tüm hedefler uyumlu',
     selectHint: { pre: 'Kayıtlı kanıtı incelemek için bir ', mid: ' veya açıklamalı bir ', post: ' hücresi seçin.' },
     drawerGate: 'kapı',
+    liveNote: 'Bu matris herkese açık olarak da çalışır: bilinen-zorlu çekirdek kütüphanesi her hafta gerçek sanal makinelerde yeniden doğrulanır.',
+    liveCta: 'Canlı matrisi aç',
   },
   docs: {
     eyebrow: 'Belgeler',
@@ -446,6 +467,17 @@ const tr: BpStrings = {
     backportHeading: 'Çekirdek sürümü ≠ özellik desteği.',
     backportBody: 'Kurumsal dağıtımlar eBPF özelliklerini eski çekirdek tabanlarına yoğun biçimde geri taşır (backport), bu yüzden sürüm numarası tek başına hiçbir şey söylemez. bpfcompat gerçek satıcı çekirdeğini başlattığı için bu, çıkarımla değil doğrudan test edilir.',
     backportExample: 'Bir ring buffer programı Ubuntu’nun vanilla 5.4’ünde başarısız olur (ring buffer upstream’e 5.8’de gelir) ama AlmaLinux 8’in geri taşınmış 4.18’inde geçer — ve Amazon Linux 2’nin gömülü BTF’si olmayan 4.14’ü hâlâ yüklenip bağlanır.',
+  },
+  command: {
+    eyebrow: 'Yeni — komut modu',
+    heading: 'Sizin yükleyiciniz. Gerçek çekirdekler. Çıkış kodu = karar.',
+    subline: 'Yerleşik doğrulayıcı “bu .bpf.o yükleniyor mu?” sorusunu yanıtlar. Komut modu daha keskin bir soruyu yanıtlar: projenizin gerçek yükleyicisi bu çekirdekte ayağa kalkıyor mu? bpfcompat ikilinizi matristeki her sanal makineye gönderir ve çıkış kodunu çekirdek başına karar olarak alır.',
+    points: [
+      { title: 'Gerçek kullanıcı-alanı yolu', body: 'Yükleyici gerçekleştirimleri farklıdır — libbpf geçişi, ebpf-go geçişini garanti etmez. Komut modu, kullanıcılarınızın gerçekten çalıştırdığı yükleyiciyi doğrular; senkron tutulacak manifest yoktur.' },
+      { title: 'Bilinen-zorlu çekirdekler dahil', body: 'Yerleşik quirk kütüphanesine yöneltin: sürüm numarasının yalan söylediği 11 kanıtlı dağıtım çekirdeği — ring-buffer geriye-portları, BTF’siz çekirdekler, üretici yeniden-tabanları.' },
+      { title: 'Her hafta herkese açık kanıt', body: 'Aynı kütüphane her hafta gerçek sanal makinelerde yeniden doğrulanır ve matrisini yayımlar. Burada gösterilen çıktı gerçektir, taklit değildir.' },
+    ],
+    liveCta: 'Canlı herkese açık matrisi gör',
   },
   library: {
     eyebrow: 'Kütüphane modu',
@@ -536,16 +568,16 @@ const de: BpStrings = {
     termSimulated: 'Simulierte Ausgabe, in Schleife.', termRunLink: 'Selbst in der Demo ausführen →',
   },
   whatsNew: {
-    eyebrow: 'Neu — v0.2.0',
-    heading: 'Das größte Release seit dem Start.',
-    subline: 'Eine neue einbettbare Bibliotheks-API, eine neue OS-Familie und ARM64 — alles auf echten Kerneln bewiesen.',
+    eyebrow: 'Neu — v0.3.0',
+    heading: 'Validieren Sie über Ihren eigenen Loader.',
+    subline: 'Kommandomodus, eine Bibliothek bekannt-heikler Vendor-Kernel und eine öffentliche Kompatibilitätsmatrix mit wöchentlicher Re-Validierung — alles auf echten Kerneln belegt.',
     items: [
-      { title: 'Bibliotheksmodus', body: 'bpfcompat in Go einbetten: ValidateBeforeLoad lädt echt auf dem Kernel des Knotens — ohne VM, ohne Netzwerk — als Pre-Load-Gate.' },
-      { title: 'OpenShift / RHCOS', body: 'CoreOS bootet jetzt via Ignition. Eine echte RHCOS-Evidenzmatrix umfasst OpenShift 4.14 / 4.16 / 4.18, inklusive einer BPF-LSM-Backport-Grenze.' },
-      { title: 'ARM64 / aarch64', body: 'Echte aarch64-VM-Boots: UEFI-Firmware plus Cross-Arch-Emulation, mit auf ARM64 bewiesenem RHCOS load+attach.' },
-      { title: 'Zero-Config-Gadgets', body: 'Ein veröffentlichtes OCI-Gadget direkt validieren, mit --quick (keine Matrixdatei), automatisch dimensionierten Maps und Programm-Auto-Typing.' },
+      { title: 'Kommandomodus', body: 'Liefern Sie Ihr eigenes Loader-Binary in jeden Matrix-Kernel; der Exit-Code ist das Urteil — der echte Userspace-Ladepfad, ohne synchron zu haltendes Manifest.' },
+      { title: 'Bibliothek heikler Kernel', body: '11 belegte Vendor-Kernel, bei denen Version ≠ Feature-Support gilt: Enterprise-Backports, Kernel ohne BTF, Vendor-Rebases. Eingebaut als quirk-library.' },
+      { title: 'Öffentliche Kompatibilitätsmatrix', body: 'Die Quirk-Bibliothek re-validiert wöchentlich auf echten VMs und veröffentlicht die Ergebnisse — jede Zelle ein tatsächlich erfolgter Load.' },
+      { title: 'ebpf-go-Rezept', body: 'Ein libbpf-Pass garantiert keinen ebpf-go-Pass. Ein statischer cilium/ebpf-Loader mit ~50 Zeilen macht den Kommandomodus zum Go-nativen Gate.' },
     ],
-    cta: 'Release v0.2.0 lesen',
+    cta: 'Release v0.3.0 lesen',
   },
   plain: {
     eyebrow: 'Einfach gesagt',
@@ -595,6 +627,8 @@ const de: BpStrings = {
     tallyOk: 'alle Ziele kompatibel',
     selectHint: { pre: 'Wähle eine ', mid: ' oder annotierte ', post: '-Zelle, um den aufgezeichneten Nachweis zu sehen.' },
     drawerGate: 'Gate',
+    liveNote: 'Diese Matrix läuft auch öffentlich: Die Bibliothek heikler Kernel re-validiert wöchentlich auf echten VMs.',
+    liveCta: 'Live-Matrix öffnen',
   },
   docs: {
     eyebrow: 'Dokumentation',
@@ -648,6 +682,17 @@ const de: BpStrings = {
     backportHeading: 'Kernel-Version ≠ Feature-Unterstützung.',
     backportBody: 'Enterprise-Distros backporten eBPF-Features stark auf alte Kernel-Basen, daher sagt die Versionsnummer allein nichts aus. Da bpfcompat den echten Hersteller-Kernel startet, wird dies direkt getestet statt abgeleitet.',
     backportExample: 'Ein Ring-Buffer-Programm scheitert auf Ubuntus Vanilla-5.4 (Ring-Buffer kommt upstream mit 5.8), läuft aber auf AlmaLinux 8s backportetem 4.18 — und Amazon Linux 2s 4.14, ohne eingebettetes BTF, lädt und attacht weiterhin.',
+  },
+  command: {
+    eyebrow: 'Neu — Kommandomodus',
+    heading: 'Ihr Loader. Echte Kernel. Exit-Code = Urteil.',
+    subline: 'Der mitgelieferte Validator beantwortet „lädt dieses .bpf.o?“. Der Kommandomodus beantwortet die schärfere Frage: Kommt der tatsächliche Loader Ihres Projekts auf diesem Kernel hoch? bpfcompat liefert Ihr Binary in jede Matrix-VM und nimmt dessen Exit-Code als Urteil pro Kernel.',
+    points: [
+      { title: 'Der echte Userspace-Pfad', body: 'Loader-Implementierungen unterscheiden sich — ein libbpf-Pass garantiert keinen ebpf-go-Pass. Der Kommandomodus validiert den Loader, den Ihre Nutzer wirklich ausführen, ohne synchron zu haltendes Manifest.' },
+      { title: 'Heikle Kernel inklusive', body: 'Richten Sie ihn auf die eingebaute Quirk-Bibliothek: 11 belegte Vendor-Kernel, bei denen die Versionsnummer lügt — Ring-Buffer-Backports, Kernel ohne BTF, Vendor-Rebases.' },
+      { title: 'Öffentlich belegt, wöchentlich', body: 'Dieselbe Bibliothek re-validiert jede Woche auf echten VMs und veröffentlicht ihre Matrix. Der hier gezeigte Lauf ist echte Ausgabe, kein Mock.' },
+    ],
+    liveCta: 'Zur öffentlichen Live-Matrix',
   },
   library: {
     eyebrow: 'Bibliotheksmodus',
@@ -738,16 +783,16 @@ const es: BpStrings = {
     termSimulated: 'Salida simulada, en bucle.', termRunLink: 'Ejecútalo tú mismo en la demo →',
   },
   whatsNew: {
-    eyebrow: 'Novedades — v0.2.0',
-    heading: 'La mayor versión desde el lanzamiento.',
-    subline: 'Una nueva API de biblioteca integrable, una nueva familia de SO y ARM64 — todo probado en kernels reales.',
+    eyebrow: 'Novedades — v0.3.0',
+    heading: 'Valida a través de tu propio loader.',
+    subline: 'Modo comando, una biblioteca de kernels de distribución notoriamente difíciles y una matriz de compatibilidad pública que se revalida cada semana — todo probado en kernels reales.',
     items: [
-      { title: 'Modo biblioteca', body: 'Integra bpfcompat en Go: ValidateBeforeLoad hace una carga real en el propio kernel del nodo — sin VM, sin red — como verificación previa a la carga.' },
-      { title: 'OpenShift / RHCOS', body: 'CoreOS ahora arranca vía Ignition. Una matriz de evidencia real de RHCOS abarca OpenShift 4.14 / 4.16 / 4.18, incluida una frontera de backport de BPF-LSM.' },
-      { title: 'ARM64 / aarch64', body: 'Arranques reales de VM aarch64: firmware UEFI más emulación entre arquitecturas, con load+attach de RHCOS probado en ARM64.' },
-      { title: 'Gadgets sin configuración', body: 'Valida un gadget OCI publicado directamente, con --quick (sin archivo de matriz), mapas autodimensionados y autotipado de programas.' },
+      { title: 'Modo comando', body: 'Envía tu propio binario loader a cada kernel de la matriz y toma su código de salida como veredicto — la ruta de carga real del espacio de usuario, sin manifiesto que mantener sincronizado.' },
+      { title: 'Biblioteca de kernels difíciles', body: '11 kernels de distribución con evidencia donde versión ≠ soporte de características: backports empresariales, kernels sin BTF, rebases de proveedor. Integrada como quirk-library.' },
+      { title: 'Matriz de compatibilidad pública', body: 'La biblioteca quirk se revalida cada semana en VMs reales y publica los resultados — cada celda es una carga que ocurrió de verdad.' },
+      { title: 'Receta ebpf-go', body: 'Que libbpf pase no garantiza que ebpf-go pase. Un loader estático cilium/ebpf de ~50 líneas convierte el modo comando en una puerta nativa de Go.' },
     ],
-    cta: 'Leer la versión v0.2.0',
+    cta: 'Leer la versión v0.3.0',
   },
   plain: {
     eyebrow: 'En pocas palabras',
@@ -797,6 +842,8 @@ const es: BpStrings = {
     tallyOk: 'todos los objetivos compatibles',
     selectHint: { pre: 'Selecciona una celda ', mid: ', o una ', post: ' anotada para ver su evidencia registrada.' },
     drawerGate: 'compuerta',
+    liveNote: 'Esta matriz también corre en público: la biblioteca de kernels difíciles se revalida cada semana en VMs reales.',
+    liveCta: 'Abrir la matriz en vivo',
   },
   docs: {
     eyebrow: 'Documentación',
@@ -850,6 +897,17 @@ const es: BpStrings = {
     backportHeading: 'La versión del kernel ≠ soporte de funciones.',
     backportBody: 'Las distros empresariales hacen muchos backports de funciones eBPF sobre bases de kernel antiguas, así que el número de versión por sí solo no predice nada. Como bpfcompat arranca el kernel real del proveedor, esto se prueba directamente en lugar de inferirse.',
     backportExample: 'Un programa de ring buffer falla en el 5.4 vanilla de Ubuntu (el ring buffer llega upstream en 5.8) pero pasa en el 4.18 con backport de AlmaLinux 8 — y el 4.14 de Amazon Linux 2, sin BTF embebido, sigue cargando y haciendo attach.',
+  },
+  command: {
+    eyebrow: 'Nuevo — modo comando',
+    heading: 'Tu loader. Kernels reales. Código de salida = veredicto.',
+    subline: 'El validador incluido responde «¿carga este .bpf.o?». El modo comando responde una pregunta más precisa: ¿arranca el loader real de tu proyecto en este kernel? bpfcompat envía tu binario a cada VM de la matriz y toma su código de salida como veredicto por kernel.',
+    points: [
+      { title: 'La ruta real del espacio de usuario', body: 'Las implementaciones de loader difieren — que libbpf pase no garantiza que ebpf-go pase. El modo comando valida el loader que tus usuarios ejecutan de verdad, sin manifiesto que sincronizar.' },
+      { title: 'Kernels difíciles incluidos', body: 'Apúntalo a la biblioteca quirk integrada: 11 kernels de distribución con evidencia donde el número de versión miente — backports de ring buffer, kernels sin BTF, rebases de proveedor.' },
+      { title: 'Probado en público, cada semana', body: 'La misma biblioteca se revalida cada semana en VMs reales y publica su matriz. La ejecución mostrada aquí es salida real, no una maqueta.' },
+    ],
+    liveCta: 'Ver la matriz pública en vivo',
   },
   library: {
     eyebrow: 'Modo biblioteca',
@@ -940,16 +998,16 @@ const fr: BpStrings = {
     termSimulated: 'Sortie simulée, en boucle.', termRunLink: 'Essayez-le vous-même dans la démo →',
   },
   whatsNew: {
-    eyebrow: 'Nouveautés — v0.2.0',
-    heading: 'La plus grande version depuis le lancement.',
-    subline: 'Une nouvelle API de bibliothèque intégrable, une nouvelle famille d’OS et ARM64 — le tout prouvé sur de vrais noyaux.',
+    eyebrow: 'Nouveautés — v0.3.0',
+    heading: 'Validez via votre propre loader.',
+    subline: 'Mode commande, une bibliothèque de noyaux de distribution notoirement délicats et une matrice de compatibilité publique revalidée chaque semaine — le tout prouvé sur de vrais noyaux.',
     items: [
-      { title: 'Mode bibliothèque', body: 'Intégrez bpfcompat en Go : ValidateBeforeLoad effectue un vrai chargement sur le noyau du nœud — sans VM, sans réseau — comme contrôle avant chargement.' },
-      { title: 'OpenShift / RHCOS', body: 'CoreOS démarre désormais via Ignition. Une vraie matrice de preuves RHCOS couvre OpenShift 4.14 / 4.16 / 4.18, dont une frontière de rétroportage BPF-LSM.' },
-      { title: 'ARM64 / aarch64', body: 'De vrais démarrages de VM aarch64 : firmware UEFI plus émulation inter-architecture, avec load+attach RHCOS prouvé sur ARM64.' },
-      { title: 'Gadgets sans configuration', body: 'Validez directement un gadget OCI publié, avec --quick (sans fichier de matrice), des maps autodimensionnées et l’auto-typage des programmes.' },
+      { title: 'Mode commande', body: 'Expédiez votre propre binaire loader dans chaque noyau de la matrice ; son code de sortie fait verdict — le vrai chemin de chargement userspace, sans manifeste à garder synchronisé.' },
+      { title: 'Bibliothèque de noyaux délicats', body: '11 noyaux de distribution documentés où version ≠ support des fonctionnalités : backports entreprise, noyaux sans BTF, rebases éditeur. Intégrée sous le nom quirk-library.' },
+      { title: 'Matrice de compatibilité publique', body: 'La bibliothèque quirk est revalidée chaque semaine sur de vraies VM et publie ses résultats — chaque cellule est un chargement qui a réellement eu lieu.' },
+      { title: 'Recette ebpf-go', body: 'Un succès libbpf ne garantit pas un succès ebpf-go. Un loader statique cilium/ebpf d’environ 50 lignes fait du mode commande une porte native Go.' },
     ],
-    cta: 'Lire la version v0.2.0',
+    cta: 'Lire la version v0.3.0',
   },
   plain: {
     eyebrow: 'En clair',
@@ -999,6 +1057,8 @@ const fr: BpStrings = {
     tallyOk: 'toutes les cibles compatibles',
     selectHint: { pre: 'Sélectionnez une case ', mid: ', ou une case ', post: ' annotée pour voir sa preuve enregistrée.' },
     drawerGate: 'barrière',
+    liveNote: 'Cette matrice tourne aussi en public : la bibliothèque de noyaux délicats est revalidée chaque semaine sur de vraies VM.',
+    liveCta: 'Ouvrir la matrice en direct',
   },
   docs: {
     eyebrow: 'Documentation',
@@ -1052,6 +1112,17 @@ const fr: BpStrings = {
     backportHeading: 'Version du noyau ≠ prise en charge des fonctionnalités.',
     backportBody: 'Les distros d’entreprise rétroportent massivement les fonctionnalités eBPF sur d’anciennes bases de noyau, donc le numéro de version seul ne prédit rien. Comme bpfcompat démarre le vrai noyau du fournisseur, c’est testé directement plutôt que déduit.',
     backportExample: 'Un programme à ring buffer échoue sur le 5.4 vanilla d’Ubuntu (le ring buffer arrive upstream en 5.8) mais réussit sur le 4.18 rétroporté d’AlmaLinux 8 — et le 4.14 d’Amazon Linux 2, sans BTF embarqué, se charge et s’attache toujours.',
+  },
+  command: {
+    eyebrow: 'Nouveau — mode commande',
+    heading: 'Votre loader. De vrais noyaux. Code de sortie = verdict.',
+    subline: 'Le validateur intégré répond à « ce .bpf.o se charge-t-il ? ». Le mode commande répond à une question plus fine : le vrai loader de votre projet démarre-t-il sur ce noyau ? bpfcompat expédie votre binaire dans chaque VM de la matrice et prend son code de sortie comme verdict par noyau.',
+    points: [
+      { title: 'Le vrai chemin userspace', body: 'Les implémentations de loader diffèrent — un succès libbpf ne garantit pas un succès ebpf-go. Le mode commande valide le loader que vos utilisateurs exécutent réellement, sans manifeste à synchroniser.' },
+      { title: 'Noyaux délicats inclus', body: 'Pointez-le vers la bibliothèque quirk intégrée : 11 noyaux de distribution documentés où le numéro de version ment — backports du ring buffer, noyaux sans BTF, rebases éditeur.' },
+      { title: 'Prouvé en public, chaque semaine', body: 'La même bibliothèque est revalidée chaque semaine sur de vraies VM et publie sa matrice. L’exécution montrée ici est une sortie réelle, pas une maquette.' },
+    ],
+    liveCta: 'Voir la matrice publique en direct',
   },
   library: {
     eyebrow: 'Mode bibliothèque',
@@ -1142,16 +1213,16 @@ const ja: BpStrings = {
     termSimulated: 'シミュレートされた出力（ループ）。', termRunLink: 'デモで自分で実行する →',
   },
   whatsNew: {
-    eyebrow: '新着 — v0.2.0',
-    heading: '公開以来、最大のリリース。',
-    subline: '新しい組み込み可能なライブラリAPI、新しいOSファミリ、そしてARM64 — すべて実カーネルで実証。',
+    eyebrow: '新着情報 — v0.3.0',
+    heading: '自分のローダーで検証する。',
+    subline: 'コマンドモード、既知の厄介なベンダーカーネルのライブラリ、毎週再検証される公開互換性マトリクス — すべて実カーネルで実証済み。',
     items: [
-      { title: 'ライブラリモード', body: 'bpfcompatをGoに組み込み: ValidateBeforeLoad はノード自身のカーネルで実際にロード — VMなし、ネットワークなし — ロード前ゲートとして。' },
-      { title: 'OpenShift / RHCOS', body: 'CoreOS が Ignition で起動するように。実際の RHCOS エビデンスマトリクスが OpenShift 4.14 / 4.16 / 4.18 を網羅し、BPF-LSM のバックポート境界も含む。' },
-      { title: 'ARM64 / aarch64', body: '実際の aarch64 VM 起動: UEFI ファームウェアとクロスアーキ эмулーション、ARM64 で RHCOS の load+attach を実証。' },
-      { title: 'ゼロ設定ガジェット', body: '公開済みの OCI ガジェットを直接検証: --quick(マトリクスファイル不要)、自動サイズ調整マップ、プログラムの自動型付け。' },
+      { title: 'コマンドモード', body: '自分のローダーバイナリをマトリクスの各カーネルに送り込み、その終了コードを判定として使います — 実際のユーザー空間ロードパスで、同期し続けるマニフェストは不要です。' },
+      { title: '厄介なカーネルのライブラリ', body: 'バージョン ≠ 機能サポートである、証拠付きのベンダーカーネル11種：エンタープライズのバックポート、BTF なしカーネル、ベンダーのリベース。quirk-library として組み込み済み。' },
+      { title: '公開互換性マトリクス', body: 'quirk ライブラリは毎週、実際の VM 上で再検証され、結果を公開します — 各セルは実際に行われたロードです。' },
+      { title: 'ebpf-go レシピ', body: 'libbpf が通っても ebpf-go が通るとは限りません。約50行の静的 cilium/ebpf ローダーが、コマンドモードを Go ネイティブのゲートに変えます。' },
     ],
-    cta: 'v0.2.0 リリースを読む',
+    cta: 'v0.3.0 リリースを読む',
   },
   plain: {
     eyebrow: '簡単に言うと',
@@ -1201,6 +1272,8 @@ const ja: BpStrings = {
     tallyOk: 'すべての対象が互換',
     selectHint: { pre: '記録された証拠を見るには、', mid: '、または注釈付きの ', post: ' セルを選択してください。' },
     drawerGate: 'ゲート',
+    liveNote: 'このマトリクスは公開の場でも動いています：厄介なカーネルのライブラリが毎週、実際の VM 上で再検証されます。',
+    liveCta: 'ライブマトリクスを開く',
   },
   docs: {
     eyebrow: 'ドキュメント',
@@ -1254,6 +1327,17 @@ const ja: BpStrings = {
     backportHeading: 'カーネルバージョン ≠ 機能サポート。',
     backportBody: 'エンタープライズディストロは eBPF 機能を古いカーネルベースに大量にバックポートするため、バージョン番号だけでは何もわかりません。bpfcompat は実際のベンダーカーネルを起動するので、これは推測ではなく直接テストされます。',
     backportExample: 'ring buffer プログラムは Ubuntu の vanilla 5.4 では失敗します（ring buffer の upstream 対応は 5.8 から）が、AlmaLinux 8 のバックポートされた 4.18 では合格します — そして埋め込み BTF を持たない Amazon Linux 2 の 4.14 でも load と attach に成功します。',
+  },
+  command: {
+    eyebrow: '新機能 — コマンドモード',
+    heading: 'あなたのローダー。実カーネル。終了コード = 判定。',
+    subline: '同梱のバリデータは「この .bpf.o はロードできるか？」に答えます。コマンドモードはより鋭い問いに答えます：あなたのプロジェクトの実際のローダーはこのカーネルで起動するか？ bpfcompat はバイナリをマトリクスの各 VM に送り込み、その終了コードをカーネルごとの判定とします。',
+    points: [
+      { title: '実際のユーザー空間パス', body: 'ローダーの実装はそれぞれ異なります — libbpf が通っても ebpf-go が通るとは限りません。コマンドモードは、ユーザーが実際に実行するローダーを検証します。同期し続けるマニフェストは不要です。' },
+      { title: '厄介なカーネルを同梱', body: '組み込みの quirk ライブラリに向けてください：バージョン番号が嘘をつく、証拠付きのベンダーカーネル11種 — ring buffer のバックポート、BTF なしカーネル、ベンダーのリベース。' },
+      { title: '毎週、公開の場で実証', body: '同じライブラリが毎週実際の VM 上で再検証され、マトリクスを公開します。ここに示す実行は本物の出力であり、モックではありません。' },
+    ],
+    liveCta: '公開ライブマトリクスを見る',
   },
   library: {
     eyebrow: 'ライブラリモード',
@@ -1344,16 +1428,16 @@ const zhCN: BpStrings = {
     termSimulated: '模拟输出，循环播放。', termRunLink: '在演示中亲自运行 →',
   },
   whatsNew: {
-    eyebrow: '新功能 — v0.2.0',
-    heading: '发布以来最大的一次更新。',
-    subline: '全新可嵌入库 API、新的操作系统家族，以及 ARM64 — 全部在真实内核上验证。',
+    eyebrow: '新特性 — v0.3.0',
+    heading: '用你自己的加载器来验证。',
+    subline: '命令模式、一个「已知棘手」的发行版内核库，以及每周重新验证的公开兼容性矩阵 — 全部在真实内核上得到验证。',
     items: [
-      { title: '库模式', body: '将 bpfcompat 嵌入 Go：ValidateBeforeLoad 在节点自身内核上执行真实加载 — 无虚拟机、无网络 — 作为加载前把关。' },
-      { title: 'OpenShift / RHCOS', body: 'CoreOS 现在通过 Ignition 启动。真实的 RHCOS 证据矩阵覆盖 OpenShift 4.14 / 4.16 / 4.18，包含一个 BPF-LSM 回移植边界。' },
-      { title: 'ARM64 / aarch64', body: '真实的 aarch64 虚拟机启动：UEFI 固件加上跨架构模拟，并在 ARM64 上验证了 RHCOS 的加载+挂载。' },
-      { title: '零配置 gadget', body: '直接验证已发布的 OCI gadget，支持 --quick（无需矩阵文件）、自动调整大小的 map 以及程序自动类型推断。' },
+      { title: '命令模式', body: '把你自己的加载器二进制发送到矩阵中的每个内核，以其退出码作为裁定 — 真实的用户态加载路径，无需维护同步的清单文件。' },
+      { title: '棘手内核库', body: '11 个有证据支撑的发行版内核，版本号 ≠ 特性支持：企业级向后移植、无 BTF 内核、厂商 rebase。以 quirk-library 内置。' },
+      { title: '公开兼容性矩阵', body: 'quirk 库每周在真实虚拟机上重新验证并公布结果 — 每个单元格都是一次真实发生过的加载。' },
+      { title: 'ebpf-go 配方', body: 'libbpf 通过并不保证 ebpf-go 也通过。约 50 行的静态 cilium/ebpf 加载器让命令模式成为 Go 原生的门禁。' },
     ],
-    cta: '阅读 v0.2.0 发布说明',
+    cta: '阅读 v0.3.0 发布说明',
   },
   plain: {
     eyebrow: '通俗地说',
@@ -1403,6 +1487,8 @@ const zhCN: BpStrings = {
     tallyOk: '所有目标均兼容',
     selectHint: { pre: '选择一个 ', mid: '，或带注释的 ', post: ' 单元格以查看其记录的证据。' },
     drawerGate: '闸门',
+    liveNote: '这个矩阵也在公开运行：棘手内核库每周在真实虚拟机上重新验证。',
+    liveCta: '打开实时矩阵',
   },
   docs: {
     eyebrow: '文档',
@@ -1456,6 +1542,17 @@ const zhCN: BpStrings = {
     backportHeading: '内核版本 ≠ 功能支持。',
     backportBody: '企业发行版会把 eBPF 功能大量回移植（backport）到旧的内核基线上，所以仅凭版本号什么都说明不了。因为 bpfcompat 启动的是真实的厂商内核，这一点是直接测试出来的，而不是推断的。',
     backportExample: '一个 ring buffer 程序在 Ubuntu 的原版 5.4 上会失败（ring buffer 自 5.8 才进入上游），但在 AlmaLinux 8 回移植的 4.18 上能通过——而没有内嵌 BTF 的 Amazon Linux 2 的 4.14 仍然能 load 和 attach。',
+  },
+  command: {
+    eyebrow: '新功能 — 命令模式',
+    heading: '你的加载器。真实内核。退出码 = 裁定。',
+    subline: '内置验证器回答的是「这个 .bpf.o 能加载吗？」。命令模式回答一个更精准的问题：你的项目真正的加载器能在这个内核上启动吗？bpfcompat 把你的二进制发送到矩阵中的每台虚拟机，以其退出码作为每个内核的裁定。',
+    points: [
+      { title: '真实的用户态路径', body: '加载器实现各不相同 — libbpf 通过并不保证 ebpf-go 也通过。命令模式验证的是用户真正运行的那个加载器，无需维护同步的清单文件。' },
+      { title: '内置棘手内核', body: '将它指向内置的 quirk 库：11 个有证据支撑、版本号会「说谎」的发行版内核 — ring buffer 向后移植、无 BTF 内核、厂商 rebase。' },
+      { title: '每周公开验证', body: '同一个库每周在真实虚拟机上重新验证并公布矩阵。这里展示的运行是真实输出，不是模拟。' },
+    ],
+    liveCta: '查看公开实时矩阵',
   },
   library: {
     eyebrow: '库模式',
@@ -1546,16 +1643,16 @@ const ko: BpStrings = {
     termSimulated: '시뮬레이션 출력, 반복 재생.', termRunLink: '데모에서 직접 실행하기 →',
   },
   whatsNew: {
-    eyebrow: '새로운 기능 — v0.2.0',
-    heading: '출시 이후 가장 큰 릴리스.',
-    subline: '새로운 임베드 가능 라이브러리 API, 새로운 OS 제품군, 그리고 ARM64 — 모두 실제 커널에서 검증.',
+    eyebrow: '새 소식 — v0.3.0',
+    heading: '자신의 로더로 검증하세요.',
+    subline: '커맨드 모드, 까다롭기로 알려진 벤더 커널 라이브러리, 그리고 매주 재검증되는 공개 호환성 매트릭스 — 모두 실제 커널에서 입증되었습니다.',
     items: [
-      { title: '라이브러리 모드', body: 'bpfcompat를 Go에 임베드: ValidateBeforeLoad는 노드 자체 커널에서 실제 로드를 수행합니다 — VM 없이, 네트워크 없이 — 로드 전 게이트로.' },
-      { title: 'OpenShift / RHCOS', body: '이제 CoreOS는 Ignition으로 부팅됩니다. 실제 RHCOS 증거 매트릭스가 OpenShift 4.14 / 4.16 / 4.18을 아우르며 BPF-LSM 백포트 경계를 포함합니다.' },
-      { title: 'ARM64 / aarch64', body: '실제 aarch64 VM 부팅: UEFI 펌웨어와 교차 아키텍처 에뮬레이션, ARM64에서 RHCOS load+attach 검증.' },
-      { title: '제로 구성 가젯', body: '게시된 OCI 가젯을 직접 검증: --quick(매트릭스 파일 불필요), 자동 크기 조정 맵, 프로그램 자동 타입 지정.' },
+      { title: '커맨드 모드', body: '자신의 로더 바이너리를 매트릭스의 모든 커널에 배포하고 종료 코드를 판정으로 사용하세요 — 실제 사용자 공간 로드 경로이며, 동기화해야 할 매니페스트가 없습니다.' },
+      { title: '까다로운 커널 라이브러리', body: '버전 ≠ 기능 지원인, 증거로 뒷받침되는 벤더 커널 11종: 엔터프라이즈 백포트, BTF 없는 커널, 벤더 리베이스. quirk-library로 내장되어 있습니다.' },
+      { title: '공개 호환성 매트릭스', body: 'quirk 라이브러리는 매주 실제 VM에서 재검증되고 결과를 공개합니다 — 모든 셀은 실제로 수행된 로드입니다.' },
+      { title: 'ebpf-go 레시피', body: 'libbpf 통과가 ebpf-go 통과를 보장하지 않습니다. 약 50줄의 정적 cilium/ebpf 로더가 커맨드 모드를 Go 네이티브 게이트로 만듭니다.' },
     ],
-    cta: 'v0.2.0 릴리스 읽기',
+    cta: 'v0.3.0 릴리스 읽기',
   },
   plain: {
     eyebrow: '쉽게 말하면',
@@ -1605,6 +1702,8 @@ const ko: BpStrings = {
     tallyOk: '모든 대상이 호환됨',
     selectHint: { pre: '기록된 증거를 보려면 ', mid: ', 또는 주석이 달린 ', post: ' 셀을 선택하세요.' },
     drawerGate: '게이트',
+    liveNote: '이 매트릭스는 공개적으로도 실행됩니다: 까다로운 커널 라이브러리가 매주 실제 VM에서 재검증됩니다.',
+    liveCta: '라이브 매트릭스 열기',
   },
   docs: {
     eyebrow: '문서',
@@ -1658,6 +1757,17 @@ const ko: BpStrings = {
     backportHeading: '커널 버전 ≠ 기능 지원.',
     backportBody: '엔터프라이즈 배포판은 eBPF 기능을 오래된 커널 베이스에 대거 백포트하므로 버전 번호만으로는 아무것도 예측할 수 없습니다. bpfcompat는 실제 벤더 커널을 부팅하므로 이는 추론이 아니라 직접 테스트됩니다.',
     backportExample: 'ring buffer 프로그램은 Ubuntu의 바닐라 5.4에서는 실패하지만(ring buffer는 업스트림 5.8부터) AlmaLinux 8의 백포트된 4.18에서는 합격합니다 — 그리고 내장 BTF가 없는 Amazon Linux 2의 4.14에서도 여전히 load와 attach가 됩니다.',
+  },
+  command: {
+    eyebrow: '신규 — 커맨드 모드',
+    heading: '당신의 로더. 실제 커널. 종료 코드 = 판정.',
+    subline: '번들 검증기는 “이 .bpf.o가 로드되는가?”에 답합니다. 커맨드 모드는 더 날카로운 질문에 답합니다: 프로젝트의 실제 로더가 이 커널에서 기동하는가? bpfcompat은 바이너리를 매트릭스의 각 VM에 배포하고 종료 코드를 커널별 판정으로 사용합니다.',
+    points: [
+      { title: '실제 사용자 공간 경로', body: '로더 구현은 서로 다릅니다 — libbpf 통과가 ebpf-go 통과를 보장하지 않습니다. 커맨드 모드는 사용자가 실제로 실행하는 로더를 검증하며, 동기화할 매니페스트가 없습니다.' },
+      { title: '까다로운 커널 내장', body: '내장 quirk 라이브러리를 지정하세요: 버전 번호가 거짓말하는, 증거로 뒷받침되는 벤더 커널 11종 — ring buffer 백포트, BTF 없는 커널, 벤더 리베이스.' },
+      { title: '매주 공개적으로 입증', body: '같은 라이브러리가 매주 실제 VM에서 재검증되고 매트릭스를 공개합니다. 여기 표시된 실행은 실제 출력이며 모형이 아닙니다.' },
+    ],
+    liveCta: '공개 라이브 매트릭스 보기',
   },
   library: {
     eyebrow: '라이브러리 모드',
