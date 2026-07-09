@@ -86,12 +86,14 @@ const AdminLayout = lazyRoute(loadAdminLayout);
 const AdminDashboard = lazyRoute(loadAdminDashboard);
 const ProjectEditor = lazyRoute(loadProjectEditor);
 
-// Design previews (not linked from production nav)
-const BpfcompatPreviewIndex = lazy(() => import('./pages/preview/BpfcompatPreviewIndex'));
-const BpfcompatVerdict = lazy(() => import('./pages/preview/BpfcompatVerdict'));
-const BpfcompatProofLoop = lazy(() => import('./pages/preview/BpfcompatProofLoop'));
-const BpfcompatNarrative = lazy(() => import('./pages/preview/BpfcompatNarrative'));
-const BpfcompatLaunch = lazy(() => import('./pages/preview/BpfcompatLaunch'));
+// Design previews are useful during development but should not be routable in
+// production. If they remain publicly reachable, crawlers can discover thin/test
+// pages and pollute Search Console indexing reports.
+const BpfcompatPreviewIndex = import.meta.env.DEV ? lazy(() => import('./pages/preview/BpfcompatPreviewIndex')) : null;
+const BpfcompatVerdict = import.meta.env.DEV ? lazy(() => import('./pages/preview/BpfcompatVerdict')) : null;
+const BpfcompatProofLoop = import.meta.env.DEV ? lazy(() => import('./pages/preview/BpfcompatProofLoop')) : null;
+const BpfcompatNarrative = import.meta.env.DEV ? lazy(() => import('./pages/preview/BpfcompatNarrative')) : null;
+const BpfcompatLaunch = import.meta.env.DEV ? lazy(() => import('./pages/preview/BpfcompatLaunch')) : null;
 
 function RouteLoadingFallback() {
   return (
@@ -136,11 +138,15 @@ function LocalizedRoutes() {
         <Route path="contact" element={<Contact />} />
 
         {/* Design previews */}
-        <Route path="preview/bpfcompat" element={<BpfcompatPreviewIndex />} />
-        <Route path="preview/bpfcompat/launch" element={<BpfcompatLaunch />} />
-        <Route path="preview/bpfcompat/verdict" element={<BpfcompatVerdict />} />
-        <Route path="preview/bpfcompat/proof-loop" element={<BpfcompatProofLoop />} />
-        <Route path="preview/bpfcompat/narrative" element={<BpfcompatNarrative />} />
+        {import.meta.env.DEV && BpfcompatPreviewIndex && BpfcompatLaunch && BpfcompatVerdict && BpfcompatProofLoop && BpfcompatNarrative ? (
+          <>
+            <Route path="preview/bpfcompat" element={<BpfcompatPreviewIndex />} />
+            <Route path="preview/bpfcompat/launch" element={<BpfcompatLaunch />} />
+            <Route path="preview/bpfcompat/verdict" element={<BpfcompatVerdict />} />
+            <Route path="preview/bpfcompat/proof-loop" element={<BpfcompatProofLoop />} />
+            <Route path="preview/bpfcompat/narrative" element={<BpfcompatNarrative />} />
+          </>
+        ) : null}
 
         <Route path="not-found" element={<NotFound />} />
         <Route path="*" element={<NotFound />} />
