@@ -138,7 +138,7 @@ const en: BpStrings = {
     termSimulated: 'Simulated output, looping.', termRunLink: 'Run it yourself in the demo →',
   },
   whatsNew: {
-    eyebrow: 'What’s new — v0.3.0',
+    eyebrow: 'What’s new — v0.3.2',
     heading: 'Validate through your own loader.',
     subline: 'Command mode, a library of known-tricky vendor kernels, and a public compatibility matrix that re-validates weekly — all proven on real kernels.',
     items: [
@@ -147,7 +147,7 @@ const en: BpStrings = {
       { title: 'Public compatibility matrix', body: 'The quirk library re-validates weekly on real VMs and publishes the results — every cell a load that actually happened.' },
       { title: 'ebpf-go recipe', body: 'A libbpf pass doesn’t guarantee an ebpf-go pass. A ~50-line static cilium/ebpf loader turns command mode into a Go-native gate.' },
     ],
-    cta: 'Read the v0.3.0 release',
+    cta: 'Read the v0.3.2 release',
   },
   plain: {
     eyebrow: 'In plain terms',
@@ -353,7 +353,7 @@ const tr: BpStrings = {
     termSimulated: 'Benzetilmiş çıktı, döngüde.', termRunLink: 'Kendiniz demoda çalıştırın →',
   },
   whatsNew: {
-    eyebrow: 'Yenilikler — v0.3.0',
+    eyebrow: 'Yenilikler — v0.3.2',
     heading: 'Kendi yükleyicinizle doğrulayın.',
     subline: 'Komut modu, bilinen-zorlu dağıtım çekirdekleri kütüphanesi ve her hafta yeniden doğrulanan herkese açık uyumluluk matrisi — hepsi gerçek çekirdeklerde kanıtlandı.',
     items: [
@@ -362,7 +362,7 @@ const tr: BpStrings = {
       { title: 'Herkese açık uyumluluk matrisi', body: 'Quirk kütüphanesi her hafta gerçek sanal makinelerde yeniden doğrulanır ve sonuçları yayımlar — her hücre gerçekten yaşanmış bir yüklemedir.' },
       { title: 'ebpf-go tarifi', body: 'libbpf geçişi, ebpf-go geçişini garanti etmez. ~50 satırlık statik bir cilium/ebpf yükleyicisi komut modunu Go-yerlisi bir denetime çevirir.' },
     ],
-    cta: 'v0.3.0 sürümünü oku',
+    cta: 'v0.3.2 sürümünü oku',
   },
   plain: {
     eyebrow: 'Sade bir dille',
@@ -568,7 +568,7 @@ const de: BpStrings = {
     termSimulated: 'Simulierte Ausgabe, in Schleife.', termRunLink: 'Selbst in der Demo ausführen →',
   },
   whatsNew: {
-    eyebrow: 'Neu — v0.3.0',
+    eyebrow: 'Neu — v0.3.2',
     heading: 'Validieren Sie über Ihren eigenen Loader.',
     subline: 'Kommandomodus, eine Bibliothek bekannt-heikler Vendor-Kernel und eine öffentliche Kompatibilitätsmatrix mit wöchentlicher Re-Validierung — alles auf echten Kerneln belegt.',
     items: [
@@ -577,7 +577,7 @@ const de: BpStrings = {
       { title: 'Öffentliche Kompatibilitätsmatrix', body: 'Die Quirk-Bibliothek re-validiert wöchentlich auf echten VMs und veröffentlicht die Ergebnisse — jede Zelle ein tatsächlich erfolgter Load.' },
       { title: 'ebpf-go-Rezept', body: 'Ein libbpf-Pass garantiert keinen ebpf-go-Pass. Ein statischer cilium/ebpf-Loader mit ~50 Zeilen macht den Kommandomodus zum Go-nativen Gate.' },
     ],
-    cta: 'Release v0.3.0 lesen',
+    cta: 'Release v0.3.2 lesen',
   },
   plain: {
     eyebrow: 'Einfach gesagt',
@@ -783,7 +783,7 @@ const es: BpStrings = {
     termSimulated: 'Salida simulada, en bucle.', termRunLink: 'Ejecútalo tú mismo en la demo →',
   },
   whatsNew: {
-    eyebrow: 'Novedades — v0.3.0',
+    eyebrow: 'Novedades — v0.3.2',
     heading: 'Valida a través de tu propio loader.',
     subline: 'Modo comando, una biblioteca de kernels de distribución notoriamente difíciles y una matriz de compatibilidad pública que se revalida cada semana — todo probado en kernels reales.',
     items: [
@@ -792,7 +792,7 @@ const es: BpStrings = {
       { title: 'Matriz de compatibilidad pública', body: 'La biblioteca quirk se revalida cada semana en VMs reales y publica los resultados — cada celda es una carga que ocurrió de verdad.' },
       { title: 'Receta ebpf-go', body: 'Que libbpf pase no garantiza que ebpf-go pase. Un loader estático cilium/ebpf de ~50 líneas convierte el modo comando en una puerta nativa de Go.' },
     ],
-    cta: 'Leer la versión v0.3.0',
+    cta: 'Leer la versión v0.3.2',
   },
   plain: {
     eyebrow: 'En pocas palabras',
@@ -998,7 +998,7 @@ const fr: BpStrings = {
     termSimulated: 'Sortie simulée, en boucle.', termRunLink: 'Essayez-le vous-même dans la démo →',
   },
   whatsNew: {
-    eyebrow: 'Nouveautés — v0.3.0',
+    eyebrow: 'Nouveautés — v0.3.2',
     heading: 'Validez via votre propre loader.',
     subline: 'Mode commande, une bibliothèque de noyaux de distribution notoirement délicats et une matrice de compatibilité publique revalidée chaque semaine — le tout prouvé sur de vrais noyaux.',
     items: [
@@ -1007,7 +1007,7 @@ const fr: BpStrings = {
       { title: 'Matrice de compatibilité publique', body: 'La bibliothèque quirk est revalidée chaque semaine sur de vraies VM et publie ses résultats — chaque cellule est un chargement qui a réellement eu lieu.' },
       { title: 'Recette ebpf-go', body: 'Un succès libbpf ne garantit pas un succès ebpf-go. Un loader statique cilium/ebpf d’environ 50 lignes fait du mode commande une porte native Go.' },
     ],
-    cta: 'Lire la version v0.3.0',
+    cta: 'Lire la version v0.3.2',
   },
   plain: {
     eyebrow: 'En clair',
@@ -1213,7 +1213,7 @@ const ja: BpStrings = {
     termSimulated: 'シミュレートされた出力（ループ）。', termRunLink: 'デモで自分で実行する →',
   },
   whatsNew: {
-    eyebrow: '新着情報 — v0.3.0',
+    eyebrow: '新着情報 — v0.3.2',
     heading: '自分のローダーで検証する。',
     subline: 'コマンドモード、既知の厄介なベンダーカーネルのライブラリ、毎週再検証される公開互換性マトリクス — すべて実カーネルで実証済み。',
     items: [
@@ -1222,7 +1222,7 @@ const ja: BpStrings = {
       { title: '公開互換性マトリクス', body: 'quirk ライブラリは毎週、実際の VM 上で再検証され、結果を公開します — 各セルは実際に行われたロードです。' },
       { title: 'ebpf-go レシピ', body: 'libbpf が通っても ebpf-go が通るとは限りません。約50行の静的 cilium/ebpf ローダーが、コマンドモードを Go ネイティブのゲートに変えます。' },
     ],
-    cta: 'v0.3.0 リリースを読む',
+    cta: 'v0.3.2 リリースを読む',
   },
   plain: {
     eyebrow: '簡単に言うと',
@@ -1428,7 +1428,7 @@ const zhCN: BpStrings = {
     termSimulated: '模拟输出，循环播放。', termRunLink: '在演示中亲自运行 →',
   },
   whatsNew: {
-    eyebrow: '新特性 — v0.3.0',
+    eyebrow: '新特性 — v0.3.2',
     heading: '用你自己的加载器来验证。',
     subline: '命令模式、一个「已知棘手」的发行版内核库，以及每周重新验证的公开兼容性矩阵 — 全部在真实内核上得到验证。',
     items: [
@@ -1437,7 +1437,7 @@ const zhCN: BpStrings = {
       { title: '公开兼容性矩阵', body: 'quirk 库每周在真实虚拟机上重新验证并公布结果 — 每个单元格都是一次真实发生过的加载。' },
       { title: 'ebpf-go 配方', body: 'libbpf 通过并不保证 ebpf-go 也通过。约 50 行的静态 cilium/ebpf 加载器让命令模式成为 Go 原生的门禁。' },
     ],
-    cta: '阅读 v0.3.0 发布说明',
+    cta: '阅读 v0.3.2 发布说明',
   },
   plain: {
     eyebrow: '通俗地说',
@@ -1643,7 +1643,7 @@ const ko: BpStrings = {
     termSimulated: '시뮬레이션 출력, 반복 재생.', termRunLink: '데모에서 직접 실행하기 →',
   },
   whatsNew: {
-    eyebrow: '새 소식 — v0.3.0',
+    eyebrow: '새 소식 — v0.3.2',
     heading: '자신의 로더로 검증하세요.',
     subline: '커맨드 모드, 까다롭기로 알려진 벤더 커널 라이브러리, 그리고 매주 재검증되는 공개 호환성 매트릭스 — 모두 실제 커널에서 입증되었습니다.',
     items: [
@@ -1652,7 +1652,7 @@ const ko: BpStrings = {
       { title: '공개 호환성 매트릭스', body: 'quirk 라이브러리는 매주 실제 VM에서 재검증되고 결과를 공개합니다 — 모든 셀은 실제로 수행된 로드입니다.' },
       { title: 'ebpf-go 레시피', body: 'libbpf 통과가 ebpf-go 통과를 보장하지 않습니다. 약 50줄의 정적 cilium/ebpf 로더가 커맨드 모드를 Go 네이티브 게이트로 만듭니다.' },
     ],
-    cta: 'v0.3.0 릴리스 읽기',
+    cta: 'v0.3.2 릴리스 읽기',
   },
   plain: {
     eyebrow: '쉽게 말하면',
