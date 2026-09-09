@@ -5,7 +5,6 @@ import { useLanguage } from '../context/LanguageContext';
 import SecurityTerminal from '../components/SecurityTerminal';
 import SEO from '../components/SEO';
 import { prefetchRoute, prefetchRoutes, type PrefetchRoute } from '../routes/pageLoaders';
-import { engineeringEvidence } from '../data/engineeringEvidence';
 import { localizePath } from '../i18n/route';
 import { articles, localizeArticle } from '../data/articles';
 import { growthServicePages, localizeGrowthServicePage } from '../data/growthServices';
@@ -68,26 +67,26 @@ export default function Home() {
     detail: string;
   }> = [
     {
-      icon: <Gauge className="h-5 w-5" />,
-      value: `${engineeringEvidence.lighthouse.desktop.performance}/${engineeringEvidence.lighthouse.desktop.accessibility}`,
+      icon: <GitBranch className="h-5 w-5" />,
+      value: '2',
       label: t.home.proof.cards.lighthouse.label,
       detail: t.home.proof.cards.lighthouse.detail,
     },
     {
-      icon: <ShieldCheck className="h-5 w-5" />,
-      value: `${engineeringEvidence.delivery.prerenderedRoutes}`,
+      icon: <Server className="h-5 w-5" />,
+      value: 'QEMU/KVM',
       label: t.home.proof.cards.delivery.label,
       detail: t.home.proof.cards.delivery.detail,
     },
     {
-      icon: <GitBranch className="h-5 w-5" />,
-      value: `${engineeringEvidence.github.publicRepositories}`,
+      icon: <Globe2 className="h-5 w-5" />,
+      value: 'x86_64 + ARM64',
       label: t.home.proof.cards.openSource.label,
       detail: t.home.proof.cards.openSource.detail,
     },
     {
-      icon: <Globe2 className="h-5 w-5" />,
-      value: `${engineeringEvidence.delivery.supportedLanguages}`,
+      icon: <ShieldCheck className="h-5 w-5" />,
+      value: 'SLSA',
       label: t.home.proof.cards.languages.label,
       detail: t.home.proof.cards.languages.detail,
     },
@@ -236,9 +235,6 @@ export default function Home() {
                   <div key={card.label} className="border border-border bg-surface p-6">
                     <div className="mb-8 flex items-center justify-between text-primary">
                       {card.icon}
-                      <span className="font-mono text-xs text-foreground/60">
-                        {engineeringEvidence.measuredAt}
-                      </span>
                     </div>
                     <div className="font-mono text-4xl text-foreground mb-3">{card.value}</div>
                     <h3 className="text-base font-medium text-foreground mb-2">{card.label}</h3>
@@ -248,17 +244,15 @@ export default function Home() {
               </div>
               <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 border border-border bg-surface p-5 text-sm text-foreground/70">
                 <div>
-                  <span className="font-mono text-foreground">{engineeringEvidence.delivery.indexableUrls}</span>{' '}
+                  <span className="font-mono text-foreground">Falco + Inspektor Gadget</span>{' '}
                   {t.home.proof.summary.indexableUrls}
                 </div>
                 <div>
-                  <span className="font-mono text-foreground">{engineeringEvidence.lighthouse.desktop.totalBlockingTime}</span>{' '}
+                  <span className="font-mono text-foreground">Real vendor kernels</span>{' '}
                   {t.home.proof.summary.desktopTbt}
                 </div>
                 <div>
-                  <span className="font-mono text-foreground">
-                    {engineeringEvidence.github.latestPublicUpdate}
-                  </span>{' '}
+                  <span className="font-mono text-foreground">Signed · SBOM · provenance</span>{' '}
                   {t.home.proof.summary.latestUpdate}
                 </div>
               </div>
