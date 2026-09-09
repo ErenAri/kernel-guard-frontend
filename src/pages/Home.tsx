@@ -1,82 +1,114 @@
-import {
-  ArrowRight,
-  Box,
-  CheckCircle2,
-  ExternalLink,
-  GitBranch,
-  Server,
-  ShieldCheck,
-  SquareTerminal,
-} from 'lucide-react';
+import { ArrowRight, Check, ExternalLink, Minus, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import { useLanguage } from '../context/LanguageContext';
 import { localizePath } from '../i18n/route';
 import { evidenceHomeCopy } from '../i18n/evidenceHome';
+import report from '../data/bpfcompatReport.json';
 
-const kernelFamilies = [
-  'Ubuntu',
-  'Debian',
-  'RHEL family',
-  'Rocky Linux',
-  'AlmaLinux',
-  'CentOS Stream',
-  'Amazon Linux',
-  'Oracle Linux',
-  'SUSE / openSUSE',
-  'Fedora CoreOS',
-  'RHCOS / OpenShift BYO',
-  'Linux mainline',
-];
+type PreviewState = 'pass' | 'fail' | 'partial' | 'skip';
 
-function SectionEyebrow({ children }: { children: string }) {
+function resultFor(artifact: string, kernel: string) {
+  return report.results.find((result) => result.artifact === artifact && result.kernel === kernel);
+}
+
+function StateMark({ state }: { state: PreviewState }) {
+  if (state === 'pass') {
+    return (
+      <span className="inline-flex items-center gap-1.5 text-[#198038] dark:text-[#42be65]">
+        <Check className="h-3.5 w-3.5" strokeWidth={2.5} />
+        PASS
+      </span>
+    );
+  }
+
+  if (state === 'fail') {
+    return (
+      <span className="inline-flex items-center gap-1.5 text-[#da1e28] dark:text-[#fa4d56]">
+        <X className="h-3.5 w-3.5" strokeWidth={2.5} />
+        FAIL
+      </span>
+    );
+  }
+
   return (
-    <div className="inline-flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-[0.16em] text-primary">
-      <span className="h-px w-6 bg-primary" aria-hidden="true" />
-      {children}
-    </div>
+    <span className="inline-flex items-center gap-1.5 text-foreground/45">
+      <Minus className="h-3.5 w-3.5" />
+      {state === 'partial' ? 'PARTIAL' : 'SKIP'}
+    </span>
   );
 }
 
-function KernelMatrixTerminal({ label }: { label: string }) {
-  const rows = [
-    ['ubuntu-20.04', '5.4', 'FAIL', 'ringbuf unsupported', false],
-    ['almalinux-8', '4.18', 'PASS', 'vendor backport', true],
-    ['ubuntu-22.04', '5.15', 'PASS', 'load + attach', true],
-  ] as const;
+function EvidencePreview() {
+  const kernels = report.kernels.slice(0, 4);
+  const artifacts = report.artifacts.slice(0, 3);
 
   return (
-    <div className="border border-[#30363d] bg-[#0b0d10] text-[#e6edf3] shadow-2xl shadow-black/20">
-      <div className="flex h-11 items-center justify-between border-b border-[#252b34] px-4">
-        <span className="font-mono text-[11px] text-[#8b949e]">{label}</span>
-        <div className="flex gap-1.5" aria-hidden="true">
-          <span className="h-2 w-2 rounded-full bg-[#343b46]" />
-          <span className="h-2 w-2 rounded-full bg-[#343b46]" />
-          <span className="h-2 w-2 rounded-full bg-[#343b46]" />
+    <div className="mx-auto w-full max-w-6xl border border-border bg-background text-left">
+      <div className="flex flex-col justify-between gap-3 border-b border-border px-5 py-4 sm:flex-row sm:items-center">
+        <div>
+          <div className="font-mono text-xs text-foreground">bpfcompat / report.json</div>
+          <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-foreground/45">
+            Representative report · {report.version} · {report.generatedAt}
+          </div>
+        </div>
+        <div className="font-mono text-[10px] uppercase tracking-[0.12em] text-foreground/45">
+          gate: {report.gate}
         </div>
       </div>
-      <div className="overflow-x-auto p-5 font-mono text-xs leading-7">
-        <div className="min-w-[510px]">
-          <div>
-            <span className="text-[#9aa8ff]">$</span>{' '}
-            bpfcompat test --artifact ringbuf.bpf.o --matrix matrices/quirk-library.yaml
-          </div>
-          <div className="mb-3 text-[#7d8794]">booting disposable vendor-kernel VMs...</div>
-          {rows.map(([target, kernel, status, detail, pass]) => (
-            <div
-              key={target}
-              className="grid grid-cols-[150px_70px_65px_1fr] gap-3 border-t border-[#1d222a] py-1.5"
-            >
-              <span>{target}</span>
-              <span className="text-[#9aa3af]">{kernel}</span>
-              <span className={pass ? 'text-[#65c998]' : 'text-[#ff858d]'}>{status}</span>
-              <span className="text-[#a7b0bd]">{detail}</span>
-            </div>
-          ))}
-          <div className="mt-4 text-[#8b949e]">
-            evidence → report.json · serial.log · verifier output
-          </div>
-        </div>
+
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[760px] border-collapse">
+          <thead>
+            <tr>
+              <th className="w-[250px] border-b border-border px-5 py-4 text-left font-mono text-[10px] font-normal uppercase tracking-[0.12em] text-foreground/45">
+                artifact × kernel
+              </th>
+              {kernels.map((kernel) => (
+                <th
+                  key={kernel.id}
+                  className="border-b border-l border-border px-4 py-4 text-left font-normal"
+                >
+                  <div className="font-mono text-xs text-foreground">{kernel.distro}</div>
+                  <div className="mt-1 font-mono text-[10px] text-foreground/45">
+                    {kernel.version} · {kernel.arch}
+                  </div>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {artifacts.map((artifact) => (
+              <tr key={artifact.name}>
+                <td className="border-b border-border px-5 py-4">
+                  <div className="font-mono text-xs text-foreground">{artifact.name}</div>
+                  <div className="mt-1 font-mono text-[10px] text-foreground/40">{artifact.kind}</div>
+                </td>
+                {kernels.map((kernel) => {
+                  const result = resultFor(artifact.name, kernel.id);
+                  const state = (result?.state ?? 'skip') as PreviewState;
+                  return (
+                    <td key={kernel.id} className="border-b border-l border-border px-4 py-4 font-mono text-[10px]">
+                      <StateMark state={state} />
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="flex flex-col justify-between gap-2 px-5 py-4 sm:flex-row sm:items-center">
+        <span className="font-mono text-[10px] text-foreground/45">
+          {report.note}
+        </span>
+        <Link
+          to="/projects/bpfcompat/"
+          className="shrink-0 text-sm font-medium text-primary hover:underline"
+        >
+          Open the full matrix
+        </Link>
       </div>
     </div>
   );
@@ -86,385 +118,281 @@ export default function Home() {
   const { language } = useLanguage();
   const copy = evidenceHomeCopy[language];
 
-  const productCards = [
-    {
-      phase: copy.products.preDeployment,
-      status: copy.products.openSource,
-      title: 'BPFCompat',
-      description: copy.products.bpfDesc,
-      href: localizePath('/projects/bpfcompat/', language),
-      bullets: [
-        'Disposable QEMU/KVM validation',
-        'CLI · GitHub Action · Go library',
-        'Real project-loader command mode',
-        'JSON / Markdown compatibility evidence',
-      ],
-      statusClass: 'border-emerald-600/30 bg-emerald-500/5 text-emerald-700 dark:text-emerald-300',
-    },
-    {
-      phase: copy.products.runtime,
-      status: copy.products.preview,
-      title: 'AegisBPF',
-      description: copy.products.aegisDesc,
-      href: localizePath('/projects/aegis-bpf/', language),
-      bullets: [
-        'BPF LSM enforcement',
-        'Cgroup-scoped policy controls',
-        'Audit fallback + forensic events',
-        'Kubernetes deployment paths',
-      ],
-      statusClass: 'border-amber-600/30 bg-amber-500/5 text-amber-700 dark:text-amber-300',
-    },
-  ];
-
-  const proofItems = [
-    [copy.proof.upstreamLabel, copy.proof.upstreamValue],
-    [copy.proof.executionLabel, copy.proof.executionValue],
-    [copy.proof.architecturesLabel, copy.proof.architecturesValue],
-    [copy.proof.provenanceLabel, copy.proof.provenanceValue],
-  ];
-
-  const trustIcons = [Server, Box, ShieldCheck, GitBranch, CheckCircle2, SquareTerminal];
-
   return (
-    <div className="flex flex-col bg-background">
+    <div className="bg-background">
       <SEO
         title={copy.seoTitle}
         description={copy.seoDescription}
         keywords="eBPF compatibility, Linux kernel compatibility, BPF LSM, runtime security, BPFCompat, AegisBPF"
-        imageAlt="Kernel Guard — eBPF compatibility evidence and runtime enforcement"
+        imageAlt="Kernel Guard — Linux and eBPF infrastructure"
       />
 
-      <section className="kg-dot-grid overflow-hidden border-b border-border pt-28 pb-20 md:pt-40 md:pb-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[1.05fr_.95fr] lg:gap-20">
-            <div className="relative z-10">
-              <SectionEyebrow>{copy.hero.eyebrow}</SectionEyebrow>
-              <h1 className="mt-7 max-w-4xl text-5xl font-light leading-[0.98] tracking-[-0.045em] text-foreground sm:text-6xl md:text-7xl">
-                {copy.hero.titleBefore}{' '}
-                <span className="font-medium text-primary">{copy.hero.titleEvidence}</span>{' '}
-                {copy.hero.titleAfter}
-              </h1>
-              <p className="mt-8 max-w-2xl text-lg font-light leading-relaxed text-foreground/70 md:text-xl">
-                {copy.hero.description}
-              </p>
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <Link
-                  to={localizePath('/projects/bpfcompat/', language)}
-                  className="kg-action-primary inline-flex min-h-12 items-center justify-between gap-8 px-5 py-3 font-medium transition-colors"
-                >
-                  {copy.hero.primaryCta}
-                  <ArrowRight className="h-5 w-5" />
-                </Link>
-                <a
-                  href="https://github.com/Kernel-Guard/bpfcompat"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-12 items-center justify-between gap-8 border border-foreground px-5 py-3 font-medium text-foreground transition-colors hover:bg-foreground hover:text-background"
-                >
-                  {copy.hero.secondaryCta}
-                  <ExternalLink className="h-4 w-4" />
-                </a>
-              </div>
-              <p className="mt-5 font-mono text-xs leading-relaxed text-foreground/50">{copy.hero.note}</p>
-            </div>
-
-            <KernelMatrixTerminal label={copy.hero.terminalLabel} />
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-border bg-surface">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
-          {proofItems.map(([label, value], index) => (
-            <div
-              key={label}
-              className={`flex min-h-28 flex-col justify-center py-6 sm:px-6 ${
-                index > 0 ? 'border-t border-border sm:border-t-0 lg:border-l' : ''
-              }`}
-            >
-              <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-foreground/50">
-                {label}
-              </span>
-              <span className="mt-2 text-lg font-medium tracking-tight text-foreground">{value}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-b border-border bg-background py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionEyebrow>{copy.problem.eyebrow}</SectionEyebrow>
-          <h2 className="mt-5 max-w-4xl text-4xl font-light leading-tight tracking-[-0.035em] md:text-6xl">
-            {copy.problem.title}
-          </h2>
-          <p className="mt-6 max-w-3xl text-lg font-light leading-relaxed text-foreground/65">
-            {copy.problem.description}
+      {/* Apple-like hierarchy: one idea, one product visual, very little chrome. */}
+      <section className="border-b border-border pt-32 pb-20 md:pt-44 md:pb-28">
+        <div className="mx-auto max-w-6xl px-4 text-center sm:px-6 lg:px-8">
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-foreground/45">
+            Kernel Guard · Linux / eBPF
           </p>
 
-          <div className="mt-12 grid grid-cols-1 border border-border md:grid-cols-3">
-            {copy.problem.cards.map((card, index) => (
-              <article
-                key={card.title}
-                className={`min-h-64 bg-surface p-7 ${
-                  index > 0 ? 'border-t border-border md:border-l md:border-t-0' : ''
-                }`}
-              >
-                <span className="font-mono text-xs text-primary">0{index + 1}</span>
-                <h3 className="mt-10 text-2xl font-normal tracking-tight">{card.title}</h3>
-                <p className="mt-4 font-light leading-relaxed text-foreground/65">{card.description}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+          <h1 className="mx-auto mt-7 max-w-5xl text-5xl font-medium leading-[0.98] tracking-[-0.05em] text-foreground sm:text-6xl md:text-8xl">
+            {copy.hero.titleBefore}{' '}
+            <span className="text-primary">{copy.hero.titleEvidence}</span>{' '}
+            {copy.hero.titleAfter}
+          </h1>
 
-      <section id="products" className="border-b border-border bg-surface py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionEyebrow>{copy.products.eyebrow}</SectionEyebrow>
-          <h2 className="mt-5 max-w-4xl text-4xl font-light leading-tight tracking-[-0.035em] md:text-6xl">
-            {copy.products.title}
-          </h2>
-          <p className="mt-6 max-w-3xl text-lg font-light text-foreground/65">{copy.products.description}</p>
-
-          <div className="mt-12 grid grid-cols-1 gap-5 lg:grid-cols-2">
-            {productCards.map((product) => (
-              <article
-                key={product.title}
-                className="relative flex min-h-[440px] flex-col overflow-hidden border border-border bg-background p-8 md:p-10"
-              >
-                <div className="relative z-10 flex items-center justify-between gap-4">
-                  <span className="font-mono text-xs uppercase tracking-[0.14em] text-foreground/50">
-                    {product.phase}
-                  </span>
-                  <span className={`border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.12em] ${product.statusClass}`}>
-                    {product.status}
-                  </span>
-                </div>
-                <h3 className="relative z-10 mt-12 text-5xl font-light tracking-[-0.045em]">{product.title}</h3>
-                <p className="relative z-10 mt-5 max-w-xl text-lg font-light leading-relaxed text-foreground/65">
-                  {product.description}
-                </p>
-                <ul className="relative z-10 mt-7">
-                  {product.bullets.map((bullet) => (
-                    <li key={bullet} className="border-t border-border py-2.5 font-mono text-xs text-foreground/60">
-                      {bullet}
-                    </li>
-                  ))}
-                </ul>
-                <div className="relative z-10 mt-auto pt-7">
-                  <Link
-                    to={product.href}
-                    className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
-                  >
-                    {copy.products.explore} {product.title}
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </div>
-                <div
-                  className="pointer-events-none absolute -right-28 -bottom-36 h-80 w-80 rotate-45 border border-border"
-                  aria-hidden="true"
-                />
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-[#2a3039] bg-[#0b0d10] py-24 text-[#f4f6f8]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionEyebrow>{copy.lifecycle.eyebrow}</SectionEyebrow>
-          <h2 className="mt-5 max-w-4xl text-4xl font-light leading-tight tracking-[-0.035em] md:text-6xl">
-            {copy.lifecycle.title}
-          </h2>
-          <div className="mt-12 grid grid-cols-1 border border-[#252b34] md:grid-cols-5">
-            {copy.lifecycle.stages.map((stage, index) => {
-              const highlighted = index === 1 || index === 4;
-              return (
-                <div
-                  key={stage.label}
-                  className={`min-h-44 p-6 ${
-                    highlighted ? 'bg-[#111731]' : 'bg-[#0b0d10]'
-                  } ${index > 0 ? 'border-t border-[#252b34] md:border-l md:border-t-0' : ''}`}
-                >
-                  <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#7f8996]">
-                    {stage.label}
-                  </span>
-                  <h3 className="mt-8 text-xl font-normal">{stage.title}</h3>
-                  <p className="mt-3 text-sm font-light leading-relaxed text-[#939daa]">{stage.detail}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section id="integrations" className="border-b border-border bg-background py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionEyebrow>{copy.integrations.eyebrow}</SectionEyebrow>
-          <h2 className="mt-5 max-w-4xl text-4xl font-light leading-tight tracking-[-0.035em] md:text-6xl">
-            {copy.integrations.title}
-          </h2>
-          <p className="mt-6 max-w-3xl text-lg font-light text-foreground/65">{copy.integrations.description}</p>
-
-          <div className="mt-12 grid grid-cols-1 gap-5 lg:grid-cols-2">
-            <article className="border border-border bg-surface p-8">
-              <span className="font-mono text-xs uppercase tracking-[0.14em] text-foreground/50">CNCF ecosystem</span>
-              <h3 className="mt-4 text-3xl font-normal tracking-tight">Falco</h3>
-              <p className="mt-4 font-light leading-relaxed text-foreground/65">{copy.integrations.falco}</p>
-              <div className="mt-7 flex flex-wrap gap-5">
-                <a
-                  href="https://github.com/falcosecurity/libs/pull/3024"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
-                >
-                  {copy.integrations.evidenceLink} #3024
-                  <ExternalLink className="h-4 w-4" />
-                </a>
-                <a
-                  href="https://github.com/falcosecurity/libs/pull/3061"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
-                >
-                  {copy.integrations.evidenceLink} #3061
-                  <ExternalLink className="h-4 w-4" />
-                </a>
-              </div>
-            </article>
-
-            <article className="border border-border bg-surface p-8">
-              <span className="font-mono text-xs uppercase tracking-[0.14em] text-foreground/50">CNCF ecosystem</span>
-              <h3 className="mt-4 text-3xl font-normal tracking-tight">Inspektor Gadget</h3>
-              <p className="mt-4 font-light leading-relaxed text-foreground/65">{copy.integrations.gadget}</p>
-              <a
-                href="https://github.com/inspektor-gadget/inspektor-gadget/pull/5708"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
-              >
-                {copy.integrations.evidenceLink} #5708
-                <ExternalLink className="h-4 w-4" />
-              </a>
-            </article>
-          </div>
-
-          <p className="mt-5 max-w-3xl font-mono text-xs leading-relaxed text-foreground/50">
-            {copy.integrations.disclaimer}
+          <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-foreground/62 md:text-xl">
+            {copy.hero.description}
           </p>
-        </div>
-      </section>
 
-      <section className="border-b border-[#2a3039] bg-[#0b0d10] py-24 text-[#f4f6f8]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionEyebrow>{copy.trust.eyebrow}</SectionEyebrow>
-          <h2 className="mt-5 max-w-4xl text-4xl font-light leading-tight tracking-[-0.035em] md:text-6xl">
-            {copy.trust.title}
-          </h2>
-          <p className="mt-6 max-w-3xl text-lg font-light text-[#9ba5b2]">{copy.trust.description}</p>
-
-          <div className="mt-12 grid grid-cols-1 border border-[#252b34] sm:grid-cols-2 lg:grid-cols-3">
-            {copy.trust.items.map((item, index) => {
-              const Icon = trustIcons[index];
-              return (
-                <article
-                  key={item.title}
-                  className={`min-h-52 bg-[#0b0d10] p-7 ${
-                    index > 0 ? 'border-t border-[#252b34] sm:border-l sm:border-t-0' : ''
-                  } ${
-                    index >= 2 ? 'sm:border-t' : ''
-                  } ${
-                    index % 2 === 0 && index > 0 ? 'sm:border-l-0 lg:border-l' : ''
-                  }`}
-                >
-                  <Icon className="h-5 w-5 text-[#9aa8ff]" />
-                  <h3 className="mt-8 text-lg font-normal">{item.title}</h3>
-                  <p className="mt-3 text-sm font-light leading-relaxed text-[#8f99a6]">{item.description}</p>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-border bg-surface py-24">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-[.85fr_1.15fr] lg:px-8">
-          <div>
-            <SectionEyebrow>{copy.quickstart.eyebrow}</SectionEyebrow>
-            <h2 className="mt-5 text-4xl font-light leading-tight tracking-[-0.035em] md:text-5xl">
-              {copy.quickstart.title}
-            </h2>
-            <p className="mt-6 text-lg font-light leading-relaxed text-foreground/65">{copy.quickstart.description}</p>
-            <a
-              href="https://github.com/Kernel-Guard/bpfcompat/blob/main/docs/quickstart.md"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
-            >
-              {copy.quickstart.docs}
-              <ExternalLink className="h-4 w-4" />
-            </a>
-          </div>
-          <pre className="overflow-x-auto border border-[#30363d] bg-[#101318] p-7 font-mono text-xs leading-7 text-[#eef2f6]">
-            <code>
-              <span className="text-[#aab5ff]">$</span> bpfcompat test {'\\'}
-              {'\n'}  --artifact ghcr.io/inspektor-gadget/gadget/trace_open:latest {'\\'}
-              {'\n'}  --quick
-              {'\n\n'}<span className="text-[#65c998]">PASS</span>  evidence written to report.json
-            </code>
-          </pre>
-        </div>
-      </section>
-
-      <section className="border-b border-border bg-background py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionEyebrow>{copy.kernels.eyebrow}</SectionEyebrow>
-          <h2 className="mt-5 max-w-4xl text-4xl font-light leading-tight tracking-[-0.035em] md:text-6xl">
-            {copy.kernels.title}
-          </h2>
-          <p className="mt-6 max-w-3xl text-lg font-light text-foreground/65">{copy.kernels.description}</p>
-          <div className="mt-10 flex flex-wrap gap-2">
-            {kernelFamilies.map((family) => (
-              <span key={family} className="border border-border bg-surface px-4 py-3 font-mono text-xs text-foreground/70">
-                {family}
-              </span>
-            ))}
-          </div>
-          <a
-            href="https://github.com/Kernel-Guard/bpfcompat/blob/main/docs/profile-catalog.md"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
-          >
-            {copy.kernels.catalog}
-            <ExternalLink className="h-4 w-4" />
-          </a>
-        </div>
-      </section>
-
-      <section className="bg-primary py-20 text-white">
-        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-10 px-4 sm:px-6 lg:flex-row lg:items-end lg:px-8">
-          <div>
-            <h2 className="max-w-3xl text-5xl font-light leading-none tracking-[-0.045em] md:text-6xl">
-              {copy.final.title}
-            </h2>
-            <p className="mt-6 max-w-2xl text-lg font-light leading-relaxed text-white/80">{copy.final.description}</p>
-          </div>
-          <div className="flex flex-col gap-3 sm:flex-row">
+          <div className="mt-8 flex flex-wrap justify-center gap-x-7 gap-y-3">
             <Link
               to={localizePath('/projects/bpfcompat/', language)}
-              className="inline-flex min-h-12 items-center justify-between gap-8 bg-white px-5 py-3 font-medium text-[#111318] transition-colors hover:bg-white/90"
+              className="inline-flex items-center gap-1.5 text-base font-medium text-primary hover:underline"
+            >
+              {copy.hero.primaryCta}
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <a
+              href="https://github.com/Kernel-Guard"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-base font-medium text-primary hover:underline"
+            >
+              {copy.hero.secondaryCta}
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
+          </div>
+
+          <div className="mt-16 md:mt-20">
+            <EvidencePreview />
+          </div>
+        </div>
+      </section>
+
+      {/* Large editorial statement instead of a grid of marketing cards. */}
+      <section className="border-b border-border py-28 md:py-40">
+        <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
+          <p className="text-4xl font-medium leading-[1.08] tracking-[-0.04em] text-foreground md:text-6xl lg:text-7xl">
+            Before production, <span className="text-foreground/35">compatibility.</span>
+            <br />
+            At runtime, <span className="text-foreground/35">enforcement.</span>
+          </p>
+        </div>
+      </section>
+
+      {/* Product 01 — generous Apple-style storytelling, IBM-aligned 12-column grid. */}
+      <section className="border-b border-border bg-[#f5f5f7] py-24 dark:bg-[#1d1d1f] md:py-32">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
+          <div className="lg:col-span-7">
+            <p className="font-mono text-xs uppercase tracking-[0.16em] text-foreground/45">
+              01 · {copy.products.preDeployment}
+            </p>
+            <h2 className="mt-5 text-5xl font-medium tracking-[-0.045em] text-foreground md:text-7xl">
+              BPFCompat
+            </h2>
+            <p className="mt-7 max-w-2xl text-xl leading-relaxed text-foreground/62 md:text-2xl">
+              {copy.products.bpfDesc}
+            </p>
+            <div className="mt-8 flex flex-wrap gap-x-7 gap-y-3">
+              <Link
+                to={localizePath('/projects/bpfcompat/', language)}
+                className="inline-flex items-center gap-1.5 font-medium text-primary hover:underline"
+              >
+                {copy.products.explore} BPFCompat
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <a
+                href="https://github.com/Kernel-Guard/bpfcompat"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 font-medium text-primary hover:underline"
+              >
+                GitHub
+                <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+            </div>
+          </div>
+
+          <div className="flex items-end lg:col-span-5 lg:justify-end">
+            <div className="w-full max-w-md border-t border-foreground/20 pt-5">
+              <dl className="space-y-5">
+                <div className="flex items-baseline justify-between gap-6">
+                  <dt className="text-sm text-foreground/45">Execution</dt>
+                  <dd className="text-right text-sm font-medium text-foreground">Real vendor kernels</dd>
+                </div>
+                <div className="flex items-baseline justify-between gap-6 border-t border-foreground/10 pt-5">
+                  <dt className="text-sm text-foreground/45">Interfaces</dt>
+                  <dd className="text-right text-sm font-medium text-foreground">CLI · Action · Go library</dd>
+                </div>
+                <div className="flex items-baseline justify-between gap-6 border-t border-foreground/10 pt-5">
+                  <dt className="text-sm text-foreground/45">Architectures</dt>
+                  <dd className="text-right text-sm font-medium text-foreground">x86_64 · ARM64</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Product 02 — one purposeful dark moment, not alternating dashboard bands. */}
+      <section className="border-b border-black bg-[#161616] py-24 text-white md:py-32">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
+          <div className="lg:col-span-7">
+            <p className="font-mono text-xs uppercase tracking-[0.16em] text-white/45">
+              02 · {copy.products.runtime}
+            </p>
+            <h2 className="mt-5 text-5xl font-medium tracking-[-0.045em] md:text-7xl">
+              AegisBPF
+            </h2>
+            <p className="mt-7 max-w-2xl text-xl leading-relaxed text-white/62 md:text-2xl">
+              {copy.products.aegisDesc}
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-3">
+              <Link
+                to={localizePath('/projects/aegis-bpf/', language)}
+                className="inline-flex items-center gap-1.5 font-medium text-[#78a9ff] hover:underline"
+              >
+                {copy.products.explore} AegisBPF
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/40">
+                Preview
+              </span>
+            </div>
+          </div>
+
+          <div className="flex items-end lg:col-span-5 lg:justify-end">
+            <div className="w-full max-w-md border-t border-white/20 pt-5">
+              <dl className="space-y-5">
+                <div className="flex items-baseline justify-between gap-6">
+                  <dt className="text-sm text-white/40">Enforcement</dt>
+                  <dd className="text-right text-sm font-medium text-white">BPF LSM</dd>
+                </div>
+                <div className="flex items-baseline justify-between gap-6 border-t border-white/10 pt-5">
+                  <dt className="text-sm text-white/40">Scope</dt>
+                  <dd className="text-right text-sm font-medium text-white">Cgroup-aware policy</dd>
+                </div>
+                <div className="flex items-baseline justify-between gap-6 border-t border-white/10 pt-5">
+                  <dt className="text-sm text-white/40">Operations</dt>
+                  <dd className="text-right text-sm font-medium text-white">Events · metrics · Kubernetes</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Social proof presented as editorial evidence, not logo/cards. */}
+      <section className="border-b border-border py-28 md:py-40">
+        <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-foreground/45">
+            {copy.integrations.eyebrow}
+          </p>
+          <h2 className="mt-6 text-4xl font-medium leading-[1.05] tracking-[-0.04em] text-foreground md:text-6xl lg:text-7xl">
+            Running upstream in
+            <br />
+            Falco and Inspektor Gadget.
+          </h2>
+          <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-foreground/58">
+            {copy.integrations.disclaimer}
+          </p>
+
+          <div className="mt-8 flex flex-wrap justify-center gap-x-7 gap-y-3">
+            <a
+              href="https://github.com/falcosecurity/libs/pull/3024"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 font-medium text-primary hover:underline"
+            >
+              Falco PR #3024
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
+            <a
+              href="https://github.com/inspektor-gadget/inspektor-gadget/pull/5708"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 font-medium text-primary hover:underline"
+            >
+              Inspektor Gadget PR #5708
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* IBM 2x-grid discipline for the technical lifecycle. */}
+      <section className="border-b border-border bg-surface py-24 md:py-32">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
+            <div className="lg:col-span-4">
+              <p className="font-mono text-xs uppercase tracking-[0.16em] text-foreground/45">
+                {copy.lifecycle.eyebrow}
+              </p>
+              <h2 className="mt-5 text-4xl font-medium leading-tight tracking-[-0.04em] text-foreground md:text-5xl">
+                {copy.lifecycle.title}
+              </h2>
+            </div>
+
+            <div className="lg:col-span-8">
+              <div className="grid grid-cols-1 border-t border-l border-border sm:grid-cols-2">
+                {copy.lifecycle.stages.slice(0, 4).map((stage) => (
+                  <div key={stage.label} className="min-h-48 border-r border-b border-border p-6 md:p-8">
+                    <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/40">
+                      {stage.label}
+                    </div>
+                    <h3 className="mt-8 text-xl font-medium text-foreground">{stage.title}</h3>
+                    <p className="mt-3 max-w-sm text-sm leading-relaxed text-foreground/55">
+                      {stage.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <div className="border-r border-b border-l border-border p-6 md:p-8">
+                <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-primary">
+                  05 · AegisBPF
+                </div>
+                <div className="mt-4 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+                  <div>
+                    <h3 className="text-xl font-medium text-foreground">Enforce at runtime.</h3>
+                    <p className="mt-2 text-sm text-foreground/55">
+                      Runtime policy stays close to the kernel after compatibility has been proven.
+                    </p>
+                  </div>
+                  <Link
+                    to={localizePath('/projects/aegis-bpf/', language)}
+                    className="shrink-0 text-sm font-medium text-primary hover:underline"
+                  >
+                    View AegisBPF
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-28 md:py-36">
+        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-medium tracking-[-0.04em] text-foreground md:text-6xl">
+            {copy.final.title}
+          </h2>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-foreground/58">
+            {copy.final.description}
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-x-7 gap-y-3">
+            <Link
+              to={localizePath('/projects/bpfcompat/', language)}
+              className="inline-flex items-center gap-1.5 font-medium text-primary hover:underline"
             >
               {copy.final.primary}
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               to={localizePath('/contact/', language)}
-              className="inline-flex min-h-12 items-center justify-between gap-8 border border-white/50 px-5 py-3 font-medium text-white transition-colors hover:bg-white/10"
+              className="inline-flex items-center gap-1.5 font-medium text-primary hover:underline"
             >
               {copy.final.secondary}
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
