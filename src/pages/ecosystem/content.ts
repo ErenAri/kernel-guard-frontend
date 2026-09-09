@@ -2,8 +2,14 @@ import type { Language } from '../../context/LanguageContext';
 
 export type IntegrationId = 'falco' | 'inspektor-gadget';
 
+export interface BrandLogo {
+  src: string;
+  alt: string;
+}
+
 export interface DownstreamRelationship {
   name: string;
+  logos?: BrandLogo[];
   category: string;
   relationship: string;
   evidenceLabel: string;
@@ -12,6 +18,7 @@ export interface DownstreamRelationship {
 
 export interface IntegrationPageCopy {
   name: string;
+  logo: BrandLogo;
   kicker: string;
   title: string;
   description: string;
@@ -59,6 +66,18 @@ export interface EcosystemCopy {
   integrations: Record<IntegrationId, IntegrationPageCopy>;
 }
 
+const logos = {
+  falco: { src: '/images/ecosystem/falco.svg', alt: 'Falco' },
+  inspektorGadget: { src: '/images/ecosystem/inspektor-gadget.svg', alt: 'Inspektor Gadget' },
+  sysdig: { src: '/images/ecosystem/sysdig.svg', alt: 'Sysdig' },
+  aws: { src: '/images/ecosystem/aws.svg', alt: 'Amazon Web Services' },
+  qonto: { src: '/images/ecosystem/qonto.svg', alt: 'Qonto' },
+  shopify: { src: '/images/ecosystem/shopify.svg', alt: 'Shopify' },
+  frameio: { src: '/images/ecosystem/frameio.svg', alt: 'Frame.io' },
+  azure: { src: '/images/ecosystem/azure.svg', alt: 'Microsoft Azure' },
+  kubernetes: { src: '/images/ecosystem/kubernetes.svg', alt: 'Kubernetes' },
+} satisfies Record<string, BrandLogo>;
+
 const en: EcosystemCopy = {
   index: {
     kicker: 'ECOSYSTEM // PUBLIC_EVIDENCE',
@@ -94,6 +113,7 @@ const en: EcosystemCopy = {
   integrations: {
     falco: {
       name: 'Falco',
+      logo: logos.falco,
       kicker: 'CLOUD-NATIVE RUNTIME SECURITY',
       title: 'BPFCompat in the Falco compatibility path',
       description:
@@ -119,6 +139,7 @@ const en: EcosystemCopy = {
       downstream: [
         {
           name: 'Sysdig Secure / Sysdig cloud security',
+          logos: [logos.sysdig],
           category: 'Commercial security products',
           relationship:
             'Sysdig states that Falco sits at the core of its cloud security products. BPFCompat’s Falco CI work therefore has indirect relevance to a commercial security stack built on the same upstream technology.',
@@ -127,6 +148,7 @@ const en: EcosystemCopy = {
         },
         {
           name: 'Stratoshark',
+          logos: [logos.sysdig],
           category: 'Open-source cloud forensics',
           relationship:
             'Falco can produce SCAP captures that feed Stratoshark investigation workflows. Compatibility confidence in Falco’s kernel-event path can therefore matter upstream of that forensic workflow.',
@@ -135,6 +157,7 @@ const en: EcosystemCopy = {
         },
         {
           name: 'AWS · Qonto · Shopify',
+          logos: [logos.aws, logos.qonto, logos.shopify],
           category: 'Publicly documented Falco users',
           relationship:
             'Falco’s graduation material publicly identified these organizations as Falco users. They are not claimed as BPFCompat users; they represent teams downstream of the upstream project.',
@@ -143,6 +166,7 @@ const en: EcosystemCopy = {
         },
         {
           name: 'Frame.io',
+          logos: [logos.frameio],
           category: 'CNCF case study',
           relationship:
             'CNCF documented Frame.io building an end-to-end security system on top of Falco data. This is another example of a production security workflow downstream of Falco, not a direct BPFCompat adoption claim.',
@@ -159,6 +183,7 @@ const en: EcosystemCopy = {
     },
     'inspektor-gadget': {
       name: 'Inspektor Gadget',
+      logo: logos.inspektorGadget,
       kicker: 'KUBERNETES & LINUX OBSERVABILITY',
       title: 'BPFCompat for published eBPF gadgets',
       description:
@@ -184,6 +209,7 @@ const en: EcosystemCopy = {
       downstream: [
         {
           name: 'Microsoft Azure Kubernetes Service (AKS)',
+          logos: [logos.azure],
           category: 'Managed Kubernetes product',
           relationship:
             'Microsoft offers an Inspektor Gadget cluster extension for AKS in preview. The extension type is microsoft.inspektorgadget and it deploys the upstream tool as a DaemonSet. Upstream Gadget compatibility work can therefore have indirect relevance to users consuming Inspektor Gadget through AKS.',
@@ -192,6 +218,7 @@ const en: EcosystemCopy = {
         },
         {
           name: 'Azure Monitor managed Prometheus',
+          logos: [logos.azure],
           category: 'Telemetry integration',
           relationship:
             'The AKS extension can export Gadget metrics to Azure Monitor managed Prometheus. This places Inspektor Gadget in a broader Microsoft observability workflow, while remaining distinct from direct BPFCompat usage.',
@@ -200,6 +227,7 @@ const en: EcosystemCopy = {
         },
         {
           name: 'Kubernetes operators using kubectl gadget / Helm',
+          logos: [logos.kubernetes],
           category: 'Open-source deployment paths',
           relationship:
             'Inspektor Gadget is distributed for Kubernetes through its kubectl plugin and Helm-based deployment paths. Those operators are downstream consumers of the same published Gadget ecosystem exercised by the compatibility lane.',
