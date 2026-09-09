@@ -5,8 +5,8 @@ export const fr = {
   seo: {
     ...en.seo,
     home: {
-      title: 'Kernel Guard | Développement web sécurisé et cybersécurité',
-      description: 'Kernel Guard conçoit des applications web performantes, des backends renforcés et des architectures security-first.',
+      title: 'Kernel Guard | Infrastructure de sécurité Linux et eBPF',
+      description: 'Kernel Guard développe une infrastructure open source pour valider eBPF sur de vrais noyaux Linux avant déploiement et appliquer des politiques à l’exécution.',
       keywords: en.seo.home.keywords,
     },
     services: {
@@ -43,16 +43,16 @@ export const fr = {
   },
   home: {
     ...en.home,
-    heroTitle1: 'Développement web',
-    heroTitle2: 'sécurisé et scalable',
-    heroDesc: 'Kernel-Guard construit des applications web performantes avec une approche security-first et des mécanismes de défense avancés.',
-    viewArch: 'Voir l’open source',
-    viewCompletedProjects: 'Réalisations',
-    missionTitle: 'Ingénierie web security-first',
-    missionP1: 'La sécurité réelle ne s’ajoute pas après coup ; elle se conçoit dès le socle du code, de l’architecture et de la livraison.',
-    missionP2: 'Nous couvrons les frontends sécurisés, les APIs renforcées, la gestion des données et les opérations cloud résilientes.',
-    techStackTitle: 'Notre arsenal',
-    techStackDesc: 'Nous construisons avec des technologies modernes, mesurables et adaptées aux environnements critiques.',
+    heroTitle1: 'Linux & eBPF',
+    heroTitle2: 'Infrastructure de sécurité',
+    heroDesc: 'Kernel Guard développe des outils open source pour valider eBPF sur de vrais noyaux Linux avant déploiement et appliquer des politiques à l’exécution.',
+    viewArch: 'Découvrir BPFCompat',
+    viewCompletedProjects: 'Découvrir AegisBPF',
+    missionTitle: 'La sécurité à la frontière du noyau',
+    missionP1: 'BPFCompat vérifie avant la release qu’un artifact eBPF compilé et le loader réellement distribué fonctionnent sur les noyaux Linux des utilisateurs.',
+    missionP2: 'AegisBPF couvre le côté runtime de cette même frontière avec BPF LSM enforcement, des contrôles scoped et des événements de sécurité structurés.',
+    techStackTitle: 'Stack côté noyau',
+    techStackDesc: 'Les technologies derrière nos travaux Linux, eBPF, compatibilité et runtime security.',
     proof: {
       ...en.home.proof,
       badge: 'MESURE // PREUVE_PUBLIQUE',
