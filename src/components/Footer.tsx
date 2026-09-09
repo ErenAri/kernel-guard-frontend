@@ -3,54 +3,35 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { localizePath } from '../i18n/route';
 import { prefetchRoute, prefetchRoutes } from '../routes/pageLoaders';
+import { enterprisePages, type EnterprisePageKey } from '../data/enterprisePages';
 import { SITE_EMAILS, mailto } from '../config/site';
-import { evidenceHomeCopy } from '../i18n/evidenceHome';
+import { footerGrowthCopy } from '../i18n/growthContent';
 import Logo from './Logo';
 
 export default function Footer() {
   const { language, t } = useLanguage();
-  const copy = evidenceHomeCopy[language];
+  const enterpriseLinks: EnterprisePageKey[] = ['security', 'engineering', 'status', 'changelog'];
+  const growthCopy = footerGrowthCopy[language];
 
   return (
-    <footer className="mt-auto bg-[var(--color-dark-bg)] text-[var(--color-dark-fg)]">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
-          <div className="space-y-6 md:col-span-6">
-            <Link
-              to={localizePath('/', language)}
-              className="inline-block transition-opacity hover:opacity-90"
-            >
+    <footer className="bg-[var(--color-dark-bg)] text-[var(--color-dark-fg)] mt-auto">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+          <div className="md:col-span-2 space-y-6">
+            <Link to={localizePath('/', language)} className="inline-block group hover:opacity-90 transition-opacity">
               <Logo dark className="scale-[0.65] origin-left" />
             </Link>
-            <p className="mt-4 max-w-lg text-sm leading-relaxed text-gray-400">
-              {copy.footerDescription}
-            </p>
-            <p className="pt-1 font-mono text-[11px] uppercase tracking-[0.14em] text-gray-600">
-              Linux · eBPF · runtime security
+            <p className="text-gray-400 text-sm max-w-md leading-relaxed mt-4">
+              {t.footer.desc}
             </p>
           </div>
-
-          <div className="md:col-span-3">
-            <h3 className="mb-6 text-sm font-semibold uppercase tracking-wide text-white">
-              {copy.products.eyebrow}
-            </h3>
+          
+          <div>
+            <h3 className="font-semibold text-white mb-6 text-sm tracking-wide uppercase">{t.footer.discover}</h3>
             <ul className="space-y-4">
               <li>
-                <Link
-                  to={localizePath('/projects/bpfcompat/', language)}
-                  className="text-sm text-gray-400 transition-colors hover:text-white"
-                >
-                  BPFCompat
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to={localizePath('/projects/aegis-bpf/', language)}
-                  onPointerEnter={() => prefetchRoute('projectDetails')}
-                  onFocus={() => prefetchRoute('projectDetails')}
-                  className="text-sm text-gray-400 transition-colors hover:text-white"
-                >
-                  AegisBPF
+                <Link to={localizePath('/', language)} className="text-gray-400 hover:text-white transition-colors text-sm">
+                  {t.nav.home}
                 </Link>
               </li>
               <li>
@@ -58,65 +39,53 @@ export default function Footer() {
                   to={localizePath('/projects/', language)}
                   onPointerEnter={() => prefetchRoutes(['projects', 'projectDetails'])}
                   onFocus={() => prefetchRoutes(['projects', 'projectDetails'])}
-                  className="text-sm text-gray-400 transition-colors hover:text-white"
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
                 >
-                  {copy.nav.openSource}
+                  {t.nav.openSource}
                 </Link>
               </li>
               <li>
-                <a
-                  href="https://github.com/Kernel-Guard"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-gray-400 transition-colors hover:text-white"
+                <Link
+                  to={localizePath('/completed-projects/', language)}
+                  onPointerEnter={() => prefetchRoutes(['completedProjects', 'completedProjectDetails'])}
+                  onFocus={() => prefetchRoutes(['completedProjects', 'completedProjectDetails'])}
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
                 >
-                  {t.nav.github}
-                </a>
+                  {t.nav.completedProjects}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={localizePath('/articles/', language)}
+                  onPointerEnter={() => prefetchRoute('articles')}
+                  onFocus={() => prefetchRoute('articles')}
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                >
+                  {growthCopy.articles}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={localizePath('/contact/', language)}
+                  onPointerEnter={() => prefetchRoute('contact')}
+                  onFocus={() => prefetchRoute('contact')}
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                >
+                  {t.nav.contact}
+                </Link>
               </li>
             </ul>
           </div>
-
-          <div className="md:col-span-3">
-            <h3 className="mb-6 text-sm font-semibold uppercase tracking-wide text-white">
-              Trust &amp; contact
-            </h3>
+          
+          <div>
+            <h3 className="font-semibold text-white mb-6 text-sm tracking-wide uppercase">{t.footer.connect}</h3>
             <ul className="space-y-4">
-              <li>
-                <Link
-                  to={localizePath('/security/', language)}
-                  onPointerEnter={() => prefetchRoute('security')}
-                  onFocus={() => prefetchRoute('security')}
-                  className="text-sm text-gray-400 transition-colors hover:text-white"
-                >
-                  {copy.nav.security}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to={localizePath('/status/', language)}
-                  onPointerEnter={() => prefetchRoute('status')}
-                  onFocus={() => prefetchRoute('status')}
-                  className="text-sm text-gray-400 transition-colors hover:text-white"
-                >
-                  Status
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to={localizePath('/changelog/', language)}
-                  onPointerEnter={() => prefetchRoute('changelog')}
-                  onFocus={() => prefetchRoute('changelog')}
-                  className="text-sm text-gray-400 transition-colors hover:text-white"
-                >
-                  Changelog
-                </Link>
-              </li>
               <li>
                 <a
                   href={mailto(SITE_EMAILS.contact)}
-                  className="flex items-center gap-2 text-sm text-gray-400 transition-colors hover:text-white"
+                  className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2"
                 >
-                  <Mail className="h-4 w-4" />
+                  <Mail className="w-4 h-4" />
                   {SITE_EMAILS.contact}
                 </a>
               </li>
@@ -125,24 +94,43 @@ export default function Footer() {
                   href="https://github.com/Kernel-Guard"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm text-gray-400 transition-colors hover:text-white"
+                  className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2"
                 >
-                  <Github className="h-4 w-4" />
-                  GitHub
+                  <Github className="w-4 h-4" />
+                  {t.nav.github}
                 </a>
               </li>
+
+            </ul>
+          </div>
+          <div className="md:col-span-4 border-t border-gray-800 pt-8">
+            <ul className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-gray-400">
+              {enterpriseLinks.map((key) => (
+                <li key={key}>
+                  <Link
+                    to={localizePath(`/${key}/`, language)}
+                    onPointerEnter={() => prefetchRoute(key)}
+                    onFocus={() => prefetchRoute(key)}
+                    className="hover:text-white transition-colors"
+                  >
+                    {enterprisePages[language].links[key]}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
-
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-gray-800 pt-8 md:flex-row">
-          <p className="text-sm text-gray-400">&copy; {new Date().getFullYear()} {t.footer.rights}</p>
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-gray-400">
+        
+        <div className="mt-16 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-gray-400 text-sm">
+            &copy; {new Date().getFullYear()} {t.footer.rights}
+          </p>
+          <div className="flex space-x-6 text-sm text-gray-400">
             <Link
               to={localizePath('/terms/', language)}
               onPointerEnter={() => prefetchRoute('terms')}
               onFocus={() => prefetchRoute('terms')}
-              className="transition-colors hover:text-gray-300"
+              className="hover:text-gray-300 transition-colors"
             >
               {t.footer.terms}
             </Link>
@@ -150,7 +138,7 @@ export default function Footer() {
               to={localizePath('/privacy/', language)}
               onPointerEnter={() => prefetchRoute('privacy')}
               onFocus={() => prefetchRoute('privacy')}
-              className="transition-colors hover:text-gray-300"
+              className="hover:text-gray-300 transition-colors"
             >
               {t.footer.privacy}
             </Link>
@@ -158,16 +146,17 @@ export default function Footer() {
               to={localizePath('/cookies/', language)}
               onPointerEnter={() => prefetchRoute('cookies')}
               onFocus={() => prefetchRoute('cookies')}
-              className="transition-colors hover:text-gray-300"
+              className="hover:text-gray-300 transition-colors"
             >
               {t.footer.cookies}
             </Link>
+            <div className="w-px h-4 bg-gray-800 self-center hidden sm:block"></div>
             <Link
               to="/admin"
-              className="flex items-center gap-1.5 transition-colors hover:text-white"
+              className="hover:text-white transition-colors flex items-center gap-1.5"
               title="Admin Login"
             >
-              <Lock className="h-3.5 w-3.5" />
+              <Lock className="w-3.5 h-3.5" />
               Admin
             </Link>
           </div>
