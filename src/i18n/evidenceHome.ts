@@ -96,10 +96,10 @@ const en: EvidenceHomeCopy = {
   nav: { bpfcompat: 'BPFCompat', aegis: 'AegisBPF', openSource: 'Open Source', security: 'Security', contact: 'Contact' },
   hero: {
     eyebrow: 'Linux · eBPF · reproducible evidence',
-    titleBefore: 'Ship eBPF with',
-    titleEvidence: 'evidence,',
-    titleAfter: 'not assumptions.',
-    description: 'Kernel Guard builds open-source infrastructure for validating eBPF before deployment and enforcing policy at runtime.',
+    titleBefore: 'Security infrastructure for',
+    titleEvidence: 'the Linux kernel.',
+    titleAfter: '',
+    description: 'Validate eBPF before deployment. Enforce policy at runtime.',
     primaryCta: 'Test with BPFCompat',
     secondaryCta: 'Explore on GitHub',
     note: 'Self-hosted first · real vendor kernels · structured compatibility reports',
@@ -199,10 +199,10 @@ const tr: EvidenceHomeCopy = {
   hero: {
     ...en.hero,
     eyebrow: 'Linux · eBPF · yeniden üretilebilir kanıt',
-    titleBefore: 'eBPF yazılımını',
-    titleEvidence: 'varsayımla değil,',
-    titleAfter: 'kanıtla yayınlayın.',
-    description: 'Kernel Guard, eBPF yazılımlarını dağıtımdan önce doğrulayan ve çalışma zamanında politika uygulayan açık kaynak altyapılar geliştirir.',
+    titleBefore: 'Linux çekirdeği için',
+    titleEvidence: 'güvenlik altyapısı.',
+    titleAfter: '',
+    description: 'eBPF’yi dağıtımdan önce doğrulayın. Politikayı çalışma zamanında uygulayın.',
     primaryCta: 'BPFCompat ile test et',
     secondaryCta: "GitHub'da incele",
     note: 'Önce self-hosted · gerçek vendor çekirdekleri · yapılandırılmış uyumluluk raporları',
@@ -237,7 +237,7 @@ const tr: EvidenceHomeCopy = {
 
 const de: EvidenceHomeCopy = {
   ...en,
-  hero: { ...en.hero, eyebrow: 'Linux · eBPF · reproduzierbare Evidenz', titleBefore: 'eBPF ausliefern mit', titleEvidence: 'Evidenz,', titleAfter: 'nicht mit Annahmen.', description: 'Kernel Guard entwickelt Open-Source-Infrastruktur, um eBPF vor dem Deployment zu validieren und Richtlinien zur Laufzeit durchzusetzen.', primaryCta: 'Mit BPFCompat testen', secondaryCta: 'Auf GitHub ansehen', note: 'Self-hosted first · echte Vendor-Kernel · strukturierte Kompatibilitätsberichte', terminalLabel: 'bpfcompat / Real-Kernel-Gate' },
+  hero: { ...en.hero, eyebrow: 'Linux · eBPF · reproduzierbare Evidenz', titleBefore: 'Sicherheitsinfrastruktur für', titleEvidence: 'den Linux-Kernel.', titleAfter: '', description: 'eBPF vor dem Deployment validieren. Richtlinien zur Laufzeit durchsetzen.', primaryCta: 'Mit BPFCompat testen', secondaryCta: 'Auf GitHub ansehen', note: 'Self-hosted first · echte Vendor-Kernel · strukturierte Kompatibilitätsberichte', terminalLabel: 'bpfcompat / Real-Kernel-Gate' },
   problem: { ...en.problem, eyebrow: 'Das Problem', title: 'Kernel-Versionen erzählen nicht die ganze Geschichte.', description: 'CO-RE verbessert Portabilität, beweist aber nicht, dass ein kompiliertes Artefakt oder Ihr echter Loader auf einem Kunden-Kernel funktioniert.' },
   products: { ...en.products, eyebrow: 'Produkte', title: 'Ein Lebenszyklus. Zwei Kontrollpunkte.', description: 'Kompatibilität vor dem Release mit BPFCompat prüfen. Richtlinien nach dem Deployment mit AegisBPF durchsetzen.', preDeployment: 'Vor dem Deployment', runtime: 'Laufzeit', openSource: 'Open Source', preview: 'Preview', explore: 'Ansehen' },
   integrations: { ...en.integrations, eyebrow: 'Upstream-Evidenz', title: 'Integriert, wo eBPF tatsächlich ausgeliefert wird.', description: 'BPFCompat besitzt wiederkehrende, upstream gemergte Kompatibilitäts-Lanes in zwei eBPF-Projekten.', evidenceLink: 'Gemergten PR ansehen', disclaimer: 'Dies sind öffentliche Upstream-CI-Integrationen, keine behaupteten Kunden-Deployments oder Empfehlungen.' },
@@ -250,7 +250,7 @@ const de: EvidenceHomeCopy = {
 
 const fr: EvidenceHomeCopy = {
   ...en,
-  hero: { ...en.hero, eyebrow: 'Linux · eBPF · preuves reproductibles', titleBefore: 'Livrez eBPF avec des', titleEvidence: 'preuves,', titleAfter: 'pas des hypothèses.', description: 'Kernel Guard développe une infrastructure open source pour valider eBPF avant le déploiement et appliquer des politiques à l’exécution.', primaryCta: 'Tester avec BPFCompat', secondaryCta: 'Voir sur GitHub', note: 'Self-hosted d’abord · vrais noyaux éditeurs · rapports structurés', terminalLabel: 'bpfcompat / validation noyau réel' },
+  hero: { ...en.hero, eyebrow: 'Linux · eBPF · preuves reproductibles', titleBefore: 'Infrastructure de sécurité pour', titleEvidence: 'le noyau Linux.', titleAfter: '', description: 'Validez eBPF avant le déploiement. Appliquez les politiques à l’exécution.', primaryCta: 'Tester avec BPFCompat', secondaryCta: 'Voir sur GitHub', note: 'Self-hosted d’abord · vrais noyaux éditeurs · rapports structurés', terminalLabel: 'bpfcompat / validation noyau réel' },
   problem: { ...en.problem, eyebrow: 'Le problème', title: 'La version du noyau ne raconte pas toute l’histoire.', description: 'CO-RE améliore la portabilité, mais ne prouve pas qu’un artefact compilé ou votre vrai loader fonctionnera sur le noyau d’un client.' },
   products: { ...en.products, eyebrow: 'Produits', title: 'Un cycle de vie. Deux points de contrôle.', description: 'Validez avant la release avec BPFCompat. Appliquez les politiques après déploiement avec AegisBPF.', preDeployment: 'Pré-déploiement', runtime: 'Exécution', openSource: 'Open source', preview: 'Preview', explore: 'Explorer' },
   integrations: { ...en.integrations, eyebrow: 'Preuve upstream', title: 'Intégré là où eBPF est réellement livré.', description: 'BPFCompat dispose désormais de lanes de compatibilité récurrentes fusionnées dans deux projets eBPF upstream.', evidenceLink: 'Voir la PR fusionnée', disclaimer: 'Il s’agit d’intégrations CI upstream publiques, pas de déploiements clients ni d’endossements revendiqués.' },
@@ -263,7 +263,7 @@ const fr: EvidenceHomeCopy = {
 
 const es: EvidenceHomeCopy = {
   ...en,
-  hero: { ...en.hero, eyebrow: 'Linux · eBPF · evidencia reproducible', titleBefore: 'Entrega eBPF con', titleEvidence: 'evidencia,', titleAfter: 'no con suposiciones.', description: 'Kernel Guard crea infraestructura open source para validar eBPF antes del despliegue y aplicar políticas en tiempo de ejecución.', primaryCta: 'Probar con BPFCompat', secondaryCta: 'Ver en GitHub', note: 'Self-hosted primero · kernels reales de proveedores · informes estructurados', terminalLabel: 'bpfcompat / gate de kernel real' },
+  hero: { ...en.hero, eyebrow: 'Linux · eBPF · evidencia reproducible', titleBefore: 'Infraestructura de seguridad para', titleEvidence: 'el kernel de Linux.', titleAfter: '', description: 'Valida eBPF antes del despliegue. Aplica políticas en tiempo de ejecución.', primaryCta: 'Probar con BPFCompat', secondaryCta: 'Ver en GitHub', note: 'Self-hosted primero · kernels reales de proveedores · informes estructurados', terminalLabel: 'bpfcompat / gate de kernel real' },
   problem: { ...en.problem, eyebrow: 'El problema', title: 'La versión del kernel no cuenta toda la historia.', description: 'CO-RE mejora la portabilidad, pero no demuestra que un artefacto compilado o tu loader real funcione en el kernel del cliente.' },
   products: { ...en.products, eyebrow: 'Productos', title: 'Un ciclo de vida. Dos puntos de control.', description: 'Valida antes del release con BPFCompat. Aplica políticas tras el despliegue con AegisBPF.', preDeployment: 'Pre-despliegue', runtime: 'Runtime', openSource: 'Open source', preview: 'Preview', explore: 'Explorar' },
   integrations: { ...en.integrations, eyebrow: 'Prueba upstream', title: 'Integrado donde eBPF realmente se distribuye.', description: 'BPFCompat ya tiene lanes recurrentes de compatibilidad fusionadas en dos proyectos eBPF upstream.', evidenceLink: 'Ver PR fusionada', disclaimer: 'Son integraciones CI upstream públicas; no se presentan como clientes, despliegues de producción ni endorsements.' },
@@ -276,7 +276,7 @@ const es: EvidenceHomeCopy = {
 
 const ja: EvidenceHomeCopy = {
   ...en,
-  hero: { ...en.hero, eyebrow: 'Linux · eBPF · 再現可能な証拠', titleBefore: 'eBPF を', titleEvidence: '推測ではなく証拠で', titleAfter: 'リリースする。', description: 'Kernel Guard は、デプロイ前の eBPF 検証とランタイムでのポリシー適用のためのオープンソース基盤を開発します。', primaryCta: 'BPFCompat でテスト', secondaryCta: 'GitHub で見る', note: 'セルフホスト優先 · 実ベンダーカーネル · 構造化された互換性レポート', terminalLabel: 'bpfcompat / 実カーネルゲート' },
+  hero: { ...en.hero, eyebrow: 'Linux · eBPF · 再現可能な証拠', titleBefore: 'Linux カーネルのための', titleEvidence: 'セキュリティ基盤。', titleAfter: '', description: 'デプロイ前に eBPF を検証し、ランタイムでポリシーを適用します。', primaryCta: 'BPFCompat でテスト', secondaryCta: 'GitHub で見る', note: 'セルフホスト優先 · 実ベンダーカーネル · 構造化された互換性レポート', terminalLabel: 'bpfcompat / 実カーネルゲート' },
   problem: { ...en.problem, eyebrow: '課題', title: 'カーネルバージョンだけでは真実は分からない。', description: 'CO-RE は移植性を高めますが、コンパイル済み artifact や実際の loader が顧客カーネルで動くことを証明しません。' },
   products: { ...en.products, eyebrow: 'プロダクト', title: '1つのライフサイクル。2つの制御点。', description: 'リリース前は BPFCompat で互換性を検証し、デプロイ後は AegisBPF でポリシーを適用します。', preDeployment: 'デプロイ前', runtime: 'ランタイム', openSource: 'オープンソース', preview: 'プレビュー', explore: '見る' },
   integrations: { ...en.integrations, eyebrow: 'Upstream の証拠', title: 'eBPF が実際に出荷される場所に統合。', description: 'BPFCompat は現在、2つの upstream eBPF プロジェクトに定期互換性 lane がマージされています。', evidenceLink: 'マージ済み PR を見る', disclaimer: 'これは公開 upstream CI 統合であり、顧客導入や endorsement を意味しません。' },
@@ -289,7 +289,7 @@ const ja: EvidenceHomeCopy = {
 
 const zhCN: EvidenceHomeCopy = {
   ...en,
-  hero: { ...en.hero, eyebrow: 'Linux · eBPF · 可复现证据', titleBefore: '用', titleEvidence: '证据，', titleAfter: '而不是假设来发布 eBPF。', description: 'Kernel Guard 构建开源基础设施，用于在部署前验证 eBPF，并在运行时执行安全策略。', primaryCta: '使用 BPFCompat 测试', secondaryCta: '在 GitHub 查看', note: '优先自托管 · 真实厂商内核 · 结构化兼容性报告', terminalLabel: 'bpfcompat / 真实内核门禁' },
+  hero: { ...en.hero, eyebrow: 'Linux · eBPF · 可复现证据', titleBefore: '面向 Linux 内核的', titleEvidence: '安全基础设施。', titleAfter: '', description: '部署前验证 eBPF，运行时执行策略。', primaryCta: '使用 BPFCompat 测试', secondaryCta: '在 GitHub 查看', note: '优先自托管 · 真实厂商内核 · 结构化兼容性报告', terminalLabel: 'bpfcompat / 真实内核门禁' },
   problem: { ...en.problem, eyebrow: '问题', title: '内核版本并不能说明全部事实。', description: 'CO-RE 提升可移植性，但不能证明已编译 artifact 或真实 loader 能在客户内核上工作。' },
   products: { ...en.products, eyebrow: '产品', title: '一个生命周期，两个控制点。', description: '发布前用 BPFCompat 验证兼容性；部署后用 AegisBPF 执行策略。', preDeployment: '部署前', runtime: '运行时', openSource: '开源', preview: '预览', explore: '查看' },
   integrations: { ...en.integrations, eyebrow: 'Upstream 证据', title: '集成到 eBPF 真正发布的地方。', description: 'BPFCompat 目前已在两个 upstream eBPF 项目中合并定期兼容性 CI lane。', evidenceLink: '查看已合并 PR', disclaimer: '这些是公开的 upstream CI 集成，不代表客户部署或背书。' },
@@ -302,7 +302,7 @@ const zhCN: EvidenceHomeCopy = {
 
 const ko: EvidenceHomeCopy = {
   ...en,
-  hero: { ...en.hero, eyebrow: 'Linux · eBPF · 재현 가능한 증거', titleBefore: 'eBPF를', titleEvidence: '추측이 아닌 증거로', titleAfter: '배포하세요.', description: 'Kernel Guard는 배포 전 eBPF 검증과 런타임 정책 집행을 위한 오픈소스 인프라를 구축합니다.', primaryCta: 'BPFCompat로 테스트', secondaryCta: 'GitHub에서 보기', note: '셀프호스트 우선 · 실제 벤더 커널 · 구조화된 호환성 보고서', terminalLabel: 'bpfcompat / 실제 커널 게이트' },
+  hero: { ...en.hero, eyebrow: 'Linux · eBPF · 재현 가능한 증거', titleBefore: 'Linux 커널을 위한', titleEvidence: '보안 인프라.', titleAfter: '', description: '배포 전에 eBPF를 검증하고 런타임에서 정책을 집행합니다.', primaryCta: 'BPFCompat로 테스트', secondaryCta: 'GitHub에서 보기', note: '셀프호스트 우선 · 실제 벤더 커널 · 구조화된 호환성 보고서', terminalLabel: 'bpfcompat / 실제 커널 게이트' },
   problem: { ...en.problem, eyebrow: '문제', title: '커널 버전만으로는 전체 사실을 알 수 없습니다.', description: 'CO-RE는 이식성을 높이지만 컴파일된 artifact나 실제 loader가 고객 커널에서 동작한다는 것을 증명하지 않습니다.' },
   products: { ...en.products, eyebrow: '제품', title: '하나의 라이프사이클, 두 개의 제어 지점.', description: '릴리스 전에는 BPFCompat로 호환성을 검증하고 배포 후에는 AegisBPF로 정책을 집행합니다.', preDeployment: '배포 전', runtime: '런타임', openSource: '오픈소스', preview: '프리뷰', explore: '살펴보기' },
   integrations: { ...en.integrations, eyebrow: 'Upstream 증거', title: 'eBPF가 실제로 배포되는 곳에 통합되었습니다.', description: 'BPFCompat는 현재 두 upstream eBPF 프로젝트에 반복 호환성 CI lane이 병합되어 있습니다.', evidenceLink: '병합된 PR 보기', disclaimer: '이는 공개 upstream CI 통합이며 고객 배포나 endorsement를 의미하지 않습니다.' },
