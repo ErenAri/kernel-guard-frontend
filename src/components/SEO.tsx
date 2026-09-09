@@ -35,13 +35,13 @@ function normalizeSchemaItems(schema?: JsonLdNode | JsonLdNode[]): JsonLdNode[] 
 }
 
 export default function SEO({ 
-  title = 'Kernel Guard | Secure Web Development & Cybersecurity', 
-  description = 'Kernel Guard specializes in building high-performance, secure web applications, hardened backend architectures, and post-quantum cryptography solutions.', 
+  title = 'Kernel Guard | Open-Source Cybersecurity Infrastructure', 
+  description = 'Kernel Guard builds open-source cybersecurity infrastructure for compatibility assurance, runtime enforcement, and verifiable protection.', 
   keywords,
   type = 'website', 
   name = 'Kernel Guard',
   image = '/og/default.svg',
-  imageAlt = 'Kernel Guard - Secure & Scalable Web Engineering',
+  imageAlt = 'Kernel Guard - Open-Source Cybersecurity Infrastructure',
   path,
   noIndex = false,
   noFollow = false,
