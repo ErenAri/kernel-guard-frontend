@@ -1,8 +1,8 @@
 export const en = {
   seo: {
     home: {
-      title: 'Kernel Guard | Secure Web Development & Cybersecurity Solutions',
-      description: 'Kernel Guard specializes in building high-performance, secure web applications, hardened backend architectures, and post-quantum cryptography solutions. Discover our zero-trust approach.',
+      title: 'Kernel Guard | Linux & eBPF Security Infrastructure',
+      description: 'Kernel Guard builds open-source infrastructure for validating eBPF across real Linux kernels before deployment and enforcing policy at runtime.',
       keywords: 'Kernel Guard, secure web development, cybersecurity solutions, hardened backend, post-quantum cryptography, React security, zero-trust architecture, eBPF security, data protection'
     },
     projects: {
@@ -49,39 +49,39 @@ export const en = {
   },
   home: {
     systemSecure: 'SYSTEMS_SECURE // V2.4.1',
-    heroTitle1: 'Secure & Scalable',
-    heroTitle2: 'Web Development',
-    heroDesc: 'Kernel-Guard specializes in building high-performance web applications with a security-first approach. We combine modern web development with advanced threat defense mechanisms.',
-    viewArch: 'View Open Source',
-    viewCompletedProjects: 'Completed Projects',
+    heroTitle1: 'Linux & eBPF',
+    heroTitle2: 'Security Infrastructure',
+    heroDesc: 'Kernel Guard builds open-source tooling to validate eBPF across real Linux kernels before deployment and enforce policy at runtime.',
+    viewArch: 'Explore BPFCompat',
+    viewCompletedProjects: 'Explore AegisBPF',
     githubRepo: 'GitHub Repository',
     status: 'STATUS:',
     operational: 'OPERATIONAL',
     latency: 'LATENCY:',
     encryption: 'ENCRYPTION:',
     uptime: 'UPTIME:',
-    missionTitle: 'Security-First Web Engineering',
-    missionP1: 'At Kernel-Guard, we believe that true security cannot be bolted onto a web application as an afterthought. It must be engineered into the very foundation of the codebase. We are a team of full-stack developers and security researchers dedicated to building robust digital experiences.',
-    missionP2: 'Our focus spans from secure frontend architectures to hardened backend APIs and database management. We don\'t just build websites; we build resilient web infrastructure that stands against evolving threats.',
-    techStackTitle: 'Our Arsenal',
-    techStackDesc: 'We engineer our solutions using industry-leading, secure, and high-performance technologies.',
+    missionTitle: 'Security at the kernel boundary',
+    missionP1: 'BPFCompat answers a practical question before release: will this compiled eBPF artifact and the loader we actually ship work on the Linux kernels our users run? It produces compatibility evidence by testing against real kernel environments.',
+    missionP2: 'AegisBPF addresses the runtime side of the same boundary with BPF LSM enforcement, scoped policy controls and structured security events. Together, the projects focus Kernel Guard on validation before deployment and enforcement after it.',
+    techStackTitle: 'Kernel-side stack',
+    techStackDesc: 'The technologies behind our Linux, eBPF, compatibility and runtime-security work.',
     features: {
-      frontend: { title: 'Secure Frontend', desc: 'Modern, responsive user interfaces built with React and fortified against XSS and client-side vulnerabilities.' },
-      backend: { title: 'Hardened Backend', desc: 'Scalable server architectures and APIs designed with zero-trust principles and robust authentication.' },
-      data: { title: 'Data Protection', desc: 'Implementing state-of-the-art encryption and secure database practices to ensure user data confidentiality.' },
-      performance: { title: 'High Performance', desc: 'Optimized web applications that deliver lightning-fast load times without compromising on security checks.' }
+      frontend: { title: 'BPFCompat', desc: 'Validate compiled eBPF artifacts and real project loaders across real Linux kernels before release.' },
+      backend: { title: 'AegisBPF', desc: 'Enforce Linux runtime policy with BPF LSM, scoped controls and structured forensic events.' },
+      data: { title: 'Open Source', desc: 'Core tooling, compatibility evidence and technical development are available for public review.' },
+      performance: { title: 'Security & Provenance', desc: 'Signed releases, SBOMs, provenance and explicit failure modes keep the evidence verifiable.' }
     },
     principles: {
       title: 'Our Engineering Principles',
       items: [
-        { title: 'Open by Default', desc: 'Transparent security through open-source code and public peer review.' },
-        { title: 'Zero Trust', desc: 'Verify every request, trust no entity, and assume breach by default.' },
-        { title: 'Community Driven', desc: 'Built collaboratively by and for systems engineers and security researchers.' }
+        { title: 'Evidence Over Assumptions', desc: 'Prefer measured behavior on real kernels over version heuristics and compatibility claims.' },
+        { title: 'Runtime Truth', desc: 'Validate and enforce as close as practical to the environment where the software actually executes.' },
+        { title: 'Open Technical Review', desc: 'Keep core tooling, limitations and engineering evidence visible for independent review.' }
       ]
     },
     community: {
-      title: 'Building in Public',
-      desc: 'We are actively building our core infrastructure and open-sourcing our progress. Follow our journey.'
+      title: 'Built in public',
+      desc: 'Kernel Guard develops its core Linux and eBPF tooling openly on GitHub, with upstream integrations and technical evidence available for review.'
     },
     proof: {
       badge: 'MEASURED // PUBLIC_EVIDENCE',
