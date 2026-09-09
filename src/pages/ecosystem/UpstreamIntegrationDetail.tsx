@@ -4,6 +4,7 @@ import SEO from '../../components/SEO';
 import { useLanguage } from '../../context/LanguageContext';
 import { localizePath } from '../../i18n/route';
 import { ecosystemCopy, integrationEvidence, type IntegrationId } from './content';
+import BrandMarks from './BrandMarks';
 
 const validIds: IntegrationId[] = ['falco', 'inspektor-gadget'];
 
@@ -43,6 +44,7 @@ export default function UpstreamIntegrationDetail() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
             <div className="lg:col-span-8">
+              <BrandMarks logos={[item.logo]} size="lg" className="mb-8" />
               <div className="font-mono text-xs uppercase tracking-[0.18em] text-primary mb-5">
                 {item.kicker}
               </div>
@@ -139,6 +141,9 @@ export default function UpstreamIntegrationDetail() {
                 className={'grid grid-cols-1 lg:grid-cols-12 gap-7 p-7 md:p-8 ' + (index > 0 ? 'border-t border-border' : '')}
               >
                 <div className="lg:col-span-3">
+                  {relationship.logos && relationship.logos.length > 0 ? (
+                    <BrandMarks logos={relationship.logos} size="md" className="mb-5" />
+                  ) : null}
                   <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-foreground/45 mb-3">
                     {relationship.category}
                   </div>
