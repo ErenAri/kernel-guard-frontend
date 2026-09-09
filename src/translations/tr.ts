@@ -1,8 +1,8 @@
 export const tr = {
   seo: {
     home: {
-      title: 'Kernel Guard | Güvenli Web Geliştirme ve Siber Güvenlik Çözümleri',
-      description: 'Kernel Guard, yüksek performanslı ve güvenli web uygulamaları, güçlendirilmiş arka uç (backend) mimarileri ve kuantum sonrası kriptografi çözümleri sunar. Sıfır güven (zero-trust) yaklaşımımızı keşfedin.',
+      title: 'Kernel Guard | Linux ve eBPF Güvenlik Altyapısı',
+      description: 'Kernel Guard, eBPF yazılımlarını dağıtımdan önce gerçek Linux çekirdeklerinde doğrulamak ve çalışma zamanında politika uygulamak için açık kaynak altyapı geliştirir.',
       keywords: 'Kernel Guard, güvenli web geliştirme, siber güvenlik çözümleri, güçlendirilmiş backend, kuantum sonrası kriptografi, React güvenliği, sıfır güven mimarisi, eBPF güvenliği, veri koruma'
     },
     projects: {
@@ -49,22 +49,22 @@ export const tr = {
   },
   home: {
     systemSecure: 'SİSTEM_GÜVENLİ // V2.4.1',
-    heroTitle1: 'Güvenli ve Ölçeklenebilir',
-    heroTitle2: 'Web Geliştirme',
-    heroDesc: 'Kernel-Guard, güvenlik odaklı bir yaklaşımla yüksek performanslı web uygulamaları oluşturma konusunda uzmanlaşmıştır. Modern web geliştirmeyi gelişmiş tehdit savunma mekanizmalarıyla birleştiriyoruz.',
-    viewArch: 'Açık Kaynak Projeler',
-    viewCompletedProjects: 'Tamamlanan Projeler',
+    heroTitle1: 'Linux & eBPF',
+    heroTitle2: 'Güvenlik Altyapısı',
+    heroDesc: 'Kernel Guard, eBPF yazılımlarını dağıtımdan önce gerçek Linux çekirdeklerinde doğrulayan ve çalışma zamanında politika uygulayan açık kaynak araçlar geliştirir.',
+    viewArch: 'BPFCompat\'ı İncele',
+    viewCompletedProjects: 'AegisBPF\'yi İncele',
     githubRepo: 'GitHub Deposu',
     status: 'DURUM:',
     operational: 'AKTİF',
     latency: 'GECİKME:',
     encryption: 'ŞİFRELEME:',
     uptime: 'ÇALIŞMA SÜRESİ:',
-    missionTitle: 'Güvenlik Odaklı Web Mühendisliği',
-    missionP1: 'Kernel-Guard olarak, gerçek güvenliğin bir web uygulamasına sonradan eklenemeyeceğine inanıyoruz. Kod tabanının tam temeline mühendislik edilmelidir. Bizler, sağlam dijital deneyimler oluşturmaya adanmış full-stack geliştiriciler ve güvenlik araştırmacılarıyız.',
-    missionP2: 'Odak noktamız, güvenli frontend mimarilerinden güçlendirilmiş backend API\'lerine ve veritabanı yönetimine kadar uzanır. Biz sadece web sitesi yapmıyoruz; gelişen tehditlere karşı ayakta kalan dayanıklı web altyapıları inşa ediyoruz.',
-    techStackTitle: 'Teknoloji Cephaneliğimiz',
-    techStackDesc: 'Çözümlerimizi endüstri lideri, güvenli ve yüksek performanslı teknolojiler kullanarak inşa ediyoruz.',
+    missionTitle: 'Kernel sınırında güvenlik',
+    missionP1: 'BPFCompat yayın öncesinde pratik bir soruyu yanıtlar: derlediğimiz eBPF artifact\'i ve gerçekten dağıttığımız loader, kullanıcıların çalıştırdığı Linux çekirdeklerinde çalışacak mı? Gerçek kernel ortamlarında test ederek uyumluluk kanıtı üretir.',
+    missionP2: 'AegisBPF aynı sınırın çalışma zamanı tarafını BPF LSM enforcement, scope\'lu politika kontrolleri ve yapılandırılmış güvenlik olaylarıyla ele alır. İki proje birlikte Kernel Guard\'ı dağıtım öncesi doğrulama ve dağıtım sonrası enforcement üzerine odaklar.',
+    techStackTitle: 'Kernel-side teknoloji stack\'i',
+    techStackDesc: 'Linux, eBPF, uyumluluk ve runtime security çalışmalarımızın arkasındaki teknolojiler.',
     features: {
       frontend: { title: 'Güvenli Frontend', desc: 'React ile oluşturulmuş, XSS ve istemci tarafı güvenlik açıklarına karşı güçlendirilmiş modern, duyarlı kullanıcı arayüzleri.' },
       backend: { title: 'Güçlendirilmiş Backend', desc: 'Sıfır güven (zero-trust) prensipleri ve sağlam kimlik doğrulama ile tasarlanmış ölçeklenebilir sunucu mimarileri ve API\'ler.' },
