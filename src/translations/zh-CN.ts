@@ -64,22 +64,22 @@ export const zhCN = {
     techStackTitle: '内核侧技术栈',
     techStackDesc: '支撑 Linux、eBPF、兼容性验证和运行时安全工作的技术。',
     features: {
-      frontend: { title: '安全前端', desc: '基于 React 的现代界面，面向 XSS 和客户端风险进行加固。' },
-      backend: { title: '加固后端', desc: '遵循 Zero Trust 原则的可扩展 API 和服务端架构。' },
-      data: { title: '数据保护', desc: '通过加密和安全数据库实践保护敏感信息。' },
-      performance: { title: '高性能', desc: '在不牺牲安全检查的前提下实现快速加载。' },
+      frontend: { title: 'BPFCompat', desc: '在真实 Linux 内核上验证已编译的 eBPF artifact 和实际项目 loader。' },
+      backend: { title: 'AegisBPF', desc: '使用 BPF LSM、作用域控制和结构化事件执行 Linux 运行时策略。' },
+      data: { title: '开源', desc: '核心工具、兼容性证据和技术开发可供公开审查。' },
+      performance: { title: '安全与 Provenance', desc: '签名 release、SBOM、provenance 和明确的 failure mode 让证据可验证。' },
     },
     principles: {
       title: '工程原则',
       items: [
-        { title: '默认开放', desc: '通过开源代码和公开代码审查实现透明安全。' },
-        { title: 'Zero Trust', desc: '验证每个请求，不默认信任任何实体，并默认假设存在风险。' },
-        { title: '社区驱动', desc: '由系统工程师和安全研究人员共同构建。' },
+        { title: '证据优先', desc: '优先采用真实内核上的测量行为，而不是版本推断。' },
+        { title: 'Runtime Truth', desc: '尽可能接近软件真实执行环境进行验证和 enforcement。' },
+        { title: '开放技术审查', desc: '核心工具、限制和工程证据保持可独立审查。' },
       ],
     },
     community: {
-      title: '公开构建',
-      desc: '我们正在持续构建核心基础设施，并以开源方式公开进展。',
+      title: '公开开发',
+      desc: 'Kernel Guard 的 Linux 和 eBPF 核心工具在 GitHub 上公开开发，上游集成和技术证据均可审查。',
     },
     proof: {
       badge: '已测量 // 公开证据',
