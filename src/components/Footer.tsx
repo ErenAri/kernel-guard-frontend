@@ -6,12 +6,16 @@ import { prefetchRoute, prefetchRoutes } from '../routes/pageLoaders';
 import { enterprisePages, type EnterprisePageKey } from '../data/enterprisePages';
 import { SITE_EMAILS, mailto } from '../config/site';
 import { footerGrowthCopy } from '../i18n/growthContent';
+import { cyberHomeCopy } from '../i18n/cyberHomeCopy';
+import { ecosystemCopy } from '../pages/ecosystem/content';
 import Logo from './Logo';
 
 export default function Footer() {
   const { language, t } = useLanguage();
   const enterpriseLinks: EnterprisePageKey[] = ['security', 'engineering', 'status', 'changelog'];
   const growthCopy = footerGrowthCopy[language];
+  const brandCopy = cyberHomeCopy[language];
+  const ecosystem = ecosystemCopy[language];
 
   return (
     <footer className="bg-[var(--color-dark-bg)] text-[var(--color-dark-fg)] mt-auto">
@@ -22,7 +26,7 @@ export default function Footer() {
               <Logo dark className="scale-[0.65] origin-left" />
             </Link>
             <p className="text-gray-400 text-sm max-w-md leading-relaxed mt-4">
-              {t.footer.desc}
+              {brandCopy.seo.description}
             </p>
           </div>
           
@@ -42,6 +46,16 @@ export default function Footer() {
                   className="text-gray-400 hover:text-white transition-colors text-sm"
                 >
                   {t.nav.openSource}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={localizePath('/ecosystem/upstream-integrations/', language)}
+                  onPointerEnter={() => prefetchRoute('upstreamIntegrations')}
+                  onFocus={() => prefetchRoute('upstreamIntegrations')}
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                >
+                  {ecosystem.index.title1 + ' ' + ecosystem.index.title2}
                 </Link>
               </li>
               <li>
