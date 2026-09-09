@@ -14,8 +14,8 @@ export default function Footer() {
   return (
     <footer className="mt-auto bg-[var(--color-dark-bg)] text-[var(--color-dark-fg)]">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-4">
-          <div className="space-y-6 md:col-span-2">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
+          <div className="space-y-6 md:col-span-6">
             <Link
               to={localizePath('/', language)}
               className="inline-block transition-opacity hover:opacity-90"
@@ -25,15 +25,12 @@ export default function Footer() {
             <p className="mt-4 max-w-lg text-sm leading-relaxed text-gray-400">
               {copy.footerDescription}
             </p>
-            <div className="flex flex-wrap gap-2 pt-2 font-mono text-[11px] text-gray-500">
-              <span className="border border-gray-800 px-2.5 py-1.5">Linux</span>
-              <span className="border border-gray-800 px-2.5 py-1.5">eBPF</span>
-              <span className="border border-gray-800 px-2.5 py-1.5">Runtime security</span>
-              <span className="border border-gray-800 px-2.5 py-1.5">Compatibility evidence</span>
-            </div>
+            <p className="pt-1 font-mono text-[11px] uppercase tracking-[0.14em] text-gray-600">
+              Linux · eBPF · runtime security
+            </p>
           </div>
 
-          <div>
+          <div className="md:col-span-3">
             <h3 className="mb-6 text-sm font-semibold uppercase tracking-wide text-white">
               {copy.products.eyebrow}
             </h3>
@@ -79,7 +76,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="md:col-span-3">
             <h3 className="mb-6 text-sm font-semibold uppercase tracking-wide text-white">
               Trust &amp; contact
             </h3>
