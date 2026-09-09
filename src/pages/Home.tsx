@@ -14,14 +14,14 @@ import { homeGrowthCopy } from '../i18n/growthContent';
 export default function Home() {
   const { language, t } = useLanguage();
   const upstreamLabel: Record<typeof language, string> = {
-    en: 'RUNNING UPSTREAM IN',
-    tr: 'UPSTREAM ENTEGRASYONLARI',
-    de: 'UPSTREAM INTEGRIERT IN',
-    ja: 'UPSTREAM 統合',
-    'zh-CN': 'UPSTREAM 集成',
-    es: 'INTEGRADO UPSTREAM EN',
-    fr: 'INTÉGRÉ UPSTREAM DANS',
-    ko: 'UPSTREAM 통합',
+    en: 'ECOSYSTEM INTEGRATIONS',
+    tr: 'EKOSİSTEM ENTEGRASYONLARI',
+    de: 'ÖKOSYSTEM-INTEGRATIONEN',
+    ja: 'エコシステム統合',
+    'zh-CN': '生态系统集成',
+    es: 'INTEGRACIONES DEL ECOSISTEMA',
+    fr: 'INTÉGRATIONS ÉCOSYSTÈME',
+    ko: '에코시스템 통합',
   };
 
   const features: Array<{
@@ -95,7 +95,9 @@ export default function Home() {
   const growthCopy = homeGrowthCopy[language];
   const featuredArticles = articles.slice(0, 3).map((article) => localizeArticle(article, language));
   const featuredGrowthServices = growthServicePages
-    .slice(0, 3)
+    .filter((service) =>
+      ['cybersecurity-consulting', 'react-security-audit', 'backend-api-hardening'].includes(service.slug),
+    )
     .map((service) => localizeGrowthServicePage(service, language));
 
   return (
@@ -163,33 +165,38 @@ export default function Home() {
       <section className="border-b border-border bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-12 items-stretch">
-            <div className="md:col-span-4 py-8 md:py-10 flex items-center">
-              <span className="font-mono text-xs uppercase tracking-[0.18em] text-foreground/50">
+            <Link
+              to={localizePath('/ecosystem/upstream-integrations/', language)}
+              onPointerEnter={() => prefetchRoute('upstreamIntegrations')}
+              onFocus={() => prefetchRoute('upstreamIntegrations')}
+              className="md:col-span-4 py-8 md:py-10 flex items-center group"
+            >
+              <span className="font-mono text-xs uppercase tracking-[0.18em] text-foreground/50 group-hover:text-primary transition-colors">
                 {upstreamLabel[language]}
               </span>
-            </div>
-            <a
-              href="https://github.com/falcosecurity/libs/pull/3024"
-              target="_blank"
-              rel="noopener noreferrer"
+            </Link>
+            <Link
+              to={localizePath('/ecosystem/upstream-integrations/falco/', language)}
+              onPointerEnter={() => prefetchRoute('upstreamIntegrationDetail')}
+              onFocus={() => prefetchRoute('upstreamIntegrationDetail')}
               className="md:col-span-4 py-8 md:py-10 md:px-8 border-t md:border-t-0 md:border-l border-border flex items-center justify-between group"
             >
               <span className="text-2xl md:text-3xl font-medium tracking-tight text-foreground group-hover:text-primary transition-colors">
                 Falco
               </span>
               <ArrowRight className="w-5 h-5 text-foreground/40 group-hover:text-primary transition-colors" />
-            </a>
-            <a
-              href="https://github.com/inspektor-gadget/inspektor-gadget/pull/5708"
-              target="_blank"
-              rel="noopener noreferrer"
+            </Link>
+            <Link
+              to={localizePath('/ecosystem/upstream-integrations/inspektor-gadget/', language)}
+              onPointerEnter={() => prefetchRoute('upstreamIntegrationDetail')}
+              onFocus={() => prefetchRoute('upstreamIntegrationDetail')}
               className="md:col-span-4 py-8 md:py-10 md:px-8 border-t md:border-t-0 md:border-l border-border flex items-center justify-between group"
             >
               <span className="text-2xl md:text-3xl font-medium tracking-tight text-foreground group-hover:text-primary transition-colors">
                 Inspektor Gadget
               </span>
               <ArrowRight className="w-5 h-5 text-foreground/40 group-hover:text-primary transition-colors" />
-            </a>
+            </Link>
           </div>
         </div>
       </section>
