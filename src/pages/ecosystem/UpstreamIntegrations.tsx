@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import SEO from '../../components/SEO';
 import { useLanguage } from '../../context/LanguageContext';
 import { localizePath } from '../../i18n/route';
-import { ecosystemCopy, type IntegrationId } from './content';
+import { brandLogos, ecosystemCopy, type IntegrationId } from './content';
+import BrandMarks from './BrandMarks';
 
 const integrationIds: IntegrationId[] = ['falco', 'inspektor-gadget'];
 
@@ -107,6 +108,7 @@ export default function UpstreamIntegrations() {
                   className={'group grid grid-cols-1 lg:grid-cols-12 gap-8 p-8 md:p-10 hover:bg-surface transition-colors ' + (index > 0 ? 'border-t border-border' : '')}
                 >
                   <div className="lg:col-span-3">
+                    <BrandMarks logos={[item.logo]} size="lg" className="mb-7" />
                     <div className="font-mono text-xs uppercase tracking-[0.14em] text-foreground/50">
                       {copy.labels.upstreamIntegration}
                     </div>
@@ -153,6 +155,11 @@ export default function UpstreamIntegrations() {
                   className="border border-border bg-surface p-6 group hover:border-primary/50 transition-colors"
                 >
                   <span className="font-mono text-xs uppercase tracking-widest text-foreground/50">Falco ecosystem</span>
+                  <BrandMarks
+                    logos={[brandLogos.aws, brandLogos.qonto, brandLogos.shopify]}
+                    size="md"
+                    className="mt-5"
+                  />
                   <div className="mt-5 flex items-center justify-between">
                     <span className="text-lg font-medium">AWS · Qonto · Shopify</span>
                     <ExternalLink className="w-4 h-4 text-foreground/40 group-hover:text-primary" />
@@ -165,6 +172,7 @@ export default function UpstreamIntegrations() {
                   className="border border-border bg-surface p-6 group hover:border-primary/50 transition-colors"
                 >
                   <span className="font-mono text-xs uppercase tracking-widest text-foreground/50">Inspektor Gadget ecosystem</span>
+                  <BrandMarks logos={[brandLogos.azure]} size="md" className="mt-5" />
                   <div className="mt-5 flex items-center justify-between">
                     <span className="text-lg font-medium">Microsoft Azure · AKS</span>
                     <ExternalLink className="w-4 h-4 text-foreground/40 group-hover:text-primary" />
