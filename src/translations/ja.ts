@@ -4,8 +4,8 @@ export const ja = {
   ...en,
   seo: {
     home: {
-      title: 'Kernel Guard | セキュアなWeb開発とサイバーセキュリティ',
-      description: 'Kernel Guardは、高性能で安全なWebアプリケーション、堅牢なバックエンド、現代的なセキュリティ設計を提供します。',
+      title: 'Kernel Guard | Linux・eBPF セキュリティ基盤',
+      description: 'Kernel Guard は、デプロイ前に実 Linux カーネル上で eBPF を検証し、ランタイムでポリシーを適用するためのオープンソース基盤を開発します。',
       keywords: 'Kernel Guard, セキュアWeb開発, サイバーセキュリティ, Zero Trust, データ保護',
     },
     projects: {
@@ -53,16 +53,16 @@ export const ja = {
   home: {
     ...en.home,
     systemSecure: 'SYSTEMS_SECURE // V2.4.1',
-    heroTitle1: '安全でスケーラブルな',
-    heroTitle2: 'Web開発',
-    heroDesc: 'Kernel Guardは、セキュリティファーストの設計で高性能なWebアプリケーションを構築します。',
-    viewArch: 'オープンソースを見る',
-    viewCompletedProjects: '実績を見る',
-    missionTitle: 'セキュリティファーストのWebエンジニアリング',
-    missionP1: '本当のセキュリティは後から追加するものではありません。アーキテクチャとコードベースの基礎に組み込む必要があります。',
-    missionP2: '安全なフロントエンド、堅牢なAPI、データベースとクラウドの保護まで、幅広く支援します。',
-    techStackTitle: '技術スタック',
-    techStackDesc: '安全性と性能を重視した技術で、信頼できるプロダクトを構築します。',
+    heroTitle1: 'Linux & eBPF',
+    heroTitle2: 'セキュリティ基盤',
+    heroDesc: 'Kernel Guard は、デプロイ前の実 Linux カーネル上での eBPF 検証と、ランタイムでのポリシー適用のためのオープンソースツールを開発します。',
+    viewArch: 'BPFCompat を見る',
+    viewCompletedProjects: 'AegisBPF を見る',
+    missionTitle: 'カーネル境界のセキュリティ',
+    missionP1: 'BPFCompat は、コンパイル済み eBPF artifact と実際に配布する loader が利用者の Linux カーネルで動くかを、リリース前に実環境で検証します。',
+    missionP2: 'AegisBPF は同じ境界のランタイム側を、BPF LSM enforcement、スコープされたポリシー制御、構造化されたセキュリティイベントで扱います。',
+    techStackTitle: 'カーネルサイド技術',
+    techStackDesc: 'Linux、eBPF、互換性検証、ランタイムセキュリティを支える技術。',
     features: {
       frontend: { title: 'セキュアフロントエンド', desc: 'ReactベースのUIをXSSなどのクライアント側リスクに備えて設計します。' },
       backend: { title: '堅牢なバックエンド', desc: 'Zero Trust原則に基づくスケーラブルなAPIとサーバー設計。' },
