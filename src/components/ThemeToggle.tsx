@@ -7,20 +7,22 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="relative inline-flex h-9 w-9 items-center justify-center overflow-hidden text-foreground/65 transition-colors hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40"
+      className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden border border-border bg-background text-foreground hover:bg-surface transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
       aria-label="Toggle theme"
       title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
     >
-      <Sun
-        className={`absolute h-4 w-4 transition-all duration-300 ${
-          theme === 'dark' ? 'rotate-90 scale-75 opacity-0' : 'rotate-0 scale-100 opacity-100'
-        }`}
-      />
-      <Moon
-        className={`absolute h-4 w-4 transition-all duration-300 ${
-          theme === 'dark' ? 'rotate-0 scale-100 opacity-100' : '-rotate-90 scale-75 opacity-0'
-        }`}
-      />
+      <div className="relative flex items-center justify-center w-full h-full">
+        <Sun 
+          className={`absolute w-5 h-5 transition-all duration-500 ease-in-out ${
+            theme === 'dark' ? 'opacity-0 rotate-90 scale-50' : 'opacity-100 rotate-0 scale-100'
+          }`} 
+        />
+        <Moon 
+          className={`absolute w-5 h-5 transition-all duration-500 ease-in-out ${
+            theme === 'dark' ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-90 scale-50'
+          }`} 
+        />
+      </div>
     </button>
   );
 }
