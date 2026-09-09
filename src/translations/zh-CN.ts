@@ -4,8 +4,8 @@ export const zhCN = {
   ...en,
   seo: {
     home: {
-      title: 'Kernel Guard | 安全 Web 开发与网络安全解决方案',
-      description: 'Kernel Guard 专注于高性能、安全的 Web 应用、加固后端架构和现代网络安全工程。',
+      title: 'Kernel Guard | Linux 与 eBPF 安全基础设施',
+      description: 'Kernel Guard 构建开源基础设施，用于在部署前通过真实 Linux 内核验证 eBPF，并在运行时执行策略。',
       keywords: 'Kernel Guard, 安全 Web 开发, 网络安全, Zero Trust, 数据保护, 后端安全',
     },
     projects: {
@@ -53,16 +53,16 @@ export const zhCN = {
   home: {
     ...en.home,
     systemSecure: 'SYSTEMS_SECURE // V2.4.1',
-    heroTitle1: '安全且可扩展的',
-    heroTitle2: 'Web 开发',
-    heroDesc: 'Kernel Guard 以安全优先的方式构建高性能 Web 应用，将现代开发实践与强健的威胁防护结合起来。',
-    viewArch: '查看开源项目',
-    viewCompletedProjects: '查看案例',
-    missionTitle: '安全优先的 Web 工程',
-    missionP1: '真正的安全不能事后补丁式加入，而应从架构和代码基础中设计出来。',
-    missionP2: '我们覆盖安全前端、加固后端 API、数据库保护和云基础设施安全。',
-    techStackTitle: '技术栈',
-    techStackDesc: '我们使用安全、高性能的现代技术构建可靠产品。',
+    heroTitle1: 'Linux & eBPF',
+    heroTitle2: '安全基础设施',
+    heroDesc: 'Kernel Guard 构建开源工具，在部署前通过真实 Linux 内核验证 eBPF，并在运行时执行安全策略。',
+    viewArch: '查看 BPFCompat',
+    viewCompletedProjects: '查看 AegisBPF',
+    missionTitle: '内核边界的安全',
+    missionP1: 'BPFCompat 在发布前验证已编译的 eBPF artifact 和实际发布的 loader 是否能在用户运行的 Linux 内核上工作。',
+    missionP2: 'AegisBPF 通过 BPF LSM enforcement、作用域策略控制和结构化安全事件处理同一边界的运行时侧。',
+    techStackTitle: '内核侧技术栈',
+    techStackDesc: '支撑 Linux、eBPF、兼容性验证和运行时安全工作的技术。',
     features: {
       frontend: { title: '安全前端', desc: '基于 React 的现代界面，面向 XSS 和客户端风险进行加固。' },
       backend: { title: '加固后端', desc: '遵循 Zero Trust 原则的可扩展 API 和服务端架构。' },
