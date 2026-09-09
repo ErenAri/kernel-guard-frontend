@@ -4,8 +4,8 @@ export const de = {
   ...en,
   seo: {
     home: {
-      title: 'Kernel Guard | Sichere Webentwicklung und Cybersecurity',
-      description: 'Kernel Guard entwickelt sichere, performante Webanwendungen, gehärtete Backend-Architekturen und moderne Sicherheitslösungen.',
+      title: 'Kernel Guard | Linux- & eBPF-Sicherheitsinfrastruktur',
+      description: 'Kernel Guard entwickelt Open-Source-Infrastruktur zur eBPF-Validierung auf realen Linux-Kerneln vor dem Deployment und zur Richtliniendurchsetzung zur Laufzeit.',
       keywords: 'Kernel Guard, sichere Webentwicklung, Cybersecurity, gehärtetes Backend, Zero Trust, Datensicherheit',
     },
     projects: {
@@ -53,16 +53,16 @@ export const de = {
   home: {
     ...en.home,
     systemSecure: 'SYSTEME_SICHER // V2.4.1',
-    heroTitle1: 'Sichere und skalierbare',
-    heroTitle2: 'Webentwicklung',
-    heroDesc: 'Kernel Guard entwickelt performante Webanwendungen mit Security-first-Ansatz und verbindet moderne Produktentwicklung mit robuster Abwehr gegen Bedrohungen.',
-    viewArch: 'Open Source ansehen',
-    viewCompletedProjects: 'Referenzen',
-    missionTitle: 'Security-first Web Engineering',
-    missionP1: 'Echte Sicherheit wird nicht nachträglich ergänzt. Sie muss in Architektur, Codebasis und Betrieb von Anfang an mitgedacht werden.',
-    missionP2: 'Unser Fokus reicht von sicheren Frontend-Architekturen über gehärtete Backend-APIs bis zu Datenbank- und Cloud-Sicherheit.',
-    techStackTitle: 'Unser Werkzeugkasten',
-    techStackDesc: 'Wir nutzen moderne, sichere und performante Technologien für belastbare digitale Produkte.',
+    heroTitle1: 'Linux & eBPF',
+    heroTitle2: 'Sicherheitsinfrastruktur',
+    heroDesc: 'Kernel Guard entwickelt Open-Source-Werkzeuge, die eBPF vor dem Deployment auf realen Linux-Kerneln validieren und Richtlinien zur Laufzeit durchsetzen.',
+    viewArch: 'BPFCompat ansehen',
+    viewCompletedProjects: 'AegisBPF ansehen',
+    missionTitle: 'Sicherheit an der Kernel-Grenze',
+    missionP1: 'BPFCompat prüft vor dem Release, ob ein kompiliertes eBPF-Artefakt und der tatsächlich ausgelieferte Loader auf den Linux-Kerneln der Nutzer funktionieren.',
+    missionP2: 'AegisBPF deckt die Laufzeitseite derselben Grenze mit BPF-LSM-Enforcement, scoped Policies und strukturierten Sicherheitsereignissen ab.',
+    techStackTitle: 'Kernel-naher Stack',
+    techStackDesc: 'Technologien hinter unserer Arbeit an Linux, eBPF, Kompatibilität und Runtime Security.',
     features: {
       frontend: { title: 'Sicheres Frontend', desc: 'Moderne React-Oberflächen, gehärtet gegen XSS und clientseitige Schwachstellen.' },
       backend: { title: 'Gehärtetes Backend', desc: 'Skalierbare APIs und Serverarchitekturen nach Zero-Trust-Prinzipien.' },
