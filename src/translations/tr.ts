@@ -66,27 +66,27 @@ export const tr = {
     techStackTitle: 'Kernel-side teknoloji stack\'i',
     techStackDesc: 'Linux, eBPF, uyumluluk ve runtime security çalışmalarımızın arkasındaki teknolojiler.',
     features: {
-      frontend: { title: 'Güvenli Frontend', desc: 'React ile oluşturulmuş, XSS ve istemci tarafı güvenlik açıklarına karşı güçlendirilmiş modern, duyarlı kullanıcı arayüzleri.' },
-      backend: { title: 'Güçlendirilmiş Backend', desc: 'Sıfır güven (zero-trust) prensipleri ve sağlam kimlik doğrulama ile tasarlanmış ölçeklenebilir sunucu mimarileri ve API\'ler.' },
-      data: { title: 'Veri Koruması', desc: 'Kullanıcı verilerinin gizliliğini sağlamak için en son teknoloji şifreleme ve güvenli veritabanı uygulamaları.' },
-      performance: { title: 'Yüksek Performans', desc: 'Güvenlik kontrollerinden ödün vermeden ışık hızında yükleme süreleri sunan optimize edilmiş web uygulamaları.' }
+      frontend: { title: 'BPFCompat', desc: 'Derlenmiş eBPF artifact\'lerini ve gerçek proje loader\'larını yayın öncesinde gerçek Linux çekirdeklerinde doğrular.' },
+      backend: { title: 'AegisBPF', desc: 'BPF LSM, scope\'lu kontroller ve yapılandırılmış forensic olaylarla Linux runtime politikasını uygular.' },
+      data: { title: 'Açık Kaynak', desc: 'Ana araçlar, uyumluluk kanıtları ve teknik geliştirme süreci kamuya açık incelemeye açıktır.' },
+      performance: { title: 'Güvenlik ve Provenance', desc: 'İmzalı release\'ler, SBOM, provenance ve açık failure mode\'lar kanıtın doğrulanabilir kalmasını sağlar.' },
     },
     principles: {
       title: 'Mühendislik Prensiplerimiz',
       items: [
-        { title: 'Varsayılan Olarak Açık', desc: 'Açık kaynak kod ve halka açık kod incelemesi ile şeffaf güvenlik.' },
-        { title: 'Sıfır Güven (Zero Trust)', desc: 'Her isteği doğrulayın, hiçbir varlığa güvenmeyin ve her zaman tetikte olun.' },
-        { title: 'Topluluk Odaklı', desc: 'Sistem mühendisleri ve güvenlik araştırmacıları tarafından ortaklaşa inşa ediliyor.' }
-      ]
+        { title: 'Varsayım Değil Kanıt', desc: 'Sürüm tahminleri yerine gerçek çekirdeklerde ölçülen davranışı tercih ederiz.' },
+        { title: 'Runtime Gerçeği', desc: 'Doğrulamayı ve enforcement\'ı yazılımın gerçekten çalıştığı ortama mümkün olduğunca yakın yaparız.' },
+        { title: 'Açık Teknik İnceleme', desc: 'Ana araçları, sınırları ve mühendislik kanıtlarını bağımsız incelemeye açık tutarız.' },
+      ],
     },
     community: {
-      title: 'Açık Geliştirme (Build in Public)',
-      desc: 'Çekirdek altyapımızı aktif olarak inşa ediyor ve kodlarımızı açık kaynak olarak paylaşıyoruz. Yolculuğumuza katılın.'
+      title: 'Açık geliştiriyoruz',
+      desc: 'Kernel Guard\'ın Linux ve eBPF araçları GitHub üzerinde açık geliştirilir; upstream entegrasyonları ve teknik kanıtları kamuya açıktır.'
     },
     proof: {
       badge: 'ÖLÇÜLDÜ // AÇIK_KANIT',
       title: 'Sunum değil, kanıt',
-      desc: '1 Haziran 2026 tarihinde Lighthouse CLI, prerender çıktısı ve herkese açık GitHub repo verileriyle ölçülmüş şeffaf kalite özeti.',
+      desc: 'Genel güvenlik iddiaları yerine ölçülmüş mühendislik verileri ve kamuya açık repository kanıtları yayımlıyoruz.',
       cards: {
         lighthouse: {
           label: 'Masaüstü Lighthouse',
