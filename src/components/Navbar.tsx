@@ -10,6 +10,8 @@ import {
   setStoredLanguagePreference,
 } from '../i18n/route';
 import type { Language } from '../context/LanguageContext';
+import { enterprisePages } from '../data/enterprisePages';
+import { ecosystemCopy } from '../pages/ecosystem/content';
 import Logo from './Logo';
 import ThemeToggle from './ThemeToggle';
 
@@ -133,6 +135,7 @@ export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
   const { language, t } = useLanguage();
+  const ecosystem = ecosystemCopy[language];
 
   const normalizeNavPath = (path: string) => {
     if (path === '/') {
@@ -145,15 +148,15 @@ export default function Navbar() {
   const baseNavLinks: Array<{ name: string; path: string; prefetch: readonly PrefetchRoute[] }> = [
     { name: t.nav.home, path: '/', prefetch: ['home'] },
     {
-      name: t.nav.services,
-      path: '/services/',
-      prefetch: ['services', 'secureFrontend', 'hardenedBackend', 'dataProtection', 'highPerformance'],
+      name: enterprisePages[language].links.security,
+      path: '/security/',
+      prefetch: ['security'],
     },
     { name: t.nav.openSource, path: '/projects/', prefetch: ['projects', 'projectDetails'] },
     {
-      name: t.nav.completedProjects,
-      path: '/completed-projects/',
-      prefetch: ['completedProjects', 'completedProjectDetails'],
+      name: ecosystem.index.title1 + ' ' + ecosystem.index.title2,
+      path: '/ecosystem/upstream-integrations/',
+      prefetch: ['upstreamIntegrations', 'upstreamIntegrationDetail'],
     },
     { name: t.nav.contact, path: '/contact/', prefetch: ['contact'] },
   ];
