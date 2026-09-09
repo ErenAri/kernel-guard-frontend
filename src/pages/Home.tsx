@@ -1,399 +1,445 @@
-import { ArrowRight, Check, ExternalLink, Minus, X } from 'lucide-react';
+import { Layout, Server, Database, Zap, ArrowRight, Gauge, GitBranch, Globe2, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import SEO from '../components/SEO';
+import type { ReactNode } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import SecurityTerminal from '../components/SecurityTerminal';
+import SEO from '../components/SEO';
+import { prefetchRoute, prefetchRoutes, type PrefetchRoute } from '../routes/pageLoaders';
+import { engineeringEvidence } from '../data/engineeringEvidence';
 import { localizePath } from '../i18n/route';
-import { evidenceHomeCopy } from '../i18n/evidenceHome';
-import report from '../data/bpfcompatReport.json';
-
-type PreviewState = 'pass' | 'fail' | 'partial' | 'skip';
-
-function resultFor(artifact: string, kernel: string) {
-  return report.results.find((result) => result.artifact === artifact && result.kernel === kernel);
-}
-
-function StateMark({ state }: { state: PreviewState }) {
-  if (state === 'pass') {
-    return (
-      <span className="inline-flex items-center gap-1.5 text-[#198038] dark:text-[#42be65]">
-        <Check className="h-3.5 w-3.5" strokeWidth={2.5} />
-        PASS
-      </span>
-    );
-  }
-
-  if (state === 'fail') {
-    return (
-      <span className="inline-flex items-center gap-1.5 text-[#da1e28] dark:text-[#fa4d56]">
-        <X className="h-3.5 w-3.5" strokeWidth={2.5} />
-        FAIL
-      </span>
-    );
-  }
-
-  return (
-    <span className="inline-flex items-center gap-1.5 text-foreground/45">
-      <Minus className="h-3.5 w-3.5" />
-      {state === 'partial' ? 'PARTIAL' : 'SKIP'}
-    </span>
-  );
-}
-
-function EvidencePreview({ fullMatrixHref }: { fullMatrixHref: string }) {
-  const kernels = report.kernels.slice(0, 4);
-  const artifacts = report.artifacts.slice(0, 3);
-
-  return (
-    <div className="mx-auto w-full max-w-6xl border border-border bg-background text-left">
-      <div className="flex flex-col justify-between gap-3 border-b border-border px-5 py-4 sm:flex-row sm:items-center">
-        <div>
-          <div className="font-mono text-xs text-foreground">bpfcompat / report.json</div>
-          <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-foreground/45">
-            Representative report · {report.version} · {report.generatedAt}
-          </div>
-        </div>
-        <div className="font-mono text-[10px] uppercase tracking-[0.12em] text-foreground/45">
-          gate: {report.gate}
-        </div>
-      </div>
-
-      <div className="overflow-x-auto">
-        <table className="w-full min-w-[760px] border-collapse">
-          <thead>
-            <tr>
-              <th className="w-[250px] border-b border-border px-5 py-4 text-left font-mono text-[10px] font-normal uppercase tracking-[0.12em] text-foreground/45">
-                artifact × kernel
-              </th>
-              {kernels.map((kernel) => (
-                <th
-                  key={kernel.id}
-                  className="border-b border-l border-border px-4 py-4 text-left font-normal"
-                >
-                  <div className="font-mono text-xs text-foreground">{kernel.distro}</div>
-                  <div className="mt-1 font-mono text-[10px] text-foreground/45">
-                    {kernel.version} · {kernel.arch}
-                  </div>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {artifacts.map((artifact) => (
-              <tr key={artifact.name}>
-                <td className="border-b border-border px-5 py-4">
-                  <div className="font-mono text-xs text-foreground">{artifact.name}</div>
-                  <div className="mt-1 font-mono text-[10px] text-foreground/40">{artifact.kind}</div>
-                </td>
-                {kernels.map((kernel) => {
-                  const result = resultFor(artifact.name, kernel.id);
-                  const state = (result?.state ?? 'skip') as PreviewState;
-                  return (
-                    <td key={kernel.id} className="border-b border-l border-border px-4 py-4 font-mono text-[10px]">
-                      <StateMark state={state} />
-                    </td>
-                  );
-                })}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <div className="flex flex-col justify-between gap-2 px-5 py-4 sm:flex-row sm:items-center">
-        <span className="font-mono text-[10px] text-foreground/45">
-          {report.note}
-        </span>
-        <Link
-          to={fullMatrixHref}
-          className="shrink-0 text-sm font-medium text-primary hover:underline"
-        >
-          Open the full matrix
-        </Link>
-      </div>
-    </div>
-  );
-}
+import { articles, localizeArticle } from '../data/articles';
+import { growthServicePages, localizeGrowthServicePage } from '../data/growthServices';
+import { homeGrowthCopy } from '../i18n/growthContent';
 
 export default function Home() {
-  const { language } = useLanguage();
-  const copy = evidenceHomeCopy[language];
+  const { language, t } = useLanguage();
+  const upstreamLabel: Record<typeof language, string> = {
+    en: 'RUNNING UPSTREAM IN',
+    tr: 'UPSTREAM ENTEGRASYONLARI',
+    de: 'UPSTREAM INTEGRIERT IN',
+    ja: 'UPSTREAM 統合',
+    'zh-CN': 'UPSTREAM 集成',
+    es: 'INTEGRADO UPSTREAM EN',
+    fr: 'INTÉGRÉ UPSTREAM DANS',
+    ko: 'UPSTREAM 통합',
+  };
+
+  const features: Array<{
+    icon: ReactNode;
+    title: string;
+    description: string;
+    link: string;
+    prefetch: PrefetchRoute;
+  }> = [
+    {
+      icon: <Layout className="w-6 h-6 text-primary" />,
+      title: t.home.features.frontend.title,
+      description: t.home.features.frontend.desc,
+      link: localizePath('/projects/bpfcompat/', language),
+      prefetch: 'projects',
+    },
+    {
+      icon: <Server className="w-6 h-6 text-primary" />,
+      title: t.home.features.backend.title,
+      description: t.home.features.backend.desc,
+      link: localizePath('/projects/aegis-bpf/', language),
+      prefetch: 'projectDetails',
+    },
+    {
+      icon: <Database className="w-6 h-6 text-primary" />,
+      title: t.home.features.data.title,
+      description: t.home.features.data.desc,
+      link: localizePath('/projects/', language),
+      prefetch: 'projects',
+    },
+    {
+      icon: <Zap className="w-6 h-6 text-primary" />,
+      title: t.home.features.performance.title,
+      description: t.home.features.performance.desc,
+      link: localizePath('/security/', language),
+      prefetch: 'security',
+    }
+  ];
+
+  const proofCards: Array<{
+    icon: ReactNode;
+    value: string;
+    label: string;
+    detail: string;
+  }> = [
+    {
+      icon: <Gauge className="h-5 w-5" />,
+      value: `${engineeringEvidence.lighthouse.desktop.performance}/${engineeringEvidence.lighthouse.desktop.accessibility}`,
+      label: t.home.proof.cards.lighthouse.label,
+      detail: t.home.proof.cards.lighthouse.detail,
+    },
+    {
+      icon: <ShieldCheck className="h-5 w-5" />,
+      value: `${engineeringEvidence.delivery.prerenderedRoutes}`,
+      label: t.home.proof.cards.delivery.label,
+      detail: t.home.proof.cards.delivery.detail,
+    },
+    {
+      icon: <GitBranch className="h-5 w-5" />,
+      value: `${engineeringEvidence.github.publicRepositories}`,
+      label: t.home.proof.cards.openSource.label,
+      detail: t.home.proof.cards.openSource.detail,
+    },
+    {
+      icon: <Globe2 className="h-5 w-5" />,
+      value: `${engineeringEvidence.delivery.supportedLanguages}`,
+      label: t.home.proof.cards.languages.label,
+      detail: t.home.proof.cards.languages.detail,
+    },
+  ];
+  const growthCopy = homeGrowthCopy[language];
+  const featuredArticles = articles.slice(0, 3).map((article) => localizeArticle(article, language));
+  const featuredGrowthServices = growthServicePages
+    .slice(0, 3)
+    .map((service) => localizeGrowthServicePage(service, language));
 
   return (
-    <div className="bg-background">
-      <SEO
-        title={copy.seoTitle}
-        description={copy.seoDescription}
-        keywords="eBPF compatibility, Linux kernel compatibility, BPF LSM, runtime security, BPFCompat, AegisBPF"
-        imageAlt="Kernel Guard — Linux and eBPF infrastructure"
+    <div className="flex flex-col bg-background">
+      <SEO 
+        title={t.seo.home.title}
+        description={t.seo.home.description}
+        keywords={t.seo.home.keywords}
       />
-
-      {/* Apple-like hierarchy: one idea, one product visual, very little chrome. */}
-      <section className="border-b border-border pt-32 pb-20 md:pt-44 md:pb-28">
-        <div className="mx-auto max-w-6xl px-4 text-center sm:px-6 lg:px-8">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-foreground/45">
-            Kernel Guard · Linux / eBPF
-          </p>
-
-          <h1 className="mx-auto mt-7 max-w-5xl text-5xl font-medium leading-[0.98] tracking-[-0.05em] text-foreground sm:text-6xl md:text-8xl">
-            {copy.hero.titleBefore}{' '}
-            <span className="text-primary">{copy.hero.titleEvidence}</span>{' '}
-            {copy.hero.titleAfter}
-          </h1>
-
-          <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-foreground/60 md:text-xl">
-            {copy.hero.description}
-          </p>
-
-          <div className="mt-8 flex flex-wrap justify-center gap-x-7 gap-y-3">
-            <Link
-              to={localizePath('/projects/bpfcompat/', language)}
-              className="inline-flex items-center gap-1.5 text-base font-medium text-primary hover:underline"
-            >
-              {copy.hero.primaryCta}
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-            <a
-              href="https://github.com/Kernel-Guard"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-base font-medium text-primary hover:underline"
-            >
-              {copy.hero.secondaryCta}
-              <ExternalLink className="h-3.5 w-3.5" />
-            </a>
-          </div>
-
-          <div className="mt-16 md:mt-20">
-            <EvidencePreview fullMatrixHref={localizePath('/projects/bpfcompat/', language)} />
-          </div>
-        </div>
-      </section>
-
-      {/* Large editorial statement instead of a grid of marketing cards. */}
-      <section className="border-b border-border py-28 md:py-40">
-        <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-          <p className="text-4xl font-medium leading-[1.08] tracking-[-0.04em] text-foreground md:text-6xl lg:text-7xl">
-            Before production, <span className="text-foreground/35">compatibility.</span>
-            <br />
-            At runtime, <span className="text-foreground/35">enforcement.</span>
-          </p>
-        </div>
-      </section>
-
-      {/* Product 01 — generous Apple-style storytelling, IBM-aligned 12-column grid. */}
-      <section className="border-b border-border bg-[#f5f5f7] py-24 dark:bg-[#1d1d1f] md:py-32">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
-          <div className="lg:col-span-7">
-            <p className="font-mono text-xs uppercase tracking-[0.16em] text-foreground/45">
-              01 · {copy.products.preDeployment}
-            </p>
-            <h2 className="mt-5 text-5xl font-medium tracking-[-0.045em] text-foreground md:text-7xl">
-              BPFCompat
-            </h2>
-            <p className="mt-7 max-w-2xl text-xl leading-relaxed text-foreground/60 md:text-2xl">
-              {copy.products.bpfDesc}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-x-7 gap-y-3">
-              <Link
-                to={localizePath('/projects/bpfcompat/', language)}
-                className="inline-flex items-center gap-1.5 font-medium text-primary hover:underline"
-              >
-                {copy.products.explore} BPFCompat
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <a
-                href="https://github.com/Kernel-Guard/bpfcompat"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 font-medium text-primary hover:underline"
-              >
-                GitHub
-                <ExternalLink className="h-3.5 w-3.5" />
-              </a>
+      {/* Hero Section - IBM Style */}
+      <section className="kg-dot-grid pt-32 pb-20 md:pt-48 md:pb-32 border-b border-border overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="max-w-4xl relative z-10">
+              <h1 className="text-5xl md:text-7xl font-light text-foreground leading-[1.1] mb-8">
+                {t.home.heroTitle1} <br />
+                <span className="font-semibold">{t.home.heroTitle2}</span>
+                <span aria-hidden="true" className="kg-caret" />
+              </h1>
+              
+              <p className="text-xl md:text-2xl text-foreground mb-12 max-w-2xl leading-relaxed font-light">
+                {t.home.heroDesc}
+              </p>
+              
+              <div className="flex flex-col sm:flex-row flex-wrap gap-4">
+                <Link
+                  to={localizePath('/projects/bpfcompat/', language)}
+                  onPointerEnter={() => prefetchRoutes(['projects', 'projectDetails'])}
+                  onFocus={() => prefetchRoutes(['projects', 'projectDetails'])}
+                  className="inline-flex items-center justify-between px-6 py-4 kg-action-primary transition-colors w-full sm:w-64"
+                >
+                  <span className="font-medium">{t.home.viewArch}</span>
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+                <Link
+                  to={localizePath('/projects/aegis-bpf/', language)}
+                  onPointerEnter={() => prefetchRoute('projectDetails')}
+                  onFocus={() => prefetchRoute('projectDetails')}
+                  className="inline-flex items-center justify-between px-6 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors w-full sm:w-64"
+                >
+                  <span className="font-medium">{t.home.viewCompletedProjects}</span>
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+                <a
+                  href="https://github.com/Kernel-Guard"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-between px-6 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors w-full sm:w-64"
+                >
+                  <span className="font-medium">{t.home.githubRepo}</span>
+                  <ArrowRight className="w-5 h-5" />
+                </a>
+              </div>
             </div>
-          </div>
 
-          <div className="flex items-end lg:col-span-5 lg:justify-end">
-            <div className="w-full max-w-md border-t border-foreground/20 pt-5">
-              <dl className="space-y-5">
-                <div className="flex items-baseline justify-between gap-6">
-                  <dt className="text-sm text-foreground/45">Execution</dt>
-                  <dd className="text-right text-sm font-medium text-foreground">Real vendor kernels</dd>
-                </div>
-                <div className="flex items-baseline justify-between gap-6 border-t border-foreground/10 pt-5">
-                  <dt className="text-sm text-foreground/45">Interfaces</dt>
-                  <dd className="text-right text-sm font-medium text-foreground">CLI · Action · Go library</dd>
-                </div>
-                <div className="flex items-baseline justify-between gap-6 border-t border-foreground/10 pt-5">
-                  <dt className="text-sm text-foreground/45">Architectures</dt>
-                  <dd className="text-right text-sm font-medium text-foreground">x86_64 · ARM64</dd>
-                </div>
-              </dl>
+            {/* Animation Container */}
+            <div className="hidden lg:flex justify-center items-center relative">
+              <SecurityTerminal />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Product 02 — one purposeful dark moment, not alternating dashboard bands. */}
-      <section className="border-b border-black bg-[#161616] py-24 text-white md:py-32">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
-          <div className="lg:col-span-7">
-            <p className="font-mono text-xs uppercase tracking-[0.16em] text-white/45">
-              02 · {copy.products.runtime}
-            </p>
-            <h2 className="mt-5 text-5xl font-medium tracking-[-0.045em] md:text-7xl">
-              AegisBPF
-            </h2>
-            <p className="mt-7 max-w-2xl text-xl leading-relaxed text-white/60 md:text-2xl">
-              {copy.products.aegisDesc}
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-3">
-              <Link
-                to={localizePath('/projects/aegis-bpf/', language)}
-                className="inline-flex items-center gap-1.5 font-medium text-[#78a9ff] hover:underline"
-              >
-                {copy.products.explore} AegisBPF
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/40">
-                Preview
+      {/* Upstream integrations — customer-strip rhythm, claim-safe wording */}
+      <section className="border-b border-border bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-12 items-stretch">
+            <div className="md:col-span-4 py-8 md:py-10 flex items-center">
+              <span className="font-mono text-xs uppercase tracking-[0.18em] text-foreground/50">
+                {upstreamLabel[language]}
               </span>
             </div>
-          </div>
-
-          <div className="flex items-end lg:col-span-5 lg:justify-end">
-            <div className="w-full max-w-md border-t border-white/20 pt-5">
-              <dl className="space-y-5">
-                <div className="flex items-baseline justify-between gap-6">
-                  <dt className="text-sm text-white/40">Enforcement</dt>
-                  <dd className="text-right text-sm font-medium text-white">BPF LSM</dd>
-                </div>
-                <div className="flex items-baseline justify-between gap-6 border-t border-white/10 pt-5">
-                  <dt className="text-sm text-white/40">Scope</dt>
-                  <dd className="text-right text-sm font-medium text-white">Cgroup-aware policy</dd>
-                </div>
-                <div className="flex items-baseline justify-between gap-6 border-t border-white/10 pt-5">
-                  <dt className="text-sm text-white/40">Operations</dt>
-                  <dd className="text-right text-sm font-medium text-white">Events · metrics · Kubernetes</dd>
-                </div>
-              </dl>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Social proof presented as editorial evidence, not logo/cards. */}
-      <section className="border-b border-border py-28 md:py-40">
-        <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-foreground/45">
-            {copy.integrations.eyebrow}
-          </p>
-          <h2 className="mt-6 text-4xl font-medium leading-[1.05] tracking-[-0.04em] text-foreground md:text-6xl lg:text-7xl">
-            Running upstream in
-            <br />
-            Falco and Inspektor Gadget.
-          </h2>
-          <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-foreground/60">
-            {copy.integrations.disclaimer}
-          </p>
-
-          <div className="mt-8 flex flex-wrap justify-center gap-x-7 gap-y-3">
             <a
               href="https://github.com/falcosecurity/libs/pull/3024"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 font-medium text-primary hover:underline"
+              className="md:col-span-4 py-8 md:py-10 md:px-8 border-t md:border-t-0 md:border-l border-border flex items-center justify-between group"
             >
-              Falco PR #3024
-              <ExternalLink className="h-3.5 w-3.5" />
+              <span className="text-2xl md:text-3xl font-medium tracking-tight text-foreground group-hover:text-primary transition-colors">
+                Falco
+              </span>
+              <ArrowRight className="w-5 h-5 text-foreground/40 group-hover:text-primary transition-colors" />
             </a>
             <a
               href="https://github.com/inspektor-gadget/inspektor-gadget/pull/5708"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 font-medium text-primary hover:underline"
+              className="md:col-span-4 py-8 md:py-10 md:px-8 border-t md:border-t-0 md:border-l border-border flex items-center justify-between group"
             >
-              Inspektor Gadget PR #5708
-              <ExternalLink className="h-3.5 w-3.5" />
+              <span className="text-2xl md:text-3xl font-medium tracking-tight text-foreground group-hover:text-primary transition-colors">
+                Inspektor Gadget
+              </span>
+              <ArrowRight className="w-5 h-5 text-foreground/40 group-hover:text-primary transition-colors" />
             </a>
           </div>
         </div>
       </section>
 
-      {/* IBM 2x-grid discipline for the technical lifecycle. */}
-      <section className="border-b border-border bg-surface py-24 md:py-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
+      {/* Mission Section - Editorial Style */}
+      <section className="py-24 bg-surface overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
             <div className="lg:col-span-4">
-              <p className="font-mono text-xs uppercase tracking-[0.16em] text-foreground/45">
-                {copy.lifecycle.eyebrow}
-              </p>
-              <h2 className="mt-5 text-4xl font-medium leading-tight tracking-[-0.04em] text-foreground md:text-5xl">
-                {copy.lifecycle.title}
-              </h2>
+              <h2 className="text-3xl font-light mb-6">{t.home.missionTitle}</h2>
             </div>
-
-            <div className="lg:col-span-8">
-              <div className="grid grid-cols-1 border-t border-l border-border sm:grid-cols-2">
-                {copy.lifecycle.stages.slice(0, 4).map((stage) => (
-                  <div key={stage.label} className="min-h-48 border-r border-b border-border p-6 md:p-8">
-                    <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/40">
-                      {stage.label}
-                    </div>
-                    <h3 className="mt-8 text-xl font-medium text-foreground">{stage.title}</h3>
-                    <p className="mt-3 max-w-sm text-sm leading-relaxed text-foreground/55">
-                      {stage.detail}
-                    </p>
-                  </div>
-                ))}
-              </div>
-              <div className="border-r border-b border-l border-border p-6 md:p-8">
-                <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-primary">
-                  05 · AegisBPF
-                </div>
-                <div className="mt-4 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-                  <div>
-                    <h3 className="text-xl font-medium text-foreground">Enforce at runtime.</h3>
-                    <p className="mt-2 text-sm text-foreground/55">
-                      Runtime policy stays close to the kernel after compatibility has been proven.
-                    </p>
-                  </div>
-                  <Link
-                    to={localizePath('/projects/aegis-bpf/', language)}
-                    className="shrink-0 text-sm font-medium text-primary hover:underline"
-                  >
-                    View AegisBPF
-                  </Link>
-                </div>
-              </div>
+            <div className="lg:col-span-8 space-y-8 text-lg text-foreground leading-relaxed font-light">
+              <p>{t.home.missionP1}</p>
+              <p>{t.home.missionP2}</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-28 md:py-36">
-        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-medium tracking-[-0.04em] text-foreground md:text-6xl">
-            {copy.final.title}
-          </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-foreground/60">
-            {copy.final.description}
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-x-7 gap-y-3">
+      {/* Evidence Section */}
+      <section className="py-24 border-t border-border bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div className="lg:col-span-4">
+              <div className="inline-block px-3 py-1 mb-6 border border-border text-xs font-mono tracking-widest text-foreground/70 uppercase">
+                {t.home.proof.badge}
+              </div>
+              <h2 className="text-3xl md:text-4xl font-light mb-6">{t.home.proof.title}</h2>
+              <p className="text-lg text-foreground/70 font-light leading-relaxed">
+                {t.home.proof.desc}
+              </p>
+            </div>
+
+            <div className="lg:col-span-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {proofCards.map((card) => (
+                  <div key={card.label} className="border border-border bg-surface p-6">
+                    <div className="mb-8 flex items-center justify-between text-primary">
+                      {card.icon}
+                      <span className="font-mono text-xs text-foreground/60">
+                        {engineeringEvidence.measuredAt}
+                      </span>
+                    </div>
+                    <div className="font-mono text-4xl text-foreground mb-3">{card.value}</div>
+                    <h3 className="text-base font-medium text-foreground mb-2">{card.label}</h3>
+                    <p className="text-sm leading-relaxed text-foreground/70">{card.detail}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 border border-border bg-surface p-5 text-sm text-foreground/70">
+                <div>
+                  <span className="font-mono text-foreground">{engineeringEvidence.delivery.indexableUrls}</span>{' '}
+                  {t.home.proof.summary.indexableUrls}
+                </div>
+                <div>
+                  <span className="font-mono text-foreground">{engineeringEvidence.lighthouse.desktop.totalBlockingTime}</span>{' '}
+                  {t.home.proof.summary.desktopTbt}
+                </div>
+                <div>
+                  <span className="font-mono text-foreground">
+                    {engineeringEvidence.github.latestPublicUpdate}
+                  </span>{' '}
+                  {t.home.proof.summary.latestUpdate}
+                </div>
+              </div>
+              <p className="mt-4 text-xs text-foreground/50 font-mono">{t.home.proof.footnote}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 border-t border-border bg-surface">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-12">
+            <div className="lg:col-span-5">
+              <div className="inline-block px-3 py-1 mb-6 border border-border text-xs font-mono tracking-widest text-foreground/70 uppercase">
+                {growthCopy.badge}
+              </div>
+              <h2 className="text-3xl md:text-4xl font-light mb-6">
+                {growthCopy.title}
+              </h2>
+              <p className="text-lg text-foreground/70 font-light leading-relaxed">
+                {growthCopy.description}
+              </p>
+            </div>
+            <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-3 gap-4">
+              {featuredGrowthServices.map((service) => (
+                <Link
+                  key={service.slug}
+                  to={localizePath(`/services/${service.slug}/`, language)}
+                  onPointerEnter={() => prefetchRoute('serviceLandingPage')}
+                  onFocus={() => prefetchRoute('serviceLandingPage')}
+                  className="group border border-border bg-background p-5 hover:border-primary/50 transition-colors"
+                >
+                  <h3 className="text-lg font-medium text-foreground group-hover:text-primary transition-colors mb-3">
+                    {service.shortTitle}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-foreground/65">{service.description}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {featuredArticles.map((article) => (
+              <Link
+                key={article.slug}
+                to={localizePath(`/articles/${article.slug}/`, language)}
+                onPointerEnter={() => prefetchRoute('articlePage')}
+                onFocus={() => prefetchRoute('articlePage')}
+                className="group border border-border bg-background p-6 hover:border-primary/50 transition-colors"
+              >
+                <div className="text-xs font-mono uppercase tracking-widest text-foreground/55 mb-5">
+                  {article.readingMinutes} {growthCopy.minRead}
+                </div>
+                <h3 className="text-xl font-light text-foreground group-hover:text-primary transition-colors mb-4">
+                  {article.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-foreground/65 mb-6">{article.description}</p>
+                <span className="inline-flex items-center gap-2 text-sm font-medium text-primary">
+                  {growthCopy.readArticle}
+                  <ArrowRight className="h-4 w-4" />
+                </span>
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-8">
             <Link
-              to={localizePath('/projects/bpfcompat/', language)}
-              className="inline-flex items-center gap-1.5 font-medium text-primary hover:underline"
+              to={localizePath('/articles/', language)}
+              onPointerEnter={() => prefetchRoute('articles')}
+              onFocus={() => prefetchRoute('articles')}
+              className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
             >
-              {copy.final.primary}
+              {growthCopy.viewAllArticles}
               <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link
-              to={localizePath('/contact/', language)}
-              className="inline-flex items-center gap-1.5 font-medium text-primary hover:underline"
+          </div>
+        </div>
+      </section>
+
+      {/* Tech Stack Marquee Section */}
+      <section className="py-24 border-t border-border bg-surface overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
+          <h2 className="text-3xl font-light mb-4">{t.home.techStackTitle}</h2>
+          <p className="text-lg text-foreground/70 font-light max-w-2xl mx-auto">{t.home.techStackDesc}</p>
+        </div>
+        
+        <div className="relative w-full flex overflow-hidden">
+          {/* Gradient Masks for smooth fade on edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-surface to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-surface to-transparent z-10 pointer-events-none"></div>
+          
+          {/* Marquee Track */}
+          <div className="flex animate-marquee whitespace-nowrap">
+            {/* First Set */}
+            <div className="flex gap-8 px-4 items-center">
+              {['Linux', 'eBPF', 'libbpf', 'Go', 'C++', 'QEMU/KVM', 'Kubernetes', 'CO-RE', 'BPF LSM', 'GitHub Actions'].map((tech, i) => (
+                <div key={i} className="px-6 py-3 border border-border bg-background text-foreground font-mono text-lg font-medium shadow-[0_0_15px_rgba(15,98,254,0.1)]">
+                  {tech}
+                </div>
+              ))}
+            </div>
+            {/* Duplicate Set for infinite loop */}
+            <div className="flex gap-8 px-4 items-center">
+              {['Linux', 'eBPF', 'libbpf', 'Go', 'C++', 'QEMU/KVM', 'Kubernetes', 'CO-RE', 'BPF LSM', 'GitHub Actions'].map((tech, i) => (
+                <div key={`dup-${i}`} className="px-6 py-3 border border-border bg-background text-foreground font-mono text-lg font-medium shadow-[0_0_15px_rgba(15,98,254,0.1)]">
+                  {tech}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section - Bento Grid */}
+      <section className="py-24 border-t border-border bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {features.map((feature, index) => {
+              // Bento Grid layout logic
+              const isLarge = index === 0 || index === 3;
+              return (
+                <div
+                  key={index}
+                  className={`${isLarge ? 'md:col-span-2' : 'md:col-span-1'}`}
+                >
+                  <Link 
+                    to={feature.link} 
+                    onPointerEnter={() => prefetchRoute(feature.prefetch)}
+                    onFocus={() => prefetchRoute(feature.prefetch)}
+                    className="group relative block h-full p-8 bg-surface border border-border hover:border-primary/50 transition-colors overflow-hidden"
+                  >
+                    {/* Hover Glow Effect */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                      <div className="absolute -inset-[100%] bg-gradient-to-r from-transparent via-primary/5 to-transparent rotate-45 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+                    </div>
+
+                    <div className="relative z-10 flex flex-col h-full">
+                      <div className="mb-12">
+                        {feature.icon}
+                      </div>
+                      <h3 className="text-2xl font-medium mb-4">{feature.title}</h3>
+                      <p className="text-foreground/80 text-base leading-relaxed font-light flex-grow">
+                        {feature.description}
+                      </p>
+                      <div className="mt-8 flex justify-end opacity-0 group-hover:opacity-100 transition-opacity translate-x-[-10px] group-hover:translate-x-0 duration-300">
+                        <ArrowRight className="w-6 h-6 text-primary" />
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Principles Section - Startup Focus */}
+      <section className="py-24 border-t border-border bg-surface">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-light mb-16 max-w-2xl">{t.home.principles.title}</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 divide-y md:divide-y-0 md:divide-x divide-border">
+            {t.home.principles.items.map((item, index) => (
+              <div key={index} className={`pt-8 md:pt-0 ${index === 0 ? 'md:pr-8' : index === 1 ? 'md:px-8' : 'md:pl-8'}`}>
+                <div className="text-xl font-medium text-primary mb-4">{item.title}</div>
+                <div className="text-base font-light leading-relaxed text-foreground/80">{item.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Community Section - Build in Public */}
+      <section className="py-24 border-t border-border bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl font-light mb-6">{t.home.community.title}</h2>
+            <p className="text-xl font-light text-foreground/70 mb-10 leading-relaxed">
+              {t.home.community.desc}
+            </p>
+            <a
+              href="https://github.com/Kernel-Guard"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-8 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors"
             >
-              {copy.final.secondary}
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+              <span className="font-medium">{t.nav.github}</span>
+              <ArrowRight className="w-5 h-5 ml-3" />
+            </a>
           </div>
         </div>
       </section>
