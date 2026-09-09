@@ -5,8 +5,8 @@ export const es = {
   seo: {
     ...en.seo,
     home: {
-      title: 'Kernel Guard | Desarrollo web seguro y soluciones de ciberseguridad',
-      description: 'Kernel Guard construye aplicaciones web de alto rendimiento con arquitecturas backend reforzadas y enfoque security-first.',
+      title: 'Kernel Guard | Infraestructura de seguridad Linux y eBPF',
+      description: 'Kernel Guard desarrolla infraestructura open source para validar eBPF en kernels Linux reales antes del despliegue y aplicar políticas en runtime.',
       keywords: en.seo.home.keywords,
     },
     services: {
@@ -43,16 +43,16 @@ export const es = {
   },
   home: {
     ...en.home,
-    heroTitle1: 'Desarrollo web',
-    heroTitle2: 'seguro y escalable',
-    heroDesc: 'Kernel-Guard construye aplicaciones web de alto rendimiento con enfoque security-first y mecanismos avanzados de defensa.',
-    viewArch: 'Ver open source',
-    viewCompletedProjects: 'Casos',
-    missionTitle: 'Ingeniería web security-first',
-    missionP1: 'La seguridad real no se añade al final; se diseña desde la base del código, la arquitectura y el proceso de entrega.',
-    missionP2: 'Nuestro trabajo cubre frontends seguros, APIs reforzadas, administración de datos y operaciones cloud resistentes.',
-    techStackTitle: 'Nuestro arsenal',
-    techStackDesc: 'Construimos con tecnologías modernas, medibles y preparadas para entornos exigentes.',
+    heroTitle1: 'Linux & eBPF',
+    heroTitle2: 'Infraestructura de seguridad',
+    heroDesc: 'Kernel Guard desarrolla herramientas open source para validar eBPF en kernels Linux reales antes del despliegue y aplicar políticas en runtime.',
+    viewArch: 'Explorar BPFCompat',
+    viewCompletedProjects: 'Explorar AegisBPF',
+    missionTitle: 'Seguridad en el límite del kernel',
+    missionP1: 'BPFCompat valida antes del release si un artifact eBPF compilado y el loader real que distribuimos funcionan en los kernels Linux de los usuarios.',
+    missionP2: 'AegisBPF cubre el lado runtime del mismo límite con BPF LSM enforcement, controles con scope y eventos de seguridad estructurados.',
+    techStackTitle: 'Stack del kernel',
+    techStackDesc: 'Tecnologías detrás de nuestro trabajo en Linux, eBPF, compatibilidad y runtime security.',
     proof: {
       ...en.home.proof,
       badge: 'MEDIDO // EVIDENCIA_PUBLICA',
