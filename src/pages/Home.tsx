@@ -39,7 +39,7 @@ function StateMark({ state }: { state: PreviewState }) {
   );
 }
 
-function EvidencePreview() {
+function EvidencePreview({ fullMatrixHref }: { fullMatrixHref: string }) {
   const kernels = report.kernels.slice(0, 4);
   const artifacts = report.artifacts.slice(0, 3);
 
@@ -104,7 +104,7 @@ function EvidencePreview() {
           {report.note}
         </span>
         <Link
-          to="/projects/bpfcompat/"
+          to={fullMatrixHref}
           className="shrink-0 text-sm font-medium text-primary hover:underline"
         >
           Open the full matrix
@@ -140,7 +140,7 @@ export default function Home() {
             {copy.hero.titleAfter}
           </h1>
 
-          <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-foreground/62 md:text-xl">
+          <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-foreground/60 md:text-xl">
             {copy.hero.description}
           </p>
 
@@ -164,7 +164,7 @@ export default function Home() {
           </div>
 
           <div className="mt-16 md:mt-20">
-            <EvidencePreview />
+            <EvidencePreview fullMatrixHref={localizePath('/projects/bpfcompat/', language)} />
           </div>
         </div>
       </section>
@@ -190,7 +190,7 @@ export default function Home() {
             <h2 className="mt-5 text-5xl font-medium tracking-[-0.045em] text-foreground md:text-7xl">
               BPFCompat
             </h2>
-            <p className="mt-7 max-w-2xl text-xl leading-relaxed text-foreground/62 md:text-2xl">
+            <p className="mt-7 max-w-2xl text-xl leading-relaxed text-foreground/60 md:text-2xl">
               {copy.products.bpfDesc}
             </p>
             <div className="mt-8 flex flex-wrap gap-x-7 gap-y-3">
@@ -244,7 +244,7 @@ export default function Home() {
             <h2 className="mt-5 text-5xl font-medium tracking-[-0.045em] md:text-7xl">
               AegisBPF
             </h2>
-            <p className="mt-7 max-w-2xl text-xl leading-relaxed text-white/62 md:text-2xl">
+            <p className="mt-7 max-w-2xl text-xl leading-relaxed text-white/60 md:text-2xl">
               {copy.products.aegisDesc}
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-3">
@@ -293,7 +293,7 @@ export default function Home() {
             <br />
             Falco and Inspektor Gadget.
           </h2>
-          <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-foreground/58">
+          <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-foreground/60">
             {copy.integrations.disclaimer}
           </p>
 
@@ -376,7 +376,7 @@ export default function Home() {
           <h2 className="text-4xl font-medium tracking-[-0.04em] text-foreground md:text-6xl">
             {copy.final.title}
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-foreground/58">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-foreground/60">
             {copy.final.description}
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-x-7 gap-y-3">
