@@ -27,6 +27,8 @@ import {
   loadArticles,
   loadArticlePage,
   loadSecurity,
+  loadUpstreamIntegrations,
+  loadUpstreamIntegrationDetail,
   loadEngineering,
   loadStatus,
   loadChangelog,
@@ -74,6 +76,8 @@ const ServiceLandingPage = lazyRoute(loadServiceLandingPage);
 const Articles = lazyRoute(loadArticles);
 const ArticlePage = lazyRoute(loadArticlePage);
 const Security = lazyRoute(loadSecurity);
+const UpstreamIntegrations = lazyRoute(loadUpstreamIntegrations);
+const UpstreamIntegrationDetail = lazyRoute(loadUpstreamIntegrationDetail);
 const Engineering = lazyRoute(loadEngineering);
 const Status = lazyRoute(loadStatus);
 const Changelog = lazyRoute(loadChangelog);
@@ -129,6 +133,8 @@ function LocalizedRoutes() {
         <Route path="articles" element={<Articles />} />
         <Route path="articles/:slug" element={<ArticlePage />} />
         <Route path="security" element={<Security />} />
+        <Route path="ecosystem/upstream-integrations" element={<UpstreamIntegrations />} />
+        <Route path="ecosystem/upstream-integrations/:id" element={<UpstreamIntegrationDetail />} />
         <Route path="engineering" element={<Engineering />} />
         <Route path="status" element={<Status />} />
         <Route path="changelog" element={<Changelog />} />
