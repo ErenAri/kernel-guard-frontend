@@ -73,6 +73,8 @@ export const loadServiceLandingPage = cacheLoader(() => import('../pages/Service
 export const loadArticles = cacheLoader(() => import('../pages/Articles'));
 export const loadArticlePage = cacheLoader(() => import('../pages/ArticlePage'));
 export const loadSecurity = cacheLoader(() => import('../pages/Security'));
+export const loadUpstreamIntegrations = cacheLoader(() => import('../pages/ecosystem/UpstreamIntegrations'));
+export const loadUpstreamIntegrationDetail = cacheLoader(() => import('../pages/ecosystem/UpstreamIntegrationDetail'));
 export const loadEngineering = cacheLoader(() => import('../pages/Engineering'));
 export const loadStatus = cacheLoader(() => import('../pages/Status'));
 export const loadChangelog = cacheLoader(() => import('../pages/Changelog'));
@@ -96,6 +98,8 @@ const prefetchers = {
   articles: loadArticles,
   articlePage: loadArticlePage,
   security: loadSecurity,
+  upstreamIntegrations: loadUpstreamIntegrations,
+  upstreamIntegrationDetail: loadUpstreamIntegrationDetail,
   engineering: loadEngineering,
   status: loadStatus,
   changelog: loadChangelog,
@@ -142,6 +146,8 @@ export function resolveLoadersForPath(pathname: string): PrefetchRoute[] {
   if (path === '/articles') return ['articles'];
   if (path.startsWith('/articles/')) return ['articlePage'];
   if (path === '/security') return ['security'];
+  if (path === '/ecosystem/upstream-integrations') return ['upstreamIntegrations'];
+  if (path.startsWith('/ecosystem/upstream-integrations/')) return ['upstreamIntegrationDetail'];
   if (path === '/engineering') return ['engineering'];
   if (path === '/status') return ['status'];
   if (path === '/changelog') return ['changelog'];
