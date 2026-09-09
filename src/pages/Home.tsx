@@ -407,14 +407,12 @@ export default function Home() {
             </a>
           </div>
           <pre className="overflow-x-auto border border-[#30363d] bg-[#101318] p-7 font-mono text-xs leading-7 text-[#eef2f6]">
-            <span className="text-[#aab5ff]">$</span> bpfcompat test \
-{'
-'}  --artifact ghcr.io/inspektor-gadget/gadget/trace_open:latest \
-{'
-'}  --quick
-{'
-
-'}<span className="text-[#65c998]">PASS</span>  evidence written to report.json
+            <code>
+              <span className="text-[#aab5ff]">$</span> bpfcompat test {'\\'}
+              {'\n'}  --artifact ghcr.io/inspektor-gadget/gadget/trace_open:latest {'\\'}
+              {'\n'}  --quick
+              {'\n\n'}<span className="text-[#65c998]">PASS</span>  evidence written to report.json
+            </code>
           </pre>
         </div>
       </section>
