@@ -1,361 +1,297 @@
-import { Layout, Server, Database, Zap, ArrowRight, Gauge, GitBranch, Globe2, ShieldCheck } from 'lucide-react';
+import {
+  ArrowRight,
+  Box,
+  CheckCircle2,
+  ExternalLink,
+  GitBranch,
+  Server,
+  ShieldCheck,
+  TerminalSquare,
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
-import type { ReactNode } from 'react';
-import { useLanguage } from '../context/LanguageContext';
-import SecurityTerminal from '../components/SecurityTerminal';
 import SEO from '../components/SEO';
-import { prefetchRoute, prefetchRoutes, type PrefetchRoute } from '../routes/pageLoaders';
-import { engineeringEvidence } from '../data/engineeringEvidence';
+import { useLanguage } from '../context/LanguageContext';
 import { localizePath } from '../i18n/route';
-import { articles, localizeArticle } from '../data/articles';
-import { growthServicePages, localizeGrowthServicePage } from '../data/growthServices';
-import { homeGrowthCopy } from '../i18n/growthContent';
+import { evidenceHomeCopy } from '../i18n/evidenceHome';
+
+const kernelFamilies = [
+  'Ubuntu',
+  'Debian',
+  'RHEL family',
+  'Rocky Linux',
+  'AlmaLinux',
+  'CentOS Stream',
+  'Amazon Linux',
+  'Oracle Linux',
+  'SUSE / openSUSE',
+  'Fedora CoreOS',
+  'RHCOS / OpenShift BYO',
+  'Linux mainline',
+];
+
+function SectionEyebrow({ children }: { children: string }) {
+  return (
+    <div className="inline-flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+      <span className="h-px w-6 bg-primary" aria-hidden="true" />
+      {children}
+    </div>
+  );
+}
+
+function KernelMatrixTerminal({ label }: { label: string }) {
+  const rows = [
+    ['ubuntu-20.04', '5.4', 'FAIL', 'ringbuf unsupported', false],
+    ['almalinux-8', '4.18', 'PASS', 'vendor backport', true],
+    ['ubuntu-22.04', '5.15', 'PASS', 'load + attach', true],
+  ] as const;
+
+  return (
+    <div className="border border-[#30363d] bg-[#0b0d10] text-[#e6edf3] shadow-2xl shadow-black/20">
+      <div className="flex h-11 items-center justify-between border-b border-[#252b34] px-4">
+        <span className="font-mono text-[11px] text-[#8b949e]">{label}</span>
+        <div className="flex gap-1.5" aria-hidden="true">
+          <span className="h-2 w-2 rounded-full bg-[#343b46]" />
+          <span className="h-2 w-2 rounded-full bg-[#343b46]" />
+          <span className="h-2 w-2 rounded-full bg-[#343b46]" />
+        </div>
+      </div>
+      <div className="overflow-x-auto p-5 font-mono text-xs leading-7">
+        <div className="min-w-[510px]">
+          <div>
+            <span className="text-[#9aa8ff]">$</span>{' '}
+            bpfcompat test --artifact ringbuf.bpf.o --matrix matrices/quirk-library.yaml
+          </div>
+          <div className="mb-3 text-[#7d8794]">booting disposable vendor-kernel VMs...</div>
+          {rows.map(([target, kernel, status, detail, pass]) => (
+            <div
+              key={target}
+              className="grid grid-cols-[150px_70px_65px_1fr] gap-3 border-t border-[#1d222a] py-1.5"
+            >
+              <span>{target}</span>
+              <span className="text-[#9aa3af]">{kernel}</span>
+              <span className={pass ? 'text-[#65c998]' : 'text-[#ff858d]'}>{status}</span>
+              <span className="text-[#a7b0bd]">{detail}</span>
+            </div>
+          ))}
+          <div className="mt-4 text-[#8b949e]">
+            evidence → report.json · serial.log · verifier output
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
-  const { language, t } = useLanguage();
+  const { language } = useLanguage();
+  const copy = evidenceHomeCopy[language];
 
-  const features: Array<{
-    icon: ReactNode;
-    title: string;
-    description: string;
-    link: string;
-    prefetch: PrefetchRoute;
-  }> = [
+  const productCards = [
     {
-      icon: <Layout className="w-6 h-6 text-primary" />,
-      title: t.home.features.frontend.title,
-      description: t.home.features.frontend.desc,
-      link: localizePath('/services/secure-frontend/', language),
-      prefetch: 'secureFrontend',
+      phase: copy.products.preDeployment,
+      status: copy.products.openSource,
+      title: 'BPFCompat',
+      description: copy.products.bpfDesc,
+      href: localizePath('/projects/bpfcompat/', language),
+      bullets: [
+        'Disposable QEMU/KVM validation',
+        'CLI · GitHub Action · Go library',
+        'Real project-loader command mode',
+        'JSON / Markdown compatibility evidence',
+      ],
+      statusClass: 'border-emerald-600/30 bg-emerald-500/5 text-emerald-700 dark:text-emerald-300',
     },
     {
-      icon: <Server className="w-6 h-6 text-primary" />,
-      title: t.home.features.backend.title,
-      description: t.home.features.backend.desc,
-      link: localizePath('/services/hardened-backend/', language),
-      prefetch: 'hardenedBackend',
+      phase: copy.products.runtime,
+      status: copy.products.preview,
+      title: 'AegisBPF',
+      description: copy.products.aegisDesc,
+      href: localizePath('/projects/aegis-bpf/', language),
+      bullets: [
+        'BPF LSM enforcement',
+        'Cgroup-scoped policy controls',
+        'Audit fallback + forensic events',
+        'Kubernetes deployment paths',
+      ],
+      statusClass: 'border-amber-600/30 bg-amber-500/5 text-amber-700 dark:text-amber-300',
     },
-    {
-      icon: <Database className="w-6 h-6 text-primary" />,
-      title: t.home.features.data.title,
-      description: t.home.features.data.desc,
-      link: localizePath('/services/data-protection/', language),
-      prefetch: 'dataProtection',
-    },
-    {
-      icon: <Zap className="w-6 h-6 text-primary" />,
-      title: t.home.features.performance.title,
-      description: t.home.features.performance.desc,
-      link: localizePath('/services/high-performance/', language),
-      prefetch: 'highPerformance',
-    }
   ];
 
-  const proofCards: Array<{
-    icon: ReactNode;
-    value: string;
-    label: string;
-    detail: string;
-  }> = [
-    {
-      icon: <Gauge className="h-5 w-5" />,
-      value: `${engineeringEvidence.lighthouse.desktop.performance}/${engineeringEvidence.lighthouse.desktop.accessibility}`,
-      label: t.home.proof.cards.lighthouse.label,
-      detail: t.home.proof.cards.lighthouse.detail,
-    },
-    {
-      icon: <ShieldCheck className="h-5 w-5" />,
-      value: `${engineeringEvidence.delivery.prerenderedRoutes}`,
-      label: t.home.proof.cards.delivery.label,
-      detail: t.home.proof.cards.delivery.detail,
-    },
-    {
-      icon: <GitBranch className="h-5 w-5" />,
-      value: `${engineeringEvidence.github.publicRepositories}`,
-      label: t.home.proof.cards.openSource.label,
-      detail: t.home.proof.cards.openSource.detail,
-    },
-    {
-      icon: <Globe2 className="h-5 w-5" />,
-      value: `${engineeringEvidence.delivery.supportedLanguages}`,
-      label: t.home.proof.cards.languages.label,
-      detail: t.home.proof.cards.languages.detail,
-    },
+  const proofItems = [
+    [copy.proof.upstreamLabel, copy.proof.upstreamValue],
+    [copy.proof.executionLabel, copy.proof.executionValue],
+    [copy.proof.architecturesLabel, copy.proof.architecturesValue],
+    [copy.proof.provenanceLabel, copy.proof.provenanceValue],
   ];
-  const growthCopy = homeGrowthCopy[language];
-  const featuredArticles = articles.slice(0, 3).map((article) => localizeArticle(article, language));
-  const featuredGrowthServices = growthServicePages
-    .slice(0, 3)
-    .map((service) => localizeGrowthServicePage(service, language));
+
+  const trustIcons = [Server, Box, ShieldCheck, GitBranch, CheckCircle2, TerminalSquare];
 
   return (
     <div className="flex flex-col bg-background">
-      <SEO 
-        title={t.seo.home.title}
-        description={t.seo.home.description}
-        keywords={t.seo.home.keywords}
+      <SEO
+        title={copy.seoTitle}
+        description={copy.seoDescription}
+        keywords="eBPF compatibility, Linux kernel compatibility, BPF LSM, runtime security, BPFCompat, AegisBPF"
+        imageAlt="Kernel Guard — eBPF compatibility evidence and runtime enforcement"
       />
-      {/* Hero Section - IBM Style */}
-      <section className="kg-dot-grid pt-32 pb-20 md:pt-48 md:pb-32 border-b border-border overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="max-w-4xl relative z-10">
-              <h1 className="text-5xl md:text-7xl font-light text-foreground leading-[1.1] mb-8">
-                {t.home.heroTitle1} <br />
-                <span className="font-semibold">{t.home.heroTitle2}</span>
-                <span aria-hidden="true" className="kg-caret" />
+
+      <section className="kg-dot-grid overflow-hidden border-b border-border pt-28 pb-20 md:pt-40 md:pb-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[1.05fr_.95fr] lg:gap-20">
+            <div className="relative z-10">
+              <SectionEyebrow>{copy.hero.eyebrow}</SectionEyebrow>
+              <h1 className="mt-7 max-w-4xl text-5xl font-light leading-[0.98] tracking-[-0.045em] text-foreground sm:text-6xl md:text-7xl">
+                {copy.hero.titleBefore}{' '}
+                <span className="font-medium text-primary">{copy.hero.titleEvidence}</span>{' '}
+                {copy.hero.titleAfter}
               </h1>
-              
-              <p className="text-xl md:text-2xl text-foreground mb-12 max-w-2xl leading-relaxed font-light">
-                {t.home.heroDesc}
+              <p className="mt-8 max-w-2xl text-lg font-light leading-relaxed text-foreground/70 md:text-xl">
+                {copy.hero.description}
               </p>
-              
-              <div className="flex flex-col sm:flex-row flex-wrap gap-4">
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link
-                  to={localizePath('/projects/', language)}
-                  onPointerEnter={() => prefetchRoutes(['projects', 'projectDetails'])}
-                  onFocus={() => prefetchRoutes(['projects', 'projectDetails'])}
-                  className="inline-flex items-center justify-between px-6 py-4 kg-action-primary transition-colors w-full sm:w-64"
+                  to={localizePath('/projects/bpfcompat/', language)}
+                  className="kg-action-primary inline-flex min-h-12 items-center justify-between gap-8 px-5 py-3 font-medium transition-colors"
                 >
-                  <span className="font-medium">{t.home.viewArch}</span>
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-                <Link
-                  to={localizePath('/completed-projects/', language)}
-                  onPointerEnter={() => prefetchRoutes(['completedProjects', 'completedProjectDetails'])}
-                  onFocus={() => prefetchRoutes(['completedProjects', 'completedProjectDetails'])}
-                  className="inline-flex items-center justify-between px-6 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors w-full sm:w-64"
-                >
-                  <span className="font-medium">{t.home.viewCompletedProjects}</span>
-                  <ArrowRight className="w-5 h-5" />
+                  {copy.hero.primaryCta}
+                  <ArrowRight className="h-5 w-5" />
                 </Link>
                 <a
-                  href="https://github.com/Kernel-Guard"
+                  href="https://github.com/Kernel-Guard/bpfcompat"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-between px-6 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors w-full sm:w-64"
+                  className="inline-flex min-h-12 items-center justify-between gap-8 border border-foreground px-5 py-3 font-medium text-foreground transition-colors hover:bg-foreground hover:text-background"
                 >
-                  <span className="font-medium">{t.home.githubRepo}</span>
-                  <ArrowRight className="w-5 h-5" />
+                  {copy.hero.secondaryCta}
+                  <ExternalLink className="h-4 w-4" />
                 </a>
               </div>
+              <p className="mt-5 font-mono text-xs leading-relaxed text-foreground/50">{copy.hero.note}</p>
             </div>
 
-            {/* Animation Container */}
-            <div className="hidden lg:flex justify-center items-center relative">
-              <SecurityTerminal />
-            </div>
+            <KernelMatrixTerminal label={copy.hero.terminalLabel} />
           </div>
         </div>
       </section>
 
-      {/* Mission Section - Editorial Style */}
-      <section className="py-24 bg-surface overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
-            <div className="lg:col-span-4">
-              <h2 className="text-3xl font-light mb-6">{t.home.missionTitle}</h2>
+      <section className="border-b border-border bg-surface">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
+          {proofItems.map(([label, value], index) => (
+            <div
+              key={label}
+              className={`flex min-h-28 flex-col justify-center py-6 sm:px-6 ${
+                index > 0 ? 'border-t border-border sm:border-t-0 lg:border-l' : ''
+              }`}
+            >
+              <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-foreground/50">
+                {label}
+              </span>
+              <span className="mt-2 text-lg font-medium tracking-tight text-foreground">{value}</span>
             </div>
-            <div className="lg:col-span-8 space-y-8 text-lg text-foreground leading-relaxed font-light">
-              <p>{t.home.missionP1}</p>
-              <p>{t.home.missionP2}</p>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
-      {/* Evidence Section */}
-      <section className="py-24 border-t border-border bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            <div className="lg:col-span-4">
-              <div className="inline-block px-3 py-1 mb-6 border border-border text-xs font-mono tracking-widest text-foreground/70 uppercase">
-                {t.home.proof.badge}
-              </div>
-              <h2 className="text-3xl md:text-4xl font-light mb-6">{t.home.proof.title}</h2>
-              <p className="text-lg text-foreground/70 font-light leading-relaxed">
-                {t.home.proof.desc}
-              </p>
-            </div>
+      <section className="border-b border-border bg-background py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionEyebrow>{copy.problem.eyebrow}</SectionEyebrow>
+          <h2 className="mt-5 max-w-4xl text-4xl font-light leading-tight tracking-[-0.035em] md:text-6xl">
+            {copy.problem.title}
+          </h2>
+          <p className="mt-6 max-w-3xl text-lg font-light leading-relaxed text-foreground/65">
+            {copy.problem.description}
+          </p>
 
-            <div className="lg:col-span-8">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {proofCards.map((card) => (
-                  <div key={card.label} className="border border-border bg-surface p-6">
-                    <div className="mb-8 flex items-center justify-between text-primary">
-                      {card.icon}
-                      <span className="font-mono text-xs text-foreground/60">
-                        {engineeringEvidence.measuredAt}
-                      </span>
-                    </div>
-                    <div className="font-mono text-4xl text-foreground mb-3">{card.value}</div>
-                    <h3 className="text-base font-medium text-foreground mb-2">{card.label}</h3>
-                    <p className="text-sm leading-relaxed text-foreground/70">{card.detail}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 border border-border bg-surface p-5 text-sm text-foreground/70">
-                <div>
-                  <span className="font-mono text-foreground">{engineeringEvidence.delivery.indexableUrls}</span>{' '}
-                  {t.home.proof.summary.indexableUrls}
-                </div>
-                <div>
-                  <span className="font-mono text-foreground">{engineeringEvidence.lighthouse.desktop.totalBlockingTime}</span>{' '}
-                  {t.home.proof.summary.desktopTbt}
-                </div>
-                <div>
-                  <span className="font-mono text-foreground">
-                    {engineeringEvidence.github.latestPublicUpdate}
-                  </span>{' '}
-                  {t.home.proof.summary.latestUpdate}
-                </div>
-              </div>
-              <p className="mt-4 text-xs text-foreground/50 font-mono">{t.home.proof.footnote}</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 border-t border-border bg-surface">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-12">
-            <div className="lg:col-span-5">
-              <div className="inline-block px-3 py-1 mb-6 border border-border text-xs font-mono tracking-widest text-foreground/70 uppercase">
-                {growthCopy.badge}
-              </div>
-              <h2 className="text-3xl md:text-4xl font-light mb-6">
-                {growthCopy.title}
-              </h2>
-              <p className="text-lg text-foreground/70 font-light leading-relaxed">
-                {growthCopy.description}
-              </p>
-            </div>
-            <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-3 gap-4">
-              {featuredGrowthServices.map((service) => (
-                <Link
-                  key={service.slug}
-                  to={localizePath(`/services/${service.slug}/`, language)}
-                  onPointerEnter={() => prefetchRoute('serviceLandingPage')}
-                  onFocus={() => prefetchRoute('serviceLandingPage')}
-                  className="group border border-border bg-background p-5 hover:border-primary/50 transition-colors"
-                >
-                  <h3 className="text-lg font-medium text-foreground group-hover:text-primary transition-colors mb-3">
-                    {service.shortTitle}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-foreground/65">{service.description}</p>
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {featuredArticles.map((article) => (
-              <Link
-                key={article.slug}
-                to={localizePath(`/articles/${article.slug}/`, language)}
-                onPointerEnter={() => prefetchRoute('articlePage')}
-                onFocus={() => prefetchRoute('articlePage')}
-                className="group border border-border bg-background p-6 hover:border-primary/50 transition-colors"
+          <div className="mt-12 grid grid-cols-1 border border-border md:grid-cols-3">
+            {copy.problem.cards.map((card, index) => (
+              <article
+                key={card.title}
+                className={`min-h-64 bg-surface p-7 ${
+                  index > 0 ? 'border-t border-border md:border-l md:border-t-0' : ''
+                }`}
               >
-                <div className="text-xs font-mono uppercase tracking-widest text-foreground/55 mb-5">
-                  {article.readingMinutes} {growthCopy.minRead}
-                </div>
-                <h3 className="text-xl font-light text-foreground group-hover:text-primary transition-colors mb-4">
-                  {article.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-foreground/65 mb-6">{article.description}</p>
-                <span className="inline-flex items-center gap-2 text-sm font-medium text-primary">
-                  {growthCopy.readArticle}
-                  <ArrowRight className="h-4 w-4" />
-                </span>
-              </Link>
+                <span className="font-mono text-xs text-primary">0{index + 1}</span>
+                <h3 className="mt-10 text-2xl font-normal tracking-tight">{card.title}</h3>
+                <p className="mt-4 font-light leading-relaxed text-foreground/65">{card.description}</p>
+              </article>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="mt-8">
-            <Link
-              to={localizePath('/articles/', language)}
-              onPointerEnter={() => prefetchRoute('articles')}
-              onFocus={() => prefetchRoute('articles')}
-              className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
-            >
-              {growthCopy.viewAllArticles}
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+      <section id="products" className="border-b border-border bg-surface py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionEyebrow>{copy.products.eyebrow}</SectionEyebrow>
+          <h2 className="mt-5 max-w-4xl text-4xl font-light leading-tight tracking-[-0.035em] md:text-6xl">
+            {copy.products.title}
+          </h2>
+          <p className="mt-6 max-w-3xl text-lg font-light text-foreground/65">{copy.products.description}</p>
+
+          <div className="mt-12 grid grid-cols-1 gap-5 lg:grid-cols-2">
+            {productCards.map((product) => (
+              <article
+                key={product.title}
+                className="relative flex min-h-[440px] flex-col overflow-hidden border border-border bg-background p-8 md:p-10"
+              >
+                <div className="relative z-10 flex items-center justify-between gap-4">
+                  <span className="font-mono text-xs uppercase tracking-[0.14em] text-foreground/50">
+                    {product.phase}
+                  </span>
+                  <span className={`border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.12em] ${product.statusClass}`}>
+                    {product.status}
+                  </span>
+                </div>
+                <h3 className="relative z-10 mt-12 text-5xl font-light tracking-[-0.045em]">{product.title}</h3>
+                <p className="relative z-10 mt-5 max-w-xl text-lg font-light leading-relaxed text-foreground/65">
+                  {product.description}
+                </p>
+                <ul className="relative z-10 mt-7">
+                  {product.bullets.map((bullet) => (
+                    <li key={bullet} className="border-t border-border py-2.5 font-mono text-xs text-foreground/60">
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+                <div className="relative z-10 mt-auto pt-7">
+                  <Link
+                    to={product.href}
+                    className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+                  >
+                    {copy.products.explore} {product.title}
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+                <div
+                  className="pointer-events-none absolute -right-28 -bottom-36 h-80 w-80 rotate-45 border border-border"
+                  aria-hidden="true"
+                />
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Tech Stack Marquee Section */}
-      <section className="py-24 border-t border-border bg-surface overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
-          <h2 className="text-3xl font-light mb-4">{t.home.techStackTitle}</h2>
-          <p className="text-lg text-foreground/70 font-light max-w-2xl mx-auto">{t.home.techStackDesc}</p>
-        </div>
-        
-        <div className="relative w-full flex overflow-hidden">
-          {/* Gradient Masks for smooth fade on edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-surface to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-surface to-transparent z-10 pointer-events-none"></div>
-          
-          {/* Marquee Track */}
-          <div className="flex animate-marquee whitespace-nowrap">
-            {/* First Set */}
-            <div className="flex gap-8 px-4 items-center">
-              {['React', 'TypeScript', 'Node.js', 'Rust', 'Go', 'Docker', 'Kubernetes', 'PostgreSQL', 'GraphQL', 'WebAssembly'].map((tech, i) => (
-                <div key={i} className="px-6 py-3 border border-border bg-background text-foreground font-mono text-lg font-medium shadow-[0_0_15px_rgba(15,98,254,0.1)]">
-                  {tech}
-                </div>
-              ))}
-            </div>
-            {/* Duplicate Set for infinite loop */}
-            <div className="flex gap-8 px-4 items-center">
-              {['React', 'TypeScript', 'Node.js', 'Rust', 'Go', 'Docker', 'Kubernetes', 'PostgreSQL', 'GraphQL', 'WebAssembly'].map((tech, i) => (
-                <div key={`dup-${i}`} className="px-6 py-3 border border-border bg-background text-foreground font-mono text-lg font-medium shadow-[0_0_15px_rgba(15,98,254,0.1)]">
-                  {tech}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section - Bento Grid */}
-      <section className="py-24 border-t border-border bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {features.map((feature, index) => {
-              // Bento Grid layout logic
-              const isLarge = index === 0 || index === 3;
+      <section className="border-b border-[#2a3039] bg-[#0b0d10] py-24 text-[#f4f6f8]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionEyebrow>{copy.lifecycle.eyebrow}</SectionEyebrow>
+          <h2 className="mt-5 max-w-4xl text-4xl font-light leading-tight tracking-[-0.035em] md:text-6xl">
+            {copy.lifecycle.title}
+          </h2>
+          <div className="mt-12 grid grid-cols-1 border border-[#252b34] md:grid-cols-5">
+            {copy.lifecycle.stages.map((stage, index) => {
+              const highlighted = index === 1 || index === 4;
               return (
                 <div
-                  key={index}
-                  className={`${isLarge ? 'md:col-span-2' : 'md:col-span-1'}`}
+                  key={stage.label}
+                  className={`min-h-44 p-6 ${
+                    highlighted ? 'bg-[#111731]' : 'bg-[#0b0d10]'
+                  } ${index > 0 ? 'border-t border-[#252b34] md:border-l md:border-t-0' : ''}`}
                 >
-                  <Link 
-                    to={feature.link} 
-                    onPointerEnter={() => prefetchRoute(feature.prefetch)}
-                    onFocus={() => prefetchRoute(feature.prefetch)}
-                    className="group relative block h-full p-8 bg-surface border border-border hover:border-primary/50 transition-colors overflow-hidden"
-                  >
-                    {/* Hover Glow Effect */}
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                      <div className="absolute -inset-[100%] bg-gradient-to-r from-transparent via-primary/5 to-transparent rotate-45 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
-                    </div>
-
-                    <div className="relative z-10 flex flex-col h-full">
-                      <div className="mb-12">
-                        {feature.icon}
-                      </div>
-                      <h3 className="text-2xl font-medium mb-4">{feature.title}</h3>
-                      <p className="text-foreground/80 text-base leading-relaxed font-light flex-grow">
-                        {feature.description}
-                      </p>
-                      <div className="mt-8 flex justify-end opacity-0 group-hover:opacity-100 transition-opacity translate-x-[-10px] group-hover:translate-x-0 duration-300">
-                        <ArrowRight className="w-6 h-6 text-primary" />
-                      </div>
-                    </div>
-                  </Link>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#7f8996]">
+                    {stage.label}
+                  </span>
+                  <h3 className="mt-8 text-xl font-normal">{stage.title}</h3>
+                  <p className="mt-3 text-sm font-light leading-relaxed text-[#939daa]">{stage.detail}</p>
                 </div>
               );
             })}
@@ -363,38 +299,175 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Principles Section - Startup Focus */}
-      <section className="py-24 border-t border-border bg-surface">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-light mb-16 max-w-2xl">{t.home.principles.title}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 divide-y md:divide-y-0 md:divide-x divide-border">
-            {t.home.principles.items.map((item, index) => (
-              <div key={index} className={`pt-8 md:pt-0 ${index === 0 ? 'md:pr-8' : index === 1 ? 'md:px-8' : 'md:pl-8'}`}>
-                <div className="text-xl font-medium text-primary mb-4">{item.title}</div>
-                <div className="text-base font-light leading-relaxed text-foreground/80">{item.desc}</div>
+      <section id="integrations" className="border-b border-border bg-background py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionEyebrow>{copy.integrations.eyebrow}</SectionEyebrow>
+          <h2 className="mt-5 max-w-4xl text-4xl font-light leading-tight tracking-[-0.035em] md:text-6xl">
+            {copy.integrations.title}
+          </h2>
+          <p className="mt-6 max-w-3xl text-lg font-light text-foreground/65">{copy.integrations.description}</p>
+
+          <div className="mt-12 grid grid-cols-1 gap-5 lg:grid-cols-2">
+            <article className="border border-border bg-surface p-8">
+              <span className="font-mono text-xs uppercase tracking-[0.14em] text-foreground/50">CNCF ecosystem</span>
+              <h3 className="mt-4 text-3xl font-normal tracking-tight">Falco</h3>
+              <p className="mt-4 font-light leading-relaxed text-foreground/65">{copy.integrations.falco}</p>
+              <div className="mt-7 flex flex-wrap gap-5">
+                <a
+                  href="https://github.com/falcosecurity/libs/pull/3024"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+                >
+                  {copy.integrations.evidenceLink} #3024
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+                <a
+                  href="https://github.com/falcosecurity/libs/pull/3061"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+                >
+                  {copy.integrations.evidenceLink} #3061
+                  <ExternalLink className="h-4 w-4" />
+                </a>
               </div>
-            ))}
+            </article>
+
+            <article className="border border-border bg-surface p-8">
+              <span className="font-mono text-xs uppercase tracking-[0.14em] text-foreground/50">CNCF ecosystem</span>
+              <h3 className="mt-4 text-3xl font-normal tracking-tight">Inspektor Gadget</h3>
+              <p className="mt-4 font-light leading-relaxed text-foreground/65">{copy.integrations.gadget}</p>
+              <a
+                href="https://github.com/inspektor-gadget/inspektor-gadget/pull/5708"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+              >
+                {copy.integrations.evidenceLink} #5708
+                <ExternalLink className="h-4 w-4" />
+              </a>
+            </article>
+          </div>
+
+          <p className="mt-5 max-w-3xl font-mono text-xs leading-relaxed text-foreground/50">
+            {copy.integrations.disclaimer}
+          </p>
+        </div>
+      </section>
+
+      <section className="border-b border-[#2a3039] bg-[#0b0d10] py-24 text-[#f4f6f8]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionEyebrow>{copy.trust.eyebrow}</SectionEyebrow>
+          <h2 className="mt-5 max-w-4xl text-4xl font-light leading-tight tracking-[-0.035em] md:text-6xl">
+            {copy.trust.title}
+          </h2>
+          <p className="mt-6 max-w-3xl text-lg font-light text-[#9ba5b2]">{copy.trust.description}</p>
+
+          <div className="mt-12 grid grid-cols-1 border border-[#252b34] sm:grid-cols-2 lg:grid-cols-3">
+            {copy.trust.items.map((item, index) => {
+              const Icon = trustIcons[index];
+              return (
+                <article
+                  key={item.title}
+                  className={`min-h-52 bg-[#0b0d10] p-7 ${
+                    index > 0 ? 'border-t border-[#252b34] sm:border-l sm:border-t-0' : ''
+                  } ${
+                    index >= 2 ? 'sm:border-t' : ''
+                  } ${
+                    index % 2 === 0 && index > 0 ? 'sm:border-l-0 lg:border-l' : ''
+                  }`}
+                >
+                  <Icon className="h-5 w-5 text-[#9aa8ff]" />
+                  <h3 className="mt-8 text-lg font-normal">{item.title}</h3>
+                  <p className="mt-3 text-sm font-light leading-relaxed text-[#8f99a6]">{item.description}</p>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Community Section - Build in Public */}
-      <section className="py-24 border-t border-border bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-light mb-6">{t.home.community.title}</h2>
-            <p className="text-xl font-light text-foreground/70 mb-10 leading-relaxed">
-              {t.home.community.desc}
-            </p>
+      <section className="border-b border-border bg-surface py-24">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-[.85fr_1.15fr] lg:px-8">
+          <div>
+            <SectionEyebrow>{copy.quickstart.eyebrow}</SectionEyebrow>
+            <h2 className="mt-5 text-4xl font-light leading-tight tracking-[-0.035em] md:text-5xl">
+              {copy.quickstart.title}
+            </h2>
+            <p className="mt-6 text-lg font-light leading-relaxed text-foreground/65">{copy.quickstart.description}</p>
             <a
-              href="https://github.com/Kernel-Guard"
+              href="https://github.com/Kernel-Guard/bpfcompat/blob/main/docs/quickstart.md"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors"
+              className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
             >
-              <span className="font-medium">{t.nav.github}</span>
-              <ArrowRight className="w-5 h-5 ml-3" />
+              {copy.quickstart.docs}
+              <ExternalLink className="h-4 w-4" />
             </a>
+          </div>
+          <pre className="overflow-x-auto border border-[#30363d] bg-[#101318] p-7 font-mono text-xs leading-7 text-[#eef2f6]">
+            <span className="text-[#aab5ff]">$</span> bpfcompat test \
+{'
+'}  --artifact ghcr.io/inspektor-gadget/gadget/trace_open:latest \
+{'
+'}  --quick
+{'
+
+'}<span className="text-[#65c998]">PASS</span>  evidence written to report.json
+          </pre>
+        </div>
+      </section>
+
+      <section className="border-b border-border bg-background py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionEyebrow>{copy.kernels.eyebrow}</SectionEyebrow>
+          <h2 className="mt-5 max-w-4xl text-4xl font-light leading-tight tracking-[-0.035em] md:text-6xl">
+            {copy.kernels.title}
+          </h2>
+          <p className="mt-6 max-w-3xl text-lg font-light text-foreground/65">{copy.kernels.description}</p>
+          <div className="mt-10 flex flex-wrap gap-2">
+            {kernelFamilies.map((family) => (
+              <span key={family} className="border border-border bg-surface px-4 py-3 font-mono text-xs text-foreground/70">
+                {family}
+              </span>
+            ))}
+          </div>
+          <a
+            href="https://github.com/Kernel-Guard/bpfcompat/blob/main/docs/profile-catalog.md"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+          >
+            {copy.kernels.catalog}
+            <ExternalLink className="h-4 w-4" />
+          </a>
+        </div>
+      </section>
+
+      <section className="bg-primary py-20 text-white">
+        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-10 px-4 sm:px-6 lg:flex-row lg:items-end lg:px-8">
+          <div>
+            <h2 className="max-w-3xl text-5xl font-light leading-none tracking-[-0.045em] md:text-6xl">
+              {copy.final.title}
+            </h2>
+            <p className="mt-6 max-w-2xl text-lg font-light leading-relaxed text-white/80">{copy.final.description}</p>
+          </div>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <Link
+              to={localizePath('/projects/bpfcompat/', language)}
+              className="inline-flex min-h-12 items-center justify-between gap-8 bg-white px-5 py-3 font-medium text-[#111318] transition-colors hover:bg-white/90"
+            >
+              {copy.final.primary}
+              <ArrowRight className="h-5 w-5" />
+            </Link>
+            <Link
+              to={localizePath('/contact/', language)}
+              className="inline-flex min-h-12 items-center justify-between gap-8 border border-white/50 px-5 py-3 font-medium text-white transition-colors hover:bg-white/10"
+            >
+              {copy.final.secondary}
+              <ArrowRight className="h-5 w-5" />
+            </Link>
           </div>
         </div>
       </section>
