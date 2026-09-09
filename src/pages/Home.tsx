@@ -1,4 +1,4 @@
-import { Layout, Server, Database, Zap, ArrowRight, Gauge, GitBranch, Globe2, ShieldCheck } from 'lucide-react';
+import { Layout, Server, Database, Zap, ArrowRight, GitBranch, Globe2, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import type { ReactNode } from 'react';
 import { useLanguage } from '../context/LanguageContext';
@@ -9,9 +9,11 @@ import { localizePath } from '../i18n/route';
 import { articles, localizeArticle } from '../data/articles';
 import { growthServicePages, localizeGrowthServicePage } from '../data/growthServices';
 import { homeGrowthCopy } from '../i18n/growthContent';
+import { cyberHomeCopy } from '../i18n/cyberHomeCopy';
 
 export default function Home() {
   const { language, t } = useLanguage();
+  const brand = cyberHomeCopy[language];
   const upstreamLabel: Record<typeof language, string> = {
     en: 'ECOSYSTEM INTEGRATIONS',
     tr: 'EKOSİSTEM ENTEGRASYONLARI',
@@ -69,26 +71,26 @@ export default function Home() {
     {
       icon: <GitBranch className="h-5 w-5" />,
       value: '2',
-      label: t.home.proof.cards.lighthouse.label,
-      detail: t.home.proof.cards.lighthouse.detail,
+      label: brand.proof.cards[0].label,
+      detail: brand.proof.cards[0].detail,
     },
     {
       icon: <Server className="h-5 w-5" />,
       value: 'QEMU/KVM',
-      label: t.home.proof.cards.delivery.label,
-      detail: t.home.proof.cards.delivery.detail,
+      label: brand.proof.cards[1].label,
+      detail: brand.proof.cards[1].detail,
     },
     {
       icon: <Globe2 className="h-5 w-5" />,
       value: 'x86_64 + ARM64',
-      label: t.home.proof.cards.openSource.label,
-      detail: t.home.proof.cards.openSource.detail,
+      label: brand.proof.cards[2].label,
+      detail: brand.proof.cards[2].detail,
     },
     {
       icon: <ShieldCheck className="h-5 w-5" />,
       value: 'SLSA',
-      label: t.home.proof.cards.languages.label,
-      detail: t.home.proof.cards.languages.detail,
+      label: brand.proof.cards[3].label,
+      detail: brand.proof.cards[3].detail,
     },
   ];
   const growthCopy = homeGrowthCopy[language];
@@ -102,9 +104,9 @@ export default function Home() {
   return (
     <div className="flex flex-col bg-background">
       <SEO 
-        title={t.seo.home.title}
-        description={t.seo.home.description}
-        keywords={t.seo.home.keywords}
+        title={brand.seo.title}
+        description={brand.seo.description}
+        keywords={brand.seo.keywords}
       />
       {/* Hero Section - IBM Style */}
       <section className="kg-dot-grid pt-32 pb-20 md:pt-48 md:pb-32 border-b border-border overflow-hidden">
@@ -112,13 +114,13 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="max-w-4xl relative z-10">
               <h1 className="text-5xl md:text-7xl font-light text-foreground leading-[1.1] mb-8">
-                {t.home.heroTitle1} <br />
-                <span className="font-semibold">{t.home.heroTitle2}</span>
+                {brand.hero.line1} <br />
+                <span className="font-semibold">{brand.hero.line2}</span>
                 <span aria-hidden="true" className="kg-caret" />
               </h1>
               
               <p className="text-xl md:text-2xl text-foreground mb-12 max-w-2xl leading-relaxed font-light">
-                {t.home.heroDesc}
+                {brand.hero.description}
               </p>
               
               <div className="flex flex-col sm:flex-row flex-wrap gap-4">
@@ -205,11 +207,11 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
             <div className="lg:col-span-4">
-              <h2 className="text-3xl font-light mb-6">{t.home.missionTitle}</h2>
+              <h2 className="text-3xl font-light mb-6">{brand.mission.title}</h2>
             </div>
             <div className="lg:col-span-8 space-y-8 text-lg text-foreground leading-relaxed font-light">
-              <p>{t.home.missionP1}</p>
-              <p>{t.home.missionP2}</p>
+              <p>{brand.mission.p1}</p>
+              <p>{brand.mission.p2}</p>
             </div>
           </div>
         </div>
@@ -221,11 +223,11 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <div className="lg:col-span-4">
               <div className="inline-block px-3 py-1 mb-6 border border-border text-xs font-mono tracking-widest text-foreground/70 uppercase">
-                {t.home.proof.badge}
+                {brand.proof.badge}
               </div>
-              <h2 className="text-3xl md:text-4xl font-light mb-6">{t.home.proof.title}</h2>
+              <h2 className="text-3xl md:text-4xl font-light mb-6">{brand.proof.title}</h2>
               <p className="text-lg text-foreground/70 font-light leading-relaxed">
-                {t.home.proof.desc}
+                {brand.proof.description}
               </p>
             </div>
 
@@ -245,18 +247,18 @@ export default function Home() {
               <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 border border-border bg-surface p-5 text-sm text-foreground/70">
                 <div>
                   <span className="font-mono text-foreground">Falco + Inspektor Gadget</span>{' '}
-                  {t.home.proof.summary.indexableUrls}
+                  {brand.proof.summary[0]}
                 </div>
                 <div>
                   <span className="font-mono text-foreground">Real vendor kernels</span>{' '}
-                  {t.home.proof.summary.desktopTbt}
+                  {brand.proof.summary[1]}
                 </div>
                 <div>
                   <span className="font-mono text-foreground">Signed · SBOM · provenance</span>{' '}
-                  {t.home.proof.summary.latestUpdate}
+                  {brand.proof.summary[2]}
                 </div>
               </div>
-              <p className="mt-4 text-xs text-foreground/50 font-mono">{t.home.proof.footnote}</p>
+              <p className="mt-4 text-xs text-foreground/50 font-mono">{brand.proof.footnote}</p>
             </div>
           </div>
         </div>
@@ -335,8 +337,8 @@ export default function Home() {
       {/* Tech Stack Marquee Section */}
       <section className="py-24 border-t border-border bg-surface overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
-          <h2 className="text-3xl font-light mb-4">{t.home.techStackTitle}</h2>
-          <p className="text-lg text-foreground/70 font-light max-w-2xl mx-auto">{t.home.techStackDesc}</p>
+          <h2 className="text-3xl font-light mb-4">{brand.tech.title}</h2>
+          <p className="text-lg text-foreground/70 font-light max-w-2xl mx-auto">{brand.tech.description}</p>
         </div>
         
         <div className="relative w-full flex overflow-hidden">
