@@ -103,8 +103,8 @@ const en: EcosystemCopy = {
         'Falco detects suspicious behavior across hosts, containers, Kubernetes and cloud environments. Its runtime visibility depends on reliable access to Linux kernel events, including eBPF-based probe paths.',
       contributionTitle: 'What Kernel Guard integrated',
       contribution: [
-        'PR #3024 merged a scheduled BPFCompat lane that exercises Falco’s modern_bpf probe through the real scap-open loader.',
-        'PR #3061 expanded the compatibility lane with RHEL-family vendor kernels, where backports make version-only assumptions especially unreliable.',
+        'PR #3024 merged the scheduled BPFCompat compatibility lane for Falco’s modern_bpf path; the follow-up #3061 proof run exercised the real scap-open --modern_bpf loader path.',
+        'PR #3061 expanded the lane with AlmaLinux 8 and 9. Its dress rehearsal passed all five kernels through the real loader path, including AlmaLinux 8’s 4.18 base with backported BPF ring-buffer and BTF support.',
         'The result is executable compatibility evidence: load and attach behavior can be checked in real kernel profiles instead of inferred from kernel version numbers.',
       ],
       whyTitle: 'Why this matters for cybersecurity',
@@ -169,8 +169,8 @@ const en: EcosystemCopy = {
       contributionTitle: 'What Kernel Guard integrated',
       contribution: [
         'PR #5708 merged a non-blocking weekly kernel-compatibility lane for published Gadgets.',
-        'The workflow resolves published OCI Gadget references and records per-kernel compatibility evidence for baseline and current versions.',
-        'The lane can classify regressions, improvements, expected missing artifacts and incomplete profile results instead of reducing the result to a single opaque pass/fail.',
+        'The workflow resolves published OCI Gadget references and records per-kernel compatibility evidence for baseline and current versions. The full proof run covered 49 Gadgets across 11 kernel profiles: 539 baseline-to-current comparison cells.',
+        'The lane can classify regressions, improvements, expected missing artifacts and incomplete profile results instead of reducing the result to a single opaque pass/fail. The proof run reported 0 regressions, 4 improvements and 0 unexpected missing reports.',
       ],
       whyTitle: 'Why this matters for cybersecurity & operations',
       why: [
@@ -262,8 +262,8 @@ const tr: EcosystemCopy = {
         'Falco; host, container, Kubernetes ve cloud ortamlarında şüpheli davranışları tespit eder. Runtime görünürlüğü Linux kernel event’lerine ve eBPF tabanlı probe yollarına güvenilir erişime bağlıdır.',
       contributionTitle: 'Kernel Guard ne entegre etti?',
       contribution: [
-        'PR #3024, Falco modern_bpf probe’unu gerçek scap-open loader üzerinden çalıştıran scheduled BPFCompat lane’ini merge etti.',
-        'PR #3061, version-only varsayımların özellikle zayıf olduğu RHEL-family vendor kernel’ları compatibility lane’e ekledi.',
+        'PR #3024, Falco modern_bpf yolu için scheduled BPFCompat compatibility lane’ini merge etti; follow-up #3061 proof run gerçek scap-open --modern_bpf loader yolunu çalıştırdı.',
+        'PR #3061, AlmaLinux 8 ve 9’u matrix’e ekledi. Dress rehearsal beş kernel’ın tamamını gerçek loader yolundan geçirdi; AlmaLinux 8’in 4.18 tabanı backport edilmiş BPF ring-buffer ve BTF desteğini de gösterdi.',
         'Sonuç: load ve attach davranışı kernel versiyonundan tahmin edilmek yerine gerçek kernel profillerinde çalıştırılarak kanıtlanabiliyor.',
       ],
       whyTitle: 'Siber güvenlik açısından neden önemli?',
@@ -305,8 +305,8 @@ const tr: EcosystemCopy = {
       contributionTitle: 'Kernel Guard ne entegre etti?',
       contribution: [
         'PR #5708, yayımlanmış Gadget’lar için non-blocking haftalık kernel-compatibility lane’ini merge etti.',
-        'Workflow yayımlanmış OCI Gadget referanslarını resolve eder ve baseline/current sürümleri için kernel bazlı compatibility evidence kaydeder.',
-        'Lane regression, improvement, expected missing artifact ve incomplete profile result durumlarını tek bir opaque pass/fail sonucuna indirgemeden sınıflandırabilir.',
+        'Workflow yayımlanmış OCI Gadget referanslarını resolve eder ve baseline/current sürümleri için kernel bazlı compatibility evidence kaydeder. Full proof run 49 Gadget × 11 kernel profiliyle 539 comparison cell üretti.',
+        'Lane regression, improvement, expected missing artifact ve incomplete profile result durumlarını tek bir opaque pass/fail sonucuna indirgemeden sınıflandırabilir. Proof run 0 regression, 4 improvement ve 0 unexpected missing report gösterdi.',
       ],
       whyTitle: 'Siber güvenlik ve operasyon açısından neden önemli?',
       why: [
