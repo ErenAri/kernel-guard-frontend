@@ -64,27 +64,27 @@ export const de = {
     techStackTitle: 'Kernel-naher Stack',
     techStackDesc: 'Technologien hinter unserer Arbeit an Linux, eBPF, Kompatibilität und Runtime Security.',
     features: {
-      frontend: { title: 'Sicheres Frontend', desc: 'Moderne React-Oberflächen, gehärtet gegen XSS und clientseitige Schwachstellen.' },
-      backend: { title: 'Gehärtetes Backend', desc: 'Skalierbare APIs und Serverarchitekturen nach Zero-Trust-Prinzipien.' },
-      data: { title: 'Datenschutz', desc: 'Verschlüsselung und sichere Datenbankpraktiken zum Schutz sensibler Informationen.' },
-      performance: { title: 'Hohe Performance', desc: 'Schnelle Webanwendungen ohne Kompromisse bei Sicherheitskontrollen.' },
+      frontend: { title: 'BPFCompat', desc: 'Validiert kompilierte eBPF-Artefakte und echte Projekt-Loader auf realen Linux-Kerneln.' },
+      backend: { title: 'AegisBPF', desc: 'Setzt Linux-Runtime-Policies mit BPF LSM, scoped Controls und strukturierten Ereignissen durch.' },
+      data: { title: 'Open Source', desc: 'Kernwerkzeuge, Evidenz und technische Entwicklung sind öffentlich überprüfbar.' },
+      performance: { title: 'Security & Provenance', desc: 'Signierte Releases, SBOMs, Provenance und klare Fehlermodi halten Evidenz verifizierbar.' },
     },
     principles: {
       title: 'Unsere Engineering-Prinzipien',
       items: [
-        { title: 'Offen als Standard', desc: 'Transparente Sicherheit durch Open-Source-Code und öffentliche Code-Reviews.' },
-        { title: 'Zero Trust', desc: 'Jede Anfrage prüfen, keiner Entität blind vertrauen und Kompromittierung als Möglichkeit einplanen.' },
-        { title: 'Community-orientiert', desc: 'Gemeinsam mit und für Systemingenieure und Sicherheitsforschende entwickelt.' },
+        { title: 'Evidenz statt Annahmen', desc: 'Gemessenes Verhalten auf realen Kerneln ist wichtiger als Versionsheuristiken.' },
+        { title: 'Runtime-Wahrheit', desc: 'Validierung und Enforcement erfolgen möglichst nah an der realen Ausführungsumgebung.' },
+        { title: 'Offene technische Prüfung', desc: 'Werkzeuge, Grenzen und Engineering-Evidenz bleiben unabhängig überprüfbar.' },
       ],
     },
     community: {
-      title: 'Öffentlich entwickeln',
-      desc: 'Wir bauen unsere Kerninfrastruktur aktiv auf und veröffentlichen Fortschritte als Open Source.',
+      title: 'Öffentlich entwickelt',
+      desc: 'Kernel Guard entwickelt seine Linux- und eBPF-Kernwerkzeuge offen auf GitHub, einschließlich Upstream-Integrationen und technischer Evidenz.',
     },
     proof: {
       badge: 'GEMESSEN // ÖFFENTLICHE_NACHWEISE',
-      title: 'Nachweise statt Behauptungen',
-      desc: 'Ein transparenter Qualitätsstand auf Basis von Lighthouse CLI, Prerender-Ausgabe und öffentlichen GitHub-Repository-Daten, gemessen am 1. Juni 2026.',
+      title: 'Evidenz statt Präsentation',
+      desc: 'Wir veröffentlichen gemessene Engineering-Daten und öffentliche Repository-Evidenz statt pauschaler Sicherheitsversprechen.',
       cards: {
         lighthouse: { label: 'Desktop Lighthouse', detail: 'Performance / Barrierefreiheit auf der Produktionsdomain.' },
         delivery: { label: 'Prerender-Routen', detail: 'Statische Routen, die beim Build über lokalisierte Seiten erzeugt werden.' },
