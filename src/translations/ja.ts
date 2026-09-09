@@ -64,22 +64,22 @@ export const ja = {
     techStackTitle: 'カーネルサイド技術',
     techStackDesc: 'Linux、eBPF、互換性検証、ランタイムセキュリティを支える技術。',
     features: {
-      frontend: { title: 'セキュアフロントエンド', desc: 'ReactベースのUIをXSSなどのクライアント側リスクに備えて設計します。' },
-      backend: { title: '堅牢なバックエンド', desc: 'Zero Trust原則に基づくスケーラブルなAPIとサーバー設計。' },
-      data: { title: 'データ保護', desc: '暗号化と安全なデータベース運用により機密情報を守ります。' },
-      performance: { title: '高性能', desc: '高速なロード時間とセキュリティチェックを両立します。' },
+      frontend: { title: 'BPFCompat', desc: 'コンパイル済み eBPF artifact と実際のプロジェクト loader を実 Linux カーネルで検証します。' },
+      backend: { title: 'AegisBPF', desc: 'BPF LSM、スコープ制御、構造化イベントで Linux ランタイムポリシーを適用します。' },
+      data: { title: 'オープンソース', desc: 'コアツール、互換性証拠、技術開発を公開レビュー可能にしています。' },
+      performance: { title: 'Security & Provenance', desc: '署名済み release、SBOM、provenance、明確な failure mode により証拠を検証可能に保ちます。' },
     },
     principles: {
       title: 'エンジニアリング原則',
       items: [
-        { title: 'オープンを標準に', desc: 'オープンソースコードと公開レビューにより、透明性の高いセキュリティを実現します。' },
-        { title: 'Zero Trust', desc: 'すべてのリクエストを検証し、どの主体も無条件には信頼しません。' },
-        { title: 'コミュニティ主導', desc: 'システムエンジニアとセキュリティ研究者のために共同で構築します。' },
+        { title: '仮定より証拠', desc: 'バージョン推測ではなく、実カーネル上で測定された挙動を優先します。' },
+        { title: 'Runtime Truth', desc: '実際の実行環境にできるだけ近い場所で検証と enforcement を行います。' },
+        { title: '公開技術レビュー', desc: 'コアツール、制約、技術証拠を独立してレビューできる状態に保ちます。' },
       ],
     },
     community: {
-      title: '公開しながら構築',
-      desc: '中核インフラを継続的に構築し、その進捗をオープンソースとして公開しています。',
+      title: '公開しながら開発',
+      desc: 'Kernel Guard の Linux・eBPF コアツールは GitHub 上で公開開発され、upstream 統合と技術証拠も確認できます。',
     },
     proof: {
       badge: 'MEASURED // PUBLIC_EVIDENCE',
