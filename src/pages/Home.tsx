@@ -6,7 +6,7 @@ import {
   GitBranch,
   Server,
   ShieldCheck,
-  TerminalSquare,
+  SquareTerminal,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
@@ -124,7 +124,7 @@ export default function Home() {
     [copy.proof.provenanceLabel, copy.proof.provenanceValue],
   ];
 
-  const trustIcons = [Server, Box, ShieldCheck, GitBranch, CheckCircle2, TerminalSquare];
+  const trustIcons = [Server, Box, ShieldCheck, GitBranch, CheckCircle2, SquareTerminal];
 
   return (
     <div className="flex flex-col bg-background">
