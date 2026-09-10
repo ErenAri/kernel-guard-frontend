@@ -11,19 +11,30 @@ import {
 } from '../i18n/route';
 import type { Language } from '../context/LanguageContext';
 import { enterprisePages } from '../data/enterprisePages';
-import { ecosystemCopy } from '../pages/ecosystem/content';
+import { ecosystemCopy } from '../pages/ecosystem/localizedContent';
 import Logo from './Logo';
 import ThemeToggle from './ThemeToggle';
 
 const LANGUAGE_NAMES: Record<Language, string> = {
-  tr: 'Turkish',
+  tr: 'Türkçe',
   en: 'English',
-  de: 'German',
-  ja: 'Japanese',
-  'zh-CN': 'Chinese',
-  es: 'Spanish',
-  fr: 'French',
-  ko: 'Korean',
+  de: 'Deutsch',
+  ja: '日本語',
+  'zh-CN': '简体中文',
+  es: 'Español',
+  fr: 'Français',
+  ko: '한국어',
+};
+
+const NAV_A11Y: Record<Language, { selectLanguage: string; openMenu: string; closeMenu: string }> = {
+  tr: { selectLanguage: 'Dil seç', openMenu: 'Gezinme menüsünü aç', closeMenu: 'Gezinme menüsünü kapat' },
+  en: { selectLanguage: 'Select language', openMenu: 'Open navigation menu', closeMenu: 'Close navigation menu' },
+  de: { selectLanguage: 'Sprache auswählen', openMenu: 'Navigationsmenü öffnen', closeMenu: 'Navigationsmenü schließen' },
+  ja: { selectLanguage: '言語を選択', openMenu: 'ナビゲーションメニューを開く', closeMenu: 'ナビゲーションメニューを閉じる' },
+  'zh-CN': { selectLanguage: '选择语言', openMenu: '打开导航菜单', closeMenu: '关闭导航菜单' },
+  es: { selectLanguage: 'Seleccionar idioma', openMenu: 'Abrir menú de navegación', closeMenu: 'Cerrar menú de navegación' },
+  fr: { selectLanguage: 'Choisir la langue', openMenu: 'Ouvrir le menu de navigation', closeMenu: 'Fermer le menu de navigation' },
+  ko: { selectLanguage: '언어 선택', openMenu: '탐색 메뉴 열기', closeMenu: '탐색 메뉴 닫기' },
 };
 
 interface LanguageSwitcherProps {
@@ -76,7 +87,7 @@ function LanguageSwitcher({ language, onChange, compact = false }: LanguageSwitc
         onClick={() => setIsExpanded((value) => !value)}
         aria-haspopup="listbox"
         aria-expanded={isExpanded}
-        aria-label="Select language"
+        aria-label={NAV_A11Y[language].selectLanguage}
         className={`inline-flex h-10 items-center justify-center gap-2 border border-border bg-background text-foreground transition-colors hover:bg-surface focus:outline-none focus:ring-2 focus:ring-primary/50 ${
           compact ? 'w-20 px-2' : 'min-w-[104px] px-3'
         }`}
@@ -93,7 +104,7 @@ function LanguageSwitcher({ language, onChange, compact = false }: LanguageSwitc
       {isExpanded && (
         <div
           role="listbox"
-          aria-label="Languages"
+          aria-label={NAV_A11Y[language].selectLanguage}
           className={`absolute right-0 top-12 z-50 w-44 overflow-hidden border border-border bg-background shadow-xl shadow-black/10 ring-1 ring-black/5 dark:shadow-black/30 ${
             compact ? 'right-0' : ''
           }`}
@@ -186,8 +197,7 @@ export default function Navbar() {
               <Logo className="scale-[0.55] origin-left" />
             </Link>
           </div>
-          
-          {/* Desktop Menu */}
+
           <div className="hidden md:block">
             <div className="ml-10 flex items-center h-full">
               {navLinks.map((link) => (
@@ -215,11 +225,10 @@ export default function Navbar() {
                 {t.nav.github}
               </a>
 
-              
               <div className="h-6 w-px bg-border mx-2"></div>
-              
+
               <LanguageSwitcher language={language} onChange={handleLanguageChange} />
-              
+
               <div className="ml-2 flex items-center gap-2">
                 <ThemeToggle />
                 <Link
@@ -233,7 +242,6 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Mobile menu button */}
           <div className="md:hidden flex items-center gap-2">
             <ThemeToggle />
             <Link
@@ -246,7 +254,7 @@ export default function Navbar() {
             <LanguageSwitcher language={language} onChange={handleLanguageChange} compact />
             <button
               onClick={() => setIsOpen(!isOpen)}
-              aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-label={isOpen ? NAV_A11Y[language].closeMenu : NAV_A11Y[language].openMenu}
               aria-expanded={isOpen}
               aria-controls="mobile-navigation"
               className="inline-flex items-center justify-center p-2 text-foreground hover:bg-surface focus:outline-none"
@@ -257,7 +265,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {isOpen && (
         <div id="mobile-navigation" className="md:hidden bg-background border-b border-border">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
@@ -285,7 +292,6 @@ export default function Navbar() {
             >
               {t.nav.github}
             </a>
-
           </div>
         </div>
       )}
