@@ -5,6 +5,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import { localizePath } from '../../i18n/route';
 import { integrationEvidence, type IntegrationId } from './content';
 import { ecosystemCopy } from './localizedContent';
+import { ecosystemUiLabels } from './uiLabels';
 import BrandMarks from './BrandMarks';
 
 const validIds: IntegrationId[] = ['falco', 'inspektor-gadget'];
@@ -19,6 +20,7 @@ export default function UpstreamIntegrationDetail() {
 
   const integrationId = id as IntegrationId;
   const copy = ecosystemCopy[language];
+  const ui = ecosystemUiLabels[language];
   const item = copy.integrations[integrationId];
   const evidence = integrationEvidence[integrationId];
   const logicalPath = '/ecosystem/upstream-integrations/' + integrationId + '/';
@@ -26,11 +28,11 @@ export default function UpstreamIntegrationDetail() {
   return (
     <div className="flex flex-col bg-background">
       <SEO
-        title={item.name + ' Integration | Kernel Guard'}
+        title={item.name + ' — ' + ui.detailSeoSuffix + ' | Kernel Guard'}
         description={item.description}
-        keywords={'Kernel Guard, ' + item.name + ', BPFCompat, upstream integration, cybersecurity infrastructure, eBPF compatibility'}
+        keywords={'Kernel Guard, ' + item.name + ', BPFCompat, ' + ui.detailKeywords}
         path={localizePath(logicalPath, language)}
-        imageAlt={'Kernel Guard ' + item.name + ' upstream integration'}
+        imageAlt={item.name + ' — ' + ui.detailImageAlt}
       />
 
       <section className="kg-dot-grid pt-28 pb-20 md:pt-36 md:pb-24 border-b border-border overflow-hidden">
@@ -206,7 +208,7 @@ export default function UpstreamIntegrationDetail() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <div className="lg:col-span-4">
-              <div className="font-mono text-xs uppercase tracking-widest text-primary mb-4">CLAIMS</div>
+              <div className="font-mono text-xs uppercase tracking-widest text-primary mb-4">{ui.claims}</div>
               <h2 className="text-3xl font-light">{item.claimTitle}</h2>
             </div>
             <div className="lg:col-span-8">
