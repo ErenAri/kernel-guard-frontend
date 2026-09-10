@@ -3,7 +3,8 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 import SEO from '../../components/SEO';
 import { useLanguage } from '../../context/LanguageContext';
 import { localizePath } from '../../i18n/route';
-import { ecosystemCopy, integrationEvidence, type IntegrationId } from './content';
+import { integrationEvidence, type IntegrationId } from './content';
+import { ecosystemCopy } from './localizedContent';
 import BrandMarks from './BrandMarks';
 
 const validIds: IntegrationId[] = ['falco', 'inspektor-gadget'];
