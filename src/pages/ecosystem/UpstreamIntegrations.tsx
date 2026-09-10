@@ -5,6 +5,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import { localizePath } from '../../i18n/route';
 import { brandLogos, type IntegrationId } from './content';
 import { ecosystemCopy } from './localizedContent';
+import { ecosystemUiLabels } from './uiLabels';
 import BrandMarks from './BrandMarks';
 
 const integrationIds: IntegrationId[] = ['falco', 'inspektor-gadget'];
@@ -12,15 +13,16 @@ const integrationIds: IntegrationId[] = ['falco', 'inspektor-gadget'];
 export default function UpstreamIntegrations() {
   const { language } = useLanguage();
   const copy = ecosystemCopy[language];
+  const ui = ecosystemUiLabels[language];
 
   return (
     <div className="flex flex-col bg-background">
       <SEO
         title={copy.index.title1 + ' ' + copy.index.title2 + ' | Kernel Guard'}
         description={copy.index.description}
-        keywords="Kernel Guard ecosystem, upstream integrations, cybersecurity infrastructure, Falco, Inspektor Gadget, BPFCompat"
+        keywords={ui.overviewKeywords}
         path={localizePath('/ecosystem/upstream-integrations/', language)}
-        imageAlt="Kernel Guard upstream cybersecurity integrations"
+        imageAlt={ui.overviewImageAlt}
       />
 
       <section className="kg-dot-grid pt-32 pb-20 md:pt-44 md:pb-28 border-b border-border overflow-hidden">
@@ -64,7 +66,7 @@ export default function UpstreamIntegrations() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <div className="lg:col-span-4">
               <div className="inline-block px-3 py-1 mb-6 border border-border text-xs font-mono tracking-widest text-foreground/70 uppercase">
-                FLOW
+                {ui.flow}
               </div>
               <h2 className="text-3xl md:text-4xl font-light">{copy.index.chainTitle}</h2>
             </div>
@@ -189,7 +191,7 @@ export default function UpstreamIntegrations() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <div className="lg:col-span-4">
-              <div className="font-mono text-xs uppercase tracking-widest text-primary mb-4">CLAIMS</div>
+              <div className="font-mono text-xs uppercase tracking-widest text-primary mb-4">{ui.claims}</div>
               <h2 className="text-3xl font-light">{copy.index.claimTitle}</h2>
             </div>
             <div className="lg:col-span-8">
