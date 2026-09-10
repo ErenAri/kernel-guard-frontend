@@ -1,19 +1,18 @@
 import { useState, useEffect } from 'react';
 
 const LOG_SEQUENCE = [
-  { text: 'kernel-guard@sys:~$ init_secure_server', type: 'cmd', delay: 800 },
-  { text: '[INFO] Initializing zero-trust architecture...', type: 'info', delay: 400 },
-  { text: '[INFO] Compiling React application...', type: 'info', delay: 600 },
-  { text: '[WARN] Scanning for vulnerabilities...', type: 'warn', delay: 1200 },
-  { text: '[OK] XSS Protection: ACTIVE', type: 'success', delay: 200 },
-  { text: '[OK] CSRF Tokens: VERIFIED', type: 'success', delay: 200 },
-  { text: '[OK] API Endpoints: ENCRYPTED (AES-256)', type: 'success', delay: 200 },
-  { text: '[SUCCESS] Build completed securely in 2.4s.', type: 'success', delay: 1000 },
-  { text: 'kernel-guard@sys:~$ monitor_traffic', type: 'cmd', delay: 800 },
-  { text: '[INFO] Intercepting incoming requests...', type: 'info', delay: 500 },
-  { text: '[ERROR] Blocked malicious payload (SQLi attempt)', type: 'error', delay: 300 },
-  { text: '[INFO] Validating JWT signatures... OK', type: 'success', delay: 400 },
-  { text: '[INFO] System secure. Awaiting input...', type: 'info', delay: 3000 },
+  { text: 'kernel-guard@lab:~$ bpfcompat test --artifact ringbuf_modern.bpf.o --quick', type: 'cmd', delay: 800 },
+  { text: '[INFO] Booting ubuntu-20.04 · kernel 5.4 · x86_64', type: 'info', delay: 500 },
+  { text: '[ERROR] load: FAIL · BPF_MAP_TYPE_RINGBUF requires kernel >= 5.8', type: 'error', delay: 900 },
+  { text: '[INFO] Booting ubuntu-22.04 · kernel 5.15 · x86_64', type: 'info', delay: 500 },
+  { text: '[OK] load + attach: PASS', type: 'success', delay: 300 },
+  { text: '[INFO] Booting ubuntu-24.04 · kernel 6.8 · x86_64', type: 'info', delay: 500 },
+  { text: '[OK] load + attach: PASS', type: 'success', delay: 300 },
+  { text: '[INFO] Booting ubuntu-22.04 · kernel 5.15 · arm64', type: 'info', delay: 500 },
+  { text: '[OK] load + attach: PASS', type: 'success', delay: 300 },
+  { text: '[INFO] Writing structured evidence...', type: 'info', delay: 500 },
+  { text: '[OK] report.json · verifier output · serial log', type: 'success', delay: 500 },
+  { text: '[INFO] Compatibility gate complete.', type: 'info', delay: 3000 },
 ];
 
 function getLogColor(type: string) {

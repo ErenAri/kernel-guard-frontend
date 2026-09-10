@@ -1,18 +1,29 @@
-import { Layout, Server, Database, Zap, ArrowRight, Gauge, GitBranch, Globe2, ShieldCheck } from 'lucide-react';
+import { Layout, Server, Database, Zap, ArrowRight, GitBranch, Globe2, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import type { ReactNode } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import SecurityTerminal from '../components/SecurityTerminal';
 import SEO from '../components/SEO';
 import { prefetchRoute, prefetchRoutes, type PrefetchRoute } from '../routes/pageLoaders';
-import { engineeringEvidence } from '../data/engineeringEvidence';
 import { localizePath } from '../i18n/route';
 import { articles, localizeArticle } from '../data/articles';
 import { growthServicePages, localizeGrowthServicePage } from '../data/growthServices';
 import { homeGrowthCopy } from '../i18n/growthContent';
+import { cyberHomeCopy } from '../i18n/cyberHomeCopy';
 
 export default function Home() {
   const { language, t } = useLanguage();
+  const brand = cyberHomeCopy[language];
+  const upstreamLabel: Record<typeof language, string> = {
+    en: 'ECOSYSTEM INTEGRATIONS',
+    tr: 'EKOSİSTEM ENTEGRASYONLARI',
+    de: 'ÖKOSYSTEM-INTEGRATIONEN',
+    ja: 'エコシステム統合',
+    'zh-CN': '生态系统集成',
+    es: 'INTEGRACIONES DEL ECOSISTEMA',
+    fr: 'INTÉGRATIONS ÉCOSYSTÈME',
+    ko: '에코시스템 통합',
+  };
 
   const features: Array<{
     icon: ReactNode;
@@ -25,29 +36,29 @@ export default function Home() {
       icon: <Layout className="w-6 h-6 text-primary" />,
       title: t.home.features.frontend.title,
       description: t.home.features.frontend.desc,
-      link: localizePath('/services/secure-frontend/', language),
-      prefetch: 'secureFrontend',
+      link: localizePath('/projects/bpfcompat/', language),
+      prefetch: 'projects',
     },
     {
       icon: <Server className="w-6 h-6 text-primary" />,
       title: t.home.features.backend.title,
       description: t.home.features.backend.desc,
-      link: localizePath('/services/hardened-backend/', language),
-      prefetch: 'hardenedBackend',
+      link: localizePath('/projects/aegis-bpf/', language),
+      prefetch: 'projectDetails',
     },
     {
       icon: <Database className="w-6 h-6 text-primary" />,
       title: t.home.features.data.title,
       description: t.home.features.data.desc,
-      link: localizePath('/services/data-protection/', language),
-      prefetch: 'dataProtection',
+      link: localizePath('/projects/', language),
+      prefetch: 'projects',
     },
     {
       icon: <Zap className="w-6 h-6 text-primary" />,
       title: t.home.features.performance.title,
       description: t.home.features.performance.desc,
-      link: localizePath('/services/high-performance/', language),
-      prefetch: 'highPerformance',
+      link: localizePath('/security/', language),
+      prefetch: 'security',
     }
   ];
 
@@ -58,42 +69,44 @@ export default function Home() {
     detail: string;
   }> = [
     {
-      icon: <Gauge className="h-5 w-5" />,
-      value: `${engineeringEvidence.lighthouse.desktop.performance}/${engineeringEvidence.lighthouse.desktop.accessibility}`,
-      label: t.home.proof.cards.lighthouse.label,
-      detail: t.home.proof.cards.lighthouse.detail,
-    },
-    {
-      icon: <ShieldCheck className="h-5 w-5" />,
-      value: `${engineeringEvidence.delivery.prerenderedRoutes}`,
-      label: t.home.proof.cards.delivery.label,
-      detail: t.home.proof.cards.delivery.detail,
-    },
-    {
       icon: <GitBranch className="h-5 w-5" />,
-      value: `${engineeringEvidence.github.publicRepositories}`,
-      label: t.home.proof.cards.openSource.label,
-      detail: t.home.proof.cards.openSource.detail,
+      value: '2',
+      label: brand.proof.cards[0].label,
+      detail: brand.proof.cards[0].detail,
+    },
+    {
+      icon: <Server className="h-5 w-5" />,
+      value: 'QEMU/KVM',
+      label: brand.proof.cards[1].label,
+      detail: brand.proof.cards[1].detail,
     },
     {
       icon: <Globe2 className="h-5 w-5" />,
-      value: `${engineeringEvidence.delivery.supportedLanguages}`,
-      label: t.home.proof.cards.languages.label,
-      detail: t.home.proof.cards.languages.detail,
+      value: 'x86_64 + ARM64',
+      label: brand.proof.cards[2].label,
+      detail: brand.proof.cards[2].detail,
+    },
+    {
+      icon: <ShieldCheck className="h-5 w-5" />,
+      value: 'SLSA',
+      label: brand.proof.cards[3].label,
+      detail: brand.proof.cards[3].detail,
     },
   ];
   const growthCopy = homeGrowthCopy[language];
   const featuredArticles = articles.slice(0, 3).map((article) => localizeArticle(article, language));
   const featuredGrowthServices = growthServicePages
-    .slice(0, 3)
+    .filter((service) =>
+      ['cybersecurity-consulting', 'react-security-audit', 'backend-api-hardening'].includes(service.slug),
+    )
     .map((service) => localizeGrowthServicePage(service, language));
 
   return (
     <div className="flex flex-col bg-background">
       <SEO 
-        title={t.seo.home.title}
-        description={t.seo.home.description}
-        keywords={t.seo.home.keywords}
+        title={brand.seo.title}
+        description={brand.seo.description}
+        keywords={brand.seo.keywords}
       />
       {/* Hero Section - IBM Style */}
       <section className="kg-dot-grid pt-32 pb-20 md:pt-48 md:pb-32 border-b border-border overflow-hidden">
@@ -101,18 +114,18 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="max-w-4xl relative z-10">
               <h1 className="text-5xl md:text-7xl font-light text-foreground leading-[1.1] mb-8">
-                {t.home.heroTitle1} <br />
-                <span className="font-semibold">{t.home.heroTitle2}</span>
+                {brand.hero.line1} <br />
+                <span className="font-semibold">{brand.hero.line2}</span>
                 <span aria-hidden="true" className="kg-caret" />
               </h1>
               
               <p className="text-xl md:text-2xl text-foreground mb-12 max-w-2xl leading-relaxed font-light">
-                {t.home.heroDesc}
+                {brand.hero.description}
               </p>
               
               <div className="flex flex-col sm:flex-row flex-wrap gap-4">
                 <Link
-                  to={localizePath('/projects/', language)}
+                  to={localizePath('/projects/bpfcompat/', language)}
                   onPointerEnter={() => prefetchRoutes(['projects', 'projectDetails'])}
                   onFocus={() => prefetchRoutes(['projects', 'projectDetails'])}
                   className="inline-flex items-center justify-between px-6 py-4 kg-action-primary transition-colors w-full sm:w-64"
@@ -121,9 +134,9 @@ export default function Home() {
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
-                  to={localizePath('/completed-projects/', language)}
-                  onPointerEnter={() => prefetchRoutes(['completedProjects', 'completedProjectDetails'])}
-                  onFocus={() => prefetchRoutes(['completedProjects', 'completedProjectDetails'])}
+                  to={localizePath('/projects/aegis-bpf/', language)}
+                  onPointerEnter={() => prefetchRoute('projectDetails')}
+                  onFocus={() => prefetchRoute('projectDetails')}
                   className="inline-flex items-center justify-between px-6 py-4 bg-transparent border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors w-full sm:w-64"
                 >
                   <span className="font-medium">{t.home.viewCompletedProjects}</span>
@@ -149,16 +162,56 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Upstream integrations — customer-strip rhythm, claim-safe wording */}
+      <section className="border-b border-border bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-12 items-stretch">
+            <Link
+              to={localizePath('/ecosystem/upstream-integrations/', language)}
+              onPointerEnter={() => prefetchRoute('upstreamIntegrations')}
+              onFocus={() => prefetchRoute('upstreamIntegrations')}
+              className="md:col-span-4 py-8 md:py-10 flex items-center group"
+            >
+              <span className="font-mono text-xs uppercase tracking-[0.18em] text-foreground/50 group-hover:text-primary transition-colors">
+                {upstreamLabel[language]}
+              </span>
+            </Link>
+            <Link
+              to={localizePath('/ecosystem/upstream-integrations/falco/', language)}
+              onPointerEnter={() => prefetchRoute('upstreamIntegrationDetail')}
+              onFocus={() => prefetchRoute('upstreamIntegrationDetail')}
+              className="md:col-span-4 py-8 md:py-10 md:px-8 border-t md:border-t-0 md:border-l border-border flex items-center justify-between group"
+            >
+              <span className="text-2xl md:text-3xl font-medium tracking-tight text-foreground group-hover:text-primary transition-colors">
+                Falco
+              </span>
+              <ArrowRight className="w-5 h-5 text-foreground/40 group-hover:text-primary transition-colors" />
+            </Link>
+            <Link
+              to={localizePath('/ecosystem/upstream-integrations/inspektor-gadget/', language)}
+              onPointerEnter={() => prefetchRoute('upstreamIntegrationDetail')}
+              onFocus={() => prefetchRoute('upstreamIntegrationDetail')}
+              className="md:col-span-4 py-8 md:py-10 md:px-8 border-t md:border-t-0 md:border-l border-border flex items-center justify-between group"
+            >
+              <span className="text-2xl md:text-3xl font-medium tracking-tight text-foreground group-hover:text-primary transition-colors">
+                Inspektor Gadget
+              </span>
+              <ArrowRight className="w-5 h-5 text-foreground/40 group-hover:text-primary transition-colors" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Mission Section - Editorial Style */}
       <section className="py-24 bg-surface overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
             <div className="lg:col-span-4">
-              <h2 className="text-3xl font-light mb-6">{t.home.missionTitle}</h2>
+              <h2 className="text-3xl font-light mb-6">{brand.mission.title}</h2>
             </div>
             <div className="lg:col-span-8 space-y-8 text-lg text-foreground leading-relaxed font-light">
-              <p>{t.home.missionP1}</p>
-              <p>{t.home.missionP2}</p>
+              <p>{brand.mission.p1}</p>
+              <p>{brand.mission.p2}</p>
             </div>
           </div>
         </div>
@@ -170,11 +223,11 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <div className="lg:col-span-4">
               <div className="inline-block px-3 py-1 mb-6 border border-border text-xs font-mono tracking-widest text-foreground/70 uppercase">
-                {t.home.proof.badge}
+                {brand.proof.badge}
               </div>
-              <h2 className="text-3xl md:text-4xl font-light mb-6">{t.home.proof.title}</h2>
+              <h2 className="text-3xl md:text-4xl font-light mb-6">{brand.proof.title}</h2>
               <p className="text-lg text-foreground/70 font-light leading-relaxed">
-                {t.home.proof.desc}
+                {brand.proof.description}
               </p>
             </div>
 
@@ -184,9 +237,6 @@ export default function Home() {
                   <div key={card.label} className="border border-border bg-surface p-6">
                     <div className="mb-8 flex items-center justify-between text-primary">
                       {card.icon}
-                      <span className="font-mono text-xs text-foreground/60">
-                        {engineeringEvidence.measuredAt}
-                      </span>
                     </div>
                     <div className="font-mono text-4xl text-foreground mb-3">{card.value}</div>
                     <h3 className="text-base font-medium text-foreground mb-2">{card.label}</h3>
@@ -196,21 +246,19 @@ export default function Home() {
               </div>
               <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 border border-border bg-surface p-5 text-sm text-foreground/70">
                 <div>
-                  <span className="font-mono text-foreground">{engineeringEvidence.delivery.indexableUrls}</span>{' '}
-                  {t.home.proof.summary.indexableUrls}
+                  <span className="font-mono text-foreground">Falco + Inspektor Gadget</span>{' '}
+                  {brand.proof.summary[0]}
                 </div>
                 <div>
-                  <span className="font-mono text-foreground">{engineeringEvidence.lighthouse.desktop.totalBlockingTime}</span>{' '}
-                  {t.home.proof.summary.desktopTbt}
+                  <span className="font-mono text-foreground">Real vendor kernels</span>{' '}
+                  {brand.proof.summary[1]}
                 </div>
                 <div>
-                  <span className="font-mono text-foreground">
-                    {engineeringEvidence.github.latestPublicUpdate}
-                  </span>{' '}
-                  {t.home.proof.summary.latestUpdate}
+                  <span className="font-mono text-foreground">Signed · SBOM · provenance</span>{' '}
+                  {brand.proof.summary[2]}
                 </div>
               </div>
-              <p className="mt-4 text-xs text-foreground/50 font-mono">{t.home.proof.footnote}</p>
+              <p className="mt-4 text-xs text-foreground/50 font-mono">{brand.proof.footnote}</p>
             </div>
           </div>
         </div>
@@ -289,8 +337,8 @@ export default function Home() {
       {/* Tech Stack Marquee Section */}
       <section className="py-24 border-t border-border bg-surface overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
-          <h2 className="text-3xl font-light mb-4">{t.home.techStackTitle}</h2>
-          <p className="text-lg text-foreground/70 font-light max-w-2xl mx-auto">{t.home.techStackDesc}</p>
+          <h2 className="text-3xl font-light mb-4">{brand.tech.title}</h2>
+          <p className="text-lg text-foreground/70 font-light max-w-2xl mx-auto">{brand.tech.description}</p>
         </div>
         
         <div className="relative w-full flex overflow-hidden">
@@ -302,7 +350,7 @@ export default function Home() {
           <div className="flex animate-marquee whitespace-nowrap">
             {/* First Set */}
             <div className="flex gap-8 px-4 items-center">
-              {['React', 'TypeScript', 'Node.js', 'Rust', 'Go', 'Docker', 'Kubernetes', 'PostgreSQL', 'GraphQL', 'WebAssembly'].map((tech, i) => (
+              {['Linux', 'eBPF', 'libbpf', 'Go', 'C++', 'QEMU/KVM', 'Kubernetes', 'CO-RE', 'BPF LSM', 'GitHub Actions'].map((tech, i) => (
                 <div key={i} className="px-6 py-3 border border-border bg-background text-foreground font-mono text-lg font-medium shadow-[0_0_15px_rgba(15,98,254,0.1)]">
                   {tech}
                 </div>
@@ -310,7 +358,7 @@ export default function Home() {
             </div>
             {/* Duplicate Set for infinite loop */}
             <div className="flex gap-8 px-4 items-center">
-              {['React', 'TypeScript', 'Node.js', 'Rust', 'Go', 'Docker', 'Kubernetes', 'PostgreSQL', 'GraphQL', 'WebAssembly'].map((tech, i) => (
+              {['Linux', 'eBPF', 'libbpf', 'Go', 'C++', 'QEMU/KVM', 'Kubernetes', 'CO-RE', 'BPF LSM', 'GitHub Actions'].map((tech, i) => (
                 <div key={`dup-${i}`} className="px-6 py-3 border border-border bg-background text-foreground font-mono text-lg font-medium shadow-[0_0_15px_rgba(15,98,254,0.1)]">
                   {tech}
                 </div>

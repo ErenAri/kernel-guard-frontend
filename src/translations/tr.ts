@@ -1,8 +1,8 @@
 export const tr = {
   seo: {
     home: {
-      title: 'Kernel Guard | Güvenli Web Geliştirme ve Siber Güvenlik Çözümleri',
-      description: 'Kernel Guard, yüksek performanslı ve güvenli web uygulamaları, güçlendirilmiş arka uç (backend) mimarileri ve kuantum sonrası kriptografi çözümleri sunar. Sıfır güven (zero-trust) yaklaşımımızı keşfedin.',
+      title: 'Kernel Guard | Linux ve eBPF Güvenlik Altyapısı',
+      description: 'Kernel Guard, eBPF yazılımlarını dağıtımdan önce gerçek Linux çekirdeklerinde doğrulamak ve çalışma zamanında politika uygulamak için açık kaynak altyapı geliştirir.',
       keywords: 'Kernel Guard, güvenli web geliştirme, siber güvenlik çözümleri, güçlendirilmiş backend, kuantum sonrası kriptografi, React güvenliği, sıfır güven mimarisi, eBPF güvenliği, veri koruma'
     },
     projects: {
@@ -49,44 +49,44 @@ export const tr = {
   },
   home: {
     systemSecure: 'SİSTEM_GÜVENLİ // V2.4.1',
-    heroTitle1: 'Güvenli ve Ölçeklenebilir',
-    heroTitle2: 'Web Geliştirme',
-    heroDesc: 'Kernel-Guard, güvenlik odaklı bir yaklaşımla yüksek performanslı web uygulamaları oluşturma konusunda uzmanlaşmıştır. Modern web geliştirmeyi gelişmiş tehdit savunma mekanizmalarıyla birleştiriyoruz.',
-    viewArch: 'Açık Kaynak Projeler',
-    viewCompletedProjects: 'Tamamlanan Projeler',
+    heroTitle1: 'Linux & eBPF',
+    heroTitle2: 'Güvenlik Altyapısı',
+    heroDesc: 'Kernel Guard, eBPF yazılımlarını dağıtımdan önce gerçek Linux çekirdeklerinde doğrulayan ve çalışma zamanında politika uygulayan açık kaynak araçlar geliştirir.',
+    viewArch: 'BPFCompat\'ı İncele',
+    viewCompletedProjects: 'AegisBPF\'yi İncele',
     githubRepo: 'GitHub Deposu',
     status: 'DURUM:',
     operational: 'AKTİF',
     latency: 'GECİKME:',
     encryption: 'ŞİFRELEME:',
     uptime: 'ÇALIŞMA SÜRESİ:',
-    missionTitle: 'Güvenlik Odaklı Web Mühendisliği',
-    missionP1: 'Kernel-Guard olarak, gerçek güvenliğin bir web uygulamasına sonradan eklenemeyeceğine inanıyoruz. Kod tabanının tam temeline mühendislik edilmelidir. Bizler, sağlam dijital deneyimler oluşturmaya adanmış full-stack geliştiriciler ve güvenlik araştırmacılarıyız.',
-    missionP2: 'Odak noktamız, güvenli frontend mimarilerinden güçlendirilmiş backend API\'lerine ve veritabanı yönetimine kadar uzanır. Biz sadece web sitesi yapmıyoruz; gelişen tehditlere karşı ayakta kalan dayanıklı web altyapıları inşa ediyoruz.',
-    techStackTitle: 'Teknoloji Cephaneliğimiz',
-    techStackDesc: 'Çözümlerimizi endüstri lideri, güvenli ve yüksek performanslı teknolojiler kullanarak inşa ediyoruz.',
+    missionTitle: 'Kernel sınırında güvenlik',
+    missionP1: 'BPFCompat yayın öncesinde pratik bir soruyu yanıtlar: derlediğimiz eBPF artifact\'i ve gerçekten dağıttığımız loader, kullanıcıların çalıştırdığı Linux çekirdeklerinde çalışacak mı? Gerçek kernel ortamlarında test ederek uyumluluk kanıtı üretir.',
+    missionP2: 'AegisBPF aynı sınırın çalışma zamanı tarafını BPF LSM enforcement, scope\'lu politika kontrolleri ve yapılandırılmış güvenlik olaylarıyla ele alır. İki proje birlikte Kernel Guard\'ı dağıtım öncesi doğrulama ve dağıtım sonrası enforcement üzerine odaklar.',
+    techStackTitle: 'Kernel-side teknoloji stack\'i',
+    techStackDesc: 'Linux, eBPF, uyumluluk ve runtime security çalışmalarımızın arkasındaki teknolojiler.',
     features: {
-      frontend: { title: 'Güvenli Frontend', desc: 'React ile oluşturulmuş, XSS ve istemci tarafı güvenlik açıklarına karşı güçlendirilmiş modern, duyarlı kullanıcı arayüzleri.' },
-      backend: { title: 'Güçlendirilmiş Backend', desc: 'Sıfır güven (zero-trust) prensipleri ve sağlam kimlik doğrulama ile tasarlanmış ölçeklenebilir sunucu mimarileri ve API\'ler.' },
-      data: { title: 'Veri Koruması', desc: 'Kullanıcı verilerinin gizliliğini sağlamak için en son teknoloji şifreleme ve güvenli veritabanı uygulamaları.' },
-      performance: { title: 'Yüksek Performans', desc: 'Güvenlik kontrollerinden ödün vermeden ışık hızında yükleme süreleri sunan optimize edilmiş web uygulamaları.' }
+      frontend: { title: 'BPFCompat', desc: 'Derlenmiş eBPF artifact\'lerini ve gerçek proje loader\'larını yayın öncesinde gerçek Linux çekirdeklerinde doğrular.' },
+      backend: { title: 'AegisBPF', desc: 'BPF LSM, scope\'lu kontroller ve yapılandırılmış forensic olaylarla Linux runtime politikasını uygular.' },
+      data: { title: 'Açık Kaynak', desc: 'Ana araçlar, uyumluluk kanıtları ve teknik geliştirme süreci kamuya açık incelemeye açıktır.' },
+      performance: { title: 'Güvenlik ve Provenance', desc: 'İmzalı release\'ler, SBOM, provenance ve açık failure mode\'lar kanıtın doğrulanabilir kalmasını sağlar.' },
     },
     principles: {
       title: 'Mühendislik Prensiplerimiz',
       items: [
-        { title: 'Varsayılan Olarak Açık', desc: 'Açık kaynak kod ve halka açık kod incelemesi ile şeffaf güvenlik.' },
-        { title: 'Sıfır Güven (Zero Trust)', desc: 'Her isteği doğrulayın, hiçbir varlığa güvenmeyin ve her zaman tetikte olun.' },
-        { title: 'Topluluk Odaklı', desc: 'Sistem mühendisleri ve güvenlik araştırmacıları tarafından ortaklaşa inşa ediliyor.' }
-      ]
+        { title: 'Varsayım Değil Kanıt', desc: 'Sürüm tahminleri yerine gerçek çekirdeklerde ölçülen davranışı tercih ederiz.' },
+        { title: 'Runtime Gerçeği', desc: 'Doğrulamayı ve enforcement\'ı yazılımın gerçekten çalıştığı ortama mümkün olduğunca yakın yaparız.' },
+        { title: 'Açık Teknik İnceleme', desc: 'Ana araçları, sınırları ve mühendislik kanıtlarını bağımsız incelemeye açık tutarız.' },
+      ],
     },
     community: {
-      title: 'Açık Geliştirme (Build in Public)',
-      desc: 'Çekirdek altyapımızı aktif olarak inşa ediyor ve kodlarımızı açık kaynak olarak paylaşıyoruz. Yolculuğumuza katılın.'
+      title: 'Açık geliştiriyoruz',
+      desc: 'Kernel Guard\'ın Linux ve eBPF araçları GitHub üzerinde açık geliştirilir; upstream entegrasyonları ve teknik kanıtları kamuya açıktır.'
     },
     proof: {
       badge: 'ÖLÇÜLDÜ // AÇIK_KANIT',
       title: 'Sunum değil, kanıt',
-      desc: '1 Haziran 2026 tarihinde Lighthouse CLI, prerender çıktısı ve herkese açık GitHub repo verileriyle ölçülmüş şeffaf kalite özeti.',
+      desc: 'Genel güvenlik iddiaları yerine ölçülmüş mühendislik verileri ve kamuya açık repository kanıtları yayımlıyoruz.',
       cards: {
         lighthouse: {
           label: 'Masaüstü Lighthouse',
