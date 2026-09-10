@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import SEO from '../../components/SEO';
 import { useLanguage } from '../../context/LanguageContext';
 import { localizePath } from '../../i18n/route';
-import { brandLogos, ecosystemCopy, type IntegrationId } from './content';
+import { brandLogos, type IntegrationId } from './content';
+import { ecosystemCopy } from './localizedContent';
 import BrandMarks from './BrandMarks';
 
 const integrationIds: IntegrationId[] = ['falco', 'inspektor-gadget'];
@@ -154,7 +155,7 @@ export default function UpstreamIntegrations() {
                   rel="noopener noreferrer"
                   className="border border-border bg-surface p-6 group hover:border-primary/50 transition-colors"
                 >
-                  <span className="font-mono text-xs uppercase tracking-widest text-foreground/50">Falco ecosystem</span>
+                  <span className="font-mono text-xs uppercase tracking-widest text-foreground/50">Falco</span>
                   <BrandMarks
                     logos={[brandLogos.aws, brandLogos.qonto, brandLogos.shopify]}
                     size="md"
@@ -171,7 +172,7 @@ export default function UpstreamIntegrations() {
                   rel="noopener noreferrer"
                   className="border border-border bg-surface p-6 group hover:border-primary/50 transition-colors"
                 >
-                  <span className="font-mono text-xs uppercase tracking-widest text-foreground/50">Inspektor Gadget ecosystem</span>
+                  <span className="font-mono text-xs uppercase tracking-widest text-foreground/50">Inspektor Gadget</span>
                   <BrandMarks logos={[brandLogos.azure]} size="md" className="mt-5" />
                   <div className="mt-5 flex items-center justify-between">
                     <span className="text-lg font-medium">Microsoft Azure · AKS</span>
