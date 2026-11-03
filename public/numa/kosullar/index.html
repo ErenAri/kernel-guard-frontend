@@ -5,30 +5,84 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kullanım Koşulları · Nüma</title>
 <meta name="description" content="Nüma Kullanım Koşulları">
-<link rel="canonical" href="https://kernelguard.netC:/Program Files/Git/numa/kosullar/">
+<meta name="theme-color" content="#8e7fa8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#2c2742" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://kernelguard.net/numa/kosullar/">
+<link rel="preload" href="/numa/fonts/inter-400.a285ce100da1.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/numa/fonts/fraunces-300.5a66ba089a8a.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-:root{color-scheme:light dark;--bg:#fbfaf7;--fg:#1d1b18;--muted:#5d5850;--line:#e3ded4;--accent:#6b4fa0}
-@media (prefers-color-scheme:dark){:root{--bg:#141317;--fg:#ece8e1;--muted:#a9a399;--line:#2d2a31;--accent:#b9a2e6}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-main{max-width:760px;margin:0 auto;padding:32px 16px 64px}h1{font-size:1.9rem;line-height:1.25;margin:0 0 8px}
-h2{font-size:1.3rem;margin:2.2em 0 .5em;padding-top:.6em;border-top:1px solid var(--line)}h3{font-size:1.08rem;margin:1.6em 0 .4em}
-a{color:var(--accent);overflow-wrap:anywhere}p,li{overflow-wrap:break-word}code{font-size:.9em}
-blockquote{margin:1em 0;padding:.6em 1em;border-left:3px solid var(--accent);color:var(--muted)}
-hr{border:0;border-top:1px solid var(--line);margin:2em 0}
-.table{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.93rem;margin:1em 0}
-th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}th{background:color-mix(in srgb,var(--line) 45%,transparent)}
-nav{font-size:.92rem;margin-bottom:24px;color:var(--muted)}footer{margin-top:48px;font-size:.9rem;color:var(--muted)}
+@font-face{font-family:Fraunces;font-weight:300;font-display:swap;src:url(/numa/fonts/fraunces-300.5a66ba089a8a.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:400;font-display:swap;src:url(/numa/fonts/inter-400.a285ce100da1.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:600;font-display:swap;src:url(/numa/fonts/inter-600.cd4d951f2d93.woff2) format("woff2")}
+:root{color-scheme:light;--canvas:#f7f3ec;--subtle:#efe8dd;--card:#fff;--lavender:#f2ece3;--ink:#1f1a24;--text2:#5a5048;--text3:#73685f;--brand:#3b2a55;--gold:#b08440;--on-primary:#f7f3ec;--primary:#1f1a24;--line:#e2d9cc;--line-strong:#cfc3b3;--focus:#1f1a24;--sky1:#8e7fa8;--sky2:#c9a0a6;--sky3:#f0d3c2;--shadow:0 1px 2px #1f1a240a,0 6px 18px #1f1a240f;--serif:Fraunces,"Iowan Old Style","Palatino Linotype",Georgia,serif;--sans:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+@media (prefers-color-scheme:dark){:root{color-scheme:dark;--canvas:#16131b;--subtle:#1e1a24;--card:#231e2b;--lavender:#282131;--ink:#f3ede4;--text2:#cbc1b6;--text3:#a59b91;--brand:#cdb8f2;--gold:#d9b26a;--on-primary:#1a161f;--primary:#f3ede4;--line:#342c3d;--line-strong:#4b4256;--focus:#f3ede4;--sky1:#2c2742;--sky2:#3a2b3e;--sky3:#2a2130;--shadow:0 1px 2px #0000004d,0 8px 24px #00000040}}
+*,::before,::after{box-sizing:border-box}html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;padding:0 16px 48px;color:var(--ink);font:400 16px/1.7 var(--sans);letter-spacing:-.005em;background:linear-gradient(180deg,var(--sky1) 0,var(--sky2) 110px,var(--sky3) 210px,var(--canvas) 330px) no-repeat,var(--canvas)}
+a{color:var(--brand);text-underline-offset:3px;overflow-wrap:anywhere}a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:16px;top:-48px;padding:8px 16px;background:var(--primary);color:var(--on-primary);border-radius:999px;font-weight:600;text-decoration:none;z-index:1}.skip:focus{top:12px}
+.top{display:flex;flex-direction:column;align-items:center;gap:16px;max-width:1120px;margin:0 auto;padding:28px 0 24px}
+.brand{display:flex;align-items:center;gap:8px;margin:0;font:300 30px/1 var(--serif);letter-spacing:-.01em;color:var(--ink)}
+.brand svg{width:18px;height:18px;color:var(--gold);flex:none}
+.docs{display:flex;gap:4px;padding:4px;background:color-mix(in srgb,var(--card) 72%,transparent);border:1px solid var(--line);border-radius:999px}
+.docs a{padding:8px 16px;font-size:14px;line-height:20px;font-weight:600;color:var(--text2);text-decoration:none;border-radius:999px;white-space:nowrap}
+.docs a:hover{color:var(--ink)}.docs a[aria-current]{color:var(--on-primary);background:var(--primary)}
+.layout{max-width:1120px;margin:0 auto}
+main{padding:28px 20px 32px;background:var(--card);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);min-width:0}
+article{max-width:68ch;margin:0 auto;overflow-wrap:break-word}
+h1{margin:0 0 12px;font:300 32px/38px var(--serif);letter-spacing:-.015em}
+h1+p{display:inline-block;margin:0 0 20px;padding:4px 12px;font-size:13px;line-height:20px;font-weight:600;color:var(--text2);background:var(--lavender);border-radius:999px}
+h2{margin:2.4em 0 .6em;padding-top:1.2em;border-top:1px solid var(--line);font:300 24px/30px var(--serif);letter-spacing:-.01em;scroll-margin-top:24px}
+hr{height:1px;margin:2em 0;background:var(--line);border:0}hr+h2{margin-top:0;padding-top:0;border-top:0}
+h3{margin:1.8em 0 .4em;font-size:17px;line-height:24px;font-weight:600;scroll-margin-top:24px}
+p,ul,ol{margin:0 0 1em}ul,ol{padding-left:1.3em}li{margin:.3em 0}li::marker{color:var(--gold)}strong{font-weight:600}
+code{padding:.1em .4em;font-size:.88em;background:var(--subtle);border-radius:6px}
+blockquote{margin:1.2em 0;padding:12px 16px;color:var(--text2);background:var(--lavender);border-left:3px solid var(--gold);border-radius:0 14px 14px 0}blockquote p:last-child{margin:0}
+.table{margin:1.2em 0;overflow-x:auto;border:1px solid var(--line);border-radius:16px;-webkit-overflow-scrolling:touch}
+table{width:100%;min-width:560px;border-collapse:collapse;font-size:14.5px;line-height:1.55}
+th,td{padding:10px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}tr:last-child td{border-bottom:0}
+th{font-weight:600;color:var(--text2);background:var(--subtle)}td+td,th+th{border-left:1px solid var(--line)}
+.toc-m{margin:0 0 8px;background:var(--lavender);border-radius:20px}
+.toc-m summary{display:flex;align-items:center;justify-content:space-between;min-height:48px;padding:12px 18px;font-weight:600;cursor:pointer;list-style:none;border-radius:20px}
+.toc-m summary::-webkit-details-marker{display:none}
+.toc-m summary::after{content:"";width:8px;height:8px;margin:-4px 4px 0 12px;border-right:2px solid var(--text2);border-bottom:2px solid var(--text2);transform:rotate(45deg);transition:transform .15s}
+.toc-m[open] summary::after{margin-top:4px;transform:rotate(-135deg)}
+.toc-m ol,.toc ol{margin:0;padding:0;list-style:none}.toc-m ol{padding:0 10px 12px}
+.toc-m a,.toc a{display:block;padding:7px 8px;font-size:15px;line-height:21px;color:var(--text2);text-decoration:none;border-radius:10px}
+.toc-m a:hover,.toc a:hover{color:var(--ink);background:color-mix(in srgb,var(--ink) 6%,transparent)}
+.toc{display:none}
+footer{max-width:1120px;margin:24px auto 0;font-size:14px;line-height:20px;text-align:center;color:var(--text3)}footer a{color:var(--text2)}
+@media (min-width:600px){body{padding:0 24px 64px}.top{padding:44px 0 32px}main{padding:48px 48px 56px}h1{font-size:38px;line-height:44px}}
+@media (min-width:1024px){.top{flex-direction:row;justify-content:space-between}.layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:40px;align-items:start}
+.toc{display:block;position:sticky;top:24px;max-height:calc(100vh - 48px);overflow:auto;padding:4px 0}.toc-m{display:none}
+.toc p{margin:0 0 8px 8px;font-size:12px;line-height:16px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text3)}.toc a{font-size:14px;line-height:20px;padding:6px 8px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media print{:root{--ink:#000;--text2:#333;--text3:#555;--brand:#000;--line:#bbb;--subtle:#f2f2f2;--lavender:#f2f2f2;--gold:#555}
+@page{margin:18mm 16mm}body{padding:0;background:#fff;color:#000;font-size:10.5pt;line-height:1.5}
+.skip,.docs,.toc,.toc-m{display:none!important}.top{padding:0 0 12pt;align-items:flex-start}.brand{font-size:18pt}.brand svg{display:none}
+.layout{display:block;max-width:none}main{padding:0;border:0;border-radius:0;box-shadow:none;background:none}article{max-width:none}
+h1{font-size:20pt;line-height:1.2}h1+p{padding:0;background:none}h2{font-size:14pt;line-height:1.25;break-after:avoid;page-break-after:avoid}h3{break-after:avoid;page-break-after:avoid}
+a{color:#000;text-decoration:none}.table{overflow:visible;border:0;border-radius:0}table{min-width:0;font-size:9pt}th,td{border:1px solid #bbb}
+tr,li,blockquote{break-inside:avoid;page-break-inside:avoid}footer{text-align:left}}
 </style>
 </head>
 <body>
-<main>
-<nav><a href="/numa/kosullar/">Kullanım Koşulları</a> · <a href="/numa/gizlilik/">Gizlilik ve KVKK</a></nav>
+<a class="skip" href="#metin">Metne geç</a>
+<header class="top">
+<p class="brand"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 0c.8 6.5 5.5 11.2 12 12-6.5.8-11.2 5.5-12 12-.8-6.5-5.5-11.2-12-12C6.5 11.2 11.2 6.5 12 0z"/></svg>Nüma</p>
+<nav class="docs" aria-label="Belgeler"><a href="/numa/kosullar/" aria-current="page">Kullanım Koşulları</a><a href="/numa/gizlilik/">Gizlilik ve KVKK</a></nav>
+</header>
+<div class="layout">
+<nav class="toc" aria-label="İçindekiler"><p>İçindekiler</p><ol><li><a href="#1-taraflar">1. Taraflar</a></li><li><a href="#2-kimler-kullanabilir">2. Kimler kullanabilir</a></li><li><a href="#3-numa-nedir-ne-degildir">3. Nüma nedir, ne değildir</a></li><li><a href="#4-yapay-zeka-icerigi">4. Yapay zekâ içeriği</a></li><li><a href="#5-hesaplar">5. Hesaplar</a></li><li><a href="#6-plus-aboneligi">6. Plus aboneliği</a></li><li><a href="#7-yudum">7. Yudum</a></li><li><a href="#8-kabul-edilebilir-kullanim">8. Kabul edilebilir kullanım</a></li><li><a href="#9-sizin-icerikleriniz">9. Sizin içerikleriniz</a></li><li><a href="#10-fikri-mulkiyet">10. Fikrî mülkiyet</a></li><li><a href="#11-hizmetin-surekliligi-ve-degisiklikler">11. Hizmetin sürekliliği ve değişiklikler</a></li><li><a href="#12-sorumluluk">12. Sorumluluk</a></li><li><a href="#13-hesabin-askiya-alinmasi-ve-sona-erdirilmesi">13. Hesabın askıya alınması ve sona erdirilmesi</a></li><li><a href="#14-hesap-silme">14. Hesap silme</a></li><li><a href="#15-bildirimler">15. Bildirimler</a></li><li><a href="#16-kosullardaki-degisiklikler">16. Koşullardaki değişiklikler</a></li><li><a href="#17-uygulanacak-hukuk-ve-uyusmazliklar">17. Uygulanacak hukuk ve uyuşmazlıklar</a></li><li><a href="#18-diger-hukumler">18. Diğer hükümler</a></li><li><a href="#19-iletisim">19. İletişim</a></li></ol></nav>
+<main id="metin">
+<article>
 <h1>Nüma Kullanım Koşulları</h1>
 <p>Sürüm: 2026-11 · Yürürlük: 3 Kasım 2026</p>
+<details class="toc-m"><summary>İçindekiler</summary><ol><li><a href="#1-taraflar">1. Taraflar</a></li><li><a href="#2-kimler-kullanabilir">2. Kimler kullanabilir</a></li><li><a href="#3-numa-nedir-ne-degildir">3. Nüma nedir, ne değildir</a></li><li><a href="#4-yapay-zeka-icerigi">4. Yapay zekâ içeriği</a></li><li><a href="#5-hesaplar">5. Hesaplar</a></li><li><a href="#6-plus-aboneligi">6. Plus aboneliği</a></li><li><a href="#7-yudum">7. Yudum</a></li><li><a href="#8-kabul-edilebilir-kullanim">8. Kabul edilebilir kullanım</a></li><li><a href="#9-sizin-icerikleriniz">9. Sizin içerikleriniz</a></li><li><a href="#10-fikri-mulkiyet">10. Fikrî mülkiyet</a></li><li><a href="#11-hizmetin-surekliligi-ve-degisiklikler">11. Hizmetin sürekliliği ve değişiklikler</a></li><li><a href="#12-sorumluluk">12. Sorumluluk</a></li><li><a href="#13-hesabin-askiya-alinmasi-ve-sona-erdirilmesi">13. Hesabın askıya alınması ve sona erdirilmesi</a></li><li><a href="#14-hesap-silme">14. Hesap silme</a></li><li><a href="#15-bildirimler">15. Bildirimler</a></li><li><a href="#16-kosullardaki-degisiklikler">16. Koşullardaki değişiklikler</a></li><li><a href="#17-uygulanacak-hukuk-ve-uyusmazliklar">17. Uygulanacak hukuk ve uyuşmazlıklar</a></li><li><a href="#18-diger-hukumler">18. Diğer hükümler</a></li><li><a href="#19-iletisim">19. İletişim</a></li></ol></details>
 <p>Bu koşullar, Nüma mobil uygulamasını (iOS ve Android) ve ona bağlı web sayfalarını (&quot;Nüma&quot; ya da &quot;hizmet&quot;) kullanmanızı düzenler. Nüma&#39;yı kullanarak bu koşulları kabul etmiş olursunuz. Lütfen dikkatle okuyun. Koşulların güncel sürümü: <a href="https://kernelguard.net/numa/kosullar">https://kernelguard.net/numa/kosullar</a></p>
 <p>Kişisel verilerinizin nasıl işlendiği ayrı bir metinde anlatılır: <strong>Gizlilik Politikası ve KVKK Aydınlatma Metni</strong> (<a href="https://kernelguard.net/numa/gizlilik">https://kernelguard.net/numa/gizlilik</a>).</p>
 <hr>
-<h2>1. Taraflar</h2>
+<h2 id="1-taraflar">1. Taraflar</h2>
 <p>Bu koşullar sizinle Nüma&#39;yı geliştiren ve yayımlayan gerçek kişi arasındadır. Nüma bir şirket tarafından sunulmaz. Bu metinde &quot;biz&quot; bu kişiden söz eder:</p>
 <ul>
 <li><strong>Ad soyad:</strong> Eren ARI (App Store ve Google Play&#39;de satıcı olarak görünen kişi)</li>
@@ -36,12 +90,12 @@ nav{font-size:.92rem;margin-bottom:24px;color:var(--muted)}footer{margin-top:48p
 <li><strong>E-posta:</strong> <a href="mailto:contact@kernelguard.net">contact@kernelguard.net</a></li>
 </ul>
 <p>Satın alımlar App Store ya da Google Play üzerinden yapılır; ödemeyi mağaza alır ve faturayı ya da makbuzu mağaza düzenler.</p>
-<h2>2. Kimler kullanabilir</h2>
+<h2 id="2-kimler-kullanabilir">2. Kimler kullanabilir</h2>
 <ul>
 <li>Nüma&#39;yı yalnızca <strong>18 yaşını doldurmuş</strong> kişiler kullanabilir. Uygulamanın başında yaşınızı sorarız. 18 yaşından küçük olduğunuzu beyan ederseniz hesabınız kısıtlanır, özellikler açılmaz ve kişisel verileriniz Gizlilik Politikası&#39;nda anlatıldığı şekilde silinir. Bu beyan kalıcıdır; yanlışlıkla seçtiyseniz destek ile iletişime geçebilirsiniz.</li>
 <li>Nüma şu an yalnızca Türkiye&#39;deki App Store ve Google Play mağazalarında sunulmaktadır.</li>
 </ul>
-<h2>3. Nüma nedir, ne değildir</h2>
+<h2 id="3-numa-nedir-ne-degildir">3. Nüma nedir, ne değildir</h2>
 <p>Nüma, kahve falı, tarot ve astroloji gelenekleriyle <strong>eğlence ve kendini tanıma amaçlı</strong> yorumlar sunan bir uygulamadır. Yorumlar yapay zekâ tarafından üretilir.</p>
 <ul>
 <li>Nüma <strong>geleceği bilmez ve kehanet iddiası taşımaz.</strong> Yorumlar bir bakış açısı ve düşünme fırsatıdır; kesinlik taşımaz.</li>
@@ -50,7 +104,7 @@ nav{font-size:.92rem;margin-bottom:24px;color:var(--muted)}footer{margin-top:48p
 <li>Nüma bir terapi, danışmanlık ya da kriz hizmeti değildir.</li>
 </ul>
 <p><strong>Zor bir dönemden geçiyorsanız.</strong> Kendinize ya da başkasına zarar verme düşünceniz varsa veya acil bir tehlike içindeyseniz hemen <strong>112</strong>&#39;yi arayın ya da bir sağlık profesyoneline başvurun. Nüma bu tür bir durumu fark ettiğinde okumayı ya da sohbeti durdurur ve destek kaynaklarını gösterir; bu durumda fal ya da yorum yapılmaz. Kriz hatları ve destek kaynakları uygulamadaki &quot;Destek&quot; kartında yer alır; bu karta Ayarlar&#39;dan da ulaşabilirsiniz.</p>
-<h2>4. Yapay zekâ içeriği</h2>
+<h2 id="4-yapay-zeka-icerigi">4. Yapay zekâ içeriği</h2>
 <ul>
 <li>Okumalar, tarot ve gökyüzü yorumları, uyum yorumu, Nüma&#39;nın notları ve Nüma sohbetindeki yanıtlar yapay zekâ tarafından üretilir. YZ sağlayıcımız Anthropic&#39;tir. YZ özelliklerini kullanmak için ayrı bir onay vermeniz gerekir; onay vermezseniz ya da geri alırsanız Nüma sınırlı modda çalışır (kütüphane, günlük, günün kartının kütüphane anlamı, kayıtlarınız, verilerinizi indirme ve hesap silme açık kalır).</li>
 <li>YZ hata yapabilir: yanlış, eksik, tutarsız ya da size uygun olmayan bir şey yazabilir. Yorumları bu bilinçle okuyun.</li>
@@ -58,14 +112,14 @@ nav{font-size:.92rem;margin-bottom:24px;color:var(--muted)}footer{margin-top:48p
 <li>YZ çıktıları otomatik bir güvenlik denetiminden geçer. Yine de uygunsuz bulduğunuz bir yorumu uygulamadaki &quot;Bildir&quot; ile bize iletebilirsiniz.</li>
 <li>Bir okumayı beğenmemeniz iade ya da telafi nedeni değildir. Teknik bir hata nedeniyle tamamlanamayan okumada hakkınız iade edilir (bkz. 7. bölüm).</li>
 </ul>
-<h2>5. Hesaplar</h2>
+<h2 id="5-hesaplar">5. Hesaplar</h2>
 <ul>
 <li><strong>Misafir olarak başlama:</strong> Nüma&#39;yı e-posta vermeden misafir olarak kullanmaya başlayabilirsiniz. Misafir hesabı bu cihaza bağlıdır; çıkış yaparsanız ya da uygulamayı silerseniz misafir verilerine erişiminizi kaybedebilirsiniz. Misafirler satın alma yapamaz.</li>
 <li><strong>Kalıcı hesap:</strong> Hesabınızı e-posta adresinize gelen kodla, Apple ile giriş ya da Google ile giriş yoluyla kalıcı hâle getirebilirsiniz. Misafirken var olan bir hesaba girerseniz misafir verileri o hesaba taşınır.</li>
 <li>Hesabınızın ve e-posta adresinizin güvenliğinden siz sorumlusunuz. Hesabınızda yetkisiz bir kullanım fark ederseniz bize hemen bildirin.</li>
 <li>Kötüye kullanımı önlemek için web formlarında ve, girişte etkinleştirildiğinde, uygulamaya girişte CAPTCHA; ayrıca uygulamanın gerçek bir kurulum olduğunu doğrulayan denetimler ve hız sınırları uygulayabiliriz.</li>
 </ul>
-<h2>6. Plus aboneliği</h2>
+<h2 id="6-plus-aboneligi">6. Plus aboneliği</h2>
 <ul>
 <li><strong>Ne sunar:</strong> Plus, ücretsiz plandakinden fazla günlük okuma hakkı ve yalnızca Plus&#39;ta bulunan özellikleri (ör. Nüma sohbeti, tarot açılımları, gökyüzü notları, temalar) sunar. Her hak sınırlıdır; güncel günlük haklar uygulamadaki plan karşılaştırmasında yazılıdır. Günlük haklar her gün 04:00&#39;te (İstanbul saati) yenilenir.</li>
 <li><strong>Satın alma:</strong> Plus aylık ya da yıllık abonelik olarak, yalnızca App Store veya Google Play üzerinden satın alınır. Ödemeyi mağaza alır; fiyat, vergiler dahil olarak satın alma ekranında ve mağazada gösterilir. Satın almak için kalıcı bir hesap ve YZ onayı gerekir.</li>
@@ -80,7 +134,7 @@ nav{font-size:.92rem;margin-bottom:24px;color:var(--muted)}footer{margin-top:48p
 <li><strong>İadeler:</strong> Satın almalar mağaza üzerinden yapıldığı için iade talepleri Apple veya Google&#39;a, onların iade politikalarına göre iletilir. Biz mağaza adına iade yapamayız. Mağaza bir aboneliği iade ederse Plus hemen kapanır.</li>
 <li><strong>Satın almaları geri yükleme:</strong> Yeni bir cihazda ya da uygulamayı yeniden yükledikten sonra &quot;Satın almaları geri yükle&quot; ile aboneliğinizi geri alabilirsiniz. Aboneliği başka bir Nüma hesabında geri yüklerseniz Plus o hesaba geçer ve önceki hesapta kapanır.</li>
 </ul>
-<h2>7. Yudum</h2>
+<h2 id="7-yudum">7. Yudum</h2>
 <ul>
 <li><strong>Nedir:</strong> Yudum, Nüma içinde kullanılan bir kredidir. Günlük hakkınız bittiğinde ya da bazı özellikleri açmak için Yudum harcayabilirsiniz. Hangi özelliğin kaç Yudum olduğu, harcamadan önce onay ekranında gösterilir. Yudum Nüma sohbetinde harcanmaz. Ücretsiz planda tarot açılımları ve gökyüzü notları Yudum ile açılamaz.</li>
 <li><strong>Satın alma:</strong> Yudum paketleri yalnızca App Store veya Google Play üzerinden satın alınır; paketler ve fiyatları satın alma ekranında ve mağazada gösterilir.</li>
@@ -93,7 +147,7 @@ nav{font-size:.92rem;margin-bottom:24px;color:var(--muted)}footer{margin-top:48p
 <li><strong>Mağaza iadesi:</strong> Bir Yudum paketi mağaza tarafından iade edilirse, o paketle gelen Yudum bakiyenizden düşülür. Bakiyeniz yetmezse aradaki fark eksi bakiye olarak gösterilir; eksi bakiye kapanana kadar Yudum harcayamazsınız. Eksi bakiye için sizden ayrıca bir ödeme istemeyiz; hesabınızı silerseniz eksi bakiye de kapanır.</li>
 <li><strong>Hesap silme:</strong> Hesabınızı silerseniz <strong>harcanmamış Yudum&#39;unuz kaybolur ve iade edilmez.</strong> Silmeden önce bu size ayrıca söylenir ve onayınız istenir.</li>
 </ul>
-<h2>8. Kabul edilebilir kullanım</h2>
+<h2 id="8-kabul-edilebilir-kullanim">8. Kabul edilebilir kullanım</h2>
 <p>Nüma&#39;yı kullanırken şunları yapmamayı kabul edersiniz:</p>
 <ul>
 <li>yasalara aykırı, başkalarının haklarını ihlal eden, tehdit, taciz, nefret söylemi, müstehcenlik ya da şiddet içeren içerik yazmak veya yüklemek;</li>
@@ -106,27 +160,27 @@ nav{font-size:.92rem;margin-bottom:24px;color:var(--muted)}footer{margin-top:48p
 <li>Nüma&#39;yı veya ürettiği içerikleri, YZ ürünü olduğunu gizleyerek ya da gelecek hakkında kesin bilgi gibi sunarak ticari amaçla kullanmak, falcılık hizmeti olarak sunmak.</li>
 </ul>
 <p>Bu kurallara aykırı kullanımda, durumun ağırlığına göre ilgili içeriği kaldırabilir, özelliklere erişimi kısıtlayabilir ya da hesabı askıya alabiliriz (bkz. 13. bölüm).</p>
-<h2>9. Sizin içerikleriniz</h2>
+<h2 id="9-sizin-icerikleriniz">9. Sizin içerikleriniz</h2>
 <ul>
 <li>Yazdığınız metinler, yüklediğiniz fotoğraflar, doğum bilgileri ve diğer içerikler (&quot;içerikleriniz&quot;) size aittir.</li>
 <li>Bize, içeriklerinizi <strong>yalnızca Nüma hizmetini size sunmak için</strong> (saklamak, işlemek, YZ sağlayıcısına göndermek, yorumları hazırlamak ve size göstermek) kullanma izni verirsiniz. Bu izin dünya çapında, ücretsiz ve hizmetin süresiyle sınırlıdır; içeriği ya da hesabı sildiğinizde, yasal saklama yükümlülükleri ve yedeklerden silinme süresi saklı kalmak kaydıyla sona erer.</li>
 <li>İçeriklerinizi reklam için kullanmayız, satmayız ve sizin ayrı açık onayınız olmadan YZ modellerini eğitmek ya da doğruluk ölçmek için kullanmayız.</li>
 <li>&quot;Kişiler&quot; bölümüne ya da sohbete başka birinin bilgilerini eklerseniz, bunu yapmaya hakkınız olduğundan ve o kişinin bilgisi olduğundan siz sorumlusunuz.</li>
 </ul>
-<h2>10. Fikrî mülkiyet</h2>
+<h2 id="10-fikri-mulkiyet">10. Fikrî mülkiyet</h2>
 <ul>
 <li>Nüma uygulaması, adı, logosu, tasarımı, yazılımı ve kütüphane içerikleri (sembol, kart ve astroloji anlamları gibi editoryal metinler) bize veya lisans verenlerimize aittir ve kanunla korunur.</li>
 <li>Size, bu koşullara uyduğunuz sürece Nüma&#39;yı kişisel ve ticari olmayan amaçla kullanmanız için sınırlı, devredilemez, münhasır olmayan bir kullanım hakkı veririz.</li>
 <li>Size özel üretilen YZ yorumlarını kişisel olarak saklayabilir ve paylaşabilirsiniz. Bunları paylaşırken YZ ürünü olduklarını gizlememenizi rica ederiz.</li>
 <li>Nüma, üçüncü taraf açık kaynak bileşenler içerir. Açık kaynak bileşenlerin lisans listesini <a href="mailto:contact@kernelguard.net">contact@kernelguard.net</a> adresinden isteyebilirsiniz.</li>
 </ul>
-<h2>11. Hizmetin sürekliliği ve değişiklikler</h2>
+<h2 id="11-hizmetin-surekliligi-ve-degisiklikler">11. Hizmetin sürekliliği ve değişiklikler</h2>
 <ul>
 <li>Nüma&#39;yı kesintisiz ve hatasız sunmaya çalışırız, ancak bunu garanti edemeyiz. Bakım, güncelleme, hizmet sağlayıcılarımızdaki kesintiler veya güvenlik nedenleriyle hizmet geçici olarak durabilir. Planlı bakımı mümkün olduğunca önceden uygulamada duyururuz.</li>
 <li>Uygulamanın eski sürümleri desteklenmeyebilir; güncelleme yapmanız gerekebilir.</li>
 <li>Özellikleri değiştirebilir, ekleyebilir veya kaldırabiliriz. Ücretli bir özelliği ödenmiş dönem içinde aleyhinize önemli ölçüde değiştirirsek bunu önceden bildiririz; kanundan doğan haklarınız saklıdır.</li>
 </ul>
-<h2>12. Sorumluluk</h2>
+<h2 id="12-sorumluluk">12. Sorumluluk</h2>
 <ul>
 <li>Nüma&#39;daki yorumlar eğlence ve kendini tanıma amaçlıdır. Yorumlara dayanarak verdiğiniz kararların sorumluluğu size aittir.</li>
 <li>Hizmeti makul özen ve teknik güvenlik önlemleriyle sunarız. Sorumluluğumuz, Türk Borçlar Kanunu ve 6502 sayılı Tüketicinin Korunması Hakkında Kanun çerçevesinde belirlenir.</li>
@@ -134,25 +188,25 @@ nav{font-size:.92rem;margin-bottom:24px;color:var(--muted)}footer{margin-top:48p
 <li><strong>Hafif ihmal:</strong> Yalnızca hafif ihmalimizden doğan zararlarda, kanunun izin verdiği ölçüde, hizmet sağlayıcılarımızın (ör. mağazalar, YZ sağlayıcısı) bizim kontrolümüz dışındaki kesintilerinden ve dolaylı zararlardan sorumlu değiliz.</li>
 <li>Mağaza üzerinden yapılan ödemelerle ilgili işlemler Apple veya Google&#39;ın koşullarına da tabidir.</li>
 </ul>
-<h2>13. Hesabın askıya alınması ve sona erdirilmesi</h2>
+<h2 id="13-hesabin-askiya-alinmasi-ve-sona-erdirilmesi">13. Hesabın askıya alınması ve sona erdirilmesi</h2>
 <ul>
 <li>Nüma&#39;yı istediğiniz zaman kullanmayı bırakabilir ve hesabınızı silebilirsiniz.</li>
 <li>Hesabınızı yalnızca şu durumlarda askıya alabilir veya kapatabiliriz: bu koşulları ciddi şekilde ya da tekrar tekrar ihlal etmeniz, Nüma&#39;yı hukuka aykırı amaçla kullanmanız veya hesabınızın hizmet ya da diğer kullanıcılar için bir güvenlik riski oluşturması.</li>
 <li>Bunu önceden ve gerekçesiyle bildiririz; yalnızca hemen müdahale gereken durumlarda (ör. süren bir saldırı) önce önlem alır, sonra bildiririz. Size verilerinizi indirme imkânı tanırız.</li>
 <li>Hesabınızı sizin kusurunuz olmadan kapatırsak (ör. Nüma hizmetini sona erdirmemiz), kullanılmamış ödenmiş abonelik süresini ve harcanmamış satın alınmış Yudum&#39;unuzu, mağazanın imkân verdiği ölçüde iade ederiz. Kanundan doğan haklarınız saklıdır.</li>
 </ul>
-<h2>14. Hesap silme</h2>
+<h2 id="14-hesap-silme">14. Hesap silme</h2>
 <ul>
 <li>Hesabınızı uygulamada <strong>Ayarlar › Hesap › Hesabı sil</strong> yolundan ya da uygulamanız yoksa <a href="https://app.kernelguard.net/hesap-silme">https://app.kernelguard.net/hesap-silme</a> adresinden silebilirsiniz.</li>
 <li>Silme isteği <strong>7 gün</strong> sonra uygulanır; bu sürede vazgeçebilirsiniz. Silmeden bir gün önce e-postayla hatırlatılır.</li>
 <li>Silmeyle birlikte harcanmamış Yudum&#39;unuz kaybolur (7. bölüm). Plus aboneliğiniz otomatik olarak iptal olmaz; mağazadan ayrıca iptal etmelisiniz (6. bölüm).</li>
 <li>Neyin silindiği, neyin yasal yükümlülük nedeniyle kimliğinizle bağı koparılarak saklandığı Gizlilik Politikası&#39;nda anlatılır.</li>
 </ul>
-<h2>15. Bildirimler</h2>
+<h2 id="15-bildirimler">15. Bildirimler</h2>
 <p>Push bildirimlerini yalnızca onay vermeniz hâlinde göndeririz. Teklif içeren pazarlama bildirimleri ayrı bir onaya bağlıdır, haftada en çok bir kez gönderilir ve Ayarlar&#39;dan her an kapatılabilir.</p>
-<h2>16. Koşullardaki değişiklikler</h2>
+<h2 id="16-kosullardaki-degisiklikler">16. Koşullardaki değişiklikler</h2>
 <p>Bu koşulları değiştirebiliriz. Her sürüm en üstteki sürüm numarasını taşır. Değişiklik yaptığımızda yeni sürümü yayımlar ve uygulamada size gösteririz. Aleyhinize olan değişiklikleri yürürlüğe girmeden en az <strong>30 gün</strong> önce bildiririz. Yeni bir onay gerektiren değişikliklerde onayınızı uygulamada yeniden isteriz. Yeni koşulları kabul etmezseniz Nüma&#39;yı kullanmayı bırakabilir ve hesabınızı silebilirsiniz.</p>
-<h2>17. Uygulanacak hukuk ve uyuşmazlıklar</h2>
+<h2 id="17-uygulanacak-hukuk-ve-uyusmazliklar">17. Uygulanacak hukuk ve uyuşmazlıklar</h2>
 <ul>
 <li>Bu koşullar Türkiye Cumhuriyeti hukukuna tabidir.</li>
 <li>Tüketici olarak, Ticaret Bakanlığı&#39;nın her yıl belirlediği parasal sınırların altındaki uyuşmazlıklarda <strong>tüketici hakem heyetine</strong> başvurabilirsiniz.</li>
@@ -160,22 +214,23 @@ nav{font-size:.92rem;margin-bottom:24px;color:var(--muted)}footer{margin-top:48p
 <li>Hakem heyetine ve mahkemeye, sizin yerleşim yerinizde ya da bizim yerleşim yerimizde başvurabilirsiniz.</li>
 <li>Bize önce <a href="mailto:contact@kernelguard.net">contact@kernelguard.net</a> adresinden ulaşmanızı rica ederiz; sorunların çoğunu bu yolla çözebiliriz.</li>
 </ul>
-<h2>18. Diğer hükümler</h2>
+<h2 id="18-diger-hukumler">18. Diğer hükümler</h2>
 <ul>
 <li>Bu koşulların bir hükmü geçersiz sayılırsa diğer hükümler geçerliliğini korur.</li>
 <li>Bir hakkımızı kullanmamamız, o haktan vazgeçtiğimiz anlamına gelmez.</li>
 <li>App Store ve Google Play&#39;den indirilen uygulamalar için Apple ve Google&#39;ın kendi kullanım koşulları da geçerlidir. Apple veya Google bu koşulların tarafı değildir ve Nüma&#39;dan sorumlu değildir.</li>
 <li>iOS&#39;ta Apple&#39;ın Standart Lisanslı Uygulama Son Kullanıcı Lisans Sözleşmesi (Licensed Application End User License Agreement) de uygulanır: <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">https://www.apple.com/legal/internet-services/itunes/dev/stdeula/</a> . Bu koşullar, Apple&#39;ın sözleşmesinin düzenlediği konularda onunla çelişirse Apple&#39;ın sözleşmesi geçerlidir.</li>
 </ul>
-<h2>19. İletişim</h2>
+<h2 id="19-iletisim">19. İletişim</h2>
 <ul>
 <li>E-posta: <a href="mailto:contact@kernelguard.net">contact@kernelguard.net</a></li>
 <li>Yazışma adresi: Adatepe Mahallesi, 3/10 Sokak, Buca, İzmir</li>
 <li>Uygulama içinde: Ayarlar › Yardım › Destek iste</li>
 <li>Web destek formu: <a href="https://app.kernelguard.net/destek">https://app.kernelguard.net/destek</a></li>
 </ul>
-
-<footer>Nüma · Eren ARI · <a href="mailto:contact@kernelguard.net">contact@kernelguard.net</a></footer>
+</article>
 </main>
+</div>
+<footer>Nüma · Eren ARI · <a href="mailto:contact@kernelguard.net">contact@kernelguard.net</a></footer>
 </body>
 </html>
