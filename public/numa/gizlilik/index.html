@@ -5,26 +5,80 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gizlilik Politikası ve KVKK Aydınlatma Metni · Nüma</title>
 <meta name="description" content="Nüma Gizlilik Politikası ve KVKK Aydınlatma Metni">
-<link rel="canonical" href="https://kernelguard.netC:/Program Files/Git/numa/gizlilik/">
+<meta name="theme-color" content="#8e7fa8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#2c2742" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://kernelguard.net/numa/gizlilik/">
+<link rel="preload" href="/numa/fonts/inter-400.a285ce100da1.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/numa/fonts/fraunces-300.5a66ba089a8a.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-:root{color-scheme:light dark;--bg:#fbfaf7;--fg:#1d1b18;--muted:#5d5850;--line:#e3ded4;--accent:#6b4fa0}
-@media (prefers-color-scheme:dark){:root{--bg:#141317;--fg:#ece8e1;--muted:#a9a399;--line:#2d2a31;--accent:#b9a2e6}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-main{max-width:760px;margin:0 auto;padding:32px 16px 64px}h1{font-size:1.9rem;line-height:1.25;margin:0 0 8px}
-h2{font-size:1.3rem;margin:2.2em 0 .5em;padding-top:.6em;border-top:1px solid var(--line)}h3{font-size:1.08rem;margin:1.6em 0 .4em}
-a{color:var(--accent);overflow-wrap:anywhere}p,li{overflow-wrap:break-word}code{font-size:.9em}
-blockquote{margin:1em 0;padding:.6em 1em;border-left:3px solid var(--accent);color:var(--muted)}
-hr{border:0;border-top:1px solid var(--line);margin:2em 0}
-.table{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.93rem;margin:1em 0}
-th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}th{background:color-mix(in srgb,var(--line) 45%,transparent)}
-nav{font-size:.92rem;margin-bottom:24px;color:var(--muted)}footer{margin-top:48px;font-size:.9rem;color:var(--muted)}
+@font-face{font-family:Fraunces;font-weight:300;font-display:swap;src:url(/numa/fonts/fraunces-300.5a66ba089a8a.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:400;font-display:swap;src:url(/numa/fonts/inter-400.a285ce100da1.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:600;font-display:swap;src:url(/numa/fonts/inter-600.cd4d951f2d93.woff2) format("woff2")}
+:root{color-scheme:light;--canvas:#f7f3ec;--subtle:#efe8dd;--card:#fff;--lavender:#f2ece3;--ink:#1f1a24;--text2:#5a5048;--text3:#73685f;--brand:#3b2a55;--gold:#b08440;--on-primary:#f7f3ec;--primary:#1f1a24;--line:#e2d9cc;--line-strong:#cfc3b3;--focus:#1f1a24;--sky1:#8e7fa8;--sky2:#c9a0a6;--sky3:#f0d3c2;--shadow:0 1px 2px #1f1a240a,0 6px 18px #1f1a240f;--serif:Fraunces,"Iowan Old Style","Palatino Linotype",Georgia,serif;--sans:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+@media (prefers-color-scheme:dark){:root{color-scheme:dark;--canvas:#16131b;--subtle:#1e1a24;--card:#231e2b;--lavender:#282131;--ink:#f3ede4;--text2:#cbc1b6;--text3:#a59b91;--brand:#cdb8f2;--gold:#d9b26a;--on-primary:#1a161f;--primary:#f3ede4;--line:#342c3d;--line-strong:#4b4256;--focus:#f3ede4;--sky1:#2c2742;--sky2:#3a2b3e;--sky3:#2a2130;--shadow:0 1px 2px #0000004d,0 8px 24px #00000040}}
+*,::before,::after{box-sizing:border-box}html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;padding:0 16px 48px;color:var(--ink);font:400 16px/1.7 var(--sans);letter-spacing:-.005em;background:linear-gradient(180deg,var(--sky1) 0,var(--sky2) 110px,var(--sky3) 210px,var(--canvas) 330px) no-repeat,var(--canvas)}
+a{color:var(--brand);text-underline-offset:3px;overflow-wrap:anywhere}a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:16px;top:-48px;padding:8px 16px;background:var(--primary);color:var(--on-primary);border-radius:999px;font-weight:600;text-decoration:none;z-index:1}.skip:focus{top:12px}
+.top{display:flex;flex-direction:column;align-items:center;gap:16px;max-width:1120px;margin:0 auto;padding:28px 0 24px}
+.brand{display:flex;align-items:center;gap:8px;margin:0;font:300 30px/1 var(--serif);letter-spacing:-.01em;color:var(--ink)}
+.brand svg{width:18px;height:18px;color:var(--gold);flex:none}
+.docs{display:flex;gap:4px;padding:4px;background:color-mix(in srgb,var(--card) 72%,transparent);border:1px solid var(--line);border-radius:999px}
+.docs a{padding:8px 16px;font-size:14px;line-height:20px;font-weight:600;color:var(--text2);text-decoration:none;border-radius:999px;white-space:nowrap}
+.docs a:hover{color:var(--ink)}.docs a[aria-current]{color:var(--on-primary);background:var(--primary)}
+.layout{max-width:1120px;margin:0 auto}
+main{padding:28px 20px 32px;background:var(--card);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);min-width:0}
+article{max-width:68ch;margin:0 auto;overflow-wrap:break-word}
+h1{margin:0 0 12px;font:300 32px/38px var(--serif);letter-spacing:-.015em}
+h1+p{display:inline-block;margin:0 0 20px;padding:4px 12px;font-size:13px;line-height:20px;font-weight:600;color:var(--text2);background:var(--lavender);border-radius:999px}
+h2{margin:2.4em 0 .6em;padding-top:1.2em;border-top:1px solid var(--line);font:300 24px/30px var(--serif);letter-spacing:-.01em;scroll-margin-top:24px}
+hr{height:1px;margin:2em 0;background:var(--line);border:0}hr+h2{margin-top:0;padding-top:0;border-top:0}
+h3{margin:1.8em 0 .4em;font-size:17px;line-height:24px;font-weight:600;scroll-margin-top:24px}
+p,ul,ol{margin:0 0 1em}ul,ol{padding-left:1.3em}li{margin:.3em 0}li::marker{color:var(--gold)}strong{font-weight:600}
+code{padding:.1em .4em;font-size:.88em;background:var(--subtle);border-radius:6px}
+blockquote{margin:1.2em 0;padding:12px 16px;color:var(--text2);background:var(--lavender);border-left:3px solid var(--gold);border-radius:0 14px 14px 0}blockquote p:last-child{margin:0}
+.table{margin:1.2em 0;overflow-x:auto;border:1px solid var(--line);border-radius:16px;-webkit-overflow-scrolling:touch}
+table{width:100%;min-width:560px;border-collapse:collapse;font-size:14.5px;line-height:1.55}
+th,td{padding:10px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}tr:last-child td{border-bottom:0}
+th{font-weight:600;color:var(--text2);background:var(--subtle)}td+td,th+th{border-left:1px solid var(--line)}
+.toc-m{margin:0 0 8px;background:var(--lavender);border-radius:20px}
+.toc-m summary{display:flex;align-items:center;justify-content:space-between;min-height:48px;padding:12px 18px;font-weight:600;cursor:pointer;list-style:none;border-radius:20px}
+.toc-m summary::-webkit-details-marker{display:none}
+.toc-m summary::after{content:"";width:8px;height:8px;margin:-4px 4px 0 12px;border-right:2px solid var(--text2);border-bottom:2px solid var(--text2);transform:rotate(45deg);transition:transform .15s}
+.toc-m[open] summary::after{margin-top:4px;transform:rotate(-135deg)}
+.toc-m ol,.toc ol{margin:0;padding:0;list-style:none}.toc-m ol{padding:0 10px 12px}
+.toc-m a,.toc a{display:block;padding:7px 8px;font-size:15px;line-height:21px;color:var(--text2);text-decoration:none;border-radius:10px}
+.toc-m a:hover,.toc a:hover{color:var(--ink);background:color-mix(in srgb,var(--ink) 6%,transparent)}
+.toc{display:none}
+footer{max-width:1120px;margin:24px auto 0;font-size:14px;line-height:20px;text-align:center;color:var(--text3)}footer a{color:var(--text2)}
+@media (min-width:600px){body{padding:0 24px 64px}.top{padding:44px 0 32px}main{padding:48px 48px 56px}h1{font-size:38px;line-height:44px}}
+@media (min-width:1024px){.top{flex-direction:row;justify-content:space-between}.layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:40px;align-items:start}
+.toc{display:block;position:sticky;top:24px;max-height:calc(100vh - 48px);overflow:auto;padding:4px 0}.toc-m{display:none}
+.toc p{margin:0 0 8px 8px;font-size:12px;line-height:16px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text3)}.toc a{font-size:14px;line-height:20px;padding:6px 8px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media print{:root{--ink:#000;--text2:#333;--text3:#555;--brand:#000;--line:#bbb;--subtle:#f2f2f2;--lavender:#f2f2f2;--gold:#555}
+@page{margin:18mm 16mm}body{padding:0;background:#fff;color:#000;font-size:10.5pt;line-height:1.5}
+.skip,.docs,.toc,.toc-m{display:none!important}.top{padding:0 0 12pt;align-items:flex-start}.brand{font-size:18pt}.brand svg{display:none}
+.layout{display:block;max-width:none}main{padding:0;border:0;border-radius:0;box-shadow:none;background:none}article{max-width:none}
+h1{font-size:20pt;line-height:1.2}h1+p{padding:0;background:none}h2{font-size:14pt;line-height:1.25;break-after:avoid;page-break-after:avoid}h3{break-after:avoid;page-break-after:avoid}
+a{color:#000;text-decoration:none}.table{overflow:visible;border:0;border-radius:0}table{min-width:0;font-size:9pt}th,td{border:1px solid #bbb}
+tr,li,blockquote{break-inside:avoid;page-break-inside:avoid}footer{text-align:left}}
 </style>
 </head>
 <body>
-<main>
-<nav><a href="/numa/kosullar/">Kullanım Koşulları</a> · <a href="/numa/gizlilik/">Gizlilik ve KVKK</a></nav>
+<a class="skip" href="#metin">Metne geç</a>
+<header class="top">
+<p class="brand"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 0c.8 6.5 5.5 11.2 12 12-6.5.8-11.2 5.5-12 12-.8-6.5-5.5-11.2-12-12C6.5 11.2 11.2 6.5 12 0z"/></svg>Nüma</p>
+<nav class="docs" aria-label="Belgeler"><a href="/numa/kosullar/">Kullanım Koşulları</a><a href="/numa/gizlilik/" aria-current="page">Gizlilik ve KVKK</a></nav>
+</header>
+<div class="layout">
+<nav class="toc" aria-label="İçindekiler"><p>İçindekiler</p><ol><li><a href="#1-veri-sorumlusu">1. Veri sorumlusu</a></li><li><a href="#2-hangi-verileri-isliyoruz">2. Hangi verileri işliyoruz</a></li><li><a href="#3-verileri-hangi-amaclarla-isliyoruz">3. Verileri hangi amaçlarla işliyoruz</a></li><li><a href="#4-hukuki-sebepler">4. Hukuki sebepler</a></li><li><a href="#5-verileri-nasil-topluyoruz">5. Verileri nasıl topluyoruz</a></li><li><a href="#6-verileri-kimlere-aktariyoruz">6. Verileri kimlere aktarıyoruz</a></li><li><a href="#7-yurt-disina-aktarim">7. Yurt dışına aktarım</a></li><li><a href="#8-saklama-sureleri">8. Saklama süreleri</a></li><li><a href="#9-haklariniz-kvkk-m-11-ve-nasil-kullanirsiniz">9. Haklarınız (KVKK m.11) ve nasıl kullanırsınız</a></li><li><a href="#10-18-yas-siniri">10. 18 yaş sınırı</a></li><li><a href="#11-reklam-izleme-ve-veri-satisi">11. Reklam, izleme ve veri satışı</a></li><li><a href="#12-fincan-fotograflari">12. Fincan fotoğrafları</a></li><li><a href="#13-yapay-zeka-hakkinda">13. Yapay zekâ hakkında</a></li><li><a href="#14-guvenlik">14. Güvenlik</a></li><li><a href="#15-baska-kisilere-ait-bilgiler">15. Başka kişilere ait bilgiler</a></li><li><a href="#16-bildirimler-ve-e-postalar">16. Bildirimler ve e-postalar</a></li><li><a href="#17-degisiklikler-ve-yeniden-onay">17. Değişiklikler ve yeniden onay</a></li><li><a href="#18-iletisim">18. İletişim</a></li></ol></nav>
+<main id="metin">
+<article>
 <h1>Nüma Gizlilik Politikası ve KVKK Aydınlatma Metni</h1>
 <p>Sürüm: 2026-11 · Yürürlük: 3 Kasım 2026</p>
+<details class="toc-m"><summary>İçindekiler</summary><ol><li><a href="#1-veri-sorumlusu">1. Veri sorumlusu</a></li><li><a href="#2-hangi-verileri-isliyoruz">2. Hangi verileri işliyoruz</a></li><li><a href="#3-verileri-hangi-amaclarla-isliyoruz">3. Verileri hangi amaçlarla işliyoruz</a></li><li><a href="#4-hukuki-sebepler">4. Hukuki sebepler</a></li><li><a href="#5-verileri-nasil-topluyoruz">5. Verileri nasıl topluyoruz</a></li><li><a href="#6-verileri-kimlere-aktariyoruz">6. Verileri kimlere aktarıyoruz</a></li><li><a href="#7-yurt-disina-aktarim">7. Yurt dışına aktarım</a></li><li><a href="#8-saklama-sureleri">8. Saklama süreleri</a></li><li><a href="#9-haklariniz-kvkk-m-11-ve-nasil-kullanirsiniz">9. Haklarınız (KVKK m.11) ve nasıl kullanırsınız</a></li><li><a href="#10-18-yas-siniri">10. 18 yaş sınırı</a></li><li><a href="#11-reklam-izleme-ve-veri-satisi">11. Reklam, izleme ve veri satışı</a></li><li><a href="#12-fincan-fotograflari">12. Fincan fotoğrafları</a></li><li><a href="#13-yapay-zeka-hakkinda">13. Yapay zekâ hakkında</a></li><li><a href="#14-guvenlik">14. Güvenlik</a></li><li><a href="#15-baska-kisilere-ait-bilgiler">15. Başka kişilere ait bilgiler</a></li><li><a href="#16-bildirimler-ve-e-postalar">16. Bildirimler ve e-postalar</a></li><li><a href="#17-degisiklikler-ve-yeniden-onay">17. Değişiklikler ve yeniden onay</a></li><li><a href="#18-iletisim">18. İletişim</a></li></ol></details>
 <p>Bu metin, Nüma mobil uygulamasını (iOS ve Android, uygulama kimliği <code>net.kernelguard.numa</code>) ve ona bağlı web sayfalarını kullanırken kişisel verilerinizin nasıl işlendiğini anlatır. 6698 sayılı Kişisel Verilerin Korunması Kanunu&#39;nun (KVKK) 10. maddesi uyarınca hazırlanmış aydınlatma metnidir ve aynı zamanda gizlilik politikamızdır.</p>
 <p>Kısaca:</p>
 <ul>
@@ -34,7 +88,7 @@ nav{font-size:.92rem;margin-bottom:24px;color:var(--muted)}footer{margin-top:48p
 <li>Nüma 18 yaş ve üstü içindir.</li>
 </ul>
 <hr>
-<h2>1. Veri sorumlusu</h2>
+<h2 id="1-veri-sorumlusu">1. Veri sorumlusu</h2>
 <p>Nüma&#39;yı bir şirket değil, bir gerçek kişi geliştirir ve yayımlar. Kişisel verileriniz, veri sorumlusu sıfatıyla bu kişi tarafından işlenir. Bu metinde &quot;biz&quot; ondan söz eder:</p>
 <ul>
 <li><strong>Ad soyad:</strong> Eren ARI (Nüma&#39;nın geliştiricisi; App Store ve Google Play&#39;de satıcı olarak görünen kişi)</li>
@@ -42,7 +96,7 @@ nav{font-size:.92rem;margin-bottom:24px;color:var(--muted)}footer{margin-top:48p
 <li><strong>İletişim e-postası:</strong> <a href="mailto:contact@kernelguard.net">contact@kernelguard.net</a></li>
 <li><strong>Web:</strong> kernelguard.net</li>
 </ul>
-<h2>2. Hangi verileri işliyoruz</h2>
+<h2 id="2-hangi-verileri-isliyoruz">2. Hangi verileri işliyoruz</h2>
 <p>Yalnızca hizmeti sunmak için gerekenleri işleriz. Kategoriler:</p>
 <p><strong>Hesap ve kimlik bilgileri</strong></p>
 <ul>
@@ -89,7 +143,7 @@ nav{font-size:.92rem;margin-bottom:24px;color:var(--muted)}footer{margin-top:48p
 </ul>
 <p><strong>Yalnızca cihazınızda kalanlar (bize gelmez)</strong></p>
 <p>Son aramalarınız, günlük ve sohbet taslaklarınız, akşam ay ve güneş saatleri için kullanılan konumunuz, görünüm tercihleri ve çevrimdışı kullanım için cihazınızda tutulan okuma kopyaları. Bunlar çıkış yaptığınızda ya da hesabınızı sildiğinizde cihazdan da silinir.</p>
-<h2>3. Verileri hangi amaçlarla işliyoruz</h2>
+<h2 id="3-verileri-hangi-amaclarla-isliyoruz">3. Verileri hangi amaçlarla işliyoruz</h2>
 <ul>
 <li>Hesabınızı açmak, oturumunuzu yönetmek, misafir hesabını kalıcı hesaba bağlamak.</li>
 <li>Kahve, tarot ve astroloji okumalarını, Nüma sohbetini, uyum yorumlarını ve gökyüzü notlarını hazırlamak ve size göstermek.</li>
@@ -105,9 +159,9 @@ nav{font-size:.92rem;margin-bottom:24px;color:var(--muted)}footer{margin-top:48p
 <li>Vergi ve ticaret mevzuatından doğan kayıt tutma yükümlülüklerini yerine getirmek.</li>
 <li>Verilerinizi dışa aktarma ve silme taleplerinizi yerine getirmek.</li>
 </ul>
-<h2>4. Hukuki sebepler</h2>
+<h2 id="4-hukuki-sebepler">4. Hukuki sebepler</h2>
 <p>Verilerinizi KVKK m.5 ve m.6&#39;daki şu sebeplere dayanarak işleriz:</p>
-<div class="table"><table>
+<div class="table" role="region" aria-label="Tablo" tabindex="0"><table>
 <thead>
 <tr>
 <th>İşleme</th>
@@ -157,7 +211,7 @@ nav{font-size:.92rem;margin-bottom:24px;color:var(--muted)}footer{margin-top:48p
 </tbody></table></div>
 <p><strong>Hassas konular.</strong> &quot;Hassas konular&quot; onayınız yoksa bu konulardaki mesajlara Nüma genel kalan bir yanıt verir; mesajdan hafızaya bir şey yazılmaz. Onayı sonradan geri alırsanız, hassas işaretli mesajlardan gelen hafıza kayıtları, sohbet özetleri ve bunlara dayanan Nüma notu cümleleri silinir. Kendine zarar verme ve kriz durumlarında, onaylarınızdan bağımsız olarak destek kaynakları gösterilir ve okuma yapılmaz. Sağlık, hukuk ve para konularında, onay verilmiş olsa da tahmin ya da tavsiye verilmez.</p>
 <p><strong>Doğum bilgileri</strong> (tarih, saat, yer) KVKK m.6&#39;da sayılan özel nitelikli kişisel veriler arasında yer almaz; sözleşmenin ifası için işlenir.</p>
-<h2>5. Verileri nasıl topluyoruz</h2>
+<h2 id="5-verileri-nasil-topluyoruz">5. Verileri nasıl topluyoruz</h2>
 <ul>
 <li><strong>Sizden:</strong> uygulamaya yazdıklarınız, yüklediğiniz fotoğraflar, verdiğiniz onaylar, destek formları (uygulama içi ve web).</li>
 <li><strong>Otomatik olarak:</strong> uygulamayı kullanırken oluşan teknik veriler (IP adresi, uygulama sürümü, işletim sistemi, hata kayıtları).</li>
@@ -165,9 +219,9 @@ nav{font-size:.92rem;margin-bottom:24px;color:var(--muted)}footer{margin-top:48p
 <li><strong>Hesaplama yoluyla:</strong> doğum haritası, transitler ve uyum karşılaştırması, verdiğiniz doğum bilgilerinden hesaplanır.</li>
 </ul>
 <p>Toplama, mobil uygulama, web sayfalarımız ve sunucularımız aracılığıyla elektronik ortamda yapılır.</p>
-<h2>6. Verileri kimlere aktarıyoruz</h2>
+<h2 id="6-verileri-kimlere-aktariyoruz">6. Verileri kimlere aktarıyoruz</h2>
 <p>Verileriniz yalnızca aşağıdaki hizmet sağlayıcılarına, yalnızca yazılan amaçla ve gerekli olduğu kadar aktarılır. Bunlar bizim adımıza veri işleyen ya da hizmeti sunmamız için zorunlu olan taraflardır. Bu liste dışındaki bir hizmete veri gönderilmez. Reklam ve analitik SDK&#39;sı kullanmayız.</p>
-<div class="table"><table>
+<div class="table" role="region" aria-label="Tablo" tabindex="0"><table>
 <thead>
 <tr>
 <th>Alıcı</th>
@@ -251,16 +305,16 @@ nav{font-size:.92rem;margin-bottom:24px;color:var(--muted)}footer{margin-top:48p
 </tbody></table></div>
 <p>Ayrıca, yasal yükümlülüklerimiz gereği yetkili kamu kurum ve kuruluşları ile, varsa, mali müşavirimiz: kanunen zorunlu olduğunda (mahkeme kararı, yetkili makam talebi) ilgili veriler yetkili kamu kurumlarına; vergi ve muhasebe yükümlülükleri için satın alma ve gelir kayıtları mali müşavirimize aktarılabilir. Bu mali kayıtlar kimliğinizi içermez.</p>
 <p>Hiçbir alıcıya verinizi reklam, profil çıkarma ya da satış amacıyla vermeyiz.</p>
-<h2>7. Yurt dışına aktarım</h2>
+<h2 id="7-yurt-disina-aktarim">7. Yurt dışına aktarım</h2>
 <p>Yukarıdaki hizmet sağlayıcılarının sunucuları Türkiye dışındadır: bir kısmı Avrupa Birliği&#39;nde (Supabase, Cloudflare R2, Sentry, Fly.io, Resend&#39;in gönderim tarafı), bir kısmı Amerika Birleşik Devletleri&#39;ndedir (Anthropic, RevenueCat, Expo, Resend&#39;in hesap ve kayıt verisi). Bu nedenle verileriniz yurt dışına aktarılır. KVKK bakımından Avrupa Birliği de yurt dışıdır ve bugün için Kurul&#39;un verdiği bir yeterlilik kararı yoktur.</p>
 <p>Bu aktarımlar KVKK m.9 uyarınca, uygun güvenceye dayanılarak yapılır:</p>
 <ul>
 <li>Avrupa Birliği&#39;ndekiler dahil yurt dışındaki her hizmet sağlayıcısıyla, Kişisel Verileri Koruma Kurulu&#39;nun ilan ettiği <strong>standart sözleşme</strong> metni değiştirilmeden yapılır ve sözleşme imzadan sonra 5 iş günü içinde Kurum&#39;a bildirilir.</li>
 <li><strong>Anthropic&#39;te Avrupa Birliği&#39;nde veri tutma seçeneği yoktur;</strong> YZ işlemesi için gönderilen veriler ABD&#39;de işlenir. Bunu YZ onay ekranında da açıkça görürsünüz.</li>
 </ul>
-<h2>8. Saklama süreleri</h2>
+<h2 id="8-saklama-sureleri">8. Saklama süreleri</h2>
 <p>Verilerinizi amaç için gereken süre kadar saklarız. Süre dolunca silme işleri günlük olarak çalışır. Silme işlemlerinin kayıtları içeriksiz olarak 3 yıl tutulur.</p>
-<div class="table"><table>
+<div class="table" role="region" aria-label="Tablo" tabindex="0"><table>
 <thead>
 <tr>
 <th>Veri</th>
@@ -377,7 +431,7 @@ nav{font-size:.92rem;margin-bottom:24px;color:var(--muted)}footer{margin-top:48p
 </tr>
 </tbody></table></div>
 <p>Hesabınız silindiğinde ne olduğu 9. bölümde anlatılmıştır.</p>
-<h2>9. Haklarınız (KVKK m.11) ve nasıl kullanırsınız</h2>
+<h2 id="9-haklariniz-kvkk-m-11-ve-nasil-kullanirsiniz">9. Haklarınız (KVKK m.11) ve nasıl kullanırsınız</h2>
 <p>KVKK m.11 uyarınca şu haklara sahipsiniz:</p>
 <ul>
 <li>kişisel verilerinizin işlenip işlenmediğini öğrenmek,</li>
@@ -416,7 +470,7 @@ nav{font-size:.92rem;margin-bottom:24px;color:var(--muted)}footer{margin-top:48p
 <li>ya da Adatepe Mahallesi, 3/10 Sokak, Buca, İzmir adresine yazılı olarak</li>
 </ul>
 <p>başvurabilirsiniz. Başvurunuzda kimliğinizi doğrulamak için gereken bilgileri isteyebiliriz. Talebinizi en geç <strong>30 gün</strong> içinde ücretsiz olarak sonuçlandırırız; işlemin ayrıca bir maliyet gerektirmesi hâlinde Kurul&#39;un belirlediği tarife uygulanabilir. Yanıtımızı yeterli bulmazsanız Kişisel Verileri Koruma Kurulu&#39;na şikâyette bulunabilirsiniz.</p>
-<h2>10. 18 yaş sınırı</h2>
+<h2 id="10-18-yas-siniri">10. 18 yaş sınırı</h2>
 <p>Nüma yalnızca 18 yaş ve üstündeki kişiler içindir. Uygulamanın başında yaşınızı sorarız; doğum yılınız (sınır yılında doğduysanız ay ve gün) saklanmaz, yalnızca &quot;18 yaşında ya da büyük&quot; ya da &quot;18 yaşından küçük&quot; sonucu kaydedilir.</p>
 <p>18 yaşından küçük olduğunuzu beyan ederseniz:</p>
 <ul>
@@ -427,21 +481,21 @@ nav{font-size:.92rem;margin-bottom:24px;color:var(--muted)}footer{margin-top:48p
 <li>bu beyan kalıcıdır; sonradan &quot;18 yaşında ya da büyük&quot; demek onu geri almaz. Yanlışlıkla seçtiyseniz destek ile iletişime geçebilirsiniz.</li>
 </ul>
 <p>18 yaşından küçük birinin Nüma&#39;yı kullandığını fark ederseniz lütfen bize bildirin.</p>
-<h2>11. Reklam, izleme ve veri satışı</h2>
+<h2 id="11-reklam-izleme-ve-veri-satisi">11. Reklam, izleme ve veri satışı</h2>
 <ul>
 <li>Nüma&#39;da reklam yoktur.</li>
 <li>Sizi başka şirketlerin uygulama ve sitelerinde izlemeyiz (App Tracking Transparency kapsamında izleme yoktur).</li>
 <li>Verinizi satmayız, kiralamayız.</li>
 <li>Reklam ya da analitik SDK&#39;sı kullanmayız. Hizmeti iyileştirmek için yalnızca kimliğinizle eşleştirilmeyen sayılar tutarız: sunucuda belirli olayların sayısı (ör. tamamlanan okuma sayısı) ve çökmesiz oturum oranını ölçmek için Sentry&#39;nin kurulum başına rastgele kimlikle tuttuğu oturum sayıları.</li>
 </ul>
-<h2>12. Fincan fotoğrafları</h2>
+<h2 id="12-fincan-fotograflari">12. Fincan fotoğrafları</h2>
 <ul>
 <li>Fotoğraf, yalnızca kahve okumasını hazırlamak için kullanılır.</li>
 <li>YZ sağlayıcısına fotoğrafın kendisi değil, küçültülmüş ve konum (GPS) dahil EXIF bilgileri silinmiş bir kopyası gönderilir. Uygulamada gösterilen küçük resimde de bu bilgiler yoktur.</li>
 <li>Uygulamanın yüklediği <strong>orijinal fotoğraftan EXIF bilgilerinin (konum dahil) silindiğini bugün garanti edemiyoruz.</strong> Orijinal fotoğraf, &quot;Hemen sil&quot;i seçmediyseniz en çok 30 gün depolama sağlayıcımızda (Cloudflare R2, AB), herkese açık olmayan bir alanda durur, sonra silinir. Konum bilgisinin fotoğrafa yazılmaması için telefonunuzun kamera ayarlarından konum etiketini kapatabilir ya da Ayarlar&#39;dan &quot;Hemen sil&quot;i seçebilirsiniz.</li>
 <li>Fotoğraflarınızı YZ modellerini eğitmek ya da doğruluk ölçmek için kullanmayız. İleride böyle bir kullanım düşünülürse bu ayrı bir açık onayla ve ayrı bilgilendirmeyle olur.</li>
 </ul>
-<h2>13. Yapay zekâ hakkında</h2>
+<h2 id="13-yapay-zeka-hakkinda">13. Yapay zekâ hakkında</h2>
 <ul>
 <li>Nüma&#39;daki kahve okumaları, tarot ve gökyüzü yorumları, uyum yorumu ve Nüma sohbeti <strong>yapay zekâ tarafından üretilir.</strong> Nüma bir insan, falcı, medyum ya da astrolog değildir. Sohbette bunu size zaman zaman hatırlatırız.</li>
 <li>YZ sağlayıcımız Anthropic&#39;tir. Gönderilen veriler 6. bölümde yazılıdır; kullanıcı kimliğiniz gönderilmez.</li>
@@ -450,7 +504,7 @@ nav{font-size:.92rem;margin-bottom:24px;color:var(--muted)}footer{margin-top:48p
 <li>Kriz belirtisi algılandığında okuma ya da sohbet durdurulur, destek kaynakları gösterilir; bu tür bir durdurmanın kaydı tutulur ve sonraki 72 saat size teklif gösterilmez, 14 gün hatırlatma bildirimi gönderilmez.</li>
 <li><strong>YZ onayını geri almak:</strong> Ayarlar&#39;dan geri aldığınızda yeni YZ istekleri durur ve uygulama sınırlı moda geçer. Geri alma anında işlenmekte olan ya da sırada bekleyen bir okuma veya özet için verinin, kısa bir süre içinde yine de sağlayıcıya gönderilmesi mümkündür.</li>
 </ul>
-<h2>14. Güvenlik</h2>
+<h2 id="14-guvenlik">14. Güvenlik</h2>
 <p>Verilerinizi korumak için alınan başlıca önlemler:</p>
 <ul>
 <li>Uygulama ile sunucular ve hizmet sağlayıcılar arasındaki bütün iletişim şifrelidir (HTTPS).</li>
@@ -463,24 +517,25 @@ nav{font-size:.92rem;margin-bottom:24px;color:var(--muted)}footer{margin-top:48p
 <li>Bildirimlerin kilit ekranında görünen metinleri kişisel bilgi içermez.</li>
 </ul>
 <p>Hiçbir sistem tam güvenli değildir. Bir veri ihlali olursa KVKK m.12 uyarınca Kurul&#39;a ve etkilenen kişilere bildirimde bulunuruz.</p>
-<h2>15. Başka kişilere ait bilgiler</h2>
+<h2 id="15-baska-kisilere-ait-bilgiler">15. Başka kişilere ait bilgiler</h2>
 <p>&quot;Kişiler&quot; bölümüne ya da sohbete başka birinin adını ve doğum bilgilerini eklerseniz, bu bilgiyi paylaşmaya hakkınız olduğundan ve o kişinin bilgisi olduğundan emin olun. Kişilerin adı ve doğum bilgisi YZ sağlayıcısına gönderilmez; yalnızca iki harita arasındaki hesaplanmış olgular gider. Bir kişiyi sildiğinizde haritası ve uyum yorumları da silinir.</p>
-<h2>16. Bildirimler ve e-postalar</h2>
+<h2 id="16-bildirimler-ve-e-postalar">16. Bildirimler ve e-postalar</h2>
 <ul>
 <li>Push bildirimleri yalnızca &quot;bildirimler&quot; onayınız varsa gönderilir; bu onay işlem bildirimlerini (okumanız hazır, ödeme sorunu, dışa aktarma hazır) de kapsar. Onayı geri alınca bütün push bildirimleri durur.</li>
 <li>Teklif içeren pazarlama bildirimleri yalnızca ayrı &quot;pazarlama bildirimleri&quot; onayınızla, haftada en çok bir kez gönderilir. Bu onay varsayılan olarak kapalıdır, Ayarlar&#39;dan her an geri alınabilir. E-posta ya da SMS ile pazarlama yapmayız.</li>
 <li>Hesap silme, veri dışa aktarma, destek ve giriş kodu e-postaları hizmetin gereği olarak gönderilir; bu e-postalar bildirim onayına bağlı değildir.</li>
 </ul>
-<h2>17. Değişiklikler ve yeniden onay</h2>
+<h2 id="17-degisiklikler-ve-yeniden-onay">17. Değişiklikler ve yeniden onay</h2>
 <p>Bu metnin her sürümü bir sürüm numarası taşır (en üstte). Bu metin bir bilgilendirmedir; sizden bu metne onay istemeyiz. Hangi sürümü gördüğünüz kaydedilir. Ayrı onaylarınız (YZ işleme, hafıza, bildirimler vb.) da gördüğünüz metnin sürümüyle birlikte kaydedilir.</p>
 <p>Metni değiştirdiğimizde yeni sürümü yayımlar ve uygulamada size gösteririz. Aleyhinize bir değişikliği yürürlüğe girmeden en az 30 gün önce bildiririz. Değişiklik bir onaya bağlı işlemeyi etkiliyorsa (örneğin YZ işleme), yeni metni görüp onayınızı yeniden vermeden o özellik çalışmaz. Önceki kararlarınız kanıt olarak saklanır.</p>
-<h2>18. İletişim</h2>
+<h2 id="18-iletisim">18. İletişim</h2>
 <p>Sorularınız için: <a href="mailto:contact@kernelguard.net">contact@kernelguard.net</a></p>
 <p>Uygulama içinde: Ayarlar › Yardım › Destek iste. Uygulamanız yoksa web destek formu: <a href="https://app.kernelguard.net/destek">https://app.kernelguard.net/destek</a></p>
 <p>Yazışma adresi: Adatepe Mahallesi, 3/10 Sokak, Buca, İzmir</p>
 <p>Bu metnin güncel sürümü: <a href="https://kernelguard.net/numa/gizlilik">https://kernelguard.net/numa/gizlilik</a> · Kullanım Koşulları: <a href="https://kernelguard.net/numa/kosullar">https://kernelguard.net/numa/kosullar</a></p>
-
-<footer>Nüma · Eren ARI · <a href="mailto:contact@kernelguard.net">contact@kernelguard.net</a></footer>
+</article>
 </main>
+</div>
+<footer>Nüma · Eren ARI · <a href="mailto:contact@kernelguard.net">contact@kernelguard.net</a></footer>
 </body>
 </html>
