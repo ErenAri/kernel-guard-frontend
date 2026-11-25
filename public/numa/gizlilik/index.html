@@ -140,6 +140,7 @@ tr,li,blockquote{break-inside:avoid;page-break-inside:avoid}footer{text-align:le
 <li>IP adresi (hız sınırları ve CAPTCHA için; hız sınırı sayaçlarında IP&#39;nin kendisini değil, anahtarlı bir özetini tutarız).</li>
 <li>Uygulamanın gerçek, değiştirilmemiş bir kurulum olduğunu doğrulayan bilgiler (Apple App Attest anahtarı, Google Play Integrity jetonu).</li>
 <li>Hata ve çökme kayıtları, performans ölçümleri ve kullanım sayıları. Bunlar kimliğinizle eşleştirilmez (bkz. 6. bölüm, Sentry).</li>
+<li>Cihaz kimliği: Android&#39;de cihazın Android kimliği, iOS&#39;ta uygulamanın ilk açılışta ürettiği rastgele bir kimlik. Sunucuda kimliğin kendisini değil, anahtarlı tek yönlü bir özetini tutarız; bu özet hesabınıza bağlanmaz. Ücretsiz hakların aynı cihazda yeni hesap açılarak tekrar tekrar kullanılmasını önlemek için, o cihazda o gün kullanılan ücretsiz hak sayısıyla birlikte 30 gün saklanır.</li>
 </ul>
 <p><strong>Yalnızca cihazınızda kalanlar (bize gelmez)</strong></p>
 <p>Son aramalarınız, günlük ve sohbet taslaklarınız, akşam ay ve güneş saatleri için kullanılan konumunuz, görünüm tercihleri ve çevrimdışı kullanım için cihazınızda tutulan okuma kopyaları. Bunlar çıkış yaptığınızda ya da hesabınızı sildiğinizde cihazdan da silinir.</p>
@@ -149,7 +150,7 @@ tr,li,blockquote{break-inside:avoid;page-break-inside:avoid}footer{text-align:le
 <li>Kahve, tarot ve astroloji okumalarını, Nüma sohbetini, uyum yorumlarını ve gökyüzü notlarını hazırlamak ve size göstermek.</li>
 <li>Okumaları ve notları defterinizde saklamak; temalarınızı ve haftalık notunuzu hazırlamak.</li>
 <li>Sohbette, onay verdiyseniz, onayladığınız hafıza kayıtlarını kullanarak yanıtı kişiselleştirmek.</li>
-<li>Plus aboneliğinizi ve Yudum bakiyenizi yönetmek, günlük haklarınızı saymak, mağaza satın almalarını doğrulamak, iadeleri işlemek.</li>
+<li>Plus aboneliğinizi ve Yudum bakiyenizi yönetmek, günlük haklarınızı saymak (ücretsiz haklar aynı cihazdaki hesaplar için ortak sayılır), mağaza satın almalarını doğrulamak, iadeleri işlemek.</li>
 <li>İstediğiniz bildirimleri göndermek.</li>
 <li>Destek taleplerinize yanıt vermek.</li>
 <li>Kriz belirtisi görüldüğünde okumayı ya da sohbeti durdurmak ve destek kaynaklarını göstermek; YZ çıktısının güvenlik denetimini yapmak.</li>
@@ -201,7 +202,7 @@ tr,li,blockquote{break-inside:avoid;page-break-inside:avoid}footer{text-align:le
 <td>Hukuki yükümlülük ve bir hakkın tesisi, kullanılması veya korunması (m.5/2-ç ve e)</td>
 </tr>
 <tr>
-<td>Hız sınırı, CAPTCHA, uygulama bütünlüğü, hata kaydı, kimliksiz kullanım sayıları, kriz durdurma kayıtları, güvenlik denetimi</td>
+<td>Hız sınırı, CAPTCHA, uygulama bütünlüğü, cihaz kimliği özetiyle ücretsiz hak sayımı, hata kaydı, kimliksiz kullanım sayıları, kriz durdurma kayıtları, güvenlik denetimi</td>
 <td>Meşru menfaat (m.5/2-f): hizmetin güvenliği ve sürekliliği</td>
 </tr>
 <tr>
@@ -402,6 +403,10 @@ tr,li,blockquote{break-inside:avoid;page-break-inside:avoid}footer{text-align:le
 <td>En çok 2 gün</td>
 </tr>
 <tr>
+<td>Cihaz kimliği özeti ve o cihazda kullanılan ücretsiz hak sayıları</td>
+<td>30 gün. Hesabınıza bağlı değildir; hesabınızı silseniz de 30 gün dolunca kendiliğinden silinir.</td>
+</tr>
+<tr>
 <td>Veri dışa aktarma dosyası</td>
 <td>7 gün; indirme bağlantısı 15 dakika geçerli</td>
 </tr>
@@ -459,7 +464,7 @@ tr,li,blockquote{break-inside:avoid;page-break-inside:avoid}footer{text-align:le
 <li>Silme isteği hemen uygulanmaz; <strong>7 gün</strong> sonrasına planlanır. Bu sürede uygulamadan ya da e-postadaki &quot;Silmekten vazgeç&quot; bağlantısıyla vazgeçebilirsiniz. Silmeden bir gün önce hatırlatma e-postası alırsınız.</li>
 <li>Harcanmamış Yudum&#39;unuz varsa, silme ile birlikte kaybolacağı söylenir ve ayrıca onayınız istenir. Harcanmamış Yudum iade edilmez.</li>
 <li>Süre dolunca profiliniz, okumalarınız, fotoğraflarınız, defteriniz, kişileriniz, sohbetleriniz, hafızanız, onay kayıtlarınız, bildirim ayarlarınız ve cihaz jetonlarınız, dışa aktarma dosyalarınız silinir. Destek taleplerinizin metni ve ekleri silinir, kimliksiz özet kalır. Apple ile giriş yaptıysanız Apple jetonunuz Apple&#39;da iptal edilir. Son olarak giriş hesabınız silinir.</li>
-<li><strong>Kalanlar:</strong> yasal saklama yükümlülüğü olan satın alma kayıtları ve Yudum defteri, kimliğinizle bağı koparılmış (takma adlı) olarak kalır. YZ maliyet kayıtları kimliksiz olarak kalır. RevenueCat&#39;teki müşteri kaydı silinmez; ona ad ya da e-posta gibi kişisel bilgi göndermeyiz.</li>
+<li><strong>Kalanlar:</strong> yasal saklama yükümlülüğü olan satın alma kayıtları ve Yudum defteri, kimliğinizle bağı koparılmış (takma adlı) olarak kalır. YZ maliyet kayıtları kimliksiz olarak kalır. Cihaz kimliği özetiyle tutulan ücretsiz hak sayıları hesabınıza bağlı olmadığından silinmez; 30 gün sonra kendiliğinden silinir. RevenueCat&#39;teki müşteri kaydı silinmez; ona ad ya da e-posta gibi kişisel bilgi göndermeyiz.</li>
 <li>Silinen veriler yedeklerden en geç 30 günde düşer.</li>
 <li><strong>Hesabı silmek aboneliği iptal etmez.</strong> Plus aboneliğinizi App Store ya da Google Play&#39;den ayrıca iptal etmeniz gerekir.</li>
 </ul>
